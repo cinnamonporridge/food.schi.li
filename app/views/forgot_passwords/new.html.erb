@@ -1,0 +1,12 @@
+<% provide :page_title, 'Forgot password?' %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= simple_form_for(:forgot_password, url: forgot_passwords_url) do |form| %>
+      <%= form.input :email, placeholder: 'Email address' %>
+      <%= form.submit 'Reset my password', name: 'reset', class: 'btn btn-success' %>
+      <%= form.submit 'Send me a magic link', name: 'magic_link', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>

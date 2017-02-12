@@ -1,0 +1,6 @@
+<% provide :page_title, 'Set new password' %>
+
+<%= simple_form_for(@form, url: reset_passwords_url) do |form| %>
+  <%= form.input :password, placeholder: 'Choose wisely...' %>
+  <%= form.submit 'Set password' %>
+<% end %>

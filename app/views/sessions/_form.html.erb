@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= simple_form_for(:session, url: login_path) do |form| %>
+      <%= form.input :email, placeholder: 'Email address' %>
+      <%= form.input :password, placeholder: 'Password' %>
+      <%= form.submit 'Log in', class: 'btn btn-primary' %>
+      <%= link_to 'Forgot password', new_forgot_passwords_url %>
+    <% end %>
+  </div>
+</div>

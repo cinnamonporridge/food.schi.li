@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>food.schi.li</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div id="main">
+          <h1><%= content_for?(:page_title) ? yield(:page_title) : '' %></h1>
+          <%= render 'layouts/flash' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
