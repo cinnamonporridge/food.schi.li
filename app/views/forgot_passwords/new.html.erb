@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <%= simple_form_for(:forgot_password, url: forgot_passwords_url) do |form| %>
+    <%= simple_form_for(@form, url: forgot_passwords_url) do |form| %>
       <%= form.input :email, placeholder: 'Email address' %>
       <%= form.submit 'Reset my password', name: 'reset', class: 'btn btn-success' %>
       <%= form.submit 'Send me a magic link', name: 'magic_link', class: 'btn btn-primary' %>

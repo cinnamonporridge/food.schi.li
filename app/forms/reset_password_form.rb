@@ -1,9 +1,12 @@
 class ResetPasswordForm
   include ActiveModel::Model
 
-  attr_accessor :password
+  attr_accessor :password, :challenge
 
-  def initialize(user)
-    @user = user
+  validates :password, presence: true
+  validates :password, length: { minimum: 3 }
+
+  def initialize(args = {})
+    @password, @challenge = args.values_at(:password, :challenge)
   end
 end

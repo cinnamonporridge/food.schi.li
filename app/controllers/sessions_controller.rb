@@ -1,12 +1,20 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :authenticate_user!, only: [:new, :create]
+
   def new
+    @form = LoginForm.new
   end
 
   def create
-    @user = User.find_by(email: login_params[:email])
+    @form = LoginForm.new(login_params)
+    return form_errors unless @form.valid?
 
-    if @user
-      flash.now[:success] = "Log in successful"
+    @user = User.find_by(email: @form.email)
+
+    if @user && @user.authenticate(login_params[:password])
+      log_in(@user)
+      flash[:success] = "Login successful"
       redirect_to home_url
     else
       flash.now[:warning] = "Invalid email or password"
@@ -22,6 +30,11 @@ class SessionsController < ApplicationController
   private
 
   def login_params 
-    params.require(:session).permit(:email, :password)
+    params.require(:login_form).permit(:email, :password)
+  end
+
+  def form_errors
+    flash.now[:warning] = 'Oops, something went wrong'
+    render :new
   end
 end

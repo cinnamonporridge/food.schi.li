@@ -12,4 +12,12 @@ class User < ApplicationRecord
     self.password_confirmation = password
     true # prevent plain text output
   end
+
+  def clear_reset_password!
+    self.update!(reset_password_challenge: nil, reset_password_sent_at: nil)
+  end 
+
+  def clear_magic_link!
+    self.update!(magic_link_challenge: nil, magic_link_sent_at: nil)
+  end
 end

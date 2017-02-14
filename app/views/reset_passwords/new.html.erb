@@ -1,0 +1,11 @@
+<% provide :page_title, 'Set new password' %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= simple_form_for(@form, url: reset_passwords_url) do |form| %>
+      <%= form.input :password, placeholder: 'Choose wisely...' %>
+      <%= form.input :challenge, as: :hidden %>
+      <%= form.submit 'Set password', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
