@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+DEFAULTS: &DEFAULTS
+  password_digest: "$2a$10$0v5NjtYR7VfY2fdf5zG08.BVGFfBTnIx0f.yPi2chBb/dBkdQ6uYu" # abc
 
-one:
-  email: MyString
-  password_digest: MyString
-
-two:
-  email: MyString
-  password_digest: MyString
+john:
+  <<: *DEFAULTS
+  email: "john@foo.bar"
