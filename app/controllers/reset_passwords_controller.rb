@@ -42,7 +42,7 @@ class ResetPasswordsController < ApplicationController
   end
 
   def challenge_not_valid_error
-    flash.now[:alert] = 'The provided challenge is not valid. Please reset your password again.'
+    flash.now[:warning] = 'The provided challenge is not valid. Please reset your password again.'
     render :new
   end
 end
