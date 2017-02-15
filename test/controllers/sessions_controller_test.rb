@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'successful login' do
-    post login_url, params: login_form_params
+    login_user(users(:john))
     follow_redirect!
     assert_response :success
   end
@@ -31,12 +31,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   private
-
-  def login_form_params
-    { 
-      login_form: { email: 'john@foo.bar', password: 'abc' }
-    }
-  end
 
   def login_form_wrong_params
     { 
