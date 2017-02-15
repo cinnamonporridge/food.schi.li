@@ -5,4 +5,11 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get home_url
     assert_response :redirect
   end
+
+  test 'should get new after login' do
+    john = users(:john)
+    login_user(john)
+    get home_url
+    assert_response :success
+  end
 end
