@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def clear_reset_password!
-    self.update!(reset_password_challenge: nil, reset_password_sent_at: nil)
+    self.update!(reset_password_challenge: nil, reset_password_link_sent_at: nil)
   end 
 
   def clear_magic_link!
