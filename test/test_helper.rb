@@ -8,6 +8,12 @@ class ActiveSupport::TestCase
 
   def login_user(user, password = 'abc')
     post login_url, params: login_form_params(user.email, password)
+    follow_redirect!
+  end
+
+  def logout_user
+    delete logout_path
+    follow_redirect!
   end
 
   private

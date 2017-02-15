@@ -18,9 +18,10 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Oops, something went wrong', flash[:warning]
   end
 
-  test 'successful login' do
+  test 'successful login and logout' do
     login_user(users(:john))
-    follow_redirect!
+    assert_response :success
+    logout_user
     assert_response :success
   end
 
