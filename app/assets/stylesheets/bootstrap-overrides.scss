@@ -6,13 +6,20 @@ $gray-base: #111;
 
 /* https://color.adobe.com/unlike-color-theme-238698/ */
 $brand-primary:  #911146;
+$brand-light-primary: lighten($brand-primary, 65%);
 $brand-success:  #88A825;
 $brand-info:     #35203B; 
 $brand-warning:  #ED8C2B;
+$brand-light-warning: lighten($brand-warning, 40%);
 $brand-danger:   #CF4A30;
 
 $headings-color: $brand-primary;
 
 $padding-base-vertical: 12px;
 
-$input-border-focus: $brand-success;
+$input-border-focus: $brand-warning;
+
+$font-size-base: 14px;
+$font-size-h2: floor(($font-size-base *  1.9));
+$link-color: $brand-warning;
+$list-group-hover-bg: $brand-light-primary;

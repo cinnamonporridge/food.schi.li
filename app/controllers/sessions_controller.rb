@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:new, :create]
+  before_action :forward_logged_in!, except: [:destroy]
 
   def new
     @form = LoginForm.new

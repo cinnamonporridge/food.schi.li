@@ -6,11 +6,15 @@
     <%= fa_icon 'cogs' %> Foods
   </li>
   <li>
-    <%= fa_icon 'cutlery' %> Recepies
+    <%= fa_icon 'cutlery' %> Recipes
   </li>
+  <% if current_user.is_admin? %>
   <li>
-    <%= fa_icon 'users' %> Users
+    <%= link_to users_path do %>
+      <%= fa_icon 'users' %> Users
+    <% end %>
   </li>
+  <% end %>
   <li>
     <%= link_to logout_path, method: :delete do %>
       <%= fa_icon 'power-off' %> Log out

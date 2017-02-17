@@ -8,11 +8,15 @@ module SessionsHelper
   end
 
   def logged_in?
-    !current_user.nil?
+    current_user.present?
   end
 
   def log_out
     session.clear
     @current_user = nil
+  end
+
+  def admin_logged_in?
+    current_user&.is_admin?
   end
 end

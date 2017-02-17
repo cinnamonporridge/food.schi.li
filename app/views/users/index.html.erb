@@ -1,0 +1,16 @@
+<%= provide :page_title, 'Users' %>
+
+<%= provide :compass, link_to('Home', home_path) %>
+
+<div class="list-group">
+  <% @users.each do |user| %>
+    <%= link_to user_path(user), class: 'list-group-item' do %>
+      <%= user.email %> 
+      <% if user.is_admin? %>
+        <%= fa_icon 'user-circle' %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to 'Invite a person', new_user_path, class: 'btn btn-success' %>

@@ -5,6 +5,7 @@
 div#title {
   position: relative;
   font-size: 24px;
+  font-weight: 100;
   color: #fff;
   background-color: $brand-primary;
   text-align: center;
@@ -13,8 +14,11 @@ div#title {
   border-bottom-width: 4px;
 }
 
+div#compass {
+  margin: 10px 0;
+}
+
 h1 {
-  margin-bottom: 30px;
 }
 
 ul {
@@ -33,3 +37,14 @@ ul {
 a:hover {
   text-decoration: none;
 }
+
+#new_search_form {
+  input[type='text']{
+    text-align: center;
+  }
+
+  input[type='text']:focus{
+    text-align: left;
+  }
+}
+

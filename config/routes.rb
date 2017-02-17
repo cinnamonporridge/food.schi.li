@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get '/home/show', as: 'home'
-
   root 'sessions#new'
+  get '/home/show', as: 'home'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -13,4 +12,7 @@ Rails.application.routes.draw do
   resource :reset_passwords , only: [:create]
 
   get '/magic_link/:challenge', to: 'magic_links#new', as: 'magic_link'
+
+  resources :users
+
 end
