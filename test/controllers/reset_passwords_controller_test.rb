@@ -44,7 +44,7 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def reset_password(user)
-    PasswordService.reset!(user)
+    PasswordService.reset_link!(user)
     user.reload
   end
 end

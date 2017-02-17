@@ -16,6 +16,10 @@ class ActiveSupport::TestCase
     follow_redirect!
   end
 
+  def last_email
+    email = ActionMailer::Base.deliveries.last
+  end
+
   private
 
   def login_form_params(user_email, password)

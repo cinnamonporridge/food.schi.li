@@ -16,7 +16,7 @@ class ForgotPasswordsController < ApplicationController
       PasswordService.magic_link!(@user)
       flash[:success] = 'A magic link has been sent to your email address'
     else
-      PasswordService.reset!(@user)
+      PasswordService.reset_link!(@user)
       flash[:success] = 'A reset link has been sent to your email address'
     end
 

@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
   test 'should get forgot passwords' do
     get new_forgot_passwords_path
@@ -9,7 +11,7 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_equal 'A reset link has been sent to your email address', flash[:success]
-    # TODO assert email sent
+    assert_equal 'Your password reset link', last_email.subject
   end
 
   test 'magic link' do
@@ -17,7 +19,7 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_equal 'A magic link has been sent to your email address', flash[:success]
-    # TODO assert email sent
+    assert_equal 'Your magic link', last_email.subject
   end
 
   test 'missing email for reset' do
