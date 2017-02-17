@@ -1,0 +1,35 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+div#title {
+  position: relative;
+  font-size: 24px;
+  color: #fff;
+  background-color: $brand-primary;
+  text-align: center;
+  padding: 15px 0;
+  border: $brand-warning solid 0px;
+  border-bottom-width: 4px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.home-menu {
+  li {
+    padding: 12px 0;
+    font-size: $font-size-large;
+    text-align: center;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}

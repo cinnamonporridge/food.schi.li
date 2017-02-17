@@ -5,21 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
+  <body lang="en">
+    <div class="container">
 
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
-        <div id="main">
-          <h1><%= content_for?(:page_title) ? yield(:page_title) : '' %></h1>
-          <%= render 'layouts/flash' %>
-          <%= yield %>
+        <div class="row">
+          <div class="col-xs-12" id="title">
+           food.schi.li
+          </div>
         </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <h1><%= content_for?(:page_title) ? yield(:page_title) : '' %></h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <%= render 'layouts/flash' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <%= yield %>
+          </div>
+        </div>
+
       </div>
-    </div>
   </body>
 </html>
