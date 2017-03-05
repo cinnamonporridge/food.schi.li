@@ -1,0 +1,20 @@
+---
+
+- name: "Install prerequisites"
+  become: yes
+  apt:
+    pkg: "{{ item }}"
+    state: "present"
+  with_items:
+    - "vim"
+    - "git"
+
+
+- name: "Install app-specific additional packages"
+  become: yes
+  apt:
+    pkg: "{{ item }}"
+    state: "present"
+  with_items: "{{ app_additional_packages }}"
+  when: "app_additional_packages is defined"
+

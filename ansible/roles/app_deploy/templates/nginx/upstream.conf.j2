@@ -1,0 +1,3 @@
+upstream {{ app_name }} {
+  server unix:/var/www/{{ app_name }}/shared/sockets/puma.sock;
+}

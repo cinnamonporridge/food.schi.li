@@ -1,0 +1,28 @@
+---
+
+- name: "Lock Ruby version"
+  become: yes
+  copy:
+    content: "{{ app_ruby_version }}"
+    dest: "{{ app_application_dir }}/.ruby-version"
+    owner: "{{ app_user }}"
+    group: "{{ app_user_group }}"
+    mode: 0600
+
+- name: "Set default RAILS_ENV"
+  become: yes
+  copy:
+    content: "RAILS_ENV={{ app_env }}"
+    dest: "~{{ app_user }}/.rbenv/vars"
+    owner: "{{ app_user }}"
+    group: "{{ app_user_group }}"
+    mode: "0600"
+
+- name: "Set environment variables"
+  become: yes
+  template:
+    src: "environment/rbenv-vars.j2"
+    dest: "{{ app_application_dir }}/.rbenv-vars"
+    owner: "{{ app_user }}"
+    group: "{{ app_user_group }}"
+    mode: 0600

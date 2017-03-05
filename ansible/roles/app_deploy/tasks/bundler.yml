@@ -1,0 +1,15 @@
+---
+
+- name: "Install prerequisites for bundler"
+  apt:
+    pkg: "{{ item }}"
+    state: "present"
+  with_items:
+    - "patch"
+
+- name: "Install Bundler"
+  command: "~{{ app_user }}/.rbenv/shims/gem install bundler"
+  args:
+    creates: "~{{ app_user }}/.rbenv/versions/{{ app_ruby_version }}/bin/bundle"
+  become: yes
+  become_user: "{{ app_user }}"

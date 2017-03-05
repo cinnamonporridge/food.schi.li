@@ -1,0 +1,10 @@
+---
+
+app_env: "production"
+
+app_secret_key_base: "{{ vault_app_secret_key_base }}"
+app_database_pool: 10
+app_database_name: "schili_prod"
+app_database_username: "schili_prod"
+app_database_password: "{{ vault_app_database_password }}"
+app_database_host: "localhost"

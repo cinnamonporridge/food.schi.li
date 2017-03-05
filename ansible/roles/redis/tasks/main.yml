@@ -1,0 +1,112 @@
+---
+
+# Redis user
+- name: "Create the redis_user group (same name as user)"
+  become: yes
+  group:
+    name: "{{ redis_user_group }}"
+    state: present
+
+- name: "Add redis_user to the redis_user group"
+  become: yes
+  user:
+    name: "{{ redis_user }}"
+    group: "{{ redis_user_group }}"
+    state: present
+
+# Download software
+- name: "Download latest redis"
+  get_url:
+    url: "http://download.redis.io/redis-stable.tar.gz"
+    dest: "{{ redis_user_home_dir }}/redis-stable.tar.gz"
+    mode: 0775
+    group: "{{ redis_user_group }}"
+    owner: "{{ redis_user }}"
+  become: yes
+  become_user: "{{ redis_user }}"
+
+- name: "Unpack redis tar"
+  become: yes
+  become_user: "{{ redis_user }}"
+  unarchive:
+    copy: no
+    src: "{{ redis_user_home_dir }}/redis-stable.tar.gz"
+    dest: "{{ redis_user_home_dir }}/"
+    group: "{{ redis_user_group }}"
+    owner: "{{ redis_user }}"
+
+# Install redis
+- name: "Make redis"
+  become: yes
+  make:
+    chdir: "{{ redis_user_home_dir }}/redis-stable/deps"
+    target: "{{ item }}"
+  with_items:
+    - "hiredis"
+    - "jemalloc"
+    - "linenoise"
+    - "lua"
+    - "geohash-int"
+
+- name: "Make Install redis"
+  become: yes
+  make:
+    chdir: "{{ redis_user_home_dir }}/redis-stable"
+    target: "install"
+
+# Configure redis
+- name: "Create configuration directory for redis"
+  become: yes
+  file:
+    path: "{{ redis_conf_root }}"
+    recurse: yes
+    state: directory
+
+- name: "Configure redis"
+  become: yes
+  template:
+    src: "redis.conf.j2"
+    dest: "{{ redis_conf_path }}"
+    mode: 0644
+
+- name: "Create redis db directory"
+  become: yes
+  file:
+    path: "{{ redis_dbdir }}"
+    recurse: yes
+    state: directory
+    owner: "{{ redis_user }}"
+    group: "{{ redis_user_group }}"
+    mode: 0777
+
+- name: "Create PID directory"
+  become: yes
+  file:
+    path: "{{ redis_pid_file_path|dirname }}"
+    recurse: yes
+    state: directory
+    owner: "{{ redis_user }}"
+    group: "{{ redis_user_group }}"
+
+- name: "Create log file"
+  become: yes
+  file:
+    path: "{{ redis_log_file_path }}"
+    state: touch
+    owner: "{{ redis_user }}"
+    group: "{{ redis_user_group }}"
+
+# Redis service
+- name: "Install redis service"
+  become: yes
+  template:
+    src: "redis-service.j2"
+    dest: "/etc/systemd/system/{{ redis_service_name }}"
+    mode: 0755
+
+- name: "Enable and start redis"
+  become: yes
+  service:
+    name: "{{ redis_service_name }}"
+    enabled: yes
+    state: restarted

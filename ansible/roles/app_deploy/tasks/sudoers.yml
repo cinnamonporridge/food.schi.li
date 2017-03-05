@@ -1,0 +1,9 @@
+---
+
+# - name: "Copy sudoers permissions"
+#   become: yes
+#   lineinfile:
+
+#   with_items:
+#     - "{{ app_user }} ALL=(ALL) NOPASSWD: /bin/systemctl [a-z]* puma_{{ app_name }}.socket"
+#     - "{{ app_user }} ALL=(ALL) NOPASSWD: /bin/systemctl [a-z]* puma_{{ app_name }}.service"

@@ -1,0 +1,20 @@
+---
+
+- hosts: "{{ prompted_environment }}"
+  vars_files:
+    - "app_vars/app.yml"
+
+  vars:
+    playbook: "deploy"
+
+  vars_prompt:
+    - name: "prompted_environment"
+      prompt: "Which environment would you like to deploy?"
+      private: no
+    - name: "prompted_deploy_branch"
+      prompt: "Branch to deploy"
+      default: "master"
+      private: no
+
+  roles:
+    - role: "app_deploy"

@@ -1,0 +1,7 @@
+---
+
+vault_app_database_password: "a1ff4f238abb1589bb1991711436f"
+vault_app_secret_key_base: "fb3fa9ffb2c15f86ead0667116643ab08c45d73b70d8b2e81c6ce611d33c2179eb3b49be7ee485770e14df2a648a6506c46b4e231ccab3f3af0688a602013e66"
+vault_app_smtp_settings:
+  password: "0924cbf92d8cadc833751bea16e33633a"
+

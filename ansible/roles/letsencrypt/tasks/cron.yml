@@ -1,0 +1,10 @@
+---
+
+- name: "Install renewal cron"
+  become: yes
+  cron:
+    name: "Let's Encrypt Renewal"
+    day: "*/15"
+    hour: "4"
+    minute: "0"
+    job: "systemctl stop nginx; /opt/certbot/certbot-auto certonly --config /etc/letsencrypt/cli.ini --noninteractive >/dev/null 2>&1; systemctl start nginx"

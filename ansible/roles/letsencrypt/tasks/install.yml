@@ -1,0 +1,37 @@
+---
+
+- name: "Install letsencrypt"
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - "openssl"
+    - "libexpat1-dev"
+    - "libpython-dev"
+    - "libpython2.7"
+    - "libpython2.7-dev"
+    - "python-pip-whl"
+    - "augeas-lenses"
+    - "libaugeas0"
+    - "python-dev"
+    - "python-virtualenv"
+    - "python2.7-dev"
+    - "python3-virtualenv"
+    - "virtualenv"
+    - "letsencrypt"
+
+- name: "Clone the Letsencrypt git repository"
+  become: yes
+  git:
+    repo: "https://github.com/certbot/certbot"
+    dest: "/opt/certbot"
+    depth: "1"
+    accept_hostkey: "yes"
+    force: "yes"
+
+- name: "Create the config directory structure"
+  become: yes
+  file:
+    path: "/etc/letsencrypt"
+    state: "directory"

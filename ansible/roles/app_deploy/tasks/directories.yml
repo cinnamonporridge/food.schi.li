@@ -1,0 +1,31 @@
+---
+
+- name: "Create app directories"
+  become: yes
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_user_group }}"
+    mode: 0755
+  with_items:
+    - "{{ app_application_dir }}"
+    - "{{ app_shared_dir }}"
+
+- name: "Create app shared directories"
+  become: yes
+  file:
+    state: directory
+    path: "{{ app_shared_dir }}/{{ item }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_user_group }}"
+    mode: 0755
+  with_items:
+    - "config"
+    - "sockets"
+    - "log"
+    - "tmp"
+    - "pids"
+    - "public"
+    - "public/uploads"
+    - "public/label"

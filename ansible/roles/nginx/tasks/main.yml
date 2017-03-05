@@ -1,0 +1,28 @@
+---
+
+- name: "Install nginx"
+  become: yes
+  apt:
+    pkg: "nginx"
+    state: "present"
+
+- name: "Enable and start nginx"
+  become: yes
+  service:
+    name: "nginx"
+    enabled: "yes"
+
+- name: "Increase server_names_hash_bucket_size value"
+  become: yes
+  lineinfile:
+    dest: "/etc/nginx/nginx.conf"
+    line: "server_names_hash_bucket_size 128;"
+    regexp: "server_names_hash_bucket_size"
+    state: "present"
+
+- name: "Add www-data to app_name_group"
+  become: yes
+  user:
+    name: "www-data"
+    groups: "{{ app_user_group }}"
+    append: yes
