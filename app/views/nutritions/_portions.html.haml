@@ -1,0 +1,26 @@
+- if nutrition
+  .table-responsive
+    .row
+      .col-xs-12.col-md-6
+        %table.table
+          %thead
+            %tr
+              %th.col-xs-5 Name
+              %th.col-xs-5.text-right g/ml per unit
+              %th.col-xs-1
+          %tbody
+            - nutrition.portions.ordered_by_multiplier.each do |portion|
+              %tr
+                %td.col-xs-5= portion.name
+                %td.col-xs-6.text-right= portion.decorate.multiplier_in_gram_or_ml
+                %td.col-xs-1.text-center
+                  - unless portion.primary?
+                    = link_to edit_portion_path(portion) do
+                      %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+                    = link_to portion, method: :delete, data: { confirm: 'Are you sure?' } do
+                      %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+                  - else
+                    %span.text-muted.glyphicon.glyphicon-star-empty{ 'aria-hidden': true }
+
+
+  

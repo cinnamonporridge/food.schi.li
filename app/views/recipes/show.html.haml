@@ -1,0 +1,18 @@
+= link_to 'Back to recipes', recipes_path
+%h1
+  = @recipe.name 
+  %small= "#{@recipe.servings} servings"
+
+= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-xs btn-primary edit-xs'
+= link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger destroy-xs'
+
+%h2 Ingredients
+= render 'recipes/ingredients_form', recipe: @recipe
+
+- if @recipe.ingredients.any?
+  %h2 Nutritions
+  = render 'recipes/nutritions', recipe: @recipe
+
+  %h2 Macro nutritients
+  = render 'recipes/macro_nutritients_chart', recipe: @recipe
+

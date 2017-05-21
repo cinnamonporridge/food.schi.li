@@ -1,0 +1,27 @@
+%nav.navbar.navbar-default
+  .collapse.navbar-collapse
+    .container-fluid
+      .row
+        .col-xs-12.col-md-10.col-md-offset-1
+          %ul.nav.navbar-nav
+            %li
+              = link_to home_path do
+                = fa_icon 'home'
+                Home
+            %li
+              = link_to recipes_path do
+                = fa_icon 'cutlery'
+                Recipes
+            %li
+              = link_to nutritions_path do
+                = fa_icon 'cogs'
+                Foods
+            - if current_user.is_admin?
+              %li
+                = link_to users_path do
+                  = fa_icon 'users'
+                  Users
+            %li
+              = link_to logout_path, method: :delete do
+                = fa_icon 'power-off'
+                Log out

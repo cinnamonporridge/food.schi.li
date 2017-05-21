@@ -1,0 +1,16 @@
+%p
+  %strong Name
+  = @portion.name
+%p
+  %strong Nutrition
+  = link_to @portion.nutrition.name, nutrition_path(@portion.nutrition)
+%p
+  %strong Multiplier
+  = @portion.multiplier
+%h2 Used in recipes
+%ul
+  - @portion.recipes.each do |recipe|
+    %li= link_to recipe.name, recipe_path(recipe)
+= link_to 'Edit', edit_portion_path(@portion)
+|
+= link_to 'Back', portions_path

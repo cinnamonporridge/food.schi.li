@@ -1,50 +1,98 @@
+.gray {
+  color: #c0c0c0;
+}
+
 * {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 
-div#title {
-  position: relative;
-  font-size: 24px;
+h1, h2, h3, h4, h5 {
   font-weight: 100;
-  color: #fff;
-  background-color: $brand-primary;
+}
+
+th {
+}
+
+h1 > small {
+  font-size: 50% !important;
+}
+
+.title {
+  font-size: 96px;
+  font-weight: 100;
   text-align: center;
-  padding: 15px 0;
-  border: $brand-warning solid 0px;
-  border-bottom-width: 4px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
-div#compass {
-  margin: 10px 0;
+.add {
+  font-weight: 100;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-h1 {
+.add::before {
+  content: '+';
+  padding-right: 10px;
+  font-weight: 400;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.edit, .edit-xs {
+  font-weight: 100;
 }
 
-.home-menu {
-  li {
-    padding: 12px 0;
-    font-size: $font-size-large;
-    text-align: center;
-  }
+.edit::before {
+  content: '_';
+  font-weight: 400;
+  padding-right: 10px;
 }
 
-a:hover {
-  text-decoration: none;
+.edit-xs::before {
+  content: '_';
+  font-weight: 400;
+  padding-right: 5px;
 }
 
-#new_search_form {
-  input[type='text']{
-    text-align: center;
-  }
-
-  input[type='text']:focus{
-    text-align: left;
-  }
+.edit-xs {
+  width: 60px;
 }
 
+.destroy-xs {
+  font-weight: 100;
+  width: 60px;
+}
+
+.destroy-xs::before {
+  content: 'x';
+  padding-right: 5px;
+  font-weight: 400;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.selectable.ingredient {
+  width: 100%;
+}
+
+.vertical-space-xs {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.vertical-space-md {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.vertical-space-lg {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.vertical-space-xl {
+  margin-top: 36px;
+  margin-bottom: 36px;
+}

@@ -10,10 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217140555) do
+ActiveRecord::Schema.define(version: 20170506102434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ingredients", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.bigint "portion_id"
+    t.decimal "quantity", precision: 10, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portion_id"], name: "index_ingredients_on_portion_id"
+    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
+  create_table "nutritions", force: :cascade do |t|
+    t.string "name"
+    t.integer "kcal"
+    t.decimal "carbs", precision: 10, scale: 3
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3
+    t.decimal "protein", precision: 10, scale: 3
+    t.decimal "fat", precision: 10, scale: 3
+    t.decimal "fat_saturated", precision: 10, scale: 3
+    t.decimal "fiber", precision: 10, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "portions", force: :cascade do |t|
+    t.string "name"
+    t.bigint "nutrition_id"
+    t.decimal "multiplier", precision: 10, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nutrition_id"], name: "index_portions_on_nutrition_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "servings", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", null: false
@@ -27,4 +66,7 @@ ActiveRecord::Schema.define(version: 20170217140555) do
     t.boolean "is_admin", default: false, null: false
   end
 
+  add_foreign_key "ingredients", "portions"
+  add_foreign_key "ingredients", "recipes"
+  add_foreign_key "portions", "nutritions"
 end

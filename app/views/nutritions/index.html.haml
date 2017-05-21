@@ -1,0 +1,27 @@
+%h1 Nutritions
+
+= link_to 'New Nutrition', new_nutrition_path, class: 'btn btn-success add'
+
+.table-responsive
+  %table.table.table-hover  
+    %thead
+      %tr
+        %th Name
+        %th.col-xs-1.text-right Kcal
+        %th.col-xs-1.text-right Carbs
+        %th.col-xs-1.text-right Carbs sugar part
+        %th.col-xs-1.text-right Protein
+        %th.col-xs-1.text-right Fat
+        %th.col-xs-1.text-right Fat saturated
+        %th.col-xs-1.text-right Fiber
+    %tbody
+      - @nutritions.each do |nutrition|
+        %tr.clickable-row{ 'data-href': nutrition_path(nutrition) }
+          %td= link_to nutrition.name, nutrition
+          %td.text-right= nutrition.kcal
+          %td.text-right= nutrition.carbs
+          %td.text-right= nutrition.carbs_sugar_part
+          %td.text-right= nutrition.protein
+          %td.text-right= nutrition.fat
+          %td.text-right= nutrition.fat_saturated
+          %td.text-right= nutrition.fiber

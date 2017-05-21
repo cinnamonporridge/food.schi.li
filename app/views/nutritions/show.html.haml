@@ -1,0 +1,42 @@
+
+= link_to 'Back to nutritions', nutritions_path
+
+%h1= @nutrition.name
+
+= link_to 'Edit', edit_nutrition_path(@nutrition), class: 'btn btn-xs btn-primary edit-xs'
+
+%h2 100g contains
+
+
+.row
+  .col-xs-12.col-md-3
+    .table-responsive
+      %table.table
+        %tbody
+          %tr
+            %th.col-xs-12.col-md-6 Kcal
+            %td.text-right= @nutrition.kcal
+          %tr
+            %th Carbs
+            %td.text-right= @nutrition.carbs
+          %tr
+            %th.gray  Carbs sugar part
+            %td.gray.text-right= @nutrition.carbs_sugar_part
+          %tr
+            %th Protein
+            %td.text-right= @nutrition.protein
+          %tr
+            %th Fat
+            %td.text-right= @nutrition.fat
+          %tr
+            %th.gray Fat saturated
+            %td.gray.text-right= @nutrition.fat_saturated
+          %tr
+            %th Fiber
+            %td.text-right= @nutrition.fiber
+
+%h2 Portions
+
+= link_to 'New portion', new_portion_path, class: 'btn btn-xs btn-success add'
+
+= render 'nutritions/portions', nutrition: @nutrition

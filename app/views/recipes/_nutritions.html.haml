@@ -1,0 +1,50 @@
+- if recipe
+  .row
+    .col-xs-12.col-md-4
+      .table-responsive
+        %table.table
+          %tr
+            %th
+            %th.text-right Recipe
+            %th.text-right 1 Serving
+            %th
+          %tr
+            %th kcal
+            %td.text-right= recipe.decorate.sum_kcal
+            %td.text-right= recipe.decorate.serving_kcal
+            %td 
+          %tr
+            %th Carbs
+            %td.text-right= recipe.decorate.sum_carbs
+            %td.text-right= recipe.decorate.serving_carbs
+            %td.text-right= recipe.decorate.macro_nutritient_carbs_percentage
+
+          %tr.gray
+            %th Carbs sugar part
+            %td.text-right= recipe.decorate.sum_carbs_sugar_part
+            %td.text-right= recipe.decorate.serving_carbs_sugar_part
+            %td 
+
+          %tr
+            %th Protein
+            %td.text-right= recipe.decorate.sum_protein
+            %td.text-right= recipe.decorate.serving_protein
+            %td.text-right= recipe.decorate.macro_nutritient_protein_percentage
+
+          %tr
+            %th Fat
+            %td.text-right= recipe.decorate.sum_fat
+            %td.text-right= recipe.decorate.serving_fat
+            %td.text-right= recipe.decorate.macro_nutritient_fat_percentage
+
+          %tr.gray
+            %th Fat saturated
+            %td.text-right= recipe.decorate.sum_fat_saturated
+            %td.text-right= recipe.decorate.serving_fat_saturated
+            %td
+
+          %tr.gray
+            %th Fiber
+            %td.text-right= recipe.decorate.sum_fiber
+            %td.text-right= recipe.decorate.serving_fiber
+            %td

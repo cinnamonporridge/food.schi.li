@@ -1,0 +1,16 @@
+%h1 Recipes
+
+= link_to 'New Recipe', new_recipe_path, class: 'btn btn-success add'
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th.col-xs-2 Name
+        %th Servings
+
+    %tbody
+      - @recipes.each do |recipe|
+        %tr.clickable-row{ 'data-href': recipe_path(recipe) }
+          %td= link_to recipe.name, recipe
+          %td= recipe.servings
