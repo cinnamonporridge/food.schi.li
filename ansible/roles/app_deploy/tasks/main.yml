@@ -1,53 +1,53 @@
 ---
 
-# - name: "Restart nginx at the end"
-#   command: "/bin/true"
-#   notify: "Restart nginx"
+- name: "Restart nginx at the end"
+  command: "/bin/true"
+  notify: "Restart nginx"
 
-# - name: "Restart puma at the end"
-#   command: "/bin/true"
-#   notify: "Restart puma"
+- name: "Restart puma at the end"
+  command: "/bin/true"
+  notify: "Restart puma"
 
-# - name: "Install bundler"
-#   include: "bundler.yml"
-#   when: "playbook == 'provision'"
+- name: "Install bundler"
+  include: "bundler.yml"
+  when: "playbook == 'provision'"
 
-# - name: "Prepare directories"
-#   include: "directories.yml"
-#   when: "playbook == 'provision'"
+- name: "Prepare directories"
+  include: "directories.yml"
+  when: "playbook == 'provision'"
 
-# - name: "Install or update application code"
-#   include: "code.yml"
+- name: "Install or update application code"
+  include: "code.yml"
 
-# - name: "Configure the environment"
-#   include: "environment.yml"
-#   when: "playbook == 'provision'"
+- name: "Configure the environment"
+  include: "environment.yml"
+  when: "playbook == 'provision'"
 
-# - name: "Gems"
-#   include: "gems.yml"
+- name: "Gems"
+  include: "gems.yml"
 
-# - name: "Copy the secrets"
-#   include: "secrets.yml"
+- name: "Copy the secrets"
+  include: "secrets.yml"
 
-# - name: "Symlink to share directories"
-#   include: "symlinks.yml"
+- name: "Symlink to share directories"
+  include: "symlinks.yml"
 
-# - name: "Do the database"
-#   include: "db.yml"
+- name: "Do the database"
+  include: "db.yml"
 
-# - name: "Precompile assets"
-#   include: "assets.yml"
+- name: "Precompile assets"
+  include: "assets.yml"
 
-# - name: "Configure puma"
-#   include: "puma.yml"
+- name: "Configure puma"
+  include: "puma.yml"
 
 - name: "Configure nginx and vhost"
   include: "nginx.yml"
   when: "playbook == 'provision'"
 
-# - name: "Configure sudoers"
-#   include: "sudoers.yml"
-#   when: "playbook == 'provision'"
+- name: "Configure sudoers"
+  include: "sudoers.yml"
+  when: "playbook == 'provision'"
 
 - name: "Letsencrypt"
   include: "letsencrypt.yml"
