@@ -1,0 +1,27 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title food.schi.li
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body{:lang => "en"}
+    .container
+      .row
+        #title.col-xs-12
+          food.schi.li
+      .row
+        .col-xs-10.col-xs-offset-1
+          %h1= content_for?(:page_title) ? yield(:page_title) : ''
+      .row
+        .col-xs-10.col-xs-offset-1
+          = render 'layouts/compass'
+      .row
+        .col-xs-10.col-xs-offset-1
+          = render 'layouts/flash'
+      .row
+        .col-xs-10.col-xs-offset-1
+          = yield

@@ -1,0 +1,11 @@
+- provide :page_title, 'Forgot password?'
+= simple_form_for(@form, url: forgot_passwords_url) do |form|
+  = form.input :email, placeholder: 'Email address', label: false
+  .row
+    .col-xs-12
+      = form.submit 'Reset my password', name: 'reset', class: 'btn btn-success'
+    .col-xs-12
+      = form.submit 'Send me a magic link', name: 'magic_link', class: 'btn btn-primary'
+    .col-xs-12
+      = link_to 'Cancel', :back, class: 'btn btn-default'
+

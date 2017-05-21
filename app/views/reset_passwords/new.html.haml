@@ -1,0 +1,5 @@
+- provide :page_title, 'Set new password'
+= simple_form_for(@form, url: reset_passwords_url) do |form|
+  = form.input :password, placeholder: 'Enter your new password. Choose wisely...', label: false
+  = form.input :challenge, as: :hidden
+  = form.submit 'Set password', class: 'btn btn-primary'

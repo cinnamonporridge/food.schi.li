@@ -1,0 +1,18 @@
+= provide :page_title, 'Home'
+= render 'search_form', form: @search_form
+%ul.home-menu
+  %li
+    = fa_icon 'cogs'
+    Foods
+  %li
+    = fa_icon 'cutlery'
+    Recipes
+  - if current_user.is_admin?
+    %li
+      = link_to users_path do
+        = fa_icon 'users'
+        Users
+  %li
+    = link_to logout_path, method: :delete do
+      = fa_icon 'power-off'
+      Log out

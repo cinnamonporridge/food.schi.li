@@ -1,0 +1,6 @@
+= provide :page_title, 'User'
+= provide :compass, link_to('Back', :back)
+%h2 Email
+= @user.email
+%h2 Is admin?
+= @user.is_admin
