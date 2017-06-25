@@ -1,5 +1,7 @@
-%h1 Editing Nutrition
-= render 'form', nutrition: @nutrition
-= link_to 'Show', @nutrition
-|
-= link_to 'Back', nutritions_path
+.row
+  .large-8.large-offset-2.column
+    .card
+      .card-divider
+        %h1 Edit nutrition
+      .card-section
+        = render 'form', nutrition: @nutrition

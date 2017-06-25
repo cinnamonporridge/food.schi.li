@@ -1,3 +1,6 @@
 - if form
-  = simple_form_for(form, url: home_path) do |form|
+  = simple_form_for form, url: home_path do |form|
     = form.input :term, placeholder: 'Search for food, recipes...', label: false
+    .row
+      .small-12.column.text-center
+        = form.submit 'Go...', class: 'primary button'
