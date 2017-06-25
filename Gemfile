@@ -8,7 +8,6 @@ end
 gem 'rails', '>= 5.0.0'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -20,7 +19,7 @@ gem 'font-awesome-rails'
 
 gem 'chartkick'
 gem 'select2-rails'
-
+gem 'foundation-rails'
 gem 'haml'
 gem 'draper', '>= 3.0.0'
 

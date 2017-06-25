@@ -1,15 +1,5 @@
-= form_with(model: portion, local: true) do |form|
-  .field
-    = form.label :name
-    = form.text_field :name, id: :portion_name
-
-  .field
-    = form.label :nutrition_id
-    = form.collection_select :nutrition_id, Nutrition.all, :id, :name
-
-  .field
-    = form.label :multiplier
-    = form.text_field :multiplier, id: :portion_multiplier
-
-  .actions
-    = form.submit
+= simple_form_for portion, url: nutrition_portions_path do |form|
+  = form.input :name
+  = form.input :multiplier
+  = form.submit nil, class: 'primary button'
+  = link_to 'Cancel', nutrition_path(portion.nutrition), class: 'secondary button'

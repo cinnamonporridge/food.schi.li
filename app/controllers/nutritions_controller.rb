@@ -7,8 +7,6 @@ class NutritionsController < ApplicationController
     @nutritions = Nutrition.ordered_by_name
   end
 
-  # GET /nutritions/1
-  # GET /nutritions/1.json
   def show
   end
 
@@ -25,15 +23,12 @@ class NutritionsController < ApplicationController
   # POST /nutritions.json
   def create
     @nutrition = Nutrition.new(nutrition_params)
+    @nutrition.portions.new(name: '100g/ml', multiplier: 1)
 
-    respond_to do |format|
-      if @nutrition.save
-        format.html { redirect_to @nutrition, notice: 'Nutrition was successfully created.' }
-        format.json { render :show, status: :created, location: @nutrition }
-      else
-        format.html { render :new }
-        format.json { render json: @nutrition.errors, status: :unprocessable_entity }
-      end
+    if @nutrition.save
+      redirect_to @nutrition, notice: 'Nutrition was successfully created.'
+    else
+      render :new
     end
   end
 

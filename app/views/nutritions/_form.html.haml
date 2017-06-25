@@ -1,10 +1,30 @@
 = simple_form_for nutrition do |f|
-    = f.input :name
-    = f.input :kcal
-    = f.input :carbs
-    = f.input :carbs_sugar_part
-    = f.input :protein
-    = f.input :fat
-    = f.input :fat_saturated
-    = f.input :fiber
-    = f.submit nil, class: 'btn btn-primary'
+
+  = f.input :name
+
+  .row
+    .small-4.column  
+      = f.input :kcal
+
+  .row
+    .small-4.column
+      = f.input :carbs
+    .small-4.column.end
+      = f.input :carbs_sugar_part
+
+  .row
+    .small-4.column  
+      = f.input :protein
+ 
+  .row
+    .small-4.column  
+      = f.input :fat
+    .small-4.column.end
+      = f.input :fat_saturated
+  
+  .row
+    .small-4.column  
+      = f.input :fiber
+  
+  = f.submit nil, class: 'button success'
+  = link_to 'Cancel', nutritions_path, class: 'button secondary'

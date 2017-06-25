@@ -1,5 +1,9 @@
-= provide :page_title, 'Invite'
-= simple_form_for(@user) do |form|
-  = form.input :email, placeholder: 'Email'
-  = form.submit 'Create user', class: 'btn btn-success'
-  = link_to 'Cancel', users_path
+.row
+  .large-8.large-offset-2.column
+    %h1 Invite someone
+    .card
+      .card-section
+        = simple_form_for @user do |form|
+          = form.input :email, placeholder: 'Email'
+          = form.submit 'Create user', class: 'primary button'
+          = link_to 'Cancel', users_path, class: 'secondary button'

@@ -1,39 +1,38 @@
 - if recipe
   = form_for recipe do |recipe_form|
-    .table-responsive
-      %table.table
-        %thead
+    %table
+      %thead
+        %tr
+          %th Name
+          %th.text-right Quantity
+          %th.text-right kcal
+          %th.text-right Carb
+          %th.text-right.gray Carb sugar part
+          %th.text-right Protein
+          %th.text-right Fat
+          %th.text-right.gray Fat saturated
+          %th.text-right.gray Fiber
+          %th Delete?
+      %tbody      
+        = recipe_form.simple_fields_for :ingredients do |ingredient_fields|
+          - ingredient = ingredient_fields.object
           %tr
-            %th.col-xs-2 Name
-            %th.col-xs-1.text-right Quantity
-            %th.col-xs-1.text-right kcal
-            %th.col-xs-1.text-right Carb
-            %th.col-xs-1.text-right.gray Carb sugar part
-            %th.col-xs-1.text-right Protein
-            %th.col-xs-1.text-right Fat
-            %th.col-xs-1.text-right.gray Fat saturated
-            %th.col-xs-1.text-right.gray Fiber
-            %th.col-xs-2 Delete?
-        %tbody      
-          = recipe_form.simple_fields_for :ingredients do |ingredient_fields|
-            - ingredient = ingredient_fields.object
-            %tr
-              - if ingredient.new_record?
-                %td= ingredient_fields.input :portion, collection: recipe.decorate.missing_portion_collection, label: false, input_html: { class: 'selectable ingredient' }
-              - else
-                %td= ingredient.portion.name
+            - if ingredient.new_record?
+              %td= ingredient_fields.input :portion, collection: recipe.decorate.missing_portion_collection, label: false, input_html: { class: 'selectable ingredient' }
+            - else
+              %td= ingredient.portion.name
 
-              %td= ingredient_fields.text_field :quantity, class: 'text-right'
+            %td= ingredient_fields.text_field :quantity, class: 'text-right'
 
-              - if ingredient.new_record?
-                %td{ colspan: 8 }
-              - else 
-                %td.text-right= ingredient.total_kcal
-                %td.text-right= ingredient.total_carbs
-                %td.text-right.gray= ingredient.total_carbs_sugar_part
-                %td.text-right= ingredient.total_protein
-                %td.text-right= ingredient.total_fat
-                %td.text-right.gray= ingredient.total_fat_saturated
-                %td.text-right.gray= ingredient.total_fiber
-                %td= ingredient_fields.check_box :_destroy if ingredient.persisted?
-    = recipe_form.submit 'Updatee ingredients', class: 'btn btn-primary edit'
+            - if ingredient.new_record?
+              %td{ colspan: 8 }
+            - else 
+              %td.text-right= ingredient.total_kcal
+              %td.text-right= ingredient.total_carbs
+              %td.text-right.gray= ingredient.total_carbs_sugar_part
+              %td.text-right= ingredient.total_protein
+              %td.text-right= ingredient.total_fat
+              %td.text-right.gray= ingredient.total_fat_saturated
+              %td.text-right.gray= ingredient.total_fiber
+              %td= ingredient_fields.check_box :_destroy if ingredient.persisted?
+    = recipe_form.submit 'Update ingredients', class: 'button primary'

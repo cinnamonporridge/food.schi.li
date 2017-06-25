@@ -1,3 +1,8 @@
-%h1 New Nutrition
-= render 'form', nutrition: @nutrition
-= link_to 'Back', nutritions_path
+.row
+  .large-offset-2.large-8.column
+    .card
+      .card-divider
+        New Nutrition
+      .card-section
+        = render 'form', nutrition: @nutrition
+

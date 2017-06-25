@@ -60,17 +60,17 @@ class RecipeDecorator < Draper::Decorator
 
   # PERCENTAGES
   def macro_nutritient_carbs_percentage
-    return "0%" unless model.macro_nutritient_total.present?
+    return "0%" unless model.macro_nutritient_total > 0.0
     "#{((model.sum_carbs / model.macro_nutritient_total) * 100).round}%"
   end
 
   def macro_nutritient_protein_percentage
-    return "0%" unless model.macro_nutritient_total.present?
+    return "0%" unless model.macro_nutritient_total > 0.0
     "#{((model.sum_protein / model.macro_nutritient_total) * 100).round}%"
   end
 
   def macro_nutritient_fat_percentage
-    return "0%" unless model.macro_nutritient_total.present?
+    return "0%" unless model.macro_nutritient_total > 0.0
     "#{((model.sum_fat / model.macro_nutritient_total) * 100).round}%"
   end
 

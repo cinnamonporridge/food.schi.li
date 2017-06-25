@@ -1,14 +1,5 @@
-
-.row
-  .col-xs-12.col-md-6
-    = simple_form_for recipe do |f|
-      .row
-        .col-xs-12.col-md-12
-          = f.input :name, placeholder: 'Recipe name'
-      .row
-        .col-xs-12.col-md-3
-          = f.input :servings, placeholder: 'Servings'
-      .row
-        .col-xs-12
-          = f.submit nil, class: 'btn btn-primary'
-          = link_to 'Cancel', recipe, class: 'btn btn-default '
+= simple_form_for recipe do |f|
+  = f.input :name, placeholder: 'Recipe name'
+  = f.input :servings, placeholder: 'Servings'
+  = f.submit nil, class: 'success button'
+  = link_to 'Cancel', recipe, class: 'button secondary'

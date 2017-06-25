@@ -1,0 +1,16 @@
+- if portions
+  %table.unstriped
+    %tbody
+      - portions.ordered_by_multiplier.each do |portion|
+        %tr
+          %td.text-right
+            - unless portion.primary?
+              = link_to edit_nutrition_portion_path(portion.nutrition, portion) do
+                = fa_icon 'pencil'
+              = link_to nutrition_portion_path(portion.nutrition, portion), method: :delete, data: { confirm: 'Are you sure?' } do
+                = fa_icon 'trash-o'
+            - else
+              = fa_icon 'star-o'
+          %td= portion.name
+          %td.text-right= portion.decorate.multiplier_in_gram_or_ml
+

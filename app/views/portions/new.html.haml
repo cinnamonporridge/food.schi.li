@@ -1,3 +1,8 @@
-%h1 New Portion
-= render 'form', portion: @portion
-= link_to 'Back', portions_path
+.row
+  .large-8.large-offset-2.column
+    .card
+      .card-divider
+        = "New portion for #{@portion.nutrition.name}"
+      .card-section
+        = render 'form', portion: @portion
+

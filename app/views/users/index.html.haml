@@ -1,9 +1,21 @@
-= provide :page_title, 'Users'
-= provide :compass, link_to('Home', home_path)
-.list-group
-  - @users.each do |user|
-    = link_to user_path(user), class: 'list-group-item' do
-      = user.email
-      - if user.is_admin?
-        = fa_icon 'user-circle'
-= link_to 'Invite a person', new_user_path, class: 'btn btn-success'
+%h1 Users
+
+%table.unstriped.hover
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td.text-right
+          - if user.is_admin?
+            = fa_icon 'id-badge'
+          - else
+            = link_to user_path(user), method: :delete, data: { confirm: 'Are you sure?' } do 
+              = fa_icon 'trash-o'
+
+
+= link_to 'Invite a person', new_user_path, class: 'primary button'

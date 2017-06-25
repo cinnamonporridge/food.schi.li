@@ -1,25 +1,20 @@
 class PortionsController < ApplicationController
-  before_action :set_portion, only: [:show, :edit, :update, :destroy]
-
   def index
-    @portions = Portion.all
-  end
-
-  def show
+    @portions = find_nutrition.portions.all
   end
 
   def new
-    @portion = Portion.new
+    @portion = find_nutrition.portions.new
   end
 
   def edit
   end
 
   def create
-    @portion = Portion.new(portion_params)
+    @portion = find_nutrition.portions.new(portion_params)
 
     if @portion.save
-      redirect_to @portion, notice: 'Portion was successfully created.'
+      redirect_to @portion.nutrition, notice: 'Portion was successfully created.'
     else
       render :new
     end
@@ -34,16 +29,19 @@ class PortionsController < ApplicationController
   end
 
   def destroy
+    @portion = Portion.find(params[:id])
     @portion.destroy
-    redirect_to portions_url, notice: 'Portion was successfully destroyed.'
+    redirect_to @portion.nutrition, notice: 'Portion was successfully destroyed.'
   end
 
   private
-  def set_portion
-    @portion = Portion.find(params[:id])
-  end
+
 
   def portion_params
-    params.require(:portion).permit(:name, :nutrition_id, :multiplier)
+    params.require(:portion).permit(:name, :multiplier)
+  end
+
+  def find_nutrition
+    @nutrition ||= Nutrition.find(params[:nutrition_id])
   end
 end

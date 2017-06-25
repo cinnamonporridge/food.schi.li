@@ -12,22 +12,15 @@
 
   %body
     .row
-      .col-xs-10.col-xs-offset-1
+      .small-12.small-offset-0.large-10.large-offset-1.columns
         .title
           food.schi.li
-    - if current_user 
-      = render 'layouts/navigation'
+        - if current_user 
+          .vertical-space-xxl= render 'layouts/navigation'
 
-    .container-fluid
-      .row
-        .col-md-10.col-md-offset-1
-          %h1= content_for?(:page_title) ? yield(:page_title) : ''
-      .row
-        .col-md-10.col-md-offset-1
-          = render 'layouts/compass'
-      .row
-        .col-md-10.col-md-offset-1
           = render 'layouts/flash'
-      .row
-        .col-md-10.col-md-offset-1
           = yield
+    .row
+      .small-12.columns
+        = render 'layouts/footer'
+

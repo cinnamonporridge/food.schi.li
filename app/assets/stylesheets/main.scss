@@ -5,17 +5,41 @@
 * {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
+  font-size: 26px;
+}
+
+body {
+  min-height: 100%;
 }
 
 h1, h2, h3, h4, h5 {
   font-weight: 100;
 }
 
+h1 {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 30px;
+}
+
 th {
+  font-size: 18px;
 }
 
 h1 > small {
   font-size: 50% !important;
+}
+
+label {
+  font-size: 24px;
+  font-weight: 100;
+}
+
+#footer {
+  margin: 200px 0;
 }
 
 .title {
@@ -26,47 +50,8 @@ h1 > small {
   margin-top: 40px;
 }
 
-.add {
-  font-weight: 100;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.add::before {
-  content: '+';
-  padding-right: 10px;
-  font-weight: 400;
-}
-
-.edit, .edit-xs {
-  font-weight: 100;
-}
-
-.edit::before {
-  content: '_';
-  font-weight: 400;
-  padding-right: 10px;
-}
-
-.edit-xs::before {
-  content: '_';
-  font-weight: 400;
-  padding-right: 5px;
-}
-
-.edit-xs {
-  width: 60px;
-}
-
-.destroy-xs {
-  font-weight: 100;
-  width: 60px;
-}
-
-.destroy-xs::before {
-  content: 'x';
-  padding-right: 5px;
-  font-weight: 400;
+.card-divider {
+  font-size: 36px;
 }
 
 .clickable-row {
@@ -95,4 +80,9 @@ h1 > small {
 .vertical-space-xl {
   margin-top: 36px;
   margin-bottom: 36px;
+}
+
+.vertical-space-xxl {
+  margin-top: 48px;
+  margin-bottom: 48px;
 }

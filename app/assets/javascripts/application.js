@@ -1,7 +1,10 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require foundation
 //= require select2
 //= require chartkick
 //= require main
 
+$(document).foundation();
+
+$(function(){ $(document).foundation(); });

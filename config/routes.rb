@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   get '/magic_link/:challenge', to: 'magic_links#new', as: 'magic_link'
 
   resources :users
-  resources :portions
   resources :recipes
-  resources :nutritions
+  resources :nutritions do
+    resources :portions, only: [:create, :new, :edit, :update, :destroy]
+  end
 
 end
