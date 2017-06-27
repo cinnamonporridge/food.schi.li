@@ -54,6 +54,23 @@ label {
   font-size: 36px;
 }
 
+ul.menu {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+
+  justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+
+  li {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    min-width: 150px;
+  }
+}
+
 .clickable-row {
   cursor: pointer;
 }

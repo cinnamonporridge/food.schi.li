@@ -1,8 +1,6 @@
 class NutritionsController < ApplicationController
   before_action :set_nutrition, only: [:show, :edit, :update, :destroy]
 
-  # GET /nutritions
-  # GET /nutritions.json
   def index
     @nutritions = Nutrition.ordered_by_name
   end
@@ -19,21 +17,25 @@ class NutritionsController < ApplicationController
 
   def create
     @nutrition = Nutrition.new(nutrition_params)
-    @nutrition.portions.new(name: '100g/ml', multiplier: 1)
+    @nutrition.portions.new(name: '100g/ml', amount_in_g_or_ml: 100)
 
-    return handle_invalid_input unless @nutrition.save
-    redirect_to @nutrition, notice: 'Nutrition added'
+    if @nutrition.save
+      redirect_to @nutrition, notice: 'Nutrition added'
+    else
+      flash.now[:error] = 'Invalid input'
+      render :new
+    end
   end
 
-  # PATCH/PUT /nutritions/1
-  # PATCH/PUT /nutritions/1.json
   def update
-    return handle_invalid_input unless @nutrition.save
-    redirect_to @nutrition, notice: 'Nutrition updated'
+    if @nutrition.update(nutrition_params)
+      redirect_to @nutrition, notice: 'Nutrition updated'
+    else
+      flash.now[:error] = 'Invalid input'
+      render :edit
+    end
   end
 
-  # DELETE /nutritions/1
-  # DELETE /nutritions/1.json
   def destroy
     @nutrition.destroy
     respond_to do |format|
@@ -49,10 +51,5 @@ class NutritionsController < ApplicationController
 
   def nutrition_params
     params.require(:nutrition).permit(:name, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated, :fiber)
-  end
-
-  def handle_invalid_input
-    flash.now[:error] = 'Invalid input'
-    render :new
   end
 end

@@ -6,18 +6,29 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
   end
 
   # nutritions
-  test 'user visits nutritions page' do
+  test 'user visits nutritions index page' do
     get nutritions_path
     assert_response :success
     assert_select 'h1', 'Nutritions'
     assert_select 'a.primary.button', 'New nutrition'
   end
 
+  test 'user visits apple nutrition page' do
+    get nutrition_path(nutritions(:apple))
+    assert_response :success
+    assert_select 'h1', 'Apple'
+    assert_select 'h2', '100g/ml contains'
+    assert_select 'h2', 'Portions'
+
+    assert_select 'a.primary.button', 'Edit'
+    assert_select 'a.primary.button', 'New portion'
+  end
+
   test 'user adds a new nutrition' do
     get new_nutrition_path
     assert_response :success
     assert_select 'h1', 'New nutrition'
-    assert_select "input[type='submit'][value='Create Nutrition']" 
+    assert_select "input[type='submit'][value='Create Nutrition']"
     assert_select 'a.secondary.button', 'Cancel'
 
     post '/nutritions',
@@ -30,7 +41,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
           protein: '',
           fat: '',
           fat_saturated: '',
-          fiber: '' 
+          fiber: ''
         }
       }
     assert_response :success
@@ -46,7 +57,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
           protein: 12,
           fat: 88,
           fat_saturated: 87,
-          fiber: 3 
+          fiber: 3
         }
       }
     follow_redirect!

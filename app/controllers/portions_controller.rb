@@ -1,4 +1,6 @@
 class PortionsController < ApplicationController
+  before_action :set_portion, only: [:edit, :update, :destroy]
+
   def index
     @portions = find_nutrition.portions.all
   end
@@ -14,16 +16,18 @@ class PortionsController < ApplicationController
     @portion = find_nutrition.portions.new(portion_params)
 
     if @portion.save
-      redirect_to @portion.nutrition, notice: 'Portion was successfully created.'
+      redirect_to @portion.nutrition, notice: 'Portion added'
     else
+      flash.now[:error] = 'Invalid input'
       render :new
     end
   end
 
   def update
     if @portion.update(portion_params)
-      redirect_to @portion, notice: 'Portion was successfully updated.'
+      redirect_to @portion, notice: 'Portion updated'
     else
+      flash.now[:error] = 'Invalid input'
       render :edit
     end
   end
@@ -36,9 +40,12 @@ class PortionsController < ApplicationController
 
   private
 
-
   def portion_params
-    params.require(:portion).permit(:name, :multiplier)
+    params.require(:portion).permit(:name, :amount_in_g_or_ml)
+  end
+
+  def set_portion
+    @portion ||= Portion.find(params[:id])
   end
 
   def find_nutrition

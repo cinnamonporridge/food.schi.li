@@ -1,0 +1,4 @@
+apple_default_portion:
+  name: 100g/ml
+  nutrition: apple
+  multiplier: 1.0

@@ -1,5 +1,7 @@
-%h1 Editing Portion
-= render 'form', portion: @portion
-
-= link_to 'Show', @portion
-= link_to 'Back', portions_path
+.row
+  .large-8.large-offset-2.column
+    .card
+      .card-divider
+        %h1= "Edit portion for #{@portion.nutrition.name}"
+      .card-section
+        = render 'form', portion: @portion
