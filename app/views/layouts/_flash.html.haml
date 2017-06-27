@@ -1,3 +1,5 @@
 - flash.each do |type, message|
-  %div{:class => "alert #{bootstrap_class_for(type)}"}
-    = message
+  .row
+    .large-8.large-offset-2.column
+      #div{:class => "callout #{foundation_class_for(type)}"}
+        = message

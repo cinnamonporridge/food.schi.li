@@ -1,5 +1,5 @@
 = simple_form_for(@form, url: login_path) do |form|
   = form.input :email, placeholder: 'Email address', label: false
   = form.input :password, placeholder: 'Password', label: false
-  = form.submit 'Log in', class: 'btn btn-primary'
-  = link_to 'Forgot password', new_forgot_passwords_url
+  = form.submit 'Log in', class: 'primary button'
+  = link_to 'Forgot password', new_forgot_passwords_url, class: 'secondary button'
