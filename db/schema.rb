@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20170506102434) do
   end
 
   create_table "nutritions", force: :cascade do |t|
-    t.string "name"
-    t.integer "kcal"
-    t.decimal "carbs", precision: 10, scale: 3
-    t.decimal "carbs_sugar_part", precision: 10, scale: 3
-    t.decimal "protein", precision: 10, scale: 3
-    t.decimal "fat", precision: 10, scale: 3
-    t.decimal "fat_saturated", precision: 10, scale: 3
-    t.decimal "fiber", precision: 10, scale: 3
+    t.string "name", null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

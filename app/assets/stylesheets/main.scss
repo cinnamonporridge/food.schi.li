@@ -86,3 +86,7 @@ label {
   margin-top: 48px;
   margin-bottom: 48px;
 }
+
+input[aria-invalid="true"] {
+  border-color: $alert-color;
+}

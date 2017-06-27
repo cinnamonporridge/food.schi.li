@@ -16,7 +16,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label_input
-    b.use :error, wrap_with: { tag: :small, class: :error }
+    b.use :error, wrap_with: { tag: :small, class: 'form-error is-visible' }
 
     # b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end

@@ -1,0 +1,10 @@
+
+apple:
+  name: 'Apple'
+  kcal: 100
+  carbs: 100
+  carbs_sugar_part: 10
+  protein: 100
+  fat: 100
+  fat_saturated: 10
+  fiber: 100

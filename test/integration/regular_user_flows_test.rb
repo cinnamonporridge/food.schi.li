@@ -3,7 +3,7 @@ require 'test_helper'
 class RegularUserFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
-    login_regular_user
+    login_user(users(:john))
   end
 
   test 'regular user logs in' do 
@@ -29,28 +29,5 @@ class RegularUserFlowsTest < ActionDispatch::IntegrationTest
     get recipes_path
     assert_response :success
     assert_select 'h1', 'Recipes'
-  end
-
-  # nutritions
-  test 'user visits nutritions page' do
-    get nutritions_path
-    assert_response :success
-    assert_select 'h1', 'Nutritions'
-    assert_select 'a.primary.button', 'New nutrition'
-  end
-
-  test 'user adds a new nutrition page' do
-    get new_nutrition_path
-    assert_response :success
-    assert_select 'h1', 'New nutrition'
-  end
-
-  private
-
-  def login_regular_user
-    get login_path
-    assert_response :success
-    login_user(users(:john))
-    assert_response :success
   end
 end
