@@ -5,8 +5,11 @@ class Nutrition < ApplicationRecord
 
   scope :ordered_by_name, -> { order(name: :asc) }
 
+  enum unit: { gram: 1, mililiter: 2 }
+
   validates_presence_of :name
   validates_uniqueness_of :name
+  validates_presence_of :unit
   validates_numericality_of :kcal             ,  greater_than_or_equal_to: 0, only_integer: true
   validates_numericality_of :carbs            ,  greater_than_or_equal_to: 0
   validates_numericality_of :carbs_sugar_part ,  greater_than_or_equal_to: 0

@@ -1,6 +1,7 @@
 
 apple:
   name: 'Apple'
+  unit: <%= Nutrition.units[:gram] %>
   kcal: 100
   carbs: 100
   carbs_sugar_part: 10
@@ -8,3 +9,14 @@ apple:
   fat: 100
   fat_saturated: 10
   fiber: 100
+
+milk:
+  name: 'Milk'
+  unit: <%= Nutrition.units[:mililiter] %>
+  kcal: 120
+  carbs: 120
+  carbs_sugar_part: 12
+  protein: 120
+  fat: 120
+  fat_saturated: 12
+  fiber: 120

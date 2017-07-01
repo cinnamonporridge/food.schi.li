@@ -17,7 +17,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutrition_path(nutritions(:apple))
     assert_response :success
     assert_select 'h1', 'Apple'
-    assert_select 'h2', '100g/ml contains'
+    assert_select 'h2', '100g contains'
     assert_select 'h2', 'Portions'
 
     assert_select 'a.primary.button', 'Edit'
@@ -34,6 +34,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     post '/nutritions',
       params: {
         nutrition: {
+          unit: 'gram',
           name: '',
           kcal: '',
           carbs: '',
@@ -50,6 +51,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     post '/nutritions',
       params: {
         nutrition: {
+          unit: 'gram',
           name: 'Banana',
           kcal: 180,
           carbs: 52,
@@ -75,6 +77,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     put "/nutritions/#{nutritions(:apple).id}",
       params: {
         nutrition: {
+          unit: 'gram',
           name: 'Apfel',
           kcal: 1,
           carbs: 1,

@@ -16,7 +16,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
       params: {
         portion: {
           name: '',
-          amount_in_g_or_ml: ''
+          amount: ''
         }
       }
     assert_response :success
@@ -26,7 +26,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
       params: {
         portion: {
           name: 'Regular apple',
-          amount_in_g_or_ml: '160'
+          amount: '160'
         }
       }
     follow_redirect!
@@ -48,7 +48,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
       params: {
         portion: {
           name: 'Some invalid value',
-          amount_in_g_or_ml: '999'
+          amount: '999'
         }
       }
     follow_redirect!
@@ -78,7 +78,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
       params: {
         portion: {
           name: 'Even Bigger Apple',
-          amount_in_g_or_ml: '300'
+          amount: '300'
         }
       }
 

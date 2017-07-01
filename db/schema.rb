@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20170506102434) do
   enable_extension "plpgsql"
 
   create_table "ingredients", force: :cascade do |t|
-    t.bigint "recipe_id"
+    t.bigint "recipe_id", null: false
     t.bigint "portion_id"
-    t.decimal "quantity", precision: 10, scale: 3
+    t.decimal "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["portion_id"], name: "index_ingredients_on_portion_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170506102434) do
 
   create_table "nutritions", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "unit", default: 1, null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
@@ -40,8 +41,8 @@ ActiveRecord::Schema.define(version: 20170506102434) do
 
   create_table "portions", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "nutrition_id"
-    t.integer "amount_in_g_or_ml", null: false
+    t.bigint "nutrition_id", null: false
+    t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nutrition_id"], name: "index_portions_on_nutrition_id"
@@ -66,7 +67,6 @@ ActiveRecord::Schema.define(version: 20170506102434) do
     t.boolean "is_admin", default: false, null: false
   end
 
-  add_foreign_key "ingredients", "portions"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "portions", "nutritions"
 end

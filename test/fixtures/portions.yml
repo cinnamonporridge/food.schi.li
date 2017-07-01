@@ -1,9 +1,14 @@
 apple_default_portion:
-  name: 100g/ml
+  name: '100g'
   nutrition: apple
-  amount_in_g_or_ml: 100
+  amount: 100
+
+milk_default_portion:
+  name: '100ml'
+  nutrition: milk
+  amount: 100
 
 big_apple_portion:
   name: Big Apple
   nutrition: apple
-  amount_in_g_or_ml: 200
+  amount: 200

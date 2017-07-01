@@ -1,7 +1,7 @@
 - if portions
   %table.unstriped
     %tbody
-      - portions.ordered_by_amount_in_g_or_ml.each do |portion|
+      - portions.ordered_by_amount.each do |portion|
         %tr
           %td.text-right
             - unless portion.primary?
@@ -12,5 +12,5 @@
             - else
               = fa_icon 'star-o'
           %td= portion.name
-          %td.text-right= portion.amount_in_g_or_ml
+          %td.text-right= portion.amount
 

@@ -56,7 +56,7 @@ class RecipeDecorator < Draper::Decorator
 
   def serving_fiber
     (model.serving_fiber || 0.0).round(1)
-  end  
+  end
 
   # PERCENTAGES
   def macro_nutritient_carbs_percentage
@@ -75,7 +75,9 @@ class RecipeDecorator < Draper::Decorator
   end
 
   def missing_portion_collection
-    ::Portion.where.not(id: model.portions.collect {|p| p.id })
+    Portion.without(model.portions).ordered_by_nutrition_name_and_amount.map do |portion|
+      [portion.decorate.name_for_dropdown, portion.id]
+    end
   end
 
   def macro_nutritients_chart_data

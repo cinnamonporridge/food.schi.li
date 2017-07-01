@@ -1,9 +1,13 @@
 = simple_form_for nutrition do |f|
 
-  = f.input :name
+  .row
+    .small-8.column
+      = f.input :name
+    .small-4.column
+      = f.input :unit, collection: nutrition.decorate.units_collection, include_blank: false
 
   .row
-    .small-4.column  
+    .small-4.column
       = f.input :kcal
 
   .row
@@ -13,18 +17,18 @@
       = f.input :carbs_sugar_part
 
   .row
-    .small-4.column  
+    .small-4.column
       = f.input :protein
- 
+
   .row
-    .small-4.column  
+    .small-4.column
       = f.input :fat
     .small-4.column.end
       = f.input :fat_saturated
-  
+
   .row
-    .small-4.column  
+    .small-4.column
       = f.input :fiber
-  
+
   = f.submit nil, class: 'primary button'
   = link_to 'Cancel', nutritions_path, class: 'button secondary'

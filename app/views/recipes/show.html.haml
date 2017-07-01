@@ -1,18 +1,38 @@
-=# link_to 'Back to recipes', recipes_path
-%h1
-  = @recipe.name 
-  %small= "#{@recipe.servings} servings"
+%h1= @recipe.name
+%small=# "#{@recipe.servings} servings"
 
-= link_to 'Edit', edit_recipe_path(@recipe), class: 'button secondary tiny'
-= link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny'
+.row
+  .large-6.column
+    .card
+      .card-divider
+        %h2 Ingredients
+      .card.section
+        - if @recipe.ingredients.any?
+          %table.unstriped
+            - @recipe.ingredients.each do |ingredient|
+              %tr
+                %td.text-right
+                  = link_to 'E'
+                  = link_to 'D'
+                %td.text-right= ingredient.decorate.quantity
+                %td= ingredient.portion.decorate.name_with_nutrition
+                %td= ingredient.decorate.amount_with_unit_abbrevation
+
+        - else
+          Start adding ingredients
+    = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'primary button'
+
+
+=# link_to 'Edit', edit_recipe_path(@recipe), class: 'button secondary tiny'
+=# link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny'
 
 %h2 Ingredients
-= render 'recipes/ingredients_form', recipe: @recipe
+=# render 'recipes/ingredients_form', recipe: @recipe
 
-- if @recipe.ingredients.any?
+-# if @recipe.ingredients.any?
   %h2 Nutritions
-  = render 'recipes/nutritions', recipe: @recipe
+  =# render 'recipes/nutritions', recipe: @recipe
 
   %h2 Macro nutritients
-  = render 'recipes/macro_nutritients_chart', recipe: @recipe
+  = #render 'recipes/macro_nutritients_chart', recipe: @recipe
 

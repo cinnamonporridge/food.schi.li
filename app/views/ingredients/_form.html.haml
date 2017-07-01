@@ -1,0 +1,9 @@
+
+= simple_form_for [ingredient.recipe, ingredient] do |form|
+  .row
+    .small-8.column
+      = form.input :portion_id, collection: ingredient.recipe.decorate.missing_portion_collection, input_html: { class: 'selectable ingredient' }
+    .small-4.column
+      = form.input :amount
+  = form.submit nil, class: 'primary button'
+  = link_to 'Cancel', ingredient.recipe, class: 'secondary button'

@@ -6,6 +6,7 @@ class NutritionsController < ApplicationController
   end
 
   def show
+    @nutrition = @nutrition.decorate
   end
 
   def new
@@ -17,7 +18,8 @@ class NutritionsController < ApplicationController
 
   def create
     @nutrition = Nutrition.new(nutrition_params)
-    @nutrition.portions.new(name: '100g/ml', amount_in_g_or_ml: 100)
+    default_portion_name = "100#{@nutrition.decorate.unit_abbrevation}"
+    @nutrition.portions.new(name: default_portion_name, amount: 100)
 
     if @nutrition.save
       redirect_to @nutrition, notice: 'Nutrition added'
@@ -50,6 +52,6 @@ class NutritionsController < ApplicationController
   end
 
   def nutrition_params
-    params.require(:nutrition).permit(:name, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated, :fiber)
+    params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated, :fiber)
   end
 end

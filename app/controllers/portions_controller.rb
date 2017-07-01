@@ -2,10 +2,6 @@ class PortionsController < ApplicationController
   before_action :set_portion, only: [:edit, :update, :destroy]
   before_action :handle_default_portion, only: [:edit, :update, :destroy]
 
-  def index
-    @portions = find_nutrition.portions.all
-  end
-
   def new
     @portion = find_nutrition.portions.new
   end
@@ -42,7 +38,7 @@ class PortionsController < ApplicationController
   private
 
   def portion_params
-    params.require(:portion).permit(:name, :amount_in_g_or_ml)
+    params.require(:portion).permit(:name, :amount)
   end
 
   def set_portion

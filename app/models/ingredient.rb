@@ -4,11 +4,16 @@ class Ingredient < ApplicationRecord
 
   validates :portion, presence: true
   validates :recipe, presence: true
+  validates :amount, presence: true
 
   Nutrition::TYPES.each do |name|
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)
     end
+  end
+
+  def nutrition
+    portion.nutrition
   end
 
   private
