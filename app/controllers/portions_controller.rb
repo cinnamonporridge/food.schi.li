@@ -1,5 +1,6 @@
 class PortionsController < ApplicationController
   before_action :set_portion, only: [:edit, :update, :destroy]
+  before_action :handle_default_portion, only: [:edit, :update, :destroy]
 
   def index
     @portions = find_nutrition.portions.all
@@ -25,7 +26,7 @@ class PortionsController < ApplicationController
 
   def update
     if @portion.update(portion_params)
-      redirect_to @portion, notice: 'Portion updated'
+      redirect_to @portion.nutrition, notice: 'Portion updated'
     else
       flash.now[:error] = 'Invalid input'
       render :edit
@@ -35,7 +36,7 @@ class PortionsController < ApplicationController
   def destroy
     @portion = Portion.find(params[:id])
     @portion.destroy
-    redirect_to @portion.nutrition, notice: 'Portion was successfully destroyed.'
+    redirect_to @portion.nutrition, notice: 'Portion deleted'
   end
 
   private
@@ -50,5 +51,9 @@ class PortionsController < ApplicationController
 
   def find_nutrition
     @nutrition ||= Nutrition.find(params[:nutrition_id])
+  end
+
+  def handle_default_portion
+    redirect_to @portion.nutrition, alert: 'Default portion cannot be edited or deleted' if @portion.primary?
   end
 end

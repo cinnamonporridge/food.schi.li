@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20170506102434) do
   end
 
   create_table "portions", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "nutrition_id"
-    t.decimal "multiplier", precision: 10, scale: 3
+    t.integer "amount_in_g_or_ml", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nutrition_id"], name: "index_portions_on_nutrition_id"
