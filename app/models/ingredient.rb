@@ -8,6 +8,8 @@ class Ingredient < ApplicationRecord
   validates :recipe, presence: true
   validates :amount, presence: true
 
+  enum measure: { unit: 1, piece: 2 }, _prefix: :measure
+
   Nutrition::TYPES.each do |name|
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)

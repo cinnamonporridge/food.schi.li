@@ -40,7 +40,7 @@ class IngredientsController < ApplicationController
   private
 
   def recipe_ingredient_params
-    params.require(:recipe_ingredient).permit(:portion_id, :amount, :unit_or_pieces)
+    params.require(:recipe_ingredient).permit(:portion_id, :amount_in_measure, :measure)
   end
 
   def find_ingredient

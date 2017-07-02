@@ -1,6 +1,6 @@
 class IngredientDecorator < Draper::Decorator
   def quantity
-    return if model.portion.primary?
+    return if model.measure_piece?
     (model.amount / model.portion.amount).round
   end
 

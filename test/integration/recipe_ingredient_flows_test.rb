@@ -18,15 +18,15 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Add ingredient to Apple Pie'
 
     assert_select '#recipe_ingredient_portion_id'
-    assert_select '#recipe_ingredient_amount'
-    assert_select '#recipe_ingredient_unit_or_pieces'
+    assert_select '#recipe_ingredient_amount_in_measure'
+    assert_select '#recipe_ingredient_measure'
 
     post "/recipes/#{recipe.id}/ingredients",
       params: {
         recipe_ingredient: {
           portion_id: '',
-          amount: '',
-          unit_or_pieces: ''
+          amount_in_measure: '',
+          measure: ''
         }
       }
     assert_response :success
@@ -36,8 +36,8 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
       params: {
         recipe_ingredient: {
           portion_id: ingredient_portion.id,
-          amount: '500',
-          unit_or_pieces: 'unit'
+          amount_in_measure: '500',
+          measure: 'unit'
         }
       }
     follow_redirect!
@@ -53,8 +53,8 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
       params: {
         recipe_ingredient: {
           portion_id: ingredient_portion.id,
-          amount: '2',
-          unit_or_pieces: 'pieces'
+          amount_in_measure: '2',
+          measure: 'piece'
         }
       }
     follow_redirect!
@@ -73,8 +73,8 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
       params: {
         recipe_ingredient: {
           portion_id: ingredient.portion.id,
-          amount: '60',
-          unit_or_pieces: 'unit'
+          amount_in_measure: '60',
+          measure: 'unit'
         }
       }
     follow_redirect!

@@ -1,6 +1,6 @@
 = simple_form_for form do |f|
   = f.input :portion_id, collection: PortionDecorator.portions_collection
-  = f.input :amount
-  = f.input :unit_or_pieces, collection: form.decorate.unit_or_pieces_collection, label: 'Unit'
+  = f.input :amount_in_measure, label: 'Amount'
+  = f.input :measure, collection: form.decorate.measures_collection, include_blank: false
   = f.submit nil, class: 'primary button'
   = link_to 'Cancel', form.ingredient.recipe, class: 'secondary button'
