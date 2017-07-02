@@ -1,11 +1,9 @@
 class Recipe < ApplicationRecord
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
   has_many :portions, through: :ingredients
 
   validates :name, presence: true
   validates :servings, presence: true
-
-  accepts_nested_attributes_for :ingredients
 
   Nutrition::TYPES.each do |name|
     define_method :"sum_#{name}" do

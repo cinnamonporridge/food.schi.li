@@ -20,3 +20,14 @@ milk:
   fat: 120
   fat_saturated: 12
   fiber: 120
+
+sugar:
+  name: 'Sugar'
+  unit: <%= Nutrition.units[:gram] %>
+  kcal: 333
+  carbs: 333
+  carbs_sugar_part: 33
+  protein: 333
+  fat: 333
+  fat_saturated: 33
+  fiber: 333

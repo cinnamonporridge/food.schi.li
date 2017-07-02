@@ -1,7 +1,7 @@
 class RecipeIngredientForm
   include ActiveModel::Model
 
-  attr_reader :recipe, :portion_id, :amount, :unit_or_pieces
+  attr_reader :ingredient, :portion_id, :amount, :unit_or_pieces
 
   validates_presence_of :portion_id
   validates_presence_of :amount
@@ -10,17 +10,22 @@ class RecipeIngredientForm
   validate :portion_exists?
 
   def initialize(args = {})
-    args.tap do |arg|
-      @recipe         = arg[:recipe]
-      @portion_id     = arg[:portion_id]
-      @amount         = arg[:amount]
-      @unit_or_pieces = arg[:unit_or_pieces]
-    end
+    @ingredient     = args[:ingredient]
+    @portion_id     = args[:portion_id] || ingredient.portion&.id
+    @amount         = args[:amount] || ingredient.amount
+    @unit_or_pieces = args[:unit_or_pieces]
+
+    # args.tap do |arg|
+    #   @ingredient     = arg[:ingredient]
+    #   @portion_id     = arg[:portion_id]
+    #   @amount         = arg[:amount]
+    #   @unit_or_pieces = arg[:unit_or_pieces]
+    # end
   end
 
   def values
     {
-      portion: Portion.find(portion_id),
+      portion: find_portion,
       amount: amount_in_unit
     }
   end

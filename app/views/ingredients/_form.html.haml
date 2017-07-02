@@ -3,4 +3,4 @@
   = f.input :amount
   = f.input :unit_or_pieces, collection: form.decorate.unit_or_pieces_collection, label: 'Unit'
   = f.submit nil, class: 'primary button'
-  = link_to 'Cancel', form.recipe, class: 'secondary button'
+  = link_to 'Cancel', form.ingredient.recipe, class: 'secondary button'

@@ -1,17 +1,18 @@
 class IngredientsController < ApplicationController
   def new
-    @form = RecipeIngredientForm.new(recipe: find_recipe)
+    @form = RecipeIngredientForm.new(ingredient: find_recipe.ingredients.new)
   end
 
   def edit
+    @form = RecipeIngredientForm.new(ingredient: find_ingredient)
   end
 
   def create
-    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(recipe: find_recipe))
-    @ingredient = find_recipe.ingredients.new(@form.values)
+    ingredient = find_recipe.ingredients.new
+    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: ingredient))
 
-    if @form.valid? && @ingredient.save
-      redirect_to @ingredient.recipe, notice: 'Ingredient added'
+    if @form.valid? && ingredient.update(@form.values)
+      redirect_to ingredient.recipe, notice: 'Ingredient added'
     else
       flash.now[:error] = 'Invalid input'
       render :new
@@ -19,7 +20,11 @@ class IngredientsController < ApplicationController
   end
 
   def update
-    if @ingredient.update(final_ingredient_params)
+    ingredient = find_ingredient
+    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: ingredient))
+    ingredient.update(@form.values)
+
+    if @form.valid? && ingredient.update(@form.values)
       redirect_to @ingredient.recipe, notice: 'Ingredient updated'
     else
       flash.now[:error] = 'Invalid input'
@@ -28,8 +33,7 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
-    @ingredient.destroy
+    find_ingredient.destroy
     redirect_to @ingredient.recipe, notice: 'Ingredient deleted'
   end
 
@@ -39,7 +43,7 @@ class IngredientsController < ApplicationController
     params.require(:recipe_ingredient).permit(:portion_id, :amount, :unit_or_pieces)
   end
 
-  def set_ingredient
+  def find_ingredient
     @ingredient ||= Ingredient.find(params[:id])
   end
 

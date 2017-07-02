@@ -12,3 +12,13 @@ big_apple_portion:
   name: Big Apple
   nutrition: apple
   amount: 200
+
+sugar_default_portion:
+  name: '100g'
+  nutrition: sugar
+  amount: 100
+
+sugar_cube_portion:
+  name: 'Cube'
+  nutrition: sugar
+  amount: 25
