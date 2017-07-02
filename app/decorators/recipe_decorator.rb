@@ -80,7 +80,7 @@ class RecipeDecorator < Draper::Decorator
     end
   end
 
-  def macro_nutritients_chart_data
+  def macronutrients_chart_data
     {
       'Carbs': (model.sum_carbs / model.macro_nutritient_total),
       'Protein': (model.sum_protein / model.macro_nutritient_total),

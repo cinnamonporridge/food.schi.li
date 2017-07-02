@@ -8,7 +8,7 @@
   .large-12.column
     .card
       .card-divider
-        %h2 Ingredients
+        %h2= "Ingredients for #{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
       .card.section
         - if @recipe.ingredients.any?
           %table.unstriped
@@ -34,13 +34,18 @@
           Start adding ingredients
     = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'primary button'
 
-%h2 Ingredients
-=# render 'recipes/ingredients_form', recipe: @recipe
-
--# if @recipe.ingredients.any?
-  %h2 Nutritions
-  =# render 'recipes/nutritions', recipe: @recipe
-
-  %h2 Macro nutritients
-  = #render 'recipes/macro_nutritients_chart', recipe: @recipe
+- if @recipe.ingredients.any?
+  .row
+    .large-6.column
+      .card
+        .card-divider
+          %h2 Nutritions
+        .card-section
+          = render 'recipes/nutritions', recipe: @recipe
+    .large-6.column
+      .card
+        .card-divider
+          %h2 Macronutrients
+        .card-section
+          = render 'recipes/macronutrients_chart', recipe: @recipe
 

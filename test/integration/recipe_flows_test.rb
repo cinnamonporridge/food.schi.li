@@ -19,6 +19,11 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Apple Pie'
     assert_select 'a.secondary.button', 'Edit'
     assert_select 'a.warning.button', 'Delete'
+
+    expected_header2 = ['Ingredients for 6 servings', 'Nutritions', 'Macronutrients']
+    css_select('h2').each_with_index do |header2,i|
+      assert_equal expected_header2[i], header2.text
+    end
   end
 
   test 'user adds a recipe' do

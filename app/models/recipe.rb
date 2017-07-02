@@ -16,7 +16,7 @@ class Recipe < ApplicationRecord
   end
 
   def sum_of_sustenance(name)
-    ingredients.inject(0.0) { |sum, ingredient| sum += ingredient.send("total_#{name}") }
+    ingredients.inject(0.0) { |sum, ingredient| sum += (ingredient.amount * ingredient.nutrition.send("#{name}")) / 100 }
   end
 
   def macro_nutritient_total
