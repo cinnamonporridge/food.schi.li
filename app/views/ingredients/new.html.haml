@@ -2,7 +2,7 @@
   .large-6.large-offset-3.column
     .card
       .card-divider
-        %h1= "Add ingredient to #{@ingredient.recipe.name}"
+        %h1= "Add ingredient to #{@form.recipe.name}"
       .card-section
-        = render 'form', ingredient: @ingredient
+        = render 'form', form: @form
 

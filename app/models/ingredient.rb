@@ -2,6 +2,8 @@ class Ingredient < ApplicationRecord
   belongs_to :portion
   belongs_to :recipe
 
+  has_one :nutrition, through: :portion
+
   validates :portion, presence: true
   validates :recipe, presence: true
   validates :amount, presence: true
@@ -10,10 +12,6 @@ class Ingredient < ApplicationRecord
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)
     end
-  end
-
-  def nutrition
-    portion.nutrition
   end
 
   private

@@ -20,4 +20,8 @@ class PortionDecorator < Draper::Decorator
       name_if_not_default
     ].compact.join(' ')
   end
+
+  def self.portions_collection
+    Portion.ordered_by_nutrition_name_and_amount.map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
+  end
 end

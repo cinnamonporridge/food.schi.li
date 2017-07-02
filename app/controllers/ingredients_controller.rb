@@ -1,18 +1,16 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: [:edit, :update, :destroy]
-  before_action :handle_default_ingredient, only: [:edit, :update, :destroy]
-
   def new
-    @ingredient = find_recipe.ingredients.new
+    @form = RecipeIngredientForm.new(recipe: find_recipe)
   end
 
   def edit
   end
 
   def create
-    @ingredient = find_recipe.ingredients.new(final_ingredient_params)
+    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(recipe: find_recipe))
+    @ingredient = find_recipe.ingredients.new(@form.values)
 
-    if @ingredient.save
+    if @form.valid? && @ingredient.save
       redirect_to @ingredient.recipe, notice: 'Ingredient added'
     else
       flash.now[:error] = 'Invalid input'
@@ -37,15 +35,8 @@ class IngredientsController < ApplicationController
 
   private
 
-  def ingredient_params
-    params.require(:ingredient).permit(:portion_id, :amount)
-  end
-
-  def final_ingredient_params
-    {
-      portion: find_portion,
-      amount: amount_in_unit
-    }
+  def recipe_ingredient_params
+    params.require(:recipe_ingredient).permit(:portion_id, :amount, :unit_or_pieces)
   end
 
   def set_ingredient
@@ -58,15 +49,5 @@ class IngredientsController < ApplicationController
 
   def find_portion
     @portion ||= Portion.find_by(id: ingredient_params[:portion_id])
-  end
-
-  def amount_in_unit
-    submitted_amount = ingredient_params[:amount].to_f
-    return submitted_amount if find_portion.primary?
-    submitted_amount * find_portion.amount
-  end
-
-  def handle_default_ingredient
-    redirect_to @ingredient.recipe, alert: 'Default ingredient cannot be edited or deleted' if @ingredient.primary?
   end
 end

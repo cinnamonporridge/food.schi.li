@@ -1,2 +1,7 @@
-%h1 Editing Recipe
-= render 'form', recipe: @recipe
+.row
+  .large-8.large-offset-2.column
+    .card
+      .card-divider
+        %h1= "Edit #{@recipe.name}"
+      .card-section
+        = render 'form', recipe: @recipe

@@ -1,0 +1,8 @@
+.row
+  .large-6.large-offset-3.column
+    .card
+      .card-divider
+        %h1= "Edit ingredient for #{@ingredient.recipe.name}"
+      .card-section
+        = render 'form', ingredient: @ingredient
+

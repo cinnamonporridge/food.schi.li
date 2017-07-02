@@ -11,4 +11,8 @@ class NutritionDecorator < Draper::Decorator
   def units_collection
     Nutrition.units.map { |name,_v|  [name.capitalize, name] }
   end
+
+  def nutrition_collection
+    Nutrition.ordered_by_name.map { |nutrition| [nutrition.name, nutrition.id] }
+  end
 end
