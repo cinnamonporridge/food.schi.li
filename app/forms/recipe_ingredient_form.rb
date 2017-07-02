@@ -1,5 +1,6 @@
 class RecipeIngredientForm
   include ActiveModel::Model
+  delegate :persisted?, :id, to: :ingredient
 
   attr_reader :ingredient, :portion_id, :measure, :amount_in_measure
 
