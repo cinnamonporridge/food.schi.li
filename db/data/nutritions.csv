@@ -1,0 +1,281 @@
+name,kcal,carbs,carbs_sugar_part,protein,fat,fat_saturated,fiber
+Kichererbsen (Dose),99,15,1,6,0.5,0.5,6
+Kidney Beans (Dose),95,14,0.7,6,0.5,0.5,5
+Borlotti Bohnen (Dose),122,21,0.6,8,0.7,0,4.5
+Weisse Bohnen (Dose),125,20,0,7,0.8,0,4.7
+Weisse Soisson-Bohnen (Dose),65,9,0,4.5,0,0,4
+Flageolet Bohnen (Dose),64,9.4,0.6,3.6,0.4,0.2,4.2
+Haricot Bohnen (Dose),101,12.1,0.4,8,0.7,0,7.2
+Edamame,122,5,2,11,5.2,0.6,5.2
+Tofu,157,2,0.5,17,9,1,0.5
+Tofu (Cauldron),118,1,0.7,12.6,7.1,1.2,1.9
+Boulgour,339,66,1.5,11,1.2,0.5,10
+Quinoa braun,361,56,4,13,7,0.7,11
+Quinoa weiss,354,59,4,14,5,0.5,7
+Vollreis,347,69,0.5,8,3,0.5,6
+Vollkornreis,358,72.2,0.9,9.8,3,0.9,1.4
+Jasminreis,355,79,0,7,1,0,1
+Langkornreis,360,83,0.5,5,0.5,0.5,1.5
+Basmatireis,352,77.5,0.2,9.4,0.2,0.1,1.2
+Sushi Reis,345,0.0,0.0,0.0,0.0,0,0
+Couscous,367,72,1.2,13,0.6,0.1,5
+Giant Couscous,255,43,0,9,4,2,4
+Wholewheat Giant Couscous,396,76.9,3.2,12.3,1.7,0.5,11.9
+Ebly,343,70.5,1.6,12.1,1.4,0,6.1
+Buchweizen,357,71,0.5,13,1.5,0.5,3.5
+Black Venus Rice,357,75.6,1.8,7.2,2.5,0.6,1.9
+Vollkornpenne,344,66,2.5,12,2,0.5,7
+Vollkorn Gemelli,357,67,3.5,13,2.5,0.5,7
+Lasagnenblätter (grün),361,67,4,14,3.5,1.2,3
+Haferflocken,373,71,1,13,7,1,7
+Vollkornmehl,307,57,1,14,2.5,0.5,11
+Ruchmehl,338,64,4,14,1.5,0,6
+Weissmehl,353,72,0,12,1,0,4
+Polenta,345,74,0.5,8,1,0.5,4
+Mais (Dose),102,21,4.5,2.5,0.5,0,1.5
+Mais Bio (Dose),75,13,7,2.5,1,0,2
+Dorset cereals ,356,58,17,9.9,7.4,1.1,8.9
+Dinkel-Quinoa-Cracker,426,53,2.5,9,15,2.5,15
+Finn Crisp (Sourdough Rye),347,61,1.6,10,2.6,0.4,20
+Dinkel Cracker,414,64,1.5,12,10,5,0
+Gerste,354,56.2,0.8,12.5,2.3,0.5,17.3
+Spaghetti,172,34,0.7,6.3,0.9,0.2,1.6
+Fusilli,352,68,2.5,14,3,0.8,3
+Penne,361,68,2.5,14,3,0.8,3
+Tapioca gemahlen,340,86,3.3,0.2,0.2,0,0.9
+Linsen gelb,350,51.1,2.1,27,2.2,0.4,6.7
+Linsen rot,336,48,1,25,2,0,13
+Linsen grün,273,40,1,24,1.5,0.2,17
+Linsen schwarz (Beluga),304,40.6,1.1,23.4,1.6,0,17
+Cacao nibs,228,58,1.8,20,14,8,0
+Kakaopulver,345,19,0,20,21,0,0
+Sesam,621,0.5,0,20,61,8.9,13
+Chia-Samen,475,2.3,0,21.6,33.3,3.2,39.9
+Magerquark,65,7,7,9,0.1,0,0
+Rahmquark,194,5,5,6,16.7,9.9,0
+Naturjoghurt,77,6,6,4.5,3.8,2.3,0
+Milch (Drink),55,12.3,12.3,3.2,6.3,3.8,0
+Vollmilch,67,5,5,3,3.9,2.3,0
+Feta,239,0.1,0,17,19,0,0
+Ricotta,169,5,4,6,13,9,0
+Kokosnussmilch,193,6,0,2,18,0,0
+Gruyère,405,0,0,27,33,21,0
+Mozzarella,238,2,1,17,18,12.5,0
+Mozarella Legère,166,1.5,1.5,22,8,5,0
+Mascarpone,420,4.8,0,4.8,41.5,0,0
+Halbrahm,250,3.5,0,2.5,25,0,0
+Vollrahm,341,3.5,3,2.5,35.2,20.8,0.5
+Schmelzkäse (Gruyère),307,0,0,20,25,14,0
+Parmesan,384,0,0,33,28,17,0
+Butter,742,0.5,0.5,0.5,82,49,0.5
+Halloumi,325,2,1,23,25,17,0
+Hüttenkäse,88,3,2,10,4,2.5,0
+LC1 (ohne Zucker),47,5.1,5.1,5.4,0,0,0.9
+Skyr (Vanille),56,3.7,3.3,9.8,0.2,0,0
+Skyr (Lemon Cheesecake),60,5,4,10,0.2,0,0
+Creme fraiche,339,3,3,2.5,35.2,20.8,0
+Philadelphia,235,4,4,5.5,21.5,14.5,0.2
+Innocent Berry Smoothie,60,12,10,0.6,0.9,0.1,0.5
+Ossau Iraty Käse,412,0.1,0.1,23.6,35.2,22.5,0.4
+Le Rustique Käse,268,1,0.4,21,20,14,0
+Brie,265,1,1,19,21,13,0
+Lachs frisch,153,0,0,23,7.2,1,0
+Lachs geräuchert,117,0,0,18,4.3,1,0
+Thunfisch frisch,144,0,0,23,4.9,1.3,0
+Dorade frisch,97,0,0,18,2,0.5,0
+Forelle frisch,104,0,0,17,3.6,1,0
+Sardellen (Dose),175,0,0,23,9,2,0
+Kap-Seehecht Rückenfilet,64,0,0,15,0.5,0.5,0
+Thunfisch (Dose),190,0,0,25,10,1.5,1.5
+Tintenfisch,92,3.1,0,15.6,1.4,0.4,0
+Shrimps,71,0.9,0,13.6,1,0.1,0
+Grüne Neuseelandmuscheln,99,3,0,16,2.5,0.6,0
+Lachsforelle,152,0,0,20,8,0,0
+Flunderfilets,81,0,0,18,1,0,0
+Atlantische Kabeljau Rückenfilets,81,0,0,19,1,0,0
+Meeresfrüchtemischung (Costa),95,2,0,17,2,1,0
+Dosentomaten,24,4.5,0.5,1.5,0.5,0,1
+Tomatenmark,94,15,15,5,1,0,2.5
+Tomate,18,2.7,2.6,0.9,0.2,0,1.2
+Cherry Tomaten,18,2.7,2.6,0.9,0.2,0,1.2
+Fenchel,31,4.4,0,1.2,0.2,0,3
+Lauch,26.5,3.7,3.7,2.1,0.4,0,3.1
+Sellerie (Knolle),17,2.1,1.7,1.5,0.3,0.1,3.9
+Sellerie (Stange),16,2.4,1.4,0.7,0.2,0,1.6
+Aubergine,25,3,3,1,0.2,0,3
+Peperoni,31,3.9,3.9,1,0.3,0,2.1
+Zucchetti,17,2.1,1.7,1.2,0.3,0.1,1
+Champignon,22,2,2,3,0.3,0.1,1
+Shitake,34,4.2,0,2.2,0.5,0.1,2.5
+Kürbis Butternut,26,6,5,1,0.1,0.1,0.5
+Kürbis Knirps,26,6,5,1,0.1,0.1,0.5
+Spinat,23,1.4,1.4,2.9,0.4,0.1,2.2
+Frühlingszwiebeln,32,5,5,1.8,0.2,0,2.6
+Blumenkohl,25,3,3,2,0.3,0.1,2
+Broccoli,28,3,2.5,3,0.4,0,2.6
+Chicoree,17,1,0,1,0.1,0,3.1
+Erbsen (gefroren),77,9,5,5.2,0.4,0.1,4.5
+Gurke,15,3,3,0.6,0.1,0,0.5
+Karotte,41,7,7,1,0.2,0,2.8
+Kartoffel,58,10,0.4,2.6,0.1,0,2.5
+Rande,40,7,7,1.5,0.1,0,2.4
+Zwiebel,40,7.6,0,1.1,0.1,0,1.7
+Knoblauch,149,31,0,6.3,0.5,0.1,2.1
+Chili,40,8,7.6,2,0.2,0,1.5
+ertig,80,15.8,15.6,1.8,0.8,0.2,2
+Avocado,160,1.8,1.8,2,14.7,2.1,6.7
+Bohnen (gefroren),30,3.5,2,2,0.5,0.5,3
+Oliven (grün),126,0,0,0.5,13,1.5,2.5
+Rosenkohl,43,5.2,4.7,3.4,0.3,0.1,3.8
+Kefen (gefroren),58,9,5,4,0,0,3
+Süsskartoffel,86,17.1,4.2,1.6,0.1,0,3
+Babymais,24,2.5,2.5,2.5,1.2,0,0
+Pastinake,75,13.1,4.8,1.2,0.3,0.1,4.9
+Rhabarber,21,2.7,2.5,0.9,0.2,0.1,1.8
+Spargel (grün),17,1.4,1.4,2.5,0.1,0,2.2
+Rucola,18.2,0.2,0.2,3.2,0.5,0.1,2.3
+Nüsslisalat,24,2,2,2,0,0,2
+Zuckermais,106,18,3,3.5,1.5,0,3
+Kale,34,1.4,1.3,3.4,1.6,0.2,3.1
+Pak Choi,19,1.9,1.5,1.5,0,0,2
+Radiesli,16,1.8,1.8,0.7,0.1,0,1.6
+Pimentos,23,5,2.7,1.1,0.3,0,0
+Knackerbsen,82,12.3,5.5,6.6,0.5,0,5
+Sprossenmix,148,21,2.5,11,0.5,0,7
+Himbeeren,52,5.4,5.4,1.2,0.7,0,6.5
+Datteln,278,65,65,1.9,0.5,0.1,8.7
+Apfel,61,14,13,0.4,0,0,2.4
+Birne,57,12,12,0.4,0,0,3.1
+Zitrone,29,3.1,3.1,1.1,0.3,0,1.3
+Lychees (Dose),82,18,18,0.5,0,0,1.5
+Banane,89,20.2,17.5,1.1,0.3,0.1,2.6
+Kiwi,61,11.7,11.7,1.1,0.5,0,3
+Beerenmischung (gefroren),67,11,11,1,0.5,0,7
+Pfirsich,39,8.5,8,0.9,0.3,0,1.5
+Aprikose,48,9.5,9.1,1.4,0.4,0,2
+Nektarine,44,9.7,8.9,1.1,0.3,0,1.7
+Feige,74,16.3,16.3,0.8,0.3,0.1,2.9
+Blaubeeren,48,10,10,0.7,0.3,0,2.4
+Mango,60,13.4,13.4,0.8,0.3,0.1,1.6
+Pflaume,46,12.2,9.9,0.7,0.3,0,1.4
+Limette,30,1.9,1.9,0.7,0.2,0,1
+Orange,47,9.4,9.4,0.9,0.1,0,2.4
+Granatapfel,83,14.7,14.7,1.7,1.2,0.1,4
+Erdbeeren,32,5.7,5.7,0.7,0.3,0,2
+Grapefruit,32,7,7,0.6,0.1,0,1.1
+Wassermelone,30,7.2,7.2,0.6,0.2,0,0.4
+Grapefruitsaft,48,11.1,11.1,0.3,0.1,0,0
+Kirschen,50,12,8,1,0.3,0.1,1.6
+Mandeln,575,9.5,3.9,21.2,49.4,3.7,12.2
+Baumnüsse,684,11,7,17,63,7,0
+Walnusskerne,687,7,2.5,15,65,7,7
+Pinienkerne,610,3,3,36,50,10,5
+Cashewkerne,589,31,3,21,42,9,3
+Cashewkerne (geröstet und gesalzen),587,26,6,18,45,8,3
+Haselnüsse (gemahlen),657,7,4.5,15,61,4.5,10
+Tahini,686,12,0,25.5,60,10,0
+Peanut Butter (meridian),596,11.6,5.9,29.6,46,8.2,8.5
+Pouletbrust,114,0,0,21.2,2.6,0.6,0
+Pouletflügel,175,1,1,19,11,3.5,0.5
+Rohschinken,243,0,0,27,15,5.3,0
+Salami,384,0,0,25,32,0,0
+Speck,267.5,1,1,17,8,8,0.5
+Rindfleisch Bio,187,0,0,19,12,4.5,0
+Rindfleisch Legère,131,0,0,21,5,2,0
+Rindfleisch (Angus Lean),170,0,0,19.7,10,0,0
+Beef Escalopes,178,0.4,0,36.4,3.6,1.5,0.4
+Entenbrust (ohne Haut),123,0,0,19.9,4.3,0,0
+Pulled pork (Bell),177,1,0.5,23,9,3.5,0
+Lammnierstück,116,1,1,21,3.5,1.5,0.5
+Chorizo Ring,481,0.9,0,22,43,,
+St. Galler Stumpen,242,1,0.5,13,21,8,0
+St. Galler Olma Bratwurst,246,1.6,0.5,13,21,8,0.5
+Salami Milano,86,0,0,0,0,0,0
+Entenbrust (mit Haut),337,0,0,19,28,10,0
+Olivenöl,819,0,0,0,91,13,0
+Kokosöl,812.9,0,0,0,92,87,0
+Rapsöl,828,0,0,0,72,7,0
+Sesamöl,819,0,0,0,91,0,0
+Ei,143,0.7,0.7,12.6,9.5,3.13,0
+Austernsauce,141,31,25,3.5,0,0,0
+Fischsauce,79,5.8,0,13.9,0,0,0
+Currypaste (rot),118,17.5,0,7.8,1.8,0,9.5
+Currypaste (grün),95,16,0,4.5,1.4,0,8.6
+Currypaste (sauer),107,17.3,0,6,1.5,0,6.4
+Currypaste (Panang),138,22.2,0,7,2.3,0,11.3
+Currypaste (gelb),129,22.7,5.6,5.3,1.9,0.3,11
+Sojasauce,84,6.6,1.3,9,0,0,0
+Tamarisauce,57,2,0,10,0,0,0
+Senf,108,6,3,6,6,0,3
+Senf scharf,150,3.9,0,8,9.9,0,0
+Ketchup,102,23.2,22.8,1.2,0.1,0,0
+Gemüse-Bouillon,4,0.8,0,0.5,,0,0
+Essig (Balsamico),96,19,19,0.2,0,0,0
+Essig,25,0,0,0,0,0,0
+Fischfond,93,21,10,2.5,0,0,0
+Ingwer-Knoblauch Paste,104,16,0,3.2,3,0,0
+Ingwer,80,15.8,15.6,1.8,0.8,0.2,2
+Mayonnaise,740,0.3,0,0.9,82,82,0
+Basilikum,22,2.65,0,3.15,0.64,0,1.6
+Weizen Pita,257,52,2.2,7.8,1.1,0.3,3.7
+Whole wheat Tortilla,286,47,3,8.5,6,2.5,6
+Garlic Bread,334,46.9,3.7,9,11.9,5.3,8
+Frischback Pagnolbrot,230,44,4,8,8,1.5,0
+Naturaplan Bio Nussbrötli Coop,268,40,4,10,6,1,0
+Burger Bun,310,51,7,9,7,0.8,3.5
+Rotwein,85,0,0,0,0,0,0
+Weisswein,60,0,0,0,0,0,0
+Whisky,250,0.1,0,0,0,0,0
+Grappa,221,0,0,0,0,0,0
+Schokoladenpulver,447,66,56,6,16,10,8
+Rohzucker,396,99,99,0,0,0,0
+Puderzucker,400,100,100,0,0,0,0
+Konfitüre Himbeer - Maracuja,214,52,49,0.6,0,0,2
+Proteinpulver,367,3.5,3.5,77,5,3.3,0
+Ahornsirup,356,89,77,0,0,0,0
+St. Galler Ruchbrot,249,45,3,10,1.5,0.5,5
+Gomfi,214,52,49,0.6,0,0,2
+Agavendicksaft,300,75,75,0,0,0,0
+Vollkorn Petit Beurre,432,60,17,9,16,7,6
+Erdbeer-Rhabarber Gomfi,201,48,48,1,0,0,2
+Magnum Double Raspberry,326,35,28,2.9,19,14,0
+Magnum Double Coconut,328,32,30,3.8,20,14,0
+Magnum Classic,302,29,27,3.6,19,14,0
+Weihnachgsschöggeli,555,51,49,8,35,20,0
+Victoria Sponge Cake,450,52.4,,6.4,26.3,,
+Yo Frozen Yoghurt Chocolate,153,23,20,8,3,2,1
+Bee pollen,267,35,29,0.8,7,0,5
+Lachs Sandwich (Costa),212,25.5,1.5,12.9,6.1,4.4,0
+Veggie Patty,381,,8,,10.7,3,0
+Flatbread,220,,4.4,,2.6,0.3,0
+Chipotle South West Sauce,100,0,0,0,0,0,0
+Tuna Sub (with Lite Mayonnaise),360,,7.3,,11.6,1.8,
+Couscous roasted vegetables,136,19.3,4.9,3.2,4.1,0.8,4.3
+Vine ripened tomato paste (M&S),430,6,0,2.6,42.8,0,0
+Pomodori Secchi,208,8.2,7.5,3.9,15.8,1.8,0
+California Roll,283,42,0,10,8,0,6
+Shrimp Tempura Roll,564,71,,22,23,0,5
+Red Bean Burger,206,22,1.5,8,8,0.5,7
+Black Bean Burger,183,23,3,8,4.5,0.5,9
+BOL Mexican Sweet Potato Chilli,92,13.9,4.5,2.7,1.6,0.3,5.3
+Gelatine,343,0,0,84.2,0.1,0,0
+Durum Wheat Couscous Salad (Starbucks),119,18,3.1,4,3,1.7,2.2
+Käsespätzle,293,56,0,31,40,0,0
+Apfelstrudel,274,41.1,25,3.3,11.2,2,2.2
+Vanilleglace,201,23.6,21.2,3.5,11,6.8,0.7
+Lindt Himbeerschoggi,522,51,49,5.2,31,18,0
+Ben & Jerry's - Cookie Dough,270,30,25,4,15,9,0
+Extrême Cornet Vanille,148,22.8,16.8,1.9,5.4,1.7,0.4
+Roast Chicken (Sainsburys),192,1.5,0,25.3,9.3,2.4,0.4
+Beets Feta Veggie Pot (M&S),130,8.9,8.2,4.4,7.5,2.3,4.7
+Crispy Duck,250,8.8,,18.5,15.5,3.2,0
+Backhefe,83,1.1,0.1,16.7,1.2,0,6.9
+Kokosnussriegel,489,59.8,49.8,3.2,27.6,26,7
+Shawarma,800,100,,20,40,0,0
+Chicken Edamame Protein Pot (M&S),147,3.5,1.6,14.2,7.5,1.2,4.5
+Nutritional Yeast,344,36.9,12.4,51,4,0.7,22
+Essiggurken,30,8,7,0.6,0.5,0,0.8
+Honig,304,82,82,0.3,0,0,0
+Oh! Yoghurt Greek Style mini - Himbeer-Choco,107,14,13,8,2,1.2,0.5
+Scone,362,53.8,,7.2,14.6,,1.9
+French Fries,312,41,0.3,3.4,15,2.3,3.8
