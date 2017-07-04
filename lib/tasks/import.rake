@@ -6,8 +6,8 @@ namespace :import do
     nutritions_file_path = Rails.root.join('db/data/nutritions.csv')
     CSV.foreach(nutritions_file_path) do |row|
       next if row[0] == 'name'
-      nutrition = Nutrition.find_or_create_by(
-        name: row[0],
+      nutrition = Nutrition.find_or_create_by(name: row[0])
+      nutrition.update(
         kcal: row[1].to_i,
         carbs: row[2].to_f,
         carbs_sugar_part: row[3].to_f,
