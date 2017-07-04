@@ -39,10 +39,13 @@ class NutritionsController < ApplicationController
   end
 
   def destroy
-    @nutrition.destroy
-    respond_to do |format|
-      format.html { redirect_to nutritions_url, notice: 'Nutrition was successfully destroyed.' }
-      format.json { head :no_content }
+    if Recipe.using(@nutrition).any?
+      flash.now[:error] = 'Nutrition cannot be deleted, it is used in at least on recipe'
+      @nutrition = @nutrition.decorate
+      render :show
+    else
+      @nutrition.destroy
+      redirect_to nutritions_url, notice: 'Nutrition deleted'
     end
   end
 

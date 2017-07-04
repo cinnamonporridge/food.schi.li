@@ -1,5 +1,5 @@
 class Nutrition < ApplicationRecord
-  has_many :portions
+  has_many :portions, dependent: :destroy
 
   TYPES = %i(kcal carbs carbs_sugar_part protein fat fat_saturated fiber)
 
