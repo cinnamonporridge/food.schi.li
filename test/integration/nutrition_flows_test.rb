@@ -98,4 +98,27 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Nutrition updated', flash[:notice]
   end
 
+  test 'user cannot delete a nutrition that is used in recipe' do
+    get nutrition_path(nutritions(:milk))
+    assert_response :success
+    assert_select 'h1', 'Milk'
+    assert_select 'a.warning.button', false, 'Apple should not show a delete button'
+
+    delete "/nutritions/#{nutritions(:milk).id}"
+    assert_response :success
+    assert_equal 'Nutrition cannot be deleted, it is used in at least on recipe', flash[:error]
+  end
+
+  test 'user can delete nutrition that is not used in a reciped' do
+    get nutrition_path(nutritions(:sugar))
+    assert_response :success
+    assert_select 'h1', 'Sugar'
+    assert_select 'a.warning.button', 'Delete'
+
+    delete "/nutritions/#{nutritions(:sugar).id}"
+    follow_redirect!
+    assert_response :success
+    assert_equal 'Nutrition deleted', flash[:notice]
+  end
+
 end

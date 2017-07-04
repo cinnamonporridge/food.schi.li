@@ -1,8 +1,7 @@
 %h1= @recipe.name
-%small=# "#{@recipe.servings} servings"
 
-= link_to 'Edit', edit_recipe_path(@recipe), class: 'button secondary tiny'
-= link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny'
+= link_to 'Edit', edit_recipe_path(@recipe), class: 'button secondary'
+= link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning'
 
 .row
   .large-12.column

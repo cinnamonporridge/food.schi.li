@@ -3,6 +3,8 @@
 .row
   .small-12.column
     = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'secondary button'
+    - if @nutrition.recipes_using.none?
+      = link_to 'Delete', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning'
     = link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
 
 .row
