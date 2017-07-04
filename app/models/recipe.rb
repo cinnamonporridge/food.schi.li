@@ -5,6 +5,10 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :servings, presence: true
 
+  scope :using, -> (nutrition) {
+    includes(:portions).where(portions: { nutrition: nutrition } )
+  }
+
   Nutrition::TYPES.each do |name|
     define_method :"sum_#{name}" do
       send(:sum_of_sustenance, name)
