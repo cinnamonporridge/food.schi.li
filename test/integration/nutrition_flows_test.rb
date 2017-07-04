@@ -17,10 +17,14 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutrition_path(nutritions(:apple))
     assert_response :success
     assert_select 'h1', 'Apple'
-    assert_select 'h2', '100g contains'
-    assert_select 'h2', 'Portions'
 
-    assert_select 'a.primary.button', 'Edit'
+    expected_header2 = ['100g contains', 'Portions', 'Used in 1 recipe']
+
+    css_select('h2').each_with_index do |header2, i|
+      assert_equal expected_header2[i], header2.text
+    end
+
+    assert_select 'a.secondary.button', 'Edit'
     assert_select 'a.primary.button', 'New portion'
   end
 

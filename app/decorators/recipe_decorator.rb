@@ -1,4 +1,5 @@
 class RecipeDecorator < Draper::Decorator
+  delegate_all
 
   # SUMS
   def sum_kcal

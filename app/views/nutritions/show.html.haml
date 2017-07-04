@@ -1,7 +1,12 @@
 %h1= @nutrition.name
 
 .row
-  .large-6.column
+  .small-12.column
+    = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'secondary button'
+    = link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
+
+.row
+  .small-12.large-6.column
     .card
       .card-divider
         %h2= "100#{@nutrition.unit_abbrevation} contains"
@@ -30,12 +35,23 @@
               %th.text-left Fiber
               %td.text-right= @nutrition.fiber
     .button-group.small
-      = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'button primary'
-      =# link_to 'Delete', @nutrition, method: :delete, data: { confirm: 'Are you sure?' }, class: 'warning button'
-  .large-6.column
-    .card
-      .card-divider
-        %h2 Portions
-      .card-section
-        = render 'portions/index', portions: @nutrition.portions
-    = link_to 'New portion', new_nutrition_portion_path(@nutrition), class: 'button primary small'
+
+  .small-12.large-6.column
+    .row
+      .small-12.large-12.column
+        .card
+          .card-divider
+            %h2 Portions
+          .card-section
+            = render 'portions/index', portions: @nutrition.portions
+            = link_to 'New portion', new_nutrition_portion_path(@nutrition), class: 'button primary'
+      - if @nutrition.recipes_using.any?
+        .small-12.large-12.column
+          .card
+            .card-divider
+              %h2= "Used in #{@nutrition.recipes_using.count} #{'recipe'.pluralize(@nutrition.recipes_using.count)}"
+            .card-section
+              - @nutrition.recipes_using.each do |recipe|
+                = link_to recipe.decorate.name, recipe_path(recipe), class: 'button small'
+
+
