@@ -16,7 +16,8 @@ namespace :import do
         fat_saturated: row[6].to_f,
         fiber: row[7].to_f
       )
-      nutrition.portions.find_or_create_by(name: '100g', amount: 100)
+      nutrition.portions.find_or_initialize_by(name: '100g', amount: 100)
+      nutrition.save!
     end
   end
 end
