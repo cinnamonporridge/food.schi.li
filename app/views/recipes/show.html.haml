@@ -4,6 +4,10 @@
 = link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning'
 
 .row
+  .small-12.column
+    = render 'recipes/macronutrient_bar', recipe: @recipe
+
+.row
   .large-12.column
     .card
       .card-divider
@@ -41,10 +45,5 @@
           %h2 Nutritions
         .card-section
           = render 'recipes/nutritions', recipe: @recipe
-    .large-6.column
-      .card
-        .card-divider
-          %h2 Macronutrients
-        .card-section
-          = render 'recipes/macronutrients_chart', recipe: @recipe
+
 

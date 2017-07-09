@@ -1,0 +1,26 @@
+.macronutrient-bar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 18px;
+}
+
+.macronutrient-bar-segment {
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+}
+
+.carbs {
+  background-color: $violet;
+}
+
+.protein {
+  background-color: $brown;
+}
+
+.fat {
+  background-color: $algae;
+}

@@ -17,6 +17,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get recipe_path(recipes(:apple_pie))
     assert_response :success
     assert_select 'h1', 'Apple Pie'
+    assert_select 'h2', 'Nutritions'
     assert_select 'a.secondary.button', 'Edit'
     assert_select 'a.warning.button', 'Delete'
 

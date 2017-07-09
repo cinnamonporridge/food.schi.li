@@ -81,11 +81,33 @@ class RecipeDecorator < Draper::Decorator
     end
   end
 
-  def macronutrients_chart_data
-    {
-      'Carbs': (model.sum_carbs / model.macro_nutritient_total),
-      'Protein': (model.sum_protein / model.macro_nutritient_total),
-      'Fat': (model.sum_fat / model.macro_nutritient_total)
-    }
+  def macronutrients_chart_carbs
+    return "0%" unless model.macro_nutritient_total > 0.0
+    "#{(model.sum_carbs / model.macro_nutritient_total * 100).round(2)}%"
+  end
+
+  def macronutrients_chart_carbs_rounded
+    return "0%" unless model.macro_nutritient_total > 0.0
+    "#{(model.sum_carbs / model.macro_nutritient_total * 100).round}%"
+  end
+
+  def macronutrients_chart_protein
+    return "0%" unless model.macro_nutritient_total > 0.0
+    "#{(model.sum_protein / model.macro_nutritient_total * 100).round(2)}%"
+  end
+
+  def macronutrients_chart_protein_rounded
+    return "0%" unless model.macro_nutritient_total > 0.0
+    "#{(model.sum_protein / model.macro_nutritient_total * 100).round}%"
+  end
+
+  def macronutrients_chart_fat
+    return "0%" unless model.macro_nutritient_total > 0.0
+    "#{(model.sum_fat / model.macro_nutritient_total * 100).round(2)}%"
+  end
+
+  def macronutrients_chart_fat_rounded
+    return "0%" unless model.macro_nutritient_total > 0.0
+    "#{(model.sum_fat / model.macro_nutritient_total * 100).round}%"
   end
 end
