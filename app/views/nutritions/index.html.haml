@@ -6,11 +6,11 @@
   %thead
     %tr
       %th Name
-      %th.col-xs-1.text-right Kcal
-      %th.col-xs-1.text-right Carbs
-      %th.col-xs-1.text-right Protein
-      %th.col-xs-1.text-right Fat
-      %th.col-xs-1.text-right Fiber
+      %th.text-right Kcal
+      %th.text-right Carbs
+      %th.text-right Protein
+      %th.text-right Fat
+      %th.text-right Fiber
   %tbody
     - @nutritions.each do |nutrition|
       %tr.clickable-row{ 'data-href': nutrition_path(nutrition) }

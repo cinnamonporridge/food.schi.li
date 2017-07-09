@@ -2,14 +2,14 @@
 
 = link_to 'New Recipe', new_recipe_path, class: 'primary button pull-right'
 
-%table
+%table.unstriped.hover
   %thead
     %tr
-      %th.col-xs-2 Name
-      %th Servings
-
+      %th{ width: '50%' } Name
+      %th{ width: '50%' }
   %tbody
     - @recipes.each do |recipe|
       %tr.clickable-row{ 'data-href': recipe_path(recipe) }
         %td= link_to recipe.name, recipe
-        %td= recipe.servings
+        %td
+          = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true
