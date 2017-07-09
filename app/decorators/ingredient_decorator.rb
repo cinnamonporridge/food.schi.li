@@ -1,7 +1,7 @@
 class IngredientDecorator < Draper::Decorator
   def quantity
     return if model.measure_unit?
-    (model.amount / model.portion.amount).round
+    (model.amount / model.portion.amount).round(2)
   end
 
   def rounded_amount

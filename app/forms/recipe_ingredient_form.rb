@@ -44,12 +44,12 @@ class RecipeIngredientForm
   end
 
   def amount_in_unit
-    return (amount_in_measure.to_i * find_portion.amount) if measure_in_pieces?
+    return (amount_in_measure.to_f * find_portion.amount) if measure_in_pieces?
     amount_in_measure
   end
 
   def to_amount_in_measure(amount)
-    return (amount.to_i / find_portion.amount).round(3) if measure_in_pieces?
+    return (amount.to_f / find_portion.amount).round(3) if measure_in_pieces?
     amount
   end
 
