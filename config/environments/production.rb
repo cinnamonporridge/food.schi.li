@@ -63,11 +63,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'food.schi.li' }
 
   config.action_mailer.smtp_settings = {
-    address: 'email-smtp.eu-west-1.amazonaws.com',
-    port: 587,
-    user_name: Rails.application.secrets.smtp[:user_name],
-    password: Rails.application.secrets.smtp[:password],
-    authentication: :login,
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            Rails.application.secrets.smtp[:user_name],
+    password:             Rails.application.secrets.smtp[:password],
+    authentication:       :plain,
     enable_starttls_auto: true
   }
 
