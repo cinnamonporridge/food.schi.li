@@ -11,6 +11,11 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Recipes'
     assert_select 'a.primary.button', 'New Recipe'
+
+    first_row, second_row, *rest = css_select('table.recipes tbody tr')
+
+    assert_equal 'Anchovy Soup', first_row.css('td').first.text  , 'Anchovy Soup should be listed before Apple Pie'
+    assert_equal 'Apple Pie'   , second_row.css('td').first.text , 'Apple Pie should be listed after Anchovy Soup'
   end
 
   test 'user visits recipe page' do

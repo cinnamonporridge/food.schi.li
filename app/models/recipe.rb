@@ -9,6 +9,8 @@ class Recipe < ApplicationRecord
     includes(:portions).where(portions: { nutrition: nutrition } )
   }
 
+  scope :ordered_by_name, -> { order(name: :asc) }
+
   Nutrition::TYPES.each do |name|
     define_method :"sum_#{name}" do
       send(:sum_of_sustenance, name)

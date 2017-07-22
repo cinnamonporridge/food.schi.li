@@ -1,3 +1,7 @@
 apple_pie:
   name: Apple Pie
   servings: 6
+
+anchovy_soup:
+  name: Anchovy Soup
+  servings: 7
