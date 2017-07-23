@@ -14,13 +14,16 @@
 }
 
 .carbs {
-  background-color: $violet;
+  background-color: $violet; /* 3B3140 */
+  color: #fff;
 }
 
 .protein {
-  background-color: $brown;
+  background-color: $beige; /* F2E0C9 */
+  color: #000;
 }
 
 .fat {
-  background-color: $algae;
+  background-color: $rose; /* EA6ED4 */
+  color: #fff;
 }

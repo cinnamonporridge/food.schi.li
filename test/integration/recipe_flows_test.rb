@@ -12,10 +12,10 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Recipes'
     assert_select 'a.primary.button', 'New Recipe'
 
-    first_row, second_row, *rest = css_select('table.recipes tbody tr')
+    first_row, second_row, *rest = css_select('.recipes .row')
 
-    assert_equal 'Anchovy Soup', first_row.css('td').first.text  , 'Anchovy Soup should be listed before Apple Pie'
-    assert_equal 'Apple Pie'   , second_row.css('td').first.text , 'Apple Pie should be listed after Anchovy Soup'
+    assert_equal 'Anchovy Soup', first_row.css('.small-12.columns').first.text.strip  , 'Anchovy Soup should be listed before Apple Pie'
+    assert_equal 'Apple Pie'   , second_row.css('.small-12.columns').first.text.strip , 'Apple Pie should be listed after Anchovy Soup'
   end
 
   test 'user visits recipe page' do
@@ -23,12 +23,12 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Apple Pie'
     assert_select 'h2', 'Nutritions'
-    assert_select 'a.secondary.button', 'Edit'
-    assert_select 'a.warning.button', 'Delete'
+    assert_select 'a.warning.button', 'Edit'
+    assert_select 'a.alert.button', 'Delete'
 
     expected_header2 = ['Ingredients for 6 servings', 'Nutritions', 'Macronutrients']
     css_select('h2').each_with_index do |header2,i|
-      assert_equal expected_header2[i], header2.text
+      assert_equal expected_header2[i], header2.text.strip
     end
   end
 

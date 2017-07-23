@@ -1,15 +1,16 @@
-%h1 Recipes
+.row
+  .small-12.columns
+    = link_to 'New Recipe', new_recipe_path, class: 'primary button'
 
-= link_to 'New Recipe', new_recipe_path, class: 'primary button pull-right'
-
-%table.unstriped.hover.recipes
-  %thead
-    %tr
-      %th{ width: '50%' } Name
-      %th{ width: '50%' }
-  %tbody
-    - @recipes.each do |recipe|
-      %tr.clickable-row{ 'data-href': recipe_path(recipe) }
-        %td= link_to recipe.name, recipe
-        %td
-          = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true
+.row
+  .small-12.columns
+    .card
+      .card-divider
+        %h1 Recipes
+      .card-section.recipes
+        - @recipes.each do |recipe|
+          .row
+            .small-12.columns
+              = link_to recipe.name, recipe
+            .small-12.columns
+              = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true

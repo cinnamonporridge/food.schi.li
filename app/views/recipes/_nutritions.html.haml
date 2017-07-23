@@ -1,39 +1,42 @@
 - if recipe
-  %table.unstriped
-    %tr
-      %th.text-left
-      %th.text-right Recipe
-      %th.text-right 1 Serving
-    %tr
-      %th.text-left kcal
-      %td.text-right= recipe.decorate.sum_kcal
-      %td.text-right= recipe.decorate.serving_kcal
-    %tr
-      %th.text-left Carbs
-      %td.text-right= recipe.decorate.sum_carbs
-      %td.text-right= recipe.decorate.serving_carbs
+  .grid-x.align-bottom
+    .large-5.cell
+    .large-1.cell.text-right kcal
+    .large-1.cell.text-right Carbs
+    .large-1.cell.text-right Carbs sugar part
+    .large-1.cell.text-right Protein
+    .large-1.cell.text-right Fat
+    .large-1.cell.text-right Fat saturated
+    .large-1.cell.text-right Fiber
 
-    %tr.gray
-      %th.text-left Carbs sugar part
-      %td.text-right= recipe.decorate.sum_carbs_sugar_part
-      %td.text-right= recipe.decorate.serving_carbs_sugar_part
+  - recipe.ingredients.each do |ingredient|
+    .grid-x
+      .large-5.cell= ingredient.portion.decorate.name_with_nutrition
+      .large-1.cell.text-right= ingredient.decorate.total_kcal
+      .large-1.cell.text-right= ingredient.decorate.total_carbs
+      .large-1.cell.text-right= ingredient.decorate.total_carbs_sugar_part
+      .large-1.cell.text-right= ingredient.decorate.total_protein
+      .large-1.cell.text-right= ingredient.decorate.total_fat
+      .large-1.cell.text-right= ingredient.decorate.total_fat_saturated
+      .large-1.cell.text-right= ingredient.decorate.total_fiber
 
-    %tr
-      %th.text-left Protein
-      %td.text-right= recipe.decorate.sum_protein
-      %td.text-right= recipe.decorate.serving_protein
+  .grid-x
+    .large-5.cell Total recipe
+    .large-1.cell.text-right= recipe.decorate.sum_kcal
+    .large-1.cell.text-right.carbs= recipe.decorate.sum_carbs
+    .large-1.cell.text-right= recipe.decorate.sum_carbs_sugar_part
+    .large-1.cell.text-right.protein= recipe.decorate.sum_protein
+    .large-1.cell.text-right.fat= recipe.decorate.sum_fat
+    .large-1.cell.text-right= recipe.decorate.sum_fat_saturated
+    .large-1.cell.text-right= recipe.decorate.sum_fiber
 
-    %tr
-      %th.text-left Fat
-      %td.text-right= recipe.decorate.sum_fat
-      %td.text-right= recipe.decorate.serving_fat
+  .grid-x
+    .large-5.cell Per serving
+    .large-1.cell.text-right= recipe.decorate.serving_kcal
+    .large-1.cell.text-right= recipe.decorate.serving_carbs
+    .large-1.cell.text-right= recipe.decorate.serving_carbs_sugar_part
+    .large-1.cell.text-right= recipe.decorate.serving_protein
+    .large-1.cell.text-right= recipe.decorate.serving_fat
+    .large-1.cell.text-right= recipe.decorate.serving_fat_saturated
+    .large-1.cell.text-right= recipe.decorate.serving_fiber
 
-    %tr.gray
-      %th.text-left Fat saturated
-      %td.text-right= recipe.decorate.sum_fat_saturated
-      %td.text-right= recipe.decorate.serving_fat_saturated
-
-    %tr.gray
-      %th.text-left Fiber
-      %td.text-right= recipe.decorate.sum_fiber
-      %td.text-right= recipe.decorate.serving_fiber
