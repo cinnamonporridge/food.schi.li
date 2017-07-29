@@ -43,11 +43,11 @@ label {
 }
 
 .title {
-  font-size: 60px; // font-size: 96px;
+  font-size: 36px; // font-size: 96px;
   font-weight: 100;
-  text-align: center;
   padding-bottom: 20px; // padding-bottom: 40px;
   padding-top: 20px;    // padding-top: 40px;
+  color: $light-violet;
 }
 
 .card-divider {
@@ -65,13 +65,28 @@ ul.menu {
   -webkit-flex-flow: row wrap;
 
   li {
+    font-size: 24px;
+    font-weight: 100;
     -webkit-flex-grow: 1;
     flex-grow: 1;
-    min-width: 150px;
+    min-width: 250px;
+  }
+
+  a {
+    padding: 20px 0;
+    color: $white-color;
+
+    i {
+      padding-right: 16px;
+    }
+  }
+
+  a:hover {
+    color: $rose;
   }
 }
 
-.clickable-row {
+.clickable {
   cursor: pointer;
 }
 
@@ -114,7 +129,7 @@ input[aria-invalid="true"] {
   .recipe-ingredient-row {
     padding-top: 12px;
     padding-bottom: 12px;
-    border: 0px solid #e6e6e6;
+    border: 0px solid $light-gray;
     border-bottom-width: 1px;
   }
 
@@ -135,4 +150,42 @@ input[aria-invalid="true"] {
 .recipe-ingredient-nutrition {
   font-size: 1.5rem;
 }
+
+.clickable.callout {
+  color: $primary-color;
+
+  &:hover {
+    background-color: $very-transparent-primary-color;
+  }
+}
+
+.button {
+  color: $violet;
+}
+
+ul.food-list-group, ul.nutrition-list-group {
+
+  margin: 0;
+
+  li {
+    font-size: 28px;
+    font-weight: 100;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    list-style-type: none;
+  }
+
+}
+
+.food-menu-panel {
+  height: 100%;
+  background-color: $violet;
+}
+
+.food-full-height {
+  @include breakpoint(medium up) {
+    height: 100vh;
+  }
+}
+
 

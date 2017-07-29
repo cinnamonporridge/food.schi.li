@@ -1,41 +1,35 @@
 %h1= @recipe.name
 
-
 .small.button-group
   = link_to 'Edit', edit_recipe_path(@recipe), class: 'warning button'
   = link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
   = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'primary button'
 
-.row
-  .small-12.columns
-    = render 'recipes/macronutrient_bar', recipe: @recipe
+= render 'recipes/macronutrient_bar', recipe: @recipe
 
-.row
-  .large-12.columns
-    .card
-      .card-divider
-        %h2
-          = fa_icon 'cutlery'
-          = "Ingredients for #{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
+.card
+  .card-divider
+    %h2
+      = fa_icon 'cutlery'
+      = "Ingredients for #{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
 
-      .card.section.recipe-ingredients-table
-        - @recipe.ingredients.each do |ingredient|
-          .grid-x.align-middle.recipe-ingredient-row
-            .small-3.cell.text-center
-              .grid-x
-                .cell
-                  = ingredient.decorate.rounded_amount_with_unit_abbrevation
-                .cell
-                  = ingredient.decorate.quantity_with_pieces
-            .small-6.cell.recipe-ingredient-nutrition
-              %span= ingredient.portion.decorate.name_with_nutrition
-            .small-3.cell
-              .tiny.button-group.pull-right
-                = link_to edit_recipe_ingredient_path(@recipe, ingredient), class: 'warning button' do
-                  = fa_icon 'pencil'
-                = link_to recipe_ingredient_path(@recipe, ingredient), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } do
-                  = fa_icon 'trash-o'
-
+  .card.section.recipe-ingredients-table
+    - @recipe.ingredients.each do |ingredient|
+      .grid-x.align-middle.recipe-ingredient-row
+        .small-3.cell.text-center
+          .grid-x
+            .cell
+              = ingredient.decorate.rounded_amount_with_unit_abbrevation
+            .cell
+              = ingredient.decorate.quantity_with_pieces
+        .small-6.cell.recipe-ingredient-nutrition
+          %span= ingredient.portion.decorate.name_with_nutrition
+        .small-3.cell
+          .tiny.button-group.pull-right
+            = link_to edit_recipe_ingredient_path(@recipe, ingredient), class: 'warning button' do
+              = fa_icon 'pencil'
+            = link_to recipe_ingredient_path(@recipe, ingredient), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } do
+              = fa_icon 'trash-o'
 
 - if @recipe.ingredients.any?
   .card

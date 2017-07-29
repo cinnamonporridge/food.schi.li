@@ -1,24 +1,8 @@
 %h1 Nutritions
 
-= link_to 'New nutrition', new_nutrition_path, class: 'primary button pull-right'
+= link_to 'New nutrition', new_nutrition_path, class: 'primary button'
 
-%table.unstriped.hover
-  %thead
-    %tr
-      %th Name
-      %th.text-right Kcal
-      %th.text-right Carbs
-      %th.text-right Protein
-      %th.text-right Fat
-      %th.text-right Fiber
-  %tbody
-    - @nutritions.each do |nutrition|
-      %tr.clickable-row{ 'data-href': nutrition_path(nutrition) }
-        %td= link_to nutrition.name, nutrition
-        %td.text-right= nutrition.kcal
-        %td.text-right= nutrition.carbs
-        %td.text-right= nutrition.protein
-        %td.text-right= nutrition.fat
-        %td.text-right= nutrition.fiber
-
-
+%ul.nutrition-list-group
+  - @nutritions.each do |nutrition|
+    %li.nutrition-list-group-item.callout.clickable{ 'data-href': nutrition_path(nutrition) }
+      = link_to nutrition.name

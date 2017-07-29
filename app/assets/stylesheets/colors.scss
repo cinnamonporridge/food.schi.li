@@ -1,5 +1,27 @@
-$rose: rgb(234, 110, 212);
+
+// https://color.adobe.com/create/color-wheel/?copy=true&base=2&rule=Custom&selected=2&name=Copy%20of%20Beautiful%20landscapes&mode=rgb&rgbvalues=0.231373,0.192157,0.25098,0.74902,0.721569,0.639216,0.9490196078431372,0.8784313725490196,0.1411764705882353,0.94902,0.72549,0.67451,0.85098,0.494118,0.494118&swatchOrder=0,1,2,3,4
 $violet: rgb(59, 49, 64);
-$beige: rgb(242, 224, 201);
-$brown: rgb(168, 122, 77);
-$algae: rgb(76, 170, 121);
+$light-violet: rgb(226, 187, 245);
+$beige: rgb(191, 184, 163);
+$beaver: rgb(159, 129, 112);
+$yellow: rgb(242, 224, 36);
+$light-rose: rgb(242, 185, 172);
+$rose: rgb(234, 110, 212);
+
+$apricot: rgb(245, 195, 131); // #f5c383
+
+// $brown: rgb(168, 122, 77);
+// $algae: rgb(76, 170, 121);
+
+$primary-color: $rose !default;
+$secondary-color: $yellow !default;
+$success-color: green !default;
+$warning-color: $apricot !default;
+$alert-color: $beaver !default;
+
+$white-color: rgba(255,255,255,1);
+$transparency-white: rgba(255,255,255,0);
+$black-color: rgba(25, 25, 25, 1);
+
+
+$very-transparent-primary-color: transparentize($primary-color, 0.97);
