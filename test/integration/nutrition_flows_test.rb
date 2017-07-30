@@ -24,7 +24,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
       assert_equal expected_header2[i], header2.text
     end
 
-    assert_select 'a.secondary.button', 'Edit'
+    assert_select 'a.warning.button', 'Edit'
     assert_select 'a.primary.button', 'New portion'
   end
 
@@ -102,7 +102,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutrition_path(nutritions(:milk))
     assert_response :success
     assert_select 'h1', 'Milk'
-    assert_select 'a.warning.button', false, 'Apple should not show a delete button'
+    assert_select 'a.alert.button', false, 'Apple should not show a delete button'
 
     delete "/nutritions/#{nutritions(:milk).id}"
     assert_response :success
@@ -113,7 +113,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutrition_path(nutritions(:sugar))
     assert_response :success
     assert_select 'h1', 'Sugar'
-    assert_select 'a.warning.button', 'Delete'
+    assert_select 'a.alert.button', 'Delete'
 
     delete "/nutritions/#{nutritions(:sugar).id}"
     follow_redirect!

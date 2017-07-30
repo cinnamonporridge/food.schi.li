@@ -5,5 +5,5 @@
   - @recipes.each do |recipe|
     %li.food-list-group-item
       .callout.clickable{ 'data-href': recipe_path(recipe) }
-        = recipe.name
+        %span= recipe.name
         = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true

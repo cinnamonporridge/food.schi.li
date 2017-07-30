@@ -24,4 +24,5 @@ $transparency-white: rgba(255,255,255,0);
 $black-color: rgba(25, 25, 25, 1);
 
 
+$pretty-transparent-primary-color: transparentize($primary-color, 0.77);
 $very-transparent-primary-color: transparentize($primary-color, 0.97);

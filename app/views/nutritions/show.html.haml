@@ -1,11 +1,11 @@
 %h1= @nutrition.name
+= link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
 
 .small.button-group
   = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'warning button'
   - if @nutrition.recipes_using.none?
-    = link_to 'Delete', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning'
-  = link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary'
-
+    = link_to 'Delete', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
+  = link_to 'New portion', new_nutrition_portion_path(@nutrition), class: 'button primary'
 .grid-x.grid-margin-x
   .large-4.small-12.cell
     .card
@@ -41,7 +41,6 @@
         %h2 Portions
       .card-section
         = render 'portions/index', portions: @nutrition.portions
-        = link_to 'New portion', new_nutrition_portion_path(@nutrition), class: 'button primary'
   - if @nutrition.recipes_using.any?
     .large-4.small-12.cell
       .card

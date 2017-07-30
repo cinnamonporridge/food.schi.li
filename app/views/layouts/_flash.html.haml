@@ -1,5 +1,3 @@
 - flash.each do |type, message|
-  .row
-    .large-8.large-offset-2.column
-      #div{class: "callout #{foundation_class_for(type)}", 'data-closable': true}
-        = message
+  #div{class: "callout #{foundation_class_for(type)}", 'data-closable': true}
+    = message
