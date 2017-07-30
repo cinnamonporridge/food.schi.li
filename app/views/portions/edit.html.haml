@@ -1,7 +1,3 @@
-.row
-  .large-8.large-offset-2.column
-    .card
-      .card-divider
-        %h1= "Edit portion for #{@portion.nutrition.name}"
-      .card-section
-        = render 'form', portion: @portion
+%h1= "Edit portion for #{@portion.nutrition.name}"
+
+= render 'form', portion: @portion

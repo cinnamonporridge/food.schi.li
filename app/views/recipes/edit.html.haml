@@ -1,7 +1,3 @@
-.row
-  .large-8.large-offset-2.column
-    .card
-      .card-divider
-        %h1= "Edit #{@recipe.name}"
-      .card-section
-        = render 'form', recipe: @recipe
+%h1= "Edit #{@recipe.name}"
+
+= render 'form', recipe: @recipe

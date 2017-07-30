@@ -1,34 +1,35 @@
 = simple_form_for nutrition do |f|
 
-  .row
-    .small-8.column
+  .grid-x.grid-margin-x
+    .small-12.medium-6.cell
       = f.input :name
-    .small-4.column
+    .small-12.medium-6.cell
       = f.input :unit, collection: nutrition.decorate.units_collection, include_blank: false
 
-  .row
-    .small-4.column
+  .grid-x
+    .small-12.cell
       = f.input :kcal
 
-  .row
-    .small-4.column
+  .grid-x.grid-margin-x
+    .small-12.medium-6.cell
       = f.input :carbs
-    .small-4.column.end
+    .small-12.medium-6.cell
       = f.input :carbs_sugar_part
 
-  .row
-    .small-4.column
+  .grid-x
+    .small-12.cell
       = f.input :protein
 
-  .row
-    .small-4.column
+  .grid-x.grid-margin-x
+    .small-12.medium-6.cell
       = f.input :fat
-    .small-4.column.end
+    .small-12.medium-6.cell
       = f.input :fat_saturated
 
-  .row
-    .small-4.column
+  .grid-x
+    .small-12.cell
       = f.input :fiber
 
-  = f.submit nil, class: 'primary button'
-  = link_to 'Cancel', nutritions_path, class: 'button secondary'
+  .button-group
+    = f.submit nil, class: 'primary button'
+    = link_to 'Cancel', nutritions_path, class: 'button secondary'

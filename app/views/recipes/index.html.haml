@@ -1,16 +1,9 @@
-.row
-  .small-12.columns
-    = link_to 'New Recipe', new_recipe_path, class: 'primary button'
+%h1 Recipes
+= link_to 'New Recipe', new_recipe_path, class: 'primary button'
 
-.row
-  .small-12.columns
-    .card
-      .card-divider
-        %h1 Recipes
-      .card-section.recipes
-        - @recipes.each do |recipe|
-          .row
-            .small-12.columns
-              = link_to recipe.name, recipe
-            .small-12.columns
-              = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true
+%ul.food-list-group
+  - @recipes.each do |recipe|
+    %li.food-list-group-item
+      .callout.clickable{ 'data-href': recipe_path(recipe) }
+        %span= recipe.name
+        = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true

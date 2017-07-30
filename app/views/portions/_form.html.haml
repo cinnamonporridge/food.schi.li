@@ -1,5 +1,7 @@
 = simple_form_for [portion.nutrition, portion] do |form|
   = form.input :name
   = form.input :amount, label: 'Amount in g/ml'
-  = form.submit nil, class: 'primary button'
-  = link_to 'Cancel', nutrition_path(portion.nutrition), class: 'secondary button'
+
+  .button-group
+    = form.submit nil, class: 'primary button'
+    = link_to 'Cancel', nutrition_path(portion.nutrition), class: 'secondary button'

@@ -1,23 +1,22 @@
-.menu-centered
-  %ul.menu
+%ul.menu
+  %li
+    = link_to home_path do
+      = fa_icon 'home'
+      Home
+  %li
+    = link_to recipes_path do
+      = fa_icon 'cutlery'
+      Recipes
+  %li
+    = link_to nutritions_path do
+      = fa_icon 'cogs'
+      Foods
+  - if current_user.is_admin?
     %li
-      = link_to home_path do
-        = fa_icon 'home'
-        Home
-    %li
-      = link_to recipes_path do
-        = fa_icon 'cutlery'
-        Recipes
-    %li
-      = link_to nutritions_path do
-        = fa_icon 'cogs'
-        Foods
-    - if current_user.is_admin?
-      %li
-        = link_to users_path do
-          = fa_icon 'users'
-          Users
-    %li
-      = link_to logout_path, method: :delete do
-        = fa_icon 'power-off'
-        Log out
+      = link_to users_path do
+        = fa_icon 'users'
+        Users
+  %li
+    = link_to logout_path, method: :delete do
+      = fa_icon 'power-off'
+      Log out

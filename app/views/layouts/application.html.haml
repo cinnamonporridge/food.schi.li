@@ -11,16 +11,15 @@
     = javascript_include_tag 'application'
 
   %body
-    .row
-      .small-12.small-offset-0.large-10.large-offset-1.columns
+    .grid-x.grid-padding-x.food-full-height
+      .small-12.medium-3.large-2.cell.food-menu-panel
         .title
           food.schi.li
-        - if current_user 
-          .vertical-space-xxl= render 'layouts/navigation'
+        - if current_user
+          = render 'layouts/navigation'
 
+      .small-12.medium-9.large-10.cell
         = render 'layouts/flash'
         = yield
-    .row
-      .small-12.columns
         = render 'layouts/footer'
 
