@@ -166,7 +166,10 @@ input[aria-invalid="true"] {
   color: $violet;
 }
 
-ul.food-list-group, ul.nutrition-list-group {
+ul.food-list-group,
+ul.nutrition-list-group,
+ul.journal-days-list-group
+{
 
   margin: 0;
 

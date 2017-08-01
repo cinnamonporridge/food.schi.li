@@ -1,0 +1,5 @@
+%h1= @journal_day.display_date
+
+.small.button-group
+  = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'warning button'
+  = link_to 'Delete', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'

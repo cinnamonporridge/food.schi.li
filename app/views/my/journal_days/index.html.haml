@@ -1,0 +1,9 @@
+%h1 My journal days
+
+= link_to 'Add Journal Day', new_my_journal_day_path, class: 'primary button'
+
+%ul.journal-days-list-group
+  - @journal_days.each do |journal_day|
+    %li.journal-days-list-group-item
+      .callout.clickable{ 'data-href': my_journal_day_path(journal_day) }
+        = link_to journal_day.display_date, my_journal_day_path(journal_day)
