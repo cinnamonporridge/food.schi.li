@@ -22,6 +22,12 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Wednesday, 01.02.2017'
     assert_select 'a.warning.button', 'Edit'
     assert_select 'a.alert.button', 'Delete'
+
+    expected_meal_buttons = ['Add portion meal', 'Add recipe meal']
+
+    css_select('a.primary.button').each_with_index do |link, i|
+      assert_equal expected_meal_buttons[i], link.text
+    end
   end
 
   test 'daisy adds a new journal day' do
