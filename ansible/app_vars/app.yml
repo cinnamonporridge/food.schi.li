@@ -17,9 +17,7 @@ app_additional_packages:
   - "imagemagick"
 
 app_smtp_settings:
-  port: 587
-  domain: 'schi.li'
-  user_name: 'mailer@schi.li'
+  user_name: "{{ vault_app_smtp_settings['user_name'] }}"
   password: "{{ vault_app_smtp_settings['password'] | default('DEFAULT') }}"
 
 github_repo: "git@github.com:lxxxvi/food.schi.li.git"
