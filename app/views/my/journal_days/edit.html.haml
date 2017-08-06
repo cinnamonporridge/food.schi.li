@@ -1,3 +1,3 @@
-%h1 Edit
+%h1= "Edit #{@journal_day.display_date_with_weekday}"
 
 = render 'form', journal_day: @journal_day

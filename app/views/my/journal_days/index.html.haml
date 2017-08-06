@@ -6,4 +6,4 @@
   - @journal_days.each do |journal_day|
     %li.journal-days-list-group-item
       .callout.clickable{ 'data-href': my_journal_day_path(journal_day) }
-        = link_to journal_day.display_date, my_journal_day_path(journal_day)
+        = link_to journal_day.display_date_with_weekday, my_journal_day_path(journal_day)

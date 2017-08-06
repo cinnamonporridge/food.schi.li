@@ -1,9 +1,13 @@
 = simple_form_for journal_day, url: [:my, journal_day] do |form|
-  = form.input :date, as: :date
+  #journal-day.input-group
+    .input-group-label
+      = fa_icon :calendar
+    = form.input :date, as: :string, label: false, input_html: journal_day.decorate.date_input_html, error: false
+  = form.error :date
 
   .button-group
     = form.submit nil, class: 'primary button'
-    - if journal_day.new_record?
-      = link_to 'Cancel', my_journal_days_path, class: 'secondary button'
-    - else
+    - if journal_day.persisted?
       = link_to 'Cancel', my_journal_day_path(journal_day), class: 'secondary button'
+    - else
+      = link_to 'Cancel', my_journal_days_path, class: 'secondary button'

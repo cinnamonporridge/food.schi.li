@@ -4,12 +4,8 @@ class My::JournalDaysController < ApplicationController
   end
 
   def show
-    if find_journal_day.present?
-      @journal_day = find_journal_day.decorate
-    else
-      flash[:warning] = 'That journal day does not exist or does not belong to you'
-      redirect_to my_journal_days_path
-    end
+    return handle_invalid_access unless find_journal_day.present?
+    @journal_day = find_journal_day.decorate
   end
 
   def new
@@ -17,41 +13,39 @@ class My::JournalDaysController < ApplicationController
   end
 
   def create
-    @journal_day = current_user.journal_days.find_or_initialize_by(date: journal_date)
-    new_journal_day = @journal_day.new_record?
+    @journal_day = current_user.journal_days.new(journal_day_params)
 
     if @journal_day.save
-      flash[:notice] = 'Journal day added' if new_journal_day
+      flash[:notice] = 'Journal day added'
       redirect_to my_journal_day_path(@journal_day)
     else
+      flash.now[:error] = 'Invalid input'
+      @journal_day = @journal_day.decorate
       render :new
     end
   end
 
   def edit
+    return handle_invalid_access unless find_journal_day.present?
     @journal_day = find_journal_day.decorate
   end
 
   def update
-    @journal_day = find_journal_day
+    return handle_invalid_access unless find_journal_day.present?
 
-    if @journal_day.update(date: journal_date)
-      redirect_to my_journal_day_path(@journal_day), notice: 'Journal day updated'
+    if find_journal_day.update(journal_day_params)
+      redirect_to my_journal_day_path(find_journal_day), notice: 'Journal day updated'
     else
       flash.now[:error] = 'Invalid input'
+      @journal_day = find_journal_day.decorate
       render :new
     end
   end
 
   def destroy
-    @journal_day = find_journal_day
-    if @journal_day.present?
-      @journal_day.destroy
-      redirect_to my_journal_days_path, notice: 'Journal day deleted'
-    else
-      flash.now[:error] = 'Journal day could not be found'
-      @journal_day.destroy
-    end
+    return handle_invalid_access unless find_journal_day.present?
+    find_journal_day.destroy
+    redirect_to my_journal_days_path, notice: 'Journal day deleted'
   end
 
   private
@@ -64,15 +58,8 @@ class My::JournalDaysController < ApplicationController
     @found_journal_day ||= current_user.journal_days.find_by(id: params[:id])
   end
 
-  def journal_date
-    Date.parse(date_params)
-  end
-
-  def date_params
-    [
-      journal_day_params['date(1i)'],
-      journal_day_params['date(2i)'],
-      journal_day_params['date(3i)']
-    ].join('-')
+  def handle_invalid_access
+    flash[:warning] = 'That journal day does not exist or does not belong to you'
+    redirect_to my_journal_days_path
   end
 end
