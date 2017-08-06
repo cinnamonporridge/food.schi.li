@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    resources :journal_days
+    resources :journal_days do
+      resources :meals, path_names: { new: 'new/:meal_type' }
+    end
   end
 end

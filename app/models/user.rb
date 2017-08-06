@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :email, length: { minimum: 7 }
 
   has_many :journal_days
+  has_many :meals, through: :journal_days
 
   def requested_reset_link?
     self.reset_password_link_sent_at > Time.zone.now.yesterday

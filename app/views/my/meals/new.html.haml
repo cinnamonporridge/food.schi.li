@@ -1,0 +1,6 @@
+- if @form.meal.meal_type_portion?
+  %h1 Add portion meal
+  = render 'portion_form', form: @form
+- elsif @form.meal.meal_type_recipe?
+  %h1 Add recipe meal
+  = render 'recipe_form', form: @form

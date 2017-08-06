@@ -1,8 +1,8 @@
-class RecipeIngredientForm
+class MealPortionForm
   include ActiveModel::Model
-  delegate :persisted?, :id, to: :ingredient
+  delegate :persisted?, :id, to: :meal
 
-  attr_reader :ingredient, :portion_id, :measure, :amount_in_measure
+  attr_reader :meal, :portion_id, :measure, :amount_in_measure, :meal_type
 
   validates_presence_of :portion_id
   validates_presence_of :amount_in_measure
@@ -11,10 +11,11 @@ class RecipeIngredientForm
   validate :portion_exists?
 
   def initialize(args = {})
-    @ingredient         = args[:ingredient]
-    @portion_id         = args[:portion_id] || ingredient.portion&.id
-    @measure            = args[:measure] || ingredient.measure
-    @amount_in_measure  = args[:amount_in_measure] || to_amount_in_measure(ingredient.amount)
+    @meal               = args[:meal]
+    @portion_id         = args[:portion_id] || meal.portion&.id
+    @measure            = args[:measure] || meal.measure
+    @amount_in_measure  = args[:amount_in_measure] || to_amount_in_measure(meal.amount)
+    @meal_type          = @meal.meal_type
   end
 
   def values
@@ -26,7 +27,7 @@ class RecipeIngredientForm
   end
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, 'RecipeIngredient')
+    ActiveModel::Name.new(self, nil, 'Meal')
   end
 
   private
