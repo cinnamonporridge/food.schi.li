@@ -1,0 +1,11 @@
+john_january_first:
+  user: john
+  date: 2017-01-01
+
+daisy_february_first:
+  user: daisy
+  date: 2017-02-01
+
+daisy_february_second:
+  user: daisy
+  date: 2017-02-02

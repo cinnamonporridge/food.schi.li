@@ -109,7 +109,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Nutrition cannot be deleted, it is used in at least on recipe', flash[:error]
   end
 
-  test 'user can delete nutrition that is not used in a reciped' do
+  test 'user can delete nutrition that is not used in a recipe' do
     get nutrition_path(nutritions(:sugar))
     assert_response :success
     assert_select 'h1', 'Sugar'

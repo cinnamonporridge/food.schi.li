@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702140850) do
+ActiveRecord::Schema.define(version: 20170806104348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,29 @@ ActiveRecord::Schema.define(version: 20170702140850) do
     t.integer "measure", default: 1, null: false
     t.index ["portion_id"], name: "index_ingredients_on_portion_id"
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
+  create_table "journal_days", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_journal_days_on_user_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.bigint "journal_day_id"
+    t.bigint "portion_id"
+    t.bigint "recipe_id"
+    t.decimal "amount"
+    t.integer "measure"
+    t.integer "meal_type", default: 1, null: false
+    t.integer "measure_unit", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journal_day_id"], name: "index_meals_on_journal_day_id"
+    t.index ["portion_id"], name: "index_meals_on_portion_id"
+    t.index ["recipe_id"], name: "index_meals_on_recipe_id"
   end
 
   create_table "nutritions", force: :cascade do |t|
@@ -69,5 +92,9 @@ ActiveRecord::Schema.define(version: 20170702140850) do
   end
 
   add_foreign_key "ingredients", "recipes"
+  add_foreign_key "journal_days", "users"
+  add_foreign_key "meals", "journal_days"
+  add_foreign_key "meals", "portions"
+  add_foreign_key "meals", "recipes"
   add_foreign_key "portions", "nutritions"
 end

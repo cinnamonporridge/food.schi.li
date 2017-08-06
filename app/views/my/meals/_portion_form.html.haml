@@ -1,0 +1,12 @@
+= simple_form_for form, url: [:my, form.meal.journal_day, form.meal] do |f|
+  = f.input :portion_id, collection: PortionDecorator.portions_collection
+  = f.input :amount_in_measure
+  = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false
+  = f.input :meal_type, as: :hidden
+
+  .button-group
+    = f.submit nil, class: 'primary button'
+    - if form.meal.persisted?
+      = link_to 'Cancel', my_journal_day_meal_path(form.meal.journal_day, form.meal), class: 'secondary button'
+    - else
+      = link_to 'Cancel', my_journal_day_path(form.meal.journal_day), class: 'secondary button'

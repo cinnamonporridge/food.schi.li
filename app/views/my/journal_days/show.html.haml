@@ -1,0 +1,32 @@
+%h1= @journal_day.display_date_with_weekday
+
+.small.button-group
+  = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'warning button'
+  = link_to 'Delete', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
+
+= link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day, meal_type: :portion), class: 'primary button'
+= link_to 'Add recipe meal',  new_my_journal_day_meal_path(@journal_day, meal_type: :recipe), class: 'primary button'
+
+.card
+  .card-divider
+    %h2
+      = fa_icon 'cutlery'
+      = "Meals"
+  .card.section.journal-day-meals-table
+    - @journal_day.meals.each do |meal|
+      .grid-x.align-middle.journal-day-meal-row
+        .small-3.cell.text-center
+          .grid-x
+            .cell
+              = meal.decorate.rounded_amount_with_unit_abbrevation
+            .cell
+              = meal.decorate.quantity_with_pieces
+        .small-6.cell.journal-day-meal-nutrition
+          %span= meal.portion.decorate.name_with_nutrition
+        .small-3.cell
+          .tiny.button-group.pull-right
+            = link_to edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'warning button' do
+              = fa_icon 'pencil'
+            = link_to my_journal_day_meal_path(meal.journal_day, meal), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } do
+              = fa_icon 'trash-o'
+

@@ -21,4 +21,9 @@ Rails.application.routes.draw do
     resources :portions, except: [:index, :show]
   end
 
+  namespace :my do
+    resources :journal_days do
+      resources :meals, except: [:index, :show], path_names: { new: 'new/:meal_type' }
+    end
+  end
 end

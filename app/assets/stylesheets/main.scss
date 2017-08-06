@@ -126,27 +126,45 @@ input[aria-invalid="true"] {
   border-color: $alert-color;
 }
 
-.recipe-ingredients-table {
+.recipe-ingredients-table,
+.journal-day-meals-table{
   font-weight: 200;
 
-  .recipe-ingredient-row {
+  .recipe-ingredient-row,
+  .journal-day-meal-row {
     padding-top: 12px;
     padding-bottom: 12px;
     border: 0px solid $light-gray;
     border-bottom-width: 1px;
+
+    .journal-day-meal-row .button-group {
+      margin-bottom: 0;
+    }
+
+   &:first-child {
+      padding-top: 24px;
+    }
+
+    &:last-child {
+      padding-bottom: 24px;
+      border-bottom-width: 0px;
+    }
   }
 
-  .recipe-ingredient-row .button-group {
-    margin-bottom: 0;
-  }
+  // .recipe-ingredient-row .button-group,
+  // .journal-day-meal-row .button-group {
+  //   margin-bottom: 0;
+  // }
 
-  .recipe-ingredient-row:first-child {
-    padding-top: 24px;
-  }
-  .recipe-ingredient-row:last-child {
-    padding-bottom: 24px;
-    border-bottom-width: 0px;
-  }
+  // .recipe-ingredient-row:first-child,
+  // .journal-day-meal-row:first-child {
+  //   padding-top: 24px;
+  // }
+  // .recipe-ingredient-row:last-child,
+  // .journal-day-meal-row:last-child {
+  //   padding-bottom: 24px;
+  //   border-bottom-width: 0px;
+  // }
 
 }
 
@@ -166,7 +184,10 @@ input[aria-invalid="true"] {
   color: $violet;
 }
 
-ul.food-list-group, ul.nutrition-list-group {
+ul.food-list-group,
+ul.nutrition-list-group,
+ul.journal-days-list-group
+{
 
   margin: 0;
 
