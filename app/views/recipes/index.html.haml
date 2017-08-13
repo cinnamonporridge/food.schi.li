@@ -6,4 +6,4 @@
     %li.food-list-group-item
       .callout.clickable{ 'data-href': recipe_path(recipe) }
         = link_to recipe.name, recipe_path(recipe)
-        = render 'recipes/macronutrient_bar', recipe: recipe, tiny: true
+        = render 'macronutrients/bar', macronutrient_data: recipe.macronutrient_data, tiny: true

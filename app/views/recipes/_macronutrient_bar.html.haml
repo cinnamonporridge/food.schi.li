@@ -1,9 +1,0 @@
-- if recipe && recipe.ingredients.any?
-  - display_tiny = (defined?(tiny) && tiny == true)
-  .macronutrient-bar{ class: ('tiny' if display_tiny) }
-    .macronutrient-bar-segment.carbs{ style: "width: #{recipe.decorate.macronutrients_chart_carbs}" }
-      = recipe.decorate.macronutrients_chart_carbs_rounded
-    .macronutrient-bar-segment.protein{ style: "width: #{recipe.decorate.macronutrients_chart_protein}" }
-      = recipe.decorate.macronutrients_chart_protein_rounded
-    .macronutrient-bar-segment.fat{ style: "width: #{recipe.decorate.macronutrients_chart_fat}" }
-      = recipe.decorate.macronutrients_chart_fat_rounded

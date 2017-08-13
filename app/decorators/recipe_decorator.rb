@@ -59,55 +59,9 @@ class RecipeDecorator < Draper::Decorator
     model.serving_fiber.round || 0
   end
 
-  # PERCENTAGES
-  def macro_nutritient_carbs_percentage
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{((model.sum_carbs / model.macro_nutritient_total) * 100).round}%"
-  end
-
-  def macro_nutritient_protein_percentage
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{((model.sum_protein / model.macro_nutritient_total) * 100).round}%"
-  end
-
-  def macro_nutritient_fat_percentage
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{((model.sum_fat / model.macro_nutritient_total) * 100).round}%"
-  end
-
   def missing_portion_collection
     Portion.without(model.portions).ordered_by_nutrition_name_and_amount.map do |portion|
       [portion.decorate.name_for_dropdown, portion.id]
     end
-  end
-
-  def macronutrients_chart_carbs
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{(model.sum_carbs / model.macro_nutritient_total * 100).round(2)}%"
-  end
-
-  def macronutrients_chart_carbs_rounded
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{(model.sum_carbs / model.macro_nutritient_total * 100).round}%"
-  end
-
-  def macronutrients_chart_protein
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{(model.sum_protein / model.macro_nutritient_total * 100).round(2)}%"
-  end
-
-  def macronutrients_chart_protein_rounded
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{(model.sum_protein / model.macro_nutritient_total * 100).round}%"
-  end
-
-  def macronutrients_chart_fat
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{(model.sum_fat / model.macro_nutritient_total * 100).round(2)}%"
-  end
-
-  def macronutrients_chart_fat_rounded
-    return "0%" unless model.macro_nutritient_total > 0.0
-    "#{(model.sum_fat / model.macro_nutritient_total * 100).round}%"
   end
 end

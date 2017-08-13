@@ -5,7 +5,7 @@
   = link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
   = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'primary button'
 
-= render 'recipes/macronutrient_bar', recipe: @recipe
+= render 'macronutrients/bar', macronutrient_data: @recipe.macronutrient_data
 
 .card
   .card-divider
