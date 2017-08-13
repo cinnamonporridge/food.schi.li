@@ -1,0 +1,26 @@
+- if journal_day
+
+  .grid-x.align-bottom
+    .small-12.large-8.cell
+    .small-3.large-1.cell.text-right kcal
+    .small-3.large-1.cell.text-right Carbs
+    .small-3.large-1.cell.text-right Protein
+    .small-3.large-1.cell.text-right Fat
+
+  .vertical-space-xl
+    - journal_day.meals.each do |meal|
+      .grid-x
+        .small-12.large-8.cell= meal.portion.decorate.name_with_nutrition
+        .small-3.large-1.cell.text-right= meal.decorate.total_kcal
+        .small-3.large-1.cell.text-right= meal.decorate.total_carbs
+        .small-3.large-1.cell.text-right= meal.decorate.total_protein
+        .small-3.large-1.cell.text-right= meal.decorate.total_fat
+
+  .grid-x
+    .small-12.large-8.cell Total
+    .small-3.large-1.cell.text-right= journal_day.decorate.sum_kcal
+    .small-3.large-1.cell.text-right.carbs= journal_day.decorate.sum_carbs
+    .small-3.large-1.cell.text-right.protein= journal_day.decorate.sum_protein
+    .small-3.large-1.cell.text-right.fat= journal_day.decorate.sum_fat
+
+
