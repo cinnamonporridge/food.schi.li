@@ -20,6 +20,8 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Wednesday, 01.02.2017'
+    assert_select 'h2', 'Meals'
+    assert_select 'h2', 'Nutritions'
     assert_select 'a.warning.button', 'Edit'
     assert_select 'a.alert.button', 'Delete'
 

@@ -25,7 +25,7 @@ class Recipe < ApplicationRecord
     ingredients.inject(0.0) { |sum, ingredient| sum += (ingredient.amount * ingredient.nutrition.send("#{name}")) / 100 }
   end
 
-  def macro_nutritient_total
-    (sum_carbs + sum_protein + sum_fat)
+  def macronutrient_data
+    @macronutrient_data_service ||= MacronutrientDataService.new(sum_carbs, sum_protein, sum_fat)
   end
 end
