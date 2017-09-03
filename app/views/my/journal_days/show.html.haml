@@ -4,8 +4,8 @@
   = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'warning button'
   = link_to 'Delete', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
 
-= link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day, meal_type: :portion), class: 'primary button'
-= link_to 'Add recipe meal',  new_my_journal_day_meal_path(@journal_day, meal_type: :recipe), class: 'primary button'
+= link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'primary button'
+= link_to 'Add recipe meal',  new_my_journal_day_meal_path(@journal_day), class: 'primary button'
 
 = render 'macronutrients/bar', macronutrient_data: @journal_day.macronutrient_data
 

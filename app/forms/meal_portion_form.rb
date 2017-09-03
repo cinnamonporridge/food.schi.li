@@ -2,7 +2,7 @@ class MealPortionForm
   include ActiveModel::Model
   delegate :persisted?, :id, to: :meal
 
-  attr_reader :meal, :portion_id, :measure, :amount_in_measure, :meal_type
+  attr_reader :meal, :portion_id, :measure, :amount_in_measure
 
   validates_presence_of :portion_id
   validates_presence_of :amount_in_measure
@@ -15,7 +15,6 @@ class MealPortionForm
     @portion_id         = args[:portion_id] || meal.portion&.id
     @measure            = args[:measure] || meal.measure
     @amount_in_measure  = args[:amount_in_measure] || to_amount_in_measure(meal.amount)
-    @meal_type          = @meal.meal_type
   end
 
   def values

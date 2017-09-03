@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   namespace :my do
     resources :journal_days do
-      resources :meals, except: [:index, :show], path_names: { new: 'new/:meal_type' }
+      resources :meals, except: [:index, :show]
     end
   end
 end

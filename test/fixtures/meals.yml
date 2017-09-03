@@ -2,7 +2,6 @@ daisys_big_apple_on_february_first:
   journal_day: daisy_february_first
   portion: big_apple_portion
   amount: 1.0
-  meal_type: <%= Meal.meal_types[:portion] %>
   measure: <%= Meal.measures[:piece] %>
 
 daisys_glass_of_milk_on_february_first:

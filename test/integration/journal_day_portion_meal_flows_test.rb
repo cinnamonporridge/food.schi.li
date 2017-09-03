@@ -15,7 +15,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy adds a new piece portion meal' do
-    get new_my_journal_day_meal_path(@february_first, meal_type: :portion)
+    get new_my_journal_day_meal_path(@february_first)
     assert_response :success
 
     big_apple_portion = portions(:big_apple_portion)
@@ -29,8 +29,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
         meal: {
           portion_id: '',
           amount_in_measure: '',
-          measure: '',
-          meal_type: 'portion'
+          measure: ''
         }
       }
     assert_response :success
@@ -41,8 +40,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
         meal: {
           portion_id: big_apple_portion.id,
           amount_in_measure: '2.5',
-          measure: 'piece',
-          meal_type: 'portion'
+          measure: 'piece'
         }
       }
     follow_redirect!
@@ -59,8 +57,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
         meal: {
           portion_id: milk_portion.id,
           amount_in_measure: '250',
-          measure: 'unit',
-          meal_type: 'portion'
+          measure: 'unit'
         }
       }
     follow_redirect!
@@ -84,7 +81,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     milk_portion = portions(:milk_default_portion)
     johns_journal_day = journal_days(:john_january_first)
 
-    get new_my_journal_day_meal_path(johns_journal_day, meal_type: :portion)
+    get new_my_journal_day_meal_path(johns_journal_day)
     follow_redirect!
     assert_response :success
 
@@ -95,8 +92,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
         meal: {
           portion_id: milk_portion.id,
           amount_in_measure: '250',
-          measure: 'unit',
-          meal_type: 'portion'
+          measure: 'unit'
         }
       }
     follow_redirect!
@@ -120,8 +116,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
         meal: {
           portion_id: milk_portion.id,
           amount_in_measure: '250',
-          measure: 'unit',
-          meal_type: 'portion'
+          measure: 'unit'
         }
       }
     follow_redirect!

@@ -2,7 +2,6 @@
   = f.input :portion_id, collection: PortionDecorator.portions_collection
   = f.input :amount_in_measure
   = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false
-  = f.input :meal_type, as: :hidden
 
   .button-group
     = f.submit nil, class: 'primary button'

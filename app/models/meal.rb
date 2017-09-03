@@ -5,7 +5,6 @@ class Meal < ApplicationRecord
 
   has_one :nutrition, through: :portion
 
-  enum meal_type: { portion: 1, recipe: 2 }, _prefix: :meal_type
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
   Nutrition::TYPES.each do |name|
