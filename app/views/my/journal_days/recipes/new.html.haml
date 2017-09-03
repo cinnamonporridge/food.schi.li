@@ -1,0 +1,8 @@
+%h1 Add recipe to journal day
+
+= simple_form_for [:my, @form] do |form|
+  = form.input :recipe_id, collection: @form.recipes_collection
+  = form.input :servings
+
+  = form.submit 'Add recipe', class: 'primary button'
+  = link_to 'Cancel', :back, class: 'secondary button'

@@ -18,6 +18,15 @@ class JournalDayDecorator < Draper::Decorator
     }
   end
 
+  def recipes_collection
+    Recipe.ordered_by_name.map do |recipe|
+      [
+        recipe.name,
+        recipe.id
+      ]
+    end
+  end
+
   # SUMS
   def sum_kcal
     model.sum_kcal.round || 0
