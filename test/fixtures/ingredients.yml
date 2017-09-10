@@ -3,3 +3,9 @@ milk_in_apple_pie:
   portion: milk_default_portion
   amount: 40
   measure: <%= Ingredient.measures[:unit] %>
+
+apples_in_apple_pie:
+  recipe: apple_pie
+  portion: big_apple_portion
+  amount: 6
+  measure: <%= Ingredient.measures[:piece] %>

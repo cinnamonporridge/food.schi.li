@@ -4,8 +4,8 @@
   = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'warning button'
   = link_to 'Delete', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
 
-= link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day, meal_type: :portion), class: 'primary button'
-= link_to 'Add recipe meal',  new_my_journal_day_meal_path(@journal_day, meal_type: :recipe), class: 'primary button'
+= link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'primary button'
+= link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'primary button'
 
 = render 'macronutrients/bar', macronutrient_data: @journal_day.macronutrient_data
 
@@ -15,7 +15,7 @@
       = fa_icon 'cutlery'
       = "Meals"
   .card.section.journal-day-meals-table
-    - @journal_day.meals.each do |meal|
+    - @journal_day.meals.ordered_by_recipe.each do |meal|
       .grid-x.align-middle.journal-day-meal-row
         .small-3.cell.text-center
           .grid-x
@@ -24,7 +24,13 @@
             .cell
               = meal.decorate.quantity_with_pieces
         .small-6.cell.journal-day-meal-nutrition
-          %span= meal.portion.decorate.name_with_nutrition
+          .grid-x
+            .cell
+              = meal.portion.decorate.name_with_nutrition
+            - if meal.recipe.present?
+              .cell
+                from
+                = link_to meal.recipe.name, meal.recipe
         .small-3.cell
           .tiny.button-group.pull-right
             = link_to edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'warning button' do

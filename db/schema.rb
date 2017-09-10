@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806104348) do
+ActiveRecord::Schema.define(version: 20170903150957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20170806104348) do
     t.bigint "recipe_id"
     t.decimal "amount"
     t.integer "measure"
-    t.integer "meal_type", default: 1, null: false
     t.integer "measure_unit", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

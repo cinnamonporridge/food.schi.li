@@ -1,6 +1,10 @@
 class RecipeDecorator < Draper::Decorator
   delegate_all
 
+  def name_with_servings
+    "#{model.name} (#{model.servings} servings)"
+  end
+
   # SUMS
   def sum_kcal
     model.sum_kcal.round || 0
