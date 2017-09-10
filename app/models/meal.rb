@@ -7,6 +7,8 @@ class Meal < ApplicationRecord
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
+  scope :ordered_by_recipe, -> { order(:recipe_id) }
+
   Nutrition::TYPES.each do |name|
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)

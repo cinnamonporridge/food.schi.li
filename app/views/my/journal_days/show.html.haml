@@ -15,7 +15,7 @@
       = fa_icon 'cutlery'
       = "Meals"
   .card.section.journal-day-meals-table
-    - @journal_day.meals.each do |meal|
+    - @journal_day.meals.ordered_by_recipe.each do |meal|
       .grid-x.align-middle.journal-day-meal-row
         .small-3.cell.text-center
           .grid-x
@@ -24,7 +24,13 @@
             .cell
               = meal.decorate.quantity_with_pieces
         .small-6.cell.journal-day-meal-nutrition
-          %span= meal.portion.decorate.name_with_nutrition
+          .grid-x
+            .cell
+              = meal.portion.decorate.name_with_nutrition
+            - if meal.recipe.present?
+              .cell
+                from
+                = link_to meal.recipe.name, meal.recipe
         .small-3.cell
           .tiny.button-group.pull-right
             = link_to edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'warning button' do
