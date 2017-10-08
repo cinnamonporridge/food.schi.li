@@ -72,7 +72,6 @@ ul.menu {
     font-weight: 100;
     -webkit-flex-grow: 1;
     flex-grow: 1;
-    min-width: 250px;
   }
 
   a {
@@ -150,22 +149,6 @@ input[aria-invalid="true"] {
       border-bottom-width: 0px;
     }
   }
-
-  // .recipe-ingredient-row .button-group,
-  // .journal-day-meal-row .button-group {
-  //   margin-bottom: 0;
-  // }
-
-  // .recipe-ingredient-row:first-child,
-  // .journal-day-meal-row:first-child {
-  //   padding-top: 24px;
-  // }
-  // .recipe-ingredient-row:last-child,
-  // .journal-day-meal-row:last-child {
-  //   padding-bottom: 24px;
-  //   border-bottom-width: 0px;
-  // }
-
 }
 
 .recipe-ingredient-nutrition {
@@ -202,7 +185,6 @@ ul.journal-days-list-group
 }
 
 .food-menu-panel {
-  height: 100%;
   background-color: $violet;
 }
 
