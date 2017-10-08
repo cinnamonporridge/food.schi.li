@@ -65,7 +65,7 @@ ul.menu {
   display: flex !important;
 
   justify-content: space-around;
-  -webkit-flex-flow: row wrap;
+  -webkit-flex-flow: column;
 
   li {
     font-size: 24px;
@@ -79,7 +79,7 @@ ul.menu {
     color: $white-color;
 
     i {
-      padding-right: 16px;
+      width: 40px;
     }
   }
 
