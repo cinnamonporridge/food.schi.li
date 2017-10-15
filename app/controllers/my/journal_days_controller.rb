@@ -2,7 +2,7 @@ class My::JournalDaysController < ApplicationController
   before_action :find_and_decorate_journal_day, only: %i(show edit update destroy)
 
   def index
-    @journal_days = JournalDay.of(current_user).ordered_by_date.decorate
+    @journal_days = JournalDay.of(current_user).ordered_by_date_desc.decorate
   end
 
   def show

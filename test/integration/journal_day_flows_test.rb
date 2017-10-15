@@ -11,7 +11,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'My journal days'
-    assert_select 'ul.journal-days-list-group li', 2, 'Daisy has 2 journal days'
+    assert_select 'ul.journal-days-list-group li', users(:daisy).journal_days.count
     assert_select 'a.primary.button', 'Add Journal Day'
   end
 
