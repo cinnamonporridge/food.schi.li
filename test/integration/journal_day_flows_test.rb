@@ -11,7 +11,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'My journal days'
-    assert_select 'ul.journal-days-list-group li', 2, 'Daisy has 2 journal days'
+    assert_select 'ul.journal-days-list-group li', users(:daisy).journal_days.count
     assert_select 'a.primary.button', 'Add Journal Day'
   end
 
@@ -22,6 +22,8 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Wednesday, 01.02.2017'
     assert_select 'h2', 'Meals'
     assert_select 'h2', 'Nutritions'
+    assert_select 'a.small.hollow.button.previous-journal-day', { count: 0 }
+    assert_select 'a.small.hollow.button.next-journal-day', { count: 1 }
     assert_select 'a.warning.button', 'Edit'
     assert_select 'a.alert.button', 'Delete'
 

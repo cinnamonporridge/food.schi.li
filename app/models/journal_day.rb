@@ -7,7 +7,11 @@ class JournalDay < ApplicationRecord
   validates_uniqueness_of :date, scope: :user
 
   scope :of, -> (user = User.none) { where(user: user) }
-  scope :ordered_by_date, -> { order(date: :desc) }
+  scope :ordered_by_date_asc, -> { order(date: :asc) }
+  scope :ordered_by_date_desc, -> { order(date: :desc) }
+
+  scope :after_date , -> (date) { where('date > ?', date) }
+  scope :before_date, -> (date) { where('date < ?', date) }
 
   Nutrition::TYPES.each do |name|
     define_method :"sum_#{name}" do
