@@ -22,6 +22,8 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Wednesday, 01.02.2017'
     assert_select 'h2', 'Meals'
     assert_select 'h2', 'Nutritions'
+    assert_select 'a.small.hollow.button.previous-journal-day', { count: 0 }
+    assert_select 'a.small.hollow.button.next-journal-day', { count: 1 }
     assert_select 'a.warning.button', 'Edit'
     assert_select 'a.alert.button', 'Delete'
 

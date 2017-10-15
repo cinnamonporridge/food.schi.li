@@ -1,0 +1,11 @@
+- if journal_day.present?
+
+  .grid-x
+    .small-6.cell
+      - if journal_day.display_link_to_previous_journal_day?
+        = link_to my_journal_day_path(journal_day.previous_journal_day), class: 'small button hollow previous-journal-day' do
+          = journal_day.previous_journal_day.display_date_with_weekday
+    .small-6.cell.text-right
+      - if journal_day.display_link_to_next_journal_day?
+        = link_to my_journal_day_path(journal_day.next_journal_day), class: 'small button hollow next-journal-day' do
+          = journal_day.next_journal_day.display_date_with_weekday

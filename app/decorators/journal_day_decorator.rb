@@ -27,6 +27,22 @@ class JournalDayDecorator < Draper::Decorator
     end
   end
 
+  def display_link_to_previous_journal_day?
+    previous_journal_day.present?
+  end
+
+  def display_link_to_next_journal_day?
+    next_journal_day.present?
+  end
+
+  def previous_journal_day
+    journal_day_calendar_service.previous_journal_day&.decorate
+  end
+
+  def next_journal_day
+    journal_day_calendar_service.next_journal_day&.decorate
+  end
+
   # SUMS
   def sum_kcal
     model.sum_kcal.round || 0
@@ -54,5 +70,11 @@ class JournalDayDecorator < Draper::Decorator
 
   def sum_fiber
     model.sum_fiber.round || 0
+  end
+
+  private
+
+  def journal_day_calendar_service
+    @service ||= JournalDayCalendarService.new(model)
   end
 end

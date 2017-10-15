@@ -4,6 +4,8 @@
   = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'warning button'
   = link_to 'Delete', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
 
+= render 'previous_and_next_navigation', journal_day: @journal_day
+
 = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'primary button'
 = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'primary button'
 
