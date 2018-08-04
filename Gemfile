@@ -1,3 +1,4 @@
+ruby '2.5.1'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -42,5 +43,3 @@ end
 group :production do
   gem 'uglifier', '>= 1.3.0'
 end
-
-ruby "2.4.2"
