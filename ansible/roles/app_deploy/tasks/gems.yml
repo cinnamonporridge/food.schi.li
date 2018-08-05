@@ -1,8 +1,0 @@
----
-
-- name: "Install gems"
-  command: "~{{ app_user }}/.rbenv/shims/bundle install --without development staging"
-  args:
-    chdir: "{{ app_application_dir }}"
-  become: yes
-  become_user: "{{ app_user }}"

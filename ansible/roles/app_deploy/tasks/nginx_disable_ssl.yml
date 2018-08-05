@@ -1,9 +1,0 @@
----
-
-- name: "Unlink SSL enabled configurations"
-  become: "yes"
-  shell: "for ssl_enabled_path in `find /etc/nginx/sites-enabled/ -name ssl-enabled*.conf`; do unlink ${sites_enabled_path}; done;"
-
-- name: "Link SSL disabled configurations"
-  become: "yes"
-  shell: "for target in `find /etc/nginx/sites-available/ -name ssl-disabled*.conf`; do sites_enabled_path=\"${target/sites-available/sites-enabled}\"; ln -s ${target} ${sites_enabled_path}; done;"
