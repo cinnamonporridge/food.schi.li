@@ -13,6 +13,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 # gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootsnap'
 
 gem 'simple_form'
 gem 'font-awesome-rails'
