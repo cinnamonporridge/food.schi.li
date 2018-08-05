@@ -1,24 +1,29 @@
-# README
+# food.schi.li
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+Have PostgreSQL installed and running, then run
 
-* Ruby version
+```shell
+bin/setup
+```
 
-* System dependencies
+## Test
 
-* Configuration
+Minitest, run
 
-* Database creation
+```shell
+bundle exec rake test
+```
 
-* Database initialization
+## Deploy
 
-* How to run the test suite
+### Production
 
-* Services (job queues, cache servers, search engines, etc.)
+Deploy to Heroku
 
-* Deployment instructions
+```shell
+git push heroku master
+```
 
-* ...
+Available at https://food-schi-li.herokuapp.com (or via https://food.schi.li)
