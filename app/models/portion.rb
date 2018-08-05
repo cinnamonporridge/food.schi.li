@@ -3,7 +3,6 @@ class Portion < ApplicationRecord
   has_many :ingredients
   has_many :recipes, through: :ingredients
 
-  scope :without, -> (portions) { where.not(id: portions.collect {|p| p.id }) }
   scope :ordered_by_amount, -> { order(amount: :asc) }
   scope :ordered_by_nutrition_name_and_amount, -> {
     includes(:nutrition).order("nutritions.name ASC, portions.amount ASC")

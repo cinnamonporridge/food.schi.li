@@ -62,10 +62,4 @@ class RecipeDecorator < Draper::Decorator
   def serving_fiber
     model.serving_fiber.round || 0
   end
-
-  def missing_portion_collection
-    Portion.without(model.portions).ordered_by_nutrition_name_and_amount.map do |portion|
-      [portion.decorate.name_for_dropdown, portion.id]
-    end
-  end
 end
