@@ -6,6 +6,11 @@
   - @journal_days.each do |journal_day|
     %li.journal-days-list-group-item
       .callout.clickable{ 'data-href': my_journal_day_path(journal_day) }
-        = link_to journal_day.display_date_with_weekday, my_journal_day_path(journal_day)
-        .vertical-space-xs
-          = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data
+        .grid-x
+          .cell.h3
+            = link_to journal_day.display_date_with_weekday, my_journal_day_path(journal_day)
+          .cell
+            .grid-x
+              .cell.text-muted Total
+              .cell
+                = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data

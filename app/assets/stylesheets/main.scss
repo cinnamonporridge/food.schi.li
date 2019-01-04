@@ -15,7 +15,7 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
 //   min-height: 100%;
 // }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   font-weight: 100;
 }
 
@@ -175,8 +175,6 @@ ul.journal-days-list-group
   margin: 0;
 
   li {
-    font-size: 28px;
-    font-weight: 100;
     margin-top: 18px;
     margin-bottom: 18px;
     list-style-type: none;

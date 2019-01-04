@@ -6,7 +6,7 @@
   = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'primary button'
 
 = render 'macronutrients/facts',
-  macronutrient_data: { per_serving: @recipe.macronutrient_data }
+  macronutrient_data: { data: @recipe.macronutrient_data_serving, label: 'Per serving' }
 
 .card
   .card-divider

@@ -5,6 +5,12 @@
   - @recipes.each do |recipe|
     %li.food-list-group-item
       .callout.clickable{ 'data-href': recipe_path(recipe) }
-        = link_to recipe.name, recipe_path(recipe)
-        .vertical-space-xs
-          = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data
+        .grid-x
+          .cell.h3
+            = link_to recipe.name, recipe_path(recipe)
+          .cell
+            .grid-x
+              .cell.text-muted
+                Per serving
+              .cell
+                = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving

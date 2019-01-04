@@ -10,7 +10,7 @@
 = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'primary button'
 
 = render 'macronutrients/facts',
-  macronutrient_data: { total: @journal_day.macronutrient_data }
+  macronutrient_data: { data: @journal_day.macronutrient_data, label: 'Total' }
 
 .card
   .card-divider

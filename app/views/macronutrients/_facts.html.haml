@@ -1,13 +1,13 @@
-.card
-  .card-divider
-    %h2
-      = fa_icon 'battery'
-      = "Facts"
-  - if macronutrient_data[:total]
+- if macronutrient_data
+  .card
+    .card-divider
+      %h2
+        = fa_icon 'battery'
+        = "Facts"
     .card-section
-      Total
-      = render 'macronutrients/fact_labels', fact_data: macronutrient_data[:total]
-  - if macronutrient_data[:per_serving]
-    .card-section
-      Per serving
-      = render 'macronutrients/fact_labels', fact_data: macronutrient_data[:per_serving]
+      .grid-x
+        .cell
+          .text-muted
+            = macronutrient_data[:label]
+        .cell
+          = render 'macronutrients/fact_labels', fact_data: macronutrient_data[:data]
