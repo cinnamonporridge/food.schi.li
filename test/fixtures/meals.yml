@@ -12,6 +12,6 @@ daisys_glass_of_milk_on_february_first:
 
 johns_apple_on_january_first:
   journal_day: john_january_first
-  portion: apple_portion
+  portion: apple_default_portion
   amount: 180.0
   measure: <%= Meal.measures[:unit] %>
