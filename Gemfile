@@ -20,8 +20,11 @@ gem 'font-awesome-rails'
 
 gem 'chartkick'
 gem 'select2-rails'
+
 gem 'foundation-rails'
 gem 'foundation-datepicker-rails'
+gem 'sprockets-es6' # https://github.com/zurb/foundation-rails/issues/273
+
 gem 'haml'
 gem 'draper', '>= 3.0.0'
 
