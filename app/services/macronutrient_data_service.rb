@@ -1,12 +1,33 @@
 class MacronutrientDataService
-  attr_reader :carbs, :protein, :fat, :total
+  ZERO = 0.0
 
-  def initialize(carbs, protein, fat)
-    @carbs    = carbs
-    @protein  = protein
-    @fat      = fat
+  attr_reader :kcal, :carbs, :protein, :fat
+
+  def initialize(data = {})
+    @kcal     = data[:kcal] || ZERO
+    @carbs    = data[:carbs] || ZERO
+    @protein  = data[:protein] || ZERO
+    @fat      = data[:fat] || ZERO
   end
 
+  # value rounded
+  def display_rounded_kcal
+    kcal.round
+  end
+
+  def display_rounded_carbs
+    carbs.round
+  end
+
+  def display_rounded_protein
+    protein.round
+  end
+
+  def display_rounded_fat
+    fat.round
+  end
+
+  # percentage exact
   def display_carbs_percentage
     "#{carbs_percentage}%"
   end
@@ -19,6 +40,7 @@ class MacronutrientDataService
     "#{fat_percentage}%"
   end
 
+  # percentage rounded
   def display_rounded_carbs_percentage
     "#{carbs_percentage.round}%"
   end
@@ -38,17 +60,20 @@ class MacronutrientDataService
   end
 
   def carbs_percentage
-    return 0.0 unless total.positive?
-    ((carbs / total) * 100.0)
+    carbs_percentage ||= percentage_of_value(carbs)
   end
 
   def protein_percentage
-    return 0.0 unless total.positive?
-    ((protein / total) * 100)
+    @protein_percentage ||= percentage_of_value(protein)
   end
 
   def fat_percentage
-    return 0.0 unless total.positive?
-    ((fat / total) * 100)
+    @fat_percentage ||= percentage_of_value(fat)
+  end
+
+  def percentage_of_value(value)
+    return ZERO if total.zero?
+
+    ((value / total) * 100.0)
   end
 end

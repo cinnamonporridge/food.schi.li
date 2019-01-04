@@ -7,4 +7,5 @@
     %li.journal-days-list-group-item
       .callout.clickable{ 'data-href': my_journal_day_path(journal_day) }
         = link_to journal_day.display_date_with_weekday, my_journal_day_path(journal_day)
-        = render 'macronutrients/bar', macronutrient_data: journal_day.macronutrient_data, tiny: true
+        .vertical-space-xs
+          = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data

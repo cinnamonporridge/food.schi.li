@@ -26,6 +26,11 @@ class Recipe < ApplicationRecord
   end
 
   def macronutrient_data
-    @macronutrient_data_service ||= MacronutrientDataService.new(sum_carbs, sum_protein, sum_fat)
+    @macronutrient_data ||= MacronutrientDataService.new(
+      kcal: sum_kcal,
+      carbs: sum_carbs,
+      protein: sum_protein,
+      fat: sum_fat
+    )
   end
 end

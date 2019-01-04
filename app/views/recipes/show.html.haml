@@ -5,16 +5,8 @@
   = link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
   = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'primary button'
 
-.card
-  .card-divider
-    %h2
-      = fa_icon 'battery'
-      = "Stats per serving"
-  .card-section
-    .label.kcal= "#{@recipe.decorate.serving_kcal} kcal"
-    .label.carbs= "Carbs #{@recipe.decorate.serving_carbs}g"
-    .label.protein= "Protein #{@recipe.decorate.serving_protein}g"
-    .label.fat= "Fat #{@recipe.decorate.serving_fat}g"
+= render 'macronutrients/facts',
+  macronutrient_data: { per_serving: @recipe.macronutrient_data }
 
 .card
   .card-divider

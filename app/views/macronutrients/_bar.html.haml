@@ -1,9 +1,0 @@
-- if macronutrient_data
-  - display_tiny = (defined?(tiny) && tiny == true)
-  .macronutrient-bar{ class: ('tiny' if display_tiny) }
-    .macronutrient-bar-segment.carbs{ style: "width: #{macronutrient_data.display_carbs_percentage}" }
-      = macronutrient_data.display_rounded_carbs_percentage
-    .macronutrient-bar-segment.protein{ style: "width: #{macronutrient_data.display_protein_percentage}" }
-      = macronutrient_data.display_rounded_protein_percentage
-    .macronutrient-bar-segment.fat{ style: "width: #{macronutrient_data.display_fat_percentage}" }
-      = macronutrient_data.display_rounded_fat_percentage

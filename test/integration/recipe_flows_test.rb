@@ -26,7 +26,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.warning.button', 'Edit'
     assert_select 'a.alert.button', 'Delete'
 
-    expected_header2 = ['Stats per serving', 'Ingredients for 6 servings', 'Nutritions', 'Macronutrients']
+    expected_header2 = ['Facts', 'Ingredients for 6 servings', 'Nutritions', 'Macronutrients']
     css_select('h2').each_with_index do |header2,i|
       assert_equal expected_header2[i], header2.text.strip
     end
