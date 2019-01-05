@@ -1,4 +1,8 @@
 %h1= @nutrition.name
+
+.vertical-space-lg
+  = render 'nutritions/vegan_icon', vegan: @nutrition.vegan?
+
 = link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
 
 .small.button-group

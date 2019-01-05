@@ -30,6 +30,11 @@
     .small-12.cell
       = f.input :fiber
 
-  .button-group
-    = f.submit nil, class: 'primary button'
-    = link_to 'Cancel', nutritions_path, class: 'button secondary'
+  .grid-x
+    .small-12.cell
+      = f.input :vegan
+
+  .vertical-space-xl
+    .button-group
+      = f.submit nil, class: 'primary button'
+      = link_to 'Cancel', nutritions_path, class: 'button secondary'

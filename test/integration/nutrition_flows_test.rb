@@ -35,6 +35,8 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_select "input[type='submit'][value='Create Nutrition']"
     assert_select 'a.secondary.button', 'Cancel'
 
+    assert_input_fields_present
+
     post '/nutritions',
       params: {
         nutrition: {
@@ -46,7 +48,8 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
           protein: '',
           fat: '',
           fat_saturated: '',
-          fiber: ''
+          fiber: '',
+          vegan: ''
         }
       }
     assert_response :success
@@ -63,7 +66,8 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
           protein: 12,
           fat: 88,
           fat_saturated: 87,
-          fiber: 3
+          fiber: 3,
+          vegan: '1'
         }
       }
     follow_redirect!
@@ -72,11 +76,17 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user edits a nutrition' do
+    get nutrition_path(nutritions(:apple))
+    assert_select 'i.fa-leaf.fa-superlightgrey', { count: 1 }, 'Not vegan icon should be shown before update'
+    assert_select 'a', text: 'Edit'
+
     get edit_nutrition_path(nutritions(:apple))
     assert_response :success
     assert_select 'h1', 'Edit nutrition'
     assert_select "input[type='submit'][value='Update Nutrition']"
     assert_select 'a.secondary.button', 'Cancel'
+
+    assert_input_fields_present
 
     put "/nutritions/#{nutritions(:apple).id}",
       params: {
@@ -89,13 +99,15 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
           protein: 1,
           fat: 1,
           fat_saturated: 1,
-          fiber: 1
+          fiber: 1,
+          vegan: '1'
         }
       }
 
     follow_redirect!
     assert_response :success
     assert_equal 'Nutrition updated', flash[:notice]
+    assert_select 'i.fa-leaf.fa-green', { count: 1 }, 'Vegan icon should be shown after update'
   end
 
   test 'user cannot delete a nutrition that is used in recipe' do
@@ -121,4 +133,16 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Nutrition deleted', flash[:notice]
   end
 
+  def assert_input_fields_present
+    assert_select '#nutrition_name'
+    assert_select '#nutrition_unit'
+    assert_select '#nutrition_kcal'
+    assert_select '#nutrition_carbs'
+    assert_select '#nutrition_carbs_sugar_part'
+    assert_select '#nutrition_protein'
+    assert_select '#nutrition_fat'
+    assert_select '#nutrition_fat_saturated'
+    assert_select '#nutrition_fiber'
+    assert_select '#nutrition_vegan'
+  end
 end
