@@ -12,6 +12,7 @@ class IngredientsController < ApplicationController
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: ingredient))
 
     if @form.valid? && ingredient.update(@form.values)
+      update_recipe_vegan
       redirect_to ingredient.recipe, notice: 'Ingredient added'
     else
       flash.now[:error] = 'Invalid input'
@@ -25,6 +26,7 @@ class IngredientsController < ApplicationController
     ingredient.update(@form.values)
 
     if @form.valid? && ingredient.update(@form.values)
+      update_recipe_vegan
       redirect_to @ingredient.recipe, notice: 'Ingredient updated'
     else
       flash.now[:error] = 'Invalid input'
@@ -34,6 +36,7 @@ class IngredientsController < ApplicationController
 
   def destroy
     find_ingredient.destroy
+    update_recipe_vegan
     redirect_to @ingredient.recipe, notice: 'Ingredient deleted'
   end
 
@@ -53,5 +56,11 @@ class IngredientsController < ApplicationController
 
   def find_portion
     @portion ||= Portion.find_by(id: ingredient_params[:portion_id])
+  end
+
+  def update_recipe_vegan
+    find_recipe.reload
+    find_recipe.detect_vegan
+    find_recipe.save
   end
 end

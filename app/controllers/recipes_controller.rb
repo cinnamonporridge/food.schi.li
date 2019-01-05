@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.detect_vegan
 
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe added'
