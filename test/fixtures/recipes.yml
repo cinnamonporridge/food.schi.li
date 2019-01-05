@@ -1,7 +1,19 @@
 apple_pie:
   name: Apple Pie
   servings: 6
+  vegan: false
 
 anchovy_soup:
   name: Anchovy Soup
   servings: 7
+  vegan: false
+
+vegan_peanut_butter_banana:
+  name: Vegan Peanut Butter Banana
+  servings: 1
+  vegan: true
+
+non_vegan_milk_banana:
+  name: Non-vegan milk Banana
+  servings: 1
+  vegan: false

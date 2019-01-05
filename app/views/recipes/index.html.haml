@@ -10,6 +10,8 @@
             = link_to recipe.name, recipe_path(recipe)
           .cell
             .grid-x
+              .cell
+                = render 'icons/vegan', vegan: recipe.vegan?
               .cell.text-muted
                 Per serving
               .cell

@@ -42,4 +42,8 @@ class Recipe < ApplicationRecord
       fat: serving_fat
     )
   end
+
+  def detect_vegan
+    self.vegan = VeganRecipeDetectionService.new(self).vegan?
+  end
 end
