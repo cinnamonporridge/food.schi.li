@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :servings, presence: true
 
-  scope :using, -> (nutrition) {
+  scope :using_nutrition, -> (nutrition) {
     includes(:portions).where(portions: { nutrition: nutrition } )
   }
 
