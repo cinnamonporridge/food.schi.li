@@ -31,6 +31,8 @@ class NutritionsController < ApplicationController
 
   def update
     if @nutrition.update(nutrition_params)
+      update_affected_recipes if @nutrition.vegan_previously_changed?
+
       redirect_to @nutrition, notice: 'Nutrition updated'
     else
       flash.now[:error] = 'Invalid input'
@@ -56,5 +58,12 @@ class NutritionsController < ApplicationController
 
   def nutrition_params
     params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated, :fiber, :vegan)
+  end
+
+  def update_affected_recipes
+    Recipe.using_nutrition(@nutrition).find_each do |recipe|
+      recipe.detect_vegan
+      recipe.save
+    end
   end
 end
