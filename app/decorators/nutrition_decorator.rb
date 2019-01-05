@@ -17,6 +17,6 @@ class NutritionDecorator < Draper::Decorator
   end
 
   def recipes_using
-    Recipe.using(model)
+    Recipe.using_nutrition(model)
   end
 end
