@@ -1,6 +1,10 @@
 %div{ id: :footer }
 
-.vertical-space-xl
-  .grid-x.text-center.text-tiny
-    .cell
-      = fa_icon 'leaf green', text: 'Vegan'
+
+- if current_user
+  .vertical-space-xl
+    .grid-x.text-center.text-tiny
+      .cell.text-muted
+        Legend
+      .cell
+        = fa_icon 'leaf green', text: 'Vegan'
