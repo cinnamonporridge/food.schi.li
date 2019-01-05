@@ -3,6 +3,16 @@ apple_default_portion:
   nutrition: apple
   amount: 100
 
+banana_default_portion:
+  name: '100g'
+  nutrition: banana
+  amount: 100
+
+regular_banana_portion:
+  name: 'Regular'
+  nutrition: banana
+  amount: 116
+
 milk_default_portion:
   name: '100ml'
   nutrition: milk
@@ -12,6 +22,11 @@ big_apple_portion:
   name: Big Apple
   nutrition: apple
   amount: 200
+
+peanut_butter_default_portion:
+  name: '100g'
+  nutrition: peanut_butter
+  amount: 100
 
 sugar_default_portion:
   name: '100g'

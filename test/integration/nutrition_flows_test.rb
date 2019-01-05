@@ -59,7 +59,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
       params: {
         nutrition: {
           unit: 'gram',
-          name: 'Banana',
+          name: 'Beetroot',
           kcal: 180,
           carbs: 52,
           carbs_sugar_part: 4,

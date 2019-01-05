@@ -1,4 +1,3 @@
-
 apple:
   name: 'Apple'
   unit: <%= Nutrition.units[:gram] %>
@@ -11,6 +10,18 @@ apple:
   fiber: 100
   vegan: false
 
+banana:
+  name: 'Banana'
+  unit: <%= Nutrition.units[:gram] %>
+  kcal: 90
+  carbs: 90
+  carbs_sugar_part: 9
+  protein: 90
+  fat: 90
+  fat_saturated: 9
+  fiber: 90
+  vegan: true
+
 milk:
   name: 'Milk'
   unit: <%= Nutrition.units[:mililiter] %>
@@ -22,6 +33,18 @@ milk:
   fat_saturated: 12
   fiber: 120
   vegan: false
+
+peanut_butter:
+  name: 'Peanut Butter'
+  unit: <%= Nutrition.units[:gram] %>
+  kcal: 444
+  carbs: 444
+  carbs_sugar_part: 44
+  protein: 444
+  fat: 444
+  fat_saturated: 44
+  fiber: 444
+  vegan: true
 
 sugar:
   name: 'Sugar'

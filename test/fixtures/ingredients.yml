@@ -9,3 +9,27 @@ apples_in_apple_pie:
   portion: big_apple_portion
   amount: 6
   measure: <%= Ingredient.measures[:piece] %>
+
+peanut_butter_in_vegan_peanut_butter_banana:
+  recipe: vegan_peanut_butter_banana
+  portion: peanut_butter_default_portion
+  amount: 90
+  measure: <%= Ingredient.measures[:unit] %>
+
+banana_in_vegan_peanut_butter_banana:
+  recipe: vegan_peanut_butter_banana
+  portion: regular_banana_portion
+  amount: 1
+  measure: <%= Ingredient.measures[:piece] %>
+
+milk_in_non_vegan_milk_banana:
+  recipe: non_vegan_milk_banana
+  portion: milk_default_portion
+  amount: 90
+  measure: <%= Ingredient.measures[:unit] %>
+
+banana_in_non_vegan_milk_banana:
+  recipe: non_vegan_milk_banana
+  portion: regular_banana_portion
+  amount: 1
+  measure: <%= Ingredient.measures[:piece] %>
