@@ -77,7 +77,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
 
   test 'user edits a nutrition' do
     get nutrition_path(nutritions(:apple))
-    assert_select 'i.fa-leaf.fa-superlightgrey', { count: 1 }, 'Not vegan icon should be shown before update'
+    assert_select '.vegan-icon i.fa-leaf.fa-superlightgrey', { count: 1 }, 'Not vegan icon should be shown before update'
     assert_select 'a', text: 'Edit'
 
     get edit_nutrition_path(nutritions(:apple))
@@ -107,7 +107,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_equal 'Nutrition updated', flash[:notice]
-    assert_select 'i.fa-leaf.fa-green', { count: 1 }, 'Vegan icon should be shown after update'
+    assert_select '.vegan-icon i.fa-leaf.fa-green', { count: 1 }, 'Vegan icon should be shown after update'
   end
 
   test 'user cannot delete a nutrition that is used in recipe' do
