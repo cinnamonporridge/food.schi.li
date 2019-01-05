@@ -5,4 +5,9 @@
 %ul.nutrition-list-group
   - @nutritions.each do |nutrition|
     %li.nutrition-list-group-item.callout.clickable{ 'data-href': nutrition_path(nutrition) }
-      = link_to nutrition.name, nutrition_path(nutrition)
+      .grid-x
+        .cell
+          = link_to nutrition.name, nutrition_path(nutrition)
+        .cell.text-tiny
+          = render 'nutritions/vegan_icon', vegan: nutrition.vegan?
+

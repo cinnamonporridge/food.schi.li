@@ -9,6 +9,7 @@ apple:
   fat: 100
   fat_saturated: 10
   fiber: 100
+  vegan: false
 
 milk:
   name: 'Milk'
@@ -20,6 +21,7 @@ milk:
   fat: 120
   fat_saturated: 12
   fiber: 120
+  vegan: false
 
 sugar:
   name: 'Sugar'
@@ -31,3 +33,4 @@ sugar:
   fat: 333
   fat_saturated: 33
   fiber: 333
+  vegan: true

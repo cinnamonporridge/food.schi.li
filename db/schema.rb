@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903150957) do
+ActiveRecord::Schema.define(version: 2019_01_05_095642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170903150957) do
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "vegan", default: false, null: false
   end
 
   create_table "portions", force: :cascade do |t|

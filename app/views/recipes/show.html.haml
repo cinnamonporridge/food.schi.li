@@ -24,7 +24,11 @@
             .cell
               = ingredient.decorate.quantity_with_pieces
         .small-6.cell.recipe-ingredient-nutrition
-          %span= ingredient.portion.decorate.name_with_nutrition
+          .grid
+            .cell
+              %span= ingredient.portion.decorate.name_with_nutrition
+            .cell.text-tiny
+              = render 'nutritions/vegan_icon', vegan: ingredient.portion.nutrition.vegan?
         .small-3.cell
           .tiny.button-group.pull-right
             = link_to edit_recipe_ingredient_path(@recipe, ingredient), class: 'warning button' do
