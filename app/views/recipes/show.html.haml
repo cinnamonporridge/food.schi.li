@@ -1,5 +1,10 @@
 %h1= @recipe.name
 
+.vertical-space-xl.vegan-icon
+  .grid-x
+    .cell
+      = render 'icons/vegan', vegan: @recipe.vegan?
+
 .small.button-group
   = link_to 'Edit', edit_recipe_path(@recipe), class: 'warning button'
   = link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
@@ -28,7 +33,7 @@
             .cell
               %span= ingredient.portion.decorate.name_with_nutrition
             .cell.text-tiny
-              = render 'nutritions/vegan_icon', vegan: ingredient.portion.nutrition.vegan?
+              = render 'icons/vegan', vegan: ingredient.portion.nutrition.vegan?
         .small-3.cell
           .tiny.button-group.pull-right
             = link_to edit_recipe_ingredient_path(@recipe, ingredient), class: 'warning button' do
