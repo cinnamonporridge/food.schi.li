@@ -8,6 +8,11 @@ banana_default_portion:
   nutrition: banana
   amount: 100
 
+celery_old_default_portion:
+  name: '100g'
+  nutrition: celery_old
+  amount: 100
+
 regular_banana_portion:
   name: 'Regular'
   nutrition: banana

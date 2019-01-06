@@ -42,7 +42,7 @@ class NutritionsController < ApplicationController
 
   def destroy
     if Recipe.using_nutrition(@nutrition).any?
-      flash.now[:error] = 'Nutrition cannot be deleted, it is used in at least on recipe'
+      flash.now[:error] = 'Nutrition cannot be deleted, it is used in at least one recipe'
       @nutrition = @nutrition.decorate
       render :show
     else

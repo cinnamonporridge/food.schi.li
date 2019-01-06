@@ -1,0 +1,6 @@
+%h1= "Recipes using #{@nutrition.name}"
+
+= link_to nutrition_path(@nutrition), class: 'hollow button primary' do
+  = "Back to #{@nutrition.name}"
+
+= render 'recipes/index', recipes: @nutrition.in_recipes

@@ -1,0 +1,6 @@
+%h1= "Journal days containing #{@nutrition.name}"
+
+= link_to nutrition_path(@nutrition), class: 'hollow primary button' do
+  = "Back to #{@nutrition.name}"
+
+= render 'my/journal_days/index', journal_days: @nutrition.on_journal_days.decorate
