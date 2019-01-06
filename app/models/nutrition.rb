@@ -17,4 +17,20 @@ class Nutrition < ApplicationRecord
   validates_numericality_of :fat              ,  greater_than_or_equal_to: 0
   validates_numericality_of :fat_saturated    ,  greater_than_or_equal_to: 0
   validates_numericality_of :fiber            ,  greater_than_or_equal_to: 0
+
+  def deleteable?
+    in_recipes.none? && in_meals.none?
+  end
+
+  def in_recipes
+    @in_recipes ||= Recipe.using_nutrition(self)
+  end
+
+  def in_meals
+    @in_meals ||= Meal.using_nutrition(self)
+  end
+
+  def on_journal_days
+    @on_journal_days ||= JournalDay.using_meals(in_meals)
+  end
 end
