@@ -1,0 +1,16 @@
+- if recipes
+  %ul.food-list-group
+    - recipes.each do |recipe|
+      %li.food-list-group-item
+        .callout.clickable{ 'data-href': recipe_path(recipe) }
+          .grid-x
+            .cell.h3
+              = link_to recipe.name, recipe_path(recipe)
+            .cell
+              .grid-x
+                .cell
+                  = render 'icons/vegan', vegan: recipe.vegan?
+                .cell.text-muted
+                  Per serving
+                .cell
+                  = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving

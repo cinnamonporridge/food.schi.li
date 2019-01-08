@@ -15,8 +15,4 @@ class NutritionDecorator < Draper::Decorator
   def nutrition_collection
     Nutrition.ordered_by_name.map { |nutrition| [nutrition.name, nutrition.id] }
   end
-
-  def recipes_using
-    Recipe.using_nutrition(model)
-  end
 end

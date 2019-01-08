@@ -22,6 +22,18 @@ banana:
   fiber: 90
   vegan: true
 
+celery_old:
+  name: 'Celery OLD - only used on a journal day'
+  unit: <%= Nutrition.units[:gram] %>
+  kcal: 80
+  carbs: 80
+  carbs_sugar_part: 8
+  protein: 80
+  fat: 80
+  fat_saturated: 8
+  fiber: 80
+  vegan: true
+
 milk:
   name: 'Milk'
   unit: <%= Nutrition.units[:mililiter] %>

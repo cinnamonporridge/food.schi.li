@@ -3,15 +3,30 @@
 .vertical-space-lg.vegan-icon
   = render 'icons/vegan', vegan: @nutrition.vegan?
 
+.vertical-space-xl
+  .small.button-group
+    - if @nutrition.in_recipes.any?
+      = link_to nutrition_recipes_path(@nutrition), class: 'hollow primary button' do
+        = "Used in #{@nutrition.in_recipes.count} #{'recipe'.pluralize(@nutrition.in_recipes.count)}"
+    - if @nutrition.on_journal_days.any?
+      = link_to nutrition_journal_days_path(@nutrition), class: 'hollow primary button' do 
+        = "Used on #{@nutrition.on_journal_days.count} #{'journal day'.pluralize(@nutrition.on_journal_days.count)}"
+
 = link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
+
+- if @nutrition.errors.has_key?(:base)
+  .callout.warning
+    %ul
+      - @nutrition.errors.full_messages_for(:base).each do |error_message|
+        %li= error_message
 
 .small.button-group
   = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'warning button'
-  - if @nutrition.recipes_using.none?
+  - if @nutrition.deleteable?
     = link_to 'Delete', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
   = link_to 'New portion', new_nutrition_portion_path(@nutrition), class: 'button primary'
 .grid-x.grid-margin-x
-  .large-4.small-12.cell
+  .large-6.small-12.cell
     .card
       .card-divider
         %h2= "100#{@nutrition.unit_abbrevation} contains"
@@ -39,19 +54,11 @@
             %tr
               %th.text-left Fiber
               %td.text-right= @nutrition.fiber
-  .large-4.small-12.cell
+  .large-6.small-12.cell
     .card
       .card-divider
         %h2 Portions
       .card-section
         = render 'portions/index', portions: @nutrition.portions
-  - if @nutrition.recipes_using.any?
-    .large-4.small-12.cell
-      .card
-        .card-divider
-          %h2= "Used in #{@nutrition.recipes_using.count} #{'recipe'.pluralize(@nutrition.recipes_using.count)}"
-        .card-section
-          - @nutrition.recipes_using.each do |recipe|
-            = link_to recipe.decorate.name, recipe_path(recipe), class: 'secondary button small'
 
 

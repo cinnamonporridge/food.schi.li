@@ -15,3 +15,9 @@ johns_apple_on_january_first:
   portion: apple_default_portion
   amount: 180.0
   measure: <%= Meal.measures[:unit] %>
+
+johns_celery_on_january_first:
+  journal_day: john_january_first
+  portion: celery_old_default_portion
+  amount: 20.0
+  measure: <%= Meal.measures[:unit] %>
