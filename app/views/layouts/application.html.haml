@@ -8,7 +8,6 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'https://www.gstatic.com/charts/loader.js'
-    = javascript_include_tag 'application'
 
   %body
     .grid-x.grid-padding-x.food-full-height
@@ -22,4 +21,6 @@
         = render 'layouts/flash'
         = yield
         = render 'layouts/footer'
+
+    = javascript_include_tag 'application'
 
