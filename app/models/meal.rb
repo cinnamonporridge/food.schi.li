@@ -8,7 +8,7 @@ class Meal < ApplicationRecord
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
   scope :using_nutrition, -> (nutrition) {
-    includes(:portion).where(portions: { nutrition: nutrition } )
+    includes(:portion).where(portions: { nutrition: nutrition })
   }
 
   scope :ordered_by_recipe, -> { order(:recipe_id) }

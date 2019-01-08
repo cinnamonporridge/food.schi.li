@@ -23,7 +23,7 @@ banana:
   vegan: true
 
 celery_old:
-  name: 'Celery OLD- only used on a journal day'
+  name: 'Celery OLD - only used on a journal day'
   unit: <%= Nutrition.units[:gram] %>
   kcal: 80
   carbs: 80
