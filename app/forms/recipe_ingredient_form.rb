@@ -1,17 +1,20 @@
 class RecipeIngredientForm
   include ActiveModel::Model
+  include Rails.application.routes.url_helpers
+
   delegate :persisted?, :id, to: :ingredient
 
-  attr_reader :ingredient, :portion_id, :measure, :amount_in_measure
+  attr_reader :recipe, :ingredient, :portion_id, :measure, :amount_in_measure
 
-  validates_presence_of :portion_id
-  validates_presence_of :amount_in_measure
-  validates_presence_of :measure
-  validates_numericality_of :amount_in_measure, greater_than: 0
+  validates :portion_id, presence: true
+  validates :amount_in_measure, presence: true, numericality: { greater_than: 0 }
+  validates :measure, presence: true
+
   validate :portion_exists?
 
   def initialize(args = {})
     @ingredient         = args[:ingredient]
+    @recipe             = @ingredient.recipe
     @portion_id         = args[:portion_id] || ingredient.portion&.id
     @measure            = args[:measure] || ingredient.measure
     @amount_in_measure  = args[:amount_in_measure] || to_amount_in_measure(ingredient.amount)
@@ -27,6 +30,14 @@ class RecipeIngredientForm
 
   def self.model_name
     ActiveModel::Name.new(self, nil, 'RecipeIngredient')
+  end
+
+  def action_url
+    if persisted?
+      recipe_ingredient_path(recipe, ingredient)
+    else
+      recipe_ingredients_path(recipe)
+    end
   end
 
   private

@@ -1,4 +1,4 @@
-= simple_form_for form do |f|
+= simple_form_for form, url: form.action_url do |f|
   = f.input :portion_id, collection: PortionDecorator.portions_collection
   = f.input :amount_in_measure, label: 'Amount'
   = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false
