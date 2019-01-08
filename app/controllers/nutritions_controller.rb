@@ -41,13 +41,12 @@ class NutritionsController < ApplicationController
   end
 
   def destroy
-    if Recipe.using_nutrition(@nutrition).any?
-      flash.now[:error] = 'Nutrition cannot be deleted, it is used in at least one recipe'
+    if @nutrition.destroy
+      redirect_to nutritions_url, notice: 'Nutrition deleted'
+    else
+      flash.now[:error] = 'Deletion not possible'
       @nutrition = @nutrition.decorate
       render :show
-    else
-      @nutrition.destroy
-      redirect_to nutritions_url, notice: 'Nutrition deleted'
     end
   end
 

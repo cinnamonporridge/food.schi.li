@@ -14,6 +14,12 @@
 
 = link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
 
+- if @nutrition.errors.has_key?(:base)
+  .callout.warning
+    %ul
+      - @nutrition.errors.full_messages_for(:base).each do |error_message|
+        %li= error_message
+
 .small.button-group
   = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'warning button'
   - if @nutrition.deleteable?

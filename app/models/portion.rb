@@ -3,7 +3,8 @@ class Portion < ApplicationRecord
 
   belongs_to :nutrition
   has_many :ingredients
-  has_many :recipes, through: :ingredients
+  has_many :recipes, through: :ingredients, dependent: :restrict_with_error
+  has_many :meals, dependent: :restrict_with_error
 
   scope :ordered_by_amount, -> { order(amount: :asc) }
   scope :ordered_by_nutrition_name_and_amount, -> {

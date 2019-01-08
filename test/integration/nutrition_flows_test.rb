@@ -118,7 +118,9 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
 
     delete "/nutritions/#{nutritions(:milk).id}"
     assert_response :success
-    assert_equal 'Nutrition cannot be deleted, it is used in at least one recipe', flash[:error]
+    assert_equal 'Deletion not possible', flash[:error]
+
+    assert_select '.callout.warning li', text: "Can't delete nutrition that is still used in a recipe"
   end
 
   test 'user cannot delete a nutrition that is used in a meal / journal day' do
@@ -127,9 +129,9 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
 
     delete "/nutritions/#{nutrition.id}"
     assert_response :success
-    assert_equal 'Nutrition cannot be deleted, it is used on at least one journal day / meal', flash[:error]
+    assert_equal 'Deletion not possible', flash[:error]
 
-    assert false, 'remove me'
+    assert_select '.callout.warning li', text: "Can't delete nutrition that is still used in a meal"
   end
 
   test 'user can delete nutrition that is not used in a recipe' do
