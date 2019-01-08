@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(login_params[:password])
       log_in(@user)
       flash[:success] = "Login successful"
-      redirect_to home_url
+      redirect_to my_journal_days_path
     else
       flash.now[:warning] = "Invalid email or password"
       render :new
