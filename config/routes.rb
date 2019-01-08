@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredients, except: [:index, :show]
   end
+
   resources :nutritions do
     resources :portions     , except: [:index, :show]
     resources :recipes      , only:   [:index] , module: :nutritions
