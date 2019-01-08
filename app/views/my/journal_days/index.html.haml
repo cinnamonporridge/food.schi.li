@@ -2,4 +2,7 @@
 
 = link_to 'Add Journal Day', new_my_journal_day_path, class: 'primary button'
 
+.vertical-space-md
+  = render 'scope_dropdown'
+
 = render 'index', journal_days: @journal_days

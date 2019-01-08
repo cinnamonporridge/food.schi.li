@@ -7,12 +7,33 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy visits journal days index page' do
-    get '/my/journal_days'
-    assert_response :success
+    journal_day = journal_days(:daisy_february_first)
 
-    assert_select 'h1', 'My journal days'
-    assert_select 'ul.journal-days-list-group li', users(:daisy).journal_days.count
-    assert_select 'a.primary.button', 'Add Journal Day'
+    travel_to journal_day.date do
+      get '/my/journal_days'
+      assert_response :success
+      assert_select 'h1', 'My journal days'
+      assert_select 'a.primary.button', 'Add Journal Day'
+
+      assert_select 'ul.journal-days-list-group li', { count: users(:daisy).journal_days.count }
+    end
+  end
+
+  test 'daisy visits journal days index page a year later and changes the time filter' do
+    journal_day = journal_days(:daisy_february_first)
+
+    travel_to (journal_day.date + 1.year) do
+      get '/my/journal_days'
+      assert_response :success
+      assert_select 'h1', 'My journal days'
+      assert_select 'a.primary.button', 'Add Journal Day'
+
+      assert_select 'ul.journal-days-list-group li', { count: 0 }
+
+      get my_journal_days_path(time: :year)
+      assert_response :success
+      assert_select 'ul.journal-days-list-group li', { count: 3 }
+    end
   end
 
   test 'daisy visits own journal day' do
