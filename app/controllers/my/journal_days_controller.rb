@@ -3,7 +3,7 @@ class My::JournalDaysController < ApplicationController
 
   def index
     @journal_days = JournalDay.of(current_user)
-                              .after_date(date_filter)
+                              .on_or_after_date(date_filter)
                               .ordered_by_date_desc
                               .decorate
   end
