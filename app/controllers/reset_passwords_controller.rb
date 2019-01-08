@@ -19,7 +19,7 @@ class ResetPasswordsController < ApplicationController
       log_in(user)
       user.clear_reset_password!
       flash[:success] = 'Password successfully reset and logged in'
-      redirect_to home_url
+      redirect_to my_journal_days_path
     else
       flash.now[:alert] = 'Oops, something went wrong'
       render :new

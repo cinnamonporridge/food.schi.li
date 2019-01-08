@@ -5,13 +5,13 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
     get login_path
     login_user(users(:daisy))
 
-    assert_select 'h1', 'Search'
+    assert_select 'h1', 'My journal days'
 
-    assert_select 'ul.menu' do
-      expected_texts = ['Home', 'Journal', 'Recipes', 'Foods', 'Users', 'Log out']
-      css_select('li').each_with_index do |li, i|
-        assert_equal expected_texts[i], li.inner_text.strip
-      end
-    end
+    assert_select 'nav a', text: 'Journal'
+    assert_select 'nav a', text: 'Recipes'
+    assert_select 'nav a', text: 'Foods'
+    assert_select 'nav a', text: 'Users'
+
+    assert_select 'footer a', 'Log out'
   end
 end

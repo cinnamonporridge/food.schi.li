@@ -53,37 +53,6 @@ label {
   font-size: 36px;
 }
 
-ul.menu {
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-flexbox !important;
-  display: -webkit-flex !important;
-  display: flex !important;
-
-  justify-content: space-around;
-  -webkit-flex-flow: column;
-
-  li {
-    font-size: 24px;
-    font-weight: 100;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-
-  a {
-    padding: 20px 0;
-    color: $white-color;
-
-    i {
-      width: 40px;
-    }
-  }
-
-  a:hover {
-    color: $rose;
-  }
-}
-
 .clickable {
   cursor: pointer;
 }
