@@ -6,13 +6,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0.0'
 gem 'pg'
-gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0'
+gem 'puma'
+gem 'sass-rails', '~> 6.0'
 gem 'jquery-rails'
 # gem 'redis', '~> 3.0'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 gem 'bootsnap'
 
 gem 'simple_form'
