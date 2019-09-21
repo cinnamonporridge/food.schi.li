@@ -11,11 +11,34 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Recipes'
     assert_select 'a.primary.button', 'New Recipe'
+    assert_select '.search input'
 
     first_recipe, second_recipe, *rest = css_select('li.food-list-group-item a')
 
     assert_equal 'Anchovy Soup', first_recipe.inner_text.strip, 'Anchovy Soup should be listed before Apple Pie'
     assert_equal 'Apple Pie'   , second_recipe.inner_text.strip, 'Apple Pie should be listed after Anchovy Soup'
+  end
+
+  test 'user sees pagination on index' do
+    get recipes_path
+
+    assert_changes -> { css_select('.pagination').count }, from: 0 do
+      prepare_recipes_for_pagination
+      get recipes_path
+    end
+  end
+
+  test 'user searches for recipe' do
+    get recipes_path(search_query: 'AnCHOVy')
+    assert_response :success
+
+    search_field = css_select('.search input[type=text]').first
+
+    assert_equal 'AnCHOVy', search_field.attr(:value)
+
+    recipe_list = css_select('li.food-list-group-item')
+
+    assert_equal 1, recipe_list.count
   end
 
   test 'user visits recipe page' do
@@ -87,5 +110,13 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Recipes'
     assert_equal 'Recipe deleted', flash[:notice]
+  end
+
+  private
+
+  def prepare_recipes_for_pagination
+    Kaminari.config.default_per_page.times do |i|
+      Recipe.create!(name: "KAMINARI-RECIPE-#{i}")
+    end
   end
 end

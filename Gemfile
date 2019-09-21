@@ -27,6 +27,7 @@ gem 'sprockets-es6' # https://github.com/zurb/foundation-rails/issues/273
 
 gem 'haml'
 gem 'draper', '>= 3.0.0'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
