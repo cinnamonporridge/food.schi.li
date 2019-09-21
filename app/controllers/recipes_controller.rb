@@ -2,7 +2,9 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.ordered_by_name
+    @recipes = Recipe.search(params[:search_query])
+                     .ordered_by_name
+                     .page(params[:page])
   end
 
   def show
