@@ -42,3 +42,13 @@ sugar_cube_portion:
   name: 'Cube'
   nutrition: sugar
   amount: 25
+
+whole_grain_bread_default_portion:
+  name: '100g'
+  nutrition: whole_grain_bread
+  amount: 100
+
+whole_grain_bread_portion:
+  name: 'Whole Grain Bread Portion'
+  nutrition: whole_grain_bread
+  amount: 40
