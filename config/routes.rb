@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :users
   resources :recipes do
     resources :ingredients, except: [:index, :show]
+    resource :copy, only: %i[new create], module: :recipes
   end
 
   resources :nutritions do

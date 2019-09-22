@@ -17,3 +17,8 @@ non_vegan_milk_banana:
   name: Non-vegan milk Banana
   servings: 1
   vegan: false
+
+peanut_butter_bread:
+  name: 'PB Bread'
+  servings: 1
+  vegan: true

@@ -1,0 +1,9 @@
+%h1= "Copy #{@form.recipe.name}"
+
+= simple_form_for @form, url: recipe_copy_path(@recipe) do |f|
+  .vertical-space-xl
+    = f.input :name, label: 'New recipe name', placeholder: 'Enter a new name'
+
+  .button-group
+    = f.submit 'Copy recipe', class: 'primary button'
+    = link_to 'Cancel', recipe_path(@form.recipe), class: 'secondary button'

@@ -69,3 +69,15 @@ sugar:
   fat_saturated: 33
   fiber: 333
   vegan: true
+
+whole_grain_bread:
+  name: 'Whole Grain Bread'
+  unit: <%= Nutrition.units[:gram] %>
+  kcal: 670
+  carbs: 670
+  carbs_sugar_part: 67
+  protein: 670
+  fat: 670
+  fat_saturated: 670
+  fiber: 670
+  vegan: true

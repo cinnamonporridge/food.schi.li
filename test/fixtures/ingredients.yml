@@ -33,3 +33,15 @@ banana_in_non_vegan_milk_banana:
   portion: regular_banana_portion
   amount: 1
   measure: <%= Ingredient.measures[:piece] %>
+
+bread_in_peanut_butter_bread:
+  recipe: peanut_butter_bread
+  portion: whole_grain_bread_portion
+  amount: 1
+  measure: <%= Ingredient.measures[:piece] %>
+
+peanut_butter_in_peanut_butter_bread:
+  recipe: peanut_butter_bread
+  portion: peanut_butter_default_portion
+  amount: 20
+  measure: <%= Ingredient.measures[:unit] %>
