@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_095522) do
+ActiveRecord::Schema.define(version: 2019_09_27_154609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,13 +51,13 @@ ActiveRecord::Schema.define(version: 2019_08_22_095522) do
   create_table "nutritions", force: :cascade do |t|
     t.string "name", null: false
     t.integer "unit", default: 1, null: false
-    t.integer "kcal", default: 0, null: false
-    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
-    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
-    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
-    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
-    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
-    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
+    t.integer "kcal", null: false
+    t.decimal "carbs", precision: 10, scale: 3, null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, null: false
+    t.decimal "protein", precision: 10, scale: 3, null: false
+    t.decimal "fat", precision: 10, scale: 3, null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, null: false
+    t.decimal "fiber", precision: 10, scale: 3, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
