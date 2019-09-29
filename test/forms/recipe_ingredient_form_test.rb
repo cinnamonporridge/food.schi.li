@@ -24,7 +24,7 @@ class RecipeIngredientFormTest < ActiveSupport::TestCase
 
   def sugar_with_unit_params
     {
-      portion_id: portions(:sugar_default_portion).id,
+      portion_name: 'Sugar (100g)',
       amount_in_measure: '300',
       measure: 'unit'
     }
@@ -32,7 +32,7 @@ class RecipeIngredientFormTest < ActiveSupport::TestCase
 
   def sugar_cubes_pieces_params
     {
-      portion_id: portions(:sugar_cube_portion).id,
+      portion_name: 'Sugar Cube (25g)',
       amount_in_measure: '5',
       measure: 'piece'
     }

@@ -24,7 +24,7 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     post "/recipes/#{recipe.id}/ingredients",
       params: {
         recipe_ingredient: {
-          portion_id: '',
+          portion_name: '',
           amount_in_measure: '',
           measure: ''
         }
@@ -35,7 +35,7 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     post "/recipes/#{recipe.id}/ingredients",
       params: {
         recipe_ingredient: {
-          portion_id: ingredient_portion.id,
+          portion_name: 'Sugar (100g)',
           amount_in_measure: '500',
           measure: 'unit'
         }
@@ -52,7 +52,7 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     post "/recipes/#{recipe.id}/ingredients",
       params: {
         recipe_ingredient: {
-          portion_id: ingredient_portion.id,
+          portion_name: 'Sugar Cube (25g)',
           amount_in_measure: '2',
           measure: 'piece'
         }
@@ -72,7 +72,7 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     put "/recipes/#{ingredient.recipe.id}/ingredients/#{ingredient.id}",
       params: {
         recipe_ingredient: {
-          portion_id: ingredient.portion.id,
+          portion_id_selection: 'Milk (100ml)',
           amount_in_measure: '60',
           measure: 'unit'
         }
