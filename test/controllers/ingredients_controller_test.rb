@@ -14,7 +14,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       post recipe_ingredients_path(recipe),
         params: {
           recipe_ingredient: {
-            portion_id: portion.id,
+            portion_name: 'Sugar Cube (25g)',
             amount_in_measure: '1.77',
             measure: 'piece'
           }
@@ -36,7 +36,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       post recipe_ingredients_path(recipe),
         params: {
           recipe_ingredient: {
-            portion_id: portion.id,
+            portion_name: 'Milk (100ml)',
             amount_in_measure: '100',
             measure: 'unit'
           }
@@ -56,7 +56,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       patch recipe_ingredient_path(recipe, old_ingredient),
         params: {
           recipe_ingredient: {
-            portion_id: new_ingredient_portion.id,
+            portion_name: 'Milk (100ml)',
             amount_in_measure: '100',
             measure: 'unit'
           }
@@ -75,7 +75,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       post recipe_ingredients_path(recipe),
         params: {
           recipe_ingredient: {
-            portion_id: vegan_portion.id,
+            portion_name: 'Sugar Cube (25g)',
             amount_in_measure: '1',
             measure: 'piece'
           }
@@ -95,7 +95,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       patch recipe_ingredient_path(recipe, old_ingredient),
         params: {
           recipe_ingredient: {
-            portion_id: new_ingredient_portion.id,
+            portion_name: 'Sugar Cube (25g)',
             amount_in_measure: '100',
             measure: 'unit'
           }
@@ -134,7 +134,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       patch recipe_ingredient_path(recipe, non_vegan_ingredient),
         params: {
           recipe_ingredient: {
-            portion_id: new_ingredient_portion.id,
+            portion_name: 'Peanut Butter (100g)',
             amount_in_measure: '100',
             measure: 'unit'
           }
