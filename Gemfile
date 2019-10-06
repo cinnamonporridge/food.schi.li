@@ -18,9 +18,6 @@ gem 'bootsnap'
 gem 'simple_form'
 gem 'font-awesome-rails'
 
-gem 'chartkick'
-gem 'select2-rails'
-
 gem 'foundation-rails'
 gem 'foundation-datepicker-rails'
 gem 'sprockets-es6' # https://github.com/zurb/foundation-rails/issues/273

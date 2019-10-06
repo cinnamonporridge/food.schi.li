@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require chartkick
 //= require main
 //= require foundation-datepicker
 
