@@ -50,7 +50,7 @@ class My::MealsController < ApplicationController
   private
 
   def meal_params
-    params.require(:meal).permit(:portion_id, :amount_in_measure, :measure)
+    params.require(:meal).permit(:portion_name, :amount_in_measure, :measure)
   end
 
   def set_journal_day

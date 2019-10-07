@@ -1,5 +1,8 @@
 = simple_form_for form, url: [:my, form.meal.journal_day, form.meal] do |f|
-  = f.input :portion_id, collection: PortionDecorator.portions_collection
+  = f.input :portion_name, input_html: { list: :portion_id_list }
+  %datalist#portion_id_list
+    = options_for_select PortionDecorator.portions_collection
+
   = f.input :amount_in_measure
   = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false
 
