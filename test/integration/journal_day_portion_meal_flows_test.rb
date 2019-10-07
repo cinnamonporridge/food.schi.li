@@ -38,7 +38,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     post my_journal_day_meals_path(@february_first),
       params: {
         meal: {
-          portion_id: big_apple_portion.id,
+          portion_name: 'Apple Big Apple (200g)',
           amount_in_measure: '2.5',
           measure: 'piece'
         }
@@ -55,7 +55,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     post my_journal_day_meals_path(@february_first),
       params: {
         meal: {
-          portion_id: milk_portion.id,
+          portion_name: 'Milk (100ml)',
           amount_in_measure: '250',
           measure: 'unit'
         }
