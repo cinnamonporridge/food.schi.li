@@ -7,7 +7,6 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
 
   test 'user adds a default ingredient to a recipe' do
     recipe = recipes(:apple_pie)
-    ingredient_portion = portions(:sugar_default_portion)
     get recipe_path(recipe)
     assert_response :success
 
@@ -23,17 +22,6 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     post "/recipes/#{recipe.id}/ingredients",
          params: {
            recipe_ingredient: {
-             portion_name: '',
-             amount_in_measure: '',
-             measure: ''
-           }
-         }
-    assert_response :success
-    assert_equal 'Invalid input', flash[:error]
-
-    post "/recipes/#{recipe.id}/ingredients",
-         params: {
-           recipe_ingredient: {
              portion_name: 'Sugar (100g)',
              amount_in_measure: '500',
              measure: 'unit'
@@ -45,9 +33,23 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Ingredient added', flash[:notice]
   end
 
+  test 'user submits empty form' do
+    recipe = recipes(:apple_pie)
+
+    post "/recipes/#{recipe.id}/ingredients",
+         params: {
+           recipe_ingredient: {
+             portion_name: '',
+             amount_in_measure: '',
+             measure: ''
+           }
+         }
+    assert_response :success
+    assert_equal 'Invalid input', flash[:error]
+  end
+
   test 'user adds a pieces ingredient to a recipe' do
     recipe = recipes(:apple_pie)
-    ingredient_portion = portions(:sugar_cube_portion)
     post "/recipes/#{recipe.id}/ingredients",
          params: {
            recipe_ingredient: {

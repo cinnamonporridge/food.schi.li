@@ -26,7 +26,7 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'reset password with wrong challenge' do
-    john = reset_password(users(:john))
+    reset_password(users(:john))
     post reset_passwords_path, params: reset_password_form_params('new', 'wrongchallenge')
     assert_response :success
     assert_equal 'The provided challenge is not valid. Please reset your password again.', flash[:warning]

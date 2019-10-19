@@ -12,7 +12,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.primary.button', 'New Recipe'
     assert_select '.search input'
 
-    first_recipe, second_recipe, *rest = css_select('li.food-list-group-item a')
+    first_recipe, second_recipe, *_rest = css_select('li.food-list-group-item a')
 
     assert_equal 'Anchovy Soup', first_recipe.inner_text.strip, 'Anchovy Soup should be listed before Apple Pie'
     assert_equal 'Apple Pie', second_recipe.inner_text.strip, 'Apple Pie should be listed after Anchovy Soup'

@@ -1,3 +1,4 @@
+# rubocop:disable Rails/BulkChangeTable
 class RemoveDefaultsFromNutritions < ActiveRecord::Migration[6.0]
   def up
     change_column :nutritions, :kcal, :integer, null: false, default: nil
@@ -19,3 +20,4 @@ class RemoveDefaultsFromNutritions < ActiveRecord::Migration[6.0]
     change_column :nutritions, :fiber, :decimal, precision: 10, scale: 3, default: '0.0', null: false
   end
 end
+# rubocop:enable Rails/BulkChangeTable

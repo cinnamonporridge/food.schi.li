@@ -17,22 +17,9 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     get new_my_journal_day_meal_path(@february_first)
     assert_response :success
 
-    big_apple_portion = portions(:big_apple_portion)
-
     assert_select 'h1', 'Add portion meal'
     assert_select 'a.secondary.button', 'Cancel'
     assert_select 'input[type="submit"][value="Create Meal"]'
-
-    post my_journal_day_meals_path(@february_first),
-         params: {
-           meal: {
-             portion_id: '',
-             amount_in_measure: '',
-             measure: ''
-           }
-         }
-    assert_response :success
-    assert_equal 'Invalid input', flash[:error]
 
     post my_journal_day_meals_path(@february_first),
          params: {
@@ -48,9 +35,20 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Meal added', flash[:notice]
   end
 
-  test 'daisy adds a new unit portion meal' do
-    milk_portion = portions(:milk_default_portion)
+  test 'daisy submits empty form' do
+    post my_journal_day_meals_path(@february_first),
+         params: {
+           meal: {
+             portion_id: '',
+             amount_in_measure: '',
+             measure: ''
+           }
+         }
+    assert_response :success
+    assert_equal 'Invalid input', flash[:error]
+  end
 
+  test 'daisy adds a new unit portion meal' do
     post my_journal_day_meals_path(@february_first),
          params: {
            meal: {

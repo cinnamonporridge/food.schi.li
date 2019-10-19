@@ -21,7 +21,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   test 'daisy visits journal days index page a year later and changes the time filter' do
     journal_day = journal_days(:daisy_february_first)
 
-    travel_to (journal_day.date + 1.year) do
+    travel_to(journal_day.date + 1.year) do
       get '/my/journal_days'
       assert_response :success
       assert_select 'h1', 'My journal days'

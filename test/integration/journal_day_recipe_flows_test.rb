@@ -8,7 +8,6 @@ class JournalDayRecipeFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'adds a recipe to a journal day' do
-    recipe = recipes(:anchovy_soup)
     get new_my_journal_day_recipe_path(@february_first)
     assert_response :success
 
@@ -36,7 +35,6 @@ class JournalDayRecipeFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy cannot add recipe to johns journal day' do
-    recipe = recipes(:anchovy_soup)
     get new_my_journal_day_recipe_path(@johns_journal_day)
     follow_redirect!
     assert_response :success
@@ -45,7 +43,7 @@ class JournalDayRecipeFlowsTest < ActionDispatch::IntegrationTest
 
     post my_journal_day_recipes_path(@johns_journal_day), params: {
       journal_day_recipe: {
-        recipe_id: recipe.id,
+        recipe_name: 'Anchovy Soup (7 servings)',
         servings: 1
       }
     }

@@ -3,7 +3,7 @@ require 'csv'
 namespace :import do
   desc 'Import nutritions.csv'
   task nutritions: :environment do
-    nutritions_file_path = Rails.root.join('db/data/nutritions.csv')
+    nutritions_file_path = Rails.root.join('db', 'data', 'nutritions.csv')
     CSV.foreach(nutritions_file_path) do |row|
       next if row[0] == 'name'
 

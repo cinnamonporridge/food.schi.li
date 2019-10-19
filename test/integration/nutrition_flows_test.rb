@@ -41,24 +41,6 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
          params: {
            nutrition: {
              unit: 'gram',
-             name: '',
-             kcal: '',
-             carbs: '',
-             carbs_sugar_part: '',
-             protein: '',
-             fat: '',
-             fat_saturated: '',
-             fiber: '',
-             vegan: ''
-           }
-         }
-    assert_response :success
-    assert_equal 'Invalid input', flash[:error]
-
-    post '/nutritions',
-         params: {
-           nutrition: {
-             unit: 'gram',
              name: 'Beetroot',
              kcal: 180,
              carbs: 52,
@@ -75,9 +57,33 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Nutrition added', flash[:notice]
   end
 
+  test 'user submits empty form' do
+    post '/nutritions',
+         params: {
+           nutrition: {
+             unit: 'gram',
+             name: '',
+             kcal: '',
+             carbs: '',
+             carbs_sugar_part: '',
+             protein: '',
+             fat: '',
+             fat_saturated: '',
+             fiber: '',
+             vegan: ''
+           }
+         }
+    assert_response :success
+    assert_equal 'Invalid input', flash[:error]
+  end
+
+  # rubocop:disable Metrics/BlockLength
   test 'user edits a nutrition' do
     get nutrition_path(nutritions(:apple))
-    assert_select '.vegan-icon i.fa-leaf.fa-superlightgrey', { count: 1 }, 'Not vegan icon should be shown before update'
+    assert_select '.vegan-icon i.fa-leaf.fa-superlightgrey',
+                  { count: 1 },
+                  'Not vegan icon should be shown before update'
+
     assert_select 'a', text: 'Edit'
 
     get edit_nutrition_path(nutritions(:apple))
@@ -109,6 +115,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Nutrition updated', flash[:notice]
     assert_select '.vegan-icon i.fa-leaf.fa-green', { count: 1 }, 'Vegan icon should be shown after update'
   end
+  # rubocop:enable Metrics/BlockLength
 
   test 'user cannot delete a nutrition that is used in recipe' do
     get nutrition_path(nutritions(:milk))
@@ -124,7 +131,6 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user cannot delete a nutrition that is used in a meal / journal day' do
-    journal_day = journal_days(:john_january_first)
     nutrition = nutritions(:celery_old)
 
     delete "/nutritions/#{nutrition.id}"
