@@ -1,0 +1,25 @@
+env:
+language: ruby
+cache:
+  bundler: true
+  yarn: true
+  npm: true
+rvm:
+  - 2.6.5
+services:
+  - postgresql
+addons:
+  chrome: stable
+before_install:
+  - "gem update --system"
+  - "gem install bundler"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+  - sudo chown root /opt/google/chrome/chrome-sandbox
+  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+  - "bin/yarn"
+script:
+  - "bin/test"
+
+
