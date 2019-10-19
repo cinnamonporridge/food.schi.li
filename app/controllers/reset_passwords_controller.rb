@@ -12,7 +12,7 @@ class ResetPasswordsController < ApplicationController
     user = User.find_by(reset_password_challenge: @form.challenge)
     return challenge_not_valid_error unless user&.requested_reset_link?
 
-    user.quick_password = @form.password
+    user.password = @form.password
 
     if user.save!
       log_in(user)

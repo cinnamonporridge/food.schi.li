@@ -24,7 +24,9 @@ class Recipe < ApplicationRecord
   end
 
   def sum_of_sustenance(name)
-    ingredients.inject(0.0) { |sum, ingredient| sum += (ingredient.amount * ingredient.nutrition.send(name.to_s)) / 100 }
+    ingredients.inject(0.0) do |sum, ingredient|
+      sum + (ingredient.amount * ingredient.nutrition.send(name.to_s)) / 100
+    end
   end
 
   def macronutrient_data
@@ -37,7 +39,7 @@ class Recipe < ApplicationRecord
   end
 
   def macronutrient_data_serving
-    @macronutrient_data ||= MacronutrientDataService.new(
+    @macronutrient_data_serving ||= MacronutrientDataService.new(
       kcal: serving_kcal,
       carbs: serving_carbs,
       protein: serving_protein,

@@ -2,9 +2,9 @@ class Portion < ApplicationRecord
   PRIMARY_AMOUNT = 100
 
   belongs_to :nutrition
-  has_many :ingredients
-  has_many :recipes, through: :ingredients, dependent: :restrict_with_error
-  has_many :meals, dependent: :restrict_with_error
+  has_many :ingredients, dependent: :restrict_with_exception
+  has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
+  has_many :meals, dependent: :restrict_with_exception
 
   scope :ordered_by_amount, -> { order(amount: :asc) }
   scope :ordered_by_nutrition_name_and_amount, -> {

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.find_or_initialize_by(user_params)
     return user_already_exists_error unless @user.new_record?
 
-    @user.quick_password = SecureRandom.base64(32)
+    @user.password = SecureRandom.base64(32)
 
     if @user.valid?
       PasswordService.reset_link!(@user)

@@ -15,11 +15,11 @@ Rails:
 Metrics/LineLength:
   Max: 120
   Exclude:
-    - 'config/initializers/simple_form.rb'
+    - 'config/initializers/simple_form_foundation.rb'
 
 Metrics/BlockLength:
   Exclude:
-    - 'config/initializers/simple_form.rb'
+    - 'config/initializers/simple_form_foundation.rb'
 
 Metrics/ClassLength:
   Exclude:
