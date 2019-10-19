@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  include Searchable
+
   has_many :ingredients, dependent: :destroy
   has_many :portions, through: :ingredients
 
@@ -10,11 +12,6 @@ class Recipe < ApplicationRecord
   }
 
   scope :ordered_by_name, -> { order(name: :asc) }
-  scope :search, ->(query) {
-    return unless query.present?
-
-    where('UPPER(name) LIKE UPPER(:query)', query: "%#{query}%")
-  }
 
   Nutrition::TYPES.each do |name|
     define_method :"sum_#{name}" do

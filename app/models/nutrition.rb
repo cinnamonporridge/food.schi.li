@@ -1,4 +1,6 @@
 class Nutrition < ApplicationRecord
+  include Searchable
+
   has_many :portions, dependent: :destroy
   has_one :primary_portion, -> { primary }, class_name: 'Portion'
 

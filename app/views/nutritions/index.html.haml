@@ -2,6 +2,8 @@
 
 = link_to 'New nutrition', new_nutrition_path, class: 'primary button'
 
+= render 'layouts/search', form_url: nutritions_path
+
 %ul.nutrition-list-group
   - @nutritions.each do |nutrition|
     %li.nutrition-list-group-item.callout.clickable{ 'data-href': nutrition_path(nutrition) }
