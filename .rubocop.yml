@@ -1,0 +1,45 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/initializers/simple_form.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/initializers/simple_form.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*_test.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false

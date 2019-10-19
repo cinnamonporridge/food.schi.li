@@ -6,8 +6,7 @@ class PortionsController < ApplicationController
     @portion = find_nutrition.portions.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @portion = find_nutrition.portions.new(portion_params)

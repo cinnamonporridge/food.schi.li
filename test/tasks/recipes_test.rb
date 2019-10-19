@@ -11,7 +11,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test 'rake recipes:detect_and_set_vegan' do
-    Recipe.update_all(vegan: false)
+    Recipe.update_all(vegan: false) # rubocop:disable Rails/SkipsModelValidations
 
     assert_changes 'Recipe.where(vegan: true).count', from: 0 do
       Rake::Task['recipes:detect_and_set_vegan'].invoke

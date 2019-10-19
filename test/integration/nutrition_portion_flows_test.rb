@@ -13,22 +13,22 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.secondary.button', 'Cancel'
 
     post "/nutritions/#{nutritions(:apple).id}/portions",
-      params: {
-        portion: {
-          name: '',
-          amount: ''
-        }
-      }
+         params: {
+           portion: {
+             name: '',
+             amount: ''
+           }
+         }
     assert_response :success
     assert_equal 'Invalid input', flash[:error]
 
     post "/nutritions/#{nutritions(:apple).id}/portions",
-      params: {
-        portion: {
-          name: 'Regular apple',
-          amount: '160'
-        }
-      }
+         params: {
+           portion: {
+             name: 'Regular apple',
+             amount: '160'
+           }
+         }
     follow_redirect!
     assert_response :success
     assert_equal 'Portion added', flash[:notice]
@@ -45,12 +45,12 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
 
     # update
     put "/nutritions/#{default_portion.nutrition.id}/portions/#{default_portion.id}",
-      params: {
-        portion: {
-          name: 'Some invalid value',
-          amount: '999'
+        params: {
+          portion: {
+            name: 'Some invalid value',
+            amount: '999'
+          }
         }
-      }
     follow_redirect!
     assert_response :success
     assert_select 'h1', 'Apple'
@@ -75,12 +75,12 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.secondary.button', 'Cancel'
 
     put "/nutritions/#{big_apple.nutrition.id}/portions/#{big_apple.id}",
-      params: {
-        portion: {
-          name: 'Even Bigger Apple',
-          amount: '300'
+        params: {
+          portion: {
+            name: 'Even Bigger Apple',
+            amount: '300'
+          }
         }
-      }
 
     follow_redirect!
     assert_response :success

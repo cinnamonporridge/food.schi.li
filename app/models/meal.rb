@@ -7,7 +7,7 @@ class Meal < ApplicationRecord
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
-  scope :using_nutrition, -> (nutrition) {
+  scope :using_nutrition, ->(nutrition) {
     includes(:portion).where(portions: { nutrition: nutrition })
   }
 
@@ -22,7 +22,8 @@ class Meal < ApplicationRecord
   private
 
   def total_of_sustenance(name)
-    return 0.0 unless portion.present?
-    (amount / 100) * nutrition.send("#{name}".to_sym)
+    return 0.0 if portion.blank?
+
+    (amount / 100) * nutrition.send(name.to_s.to_sym)
   end
 end

@@ -2,12 +2,14 @@ class My::JournalDays::RecipesController < ApplicationController
   before_action :set_journal_day
 
   def new
-    return handle_invalid_access unless @journal_day.present?
+    return handle_invalid_access if @journal_day.blank?
+
     @form = JournalDayRecipeForm.new(@journal_day)
   end
 
   def create
-    return handle_invalid_access unless @journal_day.present?
+    return handle_invalid_access if @journal_day.blank?
+
     @form = JournalDayRecipeForm.new(@journal_day, journal_day_recipe_params)
 
     if @form.valid?

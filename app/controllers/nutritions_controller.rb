@@ -13,8 +13,7 @@ class NutritionsController < ApplicationController
     @nutrition = Nutrition.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @nutrition = Nutrition.new(nutrition_params)
@@ -51,6 +50,7 @@ class NutritionsController < ApplicationController
   end
 
   private
+
   def set_nutrition
     @nutrition = Nutrition.find(params[:id])
   end

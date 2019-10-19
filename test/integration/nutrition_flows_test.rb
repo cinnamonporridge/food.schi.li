@@ -38,38 +38,38 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_input_fields_present
 
     post '/nutritions',
-      params: {
-        nutrition: {
-          unit: 'gram',
-          name: '',
-          kcal: '',
-          carbs: '',
-          carbs_sugar_part: '',
-          protein: '',
-          fat: '',
-          fat_saturated: '',
-          fiber: '',
-          vegan: ''
-        }
-      }
+         params: {
+           nutrition: {
+             unit: 'gram',
+             name: '',
+             kcal: '',
+             carbs: '',
+             carbs_sugar_part: '',
+             protein: '',
+             fat: '',
+             fat_saturated: '',
+             fiber: '',
+             vegan: ''
+           }
+         }
     assert_response :success
     assert_equal 'Invalid input', flash[:error]
 
     post '/nutritions',
-      params: {
-        nutrition: {
-          unit: 'gram',
-          name: 'Beetroot',
-          kcal: 180,
-          carbs: 52,
-          carbs_sugar_part: 4,
-          protein: 12,
-          fat: 88,
-          fat_saturated: 87,
-          fiber: 3,
-          vegan: '1'
-        }
-      }
+         params: {
+           nutrition: {
+             unit: 'gram',
+             name: 'Beetroot',
+             kcal: 180,
+             carbs: 52,
+             carbs_sugar_part: 4,
+             protein: 12,
+             fat: 88,
+             fat_saturated: 87,
+             fiber: 3,
+             vegan: '1'
+           }
+         }
     follow_redirect!
     assert_response :success
     assert_equal 'Nutrition added', flash[:notice]
@@ -89,20 +89,20 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_input_fields_present
 
     put "/nutritions/#{nutritions(:apple).id}",
-      params: {
-        nutrition: {
-          unit: 'gram',
-          name: 'Apfel',
-          kcal: 1,
-          carbs: 1,
-          carbs_sugar_part: 1,
-          protein: 1,
-          fat: 1,
-          fat_saturated: 1,
-          fiber: 1,
-          vegan: '1'
+        params: {
+          nutrition: {
+            unit: 'gram',
+            name: 'Apfel',
+            kcal: 1,
+            carbs: 1,
+            carbs_sugar_part: 1,
+            protein: 1,
+            fat: 1,
+            fat_saturated: 1,
+            fiber: 1,
+            vegan: '1'
+          }
         }
-      }
 
     follow_redirect!
     assert_response :success

@@ -3,7 +3,7 @@ module Searchable
 
   included do
     scope :search, ->(query) {
-      return unless query.present?
+      return if query.blank?
 
       where('UPPER(name) LIKE UPPER(:query)', query: "%#{query}%")
     }

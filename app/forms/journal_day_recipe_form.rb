@@ -8,9 +8,9 @@ class JournalDayRecipeForm
   validate :recipe_exists
 
   def initialize(journal_day, params = {})
-    @journal_day  = journal_day
-    @recipe_name    = params[:recipe_name]
-    @servings     = params[:servings] || 1
+    @journal_day = journal_day
+    @recipe_name = params[:recipe_name]
+    @servings = params[:servings] || 1
   end
 
   def self.model_name
@@ -23,15 +23,13 @@ class JournalDayRecipeForm
 
   def recipe_id
     JournalDayRecipeDecorator.recipes_collection_with_id
-                             .find { |form_recipe_name, id| form_recipe_name == recipe_name }
+                             .find { |form_recipe_name, _id| form_recipe_name == recipe_name }
                              &.last
   end
 
   private
 
   def recipe_exists
-    if recipe.nil?
-      errors.add(:recipe_name, 'Selected recipe does not exist')
-    end
+    errors.add(:recipe_name, 'Selected recipe does not exist') if recipe.nil?
   end
 end

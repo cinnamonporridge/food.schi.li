@@ -4,7 +4,7 @@ class Nutrition < ApplicationRecord
   has_many :portions, dependent: :destroy
   has_one :primary_portion, -> { primary }, class_name: 'Portion'
 
-  TYPES = %i(kcal carbs carbs_sugar_part protein fat fat_saturated fiber)
+  TYPES = %i[kcal carbs carbs_sugar_part protein fat fat_saturated fiber].freeze
 
   scope :ordered_by_name, -> { order(name: :asc) }
 
@@ -44,18 +44,14 @@ class Nutrition < ApplicationRecord
     check_if_in_recipe
     check_if_in_meal
 
-    throw(:abort) if errors.has_key?(:base)
+    throw(:abort) if errors.key?(:base)
   end
 
   def check_if_in_recipe
-    if in_recipes.any?
-      errors.add(:base, "Can't delete nutrition that is still used in a recipe")
-    end
+    errors.add(:base, "Can't delete nutrition that is still used in a recipe") if in_recipes.any?
   end
 
   def check_if_in_meal
-    if in_meals.any?
-      errors.add(:base, "Can't delete nutrition that is still used in a meal")
-    end
+    errors.add(:base, "Can't delete nutrition that is still used in a meal") if in_meals.any?
   end
 end

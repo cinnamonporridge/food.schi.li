@@ -1,5 +1,4 @@
 class ResetPasswordsController < ApplicationController
-
   skip_before_action :authenticate_user!, only: [:new, :create]
 
   def new
@@ -14,7 +13,7 @@ class ResetPasswordsController < ApplicationController
     return challenge_not_valid_error unless user&.requested_reset_link?
 
     user.quick_password = @form.password
-    
+
     if user.save!
       log_in(user)
       user.clear_reset_password!
@@ -33,7 +32,7 @@ class ResetPasswordsController < ApplicationController
   end
 
   def reset_link_is_valid?
-    @user && @user.requested_reset_link?
+    @user&.requested_reset_link?
   end
 
   def invalid_form_error

@@ -7,15 +7,13 @@ class RecipesController < ApplicationController
                      .page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @recipe = Recipe.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @recipe = Recipe.new(recipe_params)

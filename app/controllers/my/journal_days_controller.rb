@@ -1,5 +1,5 @@
 class My::JournalDaysController < ApplicationController
-  before_action :find_and_decorate_journal_day, only: %i(show edit update destroy)
+  before_action :find_and_decorate_journal_day, only: %i[show edit update destroy]
 
   def index
     @journal_days = JournalDay.of(current_user)
@@ -9,7 +9,7 @@ class My::JournalDaysController < ApplicationController
   end
 
   def show
-    return handle_invalid_access unless @journal_day.present?
+    return handle_invalid_access if @journal_day.blank?
   end
 
   def new
@@ -29,11 +29,11 @@ class My::JournalDaysController < ApplicationController
   end
 
   def edit
-    return handle_invalid_access unless @journal_day.present?
+    return handle_invalid_access if @journal_day.blank?
   end
 
   def update
-    return handle_invalid_access unless @journal_day.present?
+    return handle_invalid_access if @journal_day.blank?
 
     if @journal_day.update(journal_day_params)
       redirect_to my_journal_day_path(@journal_day), notice: 'Journal day updated'
@@ -44,7 +44,8 @@ class My::JournalDaysController < ApplicationController
   end
 
   def destroy
-    return handle_invalid_access unless @journal_day.present?
+    return handle_invalid_access if @journal_day.blank?
+
     @journal_day.destroy
     redirect_to my_journal_days_path, notice: 'Journal day deleted'
   end

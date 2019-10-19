@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     login_user(users(:daisy))
     @february_first = journal_days(:daisy_february_first)
@@ -25,24 +24,24 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'input[type="submit"][value="Create Meal"]'
 
     post my_journal_day_meals_path(@february_first),
-      params: {
-        meal: {
-          portion_id: '',
-          amount_in_measure: '',
-          measure: ''
-        }
-      }
+         params: {
+           meal: {
+             portion_id: '',
+             amount_in_measure: '',
+             measure: ''
+           }
+         }
     assert_response :success
     assert_equal 'Invalid input', flash[:error]
 
     post my_journal_day_meals_path(@february_first),
-      params: {
-        meal: {
-          portion_name: 'Apple Big Apple (200g)',
-          amount_in_measure: '2.5',
-          measure: 'piece'
-        }
-      }
+         params: {
+           meal: {
+             portion_name: 'Apple Big Apple (200g)',
+             amount_in_measure: '2.5',
+             measure: 'piece'
+           }
+         }
     follow_redirect!
     assert_response :success
 
@@ -53,13 +52,13 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     milk_portion = portions(:milk_default_portion)
 
     post my_journal_day_meals_path(@february_first),
-      params: {
-        meal: {
-          portion_name: 'Milk (100ml)',
-          amount_in_measure: '250',
-          measure: 'unit'
-        }
-      }
+         params: {
+           meal: {
+             portion_name: 'Milk (100ml)',
+             amount_in_measure: '250',
+             measure: 'unit'
+           }
+         }
     follow_redirect!
     assert_response :success
 
@@ -88,13 +87,13 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'That journal day does not exist or does not belong to you', flash[:warning]
 
     post my_journal_day_meals_path(johns_journal_day),
-      params: {
-        meal: {
-          portion_id: milk_portion.id,
-          amount_in_measure: '250',
-          measure: 'unit'
-        }
-      }
+         params: {
+           meal: {
+             portion_id: milk_portion.id,
+             amount_in_measure: '250',
+             measure: 'unit'
+           }
+         }
     follow_redirect!
     assert_response :success
 
@@ -112,13 +111,13 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'That meal does not exist or does not belong to you', flash[:warning]
 
     patch my_journal_day_meal_path(johns_meal.journal_day, johns_meal),
-      params: {
-        meal: {
-          portion_id: milk_portion.id,
-          amount_in_measure: '250',
-          measure: 'unit'
-        }
-      }
+          params: {
+            meal: {
+              portion_id: milk_portion.id,
+              amount_in_measure: '250',
+              measure: 'unit'
+            }
+          }
     follow_redirect!
     assert_response :success
 

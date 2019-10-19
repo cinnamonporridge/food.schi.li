@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class JournalDayRecipeFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     login_user(users(:daisy))
     @february_first = journal_days(:daisy_february_first)

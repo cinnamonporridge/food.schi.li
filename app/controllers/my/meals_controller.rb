@@ -1,16 +1,18 @@
 class My::MealsController < ApplicationController
-  before_action :set_journal_day, only: %i(new create)
-  before_action :set_meal, only: %i(edit update destroy)
+  before_action :set_journal_day, only: %i[new create]
+  before_action :set_meal, only: %i[edit update destroy]
 
   def new
-    return handle_invalid_journal_day_access unless @journal_day.present?
+    return handle_invalid_journal_day_access if @journal_day.blank?
+
     new_meal = @journal_day.meals.new
 
     @form = MealPortionForm.new(meal: new_meal)
   end
 
   def create
-    return handle_invalid_journal_day_access unless @journal_day.present?
+    return handle_invalid_journal_day_access if @journal_day.blank?
+
     new_meal = @journal_day.meals.new
     @form = MealPortionForm.new(meal_params.merge(meal: new_meal))
 
@@ -23,13 +25,13 @@ class My::MealsController < ApplicationController
   end
 
   def edit
-    return handle_invalid_meal_access unless @meal.present?
+    return handle_invalid_meal_access if @meal.blank?
 
     @form = MealPortionForm.new(meal: @meal)
   end
 
   def update
-    return handle_invalid_meal_access unless @meal.present?
+    return handle_invalid_meal_access if @meal.blank?
 
     @form = MealPortionForm.new(meal_params.merge(meal: @meal))
 
@@ -42,7 +44,8 @@ class My::MealsController < ApplicationController
   end
 
   def destroy
-    return handle_invalid_meal_access unless @meal.present?
+    return handle_invalid_meal_access if @meal.blank?
+
     @meal.destroy
     redirect_to my_journal_day_path(@meal.journal_day), notice: 'Meal deleted'
   end

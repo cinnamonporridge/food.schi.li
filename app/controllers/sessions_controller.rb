@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :forward_logged_in!, except: [:destroy]
 
@@ -13,12 +12,12 @@ class SessionsController < ApplicationController
 
     @user = User.find_by(email: @form.email)
 
-    if @user && @user.authenticate(login_params[:password])
+    if @user&.authenticate(login_params[:password])
       log_in(@user)
-      flash[:success] = "Login successful"
+      flash[:success] = 'Login successful'
       redirect_to my_journal_days_path
     else
-      flash.now[:warning] = "Invalid email or password"
+      flash.now[:warning] = 'Invalid email or password'
       render :new
     end
   end
@@ -30,7 +29,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def login_params 
+  def login_params
     params.require(:login_form).permit(:email, :password)
   end
 

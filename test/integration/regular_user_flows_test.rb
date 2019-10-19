@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class RegularUserFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     login_user(users(:john))
   end

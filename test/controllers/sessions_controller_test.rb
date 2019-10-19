@@ -34,21 +34,20 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def login_form_wrong_params
-    { 
+    {
       login_form: { email: 'john@foo.bar', password: 'xxx' }
     }
   end
 
   def login_form_params_missing_email
-    { 
+    {
       login_form: { email: '', password: 'abc' }
     }
   end
 
   def login_form_params_missing_password
-    { 
+    {
       login_form: { email: 'john@foo.bar', password: '' }
     }
   end
-
 end

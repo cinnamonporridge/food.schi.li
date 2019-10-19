@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :authenticate_admin_user!
 
   def index
@@ -17,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.find_or_initialize_by(user_params)
     return user_already_exists_error unless @user.new_record?
+
     @user.quick_password = SecureRandom.base64(32)
 
     if @user.valid?
@@ -42,11 +42,11 @@ class UsersController < ApplicationController
 
     if user.is_admin?
       flash.now[:alert] = 'Cannot delete an admin'
-    else 
+    else
       flash.now[:success] = 'User deleted'
       user.destroy
     end
-    redirect_to users_path 
+    redirect_to users_path
   end
 
   private

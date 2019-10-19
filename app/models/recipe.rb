@@ -7,8 +7,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :servings, presence: true
 
-  scope :using_nutrition, -> (nutrition) {
-    includes(:portions).where(portions: { nutrition: nutrition } )
+  scope :using_nutrition, ->(nutrition) {
+    includes(:portions).where(portions: { nutrition: nutrition })
   }
 
   scope :ordered_by_name, -> { order(name: :asc) }
@@ -24,7 +24,7 @@ class Recipe < ApplicationRecord
   end
 
   def sum_of_sustenance(name)
-    ingredients.inject(0.0) { |sum, ingredient| sum += (ingredient.amount * ingredient.nutrition.send("#{name}")) / 100 }
+    ingredients.inject(0.0) { |sum, ingredient| sum += (ingredient.amount * ingredient.nutrition.send(name.to_s)) / 100 }
   end
 
   def macronutrient_data
