@@ -1,0 +1,8 @@
+.vertical-space-xl.search
+  .grid-x
+    .cell.small-12.medium-6
+      = form_with url: form_url, method: :get, local: true do |f|
+        .input-group
+          = f.text_field :search_query, class: 'input-group-field', placeholder: 'Search', value: params[:search_query]
+          .input-group-button
+            = f.submit 'Search', class: 'button'
