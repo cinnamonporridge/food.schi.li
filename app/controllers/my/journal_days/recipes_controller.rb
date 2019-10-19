@@ -3,7 +3,7 @@ class My::JournalDays::RecipesController < ApplicationController
 
   def new
     return handle_invalid_access unless @journal_day.present?
-    @form = JournalDayRecipeForm.new(@journal_day).decorate
+    @form = JournalDayRecipeForm.new(@journal_day)
   end
 
   def create
@@ -15,7 +15,6 @@ class My::JournalDays::RecipesController < ApplicationController
       redirect_to [:my, @journal_day], notice: 'Recipe added'
     else
       flash.now[:error] = 'Invalid input'
-      @form = @form.decorate
       render :new
     end
   end
@@ -23,7 +22,7 @@ class My::JournalDays::RecipesController < ApplicationController
   private
 
   def journal_day_recipe_params
-    params.require(:journal_day_recipe).permit(:recipe_id, :servings)
+    params.require(:journal_day_recipe).permit(:recipe_name, :servings)
   end
 
   def set_journal_day

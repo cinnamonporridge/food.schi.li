@@ -21,4 +21,23 @@ class JournalDayTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Wednesday, 01.02.2017'
     assert_text 'Peanut Butter'
   end
+
+  test 'user adds a recipe to journal day' do
+    login_user(users(:daisy))
+
+    journal_day = journal_days(:daisy_february_first)
+
+    visit my_journal_day_path(journal_day)
+
+    assert_no_text 'Banana'
+
+    click_on 'Add recipe meal'
+
+    select 'Vegan Peanut Butter Banana (1 servings)', from: 'Recipe'
+    fill_in 'Servings', with: '1'
+    click_on 'Add recipe'
+
+    assert_selector 'h1', text: 'Wednesday, 01.02.2017'
+    assert_text 'Banana'
+  end
 end

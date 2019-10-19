@@ -1,8 +1,10 @@
 %h1 Add recipe to journal day
 
-= simple_form_for [:my, @form] do |form|
-  = form.input :recipe_id, collection: @form.recipes_collection
-  = form.input :servings
+= simple_form_for [:my, @form] do |f|
+  = f.input :recipe_name, input_html: { list: :recipe_name_list }, label: 'Recipe'
+  %datalist#recipe_name_list
+    = options_for_select JournalDayRecipeDecorator.recipes_collection
+  = f.input :servings
 
-  = form.submit 'Add recipe', class: 'primary button'
+  = f.submit 'Add recipe', class: 'primary button'
   = link_to 'Cancel', :back, class: 'secondary button'

@@ -17,7 +17,7 @@ class JournalDayRecipeFlowsTest < ActionDispatch::IntegrationTest
 
     post my_journal_day_recipes_path(@february_first), params: {
       journal_day_recipe: {
-        recipe_id: '',
+        recipe_name: '',
         servings: 0
       }
     }
@@ -26,7 +26,7 @@ class JournalDayRecipeFlowsTest < ActionDispatch::IntegrationTest
 
     post my_journal_day_recipes_path(@february_first), params: {
       journal_day_recipe: {
-        recipe_id: recipe.id,
+        recipe_name: 'Anchovy Soup (7 servings)',
         servings: 3
       }
     }

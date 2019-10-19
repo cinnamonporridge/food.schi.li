@@ -1,20 +1,16 @@
 class JournalDayRecipeForm
   include ActiveModel::Model
 
-  attr_reader :journal_day, :recipe_id, :servings
+  attr_reader :journal_day, :recipe_name, :servings
 
   validates_numericality_of :servings, greater_than: 0
 
-  validate :existence_of_recipe
+  validate :recipe_exists
 
   def initialize(journal_day, params = {})
     @journal_day  = journal_day
-    @recipe_id    = params[:recipe_id]
+    @recipe_name    = params[:recipe_name]
     @servings     = params[:servings] || 1
-  end
-
-  def decorate
-    JournalDayRecipeFormDecorator.new(self)
   end
 
   def self.model_name
@@ -25,11 +21,17 @@ class JournalDayRecipeForm
     @recipe ||= Recipe.find_by(id: recipe_id)
   end
 
+  def recipe_id
+    JournalDayRecipeDecorator.recipes_collection_with_id
+                             .find { |form_recipe_name, id| form_recipe_name == recipe_name }
+                             &.last
+  end
+
   private
 
-  def existence_of_recipe
+  def recipe_exists
     if recipe.nil?
-      errors.add(:recipe_id, 'Selected recipe does not exist')
+      errors.add(:recipe_name, 'Selected recipe does not exist')
     end
   end
 end
