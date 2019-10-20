@@ -19,8 +19,6 @@ before_script:
   - sudo chown root /opt/google/chrome/chrome-sandbox
   - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
   - "bin/yarn"
-  - "bundle exec rubocop -v"
-  - "bundle exec rubocop --debug db/migrate/20190927154609_remove_defaults_from_nutritions.rb"
 script:
   - "bin/test"
 
