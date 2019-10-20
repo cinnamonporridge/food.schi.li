@@ -34,7 +34,6 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Oops, something went wrong', flash[:warning]
   end
 
-
   private
 
   def reset_password_form_params
@@ -72,5 +71,4 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
       magic_link: 'Send me a magic link'
     }
   end
-
 end

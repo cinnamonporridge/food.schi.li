@@ -1,5 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
@@ -17,13 +17,13 @@ class ActiveSupport::TestCase
   end
 
   def last_email
-    email = ActionMailer::Base.deliveries.last
+    ActionMailer::Base.deliveries.last
   end
 
   private
 
   def login_form_params(user_email, password)
-    { 
+    {
       login_form: { email: user_email, password: password }
     }
   end

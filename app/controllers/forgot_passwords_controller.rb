@@ -1,5 +1,4 @@
 class ForgotPasswordsController < ApplicationController
-
   skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :forward_logged_in!
 
@@ -14,11 +13,9 @@ class ForgotPasswordsController < ApplicationController
 
     @user = User.find_by(email: @form.email)
     if params[:magic_link]
-      PasswordService.magic_link!(@user)
-      flash[:success] = 'A magic link has been sent to your email address'
+      handle_magic_link(@user)
     else
-      PasswordService.reset_link!(@user)
-      flash[:success] = 'A reset link has been sent to your email address'
+      handle_reset_link(@user)
     end
 
     redirect_to login_url
@@ -33,5 +30,15 @@ class ForgotPasswordsController < ApplicationController
   def invalid_input_error
     flash.now[:warning] = 'Oops, something went wrong'
     render :new
+  end
+
+  def handle_magic_link(user)
+    PasswordService.magic_link!(user)
+    flash[:success] = 'A magic link has been sent to your email address'
+  end
+
+  def handle_reset_link(user)
+    PasswordService.reset_link!(user)
+    flash[:success] = 'A reset link has been sent to your email address'
   end
 end

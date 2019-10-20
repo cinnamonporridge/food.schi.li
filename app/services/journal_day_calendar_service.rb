@@ -5,11 +5,11 @@ class JournalDayCalendarService
   end
 
   def next_journal_day
-    @calculated_next_journal_day ||= first_journal_day_after(@journal_day.date)
+    @next_journal_day ||= first_journal_day_after(@journal_day.date)
   end
 
   def previous_journal_day
-    @calculated_previous_journal_day ||= first_journal_day_before(@journal_day.date)
+    @previous_journal_day ||= first_journal_day_before(@journal_day.date)
   end
 
   private

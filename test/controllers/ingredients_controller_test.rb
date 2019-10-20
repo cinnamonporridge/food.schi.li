@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class IngredientsControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     login_user(users(:john))
   end
@@ -12,13 +11,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference('Ingredient.count') do
       post recipe_ingredients_path(recipe),
-        params: {
-          recipe_ingredient: {
-            portion_name: 'Sugar Cube (25g)',
-            amount_in_measure: '1.77',
-            measure: 'piece'
-          }
-        }
+           params: {
+             recipe_ingredient: {
+               portion_name: 'Sugar Cube (25g)',
+               amount_in_measure: '1.77',
+               measure: 'piece'
+             }
+           }
     end
 
     # 1.77 pieces of 25g sugar cube = 44.25g
@@ -34,13 +33,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_changes 'recipe.vegan?', from: true, to: false do
       post recipe_ingredients_path(recipe),
-        params: {
-          recipe_ingredient: {
-            portion_name: 'Milk (100ml)',
-            amount_in_measure: '100',
-            measure: 'unit'
-          }
-        }
+           params: {
+             recipe_ingredient: {
+               portion_name: 'Milk (100ml)',
+               amount_in_measure: '100',
+               measure: 'unit'
+             }
+           }
       recipe.reload
     end
   end
@@ -54,13 +53,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_changes 'recipe.vegan?', from: true, to: false do
       patch recipe_ingredient_path(recipe, old_ingredient),
-        params: {
-          recipe_ingredient: {
-            portion_name: 'Milk (100ml)',
-            amount_in_measure: '100',
-            measure: 'unit'
-          }
-        }
+            params: {
+              recipe_ingredient: {
+                portion_name: 'Milk (100ml)',
+                amount_in_measure: '100',
+                measure: 'unit'
+              }
+            }
       recipe.reload
     end
   end
@@ -73,13 +72,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_changes 'recipe.vegan?' do
       post recipe_ingredients_path(recipe),
-        params: {
-          recipe_ingredient: {
-            portion_name: 'Sugar Cube (25g)',
-            amount_in_measure: '1',
-            measure: 'piece'
-          }
-        }
+           params: {
+             recipe_ingredient: {
+               portion_name: 'Sugar Cube (25g)',
+               amount_in_measure: '1',
+               measure: 'piece'
+             }
+           }
       recipe.reload
     end
   end
@@ -93,13 +92,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_changes 'recipe.vegan?' do
       patch recipe_ingredient_path(recipe, old_ingredient),
-        params: {
-          recipe_ingredient: {
-            portion_name: 'Sugar Cube (25g)',
-            amount_in_measure: '100',
-            measure: 'unit'
-          }
-        }
+            params: {
+              recipe_ingredient: {
+                portion_name: 'Sugar Cube (25g)',
+                amount_in_measure: '100',
+                measure: 'unit'
+              }
+            }
       recipe.reload
     end
   end
@@ -112,13 +111,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_changes 'recipe.vegan?' do
       post recipe_ingredients_path(recipe),
-        params: {
-          recipe_ingredient: {
-            portion_id: new_ingredient_portion.id,
-            amount_in_measure: '1',
-            measure: 'piece'
-          }
-        }
+           params: {
+             recipe_ingredient: {
+               portion_id: new_ingredient_portion.id,
+               amount_in_measure: '1',
+               measure: 'piece'
+             }
+           }
       recipe.reload
     end
   end
@@ -132,13 +131,13 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_changes 'recipe.vegan?', from: false, to: true do
       patch recipe_ingredient_path(recipe, non_vegan_ingredient),
-        params: {
-          recipe_ingredient: {
-            portion_name: 'Peanut Butter (100g)',
-            amount_in_measure: '100',
-            measure: 'unit'
-          }
-        }
+            params: {
+              recipe_ingredient: {
+                portion_name: 'Peanut Butter (100g)',
+                amount_in_measure: '100',
+                measure: 'unit'
+              }
+            }
       recipe.reload
     end
   end

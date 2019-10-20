@@ -1,5 +1,4 @@
 class ResetPasswordsController < ApplicationController
-
   skip_before_action :authenticate_user!, only: [:new, :create]
 
   def new
@@ -13,17 +12,12 @@ class ResetPasswordsController < ApplicationController
     user = User.find_by(reset_password_challenge: @form.challenge)
     return challenge_not_valid_error unless user&.requested_reset_link?
 
-    user.quick_password = @form.password
-    
-    if user.save!
-      log_in(user)
-      user.clear_reset_password!
-      flash[:success] = 'Password successfully reset and logged in'
-      redirect_to my_journal_days_path
-    else
-      flash.now[:alert] = 'Oops, something went wrong'
-      render :new
-    end
+    user.password = @form.password
+
+    return handle_success(user) if user.save!
+
+    flash.now[:alert] = 'Oops, something went wrong'
+    render :new
   end
 
   private
@@ -33,7 +27,7 @@ class ResetPasswordsController < ApplicationController
   end
 
   def reset_link_is_valid?
-    @user && @user.requested_reset_link?
+    @user&.requested_reset_link?
   end
 
   def invalid_form_error
@@ -44,5 +38,12 @@ class ResetPasswordsController < ApplicationController
   def challenge_not_valid_error
     flash.now[:warning] = 'The provided challenge is not valid. Please reset your password again.'
     render :new
+  end
+
+  def handle_success(user)
+    log_in(user)
+    user.clear_reset_password!
+    flash[:success] = 'Password successfully reset and logged in'
+    redirect_to my_journal_days_path
   end
 end

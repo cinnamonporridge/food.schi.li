@@ -11,7 +11,7 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     end
 
     # expected portions
-    milk_portion  = portions(:milk_default_portion)
+    milk_portion = portions(:milk_default_portion)
     apple_portion = portions(:big_apple_portion)
 
     journal_day.meals.reload
@@ -22,13 +22,13 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     assert milk_portion_on_journal_day.present?
     assert apple_portion_on_journal_day.present?
 
-    assert_equal recipe, milk_portion_on_journal_day.recipe , 'Milk should come from the apple pie recipe'
+    assert_equal recipe, milk_portion_on_journal_day.recipe, 'Milk should come from the apple pie recipe'
     assert_equal recipe, apple_portion_on_journal_day.recipe, 'Apple should come from the apple pie recipe'
 
-    assert_equal 'unit'  , milk_portion_on_journal_day.measure
-    assert_equal 'piece' , apple_portion_on_journal_day.measure
+    assert_equal 'unit', milk_portion_on_journal_day.measure
+    assert_equal 'piece', apple_portion_on_journal_day.measure
 
-    assert_equal 33.33  , milk_portion_on_journal_day.amount.round(2).to_f
-    assert_equal 5.0    , apple_portion_on_journal_day.amount.round(2).to_f
+    assert_equal 33.33, milk_portion_on_journal_day.amount.round(2).to_f
+    assert_equal 5.0, apple_portion_on_journal_day.amount.round(2).to_f
   end
 end

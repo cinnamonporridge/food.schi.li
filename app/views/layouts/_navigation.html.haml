@@ -8,7 +8,7 @@
   = link_to nutritions_path do
     = fa_icon 'cogs'
     Foods
-  - if current_user.is_admin?
+  - if @current_user&.is_admin?
     = link_to users_path do
       = fa_icon 'users'
       Users

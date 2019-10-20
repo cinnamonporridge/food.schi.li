@@ -9,7 +9,7 @@ class NutritionDecorator < Draper::Decorator
   end
 
   def units_collection
-    Nutrition.units.map { |name,_v|  [name.capitalize, name] }
+    Nutrition.units.map { |name, _v| [name.capitalize, name] }
   end
 
   def nutrition_collection

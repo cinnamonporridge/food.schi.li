@@ -6,13 +6,14 @@ class JournalDayDecorator < Draper::Decorator
   end
 
   def display_date
-    return unless model.date.present?
+    return if model.date.blank?
+
     I18n.l model.date
   end
 
   def date_input_html
     {
-      value: self.display_date,
+      value: display_date,
       class: 'input-group-field',
       'data-date-format': 'dd.mm.yyyy'
     }
@@ -75,6 +76,6 @@ class JournalDayDecorator < Draper::Decorator
   private
 
   def journal_day_calendar_service
-    @service ||= JournalDayCalendarService.new(model)
+    @journal_day_calendar_service ||= JournalDayCalendarService.new(model)
   end
 end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class JournalDayFlowTest < ActionDispatch::IntegrationTest
-
   def setup
     login_user(users(:daisy))
   end
@@ -15,24 +14,24 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
       assert_select 'h1', 'My journal days'
       assert_select 'a.primary.button', 'Add Journal Day'
 
-      assert_select 'ul.journal-days-list-group li', { count: users(:daisy).journal_days.count }
+      assert_select 'ul.journal-days-list-group li', count: users(:daisy).journal_days.count
     end
   end
 
   test 'daisy visits journal days index page a year later and changes the time filter' do
     journal_day = journal_days(:daisy_february_first)
 
-    travel_to (journal_day.date + 1.year) do
+    travel_to(journal_day.date + 1.year) do
       get '/my/journal_days'
       assert_response :success
       assert_select 'h1', 'My journal days'
       assert_select 'a.primary.button', 'Add Journal Day'
 
-      assert_select 'ul.journal-days-list-group li', { count: 0 }
+      assert_select 'ul.journal-days-list-group li', count: 0
 
       get my_journal_days_path(time: :year)
       assert_response :success
-      assert_select 'ul.journal-days-list-group li', { count: 3 }
+      assert_select 'ul.journal-days-list-group li', count: 3
     end
   end
 
@@ -43,8 +42,8 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Wednesday, 01.02.2017'
     assert_select 'h2', 'Meals'
     assert_select 'h2', 'Nutritions'
-    assert_select 'a.small.hollow.button.previous-journal-day', { count: 0 }
-    assert_select 'a.small.hollow.button.next-journal-day', { count: 1 }
+    assert_select 'a.small.hollow.button.previous-journal-day', count: 0
+    assert_select 'a.small.hollow.button.next-journal-day', count: 1
     assert_select 'a.warning.button', 'Edit'
     assert_select 'a.alert.button', 'Delete'
 
@@ -64,11 +63,11 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'a.secondary.button', 'Cancel'
 
     post '/my/journal_days/',
-      params: {
-        journal_day: {
-          date: '02.02.2222'
-        }
-      }
+         params: {
+           journal_day: {
+             date: '02.02.2222'
+           }
+         }
     follow_redirect!
     assert_response :success
   end
@@ -82,22 +81,22 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'a.secondary.button', 'Cancel'
 
     patch "/my/journal_days/#{journal_days(:daisy_february_first).id}/",
-      params: {
-        journal_day: {
-          date: '02.02.2222'
-        }
-      }
+          params: {
+            journal_day: {
+              date: '02.02.2222'
+            }
+          }
     follow_redirect!
     assert_response :success
   end
 
   test 'daisy tries to add a journal day that already exists' do
     patch "/my/journal_days/#{journal_days(:daisy_february_first).id}/",
-      params: {
-        journal_day: {
-          date: '02.02.2017'
-        }
-      }
+          params: {
+            journal_day: {
+              date: '02.02.2017'
+            }
+          }
     assert_response :success
 
     assert_equal 'Invalid input', flash[:error]
@@ -129,11 +128,11 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'My journal days'
 
     patch "/my/journal_days/#{journal_days(:john_january_first).id}/",
-      params: {
-        journal_day: {
-          date: '02.02.2222'
-        }
-      }
+          params: {
+            journal_day: {
+              date: '02.02.2222'
+            }
+          }
     follow_redirect!
     assert_response :success
     assert_equal 'That journal day does not exist or does not belong to you', flash[:warning]

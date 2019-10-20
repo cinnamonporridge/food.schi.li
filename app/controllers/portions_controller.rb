@@ -6,8 +6,7 @@ class PortionsController < ApplicationController
     @portion = find_nutrition.portions.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @portion = find_nutrition.portions.new(portion_params)
@@ -42,11 +41,11 @@ class PortionsController < ApplicationController
   end
 
   def set_portion
-    @portion ||= Portion.find(params[:id])
+    @portion = Portion.find(params[:id])
   end
 
   def find_nutrition
-    @nutrition ||= Nutrition.find(params[:nutrition_id])
+    @find_nutrition ||= Nutrition.find(params[:nutrition_id])
   end
 
   def handle_default_portion

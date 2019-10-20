@@ -60,7 +60,7 @@ class MacronutrientDataService
   end
 
   def carbs_percentage
-    carbs_percentage ||= percentage_of_value(carbs)
+    @carbs_percentage ||= percentage_of_value(carbs)
   end
 
   def protein_percentage

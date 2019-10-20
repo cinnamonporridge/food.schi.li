@@ -1,41 +1,35 @@
 class IngredientsController < ApplicationController
+  before_action :initialize_ingredient, only: %w[new create]
+  before_action :set_ingredient, only: %w[edit update destroy]
+
   def new
-    @form = RecipeIngredientForm.new(ingredient: find_recipe.ingredients.new)
+    @form = RecipeIngredientForm.new(ingredient: @ingredient)
   end
 
   def edit
-    @form = RecipeIngredientForm.new(ingredient: find_ingredient)
+    @form = RecipeIngredientForm.new(ingredient: @ingredient)
   end
 
   def create
-    ingredient = find_recipe.ingredients.new
-    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: ingredient))
+    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
-    if @form.valid? && ingredient.update(@form.values)
-      update_recipe_vegan
-      redirect_to ingredient.recipe, notice: 'Ingredient added'
-    else
-      flash.now[:error] = 'Invalid input'
-      render :new
-    end
+    return handle_success('Ingredient added') if @form.valid? && @ingredient.update(@form.values)
+
+    flash.now[:error] = 'Invalid input'
+    render :new
   end
 
   def update
-    ingredient = find_ingredient
-    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: ingredient))
-    ingredient.update(@form.values)
+    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
-    if @form.valid? && ingredient.update(@form.values)
-      update_recipe_vegan
-      redirect_to @ingredient.recipe, notice: 'Ingredient updated'
-    else
-      flash.now[:error] = 'Invalid input'
-      render :edit
-    end
+    return handle_success('Ingredient updated') if @form.valid? && @ingredient.update(@form.values)
+
+    flash.now[:error] = 'Invalid input'
+    render :edit
   end
 
   def destroy
-    find_ingredient.destroy
+    @ingredient.destroy
     update_recipe_vegan
     redirect_to @ingredient.recipe, notice: 'Ingredient deleted'
   end
@@ -46,21 +40,30 @@ class IngredientsController < ApplicationController
     params.require(:recipe_ingredient).permit(:portion_name, :amount_in_measure, :measure)
   end
 
-  def find_ingredient
-    @ingredient ||= Ingredient.find(params[:id])
+  def initialize_ingredient
+    @ingredient = recipe.ingredients.new
   end
 
-  def find_recipe
+  def set_ingredient
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def recipe
     @recipe ||= Recipe.find(params[:recipe_id])
   end
 
-  def find_portion
-    @portion ||= Portion.find_by(id: ingredient_params[:portion_id])
-  end
+  # def find_portion
+  #   @find_portion ||= Portion.find_by(id: ingredient_params[:portion_id])
+  # end
 
   def update_recipe_vegan
-    find_recipe.reload
-    find_recipe.detect_vegan
-    find_recipe.save
+    recipe.reload
+    recipe.detect_vegan
+    recipe.save
+  end
+
+  def handle_success(message)
+    update_recipe_vegan
+    redirect_to @ingredient.recipe, notice: message
   end
 end

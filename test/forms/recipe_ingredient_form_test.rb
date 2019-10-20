@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class RecipeIngredientFormTest < ActiveSupport::TestCase
-
   def setup
     @new_ingredient = recipes(:apple_pie).ingredients.new
   end
@@ -38,4 +37,3 @@ class RecipeIngredientFormTest < ActiveSupport::TestCase
     }
   end
 end
-

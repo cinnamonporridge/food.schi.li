@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class RecipeFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     login_user(users(:john))
   end
@@ -13,10 +12,10 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.primary.button', 'New Recipe'
     assert_select '.search input'
 
-    first_recipe, second_recipe, *rest = css_select('li.food-list-group-item a')
+    first_recipe, second_recipe, *_rest = css_select('li.food-list-group-item a')
 
     assert_equal 'Anchovy Soup', first_recipe.inner_text.strip, 'Anchovy Soup should be listed before Apple Pie'
-    assert_equal 'Apple Pie'   , second_recipe.inner_text.strip, 'Apple Pie should be listed after Anchovy Soup'
+    assert_equal 'Apple Pie', second_recipe.inner_text.strip, 'Apple Pie should be listed after Anchovy Soup'
   end
 
   test 'user sees pagination on index' do
@@ -50,7 +49,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.alert.button', 'Delete'
 
     expected_header2 = ['Facts', 'Ingredients for 6 servings', 'Nutritions', 'Macronutrients']
-    css_select('h2').each_with_index do |header2,i|
+    css_select('h2').each_with_index do |header2, i|
       assert_equal expected_header2[i], header2.text.strip
     end
   end
@@ -63,22 +62,22 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.secondary.button', 'Cancel'
 
     post '/recipes',
-      params: {
-        recipe: {
-          name: '',
-          servings: ''
-        }
-      }
+         params: {
+           recipe: {
+             name: '',
+             servings: ''
+           }
+         }
     assert_response :success
     assert_equal 'Invalid input', flash[:error]
 
     post '/recipes',
-      params: {
-        recipe: {
-          name: 'Lasagne',
-          servings: '4'
-        }
-      }
+         params: {
+           recipe: {
+             name: 'Lasagne',
+             servings: '4'
+           }
+         }
     follow_redirect!
     assert_response :success
     assert_equal 'Recipe added', flash[:notice]
@@ -93,12 +92,12 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.secondary.button', 'Cancel'
 
     put "/recipes/#{recipe.id}",
-      params: {
-        recipe: {
-          name: 'Apfelkuchen',
-          servings: '80'
+        params: {
+          recipe: {
+            name: 'Apfelkuchen',
+            servings: '80'
+          }
         }
-      }
     follow_redirect!
     assert_response :success
     assert_equal 'Recipe updated', flash[:notice]

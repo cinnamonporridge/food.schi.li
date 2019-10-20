@@ -13,8 +13,7 @@ class NutritionsController < ApplicationController
     @nutrition = Nutrition.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @nutrition = Nutrition.new(nutrition_params)
@@ -51,12 +50,14 @@ class NutritionsController < ApplicationController
   end
 
   private
+
   def set_nutrition
     @nutrition = Nutrition.find(params[:id])
   end
 
   def nutrition_params
-    params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated, :fiber, :vegan)
+    params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated,
+                                      :fiber, :vegan)
   end
 
   def update_affected_recipes

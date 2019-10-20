@@ -5,7 +5,7 @@ module ApplicationHelper
       warning: 'alert-warning',
       error: 'alert-error',
       alert: 'alert-block',
-      notice: 'alert-info' 
+      notice: 'alert-info'
     }[flash_type.to_sym]
   end
 

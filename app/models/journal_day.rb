@@ -3,18 +3,18 @@ class JournalDay < ApplicationRecord
 
   has_many :meals, dependent: :destroy
 
-  validates_presence_of :date
-  validates_uniqueness_of :date, scope: :user
+  validates :date, presence: true
+  validates :date, uniqueness: { scope: :user }
 
-  scope :of, -> (user = User.none) { where(user: user) }
+  scope :of, ->(user = User.none) { where(user: user) }
   scope :ordered_by_date_asc, -> { order(date: :asc) }
   scope :ordered_by_date_desc, -> { order(date: :desc) }
 
-  scope :using_meals, -> (meals) { where(meals: meals) }
+  scope :using_meals, ->(meals) { where(meals: meals) }
 
-  scope :after_date , -> (date) { where('date > ?', date) }
-  scope :on_or_after_date , -> (date) { where('date >= ?', date) }
-  scope :before_date, -> (date) { where('date < ?', date) }
+  scope :after_date, ->(date) { where('date > ?', date) }
+  scope :on_or_after_date, ->(date) { where('date >= ?', date) }
+  scope :before_date, ->(date) { where('date < ?', date) }
 
   Nutrition::TYPES.each do |name|
     define_method :"sum_#{name}" do
@@ -27,7 +27,9 @@ class JournalDay < ApplicationRecord
   end
 
   def sum_of_sustenance(name)
-    meals.inject(0.0) { |sum, meal| sum += (meal.amount * meal.nutrition.send("#{name}")) / 100 }
+    meals.inject(0.0) do |sum, meal|
+      sum + (meal.amount * meal.nutrition.send(name.to_s)) / 100
+    end
   end
 
   def macronutrient_data

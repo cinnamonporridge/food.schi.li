@@ -26,11 +26,11 @@ class NutritionsControllerTest < ActionDispatch::IntegrationTest
     assert_changes 'recipe.vegan?', from: false, to: true do
       assert_changes 'nutrition.vegan?', from: false, to: true do
         patch nutrition_path(nutrition),
-          params: {
-            nutrition: {
-              vegan: '1'
-            }
-          }
+              params: {
+                nutrition: {
+                  vegan: '1'
+                }
+              }
         nutrition.reload
       end
       recipe.reload
@@ -45,11 +45,11 @@ class NutritionsControllerTest < ActionDispatch::IntegrationTest
     assert_changes 'recipe.vegan?', from: true, to: false do
       assert_changes 'nutrition.vegan?', from: true, to: false do
         patch nutrition_path(nutrition),
-          params: {
-            nutrition: {
-              vegan: '0'
-            }
-          }
+              params: {
+                nutrition: {
+                  vegan: '0'
+                }
+              }
         nutrition.reload
       end
       recipe.reload

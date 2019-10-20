@@ -2,21 +2,21 @@ class Portion < ApplicationRecord
   PRIMARY_AMOUNT = 100
 
   belongs_to :nutrition
-  has_many :ingredients
-  has_many :recipes, through: :ingredients, dependent: :restrict_with_error
-  has_many :meals, dependent: :restrict_with_error
+  has_many :ingredients, dependent: :restrict_with_exception
+  has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
+  has_many :meals, dependent: :restrict_with_exception
 
   scope :ordered_by_amount, -> { order(amount: :asc) }
   scope :ordered_by_nutrition_name_and_amount, -> {
-    includes(:nutrition).order("nutritions.name ASC, portions.amount ASC")
+    includes(:nutrition).order('nutritions.name ASC, portions.amount ASC')
   }
   scope :primary, -> { where(amount: PRIMARY_AMOUNT) }
 
-  validates_presence_of :name
-  validates_presence_of :amount
-  validates_uniqueness_of :name, scope: :nutrition
-  validates_uniqueness_of :amount, scope: :nutrition
-  validates_numericality_of :amount, greater_than: 0, only_integer: true
+  validates :name, presence: true
+  validates :amount, presence: true
+  validates :name, uniqueness: { scope: :nutrition }
+  validates :amount, uniqueness: { scope: :nutrition }
+  validates :amount, numericality: { greater_than: 0, only_integer: true }
 
   def primary?
     amount == PRIMARY_AMOUNT

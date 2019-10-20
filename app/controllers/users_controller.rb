@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :authenticate_admin_user!
 
   def index
@@ -17,16 +16,13 @@ class UsersController < ApplicationController
   def create
     @user = User.find_or_initialize_by(user_params)
     return user_already_exists_error unless @user.new_record?
-    @user.quick_password = SecureRandom.base64(32)
 
-    if @user.valid?
-      PasswordService.reset_link!(@user)
-      flash.now[:success] = 'Invitation has been sent'
-      render :show
-    else
-      flash.now[:warning] = 'Ooops, something went wrong'
-      render :new
-    end
+    @user.password = SecureRandom.base64(32)
+
+    return handle_success if @user.valid?
+
+    flash.now[:warning] = 'Ooops, something went wrong'
+    render :new
   end
 
   def edit
@@ -42,11 +38,11 @@ class UsersController < ApplicationController
 
     if user.is_admin?
       flash.now[:alert] = 'Cannot delete an admin'
-    else 
+    else
       flash.now[:success] = 'User deleted'
       user.destroy
     end
-    redirect_to users_path 
+    redirect_to users_path
   end
 
   private
@@ -58,5 +54,11 @@ class UsersController < ApplicationController
   def user_already_exists_error
     flash.now[:warning] = 'This user already exists'
     render :new
+  end
+
+  def handle_success
+    PasswordService.reset_link!(@user)
+    flash.now[:success] = 'Invitation has been sent'
+    render :show
   end
 end

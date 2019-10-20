@@ -19,7 +19,8 @@ class Ingredient < ApplicationRecord
   private
 
   def total_of_sustenance(name)
-    return 0.0 unless portion.present?
-    (amount / 100) * nutrition.send("#{name}".to_sym)
+    return 0.0 if portion.blank?
+
+    (amount / 100) * nutrition.send(name.to_s.to_sym)
   end
 end
