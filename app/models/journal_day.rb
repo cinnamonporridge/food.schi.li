@@ -27,7 +27,9 @@ class JournalDay < ApplicationRecord
   end
 
   def sum_of_sustenance(name)
-    meals.inject(0.0) { |sum, meal| sum += (meal.amount * meal.nutrition.send(name.to_s)) / 100 }
+    meals.inject(0.0) do |sum, meal|
+      sum + (meal.amount * meal.nutrition.send(name.to_s)) / 100
+    end
   end
 
   def macronutrient_data
