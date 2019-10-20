@@ -2,7 +2,7 @@ class Nutrition < ApplicationRecord
   include Searchable
 
   has_many :portions, dependent: :destroy
-  has_one :primary_portion, -> { primary }, class_name: 'Portion'
+  has_one :primary_portion, -> { primary }, class_name: 'Portion', inverse_of: false
 
   TYPES = %i[kcal carbs carbs_sugar_part protein fat fat_saturated fiber].freeze
 

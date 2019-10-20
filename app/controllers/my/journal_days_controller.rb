@@ -70,7 +70,7 @@ class My::JournalDaysController < ApplicationController
   end
 
   def find_and_decorate_journal_day
-    @journal_day ||= current_user.journal_days.find_by(id: params[:id])&.decorate
+    @journal_day = current_user.journal_days.find_by(id: params[:id])&.decorate
   end
 
   def handle_invalid_access

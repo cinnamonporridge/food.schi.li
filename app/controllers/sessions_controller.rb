@@ -12,14 +12,10 @@ class SessionsController < ApplicationController
 
     @user = User.find_by(email: @form.email)
 
-    if @user&.authenticate(login_params[:password])
-      log_in(@user)
-      flash[:success] = 'Login successful'
-      redirect_to my_journal_days_path
-    else
-      flash.now[:warning] = 'Invalid email or password'
-      render :new
-    end
+    return handle_success if @user&.authenticate(login_params[:password])
+
+    flash.now[:warning] = 'Invalid email or password'
+    render :new
   end
 
   def destroy
@@ -36,5 +32,10 @@ class SessionsController < ApplicationController
   def form_errors
     flash.now[:warning] = 'Oops, something went wrong'
     render :new
+  end
+
+  def handle_success
+    log_in(@user)
+    redirect_to my_journal_days_path, success: 'Login successful'
   end
 end

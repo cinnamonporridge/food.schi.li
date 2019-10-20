@@ -14,15 +14,10 @@ class ResetPasswordsController < ApplicationController
 
     user.password = @form.password
 
-    if user.save!
-      log_in(user)
-      user.clear_reset_password!
-      flash[:success] = 'Password successfully reset and logged in'
-      redirect_to my_journal_days_path
-    else
-      flash.now[:alert] = 'Oops, something went wrong'
-      render :new
-    end
+    return handle_success(user) if user.save!
+
+    flash.now[:alert] = 'Oops, something went wrong'
+    render :new
   end
 
   private
@@ -43,5 +38,12 @@ class ResetPasswordsController < ApplicationController
   def challenge_not_valid_error
     flash.now[:warning] = 'The provided challenge is not valid. Please reset your password again.'
     render :new
+  end
+
+  def handle_success(user)
+    log_in(user)
+    user.clear_reset_password!
+    flash[:success] = 'Password successfully reset and logged in'
+    redirect_to my_journal_days_path
   end
 end

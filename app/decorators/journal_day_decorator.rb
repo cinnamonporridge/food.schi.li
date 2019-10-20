@@ -76,6 +76,6 @@ class JournalDayDecorator < Draper::Decorator
   private
 
   def journal_day_calendar_service
-    @service ||= JournalDayCalendarService.new(model)
+    @journal_day_calendar_service ||= JournalDayCalendarService.new(model)
   end
 end

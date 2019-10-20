@@ -56,7 +56,8 @@ class NutritionsController < ApplicationController
   end
 
   def nutrition_params
-    params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated, :fiber, :vegan)
+    params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated,
+                                      :fiber, :vegan)
   end
 
   def update_affected_recipes

@@ -28,7 +28,7 @@ class My::JournalDays::RecipesController < ApplicationController
   end
 
   def set_journal_day
-    @journal_day ||= current_user.journal_days.find_by(id: params[:journal_day_id])
+    @journal_day = current_user.journal_days.find_by(id: params[:journal_day_id])
   end
 
   def handle_invalid_access

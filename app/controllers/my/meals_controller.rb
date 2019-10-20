@@ -16,12 +16,9 @@ class My::MealsController < ApplicationController
     new_meal = @journal_day.meals.new
     @form = MealPortionForm.new(meal_params.merge(meal: new_meal))
 
-    if @form.valid? && new_meal.update(@form.values)
-      redirect_to my_journal_day_path(new_meal.journal_day), notice: 'Meal added'
-    else
-      flash.now[:error] = 'Invalid input'
-      render :new
-    end
+    return handle_success if @form.valid? && new_meal.update(@form.values)
+
+    handle_error
   end
 
   def edit
@@ -72,5 +69,14 @@ class My::MealsController < ApplicationController
   def handle_invalid_journal_day_access
     flash[:warning] = 'That journal day does not exist or does not belong to you'
     redirect_to my_journal_days_path
+  end
+
+  def handle_success
+    redirect_to my_journal_day_path(@journal_day), notice: 'Meal added'
+  end
+
+  def handle_error
+    flash.now[:error] = 'Invalid input'
+    render :new
   end
 end

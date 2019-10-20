@@ -13,6 +13,7 @@ class RecipeIngredientForm
 
   validate :portion_exists?
 
+  # rubocop:disable Metrics/AbcSize
   def initialize(args = {})
     @ingredient           = args[:ingredient]
     @portion_name         = args[:portion_name] || find_portion_name_by_id(ingredient.portion&.id)
@@ -20,10 +21,11 @@ class RecipeIngredientForm
     @measure              = args[:measure] || ingredient.measure
     @amount_in_measure    = args[:amount_in_measure] || to_amount_in_measure(ingredient.amount)
   end
+  # rubocop:enable Metrics/AbcSize
 
   def values
     {
-      portion: find_portion,
+      portion: portion,
       amount: amount_in_unit,
       measure: measure
     }
@@ -48,21 +50,21 @@ class RecipeIngredientForm
   end
 
   def portion_exists?
-    find_portion.present?
+    portion.present?
   end
 
-  def find_portion
+  def portion
     @portion ||= Portion.find_by(id: portion_id)
   end
 
   def amount_in_unit
-    return (amount_in_measure.to_f * find_portion.amount) if measure_in_pieces?
+    return (amount_in_measure.to_f * portion.amount) if measure_in_pieces?
 
     amount_in_measure
   end
 
   def to_amount_in_measure(amount)
-    return (amount.to_f / find_portion.amount).round(3) if measure_in_pieces?
+    return (amount.to_f / portion.amount).round(3) if measure_in_pieces?
 
     amount
   end

@@ -19,14 +19,10 @@ class UsersController < ApplicationController
 
     @user.password = SecureRandom.base64(32)
 
-    if @user.valid?
-      PasswordService.reset_link!(@user)
-      flash.now[:success] = 'Invitation has been sent'
-      render :show
-    else
-      flash.now[:warning] = 'Ooops, something went wrong'
-      render :new
-    end
+    return handle_success if @user.valid?
+
+    flash.now[:warning] = 'Ooops, something went wrong'
+    render :new
   end
 
   def edit
@@ -58,5 +54,11 @@ class UsersController < ApplicationController
   def user_already_exists_error
     flash.now[:warning] = 'This user already exists'
     render :new
+  end
+
+  def handle_success
+    PasswordService.reset_link!(@user)
+    flash.now[:success] = 'Invitation has been sent'
+    render :show
   end
 end
