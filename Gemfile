@@ -20,7 +20,6 @@ gem 'simple_form'
 
 gem 'foundation-datepicker-rails'
 gem 'foundation-rails'
-gem 'sprockets-es6' # https://github.com/zurb/foundation-rails/issues/273
 
 gem 'draper', '>= 3.0.0'
 gem 'haml'
