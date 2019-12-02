@@ -14,6 +14,7 @@ gem 'sass-rails', '~> 6.0'
 # gem 'redis', '~> 3.0'
 gem 'bcrypt'
 gem 'bootsnap', require: false
+gem 'webpacker'
 
 gem 'font-awesome-rails'
 gem 'simple_form'
