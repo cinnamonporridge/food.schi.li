@@ -1,0 +1,11 @@
+{
+  "name": "food.schi.li",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^4.2.0",
+    "tailwindcss": "^1.1.4"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.9.0"
+  }
+}
