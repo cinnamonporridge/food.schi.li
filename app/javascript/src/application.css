@@ -1,16 +1,46 @@
 @tailwind base;
 @tailwind components;
 
+:root {
+  --colors-gray-100: theme('colors.gray.100');
+  --colors-gray-300: theme('colors.gray.300');
+}
+
+h1 {
+  @apply border border-0 border-l-4 border-green-500 pl-2 tracking-wider uppercase text-green-900;
+}
+
 .title {
-  @apply text-gray-100 text-center text-xs mb-2 block;
+  @apply text-center text-xs block;
 }
 
 nav {
-  @apply text-center my-2 text-white;
+  @apply text-center;
+}
+
+nav ul {
+  @apply py-2;
+}
+
+nav a {
+  @apply text-lg text-green-800 inline-block w-full border-solid border-green-400 border-b-4 pb-2;
 }
 
 nav a:hover {
-  /* todo */
+  @apply text-green-700 border-green-800;
 }
+
+nav a.active {
+  @apply border-green-700;
+}
+
+.f-button {
+  @apply inline-block w-full py-2 bg-green-300 text-center border border-0 border-l-4 border-green-500;
+}
+
+.f-button:hover {
+  @apply bg-green-400 text-black;
+}
+
 
 @tailwind utilities;

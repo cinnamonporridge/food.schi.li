@@ -10,14 +10,15 @@
     = javascript_pack_tag 'application'
 
   %body
-    .grid-x.grid-padding-x.food-full-height
-      .small-12.medium-3.large-2.cell.food-menu-panel
+    .flex.mb-4
+      .w-full
         .title
           food.schi.li
         - if @current_user
           = render 'layouts/navigation'
 
-      .small-12.medium-9.large-10.cell
+    .flex
+      .w-full.px-2
         = render 'layouts/flash'
         = yield
         = render 'layouts/footer'

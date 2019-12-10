@@ -1,6 +1,6 @@
 %nav
   %ul.flex
-    %li{ class: 'w-1/4' }= link_to 'Journal', my_journal_days_path
+    %li{ class: 'w-1/4' }= link_to 'Journal', my_journal_days_path, class: 'active'
     %li{ class: 'w-1/4' }= link_to 'Recipes', recipes_path
     %li{ class: 'w-1/4' }= link_to 'Foods', nutritions_path
     - if @current_user&.is_admin?
