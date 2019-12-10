@@ -1,6 +1,16 @@
-/* UNCOMMENT TO USE TAILWIND
 @tailwind base;
 @tailwind components;
 
+.title {
+  @apply text-gray-100 text-center text-xs mb-2 block;
+}
+
+nav {
+  @apply text-center my-2 text-white;
+}
+
+nav a:hover {
+  /* todo */
+}
+
 @tailwind utilities;
-*/
