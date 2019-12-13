@@ -2,16 +2,27 @@
 @tailwind components;
 
 :root {
+  --spacing-half: theme('spacing.1/2');
+  --spacing-1: theme('spacing.1');
   --colors-gray-100: theme('colors.gray.100');
   --colors-gray-300: theme('colors.gray.300');
+  --colors-gray-500: theme('colors.gray.500');
+}
+
+html {
+  @apply text-2xl;
 }
 
 h1 {
-  @apply border border-0 border-l-4 border-green-500 pl-2 tracking-wider uppercase text-green-900;
+  @apply pt-4 pb-1 mb-4 tracking-wider uppercase text-xl border border-0 border-b border-green-700;
 }
 
 .title {
   @apply text-center text-xs block;
+}
+
+input[type=text] {
+  @apply rounded;
 }
 
 nav {
@@ -35,11 +46,25 @@ nav a.active {
 }
 
 .f-button {
-  @apply inline-block w-full py-2 bg-green-300 text-center border border-0 border-l-4 border-green-500;
+  @apply inline-block py-1 px-5 bg-green-300 text-center rounded;
+  box-shadow: var(--spacing-half) var(--spacing-half) var(--colors-gray-500);
 }
 
 .f-button:hover {
-  @apply bg-green-400 text-black;
+  @apply cursor-pointer;
+  box-shadow: var(--spacing-1) var(--spacing-1) var(--colors-gray-500);
+}
+
+a {
+  @apply text-green-600;
+}
+
+a:hover {
+  @apply text-green-500;
+}
+
+.shy-link {
+  @apply text-gray-500;
 }
 
 

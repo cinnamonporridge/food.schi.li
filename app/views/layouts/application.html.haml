@@ -13,12 +13,12 @@
     .flex.mb-4
       .w-full
         .title
-          food.schi.li
+          food
         - if @current_user
           = render 'layouts/navigation'
 
     .flex
-      .w-full.px-2
+      .w-full.px-4
         = render 'layouts/flash'
         = yield
         = render 'layouts/footer'
