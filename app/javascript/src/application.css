@@ -14,7 +14,7 @@ html {
 }
 
 h1 {
-  @apply pt-4 pb-1 mb-4 tracking-wider uppercase text-xl border border-0 border-b border-green-700;
+  @apply pt-4 pb-1 mb-2 tracking-wider uppercase text-xl;
 }
 
 .title {
