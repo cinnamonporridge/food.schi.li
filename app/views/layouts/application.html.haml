@@ -10,16 +10,15 @@
     = javascript_pack_tag 'application'
 
   %body
-    .flex.flex-wrap.bg-green-400
-      .w-full.mb-4
+    .flex.bg-green-400.mb-4
+      .w-full
         .title food
         - if @current_user
           = render 'layouts/navigation'
-      .w-full.px-4
-        %h1= yield :h1
 
     .flex
       .w-full.px-4
+        %h1= yield :h1
         = render 'layouts/flash'
         = yield
         = render 'layouts/footer'

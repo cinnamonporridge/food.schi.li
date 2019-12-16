@@ -14,7 +14,7 @@ html {
 }
 
 h1 {
-  @apply pt-4 pb-1 mb-2 tracking-wider uppercase text-xl;
+  @apply my-4 tracking-wide text-2xl text-green-700;
 }
 
 .title {
@@ -46,13 +46,11 @@ nav a.active {
 }
 
 .f-button {
-  @apply inline-block py-1 px-5 bg-green-300 text-center rounded;
-  box-shadow: var(--spacing-half) var(--spacing-half) var(--colors-gray-500);
+  @apply inline-block py-1 px-5 border border-green-300 bg-green-300 text-center rounded shadow-md;
 }
 
 .f-button:hover {
-  @apply cursor-pointer;
-  box-shadow: var(--spacing-1) var(--spacing-1) var(--colors-gray-500);
+  @apply cursor-pointer border border-green-400;
 }
 
 a {
@@ -66,6 +64,31 @@ a:hover {
 .shy-link {
   @apply text-gray-500;
 }
+
+.card {
+  @apply border border-gray-300 bg-gray-100 py-2 px-3 text-base shadow-md leading-tight;
+}
+
+.card-alert {
+  @apply border-yellow-400 bg-yellow-100;
+}
+
+[aria-invalid="true"] {
+  @apply border-red-300;
+}
+
+[type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {
+  @apply mb-0;
+}
+
+.form-error {
+  @apply text-red-600 font-normal m-0 mt-1;
+}
+
+.input {
+  @apply mb-3;
+}
+
 
 
 @tailwind utilities;
