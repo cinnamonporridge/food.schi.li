@@ -12,7 +12,7 @@ AllCops:
 Rails:
   Enabled: true
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   Exclude:
     - 'config/initializers/simple_form_foundation.rb'
