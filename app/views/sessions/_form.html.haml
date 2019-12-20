@@ -1,12 +1,12 @@
 = simple_form_for(@form, url: login_path) do |form|
-  .flex
+  .flex.my-4
     .w-full
       = form.input :email, placeholder: 'Email address', label: false
-  .flex
+  .flex.my-4
     .w-full
       = form.input :password, placeholder: 'Password', label: false
-  .flex.flex-wrap.my-4
+  .flex.flex-wrap.mt-5
     .w-full
       = form.submit 'Sign in', class: 'f-button'
-    .w-full.mt-1
+    .w-full
       = link_to 'Forgot password', new_forgot_passwords_url, class: 'shy-link text-xs'
