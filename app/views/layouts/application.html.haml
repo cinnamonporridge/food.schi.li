@@ -10,10 +10,11 @@
     = javascript_pack_tag 'application'
 
   %body
-    .flex.bg-green-400.mb-4
-      .w-full
+    .flex.flex-wrap.mb-4
+      .w-full.bg-green-400
         .title food
-        - if @current_user
+      - if @current_user
+        .w-full
           = render 'layouts/navigation'
 
     .flex

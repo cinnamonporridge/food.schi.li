@@ -1,9 +1,8 @@
 .flex
   .w-full
     Journal days of
-    %div{ class: 'w-2/5' }
-      %select{ id: 'journal_days_dropdown' }
-        %option{ value: my_journal_days_path, selected: (params[:time].nil?) } past week
-        %option{ value: my_journal_days_path(time: :month), selected: (params[:time] == 'month') } past month
-        %option{ value: my_journal_days_path(time: :year), selected: (params[:time] == 'year') } past year
-        %option{ value: my_journal_days_path(time: :all), selected: (params[:time] == 'all') } all time
+    %select.py-1{ id: 'journal_days_dropdown' }
+      %option{ value: my_journal_days_path, selected: (params[:time].nil?) } past week
+      %option{ value: my_journal_days_path(time: :month), selected: (params[:time] == 'month') } past month
+      %option{ value: my_journal_days_path(time: :year), selected: (params[:time] == 'year') } past year
+      %option{ value: my_journal_days_path(time: :all), selected: (params[:time] == 'all') } all time

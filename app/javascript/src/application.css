@@ -30,7 +30,7 @@ nav {
 }
 
 nav ul {
-  @apply py-2;
+  @apply pt-2 bg-green-200;
 }
 
 nav a {
@@ -46,11 +46,19 @@ nav a.active {
 }
 
 .f-button {
-  @apply inline-block py-1 px-5 border border-green-300 bg-green-300 text-center rounded shadow-md;
+  @apply inline-block py-1 px-5 border border-green-300 bg-green-300 text-green-900 text-center rounded shadow-md;
 }
 
 .f-button:hover {
-  @apply cursor-pointer border border-green-400;
+  @apply cursor-pointer border border-green-400 text-green-700;
+}
+
+.f-button-secondary {
+  @apply border border-yellow-300 bg-yellow-300;
+}
+
+.f-button-secondary:hover {
+  @apply cursor-pointer border border-yellow-400;
 }
 
 a {

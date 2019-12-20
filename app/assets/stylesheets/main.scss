@@ -144,9 +144,9 @@ ul.journal-days-list-group
 }
 
 .food-full-height {
-  @include breakpoint(medium up) {
-    height: 100vh;
-  }
+  // @include breakpoint(medium up) {
+  //   height: 100vh;
+  // }
 }
 
 .pagination-page {

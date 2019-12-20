@@ -1,9 +1,15 @@
 %h1 Forgot password?
 
 = simple_form_for(@form, url: forgot_passwords_url) do |form|
-  = form.input :email, placeholder: 'Email address', label: false
-  .button-group
-    = form.submit 'Reset my password', name: 'reset', class: 'primary button'
-    = form.submit 'Send me a magic link', name: 'magic_link', class: 'primary button'
-    = link_to 'Cancel', root_path, class: 'secondary button'
+  .flex
+    .w-full
+      = form.input :email, placeholder: 'Email address', label: false
+  .flex.flex-wrap.my-4
+    .w-full.mb-2
+      = form.submit 'Reset password', name: 'reset', class: 'f-button'
+    .w-full
+      = form.submit 'Send me a magic link', name: 'magic_link', class: 'f-button f-button-secondary'
+  .flex
+    .w-full
+      = link_to 'Cancel', root_path, class: 'shy-link text-xs'
 
