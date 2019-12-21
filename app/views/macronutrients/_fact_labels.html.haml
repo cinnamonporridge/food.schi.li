@@ -1,4 +1,9 @@
-.label.kcal= "#{fact_data.display_rounded_kcal} kcal"
-.label.carbs= "Carbs #{fact_data.display_rounded_carbs}g"
-.label.protein= "Protein #{fact_data.display_rounded_protein}g"
-.label.fat= "Fat #{fact_data.display_rounded_fat}g"
+.flex
+  .flex-1
+    %data.stats-pill.stats-kcal{ title: 'kcal' }= fact_data.display_rounded_kcal
+  .flex-1
+    %data.stats-pill.stats-carbs{ title: 'carbs' }= fact_data.display_rounded_carbs
+  .flex-1
+    %data.stats-pill.stats-protein{ title: 'protein' }= fact_data.display_rounded_protein
+  .flex-1
+    %data.stats-pill.stats-fat{ title: 'fat' }= fact_data.display_rounded_fat

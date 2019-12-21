@@ -10,19 +10,21 @@
     = javascript_pack_tag 'application'
 
   %body
-    .flex.flex-wrap.mb-4
-      .w-full.bg-green-400
-        .title food
-      - if @current_user
-        .w-full
-          = render 'layouts/navigation'
+    .content
+      .flex.flex-wrap.mb-4
+        .w-full.bg-green-400
+          .text-center.text-2xs.block.text-green-900 food
+        - if @current_user
+          .w-full
+            = render 'layouts/navigation'
 
-    .flex
-      .w-full.px-4
-        %h1= yield :h1
-        = render 'layouts/flash'
-        = yield
-        = render 'layouts/footer'
+      .flex
+        .w-full.px-4
+          = render 'layouts/flash'
+          = yield
+
+    %footer.footer
+      = render 'layouts/footer'
 
     = javascript_include_tag 'application'
 

@@ -6,8 +6,10 @@
   .w-full
     = link_to 'Add Journal Day', new_my_journal_day_path, class: 'f-button'
 
-.flex
+.flex.my-8.text-xs
   .w-full
     = render 'scope_dropdown'
 
-= render 'index', journal_days: @journal_days
+.flex.mb-4
+  .w-full
+    = render 'index', journal_days: @journal_days

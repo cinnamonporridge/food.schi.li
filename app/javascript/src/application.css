@@ -10,15 +10,22 @@
 }
 
 html {
-  @apply text-2xl;
+  @apply text-2xl h-full;
+}
+
+body {
+  @apply min-h-full;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 h1 {
-  @apply my-4 tracking-wide text-2xl text-green-700;
-}
-
-.title {
-  @apply text-center text-xs block;
+  @apply mb-4 tracking-wide text-2xl text-green-700;
 }
 
 input[type=text] {
@@ -30,11 +37,15 @@ nav {
 }
 
 nav ul {
-  @apply pt-2 bg-green-200;
+  @apply bg-green-200 flex;
+}
+
+nav li {
+  @apply flex-1;
 }
 
 nav a {
-  @apply text-lg text-green-800 inline-block w-full border-solid border-green-400 border-b-4 pb-2;
+  @apply text-sm text-green-800 inline-block w-full border-solid border-green-400 border-b-4 py-2;
 }
 
 nav a:hover {
@@ -43,6 +54,10 @@ nav a:hover {
 
 nav a.active {
   @apply border-green-700;
+}
+
+.clickable {
+  @apply cursor-pointer;
 }
 
 .f-button {
@@ -74,11 +89,15 @@ a:hover {
 }
 
 .card {
-  @apply border border-gray-300 bg-gray-100 py-2 px-3 text-base shadow-md leading-tight;
+  @apply rounded border border-gray-200 bg-gray-100 py-2 px-3 text-base shadow-md leading-tight;
 }
 
-.card-alert {
-  @apply border-yellow-400 bg-yellow-100;
+.card-yellow {
+  @apply border-yellow-200 bg-yellow-100;
+}
+
+.card-green {
+  @apply border-green-200 bg-green-100;
 }
 
 [aria-invalid="true"] {
@@ -105,10 +124,18 @@ input[aria-invalid="true"] {
   @apply border-red-200;
 }
 
-/*input::placeholder {
-  @apply bg-gray-100;
+.stats-pill:before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  @apply bg-transparent inline-block rounded-full mr-1 text-transparent text-center;
 }
-*/
+
+.stats-kcal:before { @apply bg-red-300 }
+.stats-carbs:before { @apply bg-purple-700 }
+.stats-protein:before { @apply bg-yellow-700 }
+.stats-fat:before { @apply bg-gray-700 }
+
 
 
 @tailwind utilities;

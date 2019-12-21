@@ -1,15 +1,3 @@
-%footer
-  - if @current_user.present?
-    .vertical-space-xl
-      .grid-x.text-center.text-tiny
-        .cell.text-muted
-          Legend
-        .cell
-          = fa_icon 'leaf green', text: 'Vegan'
-
-    .vertical-space-xl
-      .grid-x.text-center.text-tiny
-        .cell
-          = link_to logout_path, method: :delete do
-            = fa_icon 'power-off'
-            Log out
+- if @current_user.present?
+  .text-2xs.text-center.py-3.border-0.border-t.border-green-200
+    = link_to 'Sign out', logout_path, method: :delete, class: 'shy-link'
