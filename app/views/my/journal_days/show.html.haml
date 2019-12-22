@@ -1,51 +1,67 @@
-%h1= @journal_day.display_date_with_weekday
 
-.small.button-group
-  = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'warning button'
-  = link_to 'Delete', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
+.flex
+  .w-full
+    %h1= @journal_day.display_date_with_weekday
 
-= render 'previous_and_next_navigation', journal_day: @journal_day
+.flex.mb-4
+  .w-full.text-xs
+    = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'shy-link'
 
-= link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'primary button'
-= link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'primary button'
+.flex.mb-4
+  .w-full
+    = render 'previous_and_next_navigation', journal_day: @journal_day
 
-= render 'macronutrients/facts',
-  macronutrient_data: { data: @journal_day.macronutrient_data, label: 'Total' }
+.flex.flex-wrap.my-6
+  .w-full.mb-1
+    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button w-full text-sm'
+  .w-full.mt-1
+    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full text-sm'
 
-.card
-  .card-divider
-    %h2
-      = fa_icon 'cutlery'
-      = "Meals"
-  .card.section.journal-day-meals-table
-    - @journal_day.meals.ordered_by_recipe.each do |meal|
-      .grid-x.align-middle.journal-day-meal-row
-        .small-3.cell.text-center
-          .grid-x
-            .cell
-              = meal.decorate.rounded_amount_with_unit_abbrevation
-            .cell
-              = meal.decorate.quantity_with_pieces
-        .small-6.cell.journal-day-meal-nutrition
-          .grid-x
-            .cell
-              = meal.portion.decorate.name_with_nutrition
-            - if meal.recipe.present?
-              .cell
-                from
-                = link_to meal.recipe.name, meal.recipe
-        .small-3.cell
-          .tiny.button-group.pull-right
-            = link_to edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'warning button' do
-              = fa_icon 'pencil'
-            = link_to my_journal_day_meal_path(meal.journal_day, meal), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } do
-              = fa_icon 'trash-o'
+.flex.my-6
+  .w-full
+    - if @journal_day.meals.any?
+      .flex.mb-4
+        .w-full
+          = render 'macronutrients/fact_labels', fact_data: @journal_day.macronutrient_data
+
+      .flex.mb-4
+        .w-full
+          .card
+            %h2 Meals
+            - @journal_day.meals.ordered_by_recipe.each do |meal|
+              .grid-x.align-middle.journal-day-meal-row
+                .small-3.cell.text-center
+                  .grid-x
+                    .cell
+                      = meal.decorate.rounded_amount_with_unit_abbrevation
+                    .cell
+                      = meal.decorate.quantity_with_pieces
+                .small-6.cell.journal-day-meal-nutrition
+                  .grid-x
+                    .cell
+                      = meal.portion.decorate.name_with_nutrition
+                    - if meal.recipe.present?
+                      .cell
+                        from
+                        = link_to meal.recipe.name, meal.recipe
+                .small-3.cell
+                  .tiny.button-group.pull-right
+                    = link_to edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'warning button' do
+                      = fa_icon 'pencil'
+                    = link_to my_journal_day_meal_path(meal.journal_day, meal), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } do
+                      = fa_icon 'trash-o'
+    - else
+      .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
 
 - if @journal_day.meals.any?
-  .card
-    .card-divider
-      %h2
-        = fa_icon 'sliders'
-        Nutritions
-    .card-section.journal-day-meals-table
+  .flex
+    .w-full
+      %h2 Nutritions
+  .flex
+    .w-full
       = render 'nutritions', journal_day: @journal_day
+
+.flex.mt-6.mb-4
+  .w-full
+    = link_to 'Delete journal day', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full tracking-wider text-sm'
+

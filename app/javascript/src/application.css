@@ -25,7 +25,7 @@ body {
 }
 
 h1 {
-  @apply mb-4 tracking-wide text-2xl text-green-700;
+  @apply tracking-wide text-2xl text-green-700;
 }
 
 input[type=text] {
@@ -68,12 +68,28 @@ nav a.active {
   @apply cursor-pointer border border-green-400 text-green-700;
 }
 
+.f-button-hollow {
+  @apply border border-green-500 bg-green-100 text-green-600;
+}
+
+.f-button-hollow:hover {
+  @apply bg-green-500 border-green-500 text-white;
+}
+
 .f-button-secondary {
   @apply border border-yellow-300 bg-yellow-300;
 }
 
 .f-button-secondary:hover {
-  @apply cursor-pointer border border-yellow-400;
+  @apply border border-yellow-400;
+}
+
+.f-button-red-hollow {
+  @apply border border-red-500 bg-red-100 text-red-600;
+}
+
+.f-button-red-hollow:hover {
+  @apply bg-red-500 border-red-500 text-white;
 }
 
 a {

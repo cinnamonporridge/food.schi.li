@@ -33,4 +33,4 @@ en:
   date:
     formats:
       default: "%d.%m.%Y"
-      with_weekday: "%A, %d.%m.%Y"
+      with_weekday: "%a, %d.%m.%Y"
