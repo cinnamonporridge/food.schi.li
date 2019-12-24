@@ -1,3 +1,7 @@
-%h1= "Edit #{@journal_day.display_date_with_weekday}"
+.flex.mb-4
+  .w-full
+    %h1= "Edit #{@journal_day.display_date_with_weekday}"
 
-= render 'form', journal_day: @journal_day
+.flex
+  .w-full
+    = render 'form', journal_day: @journal_day

@@ -13,9 +13,9 @@
 
 .flex.flex-wrap.my-6
   .w-full.mb-1
-    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button w-full text-sm'
+    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button w-full'
   .w-full.mt-1
-    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full text-sm'
+    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full'
 
 .flex.my-6
   .w-full
@@ -63,5 +63,5 @@
 
 .flex.mt-6.mb-4
   .w-full
-    = link_to 'Delete journal day', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full tracking-wider text-sm'
+    = link_to 'Delete journal day', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
 

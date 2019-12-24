@@ -32,6 +32,10 @@ input[type=text] {
   @apply rounded;
 }
 
+label {
+  @apply text-2xs text-green-900;
+}
+
 nav {
   @apply text-center;
 }
@@ -55,6 +59,11 @@ nav a:hover {
 nav a.active {
   @apply border-green-700;
 }
+
+select {
+  @apply block;
+}
+
 
 .clickable {
   @apply cursor-pointer;

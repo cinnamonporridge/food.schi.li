@@ -1,4 +1,5 @@
 - if flash.present?
-  .card.card-yellow
-    - flash.each do |type, message|
-      = message
+  .mb-4
+    .card.card-yellow
+      - flash.each do |type, message|
+        = message

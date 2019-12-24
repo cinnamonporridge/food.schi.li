@@ -1,14 +1,17 @@
 = simple_form_for form, url: [:my, form.meal.journal_day, form.meal] do |f|
-  = f.input :portion_name, input_html: { list: :portion_id_list }
-  %datalist#portion_id_list
-    = options_for_select PortionDecorator.portions_collection
+  .flex.flex-wrap.mb-4
+    .w-full.mb-2
+      = f.input :portion_name, input_html: { list: :portion_id_list, class: 'w-full' }
+      %datalist#portion_id_list
+        = options_for_select PortionDecorator.portions_collection
+    .w-full.mb-2
+      = f.input :amount_in_measure, input_html: { class: 'w-full' }
+    .w-full.mb-2
+      = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false, input_html: { class: 'w-full' }
 
-  = f.input :amount_in_measure
-  = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false
-
-  .button-group
-    = f.submit nil, class: 'primary button'
-    - if form.meal.persisted?
-      = link_to 'Cancel', my_journal_day_meal_path(form.meal.journal_day, form.meal), class: 'secondary button'
-    - else
-      = link_to 'Cancel', my_journal_day_path(form.meal.journal_day), class: 'secondary button'
+  .flex.flex-wrap.mt-6
+    .w-full
+      = f.submit nil, class: 'f-button w-full'
+    .w-full
+      - cancel_path = form.meal.persisted? ? [:my, form.meal.journal_day, form.meal] : [:my, form.meal.journal_day]
+      = link_to 'Cancel', cancel_path, class: 'shy-link text-xs'
