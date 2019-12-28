@@ -1,0 +1,26 @@
+- if meals.any?
+  .flex.mb-4
+    .w-full
+      - meals.ordered_by_recipe.each do |meal|
+        .flex.flex-wrap.border-b.border-green-300.py-4
+          .w-full
+            .flex
+              .text-left{ class: 'w-4/5' }
+                .flex.flex-wrap
+                  .w-full
+                    = meal.portion.decorate.name_with_nutrition
+                  - if meal.recipe.present?
+                    .w-full.text-2xs
+                      from
+                      = link_to meal.recipe.name, meal.recipe
+              .text-right{ class: 'w-1/5' }
+                .flex.flex-wrap
+                  .w-full= meal.decorate.rounded_amount_with_unit_abbrevation
+                  .w-full.text-2xs.text-gray-600= meal.decorate.quantity_with_pieces
+            .flex.text-2xs.mt-2
+              .flex-1
+                = link_to 'Edit', edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'shy-link'
+              .flex-1.text-right
+                = link_to 'Delete', my_journal_day_meal_path(meal.journal_day, meal), class: 'shy-link shy-link-dangerous', method: :delete, data: { confirm: 'Are you sure?' }
+- else
+  .text-gray-400.text-center.tracking-wider.text-2xs No meals yet

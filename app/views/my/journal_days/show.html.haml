@@ -17,41 +17,11 @@
   .w-full.mt-1
     = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full'
 
-.flex.my-6
+.flex.flex-wrap.my-6
   .w-full
-    - if @journal_day.meals.any?
-      .flex.mb-4
-        .w-full
-          = render 'macronutrients/fact_labels', fact_data: @journal_day.macronutrient_data
-
-      .flex.mb-4
-        .w-full
-          .card
-            %h2 Meals
-            - @journal_day.meals.ordered_by_recipe.each do |meal|
-              .grid-x.align-middle.journal-day-meal-row
-                .small-3.cell.text-center
-                  .grid-x
-                    .cell
-                      = meal.decorate.rounded_amount_with_unit_abbrevation
-                    .cell
-                      = meal.decorate.quantity_with_pieces
-                .small-6.cell.journal-day-meal-nutrition
-                  .grid-x
-                    .cell
-                      = meal.portion.decorate.name_with_nutrition
-                    - if meal.recipe.present?
-                      .cell
-                        from
-                        = link_to meal.recipe.name, meal.recipe
-                .small-3.cell
-                  .tiny.button-group.pull-right
-                    = link_to edit_my_journal_day_meal_path(meal.journal_day, meal), class: 'warning button' do
-                      = fa_icon 'pencil'
-                    = link_to my_journal_day_meal_path(meal.journal_day, meal), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } do
-                      = fa_icon 'trash-o'
-    - else
-      .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
+    %h2 Meals
+  .w-full
+    = render 'meals', meals: @journal_day.meals
 
 - if @journal_day.meals.any?
   .flex
