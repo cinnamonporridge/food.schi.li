@@ -4,28 +4,26 @@
     %h1= @journal_day.display_date_with_weekday
 
 .flex.mb-4
-  .w-full.text-xs
-    = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'shy-link'
+  .w-full
+    = link_to 'Edit', edit_my_journal_day_path(@journal_day), class: 'shy-link text-xs'
 
 .flex.mb-4
   .w-full
     = render 'previous_and_next_navigation', journal_day: @journal_day
 
-.flex.flex-wrap.my-6
+.flex.flex-wrap.mb-4
+  .w-full
+    %h2 Nutritions
+  .w-full
+    = render 'nutritions', journal_day: @journal_day
+
+.flex.flex-wrap.mb-4
   .w-full
     %h2 Meals
   .w-full
     = render 'meals', meals: @journal_day.meals
 
-- if @journal_day.meals.any?
-  .flex
-    .w-full
-      %h2 Nutritions
-  .flex
-    .w-full
-      = render 'nutritions', journal_day: @journal_day
-
-.flex.mt-6.mb-4
+.flex.my-8
   .w-full
     = link_to 'Delete journal day', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
 
