@@ -28,6 +28,10 @@ h1 {
   @apply tracking-wide text-2xl text-green-700;
 }
 
+h2 {
+  @apply tracking-wide text-xl text-green-700;
+}
+
 input[type=text] {
   @apply rounded;
 }
@@ -64,6 +68,9 @@ select {
   @apply block;
 }
 
+li {
+  list-style-type: none;
+}
 
 .clickable {
   @apply cursor-pointer;
@@ -113,6 +120,10 @@ a:hover {
   @apply text-gray-500;
 }
 
+.shy-link-red:hover {
+  @apply text-red-400;
+}
+
 .card {
   @apply rounded border border-gray-200 bg-gray-100 py-2 px-3 text-base shadow-md leading-tight;
 }
@@ -154,6 +165,20 @@ input[aria-invalid="true"] {
   width: 0.5rem;
   height: 0.5rem;
   @apply bg-transparent inline-block rounded-full mr-1 text-transparent text-center;
+}
+
+
+data.unit::after {
+  @apply text-2xs text-gray-600;
+  margin-left: 0.1rem;
+}
+
+data.unit-ml::after {
+  content: 'ml';
+}
+
+data.unit-g::after {
+  content: 'g';
 }
 
 .stats-kcal:before { @apply bg-red-300 }

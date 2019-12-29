@@ -12,12 +12,6 @@
     = render 'previous_and_next_navigation', journal_day: @journal_day
 
 .flex.flex-wrap.my-6
-  .w-full.mb-1
-    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button w-full'
-  .w-full.mt-1
-    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full'
-
-.flex.flex-wrap.my-6
   .w-full
     %h2 Meals
   .w-full

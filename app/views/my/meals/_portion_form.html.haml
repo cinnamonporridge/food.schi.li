@@ -13,5 +13,5 @@
     .w-full
       = f.submit nil, class: 'f-button w-full'
     .w-full
-      - cancel_path = form.meal.persisted? ? [:my, form.meal.journal_day, form.meal] : [:my, form.meal.journal_day]
+      - cancel_path = [:my, form.meal.journal_day]
       = link_to 'Cancel', cancel_path, class: 'shy-link text-xs'
