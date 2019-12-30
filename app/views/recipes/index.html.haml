@@ -1,10 +1,23 @@
-%h1 Recipes
-= link_to 'New Recipe', new_recipe_path, class: 'primary button'
+.flex.mb-4
+  .w-full
+    %h1 Recipes
 
-= render 'layouts/search', form_url: recipes_path
+.flex.mb-4
+  .w-full
+    = link_to 'New Recipe', new_recipe_path, class: 'f-button w-full'
 
-.vertical-space-xl= paginate @recipes
+.flex.mb-4
+  .w-full
+    = render 'layouts/search', form_url: recipes_path
 
-= render 'recipes/index', recipes: @recipes
+.flex
+  .w-full
+    = paginate @recipes
 
-.vertical-space-xl= paginate @recipes
+.flex
+  .w-full
+    = render 'recipes/index', recipes: @recipes
+
+.flex
+  .w-full
+    = paginate @recipes

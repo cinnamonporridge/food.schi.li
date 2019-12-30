@@ -3,8 +3,7 @@
     - journal_days.each do |journal_day|
       %li
         .card.card-green.mb-4.shadow-lg.clickable{ 'data-href': my_journal_day_path(journal_day) }
-          .flex
+          .flex.flex-wrap
             .w-full.py-1.border-0.border-b.border-green-300= link_to journal_day.display_date_with_weekday, my_journal_day_path(journal_day)
-          .flex
             .w-full.pt-2.pb-1.text-2xs
               = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data

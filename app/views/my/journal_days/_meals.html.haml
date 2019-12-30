@@ -1,5 +1,5 @@
 - if meals.any?
-  .flex.mb-4.mt-4
+  .flex.my-4
     .w-full
       %ul
       - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
