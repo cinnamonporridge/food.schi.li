@@ -1,7 +1,12 @@
 = simple_form_for recipe do |f|
-  = f.input :name, placeholder: 'Recipe name'
-  = f.input :servings, placeholder: 'Servings'
+  .flex.flex-wrap.mb-4
+    .w-full
+      = f.input :name, placeholder: 'Recipe name', input_html: { class: 'w-full' }
+    .w-full
+      = f.input :servings, placeholder: 'Servings', input_html: { class: 'w-full' }
 
-  .button-group
-    = f.submit nil, class: 'primary button'
-    = link_to 'Cancel', recipe, class: 'secondary button'
+  .flex-wrap.mt-6
+    .w-full
+      = f.submit nil, class: 'f-button w-full'
+    .w-full
+      = link_to 'Cancel', recipe_path(recipe), class: 'shy-link text-xs'

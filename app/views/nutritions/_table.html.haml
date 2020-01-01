@@ -1,4 +1,4 @@
-- if journal_day.present?
+- if nutritions_table.present?
   .flex.my-4
     .w-full
       .flex.border-b.border-gray-400
@@ -8,21 +8,15 @@
         %div{ class: 'w-1/6 text-3xs text-right' } Protein
         %div{ class: 'w-1/6 text-3xs text-right' } Fat
 
-      .flex.border-b.border-gray-400
-        .w-full.my-2
-          - journal_day.meals.each do |meal|
-            .flex.flex-wrap.text-3xs
-              %div{ class: 'w-1/3' }= meal.portion.decorate.name_with_nutrition
-              %div{ class: 'w-1/6 text-right' }= meal.decorate.total_kcal
-              %div{ class: 'w-1/6 text-right' }= meal.decorate.total_carbs
-              %div{ class: 'w-1/6 text-right' }= meal.decorate.total_protein
-              %div{ class: 'w-1/6 text-right' }= meal.decorate.total_fat
-
-      .flex.text-2xs
-        %div{ class: 'w-1/3 uppercase tracking-wide' } Total
-        %div{ class: 'w-1/6 text-right' }= journal_day.decorate.sum_kcal
-        %div{ class: 'w-1/6 text-right' }= journal_day.decorate.sum_carbs
-        %div{ class: 'w-1/6 text-right' }= journal_day.decorate.sum_protein
-        %div{ class: 'w-1/6 text-right' }= journal_day.decorate.sum_fat
+      - nutritions_table.each do |section, rows|
+        .flex.border-b.border-gray-400
+          .w-full.my-2
+            - rows.each do |row|
+              .flex.flex-wrap.text-3xs
+                %div{ class: 'w-1/3' }= row[0]
+                %div{ class: 'w-1/6 text-right' }= row[1]
+                %div{ class: 'w-1/6 text-right' }= row[2]
+                %div{ class: 'w-1/6 text-right' }= row[3]
+                %div{ class: 'w-1/6 text-right' }= row[4]
 
 

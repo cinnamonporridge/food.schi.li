@@ -40,4 +40,18 @@ class JournalDay < ApplicationRecord
       fat: sum_fat
     )
   end
+
+  # REFACTOR ME: create NutritionTable and NutritionTableRow
+  def to_nutritions_table
+    {
+      meals: meals.map(&:to_nutritions_table_row),
+      total: [[
+        'Total',
+        decorate.sum_kcal,
+        decorate.sum_carbs,
+        decorate.sum_protein,
+        decorate.sum_fat
+      ]]
+    }
+  end
 end

@@ -11,37 +11,21 @@
   .w-full
     %h2 Nutritions
   .w-full.text-3xs
-    TODO: Reuse 'journal_days/nutritions'
+    = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
 
-.flex
+.flex.mb-4
   .w-full
     %h2 Ingredients
     .text-2xs.text-gray-500
       = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
 
-.flex.mb-4
+.flex.flex-wrap.mb-4
   .w-full
-    - @recipe.ingredients.each do |ingredient|
-      .flex
-        .w-full
-          = ingredient.decorate.rounded_amount_with_unit_abbrevation
-        .w-full
-          = ingredient.decorate.quantity_with_pieces
-      .flex
-        .w-full
-          .float-right
-            = render 'icons/vegan', vegan: ingredient.portion.nutrition.vegan?
-          = ingredient.portion.decorate.name_with_nutrition
-      .flex
-        .w-full
-          = link_to 'Edit', edit_recipe_ingredient_path(@recipe, ingredient)
-          = link_to 'Delete', recipe_ingredient_path(@recipe, ingredient), method: :delete, data: { confirm: 'Are you sure?' }
-
-.flex.mb-4
+    = render 'ingredients', ingredients: @recipe.ingredients
   .w-full
     = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'f-button w-full'
 
-.flex.my-6
+.flex.my-8
   .w-full
     = link_to 'Delete recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
 

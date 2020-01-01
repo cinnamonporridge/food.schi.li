@@ -1,13 +1,25 @@
 = simple_form_for form, url: form.action_url do |f|
-  = f.input :portion_name, input_html: { list: :portion_id_list }
-  %datalist#portion_id_list
-    = options_for_select PortionDecorator.portions_collection
+  .flex.flex-wrap.mb-4
+    .w-full
+      = f.input :portion_name,
+                input_html: { list: :portion_id_list, class: 'w-full' }
+      %datalist#portion_id_list
+        = options_for_select PortionDecorator.portions_collection
+      = f.input :portion_id, as: :hidden
 
-  = f.input :portion_id, as: :hidden
+    .w-full
+      = f.input :amount_in_measure,
+                label: 'Amount',
+                input_html: { class: 'w-full' }
 
-  = f.input :amount_in_measure, label: 'Amount'
-  = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false
+    .w-full
+      = f.input :measure,
+                collection: IngredientsDecorator.measures_collection,
+                include_blank: false,
+                input_html: { class: 'w-full' }
 
-  .button-group
-    = f.submit nil, class: 'primary button'
-    = link_to 'Cancel', form.ingredient.recipe, class: 'secondary button'
+  .flex.flex-wrap.my-6
+    .w-full
+      = f.submit nil, class: 'f-button'
+    .w-full
+      = link_to 'Cancel', form.ingredient.recipe, class: 'shy-link text-xs'

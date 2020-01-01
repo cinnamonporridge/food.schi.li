@@ -15,13 +15,17 @@
   .w-full
     %h2 Nutritions
   .w-full
-    = render 'nutritions', journal_day: @journal_day
+    = render 'nutritions/table', nutritions_table: @journal_day.to_nutritions_table
 
 .flex.flex-wrap.mb-4
   .w-full
     %h2 Meals
   .w-full
     = render 'meals', meals: @journal_day.meals
+  .w-full.mb-1
+    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button w-full'
+  .w-full.mt-1
+    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full'
 
 .flex.my-8
   .w-full
