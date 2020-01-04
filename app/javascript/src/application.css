@@ -168,16 +168,16 @@ input[aria-invalid="true"] {
 }
 
 
-data.unit::after {
+.unit::after {
   @apply text-2xs text-gray-600;
   margin-left: 0.1rem;
 }
 
-data.unit-ml::after {
+.unit-ml::after {
   content: 'ml';
 }
 
-data.unit-g::after {
+.unit-g::after {
   content: 'g';
 }
 

@@ -1,64 +1,67 @@
-%h1= @nutrition.name
+.flex.flex-wrap.mb-4
+  .w-full
+    %h1= @nutrition.name
+    .float-right.text-2xs
+      = render 'icons/vegan', vegan: @nutrition.vegan?
+  .w-full
+    = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'shy-link text-xs'
 
-.vertical-space-lg.vegan-icon
-  = render 'icons/vegan', vegan: @nutrition.vegan?
+.flex.flex-wrap.my-6
+  - if @nutrition.in_recipes.any?
+    .flex-1.text-center
+      .text-2xs.text-gray-500 Used in
+      .text-2xl= @nutrition.in_recipes.count
+      .text-sm
+        = link_to nutrition_recipes_path(@nutrition) do
+          = "#{'recipe'.pluralize(@nutrition.in_recipes.count)}"
 
-.vertical-space-xl
-  .small.button-group
-    - if @nutrition.in_recipes.any?
-      = link_to nutrition_recipes_path(@nutrition), class: 'hollow primary button' do
-        = "Used in #{@nutrition.in_recipes.count} #{'recipe'.pluralize(@nutrition.in_recipes.count)}"
-    - if @nutrition.on_journal_days.any?
-      = link_to nutrition_journal_days_path(@nutrition), class: 'hollow primary button' do 
-        = "Used on #{@nutrition.on_journal_days.count} #{'journal day'.pluralize(@nutrition.on_journal_days.count)}"
+  - if @nutrition.on_journal_days.any?
+    .flex-1.text-center
+      .text-2xs.text-gray-500 Used on
+      .text-2xl= @nutrition.on_journal_days.count
+      .text-sm
+        = link_to nutrition_journal_days_path(@nutrition) do
+          = "#{'journal day'.pluralize(@nutrition.on_journal_days.count)}"
 
-= link_to 'New nutrition', new_nutrition_path(@nutrition), class: 'button primary pull-right'
+.flex.flex-wrap.mb-4
+  .w-full
+    %h2 Nutrition facts
+  .w-full.my-2
+    = "100#{@nutrition.unit_abbrevation} contains"
+  .w-full
+    %ul.text-xs
+      %li
+        %span.font-bold Kcal
+        .float-right.font-bold= @nutrition.kcal
+      %li.border-t
+        %span.font-bold Carbs
+        .float-right.font-bold= @nutrition.carbs
+      %li
+        Carbs sugar part
+        .float-right= @nutrition.carbs_sugar_part
+      %li.border-t
+        %span.font-bold Protein
+        .float-right.font-bold= @nutrition.protein
+      %li.border-t
+        %span.font-bold Fat
+        .float-right.font-bold= @nutrition.fat
+      %li
+        Fat saturated
+        .float-right= @nutrition.fat_saturated
+      %li.border-t
+        %span.font-bold Fiber
+        .float-right.font-bold= @nutrition.fiber
 
-- if @nutrition.errors.has_key?(:base)
-  .callout.warning
-    %ul
-      - @nutrition.errors.full_messages_for(:base).each do |error_message|
-        %li= error_message
+.flex.flex-wrap.mb-6
+  .w-full
+    %h2 Portions
+  .w-full.my-2
+    = render 'portions/index', portions: @nutrition.portions
+  .w-full
+    = link_to 'Add portion', new_nutrition_portion_path(@nutrition), class: 'f-button w-full'
 
-.small.button-group
-  = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'warning button'
-  - if @nutrition.deleteable?
-    = link_to 'Delete', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
-  = link_to 'New portion', new_nutrition_portion_path(@nutrition), class: 'button primary'
-.grid-x.grid-margin-x
-  .large-6.small-12.cell
-    .card
-      .card-divider
-        %h2= "100#{@nutrition.unit_abbrevation} contains"
-      .card-section
-        %table.unstriped
-          %tbody
-            %tr
-              %th.text-left Kcal
-              %td.text-right= @nutrition.kcal
-            %tr
-              %th.text-left Carbs
-              %td.text-right= @nutrition.carbs
-            %tr
-              %th.gray.text-left  Carbs sugar part
-              %td.gray.text-right= @nutrition.carbs_sugar_part
-            %tr
-              %th.text-left Protein
-              %td.text-right= @nutrition.protein
-            %tr
-              %th.text-left Fat
-              %td.text-right= @nutrition.fat
-            %tr
-              %th.gray.text-left Fat saturated
-              %td.gray.text-right= @nutrition.fat_saturated
-            %tr
-              %th.text-left Fiber
-              %td.text-right= @nutrition.fiber
-  .large-6.small-12.cell
-    .card
-      .card-divider
-        %h2 Portions
-      .card-section
-        = render 'portions/index', portions: @nutrition.portions
-
+- if @nutrition.deleteable?
+  .flex.my-8
+    .w-full
+      = link_to 'Delete nutrition', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
 
