@@ -1,7 +1,7 @@
 = simple_form_for nutrition do |f|
-  .flex.mb-3
+  .flex.mb-5
     .w-full
-      = f.input :name
+      = f.input :name, input_html: { class: 'w-full' }
 
   .flex.mb-3
     .w-full

@@ -2,11 +2,10 @@
   %ul
     - recipes.each do |recipe|
       %li
-        .card.card-green.mb-4.shadow-lg.clickable{ 'data-href': recipe_path(recipe) }
+        .card.mb-4.clickable{ 'data-href': recipe_path(recipe) }
           .flex.flex-wrap
             .w-full.py-1.border-0.border-b.border-green-300
+              = render 'icons/vegan', vegan: recipe.vegan?
               = link_to recipe.name, recipe_path(recipe)
-              .float-right.top.text-3xs.text-purple-600.font-bold
-                = render 'icons/vegan', vegan: recipe.vegan?
             .w-full.pt-2.pb-1.text-2xs
               = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving

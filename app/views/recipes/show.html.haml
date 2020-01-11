@@ -4,8 +4,8 @@
       = render 'icons/vegan', vegan: @recipe.vegan?
     %h1= @recipe.name
   .w-full.text-2xs
-    = link_to 'Edit', edit_recipe_path(@recipe), class: 'shy-link mr-2'
-    = link_to 'Copy', new_recipe_copy_path(@recipe), class: 'shy-link'
+    = link_to 'Edit', edit_recipe_path(@recipe)
+    = link_to 'Copy', new_recipe_copy_path(@recipe), class: 'ml-2 shy-link'
 
 .flex.flex-wrap.mb-4
   .w-full

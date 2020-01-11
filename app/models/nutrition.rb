@@ -38,6 +38,15 @@ class Nutrition < ApplicationRecord
     @on_journal_days ||= JournalDay.using_meals(in_meals)
   end
 
+  def macronutrient_data
+    @macronutrient_data ||= MacronutrientDataService.new(
+      kcal: kcal,
+      carbs: carbs,
+      protein: protein,
+      fat: fat
+    )
+  end
+
   private
 
   def can_be_destroyed

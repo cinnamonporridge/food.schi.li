@@ -4,10 +4,10 @@
       %ul
         - ingredients.each do |ingredient|
           %li.border-0.border-b.border-gray-300.py-2
-            .flex
+            .flex.js-toggle-actions
               .w-full
                 .inline-block
-                  .inline= ingredient.portion.decorate.name_with_nutrition
+                  .inline.fake-link= ingredient.portion.decorate.name_with_nutrition
                   .inline.text-2xs.text-gray-400= ingredient.decorate.quantity_with_pieces
 
                 .float-right
@@ -16,10 +16,16 @@
               .w-full
                 .text-3xs
                   = render 'icons/vegan', vegan: ingredient.portion.nutrition.vegan?
-            .flex.text-2xs.mt-2.hidden
-              .w-full
-                = link_to 'Edit', edit_recipe_ingredient_path(ingredient.recipe, ingredient)
-                = link_to 'Delete', recipe_ingredient_path(ingredient.recipe, ingredient), method: :delete, data: { confirm: 'Are you sure?' }
+            .actions.hidden
+              .flex.text-2xs.mt-2
+                .w-full
+                  = link_to 'Edit',
+                            edit_recipe_ingredient_path(ingredient.recipe, ingredient)
+                  = link_to 'Delete',
+                            recipe_ingredient_path(ingredient.recipe, ingredient),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' },
+                            class: 'ml-2 shy-link'
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No ingredients yet
 

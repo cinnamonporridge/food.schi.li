@@ -1,18 +1,31 @@
 - if portions.present?
   %ul
   - portions.ordered_by_amount.each do |portion|
-    %li.pb-1
-    / - unless portion.primary?
-    /   = link_to 'Edit', edit_nutrition_portion_path(portion.nutrition, portion)
-    /   = link_to 'Delete', nutrition_portion_path(portion.nutrition, portion), method: :delete, data: { confirm: 'Are you sure?' }
-    / - else
-    /   *
-    - if portion.primary?
-      Default
-    - else
-      = portion.name
-    .float-right
-      %span{ class: "unit unit-#{portion.nutrition.decorate.unit_abbrevation}"}= portion.amount
+    %li.border-0.border-b.border-gray-300.py-2
+      .flex.js-toggle-actions
+        .w-full
+          .float-right
+            %span{ class: "unit unit-#{portion.nutrition.decorate.unit_abbrevation}"}= portion.amount
+          %span.fake-link
+            - if portion.primary?
+              Default
+            - else
+              = portion.name
+      .actions.hidden
+        .flex.text-2xs.mt-2
+          .w-full
+            - unless portion.primary?
+              = link_to 'Edit',
+                        edit_nutrition_portion_path(portion.nutrition, portion)
+              = link_to 'Delete',
+                        nutrition_portion_path(portion.nutrition, portion),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: 'ml-2 shy-link'
+            - else
+              .text-gray-500
+                You may not delete the primary portion.
+
 - else
   .text-gray-500.text-center.text-xs There are no portions yet
 

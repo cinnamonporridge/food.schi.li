@@ -14,9 +14,13 @@
   .w-full
     %ul.nutrition-list-group
       - @nutritions.each do |nutrition|
-        %li.py-2.border-b.border-green-200.clickable{ 'data-href': nutrition_path(nutrition) }
-          .w-full
-            = link_to nutrition.name, nutrition_path(nutrition)
-            .float-right.text-2xs
-              = render 'icons/vegan', vegan: nutrition.vegan?
+        %li
+          .card.mb-4.clickable{ 'data-href': nutrition_path(nutrition) }
+            .flex
+              .w-full.py-1.border-0.border-b.border-green-300
+                = render 'icons/vegan', vegan: nutrition.vegan?
+                = link_to nutrition.name, nutrition_path(nutrition)
+            .w-full.pt-2.pb-1.text-2xs
+              = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
+
 

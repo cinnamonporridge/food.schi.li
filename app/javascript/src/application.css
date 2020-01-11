@@ -32,10 +32,6 @@ h2 {
   @apply tracking-wide text-xl text-green-700;
 }
 
-input[type=text] {
-  @apply rounded;
-}
-
 label {
   @apply text-2xs text-green-900;
 }
@@ -77,7 +73,7 @@ li {
 }
 
 .f-button {
-  @apply inline-block py-1 px-5 border border-green-300 bg-green-300 text-green-800 text-center rounded shadow-md text-xs uppercase tracking-wider;
+  @apply inline-block py-1 px-5 border border-green-300 bg-green-300 text-green-800 text-center text-xs uppercase tracking-wider;
 }
 
 .f-button:hover {
@@ -108,11 +104,11 @@ li {
   @apply bg-red-500 border-red-500 text-white;
 }
 
-a {
-  @apply text-green-600;
+a, .fake-link {
+  @apply text-green-600 cursor-pointer;
 }
 
-a:hover {
+a:hover, .fake-link:hover {
   @apply text-green-500;
 }
 
@@ -125,15 +121,11 @@ a:hover {
 }
 
 .card {
-  @apply rounded border border-gray-200 bg-gray-100 py-2 px-3 text-base shadow-md leading-tight;
+  @apply border border-gray-200 bg-gray-100 py-2 px-3 text-base leading-tight;
 }
 
 .card-yellow {
   @apply border-yellow-200 bg-yellow-100;
-}
-
-.card-green {
-  @apply border-green-200 bg-green-100;
 }
 
 [aria-invalid="true"] {
@@ -149,11 +141,11 @@ a:hover {
 }
 
 input {
-  @apply mb-3 bg-gray-100 shadow-inner border border-gray-300 py-1 px-2;
+  @apply bg-green-100 border border-green-300 pl-2 text-sm py-1 text-green-800;
 }
 
-input:focus {
-  @apply bg-green-100 border-green-300;
+input::placeholder {
+  @apply text-green-400 text-sm;
 }
 
 input[aria-invalid="true"] {
@@ -164,7 +156,7 @@ input[aria-invalid="true"] {
   content: '';
   width: 0.5rem;
   height: 0.5rem;
-  @apply bg-transparent inline-block rounded-full mr-1 text-transparent text-center;
+  @apply bg-transparent inline-block mr-1 text-transparent text-center;
 }
 
 
