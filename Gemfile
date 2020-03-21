@@ -6,25 +6,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'bcrypt'
+gem 'bootsnap', require: false
+gem 'draper', '>= 3.0.0'
+gem 'font-awesome-rails'
+gem 'foundation-datepicker-rails'
+gem 'foundation-rails'
+gem 'haml'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.0.0'
 gem 'sass-rails', '~> 6.0'
-# gem 'redis', '~> 3.0'
-gem 'bcrypt'
-gem 'bootsnap', require: false
-gem 'webpacker'
-
-gem 'font-awesome-rails'
 gem 'simple_form'
-
-gem 'foundation-datepicker-rails'
-gem 'foundation-rails'
-
-gem 'draper', '>= 3.0.0'
-gem 'haml'
-gem 'kaminari'
+gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platform: :mri
