@@ -20,10 +20,11 @@
       = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
 
 .flex.flex-wrap.mb-4
-  .w-full
+  .w-full.mb-2
     = render 'ingredients', ingredients: @recipe.ingredients
   .w-full
-    = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'f-button w-full'
+    - word =  @recipe.ingredients.size.zero? ? 'first' : 'another'
+    = link_to "Add #{word} ingredient", new_recipe_ingredient_path(@recipe), class: 'f-button f-button-green w-full'
 
 .flex.my-8
   .w-full

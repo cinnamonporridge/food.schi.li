@@ -1,16 +1,16 @@
-.flex.mb-4
+.flex.mb-5
   .w-full
     %h1 Nutritions
 
-.flex.mb-4
+.flex.mb-5
   .w-full
-    = link_to 'Add nutrition', new_nutrition_path, class: 'f-button w-full'
+    = link_to 'Add nutrition', new_nutrition_path, class: 'f-button f-button-green w-full'
 
-.flex.mb-4
+.flex.mb-5
   .w-full
     = render 'layouts/search', form_url: nutritions_path
 
-.flex.mb-4
+.flex.mb-5
   .w-full
     %ul.nutrition-list-group
       - @nutritions.each do |nutrition|

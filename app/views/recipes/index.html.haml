@@ -1,12 +1,12 @@
-.flex.mb-4
+.flex.mb-5
   .w-full
     %h1 Recipes
 
-.flex.mb-4
+.flex.mb-5
   .w-full
-    = link_to 'New Recipe', new_recipe_path, class: 'f-button w-full'
+    = link_to 'New Recipe', new_recipe_path, class: 'f-button f-button-green w-full'
 
-.flex.mb-4
+.flex.mb-5
   .w-full
     = render 'layouts/search', form_url: recipes_path
 
@@ -18,6 +18,6 @@
   .w-full
     = render 'recipes/index', recipes: @recipes
 
-.flex
+.flex.mt-10
   .w-full
     = paginate @recipes

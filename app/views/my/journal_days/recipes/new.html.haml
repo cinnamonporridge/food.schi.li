@@ -13,6 +13,6 @@
 
   .flex.flex-wrap.mt-6
     .w-full
-      = f.submit 'Add recipe', class: 'f-button w-full'
-    .w-full
+      = f.submit 'Add recipe', class: 'f-button f-button-green w-full'
+    .w-full.my-5
       = link_to 'Cancel', my_journal_day_path(@form.journal_day), class: 'shy-link text-xs'

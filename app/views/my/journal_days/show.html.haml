@@ -23,9 +23,9 @@
   .w-full
     = render 'meals', meals: @journal_day.meals
   .w-full.mb-1
-    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button w-full'
+    = link_to 'Add portion meal', new_my_journal_day_meal_path(@journal_day), class: 'f-button f-button-green w-full'
   .w-full.mt-1
-    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button w-full'
+    = link_to 'Add recipe meal',  new_my_journal_day_recipe_path(@journal_day), class: 'f-button f-button-green w-full'
 
 .flex.my-8
   .w-full

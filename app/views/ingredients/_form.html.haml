@@ -16,10 +16,10 @@
       = f.input :measure,
                 collection: IngredientsDecorator.measures_collection,
                 include_blank: false,
-                input_html: { class: 'w-full' }
+                input_html: { class: 'w-full p-2 border border-green-300' }
 
   .flex.flex-wrap.my-6
     .w-full
-      = f.submit nil, class: 'f-button'
-    .w-full
+      = f.submit nil, class: 'f-button f-button-green'
+    .w-full.my-5
       = link_to 'Cancel', form.ingredient.recipe, class: 'shy-link text-xs'

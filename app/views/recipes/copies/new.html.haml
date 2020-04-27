@@ -12,6 +12,6 @@
 
   .flex.flex-wrap.mt-6
     .w-full
-      = f.submit 'Copy recipe', class: 'f-button'
-    .w-full
+      = f.submit 'Copy recipe', class: 'f-button f-button-green w-full'
+    .w-full.my-5
       = link_to 'Cancel', recipe_path(@form.recipe), class: 'shy-link text-xs'
