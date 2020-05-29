@@ -19,6 +19,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.0.0'
 gem 'sass-rails', '~> 6.0'
+gem 'sassc', '~> 2.2.1'
 gem 'simple_form'
 gem 'webpacker'
 
@@ -29,6 +30,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'listen'
   gem 'web-console', '>= 3.3.0'
 end
 

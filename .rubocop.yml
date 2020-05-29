@@ -12,10 +12,25 @@ AllCops:
 Rails:
   Enabled: true
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
 Layout/LineLength:
   Max: 120
   Exclude:
     - 'config/initializers/simple_form_foundation.rb'
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
 
 Metrics/BlockLength:
   Exclude:
@@ -38,6 +53,9 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+Style/ExponentialNotation:
+  Enabled: true
+
 Style/SymbolArray:
   Enabled: false
 
@@ -51,4 +69,7 @@ Style/HashTransformKeys:
   Enabled: true
 
 Style/HashTransformValues:
+  Enabled: true
+
+Style/SlicingWithRange:
   Enabled: true
