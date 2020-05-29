@@ -19,7 +19,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.0.0'
 gem 'sass-rails', '~> 6.0'
-gem 'sassc', git: 'https://github.com/sass/sassc-ruby.git', ref: '1bc1c545f38a1888103e0b4b050d3ad50d77ef9d'
+gem 'sassc', git: 'https://github.com/ahorek/sassc-ruby.git', branch: 'libsass_update_364'
 gem 'simple_form'
 gem 'webpacker'
 

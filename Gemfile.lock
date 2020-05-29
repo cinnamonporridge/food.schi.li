@@ -1,9 +1,9 @@
 GIT
-  remote: https://github.com/sass/sassc-ruby.git
-  revision: 1bc1c545f38a1888103e0b4b050d3ad50d77ef9d
-  ref: 1bc1c545f38a1888103e0b4b050d3ad50d77ef9d
+  remote: https://github.com/ahorek/sassc-ruby.git
+  revision: 38cbb789037bf58301e512ff8bd59f43f3c89d6a
+  branch: libsass_update_364
   specs:
-    sassc (2.2.1)
+    sassc (2.3.0)
       ffi (~> 1.9)
 
 GEM
