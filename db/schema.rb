@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_154609) do
+ActiveRecord::Schema.define(version: 2020_05_29_093646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_154609) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date", "user_id"], name: "index_journal_days_on_date_and_user_id", unique: true
     t.index ["user_id"], name: "index_journal_days_on_user_id"
   end
 
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_154609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
+    t.index ["name"], name: "index_nutritions_on_name", unique: true
   end
 
   create_table "portions", force: :cascade do |t|
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 2019_09_27_154609) do
     t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["nutrition_id", "amount"], name: "index_portions_on_nutrition_id_and_amount", unique: true
+    t.index ["nutrition_id", "name"], name: "index_portions_on_nutrition_id_and_name", unique: true
     t.index ["nutrition_id"], name: "index_portions_on_nutrition_id"
   end
 
