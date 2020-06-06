@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/ahorek/sassc-ruby.git
-  revision: 38cbb789037bf58301e512ff8bd59f43f3c89d6a
-  branch: libsass_update_364
-  specs:
-    sassc (2.3.0)
-      ffi (~> 1.9)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -220,6 +212,8 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
@@ -296,7 +290,6 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   sass-rails (~> 6.0)
-  sassc!
   simple_form
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
