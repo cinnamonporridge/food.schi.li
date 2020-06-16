@@ -16,8 +16,8 @@ class MealDecorator < Draper::Decorator
   end
 
   def rounded_amount_with_unit_abbrevation
-    h.content_tag :data, class: "unit unit-#{unit_abbrevation}" do
-      "#{model.amount.round}"
+    h.tag :data, class: "unit unit-#{unit_abbrevation}" do
+      model.amount.round.to_s
     end
   end
 

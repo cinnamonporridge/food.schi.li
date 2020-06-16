@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class NutritionTest < ApplicationSystemTestCase
   test 'search for nutrition' do
-    login_user(users(:daisy))
+    sign_in_user(users(:daisy))
 
     click_on 'Foods'
 
@@ -13,6 +13,6 @@ class NutritionTest < ApplicationSystemTestCase
 
     assert_selector 'h1', text: 'Nutritions'
 
-    assert_selector '.nutrition-list-group-item', count: 2
+    assert_selector 'ul.nutritions li', count: 2
   end
 end

@@ -9,4 +9,5 @@
     .w-full
       = f.submit nil, class: 'f-button f-button-green w-full'
     .w-full.my-5
-      = link_to 'Cancel', recipe_path(recipe), class: 'shy-link text-xs'
+      - cancel_url = recipe.new_record? ? recipes_path : recipe_path(recipe)
+      = link_to 'Cancel', cancel_url, class: 'shy-link text-xs'

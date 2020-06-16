@@ -51,6 +51,7 @@ class Recipe < ApplicationRecord
     self.vegan = VeganRecipeDetectionService.new(self).vegan?
   end
 
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def to_nutritions_table
     {
       ingredients: ingredients.map(&:to_nutritions_table_row),
@@ -70,4 +71,5 @@ class Recipe < ApplicationRecord
       ]]
     }
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 end

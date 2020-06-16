@@ -12,7 +12,7 @@
 
 .flex.mb-5
   .w-full
-    %ul.nutrition-list-group
+    %ul.nutritions
       - @nutritions.each do |nutrition|
         %li
           .card.mb-4.clickable{ 'data-href': nutrition_path(nutrition) }

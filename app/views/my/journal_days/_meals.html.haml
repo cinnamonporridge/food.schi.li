@@ -5,7 +5,7 @@
       - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
         %li.mb-4
           .text-2xs.tracking-wide.uppercase.text-gray-700= recipe&.name || "Other"
-          %ul.mt-2
+          %ul.meals.mt-2
             - recipe_meals.each do |recipe_meal|
               %li.border-0.border-b.border-gray-300.py-2
                 .flex

@@ -4,7 +4,6 @@ class My::JournalDaysController < ApplicationController
   def index
     @journal_days = JournalDay.of(current_user)
                               .on_or_after_date(date_filter)
-                              .joins(:meals).includes(:meals)
                               .ordered_by_date_desc
                               .decorate
   end

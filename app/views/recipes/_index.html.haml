@@ -1,5 +1,5 @@
 - if recipes
-  %ul
+  %ul.recipes
     - recipes.each do |recipe|
       %li
         .card.hover:bg-gray-200.mb-4.clickable{ 'data-href': recipe_path(recipe) }

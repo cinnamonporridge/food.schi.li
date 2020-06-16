@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class JournalDayTest < ApplicationSystemTestCase
   test 'user adds a meal portion to journal day' do
-    login_user(users(:daisy))
+    sign_in_user(users(:daisy))
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -18,12 +18,12 @@ class JournalDayTest < ApplicationSystemTestCase
 
     click_on 'Create Meal'
 
-    assert_selector 'h1', text: 'Wednesday, 01.02.2017'
+    assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_text 'Peanut Butter'
   end
 
   test 'user adds a recipe to journal day' do
-    login_user(users(:daisy))
+    sign_in_user(users(:daisy))
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -37,7 +37,7 @@ class JournalDayTest < ApplicationSystemTestCase
     fill_in 'Servings', with: '1'
     click_on 'Add recipe'
 
-    assert_selector 'h1', text: 'Wednesday, 01.02.2017'
+    assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_text 'Banana'
   end
 end

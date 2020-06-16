@@ -1,3 +1,6 @@
 - if defined?(vegan)
-  - if vegan === true
-    .float-right.inline.text-3xs.text-purple-400 Vegan
+  .vegan-indicator.float-right.inline.text-3xs
+    - if vegan === true
+      .text-purple-400 Vegan
+    - else
+      .text-gray-400 Not vegan

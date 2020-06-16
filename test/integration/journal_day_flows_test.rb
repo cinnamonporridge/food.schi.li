@@ -12,9 +12,9 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
       get '/my/journal_days'
       assert_response :success
       assert_select 'h1', 'My journal days'
-      assert_select 'a.primary.button', 'Add Journal Day'
+      assert_select 'a', 'Add Journal Day'
 
-      assert_select 'ul.journal-days-list-group li', count: users(:daisy).journal_days.count
+      assert_select 'ul.journal-days li', count: users(:daisy).journal_days.count
     end
   end
 
@@ -25,13 +25,13 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
       get '/my/journal_days'
       assert_response :success
       assert_select 'h1', 'My journal days'
-      assert_select 'a.primary.button', 'Add Journal Day'
+      assert_select 'a', 'Add Journal Day'
 
-      assert_select 'ul.journal-days-list-group li', count: 0
+      assert_select 'ul.journal-days li', count: 0
 
       get my_journal_days_path(time: :year)
       assert_response :success
-      assert_select 'ul.journal-days-list-group li', count: 3
+      assert_select 'ul.journal-days li', count: 3
     end
   end
 
@@ -39,19 +39,14 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     get "/my/journal_days/#{journal_days(:daisy_february_first).id}"
     assert_response :success
 
-    assert_select 'h1', 'Wednesday, 01.02.2017'
+    assert_select 'h1', 'Wed, 01.02.2017'
     assert_select 'h2', 'Meals'
     assert_select 'h2', 'Nutritions'
-    assert_select 'a.small.hollow.button.previous-journal-day', count: 0
-    assert_select 'a.small.hollow.button.next-journal-day', count: 1
-    assert_select 'a.warning.button', 'Edit'
-    assert_select 'a.alert.button', 'Delete'
+    assert_select 'a', 'Edit'
+    assert_select 'a', 'Delete'
 
-    expected_meal_buttons = ['Add portion meal', 'Add recipe meal']
-
-    css_select('a.primary.button').each_with_index do |link, i|
-      assert_equal expected_meal_buttons[i], link.text
-    end
+    assert_select 'a', 'Add portion meal'
+    assert_select 'a', 'Add recipe meal'
   end
 
   test 'daisy adds a new journal day' do
@@ -60,7 +55,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', 'Add Journal Day'
     assert_select "input[type='submit'][value='Create Journal day']"
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     post '/my/journal_days/',
          params: {
@@ -76,9 +71,9 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     get "/my/journal_days/#{journal_days(:daisy_february_first).id}/edit"
     assert_response :success
 
-    assert_select 'h1', 'Edit Wednesday, 01.02.2017'
+    assert_select 'h1', 'Edit Wed, 01.02.2017'
     assert_select "input[type='submit'][value='Update Journal day']"
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     patch "/my/journal_days/#{journal_days(:daisy_february_first).id}/",
           params: {

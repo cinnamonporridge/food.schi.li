@@ -9,10 +9,10 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get recipes_path
     assert_response :success
     assert_select 'h1', 'Recipes'
-    assert_select 'a.primary.button', 'New Recipe'
-    assert_select '.search input'
+    assert_select 'a', 'New Recipe'
+    assert_select 'input#search_query'
 
-    first_recipe, second_recipe, *_rest = css_select('li.food-list-group-item a')
+    first_recipe, second_recipe, *_rest = css_select('ul.recipes li a')
 
     assert_equal 'Anchovy Soup', first_recipe.inner_text.strip, 'Anchovy Soup should be listed before Apple Pie'
     assert_equal 'Apple Pie', second_recipe.inner_text.strip, 'Apple Pie should be listed after Anchovy Soup'
@@ -31,11 +31,11 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get recipes_path(search_query: 'AnCHOVy')
     assert_response :success
 
-    search_field = css_select('.search input[type=text]').first
+    search_field = css_select('input[type=text]#search_query').first
 
     assert_equal 'AnCHOVy', search_field.attr(:value)
 
-    recipe_list = css_select('li.food-list-group-item')
+    recipe_list = css_select('ul.recipes li')
 
     assert_equal 1, recipe_list.count
   end
@@ -45,13 +45,9 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Apple Pie'
     assert_select 'h2', 'Nutritions'
-    assert_select 'a.warning.button', 'Edit'
-    assert_select 'a.alert.button', 'Delete'
-
-    expected_header2 = ['Facts', 'Ingredients for 6 servings', 'Nutritions', 'Macronutrients']
-    css_select('h2').each_with_index do |header2, i|
-      assert_equal expected_header2[i], header2.text.strip
-    end
+    assert_select 'h2', 'Ingredients'
+    assert_select 'a', 'Edit'
+    assert_select 'a', 'Delete'
   end
 
   test 'user adds a recipe' do
@@ -59,7 +55,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'New Recipe'
     assert_select "input[type='submit'][value='Create Recipe']"
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     post '/recipes',
          params: {
@@ -89,7 +85,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Edit Apple Pie'
     assert_select "input[type='submit'][value='Update Recipe']"
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     put "/recipes/#{recipe.id}",
         params: {

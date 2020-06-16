@@ -3,7 +3,7 @@ require 'application_system_test_case'
 class RecipeTest < ApplicationSystemTestCase
   test 'admin copies a recipe' do
     recipe = recipes(:peanut_butter_bread)
-    login_user(users(:daisy))
+    sign_in_user(users(:daisy))
 
     visit recipe_path(recipe)
 

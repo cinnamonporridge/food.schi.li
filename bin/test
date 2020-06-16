@@ -16,5 +16,5 @@ chdir APP_ROOT do
   system! 'bin/rails test:system'
 
   puts "\n== Run rubocop =="
-  system! 'bundle exec rubocop'
+  system! 'bundle exec rubocop --parallel'
 end

@@ -10,7 +10,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     get my_journal_day_path(@february_first)
     assert_response :success
 
-    assert_select '.journal-day-meal-row', 2
+    assert_select 'ul.meals li', count: 2
   end
 
   test 'daisy adds a new piece portion meal' do
@@ -18,7 +18,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Add portion meal'
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
     assert_select 'input[type="submit"][value="Create Meal"]'
 
     post my_journal_day_meals_path(@february_first),

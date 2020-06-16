@@ -10,7 +10,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutritions_path
     assert_response :success
     assert_select 'h1', 'Nutritions'
-    assert_select 'a.primary.button', 'New nutrition'
+    assert_select 'a', 'Add nutrition'
   end
 
   test 'user visits apple nutrition page' do
@@ -18,14 +18,11 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Apple'
 
-    expected_header2 = ['100g contains', 'Portions', 'Used in 1 recipe']
+    assert_select 'h2', 'Nutrition facts'
+    assert_select 'h2', 'Portions'
 
-    css_select('h2').each_with_index do |header2, i|
-      assert_equal expected_header2[i], header2.text
-    end
-
-    assert_select 'a.warning.button', 'Edit'
-    assert_select 'a.primary.button', 'New portion'
+    assert_select 'a', 'Edit'
+    assert_select 'a', 'Add portion'
   end
 
   test 'user adds a new nutrition' do
@@ -33,7 +30,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'New nutrition'
     assert_select "input[type='submit'][value='Create Nutrition']"
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     assert_input_fields_present
 
@@ -80,9 +77,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
   # rubocop:disable Metrics/BlockLength
   test 'user edits a nutrition' do
     get nutrition_path(nutritions(:apple))
-    assert_select '.vegan-icon i.fa-leaf.fa-superlightgrey',
-                  { count: 1 },
-                  'Not vegan icon should be shown before update'
+    assert_select '.vegan-indicator', text: 'Not vegan'
 
     assert_select 'a', text: 'Edit'
 
@@ -90,7 +85,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'h1', 'Edit nutrition'
     assert_select "input[type='submit'][value='Update Nutrition']"
-    assert_select 'a.secondary.button', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     assert_input_fields_present
 
@@ -113,7 +108,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_equal 'Nutrition updated', flash[:notice]
-    assert_select '.vegan-icon i.fa-leaf.fa-green', { count: 1 }, 'Vegan icon should be shown after update'
+    assert_select '.vegan-indicator', text: 'Vegan'
   end
   # rubocop:enable Metrics/BlockLength
 
@@ -121,13 +116,13 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutrition_path(nutritions(:milk))
     assert_response :success
     assert_select 'h1', 'Milk'
-    assert_select 'a.alert.button', false, 'Apple should not show a delete button'
+    assert_select 'a', text: 'Delete nutrition', count: 0
 
     delete "/nutritions/#{nutritions(:milk).id}"
     assert_response :success
     assert_equal 'Deletion not possible', flash[:error]
 
-    assert_select '.callout.warning li', text: "Can't delete nutrition that is still used in a recipe"
+    assert_select 'div.card-yellow', text: 'Deletion not possible'
   end
 
   test 'user cannot delete a nutrition that is used in a meal / journal day' do
@@ -137,14 +132,14 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal 'Deletion not possible', flash[:error]
 
-    assert_select '.callout.warning li', text: "Can't delete nutrition that is still used in a meal"
+    assert_select 'div.card-yellow', 'Deletion not possible'
   end
 
   test 'user can delete nutrition that is not used in a recipe' do
     get nutrition_path(nutritions(:sugar))
     assert_response :success
     assert_select 'h1', 'Sugar'
-    assert_select 'a.alert.button', 'Delete'
+    assert_select 'a', 'Delete nutrition'
 
     delete "/nutritions/#{nutritions(:sugar).id}"
     follow_redirect!

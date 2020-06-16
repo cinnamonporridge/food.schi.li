@@ -1,8 +1,7 @@
 .flex.flex-wrap.mb-4
   .w-full
+    = render 'icons/vegan', vegan: @nutrition.vegan?
     %h1= @nutrition.name
-    .float-right.text-2xs
-      = render 'icons/vegan', vegan: @nutrition.vegan?
   .w-full
     = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'shy-link text-xs'
 
