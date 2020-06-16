@@ -10,8 +10,6 @@ gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'draper', '>= 3.0.0'
 gem 'font-awesome-rails'
-gem 'foundation-datepicker-rails'
-gem 'foundation-rails'
 gem 'haml'
 gem 'jquery-rails'
 gem 'kaminari'
