@@ -1,13 +1,12 @@
 = simple_form_for journal_day, url: [:my, journal_day] do |form|
-  #journal-day.input-group
-    .input-group-label
-      = fa_icon :calendar
-    = form.input :date, as: :string, label: false, input_html: journal_day.decorate.date_input_html, error: false
-  = form.error :date
+  .flex.flex-wrap.mb-4
+    .w-full
+      = form.input :date, label: false, input_html: { class: 'w-full border border-green-300 p-2 my-2 text-xs' }
 
-  .button-group
-    = form.submit nil, class: 'primary button'
-    - if journal_day.persisted?
-      = link_to 'Cancel', my_journal_day_path(journal_day), class: 'secondary button'
-    - else
-      = link_to 'Cancel', my_journal_days_path, class: 'secondary button'
+  .flex.flex-wrap.mt-6
+    .w-full
+      = form.submit nil, class: 'f-button f-button-green w-full'
+    .w-full
+      - cancel_path = journal_day.persisted? ? my_journal_day_path(journal_day) : my_journal_days_path
+      .mt-4
+        = link_to 'Cancel', cancel_path, class: 'shy-link text-xs'

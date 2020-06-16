@@ -1,10 +1,18 @@
-%h1 Add recipe to journal day
+.flex.mb-4
+  .w-full
+    %h1 Add recipe to journal day
 
 = simple_form_for [:my, @form] do |f|
-  = f.input :recipe_name, input_html: { list: :recipe_name_list }, label: 'Recipe'
-  %datalist#recipe_name_list
-    = options_for_select JournalDayRecipeDecorator.recipes_collection
-  = f.input :servings
+  .flex.flex-wrap.mb-4
+    .w-full
+      = f.input :recipe_name, input_html: { list: :recipe_name_list, class: 'w-full' }, label: 'Recipe'
+      %datalist#recipe_name_list
+        = options_for_select JournalDayRecipeDecorator.recipes_collection
+    .w-full
+      = f.input :servings, input_html: { class: 'w-full' }
 
-  = f.submit 'Add recipe', class: 'primary button'
-  = link_to 'Cancel', :back, class: 'secondary button'
+  .flex.flex-wrap.mt-6
+    .w-full
+      = f.submit 'Add recipe', class: 'f-button f-button-green w-full'
+    .w-full.my-5
+      = link_to 'Cancel', my_journal_day_path(@form.journal_day), class: 'shy-link text-xs'

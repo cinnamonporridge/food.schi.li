@@ -1,3 +1,5 @@
-- flash.each do |type, message|
-  #div{class: "callout #{foundation_class_for(type)}", 'data-closable': true}
-    = message
+- if flash.present?
+  .mb-4
+    .card.card-yellow
+      - flash.each do |type, message|
+        = message

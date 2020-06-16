@@ -1,15 +1,26 @@
-%h1 Nutritions
+.flex.mb-5
+  .w-full
+    %h1 Nutritions
 
-= link_to 'New nutrition', new_nutrition_path, class: 'primary button'
+.flex.mb-5
+  .w-full
+    = link_to 'Add nutrition', new_nutrition_path, class: 'f-button f-button-green w-full'
 
-= render 'layouts/search', form_url: nutritions_path
+.flex.mb-5
+  .w-full
+    = render 'layouts/search', form_url: nutritions_path
 
-%ul.nutrition-list-group
-  - @nutritions.each do |nutrition|
-    %li.nutrition-list-group-item.callout.clickable{ 'data-href': nutrition_path(nutrition) }
-      .grid-x
-        .cell
-          = link_to nutrition.name, nutrition_path(nutrition)
-        .cell.text-tiny
-          = render 'icons/vegan', vegan: nutrition.vegan?
+.flex.mb-5
+  .w-full
+    %ul.nutritions
+      - @nutritions.each do |nutrition|
+        %li
+          .card.mb-4.clickable{ 'data-href': nutrition_path(nutrition) }
+            .flex
+              .w-full.py-1.border-0.border-b.border-green-300
+                = render 'icons/vegan', vegan: nutrition.vegan?
+                = link_to nutrition.name, nutrition_path(nutrition)
+            .w-full.pt-2.pb-1.text-2xs
+              = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
+
 

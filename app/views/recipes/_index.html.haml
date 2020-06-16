@@ -1,16 +1,11 @@
 - if recipes
-  %ul.food-list-group
+  %ul.recipes
     - recipes.each do |recipe|
-      %li.food-list-group-item
-        .callout.clickable{ 'data-href': recipe_path(recipe) }
-          .grid-x
-            .cell.h3
+      %li
+        .card.hover:bg-gray-200.mb-4.clickable{ 'data-href': recipe_path(recipe) }
+          .flex.flex-wrap
+            .w-full.py-1.border-0.border-b.border-green-300
+              = render 'icons/vegan', vegan: recipe.vegan?
               = link_to recipe.name, recipe_path(recipe)
-            .cell
-              .grid-x
-                .cell
-                  = render 'icons/vegan', vegan: recipe.vegan?
-                .cell.text-muted
-                  Per serving
-                .cell
-                  = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving
+            .w-full.pt-2.pb-1.text-2xs
+              = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving

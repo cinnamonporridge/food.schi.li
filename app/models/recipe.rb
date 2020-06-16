@@ -50,4 +50,26 @@ class Recipe < ApplicationRecord
   def detect_vegan
     self.vegan = VeganRecipeDetectionService.new(self).vegan?
   end
+
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+  def to_nutritions_table
+    {
+      ingredients: ingredients.map(&:to_nutritions_table_row),
+      total: [[
+        'Total',
+        decorate.sum_kcal,
+        decorate.sum_carbs,
+        decorate.sum_protein,
+        decorate.sum_fat
+      ]],
+      per_serving: [[
+        'Per serving',
+        decorate.serving_kcal,
+        decorate.serving_carbs,
+        decorate.serving_protein,
+        decorate.serving_fat
+      ]]
+    }
+  end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 end

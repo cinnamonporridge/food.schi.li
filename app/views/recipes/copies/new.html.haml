@@ -1,9 +1,17 @@
-%h1= "Copy #{@form.recipe.name}"
+.flex.mb-4
+  .w-full
+    %h1= "Copy #{@form.recipe.name}"
 
 = simple_form_for @form, url: recipe_copy_path(@recipe) do |f|
-  .vertical-space-xl
-    = f.input :name, label: 'New recipe name', placeholder: 'Enter a new name'
+  .flex.flex-wrap.mb-4
+    .w-full
+      = f.input :name,
+                label: 'New recipe name',
+                placeholder: 'Enter a new name',
+                input_html: { class: 'w-full' }
 
-  .button-group
-    = f.submit 'Copy recipe', class: 'primary button'
-    = link_to 'Cancel', recipe_path(@form.recipe), class: 'secondary button'
+  .flex.flex-wrap.mt-6
+    .w-full
+      = f.submit 'Copy recipe', class: 'f-button f-button-green w-full'
+    .w-full.my-5
+      = link_to 'Cancel', recipe_path(@form.recipe), class: 'shy-link text-xs'

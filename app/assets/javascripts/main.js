@@ -17,3 +17,12 @@ let handleJournalDaysChange = function(event) {
 if(journalDaysDropdown()) {
   journalDaysDropdown().addEventListener('change', handleJournalDaysChange);
 }
+
+$('.js-toggle-actions').click(
+  function(event) {
+    var clickedElement = event.currentTarget.parentNode;
+
+    var actionsElement = clickedElement.querySelector('.actions');
+    actionsElement.classList.toggle('hidden');
+  }
+);

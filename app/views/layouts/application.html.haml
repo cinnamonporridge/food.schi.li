@@ -6,21 +6,25 @@
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
 
   %body
-    .grid-x.grid-padding-x.food-full-height
-      .small-12.medium-3.large-2.cell.food-menu-panel
-        .title
-          food.schi.li
+    .content
+      .flex.flex-wrap.mb-4
+        .w-full.bg-green-400
+          .text-center.text-2xs.block.text-green-900 food
         - if @current_user
-          = render 'layouts/navigation'
+          .w-full
+            = render 'layouts/navigation'
 
-      .small-12.medium-9.large-10.cell
-        = render 'layouts/flash'
-        = yield
-        = render 'layouts/footer'
+      .flex
+        .w-full.px-4
+          = render 'layouts/flash'
+          = yield
+
+    %footer.footer
+      = render 'layouts/footer'
 
     = javascript_include_tag 'application'
 

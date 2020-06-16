@@ -1,5 +1,6 @@
 - if defined?(vegan)
-  - if vegan === true
-    = fa_icon 'leaf green'
-  - else
-    = fa_icon 'leaf superlightgrey'
+  .vegan-indicator.float-right.inline.text-3xs
+    - if vegan === true
+      .text-purple-400 Vegan
+    - else
+      .text-gray-400 Not vegan

@@ -1,6 +1,188 @@
-/* UNCOMMENT TO USE TAILWIND
 @tailwind base;
 @tailwind components;
 
+:root {
+  --spacing-half: theme('spacing.1/2');
+  --spacing-1: theme('spacing.1');
+  --colors-gray-100: theme('colors.gray.100');
+  --colors-gray-300: theme('colors.gray.300');
+  --colors-gray-500: theme('colors.gray.500');
+}
+
+html {
+  @apply text-2xl h-full;
+}
+
+body {
+  @apply min-h-full;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+h1 {
+  @apply tracking-wide text-2xl text-green-700;
+}
+
+h2 {
+  @apply tracking-wide text-xl text-green-700;
+}
+
+label {
+  @apply text-2xs text-green-900;
+}
+
+nav {
+  @apply text-center;
+}
+
+nav ul {
+  @apply bg-green-200 flex;
+}
+
+nav li {
+  @apply flex-1;
+}
+
+nav a {
+  @apply text-sm text-green-800 inline-block w-full border-solid border-green-400 border-b-4 py-2;
+}
+
+nav a:hover {
+  @apply text-green-700 border-green-800;
+}
+
+nav a.active {
+  @apply border-green-700;
+}
+
+select {
+  @apply block;
+}
+
+li {
+  list-style-type: none;
+}
+
+.clickable {
+  @apply cursor-pointer;
+}
+
+.f-button {
+  @apply inline-block py-1 px-5 border text-center text-xs uppercase tracking-wider;
+}
+
+.f-button {
+  @apply cursor-pointer;
+}
+
+.f-button-green {
+  @apply border-green-300 bg-green-300 text-green-800
+}
+
+.f-button:hover {
+  @apply border-green-400 text-green-700;
+}
+
+.f-button-green-hollow {
+  @apply border border-green-500 bg-green-100 text-green-600;
+}
+
+.f-button-green-hollow:hover {
+  @apply bg-green-500 border-green-500 text-white;
+}
+
+.f-button-yellow-hollow {
+  @apply border border-yellow-500 bg-yellow-100 text-yellow-800;
+}
+
+.f-button-yellow-hollow:hover {
+  @apply border-yellow-500 bg-yellow-500 text-white;
+}
+
+.f-button-red-hollow {
+  @apply border border-red-500 text-red-600;
+}
+
+.f-button-red-hollow:hover {
+  @apply bg-red-500 border-red-500 text-white;
+}
+
+a, .fake-link {
+  @apply text-green-600 cursor-pointer;
+}
+
+a:hover, .fake-link:hover {
+  @apply text-green-500;
+}
+
+.shy-link {
+  @apply text-gray-500;
+}
+
+.shy-link-red:hover {
+  @apply text-red-400;
+}
+
+.card {
+  @apply border border-gray-200 bg-gray-100 py-2 px-3 text-base leading-tight;
+}
+
+.card-yellow {
+  @apply border-yellow-200 bg-yellow-100;
+}
+
+[aria-invalid="true"] {
+  @apply border-red-300;
+}
+
+[type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {
+  @apply mb-0;
+}
+
+.form-error {
+  @apply text-red-400 font-normal block text-2xs;
+}
+
+input {
+  @apply border border-green-300 p-2 text-xs text-green-700 tracking-wider;
+}
+
+input::placeholder {
+  @apply text-green-400 text-xs;
+}
+
+input[aria-invalid="true"] {
+  @apply border-red-200;
+}
+
+.stats-pill:before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  @apply bg-transparent inline-block mr-1 text-transparent text-center;
+}
+
+.unit::after {
+  @apply text-2xs text-gray-600;
+  margin-left: 0.1rem;
+}
+
+.unit-ml::after {
+  content: 'ml';
+}
+
+.unit-g::after {
+  content: 'g';
+}
+
+.stats-kcal:before { @apply bg-red-300 }
+.stats-carbs:before { @apply bg-purple-700 }
+.stats-protein:before { @apply bg-yellow-700 }
+.stats-fat:before { @apply bg-gray-700 }
+
 @tailwind utilities;
-*/

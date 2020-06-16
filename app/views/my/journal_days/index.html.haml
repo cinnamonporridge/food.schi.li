@@ -1,8 +1,15 @@
-%h1 My journal days
+.flex.mb-4
+  .w-full
+    %h1 My journal days
 
-= link_to 'Add Journal Day', new_my_journal_day_path, class: 'primary button'
+.flex.mb-4
+  .w-full
+    = link_to 'Add Journal Day', new_my_journal_day_path, class: 'f-button f-button-green w-full'
 
-.vertical-space-md
-  = render 'scope_dropdown'
+.flex.my-8.text-xs
+  .w-full
+    = render 'scope_dropdown'
 
-= render 'index', journal_days: @journal_days
+.flex.mb-4
+  .w-full
+    = render 'index', journal_days: @journal_days

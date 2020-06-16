@@ -10,7 +10,7 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     get recipe_path(recipe)
     assert_response :success
 
-    assert_select 'a.primary.button', 'Add ingredient'
+    assert_select 'a', 'Add another ingredient'
     get new_recipe_ingredient_path(recipe)
     assert_response :success
     assert_select 'h1', 'Add ingredient to Apple Pie'

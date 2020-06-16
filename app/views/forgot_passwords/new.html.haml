@@ -1,9 +1,16 @@
-%h1 Forgot password?
+.flex.mb-4.mt-6
+  .w-full
+    %h1 Forgot password?
 
 = simple_form_for(@form, url: forgot_passwords_url) do |form|
-  = form.input :email, placeholder: 'Email address', label: false
-  .button-group
-    = form.submit 'Reset my password', name: 'reset', class: 'primary button'
-    = form.submit 'Send me a magic link', name: 'magic_link', class: 'primary button'
-    = link_to 'Cancel', root_path, class: 'secondary button'
+  .flex.my-6
+    .w-full
+      = form.input :email, placeholder: 'Email address', label: false, input_html: { class: 'w-full' }
+  .flex.flex-wrap.my-6
+    .w-full
+      = form.submit 'Reset password', name: 'reset', class: 'f-button w-full'
+    .w-full
+      = form.submit 'Send me a magic link', name: 'magic_link', class: 'f-button f-button-yellow-hollow w-full'
+    .w-full
+      = link_to 'Cancel', root_path, class: 'shy-link text-xs'
 
