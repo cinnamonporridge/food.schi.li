@@ -12,10 +12,9 @@
         %td= user.email
         %td.text-right
           - if user.is_admin?
-            = fa_icon 'id-badge'
+            .text-gray-400.text-xs Admin
           - else
-            = link_to user_path(user), method: :delete, data: { confirm: 'Are you sure?' } do 
-              = fa_icon 'trash-o'
+            = link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
 
 
 = link_to 'Invite a person', new_user_path, class: 'primary button'

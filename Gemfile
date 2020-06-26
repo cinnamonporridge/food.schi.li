@@ -1,4 +1,4 @@
-ruby '2.6.5'
+ruby '2.7.1'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -9,14 +9,12 @@ end
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'draper', '>= 3.0.0'
-gem 'font-awesome-rails'
 gem 'haml'
-gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 6.0.0'
-gem 'sass-rails', '~> 6.0'
+gem 'rails'
+gem 'sass-rails'
 gem 'simple_form'
 gem 'webpacker'
 
