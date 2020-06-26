@@ -20,9 +20,7 @@ class IngredientDecorator < Draper::Decorator
   end
 
   def rounded_amount_with_unit_abbrevation
-    h.tag :data, class: "unit unit-#{unit_abbrevation}" do
-      model.amount.round.to_s
-    end
+    h.tag.data model.amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
   end
 
   def total_kcal
