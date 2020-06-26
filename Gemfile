@@ -9,7 +9,6 @@ end
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'draper', '>= 3.0.0'
-gem 'font-awesome-rails'
 gem 'haml'
 gem 'kaminari'
 gem 'pg'
