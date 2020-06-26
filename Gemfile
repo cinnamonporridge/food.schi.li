@@ -11,7 +11,6 @@ gem 'bootsnap', require: false
 gem 'draper', '>= 3.0.0'
 gem 'font-awesome-rails'
 gem 'haml'
-gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg'
 gem 'puma'
