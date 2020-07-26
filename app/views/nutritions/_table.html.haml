@@ -1,4 +1,4 @@
-- if nutritions_table.dig(:meals).present?
+- if nutritions_table[:total].first.second.positive? # = has calories?
   .flex.my-4
     .w-full
       .flex.border-b.border-gray-400
@@ -19,6 +19,6 @@
                 %div{ class: 'w-1/6 text-right' }= row[3]
                 %div{ class: 'w-1/6 text-right' }= row[4]
 - else
-  .text-gray-400.text-center.tracking-wider.text-2xs No meals: no nutritions.
+  .text-gray-400.text-center.tracking-wider.text-2xs No nutritions.
 
 
