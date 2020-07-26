@@ -2,6 +2,7 @@
   "name": "food.schi.li",
   "private": true,
   "dependencies": {
+    "@rails/ujs": "^6.0.3-2",
     "@rails/webpacker": "5.1.1",
     "tailwindcss": "1.5.2"
   },
