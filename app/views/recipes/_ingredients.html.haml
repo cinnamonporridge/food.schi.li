@@ -1,7 +1,7 @@
 - if ingredients.present?
   .flex.mb-4
     .w-full
-      %ul
+      %ul#ingredients_list
         - ingredients.each do |ingredient|
           %li.border-0.border-b.border-gray-300.py-2
             .flex.js-toggle-actions

@@ -24,4 +24,19 @@ class RecipeTest < ApplicationSystemTestCase
 
     assert_selector 'h1', text: 'PB&J Version 1'
   end
+
+  test 'admin deletes ingredient from a recipe' do
+    recipe = recipes(:peanut_butter_bread)
+    sign_in_user(users(:daisy))
+
+    visit recipe_path(recipe)
+
+    within('ul#ingredients_list') do
+      list_item = find('li', text: 'Whole Grain Bread Whole Grain Bread Portion')
+      list_item.click
+      list_item.click_on 'Delete'
+    end
+
+    assert_selector 'ul#ingredients_list', text: 'Whole Grain', count: 0
+  end
 end
