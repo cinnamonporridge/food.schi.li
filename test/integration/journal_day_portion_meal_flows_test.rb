@@ -10,7 +10,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     get my_journal_day_path(@february_first)
     assert_response :success
 
-    assert_select 'ul.meals li', count: 2
+    assert_select 'ul#meals li', count: 2
   end
 
   test 'daisy adds a new piece portion meal' do

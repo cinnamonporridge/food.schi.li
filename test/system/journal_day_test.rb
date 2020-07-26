@@ -40,4 +40,18 @@ class JournalDayTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_text 'Banana'
   end
+
+  test 'user deletes a meal from journal day' do
+    sign_in_user(users(:daisy))
+
+    journal_day = journal_days(:daisy_february_first)
+
+    visit my_journal_day_path(journal_day)
+
+    list_item = find('ul#meals li', text: 'Apple Big Apple')
+    list_item.click
+    list_item.click_on 'Delete'
+
+    assert_selector 'ul#meals li', text: 'Apple Big Apple', count: 0
+  end
 end
