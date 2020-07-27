@@ -3,8 +3,8 @@
     .w-full
       %ul
       - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
-        %li.mb-4
-          .text-2xs.tracking-wide.uppercase.text-gray-700= recipe&.name || "Other"
+        %li.mb-10
+          .text-sm.tracking-wide.uppercase.text-gray-500= recipe&.name || "Other"
           %ul#meals.mt-2
             - recipe_meals.each do |recipe_meal|
               %li.border-0.border-b.border-gray-300.py-2
@@ -16,10 +16,11 @@
                     .float-right
                       = recipe_meal.decorate.rounded_amount_with_unit_abbrevation
                 .actions.hidden
-                  .flex.text-2xs.mt-2
-                    .w-full
-                      = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal)
-                      = link_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'ml-2 shy-link shy-link-red', method: :delete, data: { confirm: 'Are you sure?' }
+                  .flex.text-2xs.mt-2.text-center.flex-wrap.sm:flex-no-wrap
+                    .py-2.w-full{ class: 'sm:w-1/2 sm:mr-1' }
+                      = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button f-button-green w-full'
+                    .py-2.w-full{ class: 'sm:w-1/2 sm:ml-1' }
+                      = link_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button w-full', method: :delete, data: { confirm: 'Are you sure?' }
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
 
