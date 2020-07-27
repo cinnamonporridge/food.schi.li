@@ -17,15 +17,17 @@
                 .text-3xs
                   = render 'icons/vegan', vegan: ingredient.portion.nutrition.vegan?
             .actions.hidden
-              .flex.text-2xs.mt-2
-                .w-full
+              .flex.text-2xs.mt-2.text-center.flex-wrap.sm:flex-no-wrap
+                .py-2.w-full{ class: 'sm:w-1/2 sm:mr-1' }
                   = link_to 'Edit',
-                            edit_recipe_ingredient_path(ingredient.recipe, ingredient)
+                            edit_recipe_ingredient_path(ingredient.recipe, ingredient),
+                            class: 'f-button f-button-green w-full'
+                .py-2.w-full{ class: 'sm:w-1/2 sm:ml-1' }
                   = link_to 'Delete',
                             recipe_ingredient_path(ingredient.recipe, ingredient),
                             method: :delete,
                             data: { confirm: 'Are you sure?' },
-                            class: 'ml-2 shy-link'
+                            class: 'f-button w-full'
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No ingredients yet
 

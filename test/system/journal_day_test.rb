@@ -54,4 +54,26 @@ class JournalDayTest < ApplicationSystemTestCase
 
     assert_selector 'ul#meals li', text: 'Apple Big Apple', count: 0
   end
+
+  test 'user adds and deletes a recipe from journal day' do
+    sign_in_user(users(:daisy))
+
+    journal_day = journal_days(:daisy_february_first)
+
+    visit my_journal_day_path(journal_day)
+
+    click_on 'Add recipe meal'
+
+    fill_in 'Recipe', with: 'Apple Pie (6 servings)'
+    click_on 'Add recipe'
+
+    assert_selector 'h1', text: 'Wed, 01.02.2017'
+
+    list_item = find('ul#recipes li', text: 'Apple Pie')
+    list_item.click
+    list_item.click_on 'Remove recipe from journal day'
+
+    assert_selector 'h1', text: 'Wed, 01.02.2017'
+    assert_selector 'ul#recipes li', text: 'Apple Pie', count: 0
+  end
 end

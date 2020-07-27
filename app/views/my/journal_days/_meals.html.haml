@@ -1,25 +1,42 @@
 - if meals.any?
   .flex.my-4
     .w-full
-      %ul
-      - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
-        %li.mb-4
-          .text-2xs.tracking-wide.uppercase.text-gray-700= recipe&.name || "Other"
-          %ul#meals.mt-2
-            - recipe_meals.each do |recipe_meal|
-              %li.border-0.border-b.border-gray-300.py-2
-                .flex.js-toggle-actions
-                  .w-full
-                    .inline-block
-                      .inline.fake-link= recipe_meal.portion.decorate.name_with_nutrition
-                      .inline.text-2xs.text-gray-400= recipe_meal.decorate.quantity_with_pieces
-                    .float-right
-                      = recipe_meal.decorate.rounded_amount_with_unit_abbrevation
-                .actions.hidden
-                  .flex.text-2xs.mt-2
+      %ul#recipes
+        - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
+          %li.mb-10
+            - if recipe.present?
+              %div{ data: { controller: 'meal-actions' }}
+                .text-sm.tracking-wide.uppercase.text-gray-500{ data: { action: 'click->meal-actions#toggleActions' }, class: 'hover:text-gray-800 cursor-pointer transition duration-100 ease-in-out' }
+                  = recipe.name
+                  .ml-1.inline.border.border-gray-300.px-1 ⋮
+                .hidden{ data: { target: 'meal-actions.actionsMenu' } }
+                  .flex.flex-wrap.sm:flex-no-wrap.text-sm.mt-4.mb-6
+                    .hidden.w-full.py-1
+                      = link_to 'Add ingredient to recipe on journal day', '#', class: 'f-button f-button-green w-full'
+                    .w-full.py-1
+                      = link_to 'Remove recipe from journal day', my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'f-button w-full'
+
+            - else
+              .text-sm.tracking-wide.uppercase.text-gray-500.inline
+                Other
+
+
+            %ul#meals.mt-2
+              - recipe_meals.each do |recipe_meal|
+                %li.border-0.border-b.border-gray-300.py-2
+                  .flex.js-toggle-actions
                     .w-full
-                      = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal)
-                      = link_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'ml-2 shy-link shy-link-red', method: :delete, data: { confirm: 'Are you sure?' }
+                      .inline-block
+                        .inline.fake-link= recipe_meal.portion.decorate.name_with_nutrition
+                        .inline.text-2xs.text-gray-400= recipe_meal.decorate.quantity_with_pieces
+                      .float-right
+                        = recipe_meal.decorate.rounded_amount_with_unit_abbrevation
+                  .actions.hidden
+                    .flex.text-2xs.mt-2.text-center.flex-wrap.sm:flex-no-wrap
+                      .py-2.w-full{ class: 'sm:w-1/2 sm:mr-1' }
+                        = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button f-button-green w-full'
+                      .py-2.w-full{ class: 'sm:w-1/2 sm:ml-1' }
+                        = link_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button w-full', method: :delete, data: { confirm: 'Are you sure?' }
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
 
