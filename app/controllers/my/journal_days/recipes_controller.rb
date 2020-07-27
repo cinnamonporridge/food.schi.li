@@ -21,6 +21,13 @@ class My::JournalDays::RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    recipe_id = params[:id]
+    @journal_day.meals.of_recipe(recipe_id).destroy_all
+
+    redirect_to [:my, @journal_day], notice: 'Recipe removed'
+  end
+
   private
 
   def journal_day_recipe_params

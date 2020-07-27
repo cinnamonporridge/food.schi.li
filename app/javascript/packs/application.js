@@ -19,6 +19,14 @@ require("@rails/ujs").start();
 
 import '../src/application.css'
 
+// src/application.js
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("../controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+
 window.addEventListener('DOMContentLoaded', (event) => {
   // journal days dropdown
   let journalDaysDropdown = document.querySelector('#journal_days_dropdown');

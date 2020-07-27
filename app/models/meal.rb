@@ -13,6 +13,8 @@ class Meal < ApplicationRecord
 
   scope :ordered_by_recipe, -> { order(:recipe_id) }
 
+  scope :of_recipe, ->(recipe) { where(recipe: recipe) }
+
   Nutrition::TYPES.each do |name|
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)

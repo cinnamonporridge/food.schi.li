@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   namespace :my do
     resources :journal_days do
       resources :meals, except: [:index, :show]
-      resources :recipes, only: [:new, :create], module: :journal_days
+      resources :recipes, only: [:new, :create, :destroy], module: :journal_days
     end
   end
 end
