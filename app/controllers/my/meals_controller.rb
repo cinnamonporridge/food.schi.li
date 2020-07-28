@@ -5,7 +5,8 @@ class My::MealsController < ApplicationController
   def new
     return handle_invalid_journal_day_access if @journal_day.blank?
 
-    new_meal = @journal_day.meals.new
+    recipe = Recipe.find_by(id: params[:recipe_id])
+    new_meal = @journal_day.meals.new(recipe: recipe)
 
     @form = MealPortionForm.new(meal: new_meal)
   end
@@ -50,7 +51,7 @@ class My::MealsController < ApplicationController
   private
 
   def meal_params
-    params.require(:meal).permit(:portion_name, :amount_in_measure, :measure)
+    params.require(:meal).permit(:portion_name, :amount_in_measure, :measure, :recipe_id)
   end
 
   def set_journal_day
