@@ -22,9 +22,7 @@ jobs:
         uses: actions/cache@v2
         id: bundler-cache
         with:
-          path: |
-            .bundle
-            vendor/bundle
+          path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Bundle install
