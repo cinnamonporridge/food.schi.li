@@ -23,10 +23,8 @@ if test_command.nil?
   abort message
 end
 
-chdir File.expand_path('../..', __dir__) do
-  system! "bundle config path vendor/bundle --local"
-  system! "cp ./.github/workflows/templates/database.yml.github-actions config/database.yml"
-  system! "bin/rails db:test:prepare"
+system! "bundle config path vendor/bundle --local"
+system! "cp ./.github/workflows/templates/database.yml.github-actions config/database.yml"
+system! "bin/rails db:test:prepare"
 
-  system! test_command
-end
+system! test_command
