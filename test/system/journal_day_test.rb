@@ -76,4 +76,33 @@ class JournalDayTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_selector 'ul#recipes li', text: 'Apple Pie', count: 0
   end
+
+  test 'user adds a portion to an existing recipe on specific journal day' do
+    sign_in_user(users(:daisy))
+
+    journal_day = journal_days(:daisy_february_first)
+
+    visit my_journal_day_path(journal_day)
+
+    click_on 'Add recipe meal'
+
+    fill_in 'Recipe', with: 'Apple Pie (6 servings)'
+    click_on 'Add recipe'
+
+    list_item = find('ul#recipes li', text: 'Apple Pie')
+    list_item.assert_no_text 'Peanut'
+    list_item.click
+    list_item.click_on 'Add portion to recipe on journal day'
+
+    assert_selector 'h1', text: 'Add portion to recipe'
+    assert_text 'Add a portion to Apple Pie on 01.02.2017'
+
+    fill_in 'Portion name', with: 'Peanut Butter (100g)'
+    fill_in 'Amount in measure', with: '133'
+
+    click_on 'Create Meal'
+
+    list_item = find('ul#recipes li', text: 'Apple Pie')
+    list_item.assert_text 'Peanut'
+  end
 end

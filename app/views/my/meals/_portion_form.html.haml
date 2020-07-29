@@ -1,5 +1,6 @@
 = simple_form_for form, url: [:my, form.meal.journal_day, form.meal] do |f|
   .flex.flex-wrap.mb-4
+    = f.input :recipe_id, as: :hidden
     .w-full.mb-2
       = f.input :portion_name, input_html: { list: :portion_id_list, class: 'w-full' }
       %datalist#portion_id_list

@@ -11,9 +11,9 @@
                   .ml-1.inline.border.border-gray-300.px-1 ⋮
                 .hidden{ data: { target: 'meal-actions.actionsMenu' } }
                   .flex.flex-wrap.sm:flex-no-wrap.text-sm.mt-4.mb-6
-                    .hidden.w-full.py-1
-                      = link_to 'Add ingredient to recipe on journal day', '#', class: 'f-button f-button-green w-full'
-                    .w-full.py-1
+                    .w-full.py-1.sm:mr-1
+                      = link_to 'Add portion to recipe on journal day', new_my_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'f-button f-button-green w-full'
+                    .w-full.py-1.sm:ml-1
                       = link_to 'Remove recipe from journal day', my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'f-button w-full'
 
             - else
