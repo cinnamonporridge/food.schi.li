@@ -70,7 +70,7 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Use gems from vendor/bundle
-        run: bundle config path vendor/bundle
+        run: bundle config path vendor/bundle --local
 
       - name: Run Rubocop
         run: bundle exec rubocop -p
@@ -113,7 +113,7 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Run Tests
-        run: ./github/bin/github_ci test
+        run: ./.github/bin/github_ci test
 
   system_test:
     name: Rails system tests
@@ -153,4 +153,4 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Run System Tests
-        run: ./github/bin/github_ci test_system
+        run: ./.github/bin/github_ci test_system
