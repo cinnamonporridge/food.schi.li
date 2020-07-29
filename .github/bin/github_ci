@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+include FileUtils
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+TEST_COMMANDS = {
+  test: 'bin/rails test',
+  test_system: 'bin/rails test:system'
+}
+
+abort("*** Error: ENV['CI'] is not true") unless ENV['CI'] == "true"
+
+test_command = TEST_COMMANDS[ARGV[0]&.to_sym]
+
+if test_command.nil?
+  message = "*** Error: provided command '#{test_command}' does not exist"
+  message += "\n    Valid commands are"
+  message += TEST_COMMANDS.keys.map { |command| "\n      - #{command}" }.join
+
+  abort message
+end
+
+system! "bundle config path vendor/bundle --local"
+system! "cp ./.github/workflows/templates/database.yml.github-actions config/database.yml"
+system! "bin/rails db:test:prepare"
+
+system! test_command
