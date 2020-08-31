@@ -7,6 +7,10 @@
     = link_to 'Edit', edit_recipe_path(@recipe)
     = link_to 'Copy', new_recipe_copy_path(@recipe), class: 'ml-2 shy-link'
 
+.flex.mb-4
+  .w-full
+    = render 'add_ingredient_button', recipe: @recipe
+
 .flex.flex-wrap.mb-4
   .w-full
     %h2 Nutritions
@@ -23,8 +27,7 @@
   .w-full.mb-2
     = render 'ingredients', ingredients: @recipe.ingredients
   .w-full
-    - word =  @recipe.ingredients.size.zero? ? 'first' : 'another'
-    = link_to "Add #{word} ingredient", new_recipe_ingredient_path(@recipe), class: 'f-button f-button-green w-full'
+    = render 'add_ingredient_button', recipe: @recipe
 
 .flex.my-8
   .w-full
