@@ -3,8 +3,8 @@ class My::JournalDaysController < ApplicationController
 
   def index
     @journal_days = JournalDay.of(current_user)
-                              .on_or_after_date(date_filter)
                               .ordered_by_date_desc
+                              .page(params[:page])
                               .decorate
   end
 
@@ -51,19 +51,6 @@ class My::JournalDaysController < ApplicationController
   end
 
   private
-
-  def date_filter
-    case params[:time]
-    when 'month'
-      1.month.ago
-    when 'year'
-      1.year.ago
-    when 'all'
-      Date.new
-    else
-      1.week.ago
-    end
-  end
 
   def journal_day_params
     params.require(:journal_day).permit(:date)

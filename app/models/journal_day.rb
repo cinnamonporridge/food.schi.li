@@ -13,7 +13,6 @@ class JournalDay < ApplicationRecord
   scope :using_meals, ->(meals) { where(meals: meals) }
 
   scope :after_date, ->(date) { where('date > ?', date) }
-  scope :on_or_after_date, ->(date) { where('date >= ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
 
   Nutrition::TYPES.each do |name|
