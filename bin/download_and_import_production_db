@@ -1,0 +1,22 @@
+#!/bin/bash
+
+APP_OPTION="--app=food-schi-li"
+DATABASE_NAME="food_schi_li_development"
+DUMP_FILE_NAME="latest.dump"
+
+run()
+{
+  description=$1
+  command=$2
+  echo "============ ${description} ============"
+  echo "(${command})"
+  echo
+
+  $(${command})
+}
+
+run "Create snapshot" "heroku pg:backups:capture ${APP_OPTION}"
+run "Download snapshot" "heroku pg:backups:download ${APP_OPTION} -o ${DUMP_FILE_NAME}"
+run "Drop existing database" "dropdb ${DATABASE_NAME}"
+run "Create database" "createdb ${DATABASE_NAME}"
+run "Import database" "pg_restore --verbose --clean --no-acl --no-owner -h localhost -d ${DATABASE_NAME} ${DUMP_FILE_NAME}"
