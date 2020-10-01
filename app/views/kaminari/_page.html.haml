@@ -1,5 +1,5 @@
-%li.pagination-page{ :class => "#{'current' if page.current?}"}
+%li.pagination-page{ class: "#{'current' if page.current?}"}
   - if page.current?
-    = page
+    %span.p-1= page
   - else
-    = link_to page, url, {:remote => remote, :rel => page.rel}
+    = link_to page, url, { remote: remote, rel: page.rel, class: 'text-green-600 hover:text-green-400 transition duration-300 p-1' }

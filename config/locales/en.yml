@@ -34,3 +34,9 @@ en:
     formats:
       default: "%d.%m.%Y"
       with_weekday: "%a, %d.%m.%Y"
+  views:
+    pagination:
+      first: "First"
+      previous: "Prev"
+      next: "Next"
+      last: "Last"

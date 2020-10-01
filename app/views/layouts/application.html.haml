@@ -13,18 +13,22 @@
     .content
       .flex.flex-wrap.mb-4
         .w-full.bg-green-400
-          .text-center.text-2xs.block.text-green-900 food
+          .container-lg.mx-auto
+            .text-center.text-2xs.block.text-green-900 food
         - if @current_user
-          .w-full
-            = render 'layouts/navigation'
+          .w-full.bg-green-200
+            .container.mx-auto
+              = render 'layouts/navigation'
 
       .flex
         .w-full.px-4
-          = render 'layouts/flash'
-          = yield
+          .container.mx-auto
+            = render 'layouts/flash'
+            = yield
 
     %footer.footer
-      = render 'layouts/footer'
+      .container.mx-auto
+        = render 'layouts/footer'
 
     = javascript_include_tag 'application'
 
