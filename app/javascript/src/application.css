@@ -185,4 +185,8 @@ input[aria-invalid="true"] {
 .stats-protein:before { @apply bg-yellow-700 }
 .stats-fat:before { @apply bg-gray-700 }
 
+ul.pagination li {
+  @apply inline-block;
+}
+
 @tailwind utilities;
