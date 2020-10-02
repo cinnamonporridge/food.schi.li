@@ -41,7 +41,7 @@ nav {
 }
 
 nav ul {
-  @apply bg-green-200 flex;
+  @apply flex;
 }
 
 nav li {
