@@ -18,23 +18,6 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'daisy visits journal days index page a year later and changes the time filter' do
-    journal_day = journal_days(:daisy_february_first)
-
-    travel_to(journal_day.date + 1.year) do
-      get '/my/journal_days'
-      assert_response :success
-      assert_select 'h1', 'My journal days'
-      assert_select 'a', 'Add Journal Day'
-
-      assert_select 'ul.journal-days li', count: 0
-
-      get my_journal_days_path(time: :year)
-      assert_response :success
-      assert_select 'ul.journal-days li', count: 3
-    end
-  end
-
   test 'daisy visits own journal day' do
     get "/my/journal_days/#{journal_days(:daisy_february_first).id}"
     assert_response :success
