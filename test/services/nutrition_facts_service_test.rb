@@ -62,4 +62,20 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 5.4, recipe.fat_saturated
     assert_equal 54, recipe.fiber
   end
+
+  test '#promote_to_meals' do
+    meal = meals(:johns_apple_on_january_first)
+
+    NutritionFactsService.new.promote_to_meals
+
+    meal.reload
+
+    assert_equal 180, meal.kcal
+    assert_equal 180, meal.carbs
+    assert_equal 18.0, meal.carbs_sugar_part
+    assert_equal 180, meal.protein
+    assert_equal 180, meal.fat
+    assert_equal 18.0, meal.fat_saturated
+    assert_equal 180, meal.fiber
+  end
 end

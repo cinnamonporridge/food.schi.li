@@ -1,4 +1,6 @@
 class Meal < ApplicationRecord
+  include NutritionFacts
+
   belongs_to :journal_day
   belongs_to :portion
   belongs_to :recipe, optional: true
