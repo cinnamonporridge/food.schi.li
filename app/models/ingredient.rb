@@ -12,27 +12,13 @@ class Ingredient < ApplicationRecord
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
-  NutritionFacts::COLUMNS.each do |name|
-    define_method :"total_#{name}" do
-      send(:total_of_sustenance, name)
-    end
-  end
-
   def to_nutritions_table_row
     [
       portion.decorate.name_with_nutrition,
-      decorate.total_kcal,
-      decorate.total_carbs,
-      decorate.total_protein,
-      decorate.total_fat
+      decorate.kcal,
+      decorate.carbs,
+      decorate.protein,
+      decorate.fat
     ]
-  end
-
-  private
-
-  def total_of_sustenance(name)
-    return 0.0 if portion.blank?
-
-    (amount / 100) * nutrition.send(name.to_s.to_sym)
   end
 end
