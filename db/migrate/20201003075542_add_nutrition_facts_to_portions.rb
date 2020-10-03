@@ -1,4 +1,4 @@
-class AddSustenancesToPortions < ActiveRecord::Migration[6.0]
+class AddNutritionFactsToPortions < ActiveRecord::Migration[6.0]
   def change
     change_table :portions, bulk: true do |t|
       t.integer :kcal, null: false, default: 0
