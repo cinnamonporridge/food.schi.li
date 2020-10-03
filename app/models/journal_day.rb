@@ -15,28 +15,12 @@ class JournalDay < ApplicationRecord
   scope :after_date, ->(date) { where('date > ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
 
-  NutritionFacts::COLUMNS.each do |name|
-    define_method :"sum_#{name}" do
-      send(:sum_of_sustenance, name)
-    end
-
-    define_method(:"serving_#{name}") do
-      send("sum_#{name}") / send(:servings)
-    end
-  end
-
-  def sum_of_sustenance(name)
-    meals.inject(0.0) do |sum, meal|
-      sum + (meal.amount * meal.nutrition.send(name.to_s)) / 100
-    end
-  end
-
   def macronutrient_data
     @macronutrient_data ||= MacronutrientDataService.new(
-      kcal: sum_kcal,
-      carbs: sum_carbs,
-      protein: sum_protein,
-      fat: sum_fat
+      kcal: kcal,
+      carbs: carbs,
+      protein: protein,
+      fat: fat
     )
   end
 
@@ -46,10 +30,10 @@ class JournalDay < ApplicationRecord
       meals: meals.map(&:to_nutritions_table_row),
       total: [[
         'Total',
-        decorate.sum_kcal,
-        decorate.sum_carbs,
-        decorate.sum_protein,
-        decorate.sum_fat
+        decorate.kcal,
+        decorate.carbs,
+        decorate.protein,
+        decorate.fat
       ]]
     }
   end
