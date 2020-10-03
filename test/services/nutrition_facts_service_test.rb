@@ -46,4 +46,20 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 0.09, banana.fat_saturated
     assert_equal 0.9, banana.fiber
   end
+
+  test '#promote_to_recipes' do
+    recipe = recipes(:apple_pie)
+
+    NutritionFactsService.new.promote_to_recipes
+
+    recipe.reload
+
+    assert_equal 54, recipe.kcal
+    assert_equal 54, recipe.carbs
+    assert_equal 5.4, recipe.carbs_sugar_part
+    assert_equal 54, recipe.protein
+    assert_equal 54, recipe.fat
+    assert_equal 5.4, recipe.fat_saturated
+    assert_equal 54, recipe.fiber
+  end
 end
