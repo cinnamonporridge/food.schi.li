@@ -1,30 +1,21 @@
 class NutritionFactsService
-  def promote_to_portions
-    sql = Rails.root.join('lib/sql/update_nutrition_facts_on_portions.sql').read
-    run(sql)
+  VALID_TABLE_NAMES = %i[portions ingredients recipes meals journal_days].freeze
+
+  def self.update(table_name)
+    new.update(table_name)
   end
 
-  def promote_to_ingredients
-    sql = Rails.root.join('lib/sql/update_nutrition_facts_on_ingredients.sql').read
-    run(sql)
-  end
+  def update(table_name)
+    raise InvalidArgument unless VALID_TABLE_NAMES.include?(table_name.to_sym)
 
-  def promote_to_recipes
-    sql = Rails.root.join('lib/sql/update_nutrition_facts_on_recipes.sql').read
-    run(sql)
-  end
-
-  def promote_to_meals
-    sql = Rails.root.join('lib/sql/update_nutrition_facts_on_meals.sql').read
-    run(sql)
-  end
-
-  def promote_to_journal_days
-    sql = Rails.root.join('lib/sql/update_nutrition_facts_on_journal_days.sql').read
-    run(sql)
+    run(read_sql(table_name))
   end
 
   private
+
+  def read_sql(table_name)
+    Rails.root.join("lib/sql/update_nutrition_facts_on_#{table_name}.sql").read
+  end
 
   def run(sql)
     ActiveRecord::Base.connection.execute(sql)

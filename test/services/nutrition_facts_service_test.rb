@@ -1,11 +1,11 @@
 require 'test_helper'
 
 class NutritionFactsServiceTest < ActiveSupport::TestCase
-  test '#promote_to_portions' do
+  test '.update(:portions)' do
     banana_default = portions(:banana_default_portion)
     banana_regular = portions(:regular_banana_portion)
 
-    NutritionFactsService.new.promote_to_portions
+    NutritionFactsService.update(:portions)
 
     banana_default.reload
     banana_regular.reload
@@ -21,11 +21,11 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 104.4, banana_regular.fiber
   end
 
-  test '#promote_to_ingredients' do
+  test '.update(:ingredients)' do
     peanut_butter = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     banana = ingredients(:banana_in_vegan_peanut_butter_banana)
 
-    NutritionFactsService.new.promote_to_ingredients
+    NutritionFactsService.update(:ingredients)
 
     peanut_butter.reload
     banana.reload
@@ -47,10 +47,10 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 0.9, banana.fiber
   end
 
-  test '#promote_to_recipes' do
+  test '.update(:recipes)' do
     recipe = recipes(:apple_pie)
 
-    NutritionFactsService.new.promote_to_recipes
+    NutritionFactsService.update(:recipes)
 
     recipe.reload
 
@@ -63,10 +63,10 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 54, recipe.fiber
   end
 
-  test '#promote_to_meals' do
+  test '.update(:meals)' do
     meal = meals(:johns_apple_on_january_first)
 
-    NutritionFactsService.new.promote_to_meals
+    NutritionFactsService.update(:meals)
 
     meal.reload
 
@@ -79,10 +79,10 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 180, meal.fiber
   end
 
-  test '#promote_to_journal_days' do
+  test '.update(:journal_days)' do
     journal_day = journal_days(:john_january_first)
 
-    NutritionFactsService.new.promote_to_journal_days
+    NutritionFactsService.update(:journal_days)
 
     journal_day.reload
 
