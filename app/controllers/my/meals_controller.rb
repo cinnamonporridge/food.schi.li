@@ -49,6 +49,7 @@ class My::MealsController < ApplicationController
     return handle_invalid_meal_access if @meal.blank?
 
     @meal.destroy
+    NutritionFactsService.update_all
     redirect_to my_journal_day_path(@meal.journal_day), notice: 'Meal deleted'
   end
 
