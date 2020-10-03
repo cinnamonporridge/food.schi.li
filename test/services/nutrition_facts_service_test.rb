@@ -78,4 +78,20 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 18.0, meal.fat_saturated
     assert_equal 180, meal.fiber
   end
+
+  test '#promote_to_journal_days' do
+    journal_day = journal_days(:john_january_first)
+
+    NutritionFactsService.new.promote_to_journal_days
+
+    journal_day.reload
+
+    assert_equal 196, journal_day.kcal
+    assert_equal 196, journal_day.carbs
+    assert_equal 19.6, journal_day.carbs_sugar_part
+    assert_equal 196, journal_day.protein
+    assert_equal 196, journal_day.fat
+    assert_equal 19.6, journal_day.fat_saturated
+    assert_equal 196, journal_day.fiber
+  end
 end

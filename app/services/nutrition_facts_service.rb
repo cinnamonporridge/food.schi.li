@@ -19,6 +19,11 @@ class NutritionFactsService
     run(sql)
   end
 
+  def promote_to_journal_days
+    sql = Rails.root.join('lib/sql/update_nutrition_facts_on_journal_days.sql').read
+    run(sql)
+  end
+
   private
 
   def run(sql)

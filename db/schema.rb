@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_131613) do
+ActiveRecord::Schema.define(version: 2020_10_03_133815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2020_10_03_131613) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.index ["date", "user_id"], name: "index_journal_days_on_date_and_user_id", unique: true
     t.index ["user_id"], name: "index_journal_days_on_user_id"
   end
