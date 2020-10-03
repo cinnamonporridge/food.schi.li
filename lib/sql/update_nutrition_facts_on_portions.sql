@@ -83,16 +83,12 @@ SELECT portion_id
      , NOW() AS updated_at
   FROM with_rounded_target_nutrution_facts
     ON CONFLICT (id)
-    DO UPDATE SET name = EXCLUDED.name
-                , nutrition_id = EXCLUDED.nutrition_id
-                , amount = EXCLUDED.amount
-                , kcal = EXCLUDED.kcal
+    DO UPDATE SET kcal = EXCLUDED.kcal
                 , carbs = EXCLUDED.carbs
                 , carbs_sugar_part = EXCLUDED.carbs_sugar_part
                 , protein = EXCLUDED.protein
                 , fat = EXCLUDED.fat
                 , fat_saturated = EXCLUDED.fat_saturated
                 , fiber = EXCLUDED.fiber
-                , created_at = EXCLUDED.created_at
                 , updated_at = EXCLUDED.updated_at
 ;
