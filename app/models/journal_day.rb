@@ -15,7 +15,7 @@ class JournalDay < ApplicationRecord
   scope :after_date, ->(date) { where('date > ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
 
-  Nutrition::TYPES.each do |name|
+  NutritionFacts::COLUMNS.each do |name|
     define_method :"sum_#{name}" do
       send(:sum_of_sustenance, name)
     end

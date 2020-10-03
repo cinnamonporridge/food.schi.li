@@ -1,4 +1,6 @@
 class Portion < ApplicationRecord
+  include NutritionFacts
+
   PRIMARY_AMOUNT = 100
 
   belongs_to :nutrition

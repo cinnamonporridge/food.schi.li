@@ -10,7 +10,7 @@ class Ingredient < ApplicationRecord
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
-  Nutrition::TYPES.each do |name|
+  NutritionFacts::COLUMNS.each do |name|
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)
     end
