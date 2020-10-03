@@ -1,4 +1,6 @@
 class Ingredient < ApplicationRecord
+  include NutritionFacts
+
   belongs_to :portion
   belongs_to :recipe
 
