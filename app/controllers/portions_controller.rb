@@ -12,6 +12,7 @@ class PortionsController < ApplicationController
     @portion = find_nutrition.portions.new(portion_params)
 
     if @portion.save
+      NutritionFactsService.update_all
       redirect_to @portion.nutrition, notice: 'Portion added'
     else
       flash.now[:error] = 'Invalid input'
@@ -21,6 +22,7 @@ class PortionsController < ApplicationController
 
   def update
     if @portion.update(portion_params)
+      NutritionFactsService.update_all
       redirect_to @portion.nutrition, notice: 'Portion updated'
     else
       flash.now[:error] = 'Invalid input'

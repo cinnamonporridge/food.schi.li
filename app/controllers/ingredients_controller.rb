@@ -13,7 +13,10 @@ class IngredientsController < ApplicationController
   def create
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
-    return handle_success('Ingredient added') if @form.valid? && @ingredient.update(@form.values)
+    if @form.valid? && @ingredient.update(@form.values)
+      NutritionFactsService.update_all
+      return handle_success('Ingredient added')
+    end
 
     flash.now[:error] = 'Invalid input'
     render :new
@@ -22,7 +25,10 @@ class IngredientsController < ApplicationController
   def update
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
-    return handle_success('Ingredient updated') if @form.valid? && @ingredient.update(@form.values)
+    if @form.valid? && @ingredient.update(@form.values)
+      NutritionFactsService.update_all
+      return handle_success('Ingredient updated')
+    end
 
     flash.now[:error] = 'Invalid input'
     render :edit

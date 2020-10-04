@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_093646) do
+ActiveRecord::Schema.define(version: 2020_10_03_153918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_093646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "measure", default: 1, null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.index ["portion_id"], name: "index_ingredients_on_portion_id"
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
@@ -31,6 +38,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_093646) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.index ["date", "user_id"], name: "index_journal_days_on_date_and_user_id", unique: true
     t.index ["user_id"], name: "index_journal_days_on_user_id"
   end
@@ -44,6 +58,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_093646) do
     t.integer "measure_unit", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.index ["journal_day_id"], name: "index_meals_on_journal_day_id"
     t.index ["portion_id"], name: "index_meals_on_portion_id"
     t.index ["recipe_id"], name: "index_meals_on_recipe_id"
@@ -71,6 +92,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_093646) do
     t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.index ["nutrition_id", "amount"], name: "index_portions_on_nutrition_id_and_amount", unique: true
     t.index ["nutrition_id", "name"], name: "index_portions_on_nutrition_id_and_name", unique: true
     t.index ["nutrition_id"], name: "index_portions_on_nutrition_id"
@@ -82,6 +110,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_093646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

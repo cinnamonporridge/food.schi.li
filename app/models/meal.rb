@@ -1,4 +1,6 @@
 class Meal < ApplicationRecord
+  include NutritionFacts
+
   belongs_to :journal_day
   belongs_to :portion
   belongs_to :recipe, optional: true
@@ -15,7 +17,7 @@ class Meal < ApplicationRecord
 
   scope :of_recipe, ->(recipe) { where(recipe: recipe) }
 
-  Nutrition::TYPES.each do |name|
+  NutritionFacts::COLUMNS.each do |name|
     define_method :"total_#{name}" do
       send(:total_of_sustenance, name)
     end

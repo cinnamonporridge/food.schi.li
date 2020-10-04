@@ -17,7 +17,10 @@ class My::MealsController < ApplicationController
     new_meal = @journal_day.meals.new
     @form = MealPortionForm.new(meal_params.merge(meal: new_meal))
 
-    return handle_success if @form.valid? && new_meal.update(@form.values)
+    if @form.valid? && new_meal.update(@form.values)
+      NutritionFactsService.update_all
+      return handle_success
+    end
 
     handle_error
   end
@@ -34,6 +37,7 @@ class My::MealsController < ApplicationController
     @form = MealPortionForm.new(meal_params.merge(meal: @meal))
 
     if @form.valid? && @meal.update(@form.values)
+      NutritionFactsService.update_all
       redirect_to my_journal_day_path(@meal.journal_day), notice: 'Meal updated'
     else
       flash.now[:error] = 'Invalid input'
@@ -45,6 +49,7 @@ class My::MealsController < ApplicationController
     return handle_invalid_meal_access if @meal.blank?
 
     @meal.destroy
+    NutritionFactsService.update_all
     redirect_to my_journal_day_path(@meal.journal_day), notice: 'Meal deleted'
   end
 

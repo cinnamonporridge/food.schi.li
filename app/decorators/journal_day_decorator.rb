@@ -44,35 +44,6 @@ class JournalDayDecorator < Draper::Decorator
     journal_day_calendar_service.next_journal_day&.decorate
   end
 
-  # SUMS
-  def sum_kcal
-    model.sum_kcal.round || 0
-  end
-
-  def sum_carbs
-    model.sum_carbs.round || 0
-  end
-
-  def sum_carbs_sugar_part
-    model.sum_carbs_sugar_part.round || 0
-  end
-
-  def sum_protein
-    model.sum_protein.round || 0
-  end
-
-  def sum_fat
-    model.sum_fat.round || 0
-  end
-
-  def sum_fat_saturated
-    model.sum_fat_saturated.round || 0
-  end
-
-  def sum_fiber
-    model.sum_fiber.round || 0
-  end
-
   private
 
   def journal_day_calendar_service

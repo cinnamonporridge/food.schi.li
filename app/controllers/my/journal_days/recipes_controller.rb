@@ -14,6 +14,7 @@ class My::JournalDays::RecipesController < ApplicationController
 
     if @form.valid?
       CopyRecipeToJournalDayService.new(@form.recipe, @form.servings, @journal_day).call
+      NutritionFactsService.update_all
       redirect_to [:my, @journal_day], notice: 'Recipe added'
     else
       flash.now[:error] = 'Invalid input'
@@ -24,6 +25,7 @@ class My::JournalDays::RecipesController < ApplicationController
   def destroy
     recipe_id = params[:id]
     @journal_day.meals.of_recipe(recipe_id).destroy_all
+    NutritionFactsService.update_all
 
     redirect_to [:my, @journal_day], notice: 'Recipe removed'
   end

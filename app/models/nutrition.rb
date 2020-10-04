@@ -1,10 +1,9 @@
 class Nutrition < ApplicationRecord
   include Searchable
+  include NutritionFacts
 
   has_many :portions, dependent: :destroy
   has_one :primary_portion, -> { primary }, class_name: 'Portion', inverse_of: false
-
-  TYPES = %i[kcal carbs carbs_sugar_part protein fat fat_saturated fiber].freeze
 
   scope :ordered_by_name, -> { order(name: :asc) }
 
@@ -14,13 +13,6 @@ class Nutrition < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :unit, presence: true
-  validates :kcal, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-  validates :carbs, numericality: { greater_than_or_equal_to: 0 }
-  validates :carbs_sugar_part, numericality: { greater_than_or_equal_to: 0 }
-  validates :protein, numericality: { greater_than_or_equal_to: 0 }
-  validates :fat, numericality: { greater_than_or_equal_to: 0 }
-  validates :fat_saturated, numericality: { greater_than_or_equal_to: 0 }
-  validates :fiber, numericality: { greater_than_or_equal_to: 0 }
 
   def deleteable?
     in_recipes.none? && in_meals.none?

@@ -21,6 +21,7 @@ class NutritionsController < ApplicationController
     @nutrition.portions.new(name: default_portion_name, amount: 100)
 
     if @nutrition.save
+      NutritionFactsService.update_all
       redirect_to @nutrition, notice: 'Nutrition added'
     else
       flash.now[:error] = 'Invalid input'
@@ -31,6 +32,7 @@ class NutritionsController < ApplicationController
   def update
     if @nutrition.update(nutrition_params)
       update_affected_recipes if @nutrition.vegan_previously_changed?
+      NutritionFactsService.update_all
 
       redirect_to @nutrition, notice: 'Nutrition updated'
     else
