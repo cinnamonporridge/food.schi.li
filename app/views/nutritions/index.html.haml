@@ -12,6 +12,10 @@
 
 .flex.mb-5
   .w-full
+    = paginate @nutritions
+
+.flex.mb-5
+  .w-full
     %ul.nutritions
       - @nutritions.each do |nutrition|
         %li
@@ -23,4 +27,6 @@
             .w-full.pt-2.pb-1.text-2xs
               = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
 
-
+.flex.mb-5
+  .w-full
+    = paginate @nutritions
