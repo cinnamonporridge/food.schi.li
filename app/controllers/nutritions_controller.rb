@@ -2,7 +2,9 @@ class NutritionsController < ApplicationController
   before_action :set_nutrition, only: [:show, :edit, :update, :destroy]
 
   def index
-    @nutritions = Nutrition.search(params[:search_query]).ordered_by_name
+    @nutritions = Nutrition.search(params[:search_query])
+                           .ordered_by_name
+                           .page(params[:page])
   end
 
   def show
