@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -23,7 +23,7 @@ jobs:
         id: bundler-cache
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Bundle install
         if: steps.bundler-cache.outputs.cache-hit != 'true'
@@ -65,7 +65,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Use gems from vendor/bundle
         run: bundle config path vendor/bundle --local
