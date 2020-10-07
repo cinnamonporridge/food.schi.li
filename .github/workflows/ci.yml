@@ -108,7 +108,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Run Tests
         run: bin/rails test
