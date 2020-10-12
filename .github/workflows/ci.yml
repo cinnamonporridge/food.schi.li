@@ -5,7 +5,7 @@ env:
   POSTGRES_PASSWORD: "postgres"
 
 name: Continuous Integration
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   bundle_install:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -23,12 +23,12 @@ jobs:
         id: bundler-cache
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Bundle install
         if: steps.bundler-cache.outputs.cache-hit != 'true'
         run: |
-          bundle config path vendor/bundle --local
+          bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
   yarn_install:
@@ -50,6 +50,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
 
+
   rubocop:
     name: Rubocop
     needs: bundle_install
@@ -57,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -65,10 +66,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Use gems from vendor/bundle
-        run: bundle config path vendor/bundle --local
+        run: bundle config path vendor/bundle
 
       - name: Run Rubocop
         run: bundle exec rubocop -p
@@ -93,7 +94,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -108,10 +109,24 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
-      - name: Run Tests
+      - name: Use gems from vendor/bundle
+        run: bundle config path vendor/bundle
+
+      - name: Create master.key
+        env:
+          RAILS_MASTER_KEY_FOR_TEST: ${{ secrets.RAILS_MASTER_KEY_FOR_TEST }}
+        run: echo "${RAILS_MASTER_KEY_FOR_TEST}" > ./config/master.key
+
+      - name: Setup database
+        run: |
+          cp ./.github/workflows/templates/database.yml.github-actions config/database.yml
+          bin/rails db:test:prepare
+
+      - name: bin/rails test
         run: bin/rails test
 
-      - name: Run System Tests
+      - name: bin/rails test:system
         run: bin/rails test:system
+
