@@ -15,10 +15,10 @@ class Ingredient < ApplicationRecord
   def to_nutritions_table_row
     [
       portion.decorate.name_with_nutrition,
-      decorate.kcal,
-      decorate.carbs,
-      decorate.protein,
-      decorate.fat
+      decorate.display_kcal,
+      decorate.display_carbs,
+      decorate.display_protein,
+      decorate.display_fat
     ]
   end
 end

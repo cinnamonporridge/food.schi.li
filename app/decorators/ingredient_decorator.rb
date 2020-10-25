@@ -24,4 +24,20 @@ class IngredientDecorator < Draper::Decorator
   def rounded_amount_with_unit_abbrevation
     h.tag.data model.amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
   end
+
+  def display_kcal
+    model.kcal
+  end
+
+  def display_carbs
+    model.carbs.round
+  end
+
+  def display_protein
+    model.protein.round
+  end
+
+  def display_fat
+    model.fat.round
+  end
 end
