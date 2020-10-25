@@ -41,10 +41,10 @@ class Recipe < ApplicationRecord
       ingredients: ingredients.map(&:to_nutritions_table_row),
       total: [[
         'Total',
-        decorate.kcal,
-        decorate.carbs,
-        decorate.protein,
-        decorate.fat
+        decorate.display_kcal,
+        decorate.display_carbs,
+        decorate.display_protein,
+        decorate.display_fat
       ]],
       per_serving: [[
         'Per serving',
