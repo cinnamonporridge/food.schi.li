@@ -5,7 +5,7 @@ env:
   POSTGRES_PASSWORD: "postgres"
 
 name: Continuous Integration
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   bundle_install:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -28,7 +28,7 @@ jobs:
       - name: Bundle install
         if: steps.bundler-cache.outputs.cache-hit != 'true'
         run: |
-          bundle config path vendor/bundle --local
+          bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
   yarn_install:
@@ -50,6 +50,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
 
+
   rubocop:
     name: Rubocop
     needs: bundle_install
@@ -57,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -68,7 +69,7 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Use gems from vendor/bundle
-        run: bundle config path vendor/bundle --local
+        run: bundle config path vendor/bundle
 
       - name: Run Rubocop
         run: bundle exec rubocop -p
@@ -93,7 +94,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
@@ -110,45 +111,22 @@ jobs:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
-      - name: Run Tests
-        run: ./.github/bin/github_ci test
+      - name: Use gems from vendor/bundle
+        run: bundle config path vendor/bundle
 
-  system_test:
-    name: Rails system tests
-    needs: [bundle_install, yarn_install]
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:latest
+      - name: Create master.key
         env:
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+          RAILS_MASTER_KEY_FOR_TEST: ${{ secrets.RAILS_MASTER_KEY_FOR_TEST }}
+        run: echo "${RAILS_MASTER_KEY_FOR_TEST}" > ./config/master.key
 
-    steps:
-      - uses: actions/checkout@v1
+      - name: Setup database
+        run: |
+          cp ./.github/workflows/templates/database.yml.github-actions config/database.yml
+          bin/rails db:test:prepare
 
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: bin/rails test
+        run: bin/rails test
 
-      # has to run before Ruby gems, for some reason the hashsum of yarn.lock changes
-      - name: Restore cache for npm packages
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+      - name: bin/rails test:system
+        run: bin/rails test:system
 
-      - name: Restore cache for Ruby gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-
-      - name: Run System Tests
-        run: ./.github/bin/github_ci test_system
