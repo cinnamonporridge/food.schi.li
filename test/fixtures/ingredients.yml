@@ -39,9 +39,23 @@ bread_in_peanut_butter_bread:
   portion: whole_grain_bread_portion
   amount: 1
   measure: <%= Ingredient.measures[:piece] %>
+  kcal: 7
+  carbs: 6.7
+  carbs_sugar_part: 0.67
+  protein: 6.7
+  fat: 6.7
+  fat_saturated: 6.7
+  fiber: 6.7
 
 peanut_butter_in_peanut_butter_bread:
   recipe: peanut_butter_bread
   portion: peanut_butter_default_portion
   amount: 20
   measure: <%= Ingredient.measures[:unit] %>
+  kcal: 89
+  carbs: 88.8
+  carbs_sugar_part: 8.8
+  protein: 88.8
+  fat: 88.8
+  fat_saturated: 8.8
+  fiber: 88.8

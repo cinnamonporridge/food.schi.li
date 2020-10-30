@@ -22,3 +22,10 @@ peanut_butter_bread:
   name: 'PB Bread'
   servings: 1
   vegan: true
+  kcal: 96
+  carbs: 95.5
+  carbs_sugar_part: 9.47
+  protein: 95.5
+  fat: 95.5
+  fat_saturated: 15.5
+  fiber: 95.5
