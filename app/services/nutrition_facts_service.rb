@@ -7,8 +7,10 @@ class NutritionFactsService
     end
   end
 
-  def self.update(table_name)
-    new.update(table_name)
+  def self.update(*table_names)
+    VALID_TABLE_NAMES & Array(table_names).each do |table_name|
+      new.update(table_name)
+    end
   end
 
   def update(table_name)

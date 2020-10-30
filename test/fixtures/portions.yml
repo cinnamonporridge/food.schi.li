@@ -32,6 +32,13 @@ peanut_butter_default_portion:
   name: '100g'
   nutrition: peanut_butter
   amount: 100
+  kcal: 444
+  carbs: 444.0
+  carbs_sugar_part: 44.0
+  protein: 444.0
+  fat: 444.0
+  fat_saturated: 44.0
+  fiber: 444.0
 
 sugar_default_portion:
   name: '100g'
@@ -52,3 +59,10 @@ whole_grain_bread_portion:
   name: 'Whole Grain Bread Portion'
   nutrition: whole_grain_bread
   amount: 40
+  kcal: 268
+  carbs: 268.0
+  carbs_sugar_part: 26.8
+  protein: 268.0
+  fat: 268.0
+  fat_saturated: 268.0
+  fiber: 268.0

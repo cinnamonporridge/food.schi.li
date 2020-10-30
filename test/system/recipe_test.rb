@@ -31,6 +31,8 @@ class RecipeTest < ApplicationSystemTestCase
 
     visit recipe_path(recipe)
 
+    assert_selector '.nutritions-table', text: "Per serving\n96\n"
+
     within('ul#ingredients_list') do
       list_item = find('li', text: 'Whole Grain Bread Whole Grain Bread Portion')
       list_item.click
@@ -38,5 +40,6 @@ class RecipeTest < ApplicationSystemTestCase
     end
 
     assert_selector 'ul#ingredients_list', text: 'Whole Grain', count: 0
+    assert_selector '.nutritions-table', text: "Per serving\n89\n"
   end
 end
