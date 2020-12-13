@@ -17,7 +17,10 @@
 
 require("@rails/ujs").start();
 
-import '../src/application.css'
+// import '../src/application.css'
+import '../src/app-base.css'
+import '../src/app-components.css'
+import '../src/app-utilities.css'
 
 // src/application.js
 import { Application } from "stimulus"

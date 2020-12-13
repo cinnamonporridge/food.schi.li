@@ -1,14 +1,3 @@
-@tailwind base;
-@tailwind components;
-
-:root {
-  --spacing-half: theme('spacing.1/2');
-  --spacing-1: theme('spacing.1');
-  --colors-gray-100: theme('colors.gray.100');
-  --colors-gray-300: theme('colors.gray.300');
-  --colors-gray-500: theme('colors.gray.500');
-}
-
 html {
   @apply text-2xl h-full;
 }
@@ -25,7 +14,7 @@ body {
 }
 
 h1 {
-  @apply tracking-wide text-2xl text-green-700;
+  @apply tracking-wide text-2xl text-green-700 ;
 }
 
 h2 {
@@ -33,7 +22,7 @@ h2 {
 }
 
 label {
-  @apply text-2xs text-green-900;
+  @apply text-xs text-green-900;
 }
 
 nav {
@@ -145,7 +134,7 @@ a:hover, .fake-link:hover {
 }
 
 .form-error {
-  @apply text-red-400 font-normal block text-2xs;
+  @apply text-red-400 font-normal block text-xs;
 }
 
 input {
@@ -168,7 +157,7 @@ input[aria-invalid="true"] {
 }
 
 .unit::after {
-  @apply text-2xs text-gray-600;
+  @apply text-xs text-gray-600;
   margin-left: 0.1rem;
 }
 
@@ -189,4 +178,3 @@ ul.pagination li {
   @apply inline-block;
 }
 
-@tailwind utilities;

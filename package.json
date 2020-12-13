@@ -4,10 +4,13 @@
   "dependencies": {
     "@rails/ujs": "^6.0.3-3",
     "@rails/webpacker": "5.2.1",
+    "autoprefixer": "^9",
+    "postcss": "^7",
     "stimulus": "1.1.1",
-    "tailwindcss": "1.8.10"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "devDependencies": {
     "webpack-dev-server": "3.11.0"
-  }
+  },
+  "peerDependencies": {}
 }
