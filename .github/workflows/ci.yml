@@ -23,7 +23,7 @@ jobs:
         id: bundler-cache
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('./Gemfile.lock') }}
 
       - name: Bundle install
         if: steps.bundler-cache.outputs.cache-hit != 'true'
@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('./yarn.lock') }}
       - run: yarn install
 
 
@@ -66,7 +66,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('./Gemfile.lock') }}
 
       - name: Use gems from vendor/bundle
         run: bundle config path vendor/bundle
@@ -103,13 +103,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-node_modules-${{ hashFiles('./yarn.lock') }}
 
       - name: Restore cache for Ruby gems
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('./Gemfile.lock') }}
 
       - name: Use gems from vendor/bundle
         run: bundle config path vendor/bundle
