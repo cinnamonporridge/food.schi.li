@@ -5,7 +5,7 @@ env:
   POSTGRES_PASSWORD: "postgres"
 
 name: Continuous Integration
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   bundle_install:
