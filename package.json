@@ -1,6 +1,9 @@
 {
   "name": "food.schi.li",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@rails/ujs": "^6.0.3-3",
     "@rails/webpacker": "5.2.1",
