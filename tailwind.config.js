@@ -1,6 +1,5 @@
 module.exports = {
   purge: {
-    enabled: false,
     content: [
       'app/**/*.haml',
       'app/**/*.css',
