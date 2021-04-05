@@ -1,7 +1,7 @@
 - if nutritions_table[:total].first.second.positive? # = has calories?
   .nutritions-table.flex.my-4
     .w-full
-      .flex.border-b.border-gray-400
+      .flex.border-b.border-gray-400.text-xs.sm:text-base
         %div{ class: 'w-1/3' }
         %div{ class: 'w-1/6 text-3xs text-right' } kcal
         %div{ class: 'w-1/6 text-3xs text-right' } Carbs
@@ -9,17 +9,15 @@
         %div{ class: 'w-1/6 text-3xs text-right' } Fat
 
       - nutritions_table.each do |section, rows|
-        .flex.border-b.border-gray-400
+        .flex.border-b.border-gray-400.text-xs.sm:text-base
           .w-full.my-2
             - rows.each do |row|
               .flex.flex-wrap.text-3xs
                 %div{ class: 'w-1/3' }= row[0]
-                %div{ class: 'w-1/6 text-right' }= row[1]
-                %div{ class: 'w-1/6 text-right' }= row[2]
-                %div{ class: 'w-1/6 text-right' }= row[3]
-                %div{ class: 'w-1/6 text-right' }= row[4]
+                %div{ class: 'w-1/6 text-right' }= row[1]&.round
+                %div{ class: 'w-1/6 text-right' }= row[2]&.round
+                %div{ class: 'w-1/6 text-right' }= row[3]&.round
+                %div{ class: 'w-1/6 text-right' }= row[4]&.round
 
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No nutritions.
-
-
