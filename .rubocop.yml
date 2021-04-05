@@ -14,6 +14,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Gemspec/DateAssignment:
+  Enabled: true
+
 Layout/BeginEndAlignment:
   Enabled: true
 
@@ -28,10 +31,19 @@ Layout/LineLength:
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+
+Lint/AmbiguousAssignment:
+  Enabled: true
+
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: true
 
 Lint/ConstantDefinitionInBlock:
+  Enabled: true
+
+Lint/DeprecatedConstants:
   Enabled: true
 
 Lint/DeprecatedOpenSSLConstant:
@@ -70,6 +82,9 @@ Lint/FloatComparison:
 Lint/IdentityComparison:
   Enabled: true
 
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+
 Lint/MissingSuper:
   Enabled: true
 
@@ -79,16 +94,28 @@ Lint/MixedRegexpCaptureTypes:
 Lint/NoReturnInBeginEndBlocks:
   Enabled: true
 
+Lint/NumberedParameterAssignment:
+  Enabled: true
+
+Lint/OrAssignmentToConstant:
+  Enabled: true
+
 Lint/OutOfRangeRegexpRef:
   Enabled: true
 
 Lint/RaiseException:
   Enabled: true
 
+Lint/RedundantDirGlobSort:
+  Enabled: true
+
 Lint/SelfAssignment:
   Enabled: true
 
 Lint/StructNewOverride:
+  Enabled: true
+
+Lint/SymbolConversion:
   Enabled: true
 
 Lint/ToEnumArguments:
@@ -98,6 +125,12 @@ Lint/TopLevelReturnWithArgument:
   Enabled: true
 
 Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/TripleQuotes:
+  Enabled: true
+
+Lint/UnexpectedBlockArity:
   Enabled: true
 
 Lint/UnmodifiedReduceAccumulator:
@@ -114,6 +147,7 @@ Lint/UselessTimes:
 
 Metrics/BlockLength:
   Exclude:
+  - "config/environments/*.rb"
   - config/initializers/simple_form_foundation.rb
 
 Metrics/ClassLength:
@@ -128,6 +162,9 @@ Rails/ActiveRecordCallbacksOrder:
   Enabled: true
 
 Rails/AfterCommitOverride:
+  Enabled: true
+
+Rails/AttributeDefaultBlockValue:
   Enabled: true
 
 Rails/FindById:
@@ -166,6 +203,9 @@ Rails/ShortI18n:
 Rails/SquishedSQLHeredocs:
   Enabled: true
 
+Rails/WhereEquals:
+  Enabled: true
+
 Rails/WhereExists:
   Enabled: true
 
@@ -202,6 +242,9 @@ Style/DocumentDynamicEvalDefinition:
 Style/Documentation:
   Enabled: false
 
+Style/EndlessMethod:
+  Enabled: true
+
 Style/ExplicitBlockArgument:
   Enabled: true
 
@@ -217,7 +260,13 @@ Style/GlobalStdStream:
 Style/HashAsLastArrayItem:
   Enabled: true
 
+Style/HashConversion:
+  Enabled: true
+
 Style/HashEachMethods:
+  Enabled: true
+
+Style/HashExcept:
   Enabled: true
 
 Style/HashLikeCase:
@@ -227,6 +276,9 @@ Style/HashTransformKeys:
   Enabled: true
 
 Style/HashTransformValues:
+  Enabled: true
+
+Style/IfWithBooleanLiteralBranches:
   Enabled: true
 
 Style/KeywordParametersOrder:
@@ -272,6 +324,9 @@ Style/SlicingWithRange:
   Enabled: true
 
 Style/SoleNestedConditional:
+  Enabled: true
+
+Style/StringChars:
   Enabled: true
 
 Style/StringConcatenation:
