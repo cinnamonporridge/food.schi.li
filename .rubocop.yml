@@ -76,6 +76,9 @@ Lint/EmptyConditionalBody:
 Lint/EmptyFile:
   Enabled: true
 
+Lint/EmptyInPattern:
+  Enabled: true
+
 Lint/FloatComparison:
   Enabled: true
 
@@ -147,7 +150,7 @@ Lint/UselessTimes:
 
 Metrics/BlockLength:
   Exclude:
-  - "config/environments/*.rb"
+  - config/environments/*.rb
   - config/initializers/simple_form_foundation.rb
 
 Metrics/ClassLength:
@@ -165,6 +168,9 @@ Rails/AfterCommitOverride:
   Enabled: true
 
 Rails/AttributeDefaultBlockValue:
+  Enabled: true
+
+Rails/EnvironmentVariableAccess:
   Enabled: true
 
 Rails/FindById:
@@ -201,6 +207,9 @@ Rails/ShortI18n:
   Enabled: true
 
 Rails/SquishedSQLHeredocs:
+  Enabled: true
+
+Rails/TimeZoneAssignment:
   Enabled: true
 
 Rails/WhereEquals:
@@ -281,11 +290,17 @@ Style/HashTransformValues:
 Style/IfWithBooleanLiteralBranches:
   Enabled: true
 
+Style/InPatternThen:
+  Enabled: true
+
 Style/KeywordParametersOrder:
   Enabled: true
 
 Style/Lambda:
   Enabled: false
+
+Style/MultilineInPatternThen:
+  Enabled: true
 
 Style/NegatedIfElseCondition:
   Enabled: true
@@ -294,6 +309,9 @@ Style/NilLambda:
   Enabled: true
 
 Style/OptionalBooleanParameter:
+  Enabled: true
+
+Style/QuotedSymbols:
   Enabled: true
 
 Style/RedundantArgument:
