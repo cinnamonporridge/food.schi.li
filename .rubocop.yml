@@ -23,6 +23,9 @@ Layout/BeginEndAlignment:
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: true
+
 Layout/LineLength:
   Max: 120
   Exclude:
@@ -35,6 +38,12 @@ Layout/SpaceBeforeBrackets:
   Enabled: true
 
 Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: true
+
+Lint/AmbiguousRange:
   Enabled: true
 
 Lint/BinaryOperatorWithIdenticalOperands:
@@ -85,6 +94,9 @@ Lint/FloatComparison:
 Lint/IdentityComparison:
   Enabled: true
 
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
 Lint/LambdaWithoutLiteralBlock:
   Enabled: true
 
@@ -110,6 +122,9 @@ Lint/RaiseException:
   Enabled: true
 
 Lint/RedundantDirGlobSort:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
   Enabled: true
 
 Lint/SelfAssignment:
@@ -164,16 +179,28 @@ Metrics/MethodLength:
 Rails/ActiveRecordCallbacksOrder:
   Enabled: true
 
+Rails/AddColumnIndex:
+  Enabled: true
+
 Rails/AfterCommitOverride:
   Enabled: true
 
 Rails/AttributeDefaultBlockValue:
   Enabled: true
 
+Rails/EagerEvaluationLogMessage:
+  Enabled: true
+
 Rails/EnvironmentVariableAccess:
   Enabled: true
 
+Rails/ExpandedDateRange:
+  Enabled: true
+
 Rails/FindById:
+  Enabled: true
+
+Rails/I18nLocaleAssignment:
   Enabled: true
 
 Rails/Inquiry:
@@ -197,6 +224,9 @@ Rails/PluckId:
 Rails/PluckInWhere:
   Enabled: true
 
+Rails/RedundantTravelBack:
+  Enabled: true
+
 Rails/RenderInline:
   Enabled: true
 
@@ -212,6 +242,9 @@ Rails/SquishedSQLHeredocs:
 Rails/TimeZoneAssignment:
   Enabled: true
 
+Rails/UnusedIgnoredColumns:
+  Enabled: true
+
 Rails/WhereEquals:
   Enabled: true
 
@@ -219,6 +252,9 @@ Rails/WhereExists:
   Enabled: true
 
 Rails/WhereNot:
+  Enabled: true
+
+Security/IoMethods:
   Enabled: true
 
 Style/AccessorGrouping:
@@ -308,6 +344,12 @@ Style/NegatedIfElseCondition:
 Style/NilLambda:
   Enabled: true
 
+Style/NumberedParameters:
+  Enabled: true
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
 Style/OptionalBooleanParameter:
   Enabled: true
 
@@ -333,6 +375,12 @@ Style/RedundantRegexpEscape:
   Enabled: true
 
 Style/RedundantSelfAssignment:
+  Enabled: true
+
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/SelectByRegexp:
   Enabled: true
 
 Style/SingleArgumentDig:
