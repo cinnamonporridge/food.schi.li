@@ -43,6 +43,7 @@ bower.json
 
 .DS_Store
 
+/public/assets
 /public/packs
 /public/packs-test
 /node_modules
