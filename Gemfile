@@ -8,7 +8,6 @@ end
 
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'draper', '>= 3.0.0'
 gem 'haml'
 gem 'kaminari'
 # Ruby 3.1 removed net/* from default gems, mail gem depends on it
@@ -23,7 +22,7 @@ gem 'simple_form'
 gem 'webpacker'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
+  gem 'debug'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
 end

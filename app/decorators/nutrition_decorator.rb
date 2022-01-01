@@ -1,6 +1,4 @@
-class NutritionDecorator < Draper::Decorator
-  delegate_all
-
+class NutritionDecorator < SimpleDelegator
   def unit_abbrevation
     {
       gram: 'g',
