@@ -8,17 +8,17 @@ class Recipe < ApplicationRecord
   validates :servings, presence: true
 
   scope :using_nutrition, ->(nutrition) {
-    includes(:portions).where(portions: { nutrition: nutrition })
+    includes(:portions).where(portions: { nutrition: })
   }
 
   scope :ordered_by_name, -> { order(name: :asc) }
 
   def macronutrient_data
     @macronutrient_data ||= MacronutrientDataService.new(
-      kcal: kcal,
-      carbs: carbs,
-      protein: protein,
-      fat: fat
+      kcal:,
+      carbs:,
+      protein:,
+      fat:
     )
   end
 

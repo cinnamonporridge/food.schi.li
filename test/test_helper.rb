@@ -24,7 +24,7 @@ class ActiveSupport::TestCase
 
   def login_form_params(user_email, password)
     {
-      login_form: { email: user_email, password: password }
+      login_form: { email: user_email, password: }
     }
   end
 end

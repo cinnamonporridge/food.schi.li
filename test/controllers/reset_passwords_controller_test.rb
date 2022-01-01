@@ -37,8 +37,8 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
   def reset_password_form_params(password, challenge)
     {
       reset_password_form: {
-        password: password,
-        challenge: challenge
+        password:,
+        challenge:
       }
     }
   end

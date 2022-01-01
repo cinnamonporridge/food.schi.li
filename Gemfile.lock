@@ -85,6 +85,7 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    digest (3.1.0)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -102,6 +103,7 @@ GEM
       tilt
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    io-wait (0.2.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -129,6 +131,13 @@ GEM
     mini_portile2 (2.6.1)
     minitest (5.15.0)
     msgpack (1.4.2)
+    net-protocol (0.1.2)
+      io-wait
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     nio4r (2.5.8)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
@@ -227,6 +236,7 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
+    timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -265,6 +275,7 @@ DEPENDENCIES
   haml
   kaminari
   listen
+  net-smtp
   pg
   puma
   rails (~> 6.1)
@@ -278,7 +289,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.1.0p0
 
 BUNDLED WITH
    2.2.27

@@ -1,4 +1,4 @@
-ruby '3.0.2'
+ruby '3.1.0'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -11,6 +11,7 @@ gem 'bootsnap', require: false
 gem 'draper', '>= 3.0.0'
 gem 'haml'
 gem 'kaminari'
+gem 'net-smtp' # Ruby 3.1 removed net/smtp from default gems, mail gem depends on it
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.1'

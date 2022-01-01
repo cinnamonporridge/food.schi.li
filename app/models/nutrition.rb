@@ -32,10 +32,10 @@ class Nutrition < ApplicationRecord
 
   def macronutrient_data
     @macronutrient_data ||= MacronutrientDataService.new(
-      kcal: kcal,
-      carbs: carbs,
-      protein: protein,
-      fat: fat
+      kcal:,
+      carbs:,
+      protein:,
+      fat:
     )
   end
 
