@@ -6,8 +6,6 @@ class Ingredient < ApplicationRecord
 
   has_one :nutrition, through: :portion
 
-  validates :portion, presence: true
-  validates :recipe, presence: true
   validates :amount, presence: true
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
