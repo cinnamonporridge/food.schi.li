@@ -6,21 +6,21 @@ class JournalDay < ApplicationRecord
   validates :date, presence: true
   validates :date, uniqueness: { scope: :user }
 
-  scope :of, ->(user = User.none) { where(user: user) }
+  scope :of, ->(user = User.none) { where(user:) }
   scope :ordered_by_date_asc, -> { order(date: :asc) }
   scope :ordered_by_date_desc, -> { order(date: :desc) }
 
-  scope :using_meals, ->(meals) { where(meals: meals) }
+  scope :using_meals, ->(meals) { where(meals:) }
 
   scope :after_date, ->(date) { where('date > ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
 
   def macronutrient_data
     @macronutrient_data ||= MacronutrientDataService.new(
-      kcal: kcal,
-      carbs: carbs,
-      protein: protein,
-      fat: fat
+      kcal:,
+      carbs:,
+      protein:,
+      fat:
     )
   end
 
