@@ -11,7 +11,10 @@ gem 'bootsnap', require: false
 gem 'draper', '>= 3.0.0'
 gem 'haml'
 gem 'kaminari'
-gem 'net-smtp' # Ruby 3.1 removed net/smtp from default gems, mail gem depends on it
+# Ruby 3.1 removed net/* from default gems, mail gem depends on it
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.1'
