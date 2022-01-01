@@ -5,7 +5,6 @@ class My::JournalDaysController < ApplicationController
     @journal_days = JournalDay.of(current_user)
                               .ordered_by_date_desc
                               .page(params[:page])
-                              .decorate
   end
 
   def show

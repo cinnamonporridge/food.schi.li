@@ -1,4 +1,4 @@
-class JournalDayRecipeDecorator < Draper::Decorator
+class JournalDayRecipeDecorator < SimpleDelegator
   def self.recipes_collection
     recipes_collection_with_id.map(&:first)
   end

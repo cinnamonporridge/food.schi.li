@@ -1,27 +1,25 @@
-class RecipeDecorator < Draper::Decorator
-  delegate_all
-
+class RecipeDecorator < SimpleDelegator
   def name_with_servings
-    "#{model.name} (#{model.servings} servings)"
+    "#{name} (#{servings} servings)"
   end
 
   def serving(nutrition_fact)
-    (model[nutrition_fact] / model.servings).round || 0
+    (read_attribute(nutrition_fact) / servings).round || 0
   end
 
   def display_kcal
-    model.kcal
+    kcal
   end
 
   def display_carbs
-    model.carbs.round
+    carbs.round
   end
 
   def display_protein
-    model.protein.round
+    protein.round
   end
 
   def display_fat
-    model.fat.round
+    fat.round
   end
 end

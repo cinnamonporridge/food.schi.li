@@ -1,14 +1,12 @@
-class JournalDayDecorator < Draper::Decorator
-  delegate_all
-
+class JournalDayDecorator < SimpleDelegator
   def display_date_with_weekday
-    I18n.l model.date, format: :with_weekday
+    I18n.l(date, format: :with_weekday)
   end
 
   def display_date
-    return if model.date.blank?
+    return if date.blank?
 
-    I18n.l model.date
+    I18n.l(date)
   end
 
   def date_input_html
@@ -47,6 +45,6 @@ class JournalDayDecorator < Draper::Decorator
   private
 
   def journal_day_calendar_service
-    @journal_day_calendar_service ||= JournalDayCalendarService.new(model)
+    @journal_day_calendar_service ||= JournalDayCalendarService.new(__getobj__)
   end
 end

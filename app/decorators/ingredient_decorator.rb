@@ -1,43 +1,47 @@
-class IngredientDecorator < Draper::Decorator
-  delegate_all
+class IngredientDecorator < SimpleDelegator
+  include ActionView::Helpers::TagHelper
 
   def quantity
-    return if model.measure_unit?
+    return if measure_unit?
 
-    (model.amount / model.portion.amount).round(2)
+    (amount / portion.amount).round(2)
   end
 
   def quantity_with_pieces
-    return if model.measure_unit?
+    return if measure_unit?
 
     "(#{quantity} #{'pc'.pluralize(quantity)})"
   end
 
   def rounded_amount
-    model.amount.round
+    amount.round
   end
 
   def unit_abbrevation
-    model.nutrition.decorate.unit_abbrevation
+    nutrition.decorate.unit_abbrevation
   end
 
   def rounded_amount_with_unit_abbrevation
-    h.tag.data model.amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
+    tag.data amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
   end
 
   def display_kcal
-    model.kcal
+    kcal
   end
 
   def display_carbs
-    model.carbs.round
+    carbs.round
   end
 
   def display_protein
-    model.protein.round
+    protein.round
   end
 
   def display_fat
-    model.fat.round
+    fat.round
+  end
+
+  def self.measures_collection
+    [['g/ml', 'unit'], %w[Pieces piece]]
   end
 end

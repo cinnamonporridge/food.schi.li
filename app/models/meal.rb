@@ -26,10 +26,10 @@ class Meal < ApplicationRecord
   def to_nutritions_table_row
     [
       portion.decorate.name_with_nutrition,
-      decorate.total_kcal,
-      decorate.total_carbs,
-      decorate.total_protein,
-      decorate.total_fat
+      decorate.display_total_kcal,
+      decorate.display_total_carbs,
+      decorate.display_total_protein,
+      decorate.display_total_fat
     ]
   end
 

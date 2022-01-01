@@ -8,7 +8,7 @@
     .w-full.mb-2
       = f.input :amount_in_measure, input_html: { class: 'w-full' }
     .w-full.mb-2
-      = f.input :measure, collection: IngredientsDecorator.measures_collection, include_blank: false, input_html: { class: 'w-full p-2 border border-green-300' }
+      = f.input :measure, collection: IngredientDecorator.measures_collection, include_blank: false, input_html: { class: 'w-full p-2 border border-green-300' }
 
   .flex.flex-wrap.mt-6
     .w-full

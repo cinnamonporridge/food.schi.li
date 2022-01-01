@@ -1,49 +1,51 @@
-class MealDecorator < Draper::Decorator
-  def quantity
-    return if model.measure_unit?
+class MealDecorator < SimpleDelegator
+  include ActionView::Helpers::TagHelper
 
-    (model.amount / model.portion.amount).round(2)
+  def quantity
+    return if measure_unit?
+
+    (amount / portion.amount).round(2)
   end
 
   def quantity_with_pieces
-    return if model.measure_unit?
+    return if measure_unit?
 
     "(#{quantity} #{'pc'.pluralize(quantity)})"
   end
 
   def unit_abbrevation
-    model.portion.nutrition.decorate.unit_abbrevation
+    portion.nutrition.decorate.unit_abbrevation
   end
 
   def rounded_amount_with_unit_abbrevation
-    h.tag.data model.amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
+    tag.data amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
   end
 
-  def total_kcal
-    model.total_kcal.round
+  def display_total_kcal
+    total_kcal.round
   end
 
-  def total_carbs
-    model.total_carbs.round
+  def display_total_carbs
+    total_carbs.round
   end
 
-  def total_carbs_sugar_part
-    model.total_carbs_sugar_part.round
+  def display_total_carbs_sugar_part
+    total_carbs_sugar_part.round
   end
 
-  def total_protein
-    model.total_protein.round
+  def display_total_protein
+    total_protein.round
   end
 
-  def total_fat
-    model.total_fat.round
+  def display_total_fat
+    total_fat.round
   end
 
-  def total_fat_saturated
-    model.total_fat_saturated.round
+  def display_total_fat_saturated
+    total_fat_saturated.round
   end
 
-  def total_fiber
-    model.total_fiber.round
+  def display_total_fiber
+    total_fiber.round
   end
 end

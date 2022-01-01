@@ -1,4 +1,4 @@
-class PortionDecorator < Draper::Decorator
+class PortionDecorator < SimpleDelegator
   def name_for_dropdown
     [
       name_with_nutrition,
@@ -7,16 +7,16 @@ class PortionDecorator < Draper::Decorator
   end
 
   def name_if_not_default
-    model.name unless model.primary?
+    name unless primary?
   end
 
   def amount_with_unit_abbrevation
-    "#{model.amount}#{model.nutrition.decorate.unit_abbrevation}"
+    "#{amount}#{nutrition.decorate.unit_abbrevation}"
   end
 
   def name_with_nutrition
     [
-      model.nutrition.name,
+      nutrition.name,
       name_if_not_default
     ].compact.join(' ')
   end
