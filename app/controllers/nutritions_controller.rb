@@ -1,10 +1,10 @@
 class NutritionsController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_nutrition, only: [:show, :edit, :update, :destroy]
 
   def index
-    @nutritions = Nutrition.search(params[:search_query])
-                           .ordered_by_name
-                           .page(params[:page])
+    @pagy, @nutritions = pagy(Nutrition.search(params[:search_query]).ordered_by_name)
   end
 
   def show

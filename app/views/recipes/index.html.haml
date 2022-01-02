@@ -10,14 +10,10 @@
   .w-full
     = render 'layouts/search', form_url: recipes_path
 
-.flex
-  .w-full
-    = paginate @recipes
+= render 'layouts/pagy', pagy: @pagy
 
 .flex
   .w-full
     = render 'recipes/index', recipes: @recipes
 
-.flex
-  .w-full
-    = paginate @recipes
+= render 'layouts/pagy', pagy: @pagy

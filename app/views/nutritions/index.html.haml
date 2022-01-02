@@ -10,9 +10,7 @@
   .w-full
     = render 'layouts/search', form_url: nutritions_path
 
-.flex.mb-5
-  .w-full
-    = paginate @nutritions
+= render 'layouts/pagy', pagy: @pagy
 
 .flex.mb-5
   .w-full
@@ -27,6 +25,4 @@
             .w-full.pt-2.pb-1.text-2xs
               = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
 
-.flex.mb-5
-  .w-full
-    = paginate @nutritions
+= render 'layouts/pagy', pagy: @pagy

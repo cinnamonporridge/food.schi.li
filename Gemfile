@@ -9,11 +9,11 @@ end
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'haml'
-gem 'kaminari'
 # Ruby 3.1 removed net/* from default gems, mail gem depends on it
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
+gem 'pagy'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.1'

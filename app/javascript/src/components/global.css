@@ -25,27 +25,27 @@ label {
   @apply text-xs text-green-900;
 }
 
-nav {
+nav.main-nav {
   @apply text-center;
 }
 
-nav ul {
+nav.main-nav ul {
   @apply flex;
 }
 
-nav li {
+nav.main-nav li {
   @apply flex-1;
 }
 
-nav a {
+nav.main-nav a {
   @apply text-sm text-green-800 inline-block w-full border-solid border-green-400 border-b-4 py-2;
 }
 
-nav a:hover {
+nav.main-nav a:hover {
   @apply text-green-700 border-green-800;
 }
 
-nav a.active {
+nav.main-nav a.active {
   @apply border-green-700;
 }
 

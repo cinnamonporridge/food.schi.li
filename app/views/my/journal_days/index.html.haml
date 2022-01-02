@@ -6,14 +6,10 @@
   .w-full
     = link_to 'Add Journal Day', new_my_journal_day_path, class: 'f-button f-button-green w-full'
 
-.flex.mb-4
-  .w-full
-    = paginate @journal_days
+= render 'layouts/pagy', pagy: @pagy
 
 .flex.mb-4
   .w-full
     = render 'index', journal_days: @journal_days
 
-.flex
-  .w-full
-    = paginate @journal_days
+= render 'layouts/pagy', pagy: @pagy

@@ -21,7 +21,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
   test 'user sees pagination on index' do
     get recipes_path
 
-    assert_changes -> { css_select('.pagination').count }, from: 0 do
+    assert_changes -> { css_select('.pagy-nav').count }, from: 0 do
       prepare_recipes_for_pagination
       get recipes_path
     end
@@ -110,8 +110,8 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
   private
 
   def prepare_recipes_for_pagination
-    Kaminari.config.default_per_page.times do |i|
-      Recipe.create!(name: "KAMINARI-RECIPE-#{i}")
+    Pagy::DEFAULT[:items].times do |i|
+      Recipe.create!(name: "PAGY-RECIPE-#{i}")
     end
   end
 end
