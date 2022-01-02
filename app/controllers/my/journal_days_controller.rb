@@ -1,10 +1,10 @@
 class My::JournalDaysController < ApplicationController
+  include Pagy::Backend
+
   before_action :find_and_decorate_journal_day, only: %i[show edit update destroy]
 
   def index
-    @journal_days = JournalDay.of(current_user)
-                              .ordered_by_date_desc
-                              .page(params[:page])
+    @pagy, @journal_days = pagy(JournalDay.of(current_user).ordered_by_date_desc)
   end
 
   def show

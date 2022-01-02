@@ -1,10 +1,10 @@
 class RecipesController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.search(params[:search_query])
-                     .ordered_by_name
-                     .page(params[:page])
+    @pagy, @recipes = pagy(Recipe.search(params[:search_query]).ordered_by_name)
   end
 
   def show; end
