@@ -11,6 +11,6 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'nav a', text: 'Recipes'
     assert_select 'nav a', text: 'Foods'
 
-    assert_select 'footer a', 'Sign out'
+    assert_select 'footer button', 'Sign out'
   end
 end

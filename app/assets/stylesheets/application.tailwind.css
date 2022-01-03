@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
   @apply text-2xl h-full;
 }
@@ -177,4 +181,3 @@ input[aria-invalid="true"] {
 ul.pagination li {
   @apply inline-block;
 }
-

@@ -27,5 +27,4 @@
 
 .flex.mt-16
   .w-full
-    = link_to 'Delete journal day', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
-
+    = button_to 'Delete journal day', my_journal_day_path(@journal_day), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'

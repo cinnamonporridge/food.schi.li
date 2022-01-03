@@ -31,6 +31,4 @@
 
 .flex.my-8
   .w-full
-    = link_to 'Delete recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
-
-
+    = button_to 'Delete recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'

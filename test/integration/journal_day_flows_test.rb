@@ -26,7 +26,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_select 'h2', 'Meals'
     assert_select 'h2', 'Nutritions'
     assert_select 'a', 'Edit'
-    assert_select 'a', 'Delete'
+    assert_select 'button', 'Delete'
 
     assert_select 'a', 'Add portion meal'
     assert_select 'a', 'Add recipe meal'

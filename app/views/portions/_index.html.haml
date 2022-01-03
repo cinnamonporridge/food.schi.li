@@ -17,7 +17,7 @@
             - unless portion.primary?
               = link_to 'Edit',
                         edit_nutrition_portion_path(portion.nutrition, portion)
-              = link_to 'Delete',
+              = button_to 'Delete',
                         nutrition_portion_path(portion.nutrition, portion),
                         method: :delete,
                         data: { confirm: 'Are you sure?' },
@@ -28,4 +28,3 @@
 
 - else
   .text-gray-500.text-center.text-xs There are no portions yet
-

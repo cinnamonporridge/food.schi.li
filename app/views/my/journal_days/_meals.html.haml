@@ -14,7 +14,7 @@
                     .w-full.py-1.sm:mr-1
                       = link_to 'Add portion to recipe on journal day', new_my_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'f-button f-button-green w-full'
                     .w-full.py-1.sm:ml-1
-                      = link_to 'Remove recipe from journal day', my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'f-button w-full'
+                      = button_to 'Remove recipe from journal day', my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'f-button w-full'
 
             - else
               .text-sm.tracking-wide.uppercase.text-gray-500.inline
@@ -36,7 +36,6 @@
                       .py-2.w-full{ class: 'sm:w-1/2 sm:mr-1' }
                         = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button f-button-green w-full'
                       .py-2.w-full{ class: 'sm:w-1/2 sm:ml-1' }
-                        = link_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button w-full', method: :delete, data: { confirm: 'Are you sure?' }
+                        = button_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button w-full', method: :delete, data: { confirm: 'Are you sure?' }
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
-

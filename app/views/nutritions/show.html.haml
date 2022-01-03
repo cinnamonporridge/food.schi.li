@@ -62,5 +62,4 @@
 - if @nutrition.deleteable?
   .flex.my-8
     .w-full
-      = link_to 'Delete nutrition', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
-
+      = button_to 'Delete nutrition', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'

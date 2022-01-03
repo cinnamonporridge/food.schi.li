@@ -1,3 +1,3 @@
 - if @current_user.present?
   .text-2xs.text-center.py-3.border-0.border-t.border-green-200
-    = link_to 'Sign out', logout_path, method: :delete, class: 'shy-link'
+    = button_to 'Sign out', logout_path, method: :delete, class: 'shy-link'
