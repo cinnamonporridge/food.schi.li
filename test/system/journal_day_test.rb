@@ -105,4 +105,16 @@ class JournalDayTest < ApplicationSystemTestCase
     list_item = find('ul#recipes li', text: 'Apple Pie')
     list_item.assert_text 'Peanut'
   end
+
+  test 'user toggles journal day meal actions menu' do
+    using_browser do
+      sign_in_user(users(:daisy))
+      click_on 'Sun, 05.02.2017'
+      within find('ul#recipes li', text: 'APPLE PIE') do
+        find('svg.heroicons-dots-vertical').ancestor('button').click
+        assert_link 'Add portion to recipe on journal day'
+        assert_button 'Remove recipe from journal day'
+      end
+    end
+  end
 end

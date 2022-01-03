@@ -11,6 +11,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on 'Sign in'
   end
 
+  def using_browser(&)
+    driver = ENV['DEBUG'].present? ? :selenium : :selenium_headless
+    Capybara.using_driver(driver, &)
+  end
+
   def click_with_delete(element)
     if Capybara.current_driver == :rack_test
       page.driver.submit :delete, element['href'], {}

@@ -5,7 +5,6 @@ class JournalDayCalendarServiceTest < ActiveSupport::TestCase
     @daisy = users(:daisy)
     @february_first = journal_days(:daisy_february_first)
     @february_second = journal_days(:daisy_february_second)
-    @february_fourth = journal_days(:daisy_february_fourth)
 
     # pre-condition
     assert_not @daisy.journal_days.find_by(date: Date.new(2017, 2, 3)).present?,
@@ -14,9 +13,11 @@ class JournalDayCalendarServiceTest < ActiveSupport::TestCase
 
   test 'next existing journal day' do
     service = JournalDayCalendarService.new(@february_second)
-    assert_equal @february_fourth, service.next_journal_day
+    assert_equal journal_days(:daisy_february_fourth), service.next_journal_day
+  end
 
-    service = JournalDayCalendarService.new(@february_fourth)
+  test 'no next journal day' do
+    service = JournalDayCalendarService.new(journal_days(:daisy_february_fifth))
     assert_nil service.next_journal_day
   end
 

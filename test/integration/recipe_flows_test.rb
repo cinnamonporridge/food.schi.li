@@ -100,7 +100,8 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user deletes a recipe' do
-    delete recipe_path(recipes(:apple_pie))
+    unused_recipe = Recipe.create!(name: 'Unused recipe')
+    delete recipe_path(unused_recipe)
     follow_redirect!
     assert_response :success
     assert_select 'h1', 'Recipes'

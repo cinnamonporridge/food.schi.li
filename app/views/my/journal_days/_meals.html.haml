@@ -5,16 +5,16 @@
         - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
           %li.mb-10
             - if recipe.present?
-              %div{ data: { controller: 'meal-actions' }}
-                .text-sm.tracking-wide.uppercase.text-gray-500{ data: { action: 'click->meal-actions#toggleActions' }, class: 'hover:text-gray-800 cursor-pointer transition duration-100 ease-in-out' }
-                  = recipe.name
-                  .ml-1.inline.border.border-gray-300.px-1 ⋮
-                .hidden{ data: { target: 'meal-actions.actionsMenu' } }
-                  .flex.flex-wrap.sm:flex-no-wrap.text-sm.mt-4.mb-6
-                    .w-full.py-1.sm:mr-1
-                      = link_to 'Add portion to recipe on journal day', new_my_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'f-button f-button-green w-full'
-                    .w-full.py-1.sm:ml-1
-                      = button_to 'Remove recipe from journal day', my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'f-button w-full'
+              %div{ 'data-controller': 'meal-actions' }
+                .flex.items-center
+                  .grow.text-sm.tracking-wide.uppercase.text-gray-500
+                    = recipe.name
+                  %button.w-5.h-5.p-1.innline-block.text-xs.shrink-0.bg-gray-100.rounded-full.border.hover:border-gray-300.transition{ 'data-action': 'meal-actions#toggleActions' }
+                    = raw heroicon :'dots-vertical'
+                .hidden.py-2{ 'data-meal-actions-target': 'actionsMenu' }
+                  .flex.flex-col.sm:flex-row.gap-2
+                    = link_to 'Add portion to recipe on journal day', new_my_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'f-button f-button-green w-full rounded'
+                    = button_to 'Remove recipe from journal day', my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'w-full text-center rounded text-xs bg-gray-50 border p-2 text-gray-400 hover:text-red-500 transition hover:border-red-300'
 
             - else
               .text-sm.tracking-wide.uppercase.text-gray-500.inline
@@ -31,11 +31,9 @@
                         .inline.text-2xs.text-gray-400= recipe_meal.decorate.quantity_with_pieces
                       .float-right
                         = recipe_meal.decorate.rounded_amount_with_unit_abbrevation
-                  .actions.hidden
-                    .flex.text-2xs.mt-2.text-center.flex-wrap.sm:flex-no-wrap
-                      .py-2.w-full{ class: 'sm:w-1/2 sm:mr-1' }
-                        = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button f-button-green w-full'
-                      .py-2.w-full{ class: 'sm:w-1/2 sm:ml-1' }
-                        = button_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button w-full', method: :delete, data: { confirm: 'Are you sure?' }
+                  .actions.hidden.py-2
+                    .flex.flex-col.sm:flex-row.gap-2
+                      = link_to 'Edit', edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'f-button f-button-green w-full rounded'
+                      = button_to 'Delete', my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'w-full text-center rounded text-xs bg-gray-50 border p-1 text-gray-400 hover:text-red-500 transition hover:border-red-300', method: :delete, data: { confirm: 'Are you sure?' }
 - else
   .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
