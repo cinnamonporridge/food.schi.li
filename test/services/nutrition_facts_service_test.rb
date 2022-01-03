@@ -11,12 +11,12 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     portion.reload
 
     assert_equal 104, portion.kcal
-    assert_equal 104.4, portion.carbs
-    assert_equal 10.44, portion.carbs_sugar_part
-    assert_equal 104.4, portion.protein
-    assert_equal 104.4, portion.fat
-    assert_equal 10.44, portion.fat_saturated
-    assert_equal 104.4, portion.fiber
+    assert_in_delta(104.4, portion.carbs)
+    assert_in_delta(10.44, portion.carbs_sugar_part)
+    assert_in_delta(104.4, portion.protein)
+    assert_in_delta(104.4, portion.fat)
+    assert_in_delta(10.44, portion.fat_saturated)
+    assert_in_delta(104.4, portion.fiber)
   end
 
   test '.update(:ingredients)' do
@@ -29,12 +29,12 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     ingredient.reload
 
     assert_equal 400, ingredient.kcal
-    assert_equal 399.6, ingredient.carbs
-    assert_equal 39.6, ingredient.carbs_sugar_part
-    assert_equal 399.6, ingredient.protein
-    assert_equal 399.6, ingredient.fat
-    assert_equal 39.6, ingredient.fat_saturated
-    assert_equal 399.6, ingredient.fiber
+    assert_in_delta(399.6, ingredient.carbs)
+    assert_in_delta(39.6, ingredient.carbs_sugar_part)
+    assert_in_delta(399.6, ingredient.protein)
+    assert_in_delta(399.6, ingredient.fat)
+    assert_in_delta(39.6, ingredient.fat_saturated)
+    assert_in_delta(399.6, ingredient.fiber)
   end
 
   test '.update(:recipes)' do
@@ -48,10 +48,10 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     assert_equal 54, recipe.kcal
     assert_equal 54, recipe.carbs
-    assert_equal 5.4, recipe.carbs_sugar_part
+    assert_in_delta(5.4, recipe.carbs_sugar_part)
     assert_equal 54, recipe.protein
     assert_equal 54, recipe.fat
-    assert_equal 5.4, recipe.fat_saturated
+    assert_in_delta(5.4, recipe.fat_saturated)
     assert_equal 54, recipe.fiber
   end
 
@@ -66,10 +66,10 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     assert_equal 180, meal.kcal
     assert_equal 180, meal.carbs
-    assert_equal 18.0, meal.carbs_sugar_part
+    assert_in_delta(18.0, meal.carbs_sugar_part)
     assert_equal 180, meal.protein
     assert_equal 180, meal.fat
-    assert_equal 18.0, meal.fat_saturated
+    assert_in_delta(18.0, meal.fat_saturated)
     assert_equal 180, meal.fiber
   end
 
@@ -84,10 +84,10 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     assert_equal 196, journal_day.kcal
     assert_equal 196, journal_day.carbs
-    assert_equal 19.6, journal_day.carbs_sugar_part
+    assert_in_delta(19.6, journal_day.carbs_sugar_part)
     assert_equal 196, journal_day.protein
     assert_equal 196, journal_day.fat
-    assert_equal 19.6, journal_day.fat_saturated
+    assert_in_delta(19.6, journal_day.fat_saturated)
     assert_equal 196, journal_day.fiber
   end
 

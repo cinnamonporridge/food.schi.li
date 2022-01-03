@@ -147,6 +147,8 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Nutrition deleted', flash[:notice]
   end
 
+  private
+
   def assert_input_fields_present
     assert_select '#nutrition_name'
     assert_select '#nutrition_unit'

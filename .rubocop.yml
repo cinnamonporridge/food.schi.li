@@ -1,7 +1,9 @@
 ---
 
 require:
+- rubocop-minitest
 - rubocop-rails
+- rubocop-rake
 
 AllCops:
   Exclude:
@@ -181,6 +183,51 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Exclude:
   - db/migrate/*
+
+Minitest/AssertInDelta:
+  Enabled: true
+
+Minitest/AssertKindOf:
+  Enabled: true
+
+Minitest/AssertOutput:
+  Enabled: true
+
+Minitest/AssertPathExists:
+  Enabled: true
+
+Minitest/AssertSilent:
+  Enabled: true
+
+Minitest/AssertWithExpectedArgument:
+  Enabled: true
+
+Minitest/AssertionInLifecycleHook:
+  Enabled: true
+
+Minitest/LiteralAsActualArgument:
+  Enabled: true
+
+Minitest/MultipleAssertions:
+  Enabled: false
+
+Minitest/RefuteInDelta:
+  Enabled: true
+
+Minitest/RefuteKindOf:
+  Enabled: true
+
+Minitest/RefutePathExists:
+  Enabled: true
+
+Minitest/TestMethodName:
+  Enabled: true
+
+Minitest/UnreachableAssertion:
+  Enabled: true
+
+Minitest/UnspecifiedException:
+  Enabled: true
 
 Naming/BlockForwarding:
   Enabled: true

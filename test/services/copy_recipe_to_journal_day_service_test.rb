@@ -28,7 +28,7 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     assert_equal 'unit', milk_portion_on_journal_day.measure
     assert_equal 'piece', apple_portion_on_journal_day.measure
 
-    assert_equal 33.33, milk_portion_on_journal_day.amount.round(2).to_f
-    assert_equal 5.0, apple_portion_on_journal_day.amount.round(2).to_f
+    assert_in_delta(33.33, milk_portion_on_journal_day.amount.round(2).to_f)
+    assert_in_delta(5.0, apple_portion_on_journal_day.amount.round(2).to_f)
   end
 end

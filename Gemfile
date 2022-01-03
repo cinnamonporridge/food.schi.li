@@ -29,8 +29,9 @@ gem 'turbo-rails', '>= 0.7.11'
 group :development, :test do
   gem 'debug'
   gem 'rubocop', require: false
+  gem 'rubocop-minitest', require: false
   gem 'rubocop-rails', require: false
-  gem 'rubocop-rake'
+  gem 'rubocop-rake', require: false
 end
 
 group :development do
