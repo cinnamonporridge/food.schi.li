@@ -10,6 +10,20 @@ daisys_glass_of_milk_on_february_first:
   amount: 250.0
   measure: <%= Meal.measures[:unit] %>
 
+daisys_milk_from_apple_pie_on_february_fifth:
+  journal_day: daisy_february_fifth
+  recipe: apple_pie
+  portion: milk_default_portion
+  amount: 40
+  measure: <%= Ingredient.measures[:unit] %>
+
+daisys_apples_from_apple_pie_on_february_fifth:
+  journal_day: daisy_february_fifth
+  recipe: apple_pie
+  portion: big_apple_portion
+  amount: 6
+  measure: <%= Ingredient.measures[:piece] %>
+
 johns_apple_on_january_first:
   journal_day: john_january_first
   portion: apple_default_portion
