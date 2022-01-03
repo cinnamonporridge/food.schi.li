@@ -12,7 +12,7 @@ class RegularUserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'nav a', 'Recipes'
     assert_select 'nav a', 'Foods'
 
-    assert_select 'footer a', 'Sign out'
+    assert_select 'footer button', 'Sign out'
   end
 
   # home

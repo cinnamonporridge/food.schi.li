@@ -22,7 +22,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     # 1.77 pieces of 25g sugar cube = 44.25g
     recipe.reload
-    assert_equal 44.25, recipe.ingredients.find_by(portion:).amount
+    assert_in_delta(44.25, recipe.ingredients.find_by(portion:).amount)
   end
 
   test 'adding a non vegan ingredient changes recipe to non-vegan' do

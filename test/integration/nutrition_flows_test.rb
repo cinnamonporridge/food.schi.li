@@ -139,13 +139,15 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get nutrition_path(nutritions(:sugar))
     assert_response :success
     assert_select 'h1', 'Sugar'
-    assert_select 'a', 'Delete nutrition'
+    assert_select 'button', 'Delete nutrition'
 
     delete "/nutritions/#{nutritions(:sugar).id}"
     follow_redirect!
     assert_response :success
     assert_equal 'Nutrition deleted', flash[:notice]
   end
+
+  private
 
   def assert_input_fields_present
     assert_select '#nutrition_name'
