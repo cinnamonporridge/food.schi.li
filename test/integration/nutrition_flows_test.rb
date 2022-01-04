@@ -122,7 +122,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal 'Deletion not possible', flash[:error]
 
-    assert_select 'div.card-yellow', text: 'Deletion not possible'
+    assert_select '.flash-messages', text: 'Deletion not possible'
   end
 
   test 'user cannot delete a nutrition that is used in a meal / journal day' do
@@ -132,7 +132,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal 'Deletion not possible', flash[:error]
 
-    assert_select 'div.card-yellow', 'Deletion not possible'
+    assert_select '.flash-messages', 'Deletion not possible'
   end
 
   test 'user can delete nutrition that is not used in a recipe' do
