@@ -1,12 +1,10 @@
-.flex.mb-5
-  .w-full
-    %h1 Recipes
+.flex
+  %h1 Recipes
 
-.flex.mb-5
-  .w-full
-    = link_to 'New Recipe', new_recipe_path, class: 'f-button f-button-green w-full'
+.flex.my-5
+  = link_to 'New Recipe', new_recipe_path, class: 'f-button f-button-green w-full'
 
-.flex.mb-5
+.flex.my-5
   .w-full
     = render 'layouts/search', form_url: recipes_path
 

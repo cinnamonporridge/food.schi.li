@@ -71,7 +71,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     list_item = find('ul#recipes li', text: 'Apple Pie')
     list_item.click
-    list_item.click_on 'Remove recipe from journal day'
+    list_item.click_on 'Delete recipe meal'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_selector 'ul#recipes li', text: 'Apple Pie', count: 0
@@ -92,7 +92,7 @@ class JournalDayTest < ApplicationSystemTestCase
     list_item = find('ul#recipes li', text: 'Apple Pie')
     list_item.assert_no_text 'Peanut'
     list_item.click
-    list_item.click_on 'Add portion to recipe on journal day'
+    list_item.click_on 'Add portion'
 
     assert_selector 'h1', text: 'Add portion to recipe'
     assert_text 'Add a portion to Apple Pie on 01.02.2017'
@@ -109,11 +109,11 @@ class JournalDayTest < ApplicationSystemTestCase
   test 'user toggles journal day meal actions menu' do
     using_browser do
       sign_in_user(users(:daisy))
-      click_on 'Sun, 05.02.2017'
+      click_link '05.02.2017'
       within find('ul#recipes li', text: 'APPLE PIE') do
         find('svg.heroicons-dots-vertical').ancestor('button').click
-        assert_link 'Add portion to recipe on journal day'
-        assert_button 'Remove recipe from journal day'
+        assert_link 'Add portion'
+        assert_button 'Delete recipe meal'
       end
     end
   end

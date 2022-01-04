@@ -77,7 +77,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
   # rubocop:disable Metrics/BlockLength
   test 'user edits a nutrition' do
     get nutrition_path(nutritions(:apple))
-    assert_select '.vegan-indicator', text: 'Not vegan'
+    assert_select '.vegan-badge', count: 0
 
     assert_select 'a', text: 'Edit'
 
@@ -108,7 +108,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_equal 'Nutrition updated', flash[:notice]
-    assert_select '.vegan-indicator', text: 'Vegan'
+    assert_select '.vegan-badge'
   end
   # rubocop:enable Metrics/BlockLength
 

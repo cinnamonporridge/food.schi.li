@@ -33,6 +33,7 @@ en:
   date:
     formats:
       default: "%d.%m.%Y"
+      weekday_only: "%a"
       with_weekday: "%a, %d.%m.%Y"
   views:
     pagination:
