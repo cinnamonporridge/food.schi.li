@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply text-2xl h-full;
+  @apply h-full;
 }
 
 body {
@@ -61,16 +61,8 @@ li {
   list-style-type: none;
 }
 
-.clickable {
-  @apply cursor-pointer;
-}
-
 .f-button {
-  @apply inline-block py-1 px-5 border text-center text-xs uppercase tracking-wider;
-}
-
-.f-button {
-  @apply cursor-pointer;
+  @apply inline-block py-1 px-5 border text-center text-sm rounded cursor-pointer;
 }
 
 .f-button-green {
@@ -105,13 +97,13 @@ li {
   @apply bg-red-500 border-red-500 text-white;
 }
 
-a, .fake-link {
+/*a, .fake-link {
   @apply text-green-600 cursor-pointer;
 }
 
 a:hover, .fake-link:hover {
   @apply text-green-500;
-}
+}*/
 
 .shy-link {
   @apply text-gray-500;
@@ -153,6 +145,10 @@ input[aria-invalid="true"] {
   @apply border-red-200;
 }
 
+.stats-pill {
+  @apply text-gray-500 text-sm;
+}
+
 .stats-pill:before {
   content: '';
   width: 0.5rem;
@@ -173,11 +169,15 @@ input[aria-invalid="true"] {
   content: 'g';
 }
 
-.stats-kcal:before { @apply bg-red-300 }
-.stats-carbs:before { @apply bg-purple-700 }
-.stats-protein:before { @apply bg-yellow-700 }
-.stats-fat:before { @apply bg-gray-700 }
+.stats-kcal:before { @apply rounded bg-red-300 }
+.stats-carbs:before { @apply rounded bg-purple-700 }
+.stats-protein:before { @apply rounded bg-yellow-700 }
+.stats-fat:before { @apply rounded bg-gray-700 }
 
 ul.pagination li {
   @apply inline-block;
+}
+
+.food-text-3xs {
+  font-size: 0.3rem;
 }

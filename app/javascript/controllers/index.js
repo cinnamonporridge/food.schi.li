@@ -4,5 +4,5 @@
 
 import { application } from "./application"
 
-import MealActionsController from "./meal_actions_controller.js"
-application.register("meal-actions", MealActionsController)
+import ToggleableController from "./toggleable_controller.js"
+application.register("toggleable", ToggleableController)

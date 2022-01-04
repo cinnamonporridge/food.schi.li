@@ -1,28 +1,27 @@
-.flex.mb-5
-  .w-full
-    %h1 Nutritions
+.flex
+  %h1 Nutritions
 
-.flex.mb-5
-  .w-full
-    = link_to 'Add nutrition', new_nutrition_path, class: 'f-button f-button-green w-full'
+.flex.my-5
+  = link_to 'Add nutrition', new_nutrition_path, class: 'f-button f-button-green w-full'
 
-.flex.mb-5
+.flex.my-5
   .w-full
     = render 'layouts/search', form_url: nutritions_path
 
 = render 'layouts/pagy', pagy: @pagy
 
-.flex.mb-5
+.flex.my-5
   .w-full
-    %ul.nutritions
+    %ul.nutritions.flex.flex-col.gap-y-4
       - @nutritions.each do |nutrition|
         %li
-          .card.mb-4.clickable{ 'data-href': nutrition_path(nutrition) }
-            .flex
-              .w-full.py-1.border-0.border-b.border-green-300
-                = render 'icons/vegan', vegan: nutrition.vegan?
-                = link_to nutrition.name, nutrition_path(nutrition)
-            .w-full.pt-2.pb-1.text-2xs
-              = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
+          = link_to nutrition_path(nutrition) do
+            .p-2.bg-gray-100.rounded.shadow.border.border-gray-200.hover:border-gray-100.transition
+              .flex.flex-col
+                .w-full.py-1.flex.gap-x-1
+                  = nutrition.name
+                  = render 'icons/vegan', vegan: nutrition.vegan?
+                .w-full
+                  = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
 
 = render 'layouts/pagy', pagy: @pagy

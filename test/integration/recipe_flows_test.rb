@@ -14,8 +14,8 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
 
     first_recipe, second_recipe, *_rest = css_select('ul.recipes li a')
 
-    assert_equal 'Anchovy Soup', first_recipe.inner_text.strip, 'Anchovy Soup should be listed before Apple Pie'
-    assert_equal 'Apple Pie', second_recipe.inner_text.strip, 'Apple Pie should be listed after Anchovy Soup'
+    assert_match /Anchovy Soup/, first_recipe.inner_text, 'Anchovy Soup should be listed before Apple Pie'
+    assert_match /Apple Pie/, second_recipe.inner_text, 'Apple Pie should be listed after Anchovy Soup'
   end
 
   test 'user sees pagination on index' do
@@ -47,7 +47,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h2', 'Nutritions'
     assert_select 'h2', 'Ingredients'
     assert_select 'a', 'Edit'
-    assert_select 'a', 'Delete'
+    assert_select 'button', 'Delete'
   end
 
   test 'user adds a recipe' do

@@ -3,6 +3,12 @@ class JournalDayDecorator < SimpleDelegator
     I18n.l(date, format: :with_weekday)
   end
 
+  def display_weekday
+    return if date.blank?
+
+    I18n.l(date, format: :weekday_only)
+  end
+
   def display_date
     return if date.blank?
 

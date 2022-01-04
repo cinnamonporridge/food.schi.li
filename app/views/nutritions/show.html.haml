@@ -1,7 +1,7 @@
 .flex.flex-wrap.mb-4
-  .w-full
-    = render 'icons/vegan', vegan: @nutrition.vegan?
+  .w-full.flex.gap-x-1
     %h1= @nutrition.name
+    = render 'icons/vegan', vegan: @nutrition.vegan?
   .w-full
     = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'shy-link text-xs'
 
@@ -62,4 +62,4 @@
 - if @nutrition.deleteable?
   .flex.my-8
     .w-full
-      = button_to 'Delete nutrition', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
+      = button_to 'Delete nutrition', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'w-full text-center rounded text-xs bg-gray-50 border p-2 text-gray-400 hover:text-red-500 transition hover:border-red-300'

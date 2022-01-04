@@ -1,9 +1,12 @@
 - if journal_days
-  %ul.journal-days
+  %ul.journal-days.flex.flex-col.gap-y-4
     - journal_days.each do |journal_day|
-      %li
-        .card.hover:bg-gray-200.mb-4.clickable{ 'data-href': my_journal_day_path(journal_day) }
-          .flex.flex-wrap
-            .w-full.py-1.border-0.border-b.border-green-300= link_to journal_day.decorate.display_date_with_weekday, my_journal_day_path(journal_day)
-            .w-full.pt-2.pb-1.text-2xs
-              = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data
+      %li.w-full
+        = link_to my_journal_day_path(journal_day), class: 'border p-2 flex flex-col w-full rounded shadow bg-gray-100 border-gray-200 hover:border-gray-100' do
+          .w-full.flex.items-center.gap-x-2
+            .grow.text-gray-600
+              = journal_day.decorate.display_date
+            .shrink-0.bg-green-300.text-gray-700.text-xs.font-mono.px-1.rounded
+              = journal_day.decorate.display_weekday
+          .w-full
+            = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data

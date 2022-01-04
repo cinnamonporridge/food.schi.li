@@ -1,14 +1,12 @@
-.flex.mb-4
-  .w-full
-    %h1 My journal days
+.flex
+  %h1 My journal days
 
-.flex.mb-4
-  .w-full
-    = link_to 'Add Journal Day', new_my_journal_day_path, class: 'f-button f-button-green w-full'
+.flex.my-5
+  = link_to 'Add Journal Day', new_my_journal_day_path, class: 'f-button f-button-green w-full'
 
 = render 'layouts/pagy', pagy: @pagy
 
-.flex.mb-4
+.flex.my-10
   .w-full
     = render 'index', journal_days: @journal_days
 

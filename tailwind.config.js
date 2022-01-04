@@ -1,7 +1,6 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  // mode: 'jit',
   content: [
     './app/components/**/*.html.haml',
     './app/components/**/*.rb',
@@ -10,6 +9,13 @@ module.exports = {
     './app/javascript/**/*.js',
     './config/settings.yml'
   ],
+  theme: {
+    extend: {
+      fontSize: {
+        '2xs': '0.625rem'
+      }
+    }
+  },
   plugins: [
     require('@tailwindcss/forms'),
   ]
