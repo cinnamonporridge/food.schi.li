@@ -8,6 +8,7 @@ end
 
 gem 'bcrypt'
 gem 'bootsnap', require: false
+gem 'bugsnag', '~> 6.24'
 gem 'cssbundling-rails'
 gem 'haml-rails'
 gem 'hotwire-rails'
