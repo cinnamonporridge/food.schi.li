@@ -6,6 +6,10 @@ html {
   @apply h-full;
 }
 
+html, body {
+  @apply bg-slate-100;
+}
+
 body {
   @apply min-h-full;
   display: grid;
@@ -157,8 +161,7 @@ input[aria-invalid="true"] {
 }
 
 .unit::after {
-  @apply text-xs text-gray-600;
-  margin-left: 0.1rem;
+  @apply text-xs text-gray-400 ml-1;
 }
 
 .unit-ml::after {
@@ -178,6 +181,6 @@ ul.pagination li {
   @apply inline-block;
 }
 
-.food-text-3xs {
-  font-size: 0.3rem;
+.toggleable--toggler-button {
+  @apply items-center justify-center text-gray-400 rounded-full hover:text-gray-900 transition;
 }

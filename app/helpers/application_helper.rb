@@ -6,6 +6,6 @@ module ApplicationHelper
   end
 
   def heroicon(name)
-    Rails.root.join('app/assets/images/icons/', name.to_s).sub_ext('.svg').read
+    Rails.root.join('app/assets/images/heroicons/', name.to_s).sub_ext('.svg').read
   end
 end

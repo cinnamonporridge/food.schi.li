@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import DismissableController from "./dismissable_controller.js"
+application.register("dismissable", DismissableController)
+
+import DropdownController from "./dropdown_controller.js"
+application.register("dropdown", DropdownController)
+
 import ToggleableController from "./toggleable_controller.js"
 application.register("toggleable", ToggleableController)

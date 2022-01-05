@@ -71,7 +71,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     list_item = find('ul#recipes li', text: 'Apple Pie')
     list_item.click
-    list_item.click_on 'Delete recipe meal'
+    list_item.click_on 'Delete recipe'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_selector 'ul#recipes li', text: 'Apple Pie', count: 0
@@ -111,9 +111,9 @@ class JournalDayTest < ApplicationSystemTestCase
       sign_in_user(users(:daisy))
       click_link '05.02.2017'
       within find('ul#recipes li', text: 'APPLE PIE') do
-        find('svg.heroicons-dots-vertical').ancestor('button').click
+        find('svg.heroicons-chevron-down').ancestor('button').click
         assert_link 'Add portion'
-        assert_button 'Delete recipe meal'
+        assert_button 'Delete recipe'
       end
     end
   end
