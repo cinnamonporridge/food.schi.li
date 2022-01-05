@@ -95,9 +95,9 @@ class JournalDayTest < ApplicationSystemTestCase
     list_item.click_on 'Add portion'
 
     assert_selector 'h1', text: 'Add portion to recipe'
-    assert_text 'Add a portion to Apple Pie on 01.02.2017'
+    assert_text 'Add a portion to Apple Pie recipe on 01.02.2017'
 
-    fill_in 'Portion name', with: 'Peanut Butter (100g)'
+    fill_in 'Portion', with: 'Peanut Butter (100g)'
     fill_in 'Amount in measure', with: '133'
 
     click_on 'Create Meal'

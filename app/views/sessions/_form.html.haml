@@ -1,12 +1,11 @@
-= simple_form_for(@form, url: login_path) do |form|
-  .flex.my-4
+= form_with(model: @form, url: login_path) do |f|
+  .bg-white.px-4.py-6.rounded.shadow.flex.flex-col.gap-y-4
     .w-full
-      = form.input :email, placeholder: 'Email address', label: false, input_html: { class: 'w-full' }
-  .flex.my-4
+      = f.email_field :email, placeholder: 'Email address', class: 'input'
     .w-full
-      = form.input :password, placeholder: 'Password', label: false, input_html: { class: 'w-full' }
-  .flex.flex-wrap.mt-6
-    .w-full
-      = form.submit 'Sign in', class: 'f-button w-full f-button-green'
-    .w-full
-      = link_to 'Forgot password', new_forgot_passwords_url, class: 'shy-link text-xs'
+      = f.password_field :password, placeholder: 'Password', class: 'text-sm w-full border border-gray-300 rounded focus:ring-green-400 focus:border-green-400 placeholder:text-gray-400'
+    .actions.flex.flex-col.gap-y-2
+      .w-full
+        = f.submit 'Sign in', class: 'w-full flex py-2 items-center justify-center bg-green-300 hover:bg-green-400 rounded text-sm cursor-pointer transition'
+      .w-full.text-center
+        = link_to 'Forgot password', new_forgot_passwords_url, class: 'text-xs text-gray-400 hover:text-gray-500 transition'

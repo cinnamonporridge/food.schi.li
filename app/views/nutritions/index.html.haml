@@ -16,9 +16,9 @@
       - @nutritions.each do |nutrition|
         %li
           = link_to nutrition_path(nutrition) do
-            .p-2.bg-gray-100.rounded.shadow.border.border-gray-200.hover:border-gray-100.transition
+            .p-2.bg-white.rounded.shadow.border.border-gray-200.hover:border-gray-100.transition
               .flex.flex-col
-                .w-full.py-1.flex.gap-x-1
+                .w-full.py-1.flex.gap-x-1.items-center
                   = nutrition.name
                   = render 'icons/vegan', vegan: nutrition.vegan?
                 .w-full
