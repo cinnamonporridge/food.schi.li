@@ -2,7 +2,7 @@
   %ul.journal-days.flex.flex-col.gap-y-4
     - journal_days.each do |journal_day|
       %li.w-full
-        = link_to my_journal_day_path(journal_day), class: 'border p-2 flex flex-col w-full rounded shadow bg-gray-100 border-gray-200 hover:border-gray-100' do
+        = link_to my_journal_day_path(journal_day), class: 'border p-2 flex flex-col w-full rounded shadow bg-white border-gray-200 hover:border-gray-100' do
           .w-full.flex.items-center.gap-x-2
             .grow.text-gray-600
               = journal_day.decorate.display_date

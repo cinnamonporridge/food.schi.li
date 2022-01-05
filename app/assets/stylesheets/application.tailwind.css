@@ -29,8 +29,8 @@ h2 {
   @apply tracking-wide text-xl text-green-700;
 }
 
-label {
-  @apply text-xs text-green-900;
+.label {
+  @apply text-xs text-gray-500 ;
 }
 
 nav.main-nav {
@@ -63,6 +63,10 @@ select {
 
 li {
   list-style-type: none;
+}
+
+.button {
+  @apply w-full flex py-2 items-center justify-center bg-green-300 hover:bg-green-400 rounded text-sm cursor-pointer transition;
 }
 
 .f-button {
@@ -109,6 +113,10 @@ a:hover, .fake-link:hover {
   @apply text-green-500;
 }*/
 
+.input {
+  @apply text-sm w-full border border-gray-300 rounded focus:ring-green-400 focus:border-green-400 placeholder:text-gray-400;
+}
+
 .shy-link {
   @apply text-gray-500;
 }
@@ -129,21 +137,21 @@ a:hover, .fake-link:hover {
   @apply border-red-300;
 }
 
-[type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {
+/*[type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {
   @apply mb-0;
-}
+}*/
 
 .form-error {
   @apply text-red-400 font-normal block text-xs;
 }
 
-input {
+/*input {
   @apply border border-green-400 p-2 text-xs text-green-700 tracking-wider;
 }
 
 input::placeholder {
   @apply text-green-500 text-xs;
-}
+}*/
 
 input[aria-invalid="true"] {
   @apply border-red-200;
