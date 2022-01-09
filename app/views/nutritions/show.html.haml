@@ -1,65 +1,31 @@
-.flex.flex-wrap.mb-4
-  .w-full.flex.gap-x-1.items-center
-    %h1= @nutrition.name
-    = render 'icons/vegan', vegan: @nutrition.vegan?
-  .w-full
-    = link_to 'Edit', edit_nutrition_path(@nutrition), class: 'shy-link text-xs'
+.flex.flex-col.gap-y-8
+  .flex.items-center
+    .w-full{ 'data-controller': 'toggleable' }
+      .flex
+        .grow.flex.items-center.gap-x-2
+          %h1.text-sm.uppercase
+            = @nutrition.name
+          - if @nutrition.vegan?
+            .flex.items-end.gap-x-1.text-2xs.text-gray-400
+              = render 'icons/vegan', vegan: @nutrition.vegan?
+              Vegan
+        .shrink-0
+          %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
+            .h-4.w-4
+              = raw heroicon :'dots-vertical'
 
-.flex.flex-wrap.my-6
-  - if @nutrition.in_recipes.any?
-    .flex-1.text-center
-      .text-2xs.text-gray-500 Used in
-      .text-2xl= @nutrition.in_recipes.count
-      .text-sm
-        = link_to nutrition_recipes_path(@nutrition) do
-          = "#{'recipe'.pluralize(@nutrition.in_recipes.count)}"
+      .nutrition-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
+        = link_to edit_nutrition_path(@nutrition), class: 'w-full rounded text-xs border p-2 bg-green-300 hover:bg-green-400 transition flex items-center justify-center gap-x-2' do
+          .h-4.w-4
+            = raw heroicon :pencil
+          Edit
 
-  - if @nutrition.on_journal_days.any?
-    .flex-1.text-center
-      .text-2xs.text-gray-500 Used on
-      .text-2xl= @nutrition.on_journal_days.count
-      .text-sm
-        = link_to nutrition_journal_days_path(@nutrition) do
-          = "#{'journal day'.pluralize(@nutrition.on_journal_days.count)}"
+        - if @nutrition.deleteable?
+          = button_to nutrition_path(@nutrition), class: 'w-full rounded text-xs border p-2 text-gray-400 hover:text-red-500 hover:border-red-300 hover:bg-white transition flex items-center justify-center gap-x-2', method: :delete do
+            .h-4.w-4
+              = raw heroicon :trash
+            Delete
 
-.flex.flex-wrap.mb-4
-  .w-full
-    %h2 Nutrition facts
-  .w-full.my-2
-    = "100#{@nutrition.unit_abbrevation} contains"
-  .w-full
-    %ul.text-xs
-      %li
-        %span.font-bold Kcal
-        .float-right.font-bold= @nutrition.kcal
-      %li.border-t
-        %span.font-bold Carbs
-        .float-right.font-bold= @nutrition.carbs
-      %li
-        Carbs sugar part
-        .float-right= @nutrition.carbs_sugar_part
-      %li.border-t
-        %span.font-bold Protein
-        .float-right.font-bold= @nutrition.protein
-      %li.border-t
-        %span.font-bold Fat
-        .float-right.font-bold= @nutrition.fat
-      %li
-        Fat saturated
-        .float-right= @nutrition.fat_saturated
-      %li.border-t
-        %span.font-bold Fiber
-        .float-right.font-bold= @nutrition.fiber
+  = render 'facts', nutrition: @nutrition
 
-.flex.flex-wrap.mb-6
-  .w-full
-    %h2 Portions
-  .w-full.my-2
-    = render 'portions/index', portions: @nutrition.portions
-  .w-full.my-2
-    = link_to 'Add portion', new_nutrition_portion_path(@nutrition), class: 'f-button f-button-green w-full'
-
-- if @nutrition.deleteable?
-  .flex.my-8
-    .w-full
-      = button_to 'Delete nutrition', nutrition_path(@nutrition), method: :delete, data: { confirm: 'Are you sure?' }, class: 'w-full text-center rounded text-xs bg-gray-50 border p-2 text-gray-400 hover:text-red-500 transition hover:border-red-300'
+  = render 'portions/index', portions: @nutrition.portions.ordered_by_primary_then_name

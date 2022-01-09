@@ -14,7 +14,7 @@
           = raw heroicon :pencil
         Edit journal day
 
-      = link_to edit_my_journal_day_path(@journal_day), class: 'w-full rounded text-xs border p-2 text-gray-400 hover:text-red-500 hover:border-red-300 hover:bg-white transition flex items-center justify-center gap-x-2', method: :delete do
+      = button_to edit_my_journal_day_path(@journal_day), class: 'w-full rounded text-xs border p-2 text-gray-400 hover:text-red-500 hover:border-red-300 hover:bg-white transition flex items-center justify-center gap-x-2', method: :delete do
         .h-4.w-4
           = raw heroicon :trash
         Delete journal day

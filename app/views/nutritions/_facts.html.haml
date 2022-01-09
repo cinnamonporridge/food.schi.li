@@ -1,0 +1,29 @@
+.flex.flex-col.gap-y-2
+  .w-full.flex.items-baseline
+    .grow
+      %h2 Nutrition facts
+    .shrink-0.text-gray-400.text-xs
+      = "100#{@nutrition.unit_abbrevation} contains"
+  .w-full.bg-white.rounded.shadow
+    %ul.text-xs
+      %li.px-2.py-1
+        %span.font-bold Kcal
+        .float-right.font-bold= @nutrition.kcal
+      %li.px-2.border-t.pt-1
+        %span.font-bold Carbs
+        .float-right.font-bold= @nutrition.carbs
+      %li.px-2.pb-1.text-gray-500
+        Carbs sugar part
+        .float-right= @nutrition.carbs_sugar_part
+      %li.px-2.py-1.border-t
+        %span.font-bold Protein
+        .float-right.font-bold= @nutrition.protein
+      %li.px-2.border-t.pt-1
+        %span.font-bold Fat
+        .float-right.font-bold= @nutrition.fat
+      %li.px-2.pb-1.text-gray-500
+        Fat saturated
+        .float-right= @nutrition.fat_saturated
+      %li.px-2.py-1.border-t
+        %span.font-bold Fiber
+        .float-right.font-bold= @nutrition.fiber
