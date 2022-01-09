@@ -91,6 +91,25 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 196, journal_day.fiber
   end
 
+  test '.update(:journal_days), no meals' do
+    journal_day = journal_days(:john_january_first)
+    journal_day.meals.delete_all
+
+    fake_nutrition_facts!(journal_day)
+
+    NutritionFactsService.update(:journal_days)
+
+    journal_day.reload
+
+    assert_equal 0, journal_day.kcal
+    assert_equal 0, journal_day.carbs
+    assert_in_delta(0, journal_day.carbs_sugar_part)
+    assert_equal 0, journal_day.protein
+    assert_equal 0, journal_day.fat
+    assert_in_delta(0, journal_day.fat_saturated)
+    assert_equal 0, journal_day.fiber
+  end
+
   private
 
   def truncate_nutrition_facts!(record)
@@ -102,6 +121,18 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
       fat: 0.0,
       fat_saturated: 0.0,
       fiber: 0.0
+    )
+  end
+
+  def fake_nutrition_facts!(record)
+    record.update!(
+      kcal: 999,
+      carbs: 999.9,
+      carbs_sugar_part: 999.9,
+      protein: 999.9,
+      fat: 999.9,
+      fat_saturated: 999.9,
+      fiber: 999.9
     )
   end
 end

@@ -13,11 +13,11 @@ with_journal_day_meal_nutrition_facts AS (
        , (m.amount / da.value) * n.fiber            AS journal_day_meal_fiber
     FROM journal_days jd
    CROSS JOIN default_amount da
-   INNER JOIN meals m      ON m.journal_day_id = jd.id
-   INNER JOIN portions p   ON p.id = m.portion_id
-   INNER JOIN nutritions n ON n.id = p.nutrition_id
+   LEFT OUTER JOIN meals m      ON m.journal_day_id = jd.id
+   LEFT OUTER JOIN portions p   ON p.id = m.portion_id
+   LEFT OUTER JOIN nutritions n ON n.id = p.nutrition_id
  ),
- 
+
  with_summed_nutrition_facts AS (
    SELECT journal_day_id
         , sum(journal_day_meal_kcal)             AS journal_day_kcal_sum
@@ -61,13 +61,13 @@ INSERT INTO journal_days (
 SELECT jd.id
      , jd.user_id
      , jd.date
-     , tnf.journal_day_target_kcal
-     , tnf.journal_day_target_carbs
-     , tnf.journal_day_target_carbs_sugar_part
-     , tnf.journal_day_target_protein
-     , tnf.journal_day_target_fat
-     , tnf.journal_day_target_fat_saturated
-     , tnf.journal_day_target_fiber
+     , COALESCE(tnf.journal_day_target_kcal, 0)             AS journal_day_target_kcal
+     , COALESCE(tnf.journal_day_target_carbs, 0)            AS journal_day_target_carbs
+     , COALESCE(tnf.journal_day_target_carbs_sugar_part, 0) AS journal_day_target_carbs_sugar_part
+     , COALESCE(tnf.journal_day_target_protein, 0)          AS journal_day_target_protein
+     , COALESCE(tnf.journal_day_target_fat, 0)              AS journal_day_target_fat
+     , COALESCE(tnf.journal_day_target_fat_saturated, 0)    AS journal_day_target_fat_saturated
+     , COALESCE(tnf.journal_day_target_fiber, 0)            AS journal_day_target_fiber
      , jd.created_at
      , NOW() AS updated_at
   FROM with_rounded_target_nutrution_facts tnf
