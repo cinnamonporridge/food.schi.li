@@ -2,7 +2,7 @@
   %h1 Nutritions
 
 .flex.my-5
-  = link_to 'Add nutrition', new_nutrition_path, class: 'f-button f-button-green w-full'
+  = link_to 'Add nutrition', new_nutrition_path, class: 'button'
 
 .flex.my-5
   .w-full
@@ -15,13 +15,13 @@
     %ul.nutritions.flex.flex-col.gap-y-4
       - @nutritions.each do |nutrition|
         %li
-          = link_to nutrition_path(nutrition) do
-            .p-2.bg-white.rounded.shadow.border.border-gray-200.hover:border-gray-100.transition
-              .flex.flex-col
-                .w-full.py-1.flex.gap-x-1.items-center
-                  = nutrition.name
-                  = render 'icons/vegan', vegan: nutrition.vegan?
-                .w-full
-                  = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
+          = link_to nutrition_path(nutrition), class: 'flex flex-col gap-y-2 p-2 bg-white rounded shadow border border-gray-200 hover:border-gray-100 transition' do
+            .w-full.flex.items-center
+              .grow
+                = nutrition.name
+              .shrink-0
+                = render 'icons/vegan', vegan: nutrition.vegan?
+            .w-full
+              = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
 
 = render 'layouts/pagy', pagy: @pagy

@@ -13,6 +13,9 @@ class Portion < ApplicationRecord
     includes(:nutrition).order('nutritions.name ASC, portions.amount ASC')
   }
   scope :primary, -> { where(amount: PRIMARY_AMOUNT) }
+  scope :ordered_by_primary_then_name, -> {
+    order(Arel.sql("CASE WHEN portions.amount = #{PRIMARY_AMOUNT} THEN 1 ELSE 2 END ASC, portions.name ASC"))
+  }
 
   validates :name, presence: true
   validates :amount, presence: true
@@ -22,5 +25,9 @@ class Portion < ApplicationRecord
 
   def primary?
     amount == PRIMARY_AMOUNT
+  end
+
+  def deleteable?
+    ingredients.none? && meals.none?
   end
 end

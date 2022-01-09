@@ -1,27 +1,35 @@
-- if portions.present?
-  %ul
-  - portions.ordered_by_amount.each do |portion|
-    %li.py-1
-      %div{ 'data-controller': 'toggleable' }
-        .flex
-          .grow
-            - if portion.primary?
-              .text-gray-400
-                Default
-            - else
-              = button_tag portion.name, class: 'text-green-500 hover:text-green-600', 'data-action': 'toggleable#toggle'
-          .shrink-0
-            %span{ class: "unit unit-#{portion.nutrition.decorate.unit_abbrevation}" }
-              = portion.amount
-        - unless portion.primary?
-          .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
-            .grid.grid-cols-2.gap-x-2
-              = link_to 'Edit', edit_nutrition_portion_path(portion.nutrition, portion), class: 'w-full f-button f-button-green rounded'
-              = button_to 'Delete',
-                        nutrition_portion_path(portion.nutrition, portion),
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' },
-                        class: 'w-full text-center rounded text-xs bg-gray-50 border p-1 text-gray-400 hover:text-red-500 transition hover:border-red-300'
+.flex.flex-col.gap-y-2
+  .w-full
+    %h2 Portions
 
-- else
-  .text-gray-500.text-center.text-xs There are no portions yet
+  %ul.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200
+    - portions.ordered_by_amount.each do |portion|
+      %li.p-2
+        %div{ 'data-controller': 'toggleable' }
+          .flex
+            .grow
+              - if portion.primary?
+                Base
+              - else
+                = button_tag portion.name, class: 'text-green-500 hover:text-green-600', 'data-action': 'toggleable#toggle'
+            .shrink-0
+              %span{ class: "unit unit-#{portion.nutrition.decorate.unit_abbrevation}" }
+                = portion.amount
+          - unless portion.primary?
+            .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
+              .flex.gap-x-2
+                = link_to edit_nutrition_portion_path(portion.nutrition, portion), class: 'w-full p-2 text-sm rounded bg-green-300 hover:bg-green-400 transition flex items-center justify-center gap-x-2' do
+                  .h-4.w-4
+                    = raw heroicon :pencil
+                  Edit
+                - if portion.deleteable?
+                  = button_to nutrition_portion_path(portion.nutrition, portion), class: 'w-full rounded text-sm border p-2 text-gray-400 hover:text-red-500 hover:border-red-300 hover:bg-white transition flex items-center justify-center gap-x-2', method: :delete, form_class: 'w-full' do
+                    .h-4.w-4
+                      = raw heroicon :trash
+                    Delete portion
+
+  .w-full
+    = link_to new_nutrition_portion_path(portions.first.nutrition), class: 'border-2 border-dashed border-gray-300 rounded flex items-center justify-center py-2 text-gray-400 hover:border-green-300 hover:bg-green-300 hover:text-gray-900 gap-x-2 transition' do
+      .h-4.w-4
+        = raw heroicon :'plus-sm'
+      Add portion
