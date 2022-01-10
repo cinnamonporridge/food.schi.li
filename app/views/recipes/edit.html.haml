@@ -1,3 +1,4 @@
-%h1= "Edit #{@recipe.name}"
+.flex.flex-col.gap-y-4
+  %h1= "Edit #{@recipe.name}"
 
-= render 'form', recipe: @recipe
+  = render 'form', recipe: @recipe
