@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply h-full;
-}
-
 html, body {
-  @apply bg-slate-100;
+  @apply h-full bg-slate-100;
 }
 
 h1 {
@@ -19,12 +15,13 @@ h2 {
 }
 
 .nav-link {
-  @apply flex p-3 hover:bg-green-300 transition w-full;
-  @apply sm:w-auto sm:py-1 sm:px-5 sm:rounded font-medium sm:text-green-100 sm:hover:bg-green-300 sm:hover:text-gray-900;
+  @apply flex py-2 bg-green-300 hover:bg-green-400 transition w-full justify-center;
+  @apply sm:w-auto sm:bg-transparent sm:py-1 sm:px-5 sm:rounded font-medium sm:text-green-100 sm:hover:bg-green-300 sm:hover:text-gray-900;
 }
 
 .nav-link--current {
-  @apply bg-green-300 text-gray-900;
+  @apply bg-green-400;
+  @apply sm:bg-green-300 sm:text-gray-900;
 }
 
 select {

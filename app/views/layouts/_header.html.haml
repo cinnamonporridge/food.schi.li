@@ -1,7 +1,7 @@
 %header
-  %nav.main-nav.bg-green-700{ 'data-controller': 'dropdown' }
+  %nav.main-nav.bg-green-700
     .w-screen.max-w-screen-md.mx-auto.px-4.md:px-0
-      .flex.items-center.space-x-8.h-16
+      .flex.items-center.justify-between.space-x-8.h-16
         .shrink-0
           .h-8.w-8.text-white
             = raw fontawesome :'carrot-duotone'
@@ -23,20 +23,15 @@
                   .h-4.w-4
                     = raw heroicon :'chart-pie'
                   Foods
-            .shrink-0
-              = button_to logout_path, method: :delete, class: 'text-green-600 hover:text-green-200 transition text-sm flex items-center gap-x-2' do
-                .h-4.w-4
-                  = raw heroicon :logout
-                Sign out
+          .shrink-0
+            = button_to logout_path, method: :delete, class: 'text-green-500 hover:text-green-200 transition text-sm flex items-center gap-x-2' do
+              .h-4.w-4
+                = raw heroicon :logout
+              Sign out
 
-          .sm:hidden.w-full.flex.items-center.justify-end
-            %button{ type: :button, class: 'bg-green-600 rounded p-1 hover:bg-green-500 transition focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-200', 'aria-controls': 'mobile-menu', 'aria-expanded': false, 'data-dropdown-target': 'toggler', 'data-action': 'dropdown#toggle' }
-              .h-5.w-5.text-green-200
-                = raw heroicon :menu
-
-    #mobile-menu.sm:hidden{ 'data-dropdown-target': 'menu' }
+    #mobile-menu.sm:hidden
       .bg-green-400.flex.flex-col.divide-y.divide-green-300
-        %div
+        .grid.grid-cols-3
           = link_to my_journal_days_path, class: "nav-link #{nav_link_current_classes(my_journal_days_path)} flex items-center gap-x-4" do
             .h-4.w-4
               = raw heroicon :calendar
@@ -51,11 +46,5 @@
             .h-4.w-4
               = raw heroicon :'chart-pie'
             Foods
-
-        %div
-          = button_to logout_path, method: :delete, class: 'text-green-700 hover:text-gray-900 nav-link flex items-center gap-x-4' do
-            .h-4.w-4
-              = raw heroicon :logout
-            Sign out
 
   = render 'layouts/flash'
