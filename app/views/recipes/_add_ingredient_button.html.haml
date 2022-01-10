@@ -1,3 +1,6 @@
 - if recipe.present?
-  - word =  recipe.ingredients.size.zero? ? 'first' : 'another'
-  = link_to "Add #{word} ingredient", new_recipe_ingredient_path(recipe), class: 'f-button f-button-green w-full'
+  = link_to new_recipe_ingredient_path(recipe), class: 'gray-dashed-button gap-x-2' do
+    .h-4.w-4
+      = raw heroicon :'plus-sm'
+    - word =  recipe.ingredients.size.zero? ? 'first' : 'another'
+    = "Add #{word} ingredient"

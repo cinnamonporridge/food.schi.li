@@ -14,12 +14,7 @@ class Recipe < ApplicationRecord
   scope :ordered_by_name, -> { order(name: :asc) }
 
   def macronutrient_data
-    @macronutrient_data ||= MacronutrientDataService.new(
-      kcal:,
-      carbs:,
-      protein:,
-      fat:
-    )
+    @macronutrient_data ||= MacronutrientDataService.new(kcal:, carbs:, protein:, fat:)
   end
 
   def macronutrient_data_serving

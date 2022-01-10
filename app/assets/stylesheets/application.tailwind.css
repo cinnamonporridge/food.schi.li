@@ -33,7 +33,19 @@ li {
 }
 
 .button {
-  @apply w-full flex py-2 items-center justify-center text-white bg-green-700 hover:bg-green-600 rounded text-sm cursor-pointer transition;
+  @apply w-full flex py-2 items-center justify-center text-white bg-green-700 rounded hover:bg-green-600 cursor-pointer transition;
+}
+
+.secondary-button {
+  @apply w-full flex py-2 items-center justify-center text-black bg-purple-200 rounded hover:bg-purple-300 cursor-pointer transition;
+}
+
+.gray-hollow-button {
+  @apply w-full flex py-2 items-center justify-center text-gray-400 border rounded hover:text-red-500 hover:border-red-300 hover:bg-white cursor-pointer transition;
+}
+
+.gray-dashed-button {
+  @apply w-full flex py-2 items-center justify-center border-2 border-dashed border-gray-300 rounded  text-gray-400 hover:border-green-700 hover:bg-green-700 hover:text-white cursor-pointer transition
 }
 
 .f-button {

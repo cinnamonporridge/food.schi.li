@@ -23,14 +23,15 @@
                     .h-4.w-4
                       = raw heroicon :pencil
                     Edit
+
                   - if portion.deleteable?
-                    = button_to nutrition_portion_path(portion.nutrition, portion), class: 'w-full rounded text-sm border p-2 text-gray-400 hover:text-red-500 hover:border-red-300 hover:bg-white transition flex items-center justify-center gap-x-2', method: :delete, form_class: 'w-full' do
+                    = button_to nutrition_portion_path(portion.nutrition, portion), class: 'gray-hollow-button gap-x-2', method: :delete, form_class: 'w-full' do
                       .h-4.w-4
                         = raw heroicon :trash
                       Delete portion
 
     .w-full
-      = link_to new_nutrition_portion_path(portions.first.nutrition), class: 'border-2 border-dashed border-gray-300 rounded flex items-center justify-center py-2 text-gray-400 hover:border-green-700 hover:bg-green-700 hover:text-white gap-x-2 transition' do
+      = link_to new_nutrition_portion_path(portions.first.nutrition), class: 'gray-dashed-button gap-x-2' do
         .h-4.w-4
           = raw heroicon :'plus-sm'
         Add portion

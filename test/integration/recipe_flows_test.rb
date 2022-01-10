@@ -9,7 +9,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get recipes_path
     assert_response :success
     assert_select 'h1', 'Recipes'
-    assert_select 'a', 'New Recipe'
+    assert_select 'a', 'Add recipe'
     assert_select 'input#search_query'
 
     first_recipe, second_recipe, *_rest = css_select('ul.recipes li a')
@@ -54,7 +54,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get new_recipe_path
     assert_response :success
     assert_select 'h1', 'New Recipe'
-    assert_select "input[type='submit'][value='Create Recipe']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     post '/recipes',
@@ -84,7 +84,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get edit_recipe_path(recipe)
     assert_response :success
     assert_select 'h1', 'Edit Apple Pie'
-    assert_select "input[type='submit'][value='Update Recipe']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     put "/recipes/#{recipe.id}",

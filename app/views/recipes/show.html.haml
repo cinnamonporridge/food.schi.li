@@ -1,34 +1,44 @@
-.flex.flex-wrap.mb-4
-  .w-full
-    .float-right.bottom.font-bold.text-green-600.text-2xs
-      = render 'icons/vegan', vegan: @recipe.vegan?
-    %h1= @recipe.name
-  .w-full.text-2xs
-    = link_to 'Edit', edit_recipe_path(@recipe)
-    = link_to 'Copy', new_recipe_copy_path(@recipe), class: 'ml-2 shy-link'
+.flex.flex-col.gap-y-8
+  .flex.items-center
+    .w-full{ 'data-controller': 'toggleable' }
+      .flex
+        .grow.flex.flex-col.gap-y-1
+          %h1.text-sm.uppercase
+            = @recipe.name
+          - if @recipe.vegan?
+            .flex.items-end.gap-x-1.text-2xs.text-gray-400
+              = render 'icons/vegan', vegan: @recipe.vegan?
+              Vegan
+        .shrink-0
+          %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
+            .h-4.w-4
+              = raw heroicon :'dots-vertical'
+      .recipe-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
+        = link_to edit_recipe_path(@recipe), class: 'button flex items-center gap-x-2' do
+          .h-4.w-4
+            = raw heroicon :pencil
+          Edit
 
-.flex.mb-4
-  .w-full
-    = render 'add_ingredient_button', recipe: @recipe
+        = link_to new_recipe_copy_path(@recipe), class: 'secondary-button flex items-center gap-x-2' do
+          .h-4.w-4
+            = raw heroicon :duplicate
+          Copy
 
-.flex.flex-wrap.mb-4
-  .w-full
-    %h2 Nutritions
-  .w-full.text-3xs
-    = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
+        = button_to @recipe, method: :delete, class: 'gray-hollow-button gap-x-2' do
+          .h-4.w-4
+            = raw heroicon :trash
+          Delete recipe
 
-.flex.mb-4
-  .w-full
+
+  = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
+
+  .flex.flex-col.gap-y-2
     %h2 Ingredients
-    .text-2xs.text-gray-500
+    .text-gray-400.text-sm
       = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
 
-.flex.flex-wrap.mb-4
-  .w-full.mb-2
-    = render 'ingredients', ingredients: @recipe.ingredients
-  .w-full
-    = render 'add_ingredient_button', recipe: @recipe
-
-.flex.my-8
-  .w-full
-    = button_to 'Delete recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'f-button f-button-red-hollow w-full'
+  .flex.flex-col
+    .w-full
+      = render 'ingredients', ingredients: @recipe.ingredients
+    .w-full
+      = render 'add_ingredient_button', recipe: @recipe
