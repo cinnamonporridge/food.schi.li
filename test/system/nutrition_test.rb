@@ -4,7 +4,7 @@ class NutritionTest < ApplicationSystemTestCase
   test 'search for nutrition' do
     sign_in_user(users(:daisy))
 
-    click_on 'Foods'
+    navigate_to 'Foods'
 
     assert_selector 'h1', text: 'Nutritions'
 

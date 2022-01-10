@@ -11,6 +11,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on 'Sign in'
   end
 
+  def navigate_to(menu_item)
+    within('nav.main-nav') do
+      click_on menu_item, match: :first
+    end
+  end
+
   def using_browser(&)
     driver = ENV['DEBUG'].present? ? :selenium : :selenium_headless
     Capybara.using_driver(driver, &)
