@@ -9,7 +9,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get new_nutrition_portion_path(nutritions(:apple))
     assert_response :success
     assert_select 'h1', 'New portion for Apple'
-    assert_select "input[type='submit'][value='Create Portion']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     post "/nutritions/#{nutritions(:apple).id}/portions",
@@ -71,7 +71,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get edit_nutrition_portion_path(big_apple.nutrition, big_apple)
     assert_response :success
     assert_select 'h1', 'Edit portion for Apple'
-    assert_select "input[type='submit'][value='Update Portion']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     put "/nutritions/#{big_apple.nutrition.id}/portions/#{big_apple.id}",

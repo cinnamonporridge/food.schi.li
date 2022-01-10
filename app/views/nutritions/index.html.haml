@@ -2,7 +2,10 @@
   %h1 Nutritions
 
 .flex.my-5
-  = link_to 'Add nutrition', new_nutrition_path, class: 'button'
+  = link_to new_nutrition_path, class: 'button flex items-center gap-x-1' do
+    .h-4.w-4
+      = raw heroicon :'plus-sm'
+    Add nutrition
 
 .flex.my-5
   .w-full
