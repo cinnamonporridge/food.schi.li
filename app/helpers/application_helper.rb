@@ -1,8 +1,8 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-  def nav_link_to(text, path)
-    link_to text, path, class: (path.include?(params[:controller]) ? 'active' : nil).to_s
+  def nav_link_current_classes(path)
+    return 'nav-link--current' if path.include?(params[:controller])
   end
 
   def heroicon(name)

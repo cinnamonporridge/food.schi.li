@@ -10,23 +10,10 @@
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
 
   %body
-    .w-screen.max-w-screen-md.mx-auto
-      .flex.flex-wrap.mb-4.w-full
-        .container.mx-auto
-          .w-full
-            .text-center.tracking-widest.text-xs.md:text-3xl.my-2.md:my-5
-              .inline-block.mx-auto
-                .bg-clip-text.text-transparent.bg-gradient-to-r.from-green-400.to-green-800 food
-          - if @current_user
-            .w-full.bg-gradient-to-r.from-green-200.to-green-300
-              = render 'layouts/navigation'
+    = render 'layouts/header'
 
-      .flex
-        .w-full.px-4.my-5
+    %main
+      .w-screen.max-w-screen-md.mx-auto
+        .w-full.my-8.px-4.sm:px-0
           .container.mx-auto
-            = render 'layouts/flash'
             = yield
-
-    %footer.footer
-      .container.mx-auto.my-5
-        = render 'layouts/footer'

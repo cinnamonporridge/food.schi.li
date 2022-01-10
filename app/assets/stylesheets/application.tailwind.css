@@ -10,17 +10,6 @@ html, body {
   @apply bg-slate-100;
 }
 
-body {
-  @apply min-h-full;
-  display: grid;
-  grid-template-rows: 1fr auto;
-}
-
-.footer {
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
 h1 {
   @apply tracking-wide text-2xl text-green-700 ;
 }
@@ -29,28 +18,13 @@ h2 {
   @apply tracking-wide text-xl text-green-700;
 }
 
-nav.main-nav {
-  @apply text-center;
+.nav-link {
+  @apply flex p-3 hover:bg-green-300 transition w-full;
+  @apply sm:w-auto sm:py-1 sm:px-5 sm:rounded font-medium sm:text-green-100 sm:hover:bg-green-300 sm:hover:text-gray-900;
 }
 
-nav.main-nav ul {
-  @apply flex;
-}
-
-nav.main-nav li {
-  @apply flex-1;
-}
-
-nav.main-nav a {
-  @apply text-sm text-green-800 inline-block w-full border-solid border-green-400 border-b-4 py-2;
-}
-
-nav.main-nav a:hover {
-  @apply text-green-700 border-green-800;
-}
-
-nav.main-nav a.active {
-  @apply border-green-700;
+.nav-link--current {
+  @apply bg-green-300 text-gray-900;
 }
 
 select {
