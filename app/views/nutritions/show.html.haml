@@ -2,7 +2,7 @@
   .flex.items-center
     .w-full{ 'data-controller': 'toggleable' }
       .flex
-        .grow.flex.items-center.gap-x-2
+        .grow.flex.flex-col
           %h1.text-sm.uppercase
             = @nutrition.name
           - if @nutrition.vegan?

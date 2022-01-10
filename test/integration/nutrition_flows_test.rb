@@ -29,7 +29,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get new_nutrition_path
     assert_response :success
     assert_select 'h1', 'New nutrition'
-    assert_select "input[type='submit'][value='Create Nutrition']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     assert_input_fields_present
@@ -84,7 +84,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     get edit_nutrition_path(nutritions(:apple))
     assert_response :success
     assert_select 'h1', 'Edit nutrition'
-    assert_select "input[type='submit'][value='Update Nutrition']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     assert_input_fields_present
