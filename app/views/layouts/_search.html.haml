@@ -1,7 +1,7 @@
 = form_with url: form_url, method: :get, local: true do |f|
   .flex.rounded
     %div{ class: 'relative flex items-stretch flex-grow focus-within:z-10' }
-      = f.text_field :search_query, placeholder: 'Search', value: params[:search_query], class: 'focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md text-sm border-gray-300'
+      = f.text_field :search_query, placeholder: 'Search', value: params[:search_query], class: 'focus:ring-green-700 focus:border-green-700 block w-full rounded-none rounded-l-md text-sm border-gray-300'
     = f.button type: :submit, class: '-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-600 bg-gray-50 hover:bg-gray-100 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 flex items-center gap-x-1' do
       .h-4.w-4
         = raw heroicon :search

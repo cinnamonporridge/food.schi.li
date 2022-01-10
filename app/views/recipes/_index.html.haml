@@ -2,11 +2,11 @@
   %ul.recipes.flex.flex-col.gap-y-4
     - recipes.each do |recipe|
       %li
-        = link_to recipe_path(recipe) do
-          .p-2.bg-white.rounded.shadow.border.border-gray-200.hover:border-gray-100.transition
-            .flex.flex-col
-              .w-full.py-1.flex.gap-x-1.items-center
-                = recipe.name
-                = render 'icons/vegan', vegan: recipe.vegan?
-              .w-full
-                = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving
+        = link_to recipe_path(recipe), class: 'flex flex-col p-4 bg-white rounded border border-gray-200 hover:border-gray-100 hover:border-green-700 transition' do
+          .w-full.flex.items-center
+            .grow
+              = recipe.name
+            .shrink-0
+              = render 'icons/vegan', vegan: recipe.vegan?
+          .w-full
+            = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving

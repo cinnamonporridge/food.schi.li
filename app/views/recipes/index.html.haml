@@ -1,17 +1,21 @@
-.flex
-  %h1 Recipes
+.flex.flex-col.gap-y-4
+  .flex
+    %h1 Recipes
 
-.flex.my-5
-  = link_to 'New Recipe', new_recipe_path, class: 'f-button f-button-green w-full'
+  .flex
+    = link_to new_recipe_path, class: 'button flex items-center gap-x-1' do
+      .h-4.w-4
+        = raw heroicon :'plus-sm'
+      Add recipe
 
-.flex.my-5
-  .w-full
-    = render 'layouts/search', form_url: recipes_path
+  .flex
+    .w-full
+      = render 'layouts/search', form_url: recipes_path
 
-= render 'layouts/pagy', pagy: @pagy
+  = render 'layouts/pagy', pagy: @pagy
 
-.flex
-  .w-full
-    = render 'recipes/index', recipes: @recipes
+  .flex
+    .w-full
+      = render 'recipes/index', recipes: @recipes
 
-= render 'layouts/pagy', pagy: @pagy
+  = render 'layouts/pagy', pagy: @pagy

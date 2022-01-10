@@ -1,13 +1,27 @@
-= simple_form_for recipe do |f|
-  .flex.flex-wrap.mb-4
-    .w-full
-      = f.input :name, placeholder: 'Recipe name', input_html: { class: 'w-full' }
-    .w-full
-      = f.input :servings, placeholder: 'Servings', input_html: { class: 'w-full' }
+= form_with(model: recipe, data: { turbo: false }) do |f|
+  .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
+    .pt-2.pb-4.px-4.flex.flex-col.gap-y-2
+      .flex.flex-col
+        = f.label :name, class: 'label'
+        = f.text_field :name, class: 'input', placeholder: 'Recipe name'
+        = render 'layouts/forms/field_errors', errors: f.object.errors, key: :name
 
-  .flex-wrap.mt-6
-    .w-full
-      = f.submit nil, class: 'f-button f-button-green w-full'
-    .w-full.my-5
-      - cancel_url = recipe.new_record? ? recipes_path : recipe_path(recipe)
-      = link_to 'Cancel', cancel_url, class: 'shy-link text-xs'
+      .flex.flex-col
+        = f.label :servings, class: 'label'
+        = f.number_field :servings, class: 'input', min: 1
+        = render 'layouts/forms/field_errors', errors: f.object.errors, key: :servings
+
+    .p-4.flex.flex-col.gap-y-2
+
+      = f.button type: :submit, class: 'input button flex items-center gap-x-1' do
+        - if f.object.persisted?
+          .h-4.w-4
+            = raw heroicon :pencil
+          Update recipe
+        - else
+          .h-4.w-4
+            = raw heroicon :'plus-sm'
+          Add recipe
+
+      .text-center
+        = link_to 'Cancel', recipe, class: 'shy-link text-xs'
