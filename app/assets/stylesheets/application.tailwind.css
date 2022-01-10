@@ -29,10 +29,6 @@ h2 {
   @apply tracking-wide text-xl text-green-700;
 }
 
-.label {
-  @apply text-xs text-gray-500 ;
-}
-
 nav.main-nav {
   @apply text-center;
 }
@@ -113,8 +109,16 @@ a:hover, .fake-link:hover {
   @apply text-green-500;
 }*/
 
+.label {
+  @apply text-xs text-gray-500 ;
+}
+
 .input {
   @apply text-sm w-full border border-gray-300 rounded focus:ring-green-400 focus:border-green-400 placeholder:text-gray-400;
+}
+
+.checkbox {
+  @apply rounded text-green-500 focus:outline-none focus:ring-green-500;
 }
 
 .shy-link {
