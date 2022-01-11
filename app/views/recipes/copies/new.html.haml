@@ -1,7 +1,7 @@
 .flex.flex-col.gap-y-4
   %h1= "Copy #{@form.recipe.name}"
 
-  = form_with(model: @form, url: recipe_copy_path(@recipe)) do |f|
+  = form_with(model: @form, url: recipe_copy_path(@recipe), data: { turbo: false }) do |f|
     .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
       .pt-2.pb-4.px-4.flex.flex-col.gap-y-2
         .flex.flex-col

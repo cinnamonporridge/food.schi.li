@@ -5,7 +5,7 @@ class RecipeTest < ActiveSupport::TestCase
     recipe = recipes(:vegan_peanut_butter_banana)
     recipe.update_columns(vegan: false) # rubocop:disable Rails/SkipsModelValidations
 
-    assert_changes 'recipe.vegan?', from: false, to: true do
+    assert_changes 'recipe.vegan?', to: true do
       recipe.detect_vegan
     end
   end
@@ -14,7 +14,7 @@ class RecipeTest < ActiveSupport::TestCase
     recipe = recipes(:non_vegan_milk_banana)
     recipe.update_columns(vegan: true) # rubocop:disable Rails/SkipsModelValidations
 
-    assert_changes 'recipe.vegan?', from: true, to: false do
+    assert_changes 'recipe.vegan?', to: false do
       recipe.detect_vegan
     end
   end

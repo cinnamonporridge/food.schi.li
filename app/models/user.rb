@@ -7,12 +7,9 @@ class User < ApplicationRecord
   has_many :journal_days, dependent: :restrict_with_exception
   has_many :meals, through: :journal_days
 
-  def requested_reset_link?
-    reset_password_link_sent_at > Time.zone.now.yesterday
-  end
-
-  def clear_reset_password!
-    update!(reset_password_challenge: nil, reset_password_link_sent_at: nil)
+  def clear_reset_password
+    self.reset_password_challenge = nil
+    self.reset_password_link_sent_at = nil
   end
 
   def clear_magic_link!
