@@ -56,8 +56,8 @@ class RecipeTest < ApplicationSystemTestCase
       assert_selector '.nutritions-table'
 
       within find('ul#ingredients-list li', text: 'Apple') do
-        click_on "Apple"
-        click_on "Remove ingredient"
+        click_on 'Apple'
+        click_on 'Remove ingredient'
       end
 
       assert_text 'No ingredients = no nutritions.'
