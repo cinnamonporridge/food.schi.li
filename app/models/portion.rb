@@ -23,6 +23,8 @@ class Portion < ApplicationRecord
   validates :amount, uniqueness: { scope: :nutrition }
   validates :amount, numericality: { greater_than: 0, only_integer: true }
 
+  delegate :vegan?, to: :nutrition
+
   def primary?
     amount == PRIMARY_AMOUNT
   end
