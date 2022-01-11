@@ -10,6 +10,8 @@ class Ingredient < ApplicationRecord
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
+  delegate :vegan?, to: :portion
+
   def to_nutritions_table_row
     [
       portion.decorate.name_with_nutrition,

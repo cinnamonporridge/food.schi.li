@@ -2,7 +2,7 @@
   .w-full
     %h2 Nutritions
   .w-full
-    - if nutritions_table[:total].first.second.positive? # = has calories?
+    - if nutritions_table[:ingredients]&.any? || nutritions_table[:meals]&.any?
       .nutritions-table.flex.flex-col.bg-white.border.border-gray-200.rounded.divide-y.divide-gray-200
         .flex.text-xs.sm:text-base.px-2.pt-2
           %div{ class: 'w-1/3' }
