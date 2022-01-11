@@ -15,17 +15,16 @@
   = render 'layouts/pagy', pagy: @pagy
 
   .flex
-    .w-full
-      %ul.nutritions.flex.flex-col.gap-y-4
-        - @nutritions.each do |nutrition|
-          %li
-            = link_to nutrition_path(nutrition), class: 'flex flex-col gap-y-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do
-              .w-full.flex.items-center
-                .grow
-                  = nutrition.name
-                .shrink-0
-                  = render 'icons/vegan', vegan: nutrition.vegan?
-              .w-full
-                = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
+    %ul.nutritions.flex.flex-col.gap-y-4
+      - @nutritions.each do |nutrition|
+        %li
+          = link_to nutrition_path(nutrition), class: 'flex flex-col gap-y-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do
+            .w-full.flex.items-center
+              .grow
+                = nutrition.name
+              .shrink-0
+                = render 'icons/vegan', vegan: nutrition.vegan?
+            .w-full
+              = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
 
   = render 'layouts/pagy', pagy: @pagy

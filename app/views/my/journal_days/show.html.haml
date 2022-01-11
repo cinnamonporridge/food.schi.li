@@ -1,45 +1,38 @@
-.flex.items-center
-  .w-full{ 'data-controller': 'toggleable' }
-    .flex
-      .grow
-        %h1.text-sm.uppercase= @journal_day.display_date_with_weekday
-      .shrink-0
-        %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
+.flex.flex-col.gap-y-8
+  .flex.items-center
+    .w-full{ 'data-controller': 'toggleable' }
+      .flex
+        .grow
+          %h1.text-sm.uppercase= @journal_day.display_date_with_weekday
+        .shrink-0
+          %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
+            .h-4.w-4
+              = raw heroicon :'dots-vertical'
+
+      .grid.grid-cols-1.sm:grid-cols-2.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
+        = link_to edit_my_journal_day_path(@journal_day), class: 'button gap-x-2' do
           .h-4.w-4
-            = raw heroicon :'dots-vertical'
+            = raw heroicon :pencil
+          Edit journal day
 
-    .grid.grid-cols-1.sm:grid-cols-2.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
-      = link_to edit_my_journal_day_path(@journal_day), class: 'w-full rounded text-xs border p-2 bg-green-300 hover:bg-green-400 transition flex items-center justify-center gap-x-2' do
+        = button_to edit_my_journal_day_path(@journal_day), class: 'dangerous-button gap-x-2', method: :delete do
+          .h-4.w-4
+            = raw heroicon :trash
+          Delete journal day
+
+  .flex
+    .grid.grid-cols-2.gap-2.w-full
+      = link_to new_my_journal_day_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
-          = raw heroicon :pencil
-        Edit journal day
+          = raw heroicon :'document'
+        Add portion meal
 
-      = button_to edit_my_journal_day_path(@journal_day), class: 'w-full rounded text-xs border p-2 text-gray-400 hover:text-red-500 hover:border-red-300 hover:bg-white transition flex items-center justify-center gap-x-2', method: :delete do
+      = link_to new_my_journal_day_recipe_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
-          = raw heroicon :trash
-        Delete journal day
+          = raw heroicon :'book-open'
+        Add recipe meal
 
-.flex.my-8
-  .grid.grid-cols-2.gap-2.w-full
-    = link_to new_my_journal_day_meal_path(@journal_day), class: 'w-full rounded text-xs text-gray-800 border p-2 bg-green-300 hover:bg-green-400 transition flex items-center justify-center gap-x-1' do
-      .h-4.w-4
-        = raw heroicon :'document'
-      Add portion meal
 
-    = link_to new_my_journal_day_recipe_path(@journal_day), class: 'w-full rounded text-xs text-gray-800 border p-2 bg-green-300 hover:bg-green-400 transition flex items-center justify-center gap-x-1' do
-      .h-4.w-4
-        = raw heroicon :'book-open'
-      Add recipe meal
+  = render 'nutritions/table', nutritions_table: @journal_day.to_nutritions_table
 
-.my-8
-  .flex.flex-col
-    .w-full
-      %h2 Nutritions
-    .w-full
-      = render 'nutritions/table', nutritions_table: @journal_day.to_nutritions_table
-
-.flex.flex-wrap.mb-8
-  .w-full
-    %h2 Meals
-  .w-full
-    = render 'meals', meals: @journal_day.meals
+  = render 'meals', meals: @journal_day.meals

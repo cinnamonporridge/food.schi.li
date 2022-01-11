@@ -1,13 +1,17 @@
-.flex
-  %h1 My journal days
+.flex.flex-col.gap-y-4
+  .flex
+    %h1 My journal days
 
-.flex.my-5
-  = link_to 'Add Journal Day', new_my_journal_day_path, class: 'f-button f-button-green w-full'
+  .flex
+    = link_to new_my_journal_day_path, class: 'button gap-x-2' do
+      .h-4.w-4
+        = raw heroicon :'plus-sm'
+      Add journal day
 
-= render 'layouts/pagy', pagy: @pagy
+  = render 'layouts/pagy', pagy: @pagy
 
-.flex.my-10
-  .w-full
-    = render 'index', journal_days: @journal_days
+  .flex
+    .w-full
+      = render 'index', journal_days: @journal_days
 
-= render 'layouts/pagy', pagy: @pagy
+  = render 'layouts/pagy', pagy: @pagy
