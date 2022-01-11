@@ -47,7 +47,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h2', 'Nutritions'
     assert_select 'h2', 'Ingredients'
     assert_select 'a', 'Edit'
-    assert_select 'button', 'Delete'
+    assert_select 'button', 'Delete recipe'
   end
 
   test 'user adds a recipe' do

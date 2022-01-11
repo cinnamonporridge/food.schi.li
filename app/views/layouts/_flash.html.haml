@@ -1,7 +1,7 @@
 - if flash.present?
   %div{ 'data-controller': 'dismissable' }
-    .flash.bg-cyan-200.text-sm.px-4.py-4.text-gray-700.mb-8
-      .w-screen.max-w-screen-md.mx-auto.flex.items-center
+    .w-screen.max-w-screen-md.mx-auto
+      .flash.bg-cyan-200.text-sm.px-4.py-3.sm:py-4.text-gray-700.mb-8.w-full.flex.items-center
         .grow.flash-messages
           - flash.each do |_type, message|
             = message

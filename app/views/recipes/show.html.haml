@@ -24,7 +24,7 @@
             = raw heroicon :duplicate
           Copy
 
-        = button_to @recipe, method: :delete, class: 'gray-hollow-button gap-x-2' do
+        = button_to @recipe, method: :delete, class: 'dangerous-button gap-x-2' do
           .h-4.w-4
             = raw heroicon :trash
           Delete recipe
@@ -32,13 +32,4 @@
 
   = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
 
-  .flex.flex-col.gap-y-2
-    %h2 Ingredients
-    .text-gray-400.text-sm
-      = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
-
-  .flex.flex-col
-    .w-full
-      = render 'ingredients', ingredients: @recipe.ingredients
-    .w-full
-      = render 'add_ingredient_button', recipe: @recipe
+  = render 'ingredients', ingredients: @recipe.ingredients

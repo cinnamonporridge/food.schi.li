@@ -21,7 +21,7 @@
           Edit
 
         - if @nutrition.deleteable?
-          = button_to nutrition_path(@nutrition), class: 'gray-hollow-button flex gap-x-2', method: :delete do
+          = button_to nutrition_path(@nutrition), class: 'dangerous-button flex gap-x-2', method: :delete do
             .h-4.w-4
               = raw heroicon :trash
             Delete
