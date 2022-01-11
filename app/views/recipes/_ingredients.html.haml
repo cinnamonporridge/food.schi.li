@@ -1,28 +1,35 @@
-- if ingredients.present?
-  .flex.mb-4
-    .w-full
-      %ul#ingredients_list
-        - ingredients.each do |ingredient|
-          %li
-            %div{ 'data-controller': 'toggleable' }
-              .flex.w-full.py-2
-                .w-full.grid.grid-cols-12.text-xs
-                  .col-span-7.text-left
-                    = button_tag class: 'text-green-500 hover:text-green-600 flex items-start gap-x-1', 'data-action': 'toggleable#toggle' do
-                      = ingredient.portion.decorate.name_with_nutrition
-                      = render 'icons/vegan', vegan: ingredient.portion.nutrition.vegan?
+.flex.flex-col.gap-y-4
+  .flex.flex.gap-y-2.items-baseline
+    .grow
+      %h2 Ingredients
+    .shrink-0.text-gray-400.text-xs
+      = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
 
-                  .col-span-2.text-gray-300.text-right
-                    = ingredient.decorate.quantity
-                  .col-span-3.text-right
-                    = ingredient.decorate.rounded_amount_with_unit_abbrevation
-              .hidden{ 'data-toggleable-target': 'toggleable' }
-                .flex.flex-col.sm:flex-row.gap-2
-                  = link_to 'Edit',
-                            edit_recipe_ingredient_path(ingredient.recipe, ingredient),
-                            class: 'f-button f-button-green w-full rounded'
-                  = button_to 'Delete',
-                            recipe_ingredient_path(ingredient.recipe, ingredient),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' },
-                            class: 'w-full text-center rounded text-xs bg-gray-50 border p-2 text-gray-400 hover:text-red-500 transition hover:border-red-300'
+  - if ingredients.present?
+    %ul#ingredients-list.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
+      - ingredients.each do |ingredient|
+        %li.p-2.sm:p-3
+          %div{ 'data-controller': 'toggleable' }
+            .flex.w-full
+              .w-full.grid.grid-cols-5.items-baseline
+                .col-span-3.flex
+                  = button_tag class: 'text-green-500 text-left hover:text-green-600 flex items-start gap-x-1', 'data-action': 'toggleable#toggle' do
+                    = ingredient.portion.decorate.name_with_nutrition
+
+                .col-span-1.text-gray-500.text-right.text-xs
+                  = ingredient.decorate.quantity
+                .col-span-1.text-right.text-right.text-xs
+                  = ingredient.decorate.rounded_amount_with_unit_abbrevation
+            .hidden.py-4{ 'data-toggleable-target': 'toggleable' }
+              .flex.flex-col.sm:flex-row.gap-2
+                = link_to edit_recipe_ingredient_path(ingredient.recipe, ingredient), class: 'button gap-x-2' do
+                  .h-4.w-4
+                    = raw heroicon :pencil
+                  Edit ingredient
+
+                = button_to recipe_ingredient_path(ingredient.recipe, ingredient), method: :delete, class: 'dangerous-button gap-x-2', form_class: 'w-full' do
+                  .h-4.w-4
+                    = raw heroicon :trash
+                  Remove ingredient
+
+  = render 'add_ingredient_button', recipe: @recipe

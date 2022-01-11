@@ -33,10 +33,10 @@ class RecipeTest < ApplicationSystemTestCase
 
     assert_selector '.nutritions-table', text: "Per serving\n96\n"
 
-    within('ul#ingredients_list') do
+    within('ul#ingredients-list') do
       list_item = find('li', text: 'Whole Grain Bread Whole Grain Bread Portion')
       list_item.click
-      list_item.click_on 'Delete'
+      list_item.click_on 'Remove'
     end
 
     assert_selector 'ul#ingredients_list', text: 'Whole Grain', count: 0
