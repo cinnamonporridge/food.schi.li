@@ -25,13 +25,6 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Oops, something went wrong', flash[:warning]
   end
 
-  test 'reset password with wrong challenge' do
-    reset_password(users(:john))
-    post reset_passwords_path, params: reset_password_form_params('new', 'wrongchallenge')
-    assert_response :success
-    assert_equal 'The provided challenge is not valid. Please reset your password again.', flash[:warning]
-  end
-
   private
 
   def reset_password_form_params(password, challenge)

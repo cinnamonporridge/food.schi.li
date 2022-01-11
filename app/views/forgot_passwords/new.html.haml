@@ -1,16 +1,19 @@
-.flex.mb-4.mt-6
-  .w-full
-    %h1 Forgot password?
+.flex.flex-col.gap-y-8
+  %h1 Forgot password?
 
-= simple_form_for(@form, url: forgot_passwords_url) do |form|
-  .flex.my-6
-    .w-full
-      = form.input :email, placeholder: 'Email address', label: false, input_html: { class: 'w-full' }
-  .flex.flex-wrap.my-6
-    .w-full
-      = form.submit 'Reset password', name: 'reset', class: 'f-button w-full'
-    .w-full
-      = form.submit 'Send me a magic link', name: 'magic_link', class: 'f-button f-button-yellow-hollow w-full'
-    .w-full
-      = link_to 'Cancel', root_path, class: 'shy-link text-xs'
+  = form_with(model: @form, url: forgot_passwords_url) do |f|
+    .bg-white.rounded.overflow-hidden.shadow
+      .pt-2.pb-4.px-4.flex.flex-col.gap-y-4
+        .flex.flex-col.gap-y-1
+          = f.label :email, class: 'label'
+          = f.email_field :email, class: 'input'
+          = render 'layouts/forms/field_errors', errors: f.object.errors, key: :email
 
+        .flex.flex-col.gap-y-2
+          = f.button type: :submit, class: 'button gap-x-1' do
+            .h-4.w-4
+              = raw heroicon :mail
+            Reset password
+
+          .text-center
+            = link_to 'Cancel', root_path, class: 'shy-link text-xs'

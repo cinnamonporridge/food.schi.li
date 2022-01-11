@@ -16,7 +16,7 @@ class RecipeTest < ApplicationSystemTestCase
 
     click_on 'Copy recipe'
 
-    assert_selector '[aria-invalid=true]', count: 1
+    assert_text "can't be blank"
 
     fill_in 'New recipe name', with: 'PB&J Version 1'
 

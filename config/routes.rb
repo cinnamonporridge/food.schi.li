@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   get '/reset_password/:challenge', to: 'reset_passwords#new', as: 'reset_password'
   resource :reset_passwords, only: [:create]
 
-  get '/magic_link/:challenge', to: 'magic_links#new', as: 'magic_link'
-
   resources :users
   resources :recipes do
     resources :ingredients, except: [:index, :show]

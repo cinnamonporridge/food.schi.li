@@ -12,11 +12,8 @@ class ForgotPasswordsController < ApplicationController
     return invalid_input_error unless @form.valid?
 
     @user = User.find_by(email: @form.email)
-    if params[:magic_link]
-      handle_magic_link(@user)
-    else
-      handle_reset_link(@user)
-    end
+    PasswordService.reset_link!(@user)
+    flash[:success] = 'A reset link has been sent to your email address'
 
     redirect_to login_url
   end
@@ -30,15 +27,5 @@ class ForgotPasswordsController < ApplicationController
   def invalid_input_error
     flash.now[:warning] = 'Oops, something went wrong'
     render :new
-  end
-
-  def handle_magic_link(user)
-    PasswordService.magic_link!(user)
-    flash[:success] = 'A magic link has been sent to your email address'
-  end
-
-  def handle_reset_link(user)
-    PasswordService.reset_link!(user)
-    flash[:success] = 'A reset link has been sent to your email address'
   end
 end
