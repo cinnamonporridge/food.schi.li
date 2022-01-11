@@ -1,18 +1,26 @@
-.flex.mb-4
-  .w-full
-    %h1 Add recipe to journal day
+.flex.flex-col.gap-y-4
+  %h1 Add recipe to journal day
 
-= simple_form_for [:my, @form] do |f|
-  .flex.flex-wrap.mb-4
-    .w-full
-      = f.input :recipe_name, input_html: { list: :recipe_name_list, class: 'w-full' }, label: 'Recipe'
-      %datalist#recipe_name_list
-        = options_for_select JournalDayRecipeDecorator.recipes_collection
-    .w-full
-      = f.input :servings, input_html: { class: 'w-full' }
+  = form_with(model: [:my, @form]) do |f|
+    .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
+      .pt-2.pb-4.px-4.flex.flex-col.gap-y-2
+        .flex.flex-col
+          = f.label :recipe_name, class: 'label'
+          = f.text_field :recipe_name, list: :recipe_name_list, class: 'input'
+          = render 'layouts/forms/field_errors', errors: f.object.errors, key: :recipe_name
+          %datalist#recipe_name_list
+            = options_for_select JournalDayRecipeDecorator.recipes_collection
 
-  .flex.flex-wrap.mt-6
-    .w-full
-      = f.submit 'Add recipe', class: 'f-button f-button-green w-full'
-    .w-full.my-5
-      = link_to 'Cancel', my_journal_day_path(@form.journal_day), class: 'shy-link text-xs'
+        .flex.flex-col
+          = f.label :servings, class: 'label'
+          = f.text_field :servings, class: 'input', min: 1
+          = render 'layouts/forms/field_errors', errors: f.object.errors, key: :servings
+
+      .p-4.flex.flex-col.gap-y-2
+        = f.button type: :submit, class: 'button gap-x-2' do
+          .h-4.w-4
+            = raw heroicon :'plus-sm'
+          Add recipe to journal day
+
+        .text-center
+          = link_to 'Cancel', [:my, @form.journal_day], class: 'shy-link text-xs'

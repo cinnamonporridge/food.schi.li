@@ -35,7 +35,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     select 'Vegan Peanut Butter Banana (1 servings)', from: 'Recipe'
     fill_in 'Servings', with: '1'
-    click_on 'Add recipe'
+    click_on 'Add recipe to journal day'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_text 'Banana'
@@ -65,7 +65,7 @@ class JournalDayTest < ApplicationSystemTestCase
     click_on 'Add recipe meal'
 
     fill_in 'Recipe', with: 'Apple Pie (6 servings)'
-    click_on 'Add recipe'
+    click_on 'Add recipe to journal day'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
 
@@ -87,7 +87,7 @@ class JournalDayTest < ApplicationSystemTestCase
     click_on 'Add recipe meal'
 
     fill_in 'Recipe', with: 'Apple Pie (6 servings)'
-    click_on 'Add recipe'
+    click_on 'Add recipe to journal day'
 
     list_item = find('ul#recipes li', text: 'Apple Pie')
     list_item.assert_no_text 'Peanut'
