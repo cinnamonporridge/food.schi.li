@@ -3,9 +3,9 @@
     .w-full
       = f.email_field :email, placeholder: 'Email address', class: 'input'
     .w-full
-      = f.password_field :password, placeholder: 'Password', class: 'text-sm w-full border border-gray-300 rounded focus:ring-green-400 focus:border-green-400 placeholder:text-gray-400'
+      = f.password_field :password, placeholder: 'Password', class: 'input'
     .actions.flex.flex-col.gap-y-2
       .w-full
-        = f.submit 'Sign in', class: 'w-full flex py-2 items-center justify-center bg-green-300 hover:bg-green-400 rounded text-sm cursor-pointer transition'
+        = f.submit 'Sign in', class: 'button'
       .w-full.text-center
-        = link_to 'Forgot password', new_forgot_passwords_url, class: 'text-xs text-gray-400 hover:text-gray-500 transition'
+        = link_to 'Forgot password', new_forgot_passwords_url, class: 'shy-link text-xs'
