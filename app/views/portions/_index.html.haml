@@ -14,24 +14,24 @@
                 - else
                   = button_tag portion.name, class: 'text-green-600 hover:text-green-700', 'data-action': 'toggleable#toggle'
               .shrink-0
-                %span{ class: "unit unit-#{portion.nutrition.decorate.unit_abbrevation}" }
+                %span{ class: "unit unit-#{portion.food.decorate.unit_abbrevation}" }
                   = portion.amount
             - unless portion.primary?
               .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
                 .flex.gap-x-2
-                  = link_to edit_nutrition_portion_path(portion.nutrition, portion), class: 'button gap-x-2' do
+                  = link_to edit_food_portion_path(portion.food, portion), class: 'button gap-x-2' do
                     .h-4.w-4
                       = raw heroicon :pencil
                     Edit
 
                   - if portion.deleteable?
-                    = button_to nutrition_portion_path(portion.nutrition, portion), class: 'dangerous-button gap-x-2', method: :delete, form_class: 'w-full' do
+                    = button_to food_portion_path(portion.food, portion), class: 'dangerous-button gap-x-2', method: :delete, form_class: 'w-full' do
                       .h-4.w-4
                         = raw heroicon :trash
                       Remove portion
 
     .w-full
-      = link_to new_nutrition_portion_path(portions.first.nutrition), class: 'gray-dashed-button gap-x-2' do
+      = link_to new_food_portion_path(portions.first.food), class: 'gray-dashed-button gap-x-2' do
         .h-4.w-4
           = raw heroicon :'plus-sm'
         Add portion

@@ -7,8 +7,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :servings, presence: true
 
-  scope :using_nutrition, ->(nutrition) {
-    includes(:portions).where(portions: { nutrition: })
+  scope :using_food, ->(food) {
+    includes(:portions).where(portions: { food: })
   }
 
   scope :ordered_by_name, -> { order(name: :asc) }

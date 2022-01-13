@@ -9,18 +9,18 @@ with_target_nutrition_facts AS (
        , m.amount                                   AS meal_amount
        , m.measure                                  AS meal_measure
        , m.measure_unit                             AS meal_measure_unit
-       , (m.amount / da.value) * n.kcal             AS meal_target_kcal
-       , (m.amount / da.value) * n.carbs            AS meal_target_carbs
-       , (m.amount / da.value) * n.carbs_sugar_part AS meal_target_carbs_sugar_part
-       , (m.amount / da.value) * n.protein          AS meal_target_protein
-       , (m.amount / da.value) * n.fat              AS meal_target_fat
-       , (m.amount / da.value) * n.fat_saturated    AS meal_target_fat_saturated
-       , (m.amount / da.value) * n.fiber            AS meal_target_fiber
+       , (m.amount / da.value) * f.kcal             AS meal_target_kcal
+       , (m.amount / da.value) * f.carbs            AS meal_target_carbs
+       , (m.amount / da.value) * f.carbs_sugar_part AS meal_target_carbs_sugar_part
+       , (m.amount / da.value) * f.protein          AS meal_target_protein
+       , (m.amount / da.value) * f.fat              AS meal_target_fat
+       , (m.amount / da.value) * f.fat_saturated    AS meal_target_fat_saturated
+       , (m.amount / da.value) * f.fiber            AS meal_target_fiber
        , m.created_at                               AS meal_created_at
     FROM meals m
    CROSS JOIN default_amount da
    INNER JOIN portions p ON p.id = m.portion_id
-   INNER JOIN nutritions n ON n.id = p.nutrition_id
+   INNER JOIN foods f    ON f.id = p.food_id
  ),
 
  with_rounded_nutrition_facts AS (
@@ -40,7 +40,7 @@ with_target_nutrition_facts AS (
         , meal_created_at
      FROM with_target_nutrition_facts
  )
- 
+
  INSERT INTO meals (
      id
    , journal_day_id

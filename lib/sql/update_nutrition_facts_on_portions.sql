@@ -5,19 +5,19 @@ WITH default_amount AS (
 portions_with_nutrition_facts AS (
   SELECT p.id                 AS portion_id
        , da.value             AS default_amount
-       , n.id                 AS nutrition_id
-       , n.name               AS nutrition_name
-       , n.kcal               AS nutrition_kcal
-       , n.carbs              AS nutrition_carbs
-       , n.carbs_sugar_part   AS nutrition_carbs_sugar_part
-       , n.protein            AS nutrition_protein
-       , n.fat                AS nutrition_fat
-       , n.fat_saturated      AS nutrition_fat_saturated
-       , n.fiber              AS nutrition_fiber
+       , f.id                 AS food_id
+       , f.name               AS food_name
+       , f.kcal               AS food_kcal
+       , f.carbs              AS food_carbs
+       , f.carbs_sugar_part   AS food_carbs_sugar_part
+       , f.protein            AS food_protein
+       , f.fat                AS food_fat
+       , f.fat_saturated      AS food_fat_saturated
+       , f.fiber              AS food_fiber
     FROM portions p
    CROSS JOIN default_amount da
-   INNER JOIN nutritions n ON n.id = p.nutrition_id
-                          AND p.amount = da.value
+   INNER JOIN foods f ON f.id = p.food_id
+                     AND p.amount = da.value
     /* {{PORTION_FILTER}} */
 ),
 
@@ -25,24 +25,24 @@ with_target_nutrition_facts AS (
   SELECT p.id                                                             AS portion_id
        , p.amount                                                         AS portion_amount
        , p.name                                                           AS portion_name
-       , p.nutrition_id                                                   AS nutrition_id
-       , (pwf.nutrition_kcal / pwf.default_amount) * p.amount             AS target_portion_kcal
-       , (pwf.nutrition_carbs / pwf.default_amount) * p.amount            AS target_portion_carbs
-       , (pwf.nutrition_carbs_sugar_part / pwf.default_amount) * p.amount AS target_portion_carbs_sugar_part
-       , (pwf.nutrition_protein / pwf.default_amount) * p.amount          AS target_portion_protein
-       , (pwf.nutrition_fat / pwf.default_amount) * p.amount              AS target_portion_fat
-       , (pwf.nutrition_fat_saturated / pwf.default_amount) * p.amount    AS target_portion_fat_saturated
-       , (pwf.nutrition_fiber / pwf.default_amount) * p.amount            AS target_portion_fiber
+       , p.food_id                                                        AS food_id
+       , (pwf.food_kcal / pwf.default_amount) * p.amount                  AS target_portion_kcal
+       , (pwf.food_carbs / pwf.default_amount) * p.amount                 AS target_portion_carbs
+       , (pwf.food_carbs_sugar_part / pwf.default_amount) * p.amount      AS target_portion_carbs_sugar_part
+       , (pwf.food_protein / pwf.default_amount) * p.amount               AS target_portion_protein
+       , (pwf.food_fat / pwf.default_amount) * p.amount                   AS target_portion_fat
+       , (pwf.food_fat_saturated / pwf.default_amount) * p.amount         AS target_portion_fat_saturated
+       , (pwf.food_fiber / pwf.default_amount) * p.amount                 AS target_portion_fiber
        , p.created_at                                                     AS portion_created_at
     FROM portions p
-   INNER JOIN portions_with_nutrition_facts pwf ON p.nutrition_id = pwf.nutrition_id
+   INNER JOIN portions_with_nutrition_facts pwf ON p.food_id = pwf.food_id
  ),
 
  with_rounded_target_nutrution_facts AS (
    SELECT portion_id                                         AS portion_id
         , portion_amount                                     AS portion_amount
         , portion_name                                       AS portion_name
-        , nutrition_id                                       AS nutrition_id
+        , food_id                                            AS food_id
         , ROUND(target_portion_kcal::NUMERIC, 0)             AS target_portion_kcal
         , ROUND(target_portion_carbs::NUMERIC, 3)            AS target_portion_carbs
         , ROUND(target_portion_carbs_sugar_part::NUMERIC, 3) AS target_portion_carbs_sugar_part
@@ -56,7 +56,7 @@ with_target_nutrition_facts AS (
 INSERT INTO portions (
     id
   , name
-  , nutrition_id
+  , food_id
   , amount
   , kcal
   , carbs
@@ -70,7 +70,7 @@ INSERT INTO portions (
 )
 SELECT portion_id
      , portion_name
-     , nutrition_id
+     , food_id
      , portion_amount
      , target_portion_kcal
      , target_portion_carbs

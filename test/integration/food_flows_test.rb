@@ -1,20 +1,20 @@
 require 'test_helper'
 
-class NutritionFlowsTest < ActionDispatch::IntegrationTest
+class FoodFlowsTest < ActionDispatch::IntegrationTest
   def setup
     login_user(users(:john))
   end
 
-  # nutritions
-  test 'user visits nutritions index page' do
-    get nutritions_path
+  # foods
+  test 'user visits foods index page' do
+    get foods_path
     assert_response :success
-    assert_select 'h1', 'Nutritions'
-    assert_select 'a', 'Add nutrition'
+    assert_select 'h1', 'Foods'
+    assert_select 'a', 'Add food'
   end
 
-  test 'user visits apple nutrition page' do
-    get nutrition_path(nutritions(:apple))
+  test 'user visits apple food page' do
+    get food_path(foods(:apple))
     assert_response :success
     assert_select 'h1', 'Apple'
 
@@ -25,18 +25,18 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a', 'Add portion'
   end
 
-  test 'user adds a new nutrition' do
-    get new_nutrition_path
+  test 'user adds a new food' do
+    get new_food_path
     assert_response :success
-    assert_select 'h1', 'New nutrition'
+    assert_select 'h1', 'New food'
     assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     assert_input_fields_present
 
-    post '/nutritions',
+    post '/foods',
          params: {
-           nutrition: {
+           food: {
              unit: 'gram',
              name: 'Beetroot',
              kcal: 180,
@@ -51,13 +51,13 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
          }
     follow_redirect!
     assert_response :success
-    assert_equal 'Nutrition added', flash[:notice]
+    assert_equal 'Food added', flash[:notice]
   end
 
   test 'user submits empty form' do
-    post '/nutritions',
+    post '/foods',
          params: {
-           nutrition: {
+           food: {
              unit: 'gram',
              name: '',
              kcal: '',
@@ -75,23 +75,23 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
   end
 
   # rubocop:disable Metrics/BlockLength
-  test 'user edits a nutrition' do
-    get nutrition_path(nutritions(:apple))
+  test 'user edits a food' do
+    get food_path(foods(:apple))
     assert_select '.vegan-badge', count: 0
 
     assert_select 'a', text: 'Edit'
 
-    get edit_nutrition_path(nutritions(:apple))
+    get edit_food_path(foods(:apple))
     assert_response :success
-    assert_select 'h1', 'Edit nutrition'
+    assert_select 'h1', 'Edit food'
     assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     assert_input_fields_present
 
-    put "/nutritions/#{nutritions(:apple).id}",
+    put "/foods/#{foods(:apple).id}",
         params: {
-          nutrition: {
+          food: {
             unit: 'gram',
             name: 'Apfel',
             kcal: 1,
@@ -107,58 +107,58 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_equal 'Nutrition updated', flash[:notice]
+    assert_equal 'Food updated', flash[:notice]
     assert_select '.vegan-badge'
   end
   # rubocop:enable Metrics/BlockLength
 
-  test 'user cannot delete a nutrition that is used in recipe' do
-    get nutrition_path(nutritions(:milk))
+  test 'user cannot delete a food that is used in recipe' do
+    get food_path(foods(:milk))
     assert_response :success
     assert_select 'h1', 'Milk'
-    assert_select 'a', text: 'Delete nutrition', count: 0
+    assert_select 'a', text: 'Delete food', count: 0
 
-    delete "/nutritions/#{nutritions(:milk).id}"
+    delete "/foods/#{foods(:milk).id}"
     assert_response :success
     assert_equal 'Deletion not possible', flash[:error]
 
     assert_select '.flash-messages', text: 'Deletion not possible'
   end
 
-  test 'user cannot delete a nutrition that is used in a meal / journal day' do
-    nutrition = nutritions(:celery_old)
+  test 'user cannot delete a food that is used in a meal / journal day' do
+    food = foods(:celery_old)
 
-    delete "/nutritions/#{nutrition.id}"
+    delete "/foods/#{food.id}"
     assert_response :success
     assert_equal 'Deletion not possible', flash[:error]
 
     assert_select '.flash-messages', 'Deletion not possible'
   end
 
-  test 'user can delete nutrition that is not used in a recipe' do
-    get nutrition_path(nutritions(:sugar))
+  test 'user can delete food that is not used in a recipe' do
+    get food_path(foods(:sugar))
     assert_response :success
     assert_select 'h1', 'Sugar'
-    assert_select '.nutrition-actions button', 'Delete'
+    assert_select '.food-actions button', 'Delete'
 
-    delete "/nutritions/#{nutritions(:sugar).id}"
+    delete "/foods/#{foods(:sugar).id}"
     follow_redirect!
     assert_response :success
-    assert_equal 'Nutrition deleted', flash[:notice]
+    assert_equal 'Food deleted', flash[:notice]
   end
 
   private
 
   def assert_input_fields_present
-    assert_select '#nutrition_name'
-    assert_select '#nutrition_unit'
-    assert_select '#nutrition_kcal'
-    assert_select '#nutrition_carbs'
-    assert_select '#nutrition_carbs_sugar_part'
-    assert_select '#nutrition_protein'
-    assert_select '#nutrition_fat'
-    assert_select '#nutrition_fat_saturated'
-    assert_select '#nutrition_fiber'
-    assert_select '#nutrition_vegan'
+    assert_select '#food_name'
+    assert_select '#food_unit'
+    assert_select '#food_kcal'
+    assert_select '#food_carbs'
+    assert_select '#food_carbs_sugar_part'
+    assert_select '#food_protein'
+    assert_select '#food_fat'
+    assert_select '#food_fat_saturated'
+    assert_select '#food_fiber'
+    assert_select '#food_vegan'
   end
 end

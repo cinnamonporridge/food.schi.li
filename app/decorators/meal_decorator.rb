@@ -14,7 +14,7 @@ class MealDecorator < SimpleDelegator
   end
 
   def unit_abbrevation
-    portion.nutrition.decorate.unit_abbrevation
+    portion.food.decorate.unit_abbrevation
   end
 
   def rounded_amount_with_unit_abbrevation

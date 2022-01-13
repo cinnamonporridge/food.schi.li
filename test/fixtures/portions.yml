@@ -1,36 +1,36 @@
 apple_default_portion:
   name: '100g'
-  nutrition: apple
+  food: apple
   amount: 100
 
 banana_default_portion:
   name: '100g'
-  nutrition: banana
+  food: banana
   amount: 100
 
 celery_old_default_portion:
   name: '100g'
-  nutrition: celery_old
+  food: celery_old
   amount: 100
 
 regular_banana_portion:
   name: 'Regular'
-  nutrition: banana
+  food: banana
   amount: 116
 
 milk_default_portion:
   name: '100ml'
-  nutrition: milk
+  food: milk
   amount: 100
 
 big_apple_portion:
   name: Big Apple
-  nutrition: apple
+  food: apple
   amount: 200
 
 peanut_butter_default_portion:
   name: '100g'
-  nutrition: peanut_butter
+  food: peanut_butter
   amount: 100
   kcal: 444
   carbs: 444.0
@@ -42,22 +42,22 @@ peanut_butter_default_portion:
 
 sugar_default_portion:
   name: '100g'
-  nutrition: sugar
+  food: sugar
   amount: 100
 
 sugar_cube_portion:
   name: 'Cube'
-  nutrition: sugar
+  food: sugar
   amount: 25
 
 whole_grain_bread_default_portion:
   name: '100g'
-  nutrition: whole_grain_bread
+  food: whole_grain_bread
   amount: 100
 
 whole_grain_bread_portion:
   name: 'Whole Grain Bread Portion'
-  nutrition: whole_grain_bread
+  food: whole_grain_bread
   amount: 40
   kcal: 268
   carbs: 268.0

@@ -16,16 +16,15 @@ class NutritionFactsService
   def update(table_name)
     raise InvalidArgument unless VALID_TABLE_NAMES.include?(table_name.to_sym)
 
-    run(read_sql(table_name))
+    run_sql_for_table(table_name)
   end
 
   private
 
-  def read_sql(table_name)
-    Rails.root.join("lib/sql/update_nutrition_facts_on_#{table_name}.sql").read
-  end
-
-  def run(sql)
-    ActiveRecord::Base.connection.execute(sql)
+  def run_sql_for_table(table_name)
+    filepath = Rails.root.join("lib/sql/update_nutrition_facts_on_#{table_name}.sql")
+    ActiveRecord::Base.connection.execute(filepath.read)
+  rescue StandardError => e
+    raise "Error execting '#{filepath}':\n\n#{e.full_message}"
   end
 end

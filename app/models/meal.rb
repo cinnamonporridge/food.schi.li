@@ -5,12 +5,12 @@ class Meal < ApplicationRecord
   belongs_to :portion
   belongs_to :recipe, optional: true
 
-  has_one :nutrition, through: :portion
+  has_one :food, through: :portion
 
   enum measure: { unit: 1, piece: 2 }, _prefix: :measure
 
-  scope :using_nutrition, ->(nutrition) {
-    includes(:portion).where(portions: { nutrition: })
+  scope :using_food, ->(food) {
+    includes(:portion).where(portions: { food: })
   }
 
   scope :ordered_by_recipe, -> { order(:recipe_id) }
@@ -25,7 +25,7 @@ class Meal < ApplicationRecord
 
   def to_nutritions_table_row
     [
-      portion.decorate.name_with_nutrition,
+      portion.decorate.name_with_food,
       decorate.display_total_kcal,
       decorate.display_total_carbs,
       decorate.display_total_protein,
@@ -38,6 +38,6 @@ class Meal < ApplicationRecord
   def total_of_sustenance(name)
     return 0.0 if portion.blank?
 
-    (amount / 100) * nutrition.send(name.to_s.to_sym)
+    (amount / 100) * food.send(name.to_s.to_sym)
   end
 end

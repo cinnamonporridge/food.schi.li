@@ -18,7 +18,7 @@ class IngredientDecorator < SimpleDelegator
   end
 
   def unit_abbrevation
-    nutrition.decorate.unit_abbrevation
+    food.decorate.unit_abbrevation
   end
 
   def rounded_amount_with_unit_abbrevation

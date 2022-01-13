@@ -4,7 +4,7 @@ class Ingredient < ApplicationRecord
   belongs_to :portion
   belongs_to :recipe
 
-  has_one :nutrition, through: :portion
+  has_one :food, through: :portion
 
   validates :amount, presence: true
 
@@ -14,7 +14,7 @@ class Ingredient < ApplicationRecord
 
   def to_nutritions_table_row
     [
-      portion.decorate.name_with_nutrition,
+      portion.decorate.name_with_food,
       decorate.display_kcal,
       decorate.display_carbs,
       decorate.display_protein,

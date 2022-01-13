@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_153918) do
+ActiveRecord::Schema.define(version: 2022_01_12_174655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "unit", default: 1, null: false
+    t.integer "kcal", null: false
+    t.decimal "carbs", precision: 10, scale: 3, null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, null: false
+    t.decimal "protein", precision: 10, scale: 3, null: false
+    t.decimal "fat", precision: 10, scale: 3, null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, null: false
+    t.decimal "fiber", precision: 10, scale: 3, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "vegan", default: false, null: false
+    t.index ["name"], name: "index_foods_on_name", unique: true
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
@@ -70,25 +86,9 @@ ActiveRecord::Schema.define(version: 2020_10_03_153918) do
     t.index ["recipe_id"], name: "index_meals_on_recipe_id"
   end
 
-  create_table "nutritions", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "unit", default: 1, null: false
-    t.integer "kcal", null: false
-    t.decimal "carbs", precision: 10, scale: 3, null: false
-    t.decimal "carbs_sugar_part", precision: 10, scale: 3, null: false
-    t.decimal "protein", precision: 10, scale: 3, null: false
-    t.decimal "fat", precision: 10, scale: 3, null: false
-    t.decimal "fat_saturated", precision: 10, scale: 3, null: false
-    t.decimal "fiber", precision: 10, scale: 3, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "vegan", default: false, null: false
-    t.index ["name"], name: "index_nutritions_on_name", unique: true
-  end
-
   create_table "portions", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "nutrition_id", null: false
+    t.bigint "food_id", null: false
     t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 2020_10_03_153918) do
     t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
-    t.index ["nutrition_id", "amount"], name: "index_portions_on_nutrition_id_and_amount", unique: true
-    t.index ["nutrition_id", "name"], name: "index_portions_on_nutrition_id_and_name", unique: true
-    t.index ["nutrition_id"], name: "index_portions_on_nutrition_id"
+    t.index ["food_id", "amount"], name: "index_portions_on_food_id_and_amount", unique: true
+    t.index ["food_id", "name"], name: "index_portions_on_food_id_and_name", unique: true
+    t.index ["food_id"], name: "index_portions_on_food_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -136,5 +136,5 @@ ActiveRecord::Schema.define(version: 2020_10_03_153918) do
   add_foreign_key "meals", "journal_days"
   add_foreign_key "meals", "portions"
   add_foreign_key "meals", "recipes"
-  add_foreign_key "portions", "nutritions"
+  add_foreign_key "portions", "foods"
 end

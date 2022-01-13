@@ -3,17 +3,17 @@ class PortionsController < ApplicationController
   before_action :handle_default_portion, only: [:edit, :update, :destroy]
 
   def new
-    @portion = find_nutrition.portions.new
+    @portion = find_food.portions.new
   end
 
   def edit; end
 
   def create
-    @portion = find_nutrition.portions.new(portion_params)
+    @portion = find_food.portions.new(portion_params)
 
     if @portion.save
       NutritionFactsService.update_all
-      redirect_to @portion.nutrition, notice: 'Portion added'
+      redirect_to @portion.food, notice: 'Portion added'
     else
       flash.now[:error] = 'Invalid input'
       render :new
@@ -23,7 +23,7 @@ class PortionsController < ApplicationController
   def update
     if @portion.update(portion_params)
       NutritionFactsService.update_all
-      redirect_to @portion.nutrition, notice: 'Portion updated'
+      redirect_to @portion.food, notice: 'Portion updated'
     else
       flash.now[:error] = 'Invalid input'
       render :edit
@@ -33,7 +33,7 @@ class PortionsController < ApplicationController
   def destroy
     @portion = Portion.find(params[:id])
     @portion.destroy
-    redirect_to @portion.nutrition, notice: 'Portion deleted'
+    redirect_to @portion.food, notice: 'Portion deleted'
   end
 
   private
@@ -46,11 +46,11 @@ class PortionsController < ApplicationController
     @portion = Portion.find(params[:id])
   end
 
-  def find_nutrition
-    @find_nutrition ||= Nutrition.find(params[:nutrition_id])
+  def find_food
+    @find_food ||= Food.find(params[:food_id])
   end
 
   def handle_default_portion
-    redirect_to @portion.nutrition, alert: 'Default portion cannot be edited or deleted' if @portion.primary?
+    redirect_to @portion.food, alert: 'Default portion cannot be edited or deleted' if @portion.primary?
   end
 end

@@ -1,6 +1,6 @@
 apple:
   name: 'Apple'
-  unit: <%= Nutrition.units[:gram] %>
+  unit: <%= Food.units[:gram] %>
   kcal: 100
   carbs: 100
   carbs_sugar_part: 10
@@ -12,7 +12,7 @@ apple:
 
 banana:
   name: 'Banana'
-  unit: <%= Nutrition.units[:gram] %>
+  unit: <%= Food.units[:gram] %>
   kcal: 90
   carbs: 90
   carbs_sugar_part: 9
@@ -24,7 +24,7 @@ banana:
 
 celery_old:
   name: 'Celery OLD - only used on a journal day'
-  unit: <%= Nutrition.units[:gram] %>
+  unit: <%= Food.units[:gram] %>
   kcal: 80
   carbs: 80
   carbs_sugar_part: 8
@@ -36,7 +36,7 @@ celery_old:
 
 milk:
   name: 'Milk'
-  unit: <%= Nutrition.units[:mililiter] %>
+  unit: <%= Food.units[:mililiter] %>
   kcal: 120
   carbs: 120
   carbs_sugar_part: 12
@@ -48,7 +48,7 @@ milk:
 
 peanut_butter:
   name: 'Peanut Butter'
-  unit: <%= Nutrition.units[:gram] %>
+  unit: <%= Food.units[:gram] %>
   kcal: 444
   carbs: 444
   carbs_sugar_part: 44
@@ -60,7 +60,7 @@ peanut_butter:
 
 sugar:
   name: 'Sugar'
-  unit: <%= Nutrition.units[:gram] %>
+  unit: <%= Food.units[:gram] %>
   kcal: 333
   carbs: 333
   carbs_sugar_part: 33
@@ -72,7 +72,7 @@ sugar:
 
 whole_grain_bread:
   name: 'Whole Grain Bread'
-  unit: <%= Nutrition.units[:gram] %>
+  unit: <%= Food.units[:gram] %>
   kcal: 670
   carbs: 670
   carbs_sugar_part: 67
