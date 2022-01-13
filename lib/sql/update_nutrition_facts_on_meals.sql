@@ -8,7 +8,6 @@ with_target_nutrition_facts AS (
        , m.portion_id                               AS meal_portion_id
        , m.amount                                   AS meal_amount
        , m.measure                                  AS meal_measure
-       , m.measure_unit                             AS meal_measure_unit
        , (m.amount / da.value) * f.kcal             AS meal_target_kcal
        , (m.amount / da.value) * f.carbs            AS meal_target_carbs
        , (m.amount / da.value) * f.carbs_sugar_part AS meal_target_carbs_sugar_part
@@ -29,7 +28,6 @@ with_target_nutrition_facts AS (
         , meal_portion_id
         , meal_amount
         , meal_measure
-        , meal_measure_unit
         , ROUND(meal_target_kcal::NUMERIC, 0)             AS meal_target_kcal
         , ROUND(meal_target_carbs::NUMERIC, 3)            AS meal_target_carbs
         , ROUND(meal_target_carbs_sugar_part::NUMERIC, 3) AS meal_target_carbs_sugar_part
@@ -47,7 +45,6 @@ with_target_nutrition_facts AS (
    , portion_id
    , amount
    , measure
-   , measure_unit
    , kcal
    , carbs
    , carbs_sugar_part
@@ -63,7 +60,6 @@ with_target_nutrition_facts AS (
       , meal_portion_id
       , meal_amount
       , meal_measure
-      , meal_measure_unit
       , meal_target_kcal
       , meal_target_carbs
       , meal_target_carbs_sugar_part

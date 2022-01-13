@@ -7,7 +7,7 @@ class Meal < ApplicationRecord
 
   has_one :food, through: :portion
 
-  enum measure: { unit: 1, piece: 2 }, _prefix: :measure
+  enum measure: { unit: 'unit', piece: 'piece' }, _prefix: :measure
 
   scope :using_food, ->(food) {
     includes(:portion).where(portions: { food: })

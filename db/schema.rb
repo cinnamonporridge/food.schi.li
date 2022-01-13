@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_174655) do
+ActiveRecord::Schema.define(version: 2022_01_13_144203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "foods", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "unit", default: 1, null: false
     t.integer "kcal", null: false
     t.decimal "carbs", precision: 10, scale: 3, null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, null: false
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_174655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
+    t.string "unit", default: "gram", null: false
     t.index ["name"], name: "index_foods_on_name", unique: true
   end
 
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2022_01_12_174655) do
     t.decimal "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "measure", default: 1, null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_174655) do
     t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
+    t.string "measure", default: "unit", null: false
     t.index ["portion_id"], name: "index_ingredients_on_portion_id"
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
@@ -70,8 +70,6 @@ ActiveRecord::Schema.define(version: 2022_01_12_174655) do
     t.bigint "portion_id"
     t.bigint "recipe_id"
     t.decimal "amount"
-    t.integer "measure"
-    t.integer "measure_unit", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "kcal", default: 0, null: false
@@ -81,6 +79,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_174655) do
     t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
+    t.string "measure", default: "unit", null: false
     t.index ["journal_day_id"], name: "index_meals_on_journal_day_id"
     t.index ["portion_id"], name: "index_meals_on_portion_id"
     t.index ["recipe_id"], name: "index_meals_on_recipe_id"

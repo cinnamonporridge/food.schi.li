@@ -8,7 +8,7 @@ class Ingredient < ApplicationRecord
 
   validates :amount, presence: true
 
-  enum measure: { unit: 1, piece: 2 }, _prefix: :measure
+  enum measure: { unit: 'unit', piece: 'piece' }, _prefix: :measure
 
   delegate :vegan?, to: :portion
 
