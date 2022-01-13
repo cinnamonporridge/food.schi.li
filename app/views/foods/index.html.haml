@@ -15,7 +15,7 @@
   = render 'layouts/pagy', pagy: @pagy
 
   .flex
-    %ul.foods.flex.flex-col.gap-y-4
+    %ul.foods.flex.flex-col.gap-y-4.w-full
       - @foods.each do |food|
         %li
           = link_to food_path(food), class: 'flex flex-col gap-y-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do

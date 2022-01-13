@@ -179,3 +179,34 @@ ul.pagination li {
 .toggleable--toggler-button {
   @apply items-center justify-center text-gray-400 rounded-full hover:text-gray-900 transition;
 }
+
+/* pagy */
+
+.pagy-nav,
+.pagy-nav-js {
+  @apply flex gap-x-2;
+}
+
+.pagy-nav .page a,
+.pagy-nav .page.active,
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled,
+.pagy-nav-js .page a,
+.pagy-nav-js .page.active,
+.pagy-nav-js .page.prev.disabled,
+.pagy-nav-js .page.next.disabled {
+  @apply block rounded px-3 py-1 text-sm text-gray-500 bg-white border border-gray-200 hover:bg-green-700 transition cursor-pointer hover:text-gray-100 hover:border-white;
+}
+
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled,
+.pagy-nav-js .page.prev.disabled,
+.pagy-nav-js .page.next.disabled {
+  @apply hidden;
+}
+
+.pagy-nav .page.active,
+.pagy-nav-js .page.active {
+  @apply text-white cursor-default bg-green-700 hover:bg-green-700 hover:text-white border border-white;
+}
+
