@@ -2,21 +2,25 @@ apple_pie:
   name: Apple Pie
   servings: 6
   vegan: false
+  user: daisy
 
 anchovy_soup:
   name: Anchovy Soup
   servings: 7
   vegan: false
+  user: daisy
 
 vegan_peanut_butter_banana:
   name: Vegan Peanut Butter Banana
   servings: 1
   vegan: true
+  user: daisy
 
 non_vegan_milk_banana:
   name: Non-vegan milk Banana
   servings: 1
   vegan: false
+  user: daisy
 
 peanut_butter_bread:
   name: 'PB Bread'
@@ -29,3 +33,4 @@ peanut_butter_bread:
   fat: 95.5
   fat_saturated: 15.5
   fiber: 95.5
+  user: daisy
