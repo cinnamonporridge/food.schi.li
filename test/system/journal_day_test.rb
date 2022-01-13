@@ -130,4 +130,12 @@ class JournalDayTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test 'user deletes a journal day' do
+    sign_in_user(users(:daisy))
+    click_link '01.02.2017'
+    click_on 'Delete journal day'
+    assert_selector '.flash', text: 'Journal day deleted'
+    assert_no_link '01.02.2017'
+  end
 end
