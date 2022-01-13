@@ -15,7 +15,7 @@
             = raw heroicon :pencil
           Edit journal day
 
-        = button_to edit_my_journal_day_path(@journal_day), class: 'dangerous-button gap-x-2', method: :delete do
+        = button_to my_journal_day_path(@journal_day), class: 'dangerous-button gap-x-2', method: :delete do
           .h-4.w-4
             = raw heroicon :trash
           Delete journal day
