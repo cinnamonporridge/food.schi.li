@@ -71,7 +71,7 @@ GEM
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.9.3)
+    bootsnap (1.9.4)
       msgpack (~> 1.0)
     bugsnag (6.24.1)
       concurrent-ruby (~> 1.0)
@@ -155,7 +155,7 @@ GEM
     nokogiri (1.13.0)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
-    pagy (5.7.1)
+    pagy (5.7.5)
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
@@ -193,7 +193,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     redis (4.5.1)
     regexp_parser (2.2.0)
@@ -213,7 +213,7 @@ GEM
       parser (>= 3.0.1.1)
     rubocop-minitest (0.17.0)
       rubocop (>= 0.90, < 2.0)
-    rubocop-rails (2.13.0)
+    rubocop-rails (2.13.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -304,4 +304,4 @@ RUBY VERSION
    ruby 3.1.0p0
 
 BUNDLED WITH
-   2.2.27
+   2.3.5
