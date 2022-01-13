@@ -1,6 +1,6 @@
-%h1= "Journal days containing #{@nutrition.name}"
+%h1= "Journal days containing #{@food.name}"
 
 .mt-2.mb-5
-  = link_to "Back to #{@nutrition.name}", nutrition_path(@nutrition), class: 'shy-link text-xs'
+  = link_to "Back to #{@food.name}", food_path(@food), class: 'shy-link text-xs'
 
-= render 'my/journal_days/index', journal_days: @nutrition.on_journal_days
+= render 'my/journal_days/index', journal_days: @food.on_journal_days

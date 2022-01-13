@@ -4,18 +4,18 @@ WITH default_amount AS (
 
 with_nutrition_facts AS (
   SELECT r.id                                       AS recipe_id
-       , (i.amount / da.value) * n.kcal             AS recipe_target_kcal
-       , (i.amount / da.value) * n.carbs            AS recipe_target_carbs
-       , (i.amount / da.value) * n.carbs_sugar_part AS recipe_target_carbs_sugar_part
-       , (i.amount / da.value) * n.protein          AS recipe_target_protein
-       , (i.amount / da.value) * n.fat              AS recipe_target_fat
-       , (i.amount / da.value) * n.fat_saturated    AS recipe_target_fat_saturated
-       , (i.amount / da.value) * n.fiber            AS recipe_target_fiber
+       , (i.amount / da.value) * f.kcal             AS recipe_target_kcal
+       , (i.amount / da.value) * f.carbs            AS recipe_target_carbs
+       , (i.amount / da.value) * f.carbs_sugar_part AS recipe_target_carbs_sugar_part
+       , (i.amount / da.value) * f.protein          AS recipe_target_protein
+       , (i.amount / da.value) * f.fat              AS recipe_target_fat
+       , (i.amount / da.value) * f.fat_saturated    AS recipe_target_fat_saturated
+       , (i.amount / da.value) * f.fiber            AS recipe_target_fiber
     FROM recipes r
    CROSS JOIN default_amount da
    INNER JOIN ingredients i ON i.recipe_id = r.id
    INNER JOIN portions p    ON p.id = i.portion_id
-   INNER JOIN nutritions n  ON n.id = p.nutrition_id
+   INNER JOIN foods f       ON f.id = p.food_id
 ),
 
 with_summed_nutrition_facts AS (

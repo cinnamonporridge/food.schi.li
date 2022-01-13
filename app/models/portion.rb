@@ -3,14 +3,14 @@ class Portion < ApplicationRecord
 
   PRIMARY_AMOUNT = 100
 
-  belongs_to :nutrition
+  belongs_to :food
   has_many :ingredients, dependent: :restrict_with_exception
   has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
   has_many :meals, dependent: :restrict_with_exception
 
   scope :ordered_by_amount, -> { order(amount: :asc) }
-  scope :ordered_by_nutrition_name_and_amount, -> {
-    includes(:nutrition).order('nutritions.name ASC, portions.amount ASC')
+  scope :ordered_by_food_name_and_amount, -> {
+    includes(:food).order('foods.name ASC, portions.amount ASC')
   }
   scope :primary, -> { where(amount: PRIMARY_AMOUNT) }
   scope :ordered_by_primary_then_name, -> {
@@ -19,11 +19,11 @@ class Portion < ApplicationRecord
 
   validates :name, presence: true
   validates :amount, presence: true
-  validates :name, uniqueness: { scope: :nutrition }
-  validates :amount, uniqueness: { scope: :nutrition }
+  validates :name, uniqueness: { scope: :food }
+  validates :amount, uniqueness: { scope: :food }
   validates :amount, numericality: { greater_than: 0, only_integer: true }
 
-  delegate :vegan?, to: :nutrition
+  delegate :vegan?, to: :food
 
   def primary?
     amount == PRIMARY_AMOUNT

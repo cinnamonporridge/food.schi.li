@@ -6,14 +6,14 @@ class VeganRecipeDetectionService
   end
 
   def vegan?
-    all_nutritions_vegan?
+    all_foods_vegan?
   end
 
   private
 
-  def all_nutritions_vegan?
+  def all_foods_vegan?
     @recipe.ingredients.all? do |ingredient|
-      ingredient.nutrition.vegan?
+      ingredient.food.vegan?
     end
   end
 end

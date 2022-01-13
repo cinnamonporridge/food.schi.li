@@ -1,4 +1,4 @@
-class Nutrition < ApplicationRecord
+class Food < ApplicationRecord
   include Searchable
   include NutritionFacts
 
@@ -19,11 +19,11 @@ class Nutrition < ApplicationRecord
   end
 
   def in_recipes
-    @in_recipes ||= Recipe.using_nutrition(self)
+    @in_recipes ||= Recipe.using_food(self)
   end
 
   def in_meals
-    @in_meals ||= Meal.using_nutrition(self)
+    @in_meals ||= Meal.using_food(self)
   end
 
   def on_journal_days
@@ -49,10 +49,10 @@ class Nutrition < ApplicationRecord
   end
 
   def check_if_in_recipe
-    errors.add(:base, "Can't delete nutrition that is still used in a recipe") if in_recipes.any?
+    errors.add(:base, "Can't delete food that is still used in a recipe") if in_recipes.any?
   end
 
   def check_if_in_meal
-    errors.add(:base, "Can't delete nutrition that is still used in a meal") if in_meals.any?
+    errors.add(:base, "Can't delete food that is still used in a meal") if in_meals.any?
   end
 end

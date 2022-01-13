@@ -1,5 +1,5 @@
-class Nutritions::RecipesController < ApplicationController
+class Foods::RecipesController < ApplicationController
   def index
-    @nutrition = Nutrition.find(params[:nutrition_id])
+    @food = Food.find(params[:food_id])
   end
 end

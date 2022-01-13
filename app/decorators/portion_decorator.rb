@@ -1,7 +1,7 @@
 class PortionDecorator < SimpleDelegator
   def name_for_dropdown
     [
-      name_with_nutrition,
+      name_with_food,
       "(#{amount_with_unit_abbrevation})"
     ].compact.join(' ')
   end
@@ -11,12 +11,12 @@ class PortionDecorator < SimpleDelegator
   end
 
   def amount_with_unit_abbrevation
-    "#{amount}#{nutrition.decorate.unit_abbrevation}"
+    "#{amount}#{food.decorate.unit_abbrevation}"
   end
 
-  def name_with_nutrition
+  def name_with_food
     [
-      nutrition.name,
+      food.name,
       name_if_not_default
     ].compact.join(' ')
   end
@@ -26,6 +26,6 @@ class PortionDecorator < SimpleDelegator
   end
 
   def self.portions_collection_with_id
-    Portion.ordered_by_nutrition_name_and_amount.map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
+    Portion.ordered_by_food_name_and_amount.map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
   end
 end

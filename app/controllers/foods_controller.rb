@@ -1,30 +1,30 @@
-class NutritionsController < ApplicationController
+class FoodsController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_nutrition, only: [:show, :edit, :update, :destroy]
+  before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @nutritions = pagy(Nutrition.search(params[:search_query]).ordered_by_name)
+    @pagy, @foods = pagy(Food.search(params[:search_query]).ordered_by_name)
   end
 
   def show
-    @nutrition = @nutrition.decorate
+    @food = @food.decorate
   end
 
   def new
-    @nutrition = Nutrition.new
+    @food = Food.new
   end
 
   def edit; end
 
   def create
-    @nutrition = Nutrition.new(nutrition_params)
-    default_portion_name = "100#{@nutrition.decorate.unit_abbrevation}"
-    @nutrition.portions.new(name: default_portion_name, amount: 100)
+    @food = Food.new(food_params)
+    default_portion_name = "100#{@food.decorate.unit_abbrevation}"
+    @food.portions.new(name: default_portion_name, amount: 100)
 
-    if @nutrition.save
+    if @food.save
       NutritionFactsService.update_all
-      redirect_to @nutrition, notice: 'Nutrition added'
+      redirect_to @food, notice: 'Food added'
     else
       flash.now[:error] = 'Invalid input'
       render :new
@@ -32,11 +32,11 @@ class NutritionsController < ApplicationController
   end
 
   def update
-    if @nutrition.update(nutrition_params)
-      update_affected_recipes if @nutrition.vegan_previously_changed?
+    if @food.update(food_params)
+      update_affected_recipes if @food.vegan_previously_changed?
       NutritionFactsService.update_all
 
-      redirect_to @nutrition, notice: 'Nutrition updated'
+      redirect_to @food, notice: 'Food updated'
     else
       flash.now[:error] = 'Invalid input'
       render :edit
@@ -44,28 +44,28 @@ class NutritionsController < ApplicationController
   end
 
   def destroy
-    if @nutrition.destroy
-      redirect_to nutritions_url, notice: 'Nutrition deleted'
+    if @food.destroy
+      redirect_to foods_url, notice: 'Food deleted'
     else
       flash.now[:error] = 'Deletion not possible'
-      @nutrition = @nutrition.decorate
+      @food = @food.decorate
       render :show
     end
   end
 
   private
 
-  def set_nutrition
-    @nutrition = Nutrition.find(params[:id])
+  def set_food
+    @food = Food.find(params[:id])
   end
 
-  def nutrition_params
-    params.require(:nutrition).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated,
-                                      :fiber, :vegan)
+  def food_params
+    params.require(:food).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated,
+                                 :fiber, :vegan)
   end
 
   def update_affected_recipes
-    Recipe.using_nutrition(@nutrition).find_each do |recipe|
+    Recipe.using_food(@food).find_each do |recipe|
       recipe.detect_vegan
       recipe.save
     end

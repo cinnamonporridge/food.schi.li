@@ -16,10 +16,10 @@ Rails.application.routes.draw do
     resource :copy, only: %i[new create], module: :recipes
   end
 
-  resources :nutritions do
+  resources :foods do
     resources :portions, except: [:index, :show]
-    resources :recipes, only: [:index], module: :nutritions
-    resources :journal_days, only: [:index], module: :nutritions
+    resources :recipes, only: [:index], module: :foods
+    resources :journal_days, only: [:index], module: :foods
   end
 
   namespace :my do

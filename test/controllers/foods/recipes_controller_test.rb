@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class Nutritions::RecipesControllerTest < ActionDispatch::IntegrationTest
+class Foods::RecipesControllerTest < ActionDispatch::IntegrationTest
   setup do
     login_user(users(:john))
   end
 
   test '#index' do
-    nutrition = nutritions(:banana)
-    get nutrition_recipes_path(nutrition)
+    food = foods(:banana)
+    get food_recipes_path(food)
     assert_response :success
   end
 end

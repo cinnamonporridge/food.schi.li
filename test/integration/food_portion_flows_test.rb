@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class NutritionFlowsTest < ActionDispatch::IntegrationTest
+class FoodPortionFlowsTest < ActionDispatch::IntegrationTest
   def setup
     login_user(users(:john))
   end
 
-  test 'user adds a nutrition portion' do
-    get new_nutrition_portion_path(nutritions(:apple))
+  test 'user adds a food portion' do
+    get new_food_portion_path(foods(:apple))
     assert_response :success
     assert_select 'h1', 'New portion for Apple'
     assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
-    post "/nutritions/#{nutritions(:apple).id}/portions",
+    post "/foods/#{foods(:apple).id}/portions",
          params: {
            portion: {
              name: '',
@@ -22,7 +22,7 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal 'Invalid input', flash[:error]
 
-    post "/nutritions/#{nutritions(:apple).id}/portions",
+    post "/foods/#{foods(:apple).id}/portions",
          params: {
            portion: {
              name: 'Regular apple',
@@ -34,17 +34,17 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Portion added', flash[:notice]
   end
 
-  test 'user cannot edit the default nutrition portion' do
+  test 'user cannot edit the default food portion' do
     # edit
     default_portion = portions(:apple_default_portion)
-    get edit_nutrition_portion_path(default_portion.nutrition, default_portion)
+    get edit_food_portion_path(default_portion.food, default_portion)
     follow_redirect!
     assert_response :success
     assert_select 'h1', 'Apple'
     assert_equal 'Default portion cannot be edited or deleted', flash[:alert]
 
     # update
-    put "/nutritions/#{default_portion.nutrition.id}/portions/#{default_portion.id}",
+    put "/foods/#{default_portion.food.id}/portions/#{default_portion.id}",
         params: {
           portion: {
             name: 'Some invalid value',
@@ -57,24 +57,24 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Default portion cannot be edited or deleted', flash[:alert]
   end
 
-  test 'user cannot delete the default nutrition portion' do
+  test 'user cannot delete the default food portion' do
     default_portion = portions(:apple_default_portion)
-    delete nutrition_portion_path(default_portion.nutrition, default_portion)
+    delete food_portion_path(default_portion.food, default_portion)
     follow_redirect!
     assert_response :success
     assert_select 'h1', 'Apple'
     assert_equal 'Default portion cannot be edited or deleted', flash[:alert]
   end
 
-  test 'user edits a nutrition portion' do
+  test 'user edits a food portion' do
     big_apple = portions(:big_apple_portion)
-    get edit_nutrition_portion_path(big_apple.nutrition, big_apple)
+    get edit_food_portion_path(big_apple.food, big_apple)
     assert_response :success
     assert_select 'h1', 'Edit portion for Apple'
     assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
-    put "/nutritions/#{big_apple.nutrition.id}/portions/#{big_apple.id}",
+    put "/foods/#{big_apple.food.id}/portions/#{big_apple.id}",
         params: {
           portion: {
             name: 'Even Bigger Apple',
@@ -88,10 +88,10 @@ class NutritionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Portion updated', flash[:notice]
   end
 
-  test 'user deletes a nutrition portion' do
+  test 'user deletes a food portion' do
     skip
     big_apple = portions(:big_apple_portion)
-    delete nutrition_portion_path(big_apple.nutrition, big_apple)
+    delete food_portion_path(big_apple.food, big_apple)
     follow_redirect!
     assert_response :success
     assert_select 'h1', 'Apple'

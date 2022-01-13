@@ -1,30 +1,30 @@
 .flex.flex-col.gap-y-4
   .flex
-    %h1 Nutritions
+    %h1 Foods
 
   .flex
-    = link_to new_nutrition_path, class: 'button flex items-center gap-x-1' do
+    = link_to new_food_path, class: 'button flex items-center gap-x-1' do
       .h-4.w-4
         = raw heroicon :'plus-sm'
-      Add nutrition
+      Add food
 
   .flex
     .w-full
-      = render 'layouts/search', form_url: nutritions_path
+      = render 'layouts/search', form_url: foods_path
 
   = render 'layouts/pagy', pagy: @pagy
 
   .flex
-    %ul.nutritions.flex.flex-col.gap-y-4
-      - @nutritions.each do |nutrition|
+    %ul.foods.flex.flex-col.gap-y-4
+      - @foods.each do |food|
         %li
-          = link_to nutrition_path(nutrition), class: 'flex flex-col gap-y-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do
+          = link_to food_path(food), class: 'flex flex-col gap-y-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do
             .w-full.flex.items-center
               .grow
-                = nutrition.name
+                = food.name
               .shrink-0
-                = render 'icons/vegan', vegan: nutrition.vegan?
+                = render 'icons/vegan', vegan: food.vegan?
             .w-full
-              = render 'macronutrients/fact_labels', fact_data: nutrition.macronutrient_data
+              = render 'macronutrients/fact_labels', fact_data: food.macronutrient_data
 
   = render 'layouts/pagy', pagy: @pagy

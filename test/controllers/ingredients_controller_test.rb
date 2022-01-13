@@ -29,7 +29,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     recipe = recipes(:vegan_peanut_butter_banana)
     portion = portions(:milk_default_portion)
 
-    assert_not portion.nutrition.vegan?, 'Portion nutrution should be non-vegan'
+    assert_not portion.food.vegan?, 'Portion nutrution should be non-vegan'
 
     assert_changes 'recipe.vegan?', from: true, to: false do
       post recipe_ingredients_path(recipe),
@@ -49,7 +49,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     old_ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     new_ingredient_portion = portions(:milk_default_portion)
 
-    assert_not new_ingredient_portion.nutrition.vegan?, 'New ingredient portion nutrution should be non-vegan'
+    assert_not new_ingredient_portion.food.vegan?, 'New ingredient portion nutrution should be non-vegan'
 
     assert_changes 'recipe.vegan?', from: true, to: false do
       patch recipe_ingredient_path(recipe, old_ingredient),
@@ -68,7 +68,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     recipe = recipes(:vegan_peanut_butter_banana)
     vegan_portion = portions(:sugar_cube_portion)
 
-    assert vegan_portion.nutrition.vegan?, 'Portion to be added should be vegan'
+    assert vegan_portion.food.vegan?, 'Portion to be added should be vegan'
 
     assert_no_changes 'recipe.vegan?' do
       post recipe_ingredients_path(recipe),
@@ -88,7 +88,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     old_ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     new_ingredient_portion = portions(:sugar_cube_portion)
 
-    assert new_ingredient_portion.nutrition.vegan?, 'New ingredient portion should be vegan'
+    assert new_ingredient_portion.food.vegan?, 'New ingredient portion should be vegan'
 
     assert_no_changes 'recipe.vegan?' do
       patch recipe_ingredient_path(recipe, old_ingredient),
@@ -107,7 +107,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     recipe = recipes(:non_vegan_milk_banana)
     new_ingredient_portion = portions(:peanut_butter_default_portion)
 
-    assert new_ingredient_portion.nutrition.vegan?, 'New ingredient portion should be vegan'
+    assert new_ingredient_portion.food.vegan?, 'New ingredient portion should be vegan'
 
     assert_no_changes 'recipe.vegan?' do
       post recipe_ingredients_path(recipe),
@@ -127,7 +127,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     non_vegan_ingredient = ingredients(:milk_in_non_vegan_milk_banana)
     new_ingredient_portion = portions(:peanut_butter_default_portion)
 
-    assert new_ingredient_portion.nutrition.vegan?, 'New ingredient portion should be vegan'
+    assert new_ingredient_portion.food.vegan?, 'New ingredient portion should be vegan'
 
     assert_changes 'recipe.vegan?', from: false, to: true do
       patch recipe_ingredient_path(recipe, non_vegan_ingredient),

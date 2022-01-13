@@ -16,7 +16,7 @@
                   .h-4.w-4.mt-1
                     = render 'icons/vegan', vegan: ingredient.decorate.vegan?
                   = button_tag class: 'text-green-500 text-left hover:text-green-600 flex items-start gap-x-1', 'data-action': 'toggleable#toggle' do
-                    = ingredient.portion.decorate.name_with_nutrition
+                    = ingredient.portion.decorate.name_with_food
 
                 .col-span-1.text-gray-500.text-right.text-xs
                   = ingredient.decorate.quantity

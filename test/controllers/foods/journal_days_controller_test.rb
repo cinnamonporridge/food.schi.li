@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class Nutritions::JournalDaysControllerTest < ActionDispatch::IntegrationTest
+class Foods::JournalDaysControllerTest < ActionDispatch::IntegrationTest
   setup do
     login_user(users(:john))
   end
 
   test '#index' do
-    nutrition = nutritions(:apple)
-    get nutrition_journal_days_path(nutrition)
+    food = foods(:apple)
+    get food_journal_days_path(food)
     assert_response :success
   end
 end

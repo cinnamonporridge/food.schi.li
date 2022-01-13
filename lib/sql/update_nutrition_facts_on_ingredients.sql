@@ -7,19 +7,19 @@ with_target_nutrition_facts AS (
        , i.recipe_id                                 AS ingredient_recipe_id
        , i.portion_id                                AS ingredient_portion_id
        , i.amount                                    AS ingredient_amount
-       , (i.amount / da.value) * n.kcal              AS ingredient_target_kcal
-       , (i.amount / da.value) * n.carbs             AS ingredient_target_carbs
-       , (i.amount / da.value) * n.carbs_sugar_part  AS ingredient_target_carbs_sugar_part
-       , (i.amount / da.value) * n.protein           AS ingredient_target_protein
-       , (i.amount / da.value) * n.fat               AS ingredient_target_fat
-       , (i.amount / da.value) * n.fat_saturated     AS ingredient_target_fat_saturated
-       , (i.amount / da.value) * n.fiber             AS ingredient_target_fiber
+       , (i.amount / da.value) * f.kcal              AS ingredient_target_kcal
+       , (i.amount / da.value) * f.carbs             AS ingredient_target_carbs
+       , (i.amount / da.value) * f.carbs_sugar_part  AS ingredient_target_carbs_sugar_part
+       , (i.amount / da.value) * f.protein           AS ingredient_target_protein
+       , (i.amount / da.value) * f.fat               AS ingredient_target_fat
+       , (i.amount / da.value) * f.fat_saturated     AS ingredient_target_fat_saturated
+       , (i.amount / da.value) * f.fiber             AS ingredient_target_fiber
        , i.measure                                   AS ingredient_measure
        , i.created_at                                AS ingredient_created_at
     FROM ingredients i
    CROSS JOIN default_amount da
    INNER JOIN portions p   ON p.id = i.portion_id
-   INNER JOIN nutritions n ON n.id = p.nutrition_id
+   INNER JOIN foods f      ON f.id = p.food_id
 ),
 
 with_rounded_target_nutrution_facts AS (

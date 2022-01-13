@@ -1,4 +1,4 @@
-class NutritionDecorator < SimpleDelegator
+class FoodDecorator < SimpleDelegator
   def unit_abbrevation
     {
       gram: 'g',
@@ -7,10 +7,10 @@ class NutritionDecorator < SimpleDelegator
   end
 
   def units_collection
-    Nutrition.units.map { |name, _v| [name.capitalize, name] }
+    Food.units.map { |name, _v| [name.capitalize, name] }
   end
 
-  def nutrition_collection
-    Nutrition.ordered_by_name.map { |nutrition| [nutrition.name, nutrition.id] }
+  def food_collection
+    Food.ordered_by_name.map { |food| [food.name, food.id] }
   end
 end
