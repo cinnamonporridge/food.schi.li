@@ -4,7 +4,9 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, length: { minimum: 7 }
 
-  has_many :journal_days, dependent: :restrict_with_exception
+  has_many :journal_days, dependent: :destroy
+  has_many :foods, dependent: :destroy
+  has_many :recipes, dependent: :destroy
   has_many :meals, through: :journal_days
 
   def clear_reset_password

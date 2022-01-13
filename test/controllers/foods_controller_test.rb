@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FoodsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:john))
+    login_user(users(:daisy))
   end
 
   test 'declare a food to be vegan' do
@@ -42,8 +42,8 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     vegan_ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     food = vegan_ingredient.food
 
-    assert_changes 'recipe.vegan?', from: true, to: false do
-      assert_changes 'food.vegan?', from: true, to: false do
+    assert_changes 'recipe.vegan?', to: false do
+      assert_changes 'food.vegan?', to: false do
         patch food_path(food),
               params: {
                 food: {

@@ -2,7 +2,8 @@ require 'test_helper'
 
 class RecipeFlowsTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:john))
+    @user = users(:daisy)
+    login_user(@user)
   end
 
   test 'user visits recipes index page' do
@@ -22,7 +23,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
     get recipes_path
 
     assert_changes -> { css_select('.pagy-nav').count }, from: 0 do
-      prepare_recipes_for_pagination
+      prepare_recipes_for_pagination(@user)
       get recipes_path
     end
   end
@@ -100,7 +101,7 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user deletes a recipe' do
-    unused_recipe = Recipe.create!(name: 'Unused recipe')
+    unused_recipe = @user.recipes.create!(name: 'Unused recipe')
     delete recipe_path(unused_recipe)
     follow_redirect!
     assert_response :success
@@ -110,9 +111,9 @@ class RecipeFlowsTest < ActionDispatch::IntegrationTest
 
   private
 
-  def prepare_recipes_for_pagination
+  def prepare_recipes_for_pagination(user)
     Pagy::DEFAULT[:items].times do |i|
-      Recipe.create!(name: "PAGY-RECIPE-#{i}")
+      user.recipes.create!(name: "PAGY-RECIPE-#{i}")
     end
   end
 end
