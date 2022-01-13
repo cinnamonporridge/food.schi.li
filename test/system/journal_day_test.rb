@@ -1,6 +1,19 @@
 require 'application_system_test_case'
 
 class JournalDayTest < ApplicationSystemTestCase
+  test 'user logs in' do
+    sign_in_user(users(:daisy))
+
+    assert_selector 'h1', text: 'My journal days'
+
+    within 'nav' do
+      assert_link 'Journal', href: '/my/journal_days'
+      assert_link 'Recipes', href: '/recipes'
+      assert_link 'Foods', href: '/foods'
+      assert_button 'Sign out'
+    end
+  end
+
   test 'user adds a meal portion to journal day' do
     sign_in_user(users(:daisy))
 
