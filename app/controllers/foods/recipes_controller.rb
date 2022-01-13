@@ -1,5 +1,5 @@
 class Foods::RecipesController < ApplicationController
   def index
-    @food = Food.find(params[:food_id])
+    @food = current_user.foods.find(params[:food_id])
   end
 end

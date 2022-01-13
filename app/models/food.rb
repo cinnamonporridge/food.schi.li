@@ -21,7 +21,7 @@ class Food < ApplicationRecord
   end
 
   def in_recipes
-    @in_recipes ||= Recipe.using_food(self)
+    @in_recipes ||= user.recipes.using_food(self)
   end
 
   def in_meals

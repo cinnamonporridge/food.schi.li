@@ -18,16 +18,20 @@ class JournalDayRecipeForm
   end
 
   def recipe
-    @recipe ||= Recipe.find_by(id: recipe_id)
+    @recipe ||= user.recipes.find_by(id: recipe_id)
   end
 
   def recipe_id
-    JournalDayRecipeDecorator.recipes_collection_with_id
+    JournalDayRecipeDecorator.recipes_collection_with_id(user)
                              .find { |form_recipe_name, _id| form_recipe_name == recipe_name }
                              &.last
   end
 
   private
+
+  def user
+    @user ||= journal_day.user
+  end
 
   def recipe_exists
     errors.add(:recipe_name, 'Selected recipe does not exist') if recipe.nil?

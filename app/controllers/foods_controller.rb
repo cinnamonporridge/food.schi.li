@@ -56,7 +56,7 @@ class FoodsController < ApplicationController
   private
 
   def set_food
-    @food = Food.find(params[:id])
+    @food = current_user.foods.find(params[:id])
   end
 
   def food_params
