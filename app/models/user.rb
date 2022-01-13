@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def clear_magic_link!
     update!(magic_link_challenge: nil, magic_link_sent_at: nil)
   end
+
+  def today
+    Time.now.in_time_zone('Europe/Zurich').to_date
+  end
 end

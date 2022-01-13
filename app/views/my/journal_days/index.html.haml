@@ -2,6 +2,15 @@
   .flex
     %h1 My journal days
 
+  - if @todays_journal_day.new_record?
+    .flex
+      = form_with(model: @todays_journal_day, url: [:my, @todays_journal_day], class: 'w-full') do |f|
+        = f.hidden_field :date
+        = f.button type: :submit, class: 'button gap-x-2' do
+          .h-4.w-4
+            = raw heroicon :'plus-sm'
+          Add journal day for today
+
   .flex
     = link_to new_my_journal_day_path, class: 'button gap-x-2' do
       .h-4.w-4

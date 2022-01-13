@@ -14,6 +14,20 @@ class JournalDayTest < ApplicationSystemTestCase
     end
   end
 
+  test 'user creates journal day by shortcut' do
+    travel_to '2022-01-03 12:00:00 UTC' do
+      sign_in_user(users(:daisy))
+      click_on 'Add journal day for today'
+      assert_selector 'h1', text: 'Mon, 03.01.2022'
+    end
+  end
+
+  test 'user does not see shortcut to create journal day if it already exists' do
+    travel_to '2017-02-01 12:00:00 UTC' do
+      assert_no_button 'Add journal day for today'
+    end
+  end
+
   test 'user adds a meal portion to journal day' do
     sign_in_user(users(:daisy))
 
