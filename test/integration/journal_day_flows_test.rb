@@ -37,7 +37,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Add Journal Day'
-    assert_select "input[type='submit'][value='Create Journal day']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     post '/my/journal_days/',
@@ -55,7 +55,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Edit Wed, 01.02.2017'
-    assert_select "input[type='submit'][value='Update Journal day']"
+    assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
     patch "/my/journal_days/#{journal_days(:daisy_february_first).id}/",

@@ -1,4 +1,4 @@
-= form_with(model: @form, url: login_path) do |f|
+= form_with(model: @form, url: login_path, data: { turbo: false }) do |f|
   .bg-white.px-4.py-6.rounded.shadow.flex.flex-col.gap-y-4
     .w-full
       = f.email_field :email, placeholder: 'Email address', class: 'input'
