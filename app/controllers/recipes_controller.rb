@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @recipes = pagy(Recipe.search(params[:search_query]).ordered_by_name)
+    @pagy, @recipes = pagy(current_user.recipes.search(params[:search_query]).ordered_by_name)
   end
 
   def show; end
@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
   def edit; end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     @recipe.detect_vegan
 
     if @recipe.save
@@ -44,7 +44,7 @@ class RecipesController < ApplicationController
   private
 
   def set_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
   end
 
   def recipe_params

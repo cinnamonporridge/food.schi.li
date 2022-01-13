@@ -2,6 +2,8 @@ class Food < ApplicationRecord
   include Searchable
   include NutritionFacts
 
+  belongs_to :user
+
   has_many :portions, dependent: :destroy
   has_one :primary_portion, -> { primary }, class_name: 'Portion', inverse_of: false, dependent: :destroy
 

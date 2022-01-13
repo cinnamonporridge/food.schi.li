@@ -4,7 +4,7 @@ class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @foods = pagy(Food.search(params[:search_query]).ordered_by_name)
+    @pagy, @foods = pagy(current_user.foods.search(params[:search_query]).ordered_by_name)
   end
 
   def show
@@ -18,7 +18,7 @@ class FoodsController < ApplicationController
   def edit; end
 
   def create
-    @food = Food.new(food_params)
+    @food = current_user.foods.new(food_params)
     default_portion_name = "100#{@food.decorate.unit_abbrevation}"
     @food.portions.new(name: default_portion_name, amount: 100)
 
@@ -65,7 +65,7 @@ class FoodsController < ApplicationController
   end
 
   def update_affected_recipes
-    Recipe.using_food(@food).find_each do |recipe|
+    current_user.recipes.using_food(@food).find_each do |recipe|
       recipe.detect_vegan
       recipe.save
     end

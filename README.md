@@ -38,3 +38,10 @@ git push heroku main
 ```
 
 Available at https://food-schi-li.herokuapp.com (or via https://food.schi.li)
+
+
+## Import dump
+
+```sh
+pg_restore --verbose --clean --no-acl --no-owner -C -h localhost -d [db_name] latest.dump
+```

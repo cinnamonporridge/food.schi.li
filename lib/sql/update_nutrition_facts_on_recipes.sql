@@ -56,6 +56,7 @@ INSERT INTO recipes (
   , fiber
   , created_at
   , updated_at
+  , user_id
 )
 SELECT r.id
      , r.name
@@ -70,6 +71,7 @@ SELECT r.id
      , tnf.recipe_target_fiber
      , r.created_at
      , NOW() AS updated_at
+     , r.user_id
   FROM with_rounded_target_nutrution_facts tnf
  INNER JOIN recipes r ON r.id = tnf.recipe_id
     ON CONFLICT (id)

@@ -1,6 +1,8 @@
 class Recipe < ApplicationRecord
   include Searchable
 
+  belongs_to :user
+
   has_many :ingredients, dependent: :destroy
   has_many :portions, through: :ingredients
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_144203) do
+ActiveRecord::Schema.define(version: 2022_01_13_150002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 2022_01_13_144203) do
     t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
     t.string "unit", default: "gram", null: false
+    t.bigint "user_id", null: false
     t.index ["name"], name: "index_foods_on_name", unique: true
+    t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -116,6 +118,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_144203) do
     t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -130,10 +134,12 @@ ActiveRecord::Schema.define(version: 2022_01_13_144203) do
     t.boolean "is_admin", default: false, null: false
   end
 
+  add_foreign_key "foods", "users"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "journal_days", "users"
   add_foreign_key "meals", "journal_days"
   add_foreign_key "meals", "portions"
   add_foreign_key "meals", "recipes"
   add_foreign_key "portions", "foods"
+  add_foreign_key "recipes", "users"
 end
