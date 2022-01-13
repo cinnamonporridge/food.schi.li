@@ -5,7 +5,7 @@ class My::MealsController < ApplicationController
   def new
     return handle_invalid_journal_day_access if @journal_day.blank?
 
-    recipe = Recipe.find_by(id: params[:recipe_id])
+    recipe = current_user.recipes.find_by(id: params[:recipe_id])
     new_meal = @journal_day.meals.new(recipe:)
 
     @form = MealPortionForm.new(meal: new_meal)

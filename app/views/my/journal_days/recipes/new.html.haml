@@ -9,7 +9,7 @@
           = f.text_field :recipe_name, list: :recipe_name_list, class: 'input'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :recipe_name
           %datalist#recipe_name_list
-            = options_for_select JournalDayRecipeDecorator.recipes_collection
+            = options_for_select JournalDayRecipeDecorator.recipes_collection(@form.journal_day.user)
 
         .flex.flex-col
           = f.label :servings, class: 'label'
