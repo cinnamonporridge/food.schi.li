@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FoodPortionFlowsTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:john))
+    login_user(users(:daisy))
   end
 
   test 'user adds a food portion' do

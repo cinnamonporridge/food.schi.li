@@ -47,7 +47,7 @@ class PortionsController < ApplicationController
   end
 
   def find_food
-    @find_food ||= Food.find(params[:food_id])
+    @find_food ||= current_user.foods.find(params[:food_id])
   end
 
   def handle_default_portion
