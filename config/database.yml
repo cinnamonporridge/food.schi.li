@@ -6,7 +6,7 @@ default: &default
 
 development:
   <<: *default
-  database: food_schi_li_development
+  database: food_schi_li_production
 
 test:
   <<: *default

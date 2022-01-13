@@ -2,43 +2,43 @@ milk_in_apple_pie:
   recipe: apple_pie
   portion: milk_default_portion
   amount: 40
-  measure: <%= Ingredient.measures[:unit] %>
+  measure: 'unit'
 
 apples_in_apple_pie:
   recipe: apple_pie
   portion: big_apple_portion
   amount: 6
-  measure: <%= Ingredient.measures[:piece] %>
+  measure: 'piece'
 
 peanut_butter_in_vegan_peanut_butter_banana:
   recipe: vegan_peanut_butter_banana
   portion: peanut_butter_default_portion
   amount: 90
-  measure: <%= Ingredient.measures[:unit] %>
+  measure: 'unit'
 
 banana_in_vegan_peanut_butter_banana:
   recipe: vegan_peanut_butter_banana
   portion: regular_banana_portion
   amount: 1
-  measure: <%= Ingredient.measures[:piece] %>
+  measure: 'piece'
 
 milk_in_non_vegan_milk_banana:
   recipe: non_vegan_milk_banana
   portion: milk_default_portion
   amount: 90
-  measure: <%= Ingredient.measures[:unit] %>
+  measure: 'unit'
 
 banana_in_non_vegan_milk_banana:
   recipe: non_vegan_milk_banana
   portion: regular_banana_portion
   amount: 1
-  measure: <%= Ingredient.measures[:piece] %>
+  measure: 'piece'
 
 bread_in_peanut_butter_bread:
   recipe: peanut_butter_bread
   portion: whole_grain_bread_portion
   amount: 1
-  measure: <%= Ingredient.measures[:piece] %>
+  measure: 'piece'
   kcal: 7
   carbs: 6.7
   carbs_sugar_part: 0.67
@@ -51,7 +51,7 @@ peanut_butter_in_peanut_butter_bread:
   recipe: peanut_butter_bread
   portion: peanut_butter_default_portion
   amount: 20
-  measure: <%= Ingredient.measures[:unit] %>
+  measure: 'unit'
   kcal: 89
   carbs: 88.8
   carbs_sugar_part: 8.8

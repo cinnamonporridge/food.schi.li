@@ -7,7 +7,7 @@ class Food < ApplicationRecord
 
   scope :ordered_by_name, -> { order(name: :asc) }
 
-  enum unit: { gram: 1, mililiter: 2 }
+  enum unit: { gram: 'gram', mililiter: 'mililiter' }
 
   before_destroy :can_be_destroyed, prepend: true
 
