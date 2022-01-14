@@ -2,7 +2,7 @@ require 'test_helper'
 
 class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:daisy))
+    login_user :daisy
     @february_first = journal_days(:daisy_february_first)
   end
 

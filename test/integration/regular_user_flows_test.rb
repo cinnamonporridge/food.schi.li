@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RegularUserFlowsTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:john))
+    login_user :john
   end
 
   test 'regular user logs in' do

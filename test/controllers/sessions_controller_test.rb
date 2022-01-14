@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'successful login and logout' do
-    login_user(users(:john))
+    login_user :john
     assert_response :success
     logout_user
     assert_response :success

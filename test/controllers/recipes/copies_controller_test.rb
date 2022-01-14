@@ -4,7 +4,7 @@ class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
   attr_reader :recipe
 
   def setup
-    login_user(users(:daisy))
+    login_user :daisy
     @recipe = recipes(:peanut_butter_bread)
   end
 

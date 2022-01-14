@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FoodsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:daisy))
+    login_user :daisy
   end
 
   test 'declare a food to be vegan' do
