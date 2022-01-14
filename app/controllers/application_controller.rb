@@ -27,10 +27,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    redirect_to my_journal_days_path unless current_user&.is_admin?
+    redirect_to journal_days_path unless current_user&.is_admin?
   end
 
   def forward_logged_in!
-    redirect_to my_journal_days_path if logged_in?
+    redirect_to journal_days_path if logged_in?
   end
 end

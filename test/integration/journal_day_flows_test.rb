@@ -9,7 +9,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
     journal_day = journal_days(:daisy_february_first)
 
     travel_to journal_day.date do
-      get '/my/journal_days'
+      get '/journal_days'
       assert_response :success
       assert_select 'h1', 'My journal days'
       assert_select 'a', 'Add journal day'
@@ -19,7 +19,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy visits own journal day' do
-    get "/my/journal_days/#{journal_days(:daisy_february_first).id}"
+    get "/journal_days/#{journal_days(:daisy_february_first).id}"
     assert_response :success
 
     assert_select 'h1', 'Wed, 01.02.2017'
@@ -33,14 +33,14 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy adds a new journal day' do
-    get '/my/journal_days/new'
+    get '/journal_days/new'
     assert_response :success
 
     assert_select 'h1', 'Add Journal Day'
     assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
-    post '/my/journal_days/',
+    post '/journal_days/',
          params: {
            journal_day: {
              date: '02.02.2222'
@@ -51,14 +51,14 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy edits page of own journal day' do
-    get "/my/journal_days/#{journal_days(:daisy_february_first).id}/edit"
+    get "/journal_days/#{journal_days(:daisy_february_first).id}/edit"
     assert_response :success
 
     assert_select 'h1', 'Edit Wed, 01.02.2017'
     assert_select "button[type='submit']"
     assert_select 'a', 'Cancel'
 
-    patch "/my/journal_days/#{journal_days(:daisy_february_first).id}/",
+    patch "/journal_days/#{journal_days(:daisy_february_first).id}/",
           params: {
             journal_day: {
               date: '02.02.2222'
@@ -69,7 +69,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy tries to add a journal day that already exists' do
-    patch "/my/journal_days/#{journal_days(:daisy_february_first).id}/",
+    patch "/journal_days/#{journal_days(:daisy_february_first).id}/",
           params: {
             journal_day: {
               date: '02.02.2017'
@@ -81,7 +81,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy deletes a journal day' do
-    delete "/my/journal_days/#{journal_days(:daisy_february_first).id}/"
+    delete "/journal_days/#{journal_days(:daisy_february_first).id}/"
     follow_redirect!
     assert_response :success
     assert_select 'h1', 'My journal days'
@@ -91,7 +91,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   # tenant tests
 
   test 'daisy cannot visit johns journal day' do
-    get "/my/journal_days/#{journal_days(:john_january_first).id}"
+    get "/journal_days/#{journal_days(:john_january_first).id}"
     follow_redirect!
     assert_response :success
     assert_equal 'That journal day does not exist or does not belong to you', flash[:warning]
@@ -99,13 +99,13 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy cannot edit johns journal day' do
-    get "/my/journal_days/#{journal_days(:john_january_first).id}/edit"
+    get "/journal_days/#{journal_days(:john_january_first).id}/edit"
     follow_redirect!
     assert_response :success
     assert_equal 'That journal day does not exist or does not belong to you', flash[:warning]
     assert_select 'h1', 'My journal days'
 
-    patch "/my/journal_days/#{journal_days(:john_january_first).id}/",
+    patch "/journal_days/#{journal_days(:john_january_first).id}/",
           params: {
             journal_day: {
               date: '02.02.2222'
@@ -118,7 +118,7 @@ class JournalDayFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy cannot delete johns journal day' do
-    delete "/my/journal_days/#{journal_days(:john_january_first).id}/"
+    delete "/journal_days/#{journal_days(:john_january_first).id}/"
     follow_redirect!
     assert_response :success
     assert_equal 'That journal day does not exist or does not belong to you', flash[:warning]

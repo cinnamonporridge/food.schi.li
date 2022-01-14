@@ -1,4 +1,4 @@
-class My::MealsController < ApplicationController
+class MealsController < ApplicationController
   before_action :set_journal_day, only: %i[new create]
   before_action :set_meal, only: %i[edit update destroy]
 
@@ -38,7 +38,7 @@ class My::MealsController < ApplicationController
 
     if @form.valid? && @meal.update(@form.values)
       NutritionFactsService.update_all
-      redirect_to my_journal_day_path(@meal.journal_day), notice: 'Meal updated'
+      redirect_to journal_day_path(@meal.journal_day), notice: 'Meal updated'
     else
       flash.now[:error] = 'Invalid input'
       render :edit
@@ -50,7 +50,7 @@ class My::MealsController < ApplicationController
 
     @meal.destroy
     NutritionFactsService.update_all
-    redirect_to my_journal_day_path(@meal.journal_day), notice: 'Meal deleted'
+    redirect_to journal_day_path(@meal.journal_day), notice: 'Meal deleted'
   end
 
   private
@@ -69,16 +69,16 @@ class My::MealsController < ApplicationController
 
   def handle_invalid_meal_access
     flash[:warning] = 'That meal does not exist or does not belong to you'
-    redirect_to my_journal_days_path
+    redirect_to journal_days_path
   end
 
   def handle_invalid_journal_day_access
     flash[:warning] = 'That journal day does not exist or does not belong to you'
-    redirect_to my_journal_days_path
+    redirect_to journal_days_path
   end
 
   def handle_success
-    redirect_to my_journal_day_path(@journal_day), notice: 'Meal added'
+    redirect_to journal_day_path(@journal_day), notice: 'Meal added'
   end
 
   def handle_error

@@ -7,21 +7,21 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy sees two meals for february first journal day' do
-    get my_journal_day_path(@february_first)
+    get journal_day_path(@february_first)
     assert_response :success
 
     assert_select 'ul#meals li', count: 2
   end
 
   test 'daisy adds a new piece portion meal' do
-    get new_my_journal_day_meal_path(@february_first)
+    get new_journal_day_meal_path(@february_first)
     assert_response :success
 
     assert_select 'h1', 'Add portion meal'
     assert_select 'a', 'Cancel'
     assert_select 'input[type="submit"][value="Create Meal"]'
 
-    post my_journal_day_meals_path(@february_first),
+    post journal_day_meals_path(@february_first),
          params: {
            meal: {
              portion_name: 'Apple Big Apple (200g)',
@@ -36,7 +36,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy submits empty form' do
-    post my_journal_day_meals_path(@february_first),
+    post journal_day_meals_path(@february_first),
          params: {
            meal: {
              portion_id: '',
@@ -49,7 +49,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'daisy adds a new unit portion meal' do
-    post my_journal_day_meals_path(@february_first),
+    post journal_day_meals_path(@february_first),
          params: {
            meal: {
              portion_name: 'Milk (100ml)',
@@ -65,7 +65,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
 
   test 'daisy deletes a meal' do
     meal = meals(:daisys_big_apple_on_february_first)
-    delete my_journal_day_meal_path(meal.journal_day, meal)
+    delete journal_day_meal_path(meal.journal_day, meal)
     follow_redirect!
     assert_response :success
 
@@ -78,13 +78,13 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     milk_portion = portions(:milk_default_portion)
     johns_journal_day = journal_days(:john_january_first)
 
-    get new_my_journal_day_meal_path(johns_journal_day)
+    get new_journal_day_meal_path(johns_journal_day)
     follow_redirect!
     assert_response :success
 
     assert_equal 'That journal day does not exist or does not belong to you', flash[:warning]
 
-    post my_journal_day_meals_path(johns_journal_day),
+    post journal_day_meals_path(johns_journal_day),
          params: {
            meal: {
              portion_id: milk_portion.id,
@@ -102,13 +102,13 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
     milk_portion = portions(:milk_default_portion)
     johns_meal = meals(:johns_apple_on_january_first)
 
-    get edit_my_journal_day_meal_path(johns_meal.journal_day, johns_meal)
+    get edit_journal_day_meal_path(johns_meal.journal_day, johns_meal)
     follow_redirect!
     assert_response :success
 
     assert_equal 'That meal does not exist or does not belong to you', flash[:warning]
 
-    patch my_journal_day_meal_path(johns_meal.journal_day, johns_meal),
+    patch journal_day_meal_path(johns_meal.journal_day, johns_meal),
           params: {
             meal: {
               portion_id: milk_portion.id,
@@ -124,7 +124,7 @@ class JournalDayPortionMealFlowsTest < ActionDispatch::IntegrationTest
 
   test 'daisy cannot delete a meal for john' do
     johns_meal = meals(:johns_apple_on_january_first)
-    delete my_journal_day_meal_path(johns_meal.journal_day, johns_meal)
+    delete journal_day_meal_path(johns_meal.journal_day, johns_meal)
     follow_redirect!
     assert_response :success
     assert_equal 'That meal does not exist or does not belong to you', flash[:warning]

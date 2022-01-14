@@ -16,7 +16,7 @@ class RegularUserFlowsTest < ActionDispatch::IntegrationTest
 
   # home
   test 'user visits home page' do
-    get my_journal_days_path
+    get journal_days_path
     assert_response :success
     assert_select 'h1', 'My journal days'
   end
