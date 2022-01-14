@@ -3,7 +3,7 @@
     %h2 Portions
 
   .flex.flex-col.gap-y-4
-    %ul.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
+    %ul.food--portions.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
       - portions.ordered_by_amount.each do |portion|
         %li.p-2.sm:p-3
           %div{ 'data-controller': 'toggleable' }
