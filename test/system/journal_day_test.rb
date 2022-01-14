@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class JournalDayTest < ApplicationSystemTestCase
   test 'user logs in' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     assert_selector 'h1', text: 'My journal days'
 
@@ -16,7 +16,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
   test 'user creates journal day by shortcut' do
     travel_to '2022-01-03 12:00:00 UTC' do
-      sign_in_user(users(:daisy))
+      sign_in_user :daisy
       click_on 'Add journal day for today'
       assert_selector 'h1', text: 'Mon, 03.01.2022'
     end
@@ -29,7 +29,7 @@ class JournalDayTest < ApplicationSystemTestCase
   end
 
   test 'user adds a meal portion to journal day' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -50,7 +50,7 @@ class JournalDayTest < ApplicationSystemTestCase
   end
 
   test 'user adds a recipe to journal day' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -69,7 +69,7 @@ class JournalDayTest < ApplicationSystemTestCase
   end
 
   test 'user deletes a meal from journal day' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -83,7 +83,7 @@ class JournalDayTest < ApplicationSystemTestCase
   end
 
   test 'user adds and deletes a recipe from journal day' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -105,7 +105,7 @@ class JournalDayTest < ApplicationSystemTestCase
   end
 
   test 'user adds a portion to an existing recipe on specific journal day' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     journal_day = journal_days(:daisy_february_first)
 
@@ -135,7 +135,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
   test 'user toggles journal day meal actions menu' do
     using_browser do
-      sign_in_user(users(:daisy))
+      sign_in_user :daisy
       click_link '05.02.2017'
       within find('ul#recipes li', text: 'APPLE PIE') do
         find('svg.heroicons-chevron-down').ancestor('button').click
@@ -146,7 +146,7 @@ class JournalDayTest < ApplicationSystemTestCase
   end
 
   test 'user deletes a journal day' do
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
     click_link '01.02.2017'
     click_on 'Delete journal day'
     assert_selector '.flash', text: 'Journal day deleted'

@@ -47,7 +47,7 @@ class FoodsController < ApplicationController
     if @food.destroy
       redirect_to foods_url, notice: 'Food deleted'
     else
-      flash.now[:error] = 'Deletion not possible'
+      flash.now[:notice] = 'Deletion not allowed'
       @food = @food.decorate
       render :show
     end

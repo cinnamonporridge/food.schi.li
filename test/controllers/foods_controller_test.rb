@@ -55,4 +55,20 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
       recipe.reload
     end
   end
+
+  test 'cannot delete food that is used in a recipe' do
+    food = foods(:milk)
+    delete food_path(food)
+    assert_response :success
+    assert_equal 'Deletion not allowed', flash[:notice]
+    assert food.reload.persisted?
+  end
+
+  test 'cannot delete food that is used in a meal / journal day' do
+    food = foods(:celery_old)
+    delete food_path(food)
+    assert_response :success
+    assert_equal 'Deletion not allowed', flash[:notice]
+    assert food.reload.persisted?
+  end
 end

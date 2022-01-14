@@ -4,7 +4,8 @@ require 'capybara/rails'
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :rack_test
 
-  def sign_in_user(user, password = 'abc')
+  def sign_in_user(fixture_key, password = 'abc')
+    user = users(fixture_key)
     visit login_path
     fill_in 'Email address', with: user.email
     fill_in 'Password', with: password

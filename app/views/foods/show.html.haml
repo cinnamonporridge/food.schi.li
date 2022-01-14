@@ -18,13 +18,13 @@
         = link_to edit_food_path(@food), class: 'w-full button flex items-center justify-center gap-x-2' do
           .h-4.w-4
             = raw heroicon :pencil
-          Edit
+          Edit food
 
         - if @food.deleteable?
           = button_to food_path(@food), class: 'dangerous-button flex gap-x-2', method: :delete do
             .h-4.w-4
               = raw heroicon :trash
-            Delete
+            Delete food
 
   = render 'facts', food: @food
 

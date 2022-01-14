@@ -5,25 +5,28 @@
     .shrink-0.text-gray-400.text-xs
       = "100#{food.unit_abbrevation} contains"
   .w-full.bg-white.rounded.border.border-gray-200
-    %ul.text-xs
-      %li.px-2.py-1
-        %span.font-bold Kcal
-        .float-right.font-bold= food.kcal
-      %li.px-2.border-t.pt-1
-        %span.font-bold Carbs
-        .float-right.font-bold= food.carbs
-      %li.px-2.pb-1.text-gray-500
-        Carbs sugar part
-        .float-right= food.carbs_sugar_part
-      %li.px-2.py-1.border-t
-        %span.font-bold Protein
-        .float-right.font-bold= food.protein
-      %li.px-2.border-t.pt-1
-        %span.font-bold Fat
-        .float-right.font-bold= food.fat
-      %li.px-2.pb-1.text-gray-500
-        Fat saturated
-        .float-right= food.fat_saturated
-      %li.px-2.py-1.border-t
-        %span.font-bold Fiber
-        .float-right.font-bold= food.fiber
+    %ul.food--nutrition-facts.text-xs
+      %li.px-2.py-1.flex.items-baseline.font-bold
+        .food--nutrition-fact--name.grow Kcal
+        .food--nutrition-fact--value.shrink-0= food.kcal
+
+      %li.px-2.border-t.pt-1.flex.items-baseline.font-bold
+        .food--nutrition-fact--name.grow Carbs
+        .food--nutrition-fact--value.shrink-0= food.carbs
+      %li.px-2.text-gray-500.flex.items-baseline
+        .food--nutrition-fact--name.grow Carbs sugar part
+        .food--nutrition-fact--value.shrink-0= food.carbs_sugar_part
+      %li.px-2.pb-1.text-gray-500.flex.items-baseline
+        .food--nutrition-fact--name.grow Fiber
+        .food--nutrition-fact--value.shrink-0= food.fiber
+
+      %li.px-2.py-1.border-t.flex.items-baseline.font-bold
+        .food--nutrition-fact--name.grow Protein
+        .food--nutrition-fact--value.shrink-0= food.protein
+
+      %li.px-2.border-t.pt-1.flex.items-baseline.font-bold
+        .food--nutrition-fact--name.grow Fat
+        .food--nutrition-fact--value.shrink-0= food.fat
+      %li.px-2.pb-1.text-gray-500.flex.items-baseline
+        .food--nutrition-fact--name.grow Fat saturated
+        .food--nutrition-fact--value.shrink-0= food.fat_saturated

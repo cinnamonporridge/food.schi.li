@@ -3,7 +3,7 @@ require 'application_system_test_case'
 class RecipeTest < ApplicationSystemTestCase
   test 'admin copies a recipe' do
     recipe = recipes(:peanut_butter_bread)
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     visit recipe_path(recipe)
 
@@ -27,7 +27,7 @@ class RecipeTest < ApplicationSystemTestCase
 
   test 'admin deletes ingredient from a recipe' do
     recipe = recipes(:peanut_butter_bread)
-    sign_in_user(users(:daisy))
+    sign_in_user :daisy
 
     visit recipe_path(recipe)
 
@@ -49,7 +49,7 @@ class RecipeTest < ApplicationSystemTestCase
     assert_equal 1, recipe.ingredients.count
 
     using_browser do
-      sign_in_user(users(:daisy))
+      sign_in_user :daisy
       navigate_to 'Recipes'
 
       click_on 'Apple Pie'
