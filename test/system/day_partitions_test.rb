@@ -1,0 +1,66 @@
+require 'application_system_test_case'
+
+class DayPartitionsTest < ApplicationSystemTestCase
+  test 'displays day partitions' do
+    sign_in_and_navigate_to_day_partitions
+
+    assert_selector 'h1', text: 'Day partitions'
+    assert_selector 'ul.day-partitions li', text: 'Breakfast'
+  end
+
+  test 'sees only own day partitions' do
+    sign_in_and_navigate_to_day_partitions(:john)
+    assert_selector 'ul.day-partitions li', text: 'Brunch'
+    sign_out
+
+    sign_in_and_navigate_to_day_partitions(:daisy)
+    assert_selector 'ul.day-partitions li', text: 'Brunch', count: 0
+    assert false, 'todo'
+  end
+
+  test 'adds day partition' do
+    sign_in_and_navigate_to_day_partitions
+
+    click_on 'Add day partition'
+    within 'form.day-partition' do
+      fill_in 'Name', with: 'Afternoon'
+      select 'At the end', from: 'Insert at position'
+      click_on 'Add day partition'
+    end
+
+    assert_selector '.flash', text: 'Day partition added'
+    assert_selector 'ul.day-partitions li', text: 'Afternoon'
+  end
+
+  test 'edits day partition' do
+    sign_in_and_navigate_to_day_partitions
+
+    click_on 'Breakfast'
+
+    within 'form.day-partition' do
+      fill_in 'Name', with: 'Morning'
+      click_on 'Update day partition'
+    end
+
+    assert_selector '.flash', text: 'Day partition updated'
+    assert_selector 'ul.day-partitions li', text: 'Afternoon'
+  end
+
+  test 'deletes day partition' do
+    sign_in_and_navigate_to_day_partitions
+
+    click_on 'Breakfast'
+    click_on 'Delete day partition'
+
+    assert_selector '.flash', text: 'Day partition deleted'
+    assert_selector 'h1', text: 'Day partitions'
+  end
+
+  private
+
+  def sign_in_and_navigate_to_day_partitions(fixture_key = :daisy)
+    sign_in_user fixture_key
+    navigate_to 'Settings'
+    click_on 'Day partitions'
+  end
+end
