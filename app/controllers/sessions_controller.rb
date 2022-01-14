@@ -36,6 +36,6 @@ class SessionsController < ApplicationController
 
   def handle_success
     log_in(@user)
-    redirect_to my_journal_days_path, success: 'Login successful'
+    redirect_to journal_days_path, success: 'Login successful'
   end
 end

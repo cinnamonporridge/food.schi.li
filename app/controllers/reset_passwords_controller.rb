@@ -11,7 +11,7 @@ class ResetPasswordsController < ApplicationController
     if @form.save
       log_in(@form.user)
       flash[:success] = 'Password successfully reset and logged in'
-      redirect_to my_journal_days_path
+      redirect_to journal_days_path
     else
       flash.now[:warning] = 'Oops, something went wrong'
       render :new

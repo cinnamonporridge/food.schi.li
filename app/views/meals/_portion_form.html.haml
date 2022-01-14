@@ -1,4 +1,4 @@
-= form_with(model: form, url: [:my, form.meal.journal_day, form.meal]) do |f|
+= form_with(model: form, url: [form.meal.journal_day, form.meal]) do |f|
   = f.hidden_field :recipe_id, as: :hidden
   .bg-white.px-4.py-6.rounded.shadow.flex.flex-col.gap-y-4
     .flex.flex-col.gap-y-6
@@ -19,4 +19,4 @@
         .w-full
           = f.submit nil, class: 'button'
         .w-full.text-center
-          = link_to 'Cancel', [:my, form.meal.journal_day], class: 'text-xs text-gray-400 hover:text-gray-500 transition'
+          = link_to 'Cancel', form.meal.journal_day, class: 'text-xs text-gray-400 hover:text-gray-500 transition'

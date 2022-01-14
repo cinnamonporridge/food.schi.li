@@ -7,7 +7,7 @@ class JournalDayTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'My journal days'
 
     within 'nav' do
-      assert_link 'Journal', href: '/my/journal_days'
+      assert_link 'Journal', href: '/journal_days'
       assert_link 'Recipes', href: '/recipes'
       assert_link 'Foods', href: '/foods'
       assert_button 'Sign out'
@@ -33,7 +33,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     journal_day = journal_days(:daisy_february_first)
 
-    visit my_journal_day_path(journal_day)
+    visit journal_day_path(journal_day)
 
     assert_no_text 'Peanut Butter'
 
@@ -54,7 +54,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     journal_day = journal_days(:daisy_february_first)
 
-    visit my_journal_day_path(journal_day)
+    visit journal_day_path(journal_day)
 
     assert_no_text 'Banana'
 
@@ -73,7 +73,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     journal_day = journal_days(:daisy_february_first)
 
-    visit my_journal_day_path(journal_day)
+    visit journal_day_path(journal_day)
 
     list_item = find('ul#meals li', text: 'Apple Big Apple')
     list_item.click
@@ -87,7 +87,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     journal_day = journal_days(:daisy_february_first)
 
-    visit my_journal_day_path(journal_day)
+    visit journal_day_path(journal_day)
 
     click_on 'Add recipe meal'
 
@@ -109,7 +109,7 @@ class JournalDayTest < ApplicationSystemTestCase
 
     journal_day = journal_days(:daisy_february_first)
 
-    visit my_journal_day_path(journal_day)
+    visit journal_day_path(journal_day)
 
     click_on 'Add recipe meal'
 

@@ -10,24 +10,24 @@
               = raw heroicon :'dots-vertical'
 
       .grid.grid-cols-1.sm:grid-cols-2.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
-        = link_to edit_my_journal_day_path(@journal_day), class: 'button gap-x-2' do
+        = link_to edit_journal_day_path(@journal_day), class: 'button gap-x-2' do
           .h-4.w-4
             = raw heroicon :pencil
           Edit journal day
 
-        = button_to my_journal_day_path(@journal_day), class: 'dangerous-button gap-x-2', method: :delete do
+        = button_to journal_day_path(@journal_day), class: 'dangerous-button gap-x-2', method: :delete do
           .h-4.w-4
             = raw heroicon :trash
           Delete journal day
 
   .flex
     .grid.grid-cols-2.gap-2.w-full
-      = link_to new_my_journal_day_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
+      = link_to new_journal_day_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
           = raw heroicon :'document'
         Add portion meal
 
-      = link_to new_my_journal_day_recipe_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
+      = link_to new_journal_day_recipe_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
           = raw heroicon :'book-open'
         Add recipe meal

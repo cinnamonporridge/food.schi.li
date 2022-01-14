@@ -9,7 +9,7 @@
           .hidden.sm:flex.sm:w-full.sm:items-center
             .grow
               .flex.gap-x-2
-                = link_to my_journal_days_path, class: "nav-link #{nav_link_current_classes(my_journal_days_path)} flex items-center gap-x-2" do
+                = link_to journal_days_path, class: "nav-link #{nav_link_current_classes(journal_days_path)} flex items-center gap-x-2" do
                   .h-4.w-4
                     = raw heroicon :calendar
                   Journal
@@ -32,7 +32,7 @@
     #mobile-menu.sm:hidden
       .bg-green-400.flex.flex-col.divide-y.divide-green-300
         .grid.grid-cols-3
-          = link_to my_journal_days_path, class: "nav-link #{nav_link_current_classes(my_journal_days_path)} flex items-center gap-x-4" do
+          = link_to journal_days_path, class: "nav-link #{nav_link_current_classes(journal_days_path)} flex items-center gap-x-4" do
             .h-4.w-4
               = raw heroicon :calendar
             Journal

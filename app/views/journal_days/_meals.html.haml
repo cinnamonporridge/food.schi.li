@@ -20,12 +20,12 @@
 
                   .pt-6{ 'data-toggleable-target': 'toggleable' }
                     .grid.grid-cols-1.sm:grid-cols-2.gap-2.items-center
-                      = link_to new_my_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'button gap-x-2 text-sm' do
+                      = link_to new_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'button gap-x-2 text-sm' do
                         .h-4.w-4
                           = raw heroicon :'plus-sm'
                         Add portion
 
-                      = button_to my_journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'dangerous-button gap-x-2 text-sm' do
+                      = button_to journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'dangerous-button gap-x-2 text-sm' do
                         .h-4.w-4
                           = raw heroicon :trash
                         Remove recipe
@@ -50,11 +50,11 @@
                             = recipe_meal.decorate.rounded_amount_with_unit_abbrevation
                       .hidden.py-4{ 'data-toggleable-target': 'toggleable' }
                         .grid.grid-cols-1.sm:grid-cols-2.gap-2
-                          = link_to edit_my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'button gap-x-2 text-sm' do
+                          = link_to edit_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'button gap-x-2 text-sm' do
                             .h-4.w-4
                               = raw heroicon :pencil
                             Edit ingredient
-                          = button_to my_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'dangerous-button gap-x-2 text-sm', method: :delete do
+                          = button_to journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'dangerous-button gap-x-2 text-sm', method: :delete do
                             .h-4.w-4
                               = raw heroicon :trash
                             Delete ingredient

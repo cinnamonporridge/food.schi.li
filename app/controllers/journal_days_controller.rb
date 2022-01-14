@@ -1,4 +1,4 @@
-class My::JournalDaysController < ApplicationController
+class JournalDaysController < ApplicationController
   include Pagy::Backend
 
   before_action :find_and_decorate_journal_day, only: %i[show edit update destroy]
@@ -21,7 +21,7 @@ class My::JournalDaysController < ApplicationController
 
     if @journal_day.save
       flash[:notice] = 'Journal day added'
-      redirect_to my_journal_day_path(@journal_day)
+      redirect_to journal_day_path(@journal_day)
     else
       flash.now[:error] = 'Invalid input'
       render :new
@@ -36,7 +36,7 @@ class My::JournalDaysController < ApplicationController
     return handle_invalid_access if @journal_day.blank?
 
     if @journal_day.update(journal_day_params)
-      redirect_to my_journal_day_path(@journal_day), notice: 'Journal day updated'
+      redirect_to journal_day_path(@journal_day), notice: 'Journal day updated'
     else
       flash.now[:error] = 'Invalid input'
       render :new
@@ -47,7 +47,7 @@ class My::JournalDaysController < ApplicationController
     return handle_invalid_access if @journal_day.blank?
 
     @journal_day.destroy
-    redirect_to my_journal_days_path, notice: 'Journal day deleted'
+    redirect_to journal_days_path, notice: 'Journal day deleted'
   end
 
   private
@@ -62,6 +62,6 @@ class My::JournalDaysController < ApplicationController
 
   def handle_invalid_access
     flash[:warning] = 'That journal day does not exist or does not belong to you'
-    redirect_to my_journal_days_path
+    redirect_to journal_days_path
   end
 end
