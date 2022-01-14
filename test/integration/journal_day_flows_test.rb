@@ -2,7 +2,7 @@ require 'test_helper'
 
 class JournalDayFlowTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:daisy))
+    login_user :daisy
   end
 
   test 'daisy visits journal days index page' do

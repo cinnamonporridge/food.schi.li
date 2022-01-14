@@ -12,6 +12,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on 'Sign in'
   end
 
+  def sign_out
+    click_on 'Sign out'
+  end
+
   def navigate_to(menu_item)
     within('nav.main-nav') do
       click_on menu_item, match: :first

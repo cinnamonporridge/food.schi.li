@@ -14,6 +14,17 @@ class FoodTest < ApplicationSystemTestCase
     assert_selector 'ul.foods li', count: 2
   end
 
+  test 'user does not see other users food' do
+    sign_in_and_navigate_to_foods(:john)
+    assert_text 'Apricot'
+    sign_out
+
+    sign_in_and_navigate_to_foods(:daisy)
+    fill_in 'Search', with: 'Apricot'
+    click_on 'Search'
+    assert_no_text 'Apricot'
+  end
+
   test 'user visits foods index page' do
     sign_in_and_navigate_to_foods
 

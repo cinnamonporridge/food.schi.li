@@ -6,7 +6,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  def login_user(user, password = 'abc')
+  def login_user(fixture_key, password = 'abc')
+    user = users(fixture_key)
     post login_url, params: login_form_params(user.email, password)
     follow_redirect!
   end

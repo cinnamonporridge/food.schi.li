@@ -2,7 +2,7 @@ require 'test_helper'
 
 class IngredientsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:john))
+    login_user :john
   end
 
   test 'decimal amount is allowed' do

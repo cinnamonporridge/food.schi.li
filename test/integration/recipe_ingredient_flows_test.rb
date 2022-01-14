@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
   def setup
-    login_user(users(:daisy))
+    login_user :daisy
   end
 
   test 'user adds a default ingredient to a recipe' do

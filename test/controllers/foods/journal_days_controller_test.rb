@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Foods::JournalDaysControllerTest < ActionDispatch::IntegrationTest
   setup do
-    login_user(users(:daisy))
+    login_user :daisy
   end
 
   test '#index' do

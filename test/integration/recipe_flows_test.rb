@@ -3,7 +3,7 @@ require 'test_helper'
 class RecipeFlowsTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:daisy)
-    login_user(@user)
+    login_user :daisy
   end
 
   test 'user visits recipes index page' do

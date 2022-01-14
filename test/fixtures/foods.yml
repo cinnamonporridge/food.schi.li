@@ -88,3 +88,16 @@ whole_grain_bread:
   fiber: 670
   vegan: true
   user: daisy
+
+apricot:
+  name: 'Apricot'
+  unit: 'gram'
+  kcal: 222
+  carbs: 222
+  carbs_sugar_part: 22
+  protein: 122
+  fat: 3
+  fat_saturated: 0
+  fiber: 12
+  vegan: true
+  user: john
