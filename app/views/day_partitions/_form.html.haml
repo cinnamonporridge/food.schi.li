@@ -1,0 +1,26 @@
+= form_with(model: form, data: { turbo: false }, class: 'day-partition') do |f|
+  .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
+    .pt-2.pb-4.px-4.flex.flex-col.gap-y-4
+      .flex.flex-col
+        = f.label :name, class: 'label'
+        = f.text_field :name, class: 'input', placeholder: 'Breakfast, Lunch, Dinner...'
+        = render 'layouts/forms/field_errors', errors: f.object.errors, key: :name
+
+      .flex.flex-col
+        = f.label :position, 'Move to position', class: 'label'
+        = f.select :position, form.move_to_position_options, {}, { class: 'input' }
+        = render 'layouts/forms/field_errors', errors: f.object.errors, key: :position
+
+    .p-4.flex.flex-col.gap-y-2
+      = f.button type: :submit, class: 'button gap-x-1' do
+        - if f.object.persisted?
+          .h-4.w-4
+            = raw heroicon :pencil
+          Update day partition
+        - else
+          .h-4.w-4
+            = raw heroicon :'plus-sm'
+          Add day partition
+
+      .text-center
+        = link_to 'Cancel', day_partitions_path, class: 'shy-link text-xs'

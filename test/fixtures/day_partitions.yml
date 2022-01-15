@@ -1,0 +1,19 @@
+daisy_breakfast:
+  user: daisy
+  name: "Breakfast"
+  position: 1
+
+daisy_lunch:
+  user: daisy
+  name: "Lunch"
+  position: 2
+
+daisy_afternoon:
+  user: daisy
+  name: "Afternoon"
+  position: 3
+
+john_brunch:
+  user: john
+  name: "Brunch"
+  position: 1

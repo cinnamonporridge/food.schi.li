@@ -1,0 +1,9 @@
+.flex.flex-col.gap-y-4
+  %h1 Edit day partition
+
+  = render 'form', form: @form
+
+  = button_to day_partition_path(@form), method: :delete, class: 'dangerous-button gap-x-2' do
+    .h-4.w-4
+      = raw heroicon :trash
+    Delete day partition
