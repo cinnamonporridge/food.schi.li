@@ -54,10 +54,27 @@ class DayPartitionsTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_day_partitions
 
     click_on 'Breakfast'
-    click_on 'Delete day partition'
+
+    within 'form.day-partition--delete' do
+      click_on 'Delete day partition'
+    end
 
     assert_selector '.flash', text: 'Day partition deleted'
     assert_selector 'h1', text: 'Day partitions'
+  end
+
+  test 'deletes day partition is confirmable' do
+    using_browser do
+      sign_in_and_navigate_to_day_partitions
+
+      click_on 'Breakfast'
+
+      click_on 'Delete day partition'
+      click_on 'Confirm deletion'
+
+      assert_selector '.flash', text: 'Day partition deleted'
+      assert_selector 'h1', text: 'Day partitions'
+    end
   end
 
   private
