@@ -6,7 +6,7 @@ class Portion < ApplicationRecord
   belongs_to :food
   has_many :ingredients, dependent: :restrict_with_exception
   has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
-  has_many :meals, dependent: :restrict_with_exception
+  has_many :meal_ingredients, dependent: :restrict_with_exception
 
   scope :ordered_by_amount, -> { order(amount: :asc) }
   scope :ordered_by_food_name_and_amount, -> {
@@ -30,6 +30,6 @@ class Portion < ApplicationRecord
   end
 
   def deleteable?
-    ingredients.none? && meals.none?
+    ingredients.none? && meal_ingredients.none?
   end
 end

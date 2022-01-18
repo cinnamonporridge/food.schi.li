@@ -1,11 +1,11 @@
 .flex.flex-col.gap-y-2
   .w-full
     %h2 Meals
-  - if meals.any?
+  - if meal_ingredients.any?
     .flex
       .w-full
         %ul#recipes.flex.flex-col.gap-y-4
-          - meals.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meals|
+          - meal_ingredients.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meal_ingredients|
             %li.bg-white.border.border-gray-200.rounded.flex.flex-col
               - if recipe.present?
                 .px-4.py-2{ 'data-controller': 'toggleable' }
@@ -20,12 +20,12 @@
 
                   .pt-6{ 'data-toggleable-target': 'toggleable' }
                     .grid.grid-cols-1.sm:grid-cols-2.gap-2.items-center
-                      = link_to new_journal_day_meal_path(recipe_meals.first.journal_day, recipe_id: recipe.id), class: 'button gap-x-2 text-sm' do
+                      = link_to new_journal_day_meal_ingredient_path(recipe_meal_ingredients.first.journal_day, recipe_id: recipe.id), class: 'button gap-x-2 text-sm' do
                         .h-4.w-4
                           = raw heroicon :'plus-sm'
                         Add portion
 
-                      = button_to journal_day_recipe_path(recipe_meals.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'dangerous-button gap-x-2 text-sm' do
+                      = button_to journal_day_recipe_path(recipe_meal_ingredients.first.journal_day, recipe), method: :delete, 'data-confirm': 'Are you sure?', class: 'dangerous-button gap-x-2 text-sm' do
                         .h-4.w-4
                           = raw heroicon :trash
                         Remove recipe
@@ -34,8 +34,8 @@
                 .px-4.py-2.text-sm.tracking-wide.uppercase.text-gray-500.inline
                   Other
 
-              %ul#meals.my-2.divide-y.divide-gray-200
-                - recipe_meals.each do |recipe_meal|
+              %ul#meal-items.my-2.divide-y.divide-gray-200
+                - recipe_meal_ingredients.each do |recipe_meal|
                   %li.px-4.py-2.sm:py-4
                     %div.flex.flex-col{ 'data-controller': 'toggleable' }
                       .grid.grid-cols-12.items-baseline
@@ -50,11 +50,11 @@
                             = recipe_meal.decorate.rounded_amount_with_unit_abbrevation
                       .hidden.py-4{ 'data-toggleable-target': 'toggleable' }
                         .grid.grid-cols-1.sm:grid-cols-2.gap-2
-                          = link_to edit_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'button gap-x-2 text-sm' do
+                          = link_to edit_journal_day_meal_ingredient_path(recipe_meal.journal_day, recipe_meal), class: 'button gap-x-2 text-sm' do
                             .h-4.w-4
                               = raw heroicon :pencil
                             Edit ingredient
-                          = button_to journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'dangerous-button gap-x-2 text-sm', method: :delete do
+                          = button_to journal_day_meal_ingredient_path(recipe_meal.journal_day, recipe_meal), class: 'dangerous-button gap-x-2 text-sm', method: :delete do
                             .h-4.w-4
                               = raw heroicon :trash
                             Delete ingredient

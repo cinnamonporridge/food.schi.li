@@ -24,7 +24,7 @@ class JournalDays::RecipesController < ApplicationController
 
   def destroy
     recipe_id = params[:id]
-    @journal_day.meals.of_recipe(recipe_id).destroy_all
+    @journal_day.meal_ingredients.of_recipe(recipe_id).destroy_all
     NutritionFactsService.update_all
 
     redirect_to @journal_day, notice: 'Recipe removed'

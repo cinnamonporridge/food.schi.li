@@ -55,22 +55,22 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 54, recipe.fiber
   end
 
-  test '.update(:meals)' do
-    meal = meals(:johns_apple_on_january_first)
+  test '.update(:meal_ingredients)' do
+    meal_ingredient = meal_ingredients(:johns_apple_on_january_first)
 
-    truncate_nutrition_facts!(meal)
+    truncate_nutrition_facts!(meal_ingredient)
 
-    NutritionFactsService.update(:meals)
+    NutritionFactsService.update(:meal_ingredients)
 
-    meal.reload
+    meal_ingredient.reload
 
-    assert_equal 180, meal.kcal
-    assert_equal 180, meal.carbs
-    assert_in_delta(18.0, meal.carbs_sugar_part)
-    assert_equal 180, meal.protein
-    assert_equal 180, meal.fat
-    assert_in_delta(18.0, meal.fat_saturated)
-    assert_equal 180, meal.fiber
+    assert_equal 180, meal_ingredient.kcal
+    assert_equal 180, meal_ingredient.carbs
+    assert_in_delta(18.0, meal_ingredient.carbs_sugar_part)
+    assert_equal 180, meal_ingredient.protein
+    assert_equal 180, meal_ingredient.fat
+    assert_in_delta(18.0, meal_ingredient.fat_saturated)
+    assert_equal 180, meal_ingredient.fiber
   end
 
   test '.update(:journal_days)' do
@@ -91,9 +91,9 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 196, journal_day.fiber
   end
 
-  test '.update(:journal_days), no meals' do
+  test '.update(:journal_days), no meal_ingredients' do
     journal_day = journal_days(:john_january_first)
-    journal_day.meals.delete_all
+    journal_day.meal_ingredients.delete_all
 
     fake_nutrition_facts!(journal_day)
 

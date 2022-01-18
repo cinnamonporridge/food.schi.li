@@ -6,7 +6,7 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     number_of_servings = 5
     journal_day = journal_days(:daisy_february_second)
 
-    assert_difference 'journal_day.meals.count', 2 do
+    assert_difference 'journal_day.meal_ingredients.count', 2 do
       CopyRecipeToJournalDayService.new(recipe, number_of_servings, journal_day).call
     end
 
@@ -14,10 +14,10 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     milk_portion = portions(:milk_default_portion)
     apple_portion = portions(:big_apple_portion)
 
-    journal_day.meals.reload
+    journal_day.meal_ingredients.reload
 
-    milk_portion_on_journal_day = journal_day.meals.find_by(portion: milk_portion)
-    apple_portion_on_journal_day = journal_day.meals.find_by(portion: apple_portion)
+    milk_portion_on_journal_day = journal_day.meal_ingredients.find_by(portion: milk_portion)
+    apple_portion_on_journal_day = journal_day.meal_ingredients.find_by(portion: apple_portion)
 
     assert milk_portion_on_journal_day.present?
     assert apple_portion_on_journal_day.present?

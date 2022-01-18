@@ -22,7 +22,7 @@
 
   .flex
     .grid.grid-cols-2.gap-2.w-full
-      = link_to new_journal_day_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
+      = link_to new_journal_day_meal_ingredient_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
           = raw heroicon :'document'
         Add portion meal
@@ -35,4 +35,4 @@
 
   = render 'nutritions/table', nutritions_table: @journal_day.to_nutritions_table
 
-  = render 'meals', meals: @journal_day.meals
+  = render 'meal_ingredients', meal_ingredients: @journal_day.meal_ingredients

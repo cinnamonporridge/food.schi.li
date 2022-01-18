@@ -7,7 +7,7 @@ class CreateMeals < ActiveRecord::Migration[5.1]
       t.decimal :amount
       t.integer :measure
       t.integer :meal_type, null: false, default: 1
-      t.integer :measure_unit, null: false, default: Meal.measures[:unit]
+      t.integer :measure_unit, null: false, default: 'unit'
 
       t.timestamps
     end
