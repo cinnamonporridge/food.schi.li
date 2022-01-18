@@ -3,22 +3,22 @@ WITH default_amount AS (
 ),
 
 with_target_nutrition_facts AS (
-  SELECT m.id                                       AS meal_id
-       , m.journal_day_id                           AS meal_journal_day_id
-       , m.portion_id                               AS meal_portion_id
-       , m.amount                                   AS meal_amount
-       , m.measure                                  AS meal_measure
-       , (m.amount / da.value) * f.kcal             AS meal_target_kcal
-       , (m.amount / da.value) * f.carbs            AS meal_target_carbs
-       , (m.amount / da.value) * f.carbs_sugar_part AS meal_target_carbs_sugar_part
-       , (m.amount / da.value) * f.protein          AS meal_target_protein
-       , (m.amount / da.value) * f.fat              AS meal_target_fat
-       , (m.amount / da.value) * f.fat_saturated    AS meal_target_fat_saturated
-       , (m.amount / da.value) * f.fiber            AS meal_target_fiber
-       , m.created_at                               AS meal_created_at
-    FROM meals m
+  SELECT mi.id                                       AS meal_id
+       , mi.journal_day_id                           AS meal_journal_day_id
+       , mi.portion_id                               AS meal_portion_id
+       , mi.amount                                   AS meal_amount
+       , mi.measure                                  AS meal_measure
+       , (mi.amount / da.value) * f.kcal             AS meal_target_kcal
+       , (mi.amount / da.value) * f.carbs            AS meal_target_carbs
+       , (mi.amount / da.value) * f.carbs_sugar_part AS meal_target_carbs_sugar_part
+       , (mi.amount / da.value) * f.protein          AS meal_target_protein
+       , (mi.amount / da.value) * f.fat              AS meal_target_fat
+       , (mi.amount / da.value) * f.fat_saturated    AS meal_target_fat_saturated
+       , (mi.amount / da.value) * f.fiber            AS meal_target_fiber
+       , mi.created_at                               AS meal_created_at
+    FROM meal_ingredients mi
    CROSS JOIN default_amount da
-   INNER JOIN portions p ON p.id = m.portion_id
+   INNER JOIN portions p ON p.id = mi.portion_id
    INNER JOIN foods f    ON f.id = p.food_id
  ),
 
@@ -39,7 +39,7 @@ with_target_nutrition_facts AS (
      FROM with_target_nutrition_facts
  )
 
- INSERT INTO meals (
+ INSERT INTO meal_ingredients (
      id
    , journal_day_id
    , portion_id

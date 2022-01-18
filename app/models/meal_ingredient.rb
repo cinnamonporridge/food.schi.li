@@ -1,4 +1,4 @@
-class Meal < ApplicationRecord
+class MealIngredient < ApplicationRecord
   include NutritionFacts
 
   belongs_to :journal_day

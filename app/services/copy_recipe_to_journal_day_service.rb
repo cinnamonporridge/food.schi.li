@@ -14,14 +14,14 @@ class CopyRecipeToJournalDayService
   private
 
   def copy_ingredient_to_journal_day(recipe_ingredient)
-    new_meal = @journal_day.meals.new(
+    new_meal_ingredient = @journal_day.meal_ingredients.new(
       portion: recipe_ingredient.portion,
       recipe: @recipe,
       amount: amount_for(recipe_ingredient),
       measure: recipe_ingredient.measure
     )
 
-    new_meal.save
+    new_meal_ingredient.save
   end
 
   def copy_ratio

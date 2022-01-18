@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :journal_days do
-    resources :meals, except: [:index, :show]
+    resources :meal_ingredients, except: [:index, :show]
     resources :recipes, only: [:new, :create, :destroy], module: :journal_days
   end
 end

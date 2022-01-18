@@ -1,8 +1,8 @@
-class MealPortionForm
+class MealIngredientPortionForm
   include ActiveModel::Model
-  delegate :persisted?, :id, to: :meal
+  delegate :persisted?, :id, to: :meal_ingredient
 
-  attr_reader :meal, :portion_name, :portion_id, :measure, :amount_in_measure, :recipe_id
+  attr_reader :meal_ingredient, :portion_name, :portion_id, :measure, :amount_in_measure, :recipe_id
 
   validates :portion_name, :portion_id, :amount_in_measure, :measure, presence: true
   validates_numericality_of :amount_in_measure, greater_than: 0
@@ -10,12 +10,12 @@ class MealPortionForm
 
   # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
   def initialize(args = {})
-    @meal               = args[:meal]
-    @portion_name       = args[:portion_name] || find_portion_name_by_id(meal.portion&.id)
-    @portion_id         = find_portion_id_by_name(portion_name) || meal.portion&.id
-    @measure            = args[:measure] || meal.measure
-    @amount_in_measure  = args[:amount_in_measure] || to_amount_in_measure(meal.amount)
-    @recipe_id          = args[:recipe_id] || @meal.recipe_id
+    @meal_ingredient    = args[:meal_ingredient]
+    @portion_name       = args[:portion_name] || find_portion_name_by_id(meal_ingredient.portion&.id)
+    @portion_id         = find_portion_id_by_name(portion_name) || meal_ingredient.portion&.id
+    @measure            = args[:measure] || meal_ingredient.measure
+    @amount_in_measure  = args[:amount_in_measure] || to_amount_in_measure(meal_ingredient.amount)
+    @recipe_id          = args[:recipe_id] || @meal_ingredient.recipe_id
   end
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity
 
@@ -29,7 +29,7 @@ class MealPortionForm
   end
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, 'Meal')
+    ActiveModel::Name.new(self, nil, 'MealIngredient')
   end
 
   private

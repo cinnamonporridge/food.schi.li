@@ -10,7 +10,7 @@ class PortionTest < ActiveSupport::TestCase
     portion = portions(:sugar_cube_portion)
     journal_day = journal_days(:john_january_first)
 
-    Meal.create!(journal_day:, portion:)
+    MealIngredient.create!(journal_day:, portion:)
     assert_not portion.deleteable?, 'should not be deleteable because it is used in a meal'
   end
 

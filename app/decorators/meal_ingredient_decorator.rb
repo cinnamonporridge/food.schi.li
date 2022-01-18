@@ -1,4 +1,4 @@
-class MealDecorator < SimpleDelegator
+class MealIngredientDecorator < SimpleDelegator
   include ActionView::Helpers::TagHelper
 
   def quantity

@@ -43,7 +43,7 @@ class JournalDayTest < ApplicationSystemTestCase
     fill_in 'Amount in measure', with: '50'
     select 'g/ml', from: 'Measure'
 
-    click_on 'Create Meal'
+    click_on 'Create meal'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_text 'Peanut Butter'
@@ -75,11 +75,11 @@ class JournalDayTest < ApplicationSystemTestCase
 
     visit journal_day_path(journal_day)
 
-    list_item = find('ul#meals li', text: 'Apple Big Apple')
+    list_item = find('ul#meal-items li', text: 'Apple Big Apple')
     list_item.click
     list_item.click_on 'Delete'
 
-    assert_selector 'ul#meals li', text: 'Apple Big Apple', count: 0
+    assert_selector 'ul#meal-items li', text: 'Apple Big Apple', count: 0
   end
 
   test 'user adds and deletes a recipe from journal day' do
@@ -127,7 +127,7 @@ class JournalDayTest < ApplicationSystemTestCase
     fill_in 'Portion', with: 'Peanut Butter (100g)'
     fill_in 'Amount in measure', with: '133'
 
-    click_on 'Create Meal'
+    click_on 'Create meal'
 
     list_item = find('ul#recipes li', text: 'Apple Pie')
     list_item.assert_text 'Peanut'

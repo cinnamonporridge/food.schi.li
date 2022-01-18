@@ -17,19 +17,19 @@ class Food < ApplicationRecord
   validates :unit, presence: true
 
   def deleteable?
-    in_recipes.none? && in_meals.none?
+    in_recipes.none? && in_meal_ingredients.none?
   end
 
   def in_recipes
     @in_recipes ||= user.recipes.using_food(self)
   end
 
-  def in_meals
-    @in_meals ||= Meal.using_food(self)
+  def in_meal_ingredients
+    @in_meal_ingredients ||= MealIngredient.using_food(self)
   end
 
   def on_journal_days
-    @on_journal_days ||= JournalDay.using_meals(in_meals)
+    @on_journal_days ||= JournalDay.using_meal_ingredients(in_meal_ingredients)
   end
 
   def macronutrient_data
@@ -45,7 +45,7 @@ class Food < ApplicationRecord
 
   def can_be_destroyed
     check_if_in_recipe
-    check_if_in_meal
+    check_if_in_meal_ingredient
 
     throw(:abort) if errors.key?(:base)
   end
@@ -54,7 +54,7 @@ class Food < ApplicationRecord
     errors.add(:base, "Can't delete food that is still used in a recipe") if in_recipes.any?
   end
 
-  def check_if_in_meal
-    errors.add(:base, "Can't delete food that is still used in a meal") if in_meals.any?
+  def check_if_in_meal_ingredient
+    errors.add(:base, "Can't delete food that is still used in a meal") if in_meal_ingredients.any?
   end
 end

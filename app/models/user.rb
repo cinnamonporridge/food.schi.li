@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :journal_days, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :recipes, dependent: :destroy
-  has_many :meals, through: :journal_days
+  has_many :meal_ingredients, through: :journal_days
 
   def clear_reset_password
     self.reset_password_challenge = nil

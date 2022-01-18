@@ -3,19 +3,19 @@ WITH default_amount AS (
 ),
 
 with_journal_day_meal_nutrition_facts AS (
-  SELECT jd.id                                      AS journal_day_id
-       , (m.amount / da.value) * f.kcal             AS journal_day_meal_kcal
-       , (m.amount / da.value) * f.carbs            AS journal_day_meal_carbs
-       , (m.amount / da.value) * f.carbs_sugar_part AS journal_day_meal_carbs_sugar_part
-       , (m.amount / da.value) * f.protein          AS journal_day_meal_protein
-       , (m.amount / da.value) * f.fat              AS journal_day_meal_fat
-       , (m.amount / da.value) * f.fat_saturated    AS journal_day_meal_fat_saturated
-       , (m.amount / da.value) * f.fiber            AS journal_day_meal_fiber
+  SELECT jd.id                                       AS journal_day_id
+       , (mi.amount / da.value) * f.kcal             AS journal_day_meal_kcal
+       , (mi.amount / da.value) * f.carbs            AS journal_day_meal_carbs
+       , (mi.amount / da.value) * f.carbs_sugar_part AS journal_day_meal_carbs_sugar_part
+       , (mi.amount / da.value) * f.protein          AS journal_day_meal_protein
+       , (mi.amount / da.value) * f.fat              AS journal_day_meal_fat
+       , (mi.amount / da.value) * f.fat_saturated    AS journal_day_meal_fat_saturated
+       , (mi.amount / da.value) * f.fiber            AS journal_day_meal_fiber
     FROM journal_days jd
    CROSS JOIN default_amount da
-   LEFT OUTER JOIN meals m      ON m.journal_day_id = jd.id
-   LEFT OUTER JOIN portions p   ON p.id = m.portion_id
-   LEFT OUTER JOIN foods f      ON f.id = p.food_id
+   LEFT OUTER JOIN meal_ingredients mi      ON mi.journal_day_id = jd.id
+   LEFT OUTER JOIN portions p         ON p.id = mi.portion_id
+   LEFT OUTER JOIN foods f            ON f.id = p.food_id
  ),
 
  with_summed_nutrition_facts AS (

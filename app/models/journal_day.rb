@@ -1,7 +1,7 @@
 class JournalDay < ApplicationRecord
   belongs_to :user
 
-  has_many :meals, dependent: :destroy
+  has_many :meal_ingredients, dependent: :destroy
 
   validates :date, presence: true
   validates :date, uniqueness: { scope: :user }
@@ -10,7 +10,7 @@ class JournalDay < ApplicationRecord
   scope :ordered_by_date_asc, -> { order(date: :asc) }
   scope :ordered_by_date_desc, -> { order(date: :desc) }
 
-  scope :using_meals, ->(meals) { where(meals:) }
+  scope :using_meal_ingredients, ->(meal_ingredients) { where(meal_ingredients:) }
 
   scope :after_date, ->(date) { where('date > ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
@@ -27,7 +27,7 @@ class JournalDay < ApplicationRecord
   # REFACTOR ME: create NutritionTable and NutritionTableRow
   def to_nutritions_table
     {
-      meals: meals.map(&:to_nutritions_table_row),
+      meal_ingredients: meal_ingredients.map(&:to_nutritions_table_row),
       total: [[
         'Total',
         decorate.kcal,
