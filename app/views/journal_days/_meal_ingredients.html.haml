@@ -2,7 +2,7 @@
   .w-full
     %h2 Meals
   - if meal_ingredients.any?
-    .flex
+    .flex.meal-ingredients
       .w-full
         %ul#recipes.flex.flex-col.gap-y-4
           - meal_ingredients.ordered_by_recipe.group_by(&:recipe).each do |recipe, recipe_meal_ingredients|
