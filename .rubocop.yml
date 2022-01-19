@@ -183,6 +183,7 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Exclude:
   - db/migrate/*
+  - db/archive/migrate/*
 
 Minitest/AssertInDelta:
   Enabled: true
