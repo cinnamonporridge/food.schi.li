@@ -1,8 +1,8 @@
 WITH default_amount AS (
   SELECT 100::FLOAT AS VALUE
-),
+)
 
-with_journal_day_meal_nutrition_facts AS (
+, with_journal_day_meal_nutrition_facts AS (
   SELECT jd.id                                       AS journal_day_id
        , (mi.amount / da.value) * f.kcal             AS journal_day_meal_kcal
        , (mi.amount / da.value) * f.carbs            AS journal_day_meal_carbs
@@ -13,12 +13,13 @@ with_journal_day_meal_nutrition_facts AS (
        , (mi.amount / da.value) * f.fiber            AS journal_day_meal_fiber
     FROM journal_days jd
    CROSS JOIN default_amount da
-   LEFT OUTER JOIN meal_ingredients mi      ON mi.journal_day_id = jd.id
-   LEFT OUTER JOIN portions p         ON p.id = mi.portion_id
-   LEFT OUTER JOIN foods f            ON f.id = p.food_id
- ),
+   LEFT OUTER JOIN meals m                  ON m.journal_day_id = jd.id
+   LEFT OUTER JOIN meal_ingredients mi      ON mi.meal_id = m.id
+   LEFT OUTER JOIN portions p               ON p.id = mi.portion_id
+   LEFT OUTER JOIN foods f                  ON f.id = p.food_id
+)
 
- with_summed_nutrition_facts AS (
+, with_summed_nutrition_facts AS (
    SELECT journal_day_id
         , sum(journal_day_meal_kcal)             AS journal_day_kcal_sum
         , sum(journal_day_meal_carbs)            AS journal_day_carbs_sum
@@ -29,9 +30,9 @@ with_journal_day_meal_nutrition_facts AS (
         , sum(journal_day_meal_fiber)            AS journal_day_fiber_sum
      FROM with_journal_day_meal_nutrition_facts
     GROUP BY journal_day_id
-),
+)
 
-with_rounded_target_nutrution_facts AS (
+, with_rounded_target_nutrution_facts AS (
    SELECT journal_day_id
         , ROUND(journal_day_kcal_sum::NUMERIC, 0)             AS journal_day_target_kcal
         , ROUND(journal_day_carbs_sum::NUMERIC, 3)            AS journal_day_target_carbs

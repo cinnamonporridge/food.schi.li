@@ -93,7 +93,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
   test '.update(:journal_days), no meal_ingredients' do
     journal_day = journal_days(:john_january_first)
-    journal_day.meal_ingredients.delete_all
+    journal_day.meals.destroy_all
 
     fake_nutrition_facts!(journal_day)
 

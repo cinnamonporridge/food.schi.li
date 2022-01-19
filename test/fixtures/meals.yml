@@ -1,0 +1,19 @@
+daisys_big_apple_meal_on_february_first:
+  journal_day: daisy_february_first
+  consumable: big_apple_portion (Portion)
+
+daisys_glass_of_milk_meal_on_february_first:
+  journal_day: daisy_february_first
+  consumable: milk_default_portion (Portion)
+
+daisys_apple_pie_meal_on_february_fifth:
+  journal_day: daisy_february_fifth
+  consumable: apple_pie (Recipe)
+
+johns_apple_meal_on_january_first:
+  journal_day: john_january_first
+  consumable: apple_default_portion (Portion)
+
+johns_celery_meal_on_january_first:
+  journal_day: john_january_first
+  consumable: celery_old_default_portion (Portion)

@@ -1,20 +1,14 @@
 class MealIngredient < ApplicationRecord
   include NutritionFacts
 
-  belongs_to :journal_day
+  belongs_to :meal
   belongs_to :portion
-  belongs_to :recipe, optional: true
-
   has_one :food, through: :portion
 
   enum measure: { unit: 'unit', piece: 'piece' }, _prefix: :measure
 
-  scope :using_food, ->(food) {
-    includes(:portion).where(portions: { food: })
-  }
-
+  scope :using_food, ->(food) { includes(:portion).where(portions: { food: }) }
   scope :ordered_by_recipe, -> { order(:recipe_id) }
-
   scope :of_recipe, ->(recipe) { where(recipe:) }
 
   NutritionFacts::COLUMNS.each do |name|

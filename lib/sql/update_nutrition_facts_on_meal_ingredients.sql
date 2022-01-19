@@ -3,8 +3,8 @@ WITH default_amount AS (
 ),
 
 with_target_nutrition_facts AS (
-  SELECT mi.id                                       AS meal_id
-       , mi.journal_day_id                           AS meal_journal_day_id
+  SELECT mi.id                                       AS meal_ingredient_id
+       , mi.meal_id                                  AS meal_id
        , mi.portion_id                               AS meal_portion_id
        , mi.amount                                   AS meal_amount
        , mi.measure                                  AS meal_measure
@@ -23,8 +23,8 @@ with_target_nutrition_facts AS (
  ),
 
  with_rounded_nutrition_facts AS (
-   SELECT meal_id
-        , meal_journal_day_id
+   SELECT meal_ingredient_id
+        , meal_id
         , meal_portion_id
         , meal_amount
         , meal_measure
@@ -41,7 +41,7 @@ with_target_nutrition_facts AS (
 
  INSERT INTO meal_ingredients (
      id
-   , journal_day_id
+   , meal_id
    , portion_id
    , amount
    , measure
@@ -55,8 +55,8 @@ with_target_nutrition_facts AS (
    , created_at
    , updated_at
  )
- SELECT meal_id
-      , meal_journal_day_id
+ SELECT meal_ingredient_id
+      , meal_id
       , meal_portion_id
       , meal_amount
       , meal_measure

@@ -6,22 +6,29 @@ class CopyRecipeToJournalDayService
   end
 
   def call
-    @recipe.ingredients.each do |recipe_ingredient|
-      copy_ingredient_to_journal_day(recipe_ingredient)
-    end
+    copy_recipe_to_journal_day_meal
   end
 
   private
 
-  def copy_ingredient_to_journal_day(recipe_ingredient)
-    new_meal_ingredient = @journal_day.meal_ingredients.new(
+  def copy_recipe_to_journal_day_meal
+    @recipe.ingredients.each do |recipe_ingredient|
+      journal_day_meal.meal_ingredients << to_meal_ingredient(recipe_ingredient)
+    end
+
+    journal_day_meal.save
+  end
+
+  def journal_day_meal
+    @journal_day_meal ||= @journal_day.meals.new(consumable: @recipe)
+  end
+
+  def to_meal_ingredient(recipe_ingredient)
+    MealIngredient.new(
       portion: recipe_ingredient.portion,
-      recipe: @recipe,
       amount: amount_for(recipe_ingredient),
       measure: recipe_ingredient.measure
     )
-
-    new_meal_ingredient.save
   end
 
   def copy_ratio

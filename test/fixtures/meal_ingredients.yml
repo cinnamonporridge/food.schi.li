@@ -1,37 +1,35 @@
-daisys_big_apple_on_february_first:
-  journal_day: daisy_february_first
+daisys_big_apple_meal_ingredient_on_february_first:
+  meal: daisys_big_apple_meal_on_february_first
   portion: big_apple_portion
   amount: 1.0
   measure: 'piece'
 
-daisys_glass_of_milk_on_february_first:
-  journal_day: daisy_february_first
+daisys_glass_of_milk_meal_ingredient_on_february_first:
+  meal: daisys_glass_of_milk_meal_on_february_first
   portion: milk_default_portion
   amount: 250.0
   measure: 'unit'
 
-daisys_milk_from_apple_pie_on_february_fifth:
-  journal_day: daisy_february_fifth
-  recipe: apple_pie
+daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth:
+  meal: daisys_apple_pie_meal_on_february_fifth
   portion: milk_default_portion
   amount: 40
   measure: <%= Ingredient.measures[:unit] %>
 
 daisys_apples_from_apple_pie_on_february_fifth:
-  journal_day: daisy_february_fifth
-  recipe: apple_pie
+  meal: daisys_apple_pie_meal_on_february_fifth
   portion: big_apple_portion
   amount: 6
   measure: 'piece'
 
 johns_apple_on_january_first:
-  journal_day: john_january_first
+  meal: johns_apple_meal_on_january_first
   portion: apple_default_portion
   amount: 180.0
   measure: 'unit'
 
 johns_celery_on_january_first:
-  journal_day: john_january_first
+  meal: johns_celery_meal_on_january_first
   portion: celery_old_default_portion
   amount: 20.0
   measure: 'unit'

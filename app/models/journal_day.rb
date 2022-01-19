@@ -1,7 +1,7 @@
 class JournalDay < ApplicationRecord
   belongs_to :user
 
-  has_many :meal_ingredients, dependent: :destroy
+  has_many :meals, dependent: :destroy
 
   validates :date, presence: true
   validates :date, uniqueness: { scope: :user }
@@ -27,7 +27,7 @@ class JournalDay < ApplicationRecord
   # REFACTOR ME: create NutritionTable and NutritionTableRow
   def to_nutritions_table
     {
-      meal_ingredients: meal_ingredients.map(&:to_nutritions_table_row),
+      meal_ingredients: meals.map { |meal| meal.meal_ingredients.map(&:to_nutritions_table_row) },
       total: [[
         'Total',
         decorate.kcal,

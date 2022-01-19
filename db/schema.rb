@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_120000) do
+ActiveRecord::Schema.define(version: 2022_01_19_120007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,10 +79,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_120000) do
   end
 
   create_table "meal_ingredients", force: :cascade do |t|
-    t.bigint "journal_day_id"
-    t.bigint "portion_id"
-    t.bigint "recipe_id"
-    t.decimal "amount"
+    t.bigint "portion_id", null: false
+    t.decimal "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "kcal", default: 0, null: false
@@ -93,9 +91,30 @@ ActiveRecord::Schema.define(version: 2022_01_19_120000) do
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.string "measure", default: "unit", null: false
-    t.index ["journal_day_id"], name: "index_meal_ingredients_on_journal_day_id"
+    t.bigint "meal_id", null: false
+    t.index ["meal_id", "portion_id"], name: "index_meal_ingredients_on_meal_id_and_portion_id", unique: true
+    t.index ["meal_id"], name: "index_meal_ingredients_on_meal_id"
     t.index ["portion_id"], name: "index_meal_ingredients_on_portion_id"
-    t.index ["recipe_id"], name: "index_meal_ingredients_on_recipe_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.bigint "journal_day_id", null: false
+    t.bigint "day_partition_id"
+    t.bigint "consumable_id", null: false
+    t.string "consumable_type", null: false
+    t.integer "kcal", default: 0, null: false
+    t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "protein", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
+    t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["day_partition_id"], name: "index_meals_on_day_partition_id"
+    t.index ["journal_day_id", "consumable_id", "consumable_type"], name: "indx_journal_day_consumable", unique: true
+    t.index ["journal_day_id", "day_partition_id", "consumable_id", "consumable_type"], name: "indx_journal_day_day_partition_consumable", unique: true
+    t.index ["journal_day_id"], name: "index_meals_on_journal_day_id"
   end
 
   create_table "portions", force: :cascade do |t|
@@ -149,9 +168,10 @@ ActiveRecord::Schema.define(version: 2022_01_19_120000) do
   add_foreign_key "foods", "users"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "journal_days", "users"
-  add_foreign_key "meal_ingredients", "journal_days"
+  add_foreign_key "meal_ingredients", "meals"
   add_foreign_key "meal_ingredients", "portions"
-  add_foreign_key "meal_ingredients", "recipes"
+  add_foreign_key "meals", "day_partitions"
+  add_foreign_key "meals", "journal_days"
   add_foreign_key "portions", "foods"
   add_foreign_key "recipes", "users"
 end

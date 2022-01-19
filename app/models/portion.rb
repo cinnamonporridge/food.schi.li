@@ -6,6 +6,7 @@ class Portion < ApplicationRecord
   belongs_to :food
   has_many :ingredients, dependent: :restrict_with_exception
   has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
+  has_many :meals, as: :consumable
   has_many :meal_ingredients, dependent: :restrict_with_exception
 
   scope :ordered_by_amount, -> { order(amount: :asc) }

@@ -13,6 +13,10 @@ class DayPartition < ApplicationRecord
 
   scope :ordered_by_position, -> { order(position: :asc) }
 
+  def to_label
+    ["#{position} - #{name}", id]
+  end
+
   private
 
   def initialize_position

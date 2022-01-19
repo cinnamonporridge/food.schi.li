@@ -6,7 +6,7 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     number_of_servings = 5
     journal_day = journal_days(:daisy_february_second)
 
-    assert_difference 'journal_day.meal_ingredients.count', 2 do
+    assert_difference -> { journal_day.meals.count }, +1 do
       CopyRecipeToJournalDayService.new(recipe, number_of_servings, journal_day).call
     end
 
@@ -14,21 +14,20 @@ class CopyRecipeToJournalDayServiceTest < ActiveSupport::TestCase
     milk_portion = portions(:milk_default_portion)
     apple_portion = portions(:big_apple_portion)
 
-    journal_day.meal_ingredients.reload
+    journal_day.meals.last.tap do |meal|
+      assert_equal recipe, meal.consumable
 
-    milk_portion_on_journal_day = journal_day.meal_ingredients.find_by(portion: milk_portion)
-    apple_portion_on_journal_day = journal_day.meal_ingredients.find_by(portion: apple_portion)
+      milk_portion_in_meal = meal.meal_ingredients.find_by(portion: milk_portion)
+      apple_portion_in_meal = meal.meal_ingredients.find_by(portion: apple_portion)
 
-    assert milk_portion_on_journal_day.present?
-    assert apple_portion_on_journal_day.present?
+      assert milk_portion_in_meal.present?
+      assert apple_portion_in_meal.present?
 
-    assert_equal recipe, milk_portion_on_journal_day.recipe, 'Milk should come from the apple pie recipe'
-    assert_equal recipe, apple_portion_on_journal_day.recipe, 'Apple should come from the apple pie recipe'
+      assert_equal 'unit', milk_portion_in_meal.measure
+      assert_equal 'piece', apple_portion_in_meal.measure
 
-    assert_equal 'unit', milk_portion_on_journal_day.measure
-    assert_equal 'piece', apple_portion_on_journal_day.measure
-
-    assert_in_delta(33.33, milk_portion_on_journal_day.amount.round(2).to_f)
-    assert_in_delta(5.0, apple_portion_on_journal_day.amount.round(2).to_f)
+      assert_in_delta(33.33, milk_portion_in_meal.amount.round(2).to_f)
+      assert_in_delta(5.0, apple_portion_in_meal.amount.round(2).to_f)
+    end
   end
 end
