@@ -3,7 +3,7 @@
     .w-full{ 'data-controller': 'toggleable' }
       .flex
         .grow
-          %h1.text-sm.uppercase= @journal_day.display_date_with_weekday
+          %h1.text-sm.uppercase= @journal_day.decorate.display_date_with_weekday
         .shrink-0
           %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
             .h-4.w-4

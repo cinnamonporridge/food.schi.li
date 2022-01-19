@@ -8,9 +8,15 @@
 
     .p-4.flex.flex-col.gap-y-2
       = f.button type: :submit, class: 'button gap-x-1' do
-        .h-4.w-4
-          = raw heroicon :'plus-sm'
-        Add journal day
+        - if journal_day.persisted?
+          .h-4.w-4
+            = raw heroicon :pencil
+          Edit journal day
+
+        - else
+          .h-4.w-4
+            = raw heroicon :'plus-sm'
+          Add journal day
 
       .text-center
-        = link_to 'Cancel', foods_path, class: 'shy-link text-xs'
+        = link_to 'Cancel', journal_day, class: 'shy-link text-xs'

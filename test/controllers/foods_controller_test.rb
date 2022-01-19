@@ -6,7 +6,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # index
-  test 'get index shows' do
+  test 'get index' do
     get foods_path
     assert_response :success
   end
@@ -24,7 +24,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # new
-  test 'get new of own food' do
+  test 'get new' do
     get new_food_path
     assert_response :success
   end
