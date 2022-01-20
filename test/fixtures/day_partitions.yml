@@ -1,3 +1,8 @@
+daisy_default:
+  user: daisy
+  name: "DEFAULT"
+  position: 0
+
 daisy_breakfast:
   user: daisy
   name: "Breakfast"
@@ -12,6 +17,11 @@ daisy_afternoon:
   user: daisy
   name: "Afternoon"
   position: 3
+
+john_default:
+  user: john
+  name: "DEFAULT"
+  position: 0
 
 john_brunch:
   user: john

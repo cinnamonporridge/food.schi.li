@@ -6,7 +6,7 @@ class JournalDay < ApplicationRecord
   validates :date, presence: true
   validates :date, uniqueness: { scope: :user }
 
-  scope :of, ->(user = User.none) { where(user:) }
+  scope :of_user, ->(user = User.none) { where(user:) }
   scope :ordered_by_date_asc, -> { order(date: :asc) }
   scope :ordered_by_date_desc, -> { order(date: :desc) }
 

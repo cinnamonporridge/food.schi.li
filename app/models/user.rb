@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :meal_ingredients, through: :journal_days
   has_many :day_partitions, dependent: :destroy
+  has_one :default_day_partition, -> { defaults }, class_name: 'DayPartition'
 
   def clear_reset_password
     self.reset_password_challenge = nil

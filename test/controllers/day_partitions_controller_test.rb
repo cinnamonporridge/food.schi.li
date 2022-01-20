@@ -43,6 +43,10 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'cannot get edit default' do
+    assert false, 'todo'
+  end
+
   test 'cannot get edit of other' do
     login_user :daisy
 
@@ -69,6 +73,10 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'cannot put update default' do
+    assert false, 'todo'
+  end
+
   test 'cannot put update of other' do
     login_user :daisy
 
@@ -89,6 +97,10 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { user.day_partitions.count }, -1 do
       delete day_partition_path(day_partition), params: {}
     end
+  end
+
+  test 'cannot delete destroy default' do
+    assert false, 'todo'
   end
 
   test 'cannot delete destroy of other' do

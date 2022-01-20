@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resource :forgot_passwords, only: [:new, :create]
+  resource :forgot_passwords, only: %i[new create]
   get '/reset_password/:challenge', to: 'reset_passwords#new', as: 'reset_password'
   resource :reset_passwords, only: [:create]
 
@@ -22,8 +22,12 @@ Rails.application.routes.draw do
   end
 
   resources :journal_days do
-    resources :meals, only: [:create, :new, :destroy], module: :journal_days
-    resources :recipes, only: [:new, :create, :destroy], module: :journal_days
+    resources :portion_meals, only: %i[new create], module: :journal_days
+    resources :recipe_meals, only: %i[new create], module: :journal_days
+  end
+
+  resources :meals, only: :destroy do
+    resources :ingredients, only: %i[new create edit update destroy], module: :meals
   end
 
   resources :day_partitions

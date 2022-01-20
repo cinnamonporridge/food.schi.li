@@ -22,12 +22,12 @@
 
   .flex
     .grid.grid-cols-2.gap-2.w-full
-      = link_to new_journal_day_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
+      = link_to new_journal_day_portion_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
           = raw heroicon :'document'
         Add portion meal
 
-      = link_to new_journal_day_recipe_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
+      = link_to new_journal_day_recipe_meal_path(@journal_day), class: 'button gap-x-1 text-xs sm:text-sm' do
         .h-4.w-4
           = raw heroicon :'book-open'
         Add recipe meal

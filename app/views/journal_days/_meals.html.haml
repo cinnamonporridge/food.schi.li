@@ -3,20 +3,33 @@
     %h2 Meals
 
   - if meals.any?
-
-    %h3.bg-green-700.text-white.p-2.rounded.text-sm Recipes
-    %ul
-    - meals.of_recipes.each do |recipe_meal|
-      %li
-        = "From #{recipe_meal.consumable.name}"
-        = "#{recipe_meal.meal_ingredients.count} ingredients"
-
-    %h3.bg-green-700.text-white.p-2.rounded.text-sm Portions
-    %ul
-    - meals.of_portions.each do |portion_meal|
-      %li
-        - portion_meal.meal_ingredients.each do |meal_ingredient|
-          = meal_ingredient.portion.food.name
+    %ul.meals.flex.flex-col.gap-y-4
+      - meals.ordered_by_consumable_type_and_day_partition.each do |meal|
+        %li.meal.bg-white.border.border-gray-200.rounded.flex.flex-col.divide-y.divide-gray-200
+          .flex.items-start.text-gray-500.px-4.py-2
+            .grow.flex.gap-x-2
+              = meal.decorate.display_recipe_name
+              = meal.decorate.display_type
+              = meal.decorate.display_day_partition_name
+            .shrink-0.flex.gap-x-2.text-xs
+              - if meal.recipe?
+                = link_to 'Add', new_meal_ingredient_path(meal), class: 'text-green-500'
+                = button_to 'Delete', meal_path(meal), method: :delete, class: 'text-red-400'
+          %ul.meal-ingredients
+            - meal.meal_ingredients.each do |meal_ingredient|
+              %li
+                .px-4.py-1.flex.items-center
+                  .grow.flex
+                    %span
+                      = meal_ingredient.decorate.display_portion_name
+                    %span.text-gray-400.text-sm
+                      = meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
+                    %span
+                      = meal_ingredient.decorate.quantity
+                  .shrink-0.flex.gap-x-2.text-xs
+                    - if meal.portion?
+                      = button_to 'Delete', meal_path(meal), method: :delete, class: 'text-red-400'
+                    = link_to 'Edit', edit_meal_ingredient_path(meal_ingredient), class: 'text-blue-400'
     /   .flex.meal-ingredients
     /     .w-full
     /       %ul#recipes.flex.flex-col.gap-y-4
@@ -74,4 +87,4 @@
     /                             = raw heroicon :trash
     /                           Delete ingredient
   - else
-    .text-gray-400.text-center.tracking-wider.text-2xs No meals yet
+    .text-gray-400.tracking-wider.text-sm No meals yet

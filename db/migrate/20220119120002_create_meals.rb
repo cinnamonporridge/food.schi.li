@@ -2,7 +2,7 @@ class CreateMeals < ActiveRecord::Migration[7.0]
   def change
     create_table :meals do |t|
       t.belongs_to :journal_day, index: true, foreign_key: true, null: false
-      t.belongs_to :day_partition, index: true, foreign_key: true, null: true
+      t.belongs_to :day_partition, index: true, foreign_key: true, null: false
       t.bigint :consumable_id, null: false
       t.string :consumable_type, null: false
       t.integer 'kcal', default: 0, null: false

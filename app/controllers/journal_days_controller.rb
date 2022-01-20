@@ -4,8 +4,8 @@ class JournalDaysController < ApplicationController
   before_action :set_journal_day, only: %i[show edit update destroy]
 
   def index
-    @todays_journal_day = JournalDay.of(current_user).find_or_initialize_by(date: current_user.today)
-    @pagy, @journal_days = pagy(JournalDay.of(current_user).ordered_by_date_desc)
+    @todays_journal_day = JournalDay.of_user(current_user).find_or_initialize_by(date: current_user.today)
+    @pagy, @journal_days = pagy(JournalDay.of_user(current_user).ordered_by_date_desc)
   end
 
   def show; end
@@ -49,6 +49,6 @@ class JournalDaysController < ApplicationController
   end
 
   def set_journal_day
-    @journal_day = current_user.journal_days.find(params[:id])
+    @journal_day = JournalDay.of_user(current_user).find(params[:id])
   end
 end

@@ -1,19 +1,24 @@
 daisys_big_apple_meal_on_february_first:
   journal_day: daisy_february_first
+  day_partition: daisy_default
   consumable: big_apple_portion (Portion)
 
 daisys_glass_of_milk_meal_on_february_first:
   journal_day: daisy_february_first
+  day_partition: daisy_default
   consumable: milk_default_portion (Portion)
 
 daisys_apple_pie_meal_on_february_fifth:
   journal_day: daisy_february_fifth
+  day_partition: daisy_default
   consumable: apple_pie (Recipe)
 
 johns_apple_meal_on_january_first:
   journal_day: john_january_first
+  day_partition: john_default
   consumable: apple_default_portion (Portion)
 
 johns_celery_meal_on_january_first:
   journal_day: john_january_first
+  day_partition: john_default
   consumable: celery_old_default_portion (Portion)

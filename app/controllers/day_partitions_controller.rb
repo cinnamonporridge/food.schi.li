@@ -2,7 +2,7 @@ class DayPartitionsController < ApplicationController
   before_action :set_day_partition, only: %i[edit update destroy]
 
   def index
-    @day_partitions = current_user.day_partitions.ordered_by_position
+    @day_partitions = current_user.day_partitions.not_defaults.ordered_by_position
   end
 
   def new
@@ -47,6 +47,6 @@ class DayPartitionsController < ApplicationController
   end
 
   def set_day_partition
-    @day_partition = current_user.day_partitions.find(params[:id])
+    @day_partition = current_user.day_partitions.not_defaults.find(params[:id])
   end
 end
