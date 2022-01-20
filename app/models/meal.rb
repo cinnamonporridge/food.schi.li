@@ -5,8 +5,8 @@ class Meal < ApplicationRecord
 
   has_many :meal_ingredients, dependent: :destroy
 
-  # scope :of_recipes, -> { where(consumable_type: 'Recipe') }
-  # scope :of_portions, -> { where(consumable_type: 'Portion') }
+  scope :of_recipes, -> { where(consumable_type: 'Recipe') }
+  scope :of_portions, -> { where(consumable_type: 'Portion') }
 
   before_validation :sanitize_day_partition
 

@@ -3,33 +3,87 @@
     %h2 Meals
 
   - if meals.any?
-    %ul.meals.flex.flex-col.gap-y-4
-      - meals.ordered_by_consumable_type_and_day_partition.each do |meal|
-        %li.meal.bg-white.border.border-gray-200.rounded.flex.flex-col.divide-y.divide-gray-200
-          .flex.items-start.text-gray-500.px-4.py-2
-            .grow.flex.gap-x-2
-              = meal.decorate.display_recipe_name
-              = meal.decorate.display_type
-              = meal.decorate.display_day_partition_name
-            .shrink-0.flex.gap-x-2.text-xs
-              - if meal.recipe?
-                = link_to 'Add', new_meal_ingredient_path(meal), class: 'text-green-500'
-                = button_to 'Delete', meal_path(meal), method: :delete, class: 'text-red-400'
-          %ul.meal-ingredients
-            - meal.meal_ingredients.each do |meal_ingredient|
-              %li
-                .px-4.py-1.flex.items-center
-                  .grow.flex
-                    %span
-                      = meal_ingredient.decorate.display_portion_name
-                    %span.text-gray-400.text-sm
-                      = meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
-                    %span
-                      = meal_ingredient.decorate.quantity
-                  .shrink-0.flex.gap-x-2.text-xs
-                    - if meal.portion?
-                      = button_to 'Delete', meal_path(meal), method: :delete, class: 'text-red-400'
-                    = link_to 'Edit', edit_meal_ingredient_path(meal_ingredient), class: 'text-blue-400'
+    .meals.flex.flex-col.gap-y-4
+      - if meals.of_recipes.any?
+        %h3.text-sm.uppercase Recipes
+
+        %ul.recipe-meals
+          - meals.of_recipes.ordered_by_day_partition.each do |recipe_meal|
+            %li.recipe-meal.bg-white.border.border-gray-200.rounded.flex.flex-col
+              .flex.items-baseline.text-gray-900.px-4.py-2
+                .grow.flex.gap-x-2.items-baseline
+                  = recipe_meal.decorate.display_recipe_name
+                .shrink-0.text-xs.text-gray-400.flex.gap-x-4.items-center
+                  .bg-gray-200.text-gray-400.px-2.rounded= recipe_meal.decorate.display_day_partition_name
+                  .h-4.w-4
+                    = raw heroicon :'dots-vertical'
+              .flex.flex-col.gap-y-2.px-4.py-2
+                = link_to new_recipe_meal_ingredient_path(recipe_meal), class: 'button gap-x-1' do
+                  .h-4.w-4
+                    = raw heroicon :'plus-sm'
+                  Add portion to recipe
+
+                = link_to edit_recipe_meal_path(recipe_meal), class: 'secondary-button gap-x-1' do
+                  .h-4.w-4
+                    = raw heroicon :pencil
+                  Edit recipe
+
+                = button_to meal_path(recipe_meal), method: :delete, class: 'dangerous-button gap-x-1' do
+                  .h-4.w-4
+                    = raw heroicon :trash
+                  Remove recipe from journal day
+
+              .flex
+                %ul.w-full.divide-y.divide-gray-200
+                  - recipe_meal.meal_ingredients.each do |recipe_meal_ingredient|
+                    %li
+                      .px-4.py-2.flex.items-start.gap-x-2
+                        .grow
+                          .grid.grid-cols-12.gap-x-2.items-baseline.overflow-hidden.w-full
+                            .col-span-8
+                              = recipe_meal_ingredient.decorate.display_portion_name
+                            .col-span-2.text-right.text-sm
+                              = recipe_meal_ingredient.decorate.quantity
+                            .col-span-2.text-right.text-sm
+                              = recipe_meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
+                        .shrink-0.pt-1
+                          .h-4.w-4
+                            = raw heroicon :'dots-vertical'
+
+
+
+
+    / - meals.ordered_by_consumable_type_and_day_partition.each do |meal|
+    /   .meal.bg-white.border.border-gray-200.rounded.flex.flex-col.divide-y.divide-gray-200
+    /     .flex.items-baseline.text-gray-500.px-4.py-2
+    /       .grow.flex.gap-x-2
+    /         = meal.decorate.display_recipe_name
+    /         = meal.decorate.display_type
+    /         = meal.decorate.display_day_partition_name
+    /       .shrink-0.flex.gap-x-2.text-xs
+    /         - if meal.recipe?
+    /           = link_to 'Edit', edit_recipe_meal_path(meal), class: 'text-blue-400'
+    /           = link_to 'Add', new_recipe_meal_ingredient_path(meal), class: 'text-green-500'
+    /           = button_to 'Delete', meal_path(meal), method: :delete, class: 'text-red-400'
+    /     .meal-ingredients
+    /       - meal.meal_ingredients.each do |meal_ingredient|
+    /         %li
+    /           .px-4.py-1.flex.items-center
+    /             .grow.flex
+    /               %span
+    /                 = meal_ingredient.decorate.display_portion_name
+    /               %span.text-gray-400.text-sm
+    /                 = meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
+    /               %span
+    /                 = meal_ingredient.decorate.quantity
+    /             .shrink-0.flex.gap-x-2.text-xs
+    /               - if meal.portion?
+    /                 = link_to 'Edit', edit_portion_meal_path(meal), class: 'text-blue-400'
+    /               - elsif meal.recipe?
+    /                 = link_to 'Edit', edit_recipe_meal_ingredient_path(meal, meal_ingredient), class: 'text-blue-400'
+    /               = button_to 'Delete', meal_ingredient_path(meal_ingredient), method: :delete, class: 'text-red-400'
+
+
     /   .flex.meal-ingredients
     /     .w-full
     /       %ul#recipes.flex.flex-col.gap-y-4

@@ -1,29 +1,15 @@
 class MealIngredientsController < ApplicationController
-  before_action :set_meal_ingredient
+  before_action :set_meal_ingredient, only: :destroy
 
-  def edit
-    @form = MealIngredientForm.new(@meal_ingredient)
-  end
-
-  def update
-    @form = MealIngredientForm.new(@meal_ingredient, meal_ingredient_params)
-
-    if @form.save
-      NutritionFactsService.update_all
-      redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient updated'
-    else
-      flash[:notice] = 'Invalid input'
-      render :edit
-    end
+  def destroy
+    @meal_ingredient.destroy
+    @meal_ingredient.meal.destroy if @meal_ingredient.meal.meal_ingredients.count.zero?
+    redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient deleted'
   end
 
   private
 
   def set_meal_ingredient
     @meal_ingredient = MealIngredient.of_user(current_user).find(params[:id])
-  end
-
-  def meal_ingredient_params
-    params.require(:meal_ingredient).permit(:amount_in_measure, :measure)
   end
 end

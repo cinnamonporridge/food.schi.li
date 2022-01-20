@@ -18,7 +18,7 @@ class JournalDay::RecipeMealForm < ApplicationForm
     return unless valid?
 
     object.consumable = recipe
-    object.day_partition = user.day_partitions.find_by(id: day_partition_id)
+    object.day_partition = user.day_partitions.find_by(id: day_partition_id) || User.default_day_partition
     build_meal_ingredients.each do |meal_ingredient|
       object.meal_ingredients << meal_ingredient
     end
