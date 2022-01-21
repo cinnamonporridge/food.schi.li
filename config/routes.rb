@@ -35,7 +35,5 @@ Rails.application.routes.draw do
     resources :ingredients, module: :recipe_meals
   end
 
-  resources :meal_ingredients, only: :destroy
-
   resources :day_partitions
 end

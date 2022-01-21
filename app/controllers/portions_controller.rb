@@ -6,8 +6,6 @@ class PortionsController < ApplicationController
     @portion = find_food.portions.new
   end
 
-  def edit; end
-
   def create
     @portion = find_food.portions.new(portion_params)
 
@@ -19,6 +17,8 @@ class PortionsController < ApplicationController
       render :new
     end
   end
+
+  def edit; end
 
   def update
     if @portion.update(portion_params)
