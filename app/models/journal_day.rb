@@ -10,8 +10,6 @@ class JournalDay < ApplicationRecord
   scope :ordered_by_date_asc, -> { order(date: :asc) }
   scope :ordered_by_date_desc, -> { order(date: :desc) }
 
-  scope :using_meal_ingredients, ->(meal_ingredients) { where(meal_ingredients:) }
-
   scope :after_date, ->(date) { where('date > ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
 
