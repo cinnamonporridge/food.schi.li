@@ -8,6 +8,8 @@ class DayPartition::SaveService
   end
 
   def save
+    raise 'Cannot save another default position' if day_partition.default_position?
+
     DayPartition.transaction do
       execute move_away_conflicting_positions_sql
       @day_partition.save
@@ -28,13 +30,6 @@ class DayPartition::SaveService
     ActiveRecord::Base.connection.execute(sql)
   end
 
-  def position_already_taken?
-    user.day_partitions
-        .where.not(id: day_partition.id)
-        .where(position: day_partition.position)
-        .one?
-  end
-
   def normalize_positions_sql
     <<~SQL.squish
       UPDATE day_partitions dp
@@ -42,7 +37,8 @@ class DayPartition::SaveService
         FROM ( SELECT id
                     , rank() OVER (ORDER BY position) AS target_position
                  FROM day_partitions
-                WHERE user_id = #{user.id} ) t
+                WHERE user_id = #{user.id}
+                  AND position != #{DayPartition::DEFAULT_POSITION} ) t
        WHERE dp.id = t.id
     SQL
   end

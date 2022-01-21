@@ -6,11 +6,11 @@ class DayPartition < ApplicationRecord
   belongs_to :user
 
   after_initialize :initialize_position
-  before_validation :assign_next_position, if: :default_position?
+  before_validation :assign_next_position, if: :initial_position?
 
   validates :name, :position, presence: true
   validates :name, uniqueness: { scope: :user_id }
-  validates :position, numericality: { greater_than: 0 }
+  validates :position, numericality: { greater_than_or_equal_to: 0 }
   validates :position, uniqueness: { scope: :user_id }
 
   scope :defaults, -> { where(position: DEFAULT_POSITION) }
@@ -19,6 +19,12 @@ class DayPartition < ApplicationRecord
 
   def default_position?
     position == DEFAULT_POSITION
+  end
+
+  def self.intialize_default_day_partition_for_user(user)
+    find_or_initialize_by(user:, position: DEFAULT_POSITION).tap do |day_partition|
+      day_partition.name = DEFAULT_NAME
+    end
   end
 
   private

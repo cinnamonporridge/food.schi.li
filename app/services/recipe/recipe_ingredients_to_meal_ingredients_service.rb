@@ -18,7 +18,7 @@ class Recipe::RecipeIngredientsToMealIngredientsService
   end
 
   def copy_ratio
-    (@number_of_servings.to_f / @recipe.servings)
+    (@servings.to_f / @recipe.servings)
   end
 
   def amount_for(recipe_ingredient)

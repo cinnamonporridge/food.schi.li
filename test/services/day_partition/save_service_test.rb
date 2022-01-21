@@ -23,6 +23,17 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
     assert_ordered_day_partition_names(user, %w[Afternoon Breakfast Lunch])
   end
 
+  test '#save raises error when position is 0' do
+    user = users(:daisy)
+    day_partition = day_partitions(:daisy_afternoon)
+    day_partition.position = 0
+
+    service = DayPartition::SaveService.new(day_partition)
+    error = assert_raises(RuntimeError) { service.save }
+
+    assert_equal 'Cannot save another default position', error.message
+  end
+
   test '#destroy normalizes day partitions after destroying' do
     user = users(:daisy)
     day_partition = day_partitions(:daisy_breakfast)
@@ -36,7 +47,7 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
   private
 
   def assert_ordered_day_partition_names(user, names)
-    ordered_day_partition_names = user.day_partitions.ordered_by_position.pluck(:name)
+    ordered_day_partition_names = user.day_partitions.not_defaults.ordered_by_position.pluck(:name)
     assert_equal names, ordered_day_partition_names
   end
 end

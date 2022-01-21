@@ -9,7 +9,7 @@ class DayPartitionTest < ActiveSupport::TestCase
     assert_equal 3, errors.count
     assert_includes errors, 'User must exist'
     assert_includes errors, "Name can't be blank"
-    assert_includes errors, 'Position must be greater than 0'
+    assert_includes errors, 'Position must be greater than or equal to 0'
   end
 
   test 'save' do
