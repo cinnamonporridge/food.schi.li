@@ -23,6 +23,10 @@ class ActiveSupport::TestCase
 
   private
 
+  def assert_notice(message)
+    assert_equal flash[:notice], message
+  end
+
   def login_form_params(user_email, password)
     {
       login_form: { email: user_email, password: }

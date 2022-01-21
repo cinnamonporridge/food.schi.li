@@ -1,6 +1,6 @@
 class RecipeMeals::IngredientsController < ApplicationController
   before_action :set_recipe_meal, only: %i[new create]
-  before_action :set_recipe_meal_ingredient, only: %i[edit update]
+  before_action :set_recipe_meal_ingredient, only: %i[edit update destroy]
 
   def new
     @form = RecipeMeal::IngredientForm.new(@recipe_meal.meal_ingredients.new)
@@ -32,6 +32,11 @@ class RecipeMeals::IngredientsController < ApplicationController
       flash[:notice] = 'Invalid input'
       render :edit
     end
+  end
+
+  def destroy
+    @recipe_meal_ingredient.destroy
+    redirect_to @recipe_meal_ingredient.meal.journal_day, notice: 'Meal ingredient deleted'
   end
 
   private

@@ -18,7 +18,9 @@ class RecipeMeal::IngredientForm < ApplicationForm
   def save
     return unless valid?
 
-    object.assign_attributes(portion:, amount:, measure:)
+    object.portion = portion
+    object.amount = amount # needs object.portion
+    object.measure = measure
 
     super
   end

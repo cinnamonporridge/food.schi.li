@@ -57,7 +57,7 @@
                               .h-4.w-4
                                 = raw heroicon :pencil
                               Edit meal ingredient
-                            = button_to meal_ingredient_path(recipe_meal_ingredient), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
+                            = button_to recipe_meal_ingredient_path(recipe_meal, recipe_meal_ingredient), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
                               .h-4.w-4
                                 = raw heroicon :trash
                               Remove meal ingredient
