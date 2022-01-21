@@ -11,7 +11,7 @@ class DayPartition < ApplicationRecord
   validates :name, :position, presence: true
   validates :name, uniqueness: { scope: :user_id }
   validates :position, numericality: { greater_than_or_equal_to: 0 }
-  validates :position, uniqueness: { scope: :user_id }
+  validate :default_day_partition_does_not_exist_yet
 
   scope :defaults, -> { where(position: DEFAULT_POSITION) }
   scope :not_defaults, -> { where.not(position: DEFAULT_POSITION) }
@@ -45,5 +45,11 @@ class DayPartition < ApplicationRecord
 
   def calculate_next_position
     (user.day_partitions.maximum(:position) || 0) + 1
+  end
+
+  def default_day_partition_does_not_exist_yet
+    if default_position? && user.default_day_partition.present?
+      errors.add(:base, 'Default day partition already exists')
+    end
   end
 end

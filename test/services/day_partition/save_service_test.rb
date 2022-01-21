@@ -23,15 +23,15 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
     assert_ordered_day_partition_names(user, %w[Afternoon Breakfast Lunch])
   end
 
-  test '#save raises error when position is 0' do
+  test 'not #save default position and it already exists' do
     user = users(:daisy)
     day_partition = day_partitions(:daisy_afternoon)
     day_partition.position = 0
 
     service = DayPartition::SaveService.new(day_partition)
-    error = assert_raises(RuntimeError) { service.save }
+    assert_not service.save
 
-    assert_equal 'Cannot save another default position', error.message
+    assert_includes day_partition.errors.to_a, 'Default day partition already exists'
   end
 
   test '#destroy normalizes day partitions after destroying' do

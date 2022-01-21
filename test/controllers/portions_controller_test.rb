@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
+class PortionsControllerTest < ActionDispatch::IntegrationTest
   test 'get #new'
 
   test 'post #create'

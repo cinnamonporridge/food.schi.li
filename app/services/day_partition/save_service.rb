@@ -8,7 +8,7 @@ class DayPartition::SaveService
   end
 
   def save
-    raise 'Cannot save another default position' if day_partition.default_position?
+    return unless @day_partition.valid?
 
     DayPartition.transaction do
       execute move_away_conflicting_positions_sql
