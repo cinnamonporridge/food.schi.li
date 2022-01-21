@@ -8,15 +8,15 @@ banana_default_portion:
   food: banana
   amount: 100
 
-celery_old_default_portion:
-  name: '100g'
-  food: celery_old
-  amount: 100
-
 regular_banana_portion:
   name: 'Regular'
   food: banana
   amount: 116
+
+celery_old_default_portion:
+  name: '100g'
+  food: celery_old
+  amount: 100
 
 milk_default_portion:
   name: '100ml'

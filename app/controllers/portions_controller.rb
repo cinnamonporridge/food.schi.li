@@ -1,6 +1,5 @@
 class PortionsController < ApplicationController
   before_action :set_portion, only: [:edit, :update, :destroy]
-  before_action :handle_default_portion, only: [:edit, :update, :destroy]
 
   def new
     @portion = find_food.portions.new
@@ -43,14 +42,10 @@ class PortionsController < ApplicationController
   end
 
   def set_portion
-    @portion = Portion.find(params[:id])
+    @portion = Portion.not_primary.of_user(current_user).find(params[:id])
   end
 
   def find_food
-    @find_food ||= current_user.foods.find(params[:food_id])
-  end
-
-  def handle_default_portion
-    redirect_to @portion.food, alert: 'Default portion cannot be edited or deleted' if @portion.primary?
+    @find_food ||= Food.of_user(current_user).find(params[:food_id])
   end
 end

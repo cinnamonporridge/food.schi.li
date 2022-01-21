@@ -8,6 +8,7 @@ class Food < ApplicationRecord
   has_one :primary_portion, -> { primary }, class_name: 'Portion', inverse_of: false, dependent: :destroy
 
   scope :ordered_by_name, -> { order(name: :asc) }
+  scope :of_user, ->(user) { where(user:) }
 
   enum unit: { gram: 'gram', mililiter: 'mililiter' }
 
