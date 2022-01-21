@@ -38,13 +38,15 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   # edit
   test 'get edit' do
     login_user :daisy
-
     get edit_day_partition_path(day_partitions(:daisy_breakfast))
     assert_response :success
   end
 
   test 'cannot get edit default' do
-    assert false, 'todo'
+    login_user :daisy
+    assert_raises ActiveRecord::RecordNotFound do
+      get edit_day_partition_path(day_partitions(:daisy_default))
+    end
   end
 
   test 'cannot get edit of other' do
@@ -74,7 +76,10 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot put update default' do
-    assert false, 'todo'
+    login_user :daisy
+    assert_raises ActiveRecord::RecordNotFound do
+      patch day_partition_path(day_partitions(:daisy_default)), params: {}
+    end
   end
 
   test 'cannot put update of other' do
@@ -100,7 +105,10 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot delete destroy default' do
-    assert false, 'todo'
+    login_user :daisy
+    assert_raises ActiveRecord::RecordNotFound do
+      delete day_partition_path(day_partitions(:daisy_default))
+    end
   end
 
   test 'cannot delete destroy of other' do
