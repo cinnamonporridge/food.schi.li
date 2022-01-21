@@ -21,15 +21,16 @@ Rails.application.routes.draw do
     resources :journal_days, only: [:index], module: :foods
   end
 
-  resources :journal_days, shallow: true do
-    resources :portion_meals, only: %i[new create]
-    resources :recipe_meals, only: %i[new create]
+  resources :journal_days do
+    resources :meals
+    # resources :portion_meals, only: %i[new create]
+    # resources :recipe_meals, only: %i[new create]
   end
 
-  resources :meals, only: %i[edit update destroy], shallow: true do
-    resources :portion_meals, only: %i[edit update]
-    resources :recipe_meals, only: %i[edit update]
-  end
+  # resources :meals, only: %i[edit update destroy], shallow: true do
+  #   resources :portion_meals, only: %i[edit update]
+  #   resources :recipe_meals, only: %i[edit update]
+  # end
 
   resources :recipe_meals, only: [] do
     resources :ingredients, module: :recipe_meals

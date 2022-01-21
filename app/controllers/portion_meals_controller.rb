@@ -38,13 +38,13 @@ class PortionMealsController < ApplicationController
 
   private
 
-  def journal_day_portion_meal_params
-    params.require(:journal_day_portion_meal).permit(:portion_name, :amount_in_measure, :measure, :day_partition_id)
-  end
+  # def journal_day_portion_meal_params
+  #   params.require(:journal_day_portion_meal).permit(:portion_name, :amount_in_measure, :measure, :day_partition_id)
+  # end
 
-  def portion_meal_params
-    params.require(:portion_meal).permit(:portion_name, :amount_in_measure, :measure, :day_partition_id)
-  end
+  # def portion_meal_params
+  #   params.require(:portion_meal).permit(:portion_name, :amount_in_measure, :measure, :day_partition_id)
+  # end
 
   def set_journal_day
     @journal_day = JournalDay.of_user(current_user).find(params[:journal_day_id])

@@ -22,12 +22,12 @@
                       .h-4.w-4.text-green-700
                         = raw heroicon :'dots-vertical'
                 .flex.flex-col.gap-y-2.px-4.py-2{ 'data-toggleable-target': 'toggleable' }
-                  = link_to edit_recipe_meal_path(recipe_meal), class: 'secondary-button gap-x-1 text-xs' do
+                  = link_to edit_journal_day_meal_path(recipe_meal), class: 'secondary-button gap-x-1 text-xs' do
                     .h-4.w-4
                       = raw heroicon :pencil
                     Edit recipe
 
-                  = button_to meal_path(recipe_meal), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
+                  = button_to journal_day_meal_path(recipe_meal), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
                     .h-4.w-4
                       = raw heroicon :trash
                     Remove recipe from journal day
@@ -100,7 +100,7 @@
                           = raw heroicon :trash
                         Remove meal ingredient
 
-        = link_to new_journal_day_portion_meal_path(@journal_day), class: 'gray-dashed-button gap-x-1 text-xs sm:text-sm' do
+        = link_to new_journal_day_meal_path(@journal_day), class: 'gray-dashed-button gap-x-1 text-xs sm:text-sm' do
           .h-4.w-4
             = raw heroicon :'document'
           Add portion meal

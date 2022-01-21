@@ -37,13 +37,13 @@ class RecipeMealsController < ApplicationController
 
   private
 
-  def journal_day_recipe_meal_params
-    params.require(:journal_day_recipe_meal).permit(:recipe_name, :servings, :day_partition_id)
-  end
+  # def journal_day_recipe_meal_params
+  #   params.require(:journal_day_recipe_meal).permit(:recipe_name, :servings, :day_partition_id)
+  # end
 
-  def recipe_meal_params
-    params.require(:recipe_meal).permit(:day_partition_id)
-  end
+  # def recipe_meal_params
+  #   params.require(:recipe_meal).permit(:day_partition_id)
+  # end
 
   def set_journal_day
     @journal_day = JournalDay.of_user(current_user).find(params[:journal_day_id])
