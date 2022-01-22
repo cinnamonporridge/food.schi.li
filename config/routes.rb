@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
   resources :foods do
     resources :portions, except: [:index, :show]
-    resources :recipes, only: [:index], module: :foods
-    resources :journal_days, only: [:index], module: :foods
+    # resources :recipes, only: [:index], module: :foods
+    # resources :journal_days, only: [:index], module: :foods
   end
 
   resources :journal_days do

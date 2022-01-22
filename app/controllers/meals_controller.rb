@@ -3,7 +3,8 @@ class MealsController < ApplicationController
   before_action :set_meal, only: %i[edit update destroy]
 
   def new
-    @form = JournalDayMealFormFinderService.new(@journal_day.meals.new, params, :new).form
+    service = JournalDayMealFormFinderService.new(@journal_day.meals.new, params, :new)
+    @form = service.form
   end
 
   def create

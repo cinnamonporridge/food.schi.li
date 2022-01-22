@@ -18,11 +18,19 @@ class JournalDayMealFormFinderService
   end
 
   def meal_type
-    meal.consumable_type.presence&.downcase&.to_sym || params[:meal_type]
+    meal.consumable_type.presence&.downcase || meal_type_from_params
+  end
+
+  def meal_type_from_params
+    params.fetch(:meal_type)
   end
 
   def form_klass
-    @form_klass ||= form_klass_mapping.dig(meal_type.to_sym, action.to_sym)
+    @form_klass ||= find_form_klass
+  end
+
+  def find_form_klass
+    form_klass_mapping.dig(meal_type.to_sym, action.to_sym) || (raise FormClassNotFound.new(meal_type, action))
   end
 
   def form_klass_mapping
@@ -36,5 +44,11 @@ class JournalDayMealFormFinderService
         edit: Meals::Recipes::EditForm
       }
     }
+  end
+
+  class FormClassNotFound < StandardError
+    def initialize(meal_type, action)
+      super("No form class found for meal_type='#{meal_type}' action='#{action}'")
+    end
   end
 end
