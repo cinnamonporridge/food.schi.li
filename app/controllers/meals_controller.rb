@@ -12,7 +12,7 @@ class MealsController < ApplicationController
 
     if @form.save
       NutritionFactsService.update_all
-      redirect_to @journal_day, notice: 'Portion added'
+      redirect_to @journal_day, notice: 'Meal added'
     else
       flash.now[:notice] = 'Invalid input'
       render :new
@@ -28,7 +28,7 @@ class MealsController < ApplicationController
 
     if @form.save
       NutritionFactsService.update_all
-      redirect_to @meal.journal_day, notice: 'Portion updated'
+      redirect_to @meal.journal_day, notice: 'Meal updated'
     else
       flash.now[:notice] = 'Invalid input'
       render :edit

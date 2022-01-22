@@ -37,7 +37,7 @@ class ActiveSupport::TestCase
     end
   end
 
-  def assert_not_patch(path, error: ActiveRecord::RecordNotFound)
+  def assert_not_patch(path, params: {}, error: ActiveRecord::RecordNotFound)
     assert_raises(error) { patch path }
   end
 

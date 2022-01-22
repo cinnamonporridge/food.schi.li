@@ -51,7 +51,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       }
       follow_redirect!
       assert_response :success
-      assert_notice 'Portion added'
+      assert_notice 'Meal added'
     end
 
     @journal_day.meals.last.tap do |meal|
@@ -59,7 +59,9 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       assert_equal @day_partition, meal.day_partition
 
       meal.meal_ingredients.first.tap do |meal_ingredient|
-        assert_equal 'Sugar Cube (25g)', meal_ingredient.portion.decorate.name_for_dropdown
+        assert_equal portions(:sugar_cube_portion), meal_ingredient.portion
+        assert_equal 75, meal_ingredient.amount
+        assert_equal 'piece', meal_ingredient.measure
         assert_equal 250, meal_ingredient.kcal
         assert_equal 249.75, meal_ingredient.carbs
         assert_equal 24.75, meal_ingredient.carbs_sugar_part
@@ -85,7 +87,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       }
       follow_redirect!
       assert_response :success
-      assert_notice 'Portion added'
+      assert_notice 'Meal added'
     end
 
     @journal_day.meals.last.tap do |meal|
@@ -106,41 +108,111 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot get #post of other' do
-    assert false, 'todo'
+    login_user :john
+    assert_not_post(journal_day_meals_path(@journal_day), params: {})
   end
 
   # edit
   test 'get #edit, portion meal' do
-    assert false, 'todo'
+    login_user :daisy
+    get edit_journal_day_meal_path(@journal_day, @portion_meal)
+    assert_response :success
   end
 
   test 'get #edit, recipe meal' do
-    assert false, 'todo'
+    login_user :daisy
+    get edit_journal_day_meal_path(@journal_day, @recipe_meal)
+    assert_response :success
   end
 
-  test 'cannot get #edit of other' do
-    assert false, 'todo'
+  test 'cannot get #edit of other, portion meal' do
+    login_user :john
+    assert_not_get edit_journal_day_meal_path(@journal_day, @portion_meal)
+  end
+
+  test 'cannot get #edit of other, recipe meal' do
+    login_user :john
+    assert_not_get edit_journal_day_meal_path(@journal_day, @recipe_meal)
   end
 
   # update
   test 'patch #update, portion meal' do
-    assert false, 'todo'
+    login_user :daisy
+
+    patch journal_day_meal_path(@journal_day, @portion_meal), params: {
+      journal_day_meal: {
+        portion_name: 'Apple Big Apple (200g)',
+        amount_in_measure: '2',
+        measure: 'piece',
+        day_partition_id: @day_partition.id
+      }
+    }
+    follow_redirect!
+    assert_response :success
+    assert_notice 'Meal updated'
+
+    @portion_meal.reload
+    assert_equal @day_partition, @portion_meal.day_partition
+
+    @portion_meal.meal_ingredients.first.tap do |meal_ingredient|
+      assert_equal portions(:big_apple_portion), meal_ingredient.portion
+      assert_equal 400, meal_ingredient.amount
+      assert_equal 'piece', meal_ingredient.measure
+      assert_equal 400, meal_ingredient.kcal
+      assert_equal 400.0, meal_ingredient.carbs
+      assert_equal 40.0, meal_ingredient.carbs_sugar_part
+      assert_equal 400.0, meal_ingredient.protein
+      assert_equal 400.0, meal_ingredient.fat
+      assert_equal 40.0, meal_ingredient.fat_saturated
+      assert_equal 400.0, meal_ingredient.fiber
+    end
   end
 
   test 'patch #update, recipe meal' do
-    assert false, 'todo'
+    login_user :daisy
+
+    patch journal_day_meal_path(@journal_day, @recipe_meal), params: {
+      journal_day_meal: {
+        day_partition_id: @day_partition.id
+      }
+    }
+    follow_redirect!
+    assert_response :success
+    assert_notice 'Meal updated'
+
+    @recipe_meal.reload
+
+    assert_equal @day_partition, @recipe_meal.day_partition
   end
 
-  test 'cannot patch #update of other' do
-    assert false, 'todo'
+  test 'cannot patch #update of other, portion meal' do
+    login_user :john
+    assert_not_patch(journal_day_meal_path(@journal_day, @portion_meal), params: {})
+  end
+
+  test 'cannot patch #update of other, recipe meal' do
+    login_user :john
+    assert_not_patch(journal_day_meal_path(@journal_day, @recipe_meal), params: {})
   end
 
   # destroy
   test 'delete #destroy' do
-    assert false, 'todo'
+    login_user :daisy
+
+    assert_difference -> { @journal_day.meals.count }, -1 do
+      delete journal_day_meal_path(@journal_day, @portion_meal)
+      follow_redirect!
+      assert_response :success
+      assert_notice 'Meal deleted'
+    end
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      @portion_meal.reload
+    end
   end
 
   test 'cannot delete #destroy of other' do
-    assert false, 'todo'
+    login_user :john
+    assert_not_delete journal_day_meal_path(@journal_day, @portion_meal)
   end
 end

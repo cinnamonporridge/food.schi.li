@@ -3,6 +3,11 @@ apple_default_portion:
   food: apple
   amount: 100
 
+big_apple_portion:
+  name: Big Apple
+  food: apple
+  amount: 200
+
 banana_default_portion:
   name: '100g'
   food: banana
@@ -22,11 +27,6 @@ milk_default_portion:
   name: '100ml'
   food: milk
   amount: 100
-
-big_apple_portion:
-  name: Big Apple
-  food: apple
-  amount: 200
 
 peanut_butter_default_portion:
   name: '100g'
