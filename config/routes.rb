@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :settings, only: :index
 
   resources :recipes do
-    resources :ingredients, except: [:index, :show]
+    resources :ingredients, except: [:index, :show], module: :recipes
     resource :copy, only: %i[new create], module: :recipes
   end
 
@@ -23,17 +23,10 @@ Rails.application.routes.draw do
 
   resources :journal_days do
     resources :meals
-    # resources :portion_meals, only: %i[new create]
-    # resources :recipe_meals, only: %i[new create]
   end
 
-  # resources :meals, only: %i[edit update destroy], shallow: true do
-  #   resources :portion_meals, only: %i[edit update]
-  #   resources :recipe_meals, only: %i[edit update]
-  # end
-
-  resources :recipe_meals, only: [] do
-    resources :ingredients, module: :recipe_meals
+  resources :meals do
+    resources :ingredients, module: :meals
   end
 
   resources :day_partitions

@@ -1,4 +1,6 @@
-class RecipeMealForm < ApplicationForm
+class Meals::Recipes::EditForm < ApplicationForm
+  PERMITTED_PARAMS = %i[day_partition_id].freeze
+
   def day_partition_id
     @params[:day_partition_id] || meal_day_partition_id
   end
@@ -11,6 +13,10 @@ class RecipeMealForm < ApplicationForm
     object.day_partition = user.day_partitions.find_by(id: day_partition_id) || User.default_day_partition
 
     super
+  end
+
+  def self.model_name
+    ActiveModel::Name.new(self, nil, 'JournalDay::Meal')
   end
 
   private

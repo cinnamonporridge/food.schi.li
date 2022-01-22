@@ -1,15 +1,55 @@
-class MealIngredientsController < ApplicationController
-  before_action :set_meal_ingredient, only: :destroy
+# class MealIngredientsController < ApplicationController
+#   before_action :set_meal, only: %i[new create]
+#   before_action :set_meal_ingredient, only: %i[edit update destroy]
 
-  def destroy
-    @meal_ingredient.destroy
-    @meal_ingredient.meal.destroy if @meal_ingredient.meal.meal_ingredients.count.zero?
-    redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient deleted'
-  end
+#   def new
+#     @form = Meal::MealIngredientForm.new(@meal.meal_ingredients.new)
+#   end
 
-  private
+#   def create
+#     @form = Meal::MealIngredientForm.new(@meal.meal_ingredients.new, recipe_meal_ingredient_params)
 
-  def set_meal_ingredient
-    @meal_ingredient = MealIngredient.of_user(current_user).find(params[:id])
-  end
-end
+#     if @form.save
+#       NutritionFactsService.update_all
+#       redirect_to @meal.journal_day, notice: 'Meal ingredient added'
+#     else
+#       flash[:notice] = 'Invalid input'
+#       render :new
+#     end
+#   end
+
+#   def edit
+#     @form = Meal::MealIngredientForm.new(@meal_ingredient)
+#   end
+
+#   def update
+#     @form = Meal::MealIngredientForm.new(@meal_ingredient, recipe_meal_ingredient_params)
+
+#     if @form.save
+#       NutritionFactsService.update_all
+#       redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient updated'
+#     else
+#       flash[:notice] = 'Invalid input'
+#       render :edit
+#     end
+#   end
+
+#   def destroy
+#     @meal_ingredient.destroy
+#     redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient deleted'
+#   end
+
+#   private
+
+#   def recipe_meal_ingredient_params
+#     params.require(:recipe_meal_ingredient).permit(:portion_name, :amount_in_measure, :measure)
+#   end
+
+#   def set_meal
+#     @meal = Meal.of_user(current_user).find(params[:meal_id])
+#   end
+
+#   def set_meal_ingredient
+#     @meal_ingredient = MealIngredient.of_user(current_user).find(params[:id])
+#   end
+# end

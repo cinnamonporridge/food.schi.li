@@ -1,4 +1,4 @@
-class IngredientsController < ApplicationController
+class Recipes::IngredientsController < ApplicationController
   before_action :initialize_ingredient, only: %w[new create]
   before_action :set_ingredient, only: %w[edit update destroy]
 

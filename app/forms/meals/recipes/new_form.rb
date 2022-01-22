@@ -1,4 +1,6 @@
-class JournalDay::RecipeMealForm < ApplicationForm
+class Meals::Recipes::NewForm < ApplicationForm
+  PERMITTED_PARAMS = %i[recipe_name servings day_partition_id].freeze
+
   validates_numericality_of :servings, greater_than: 0
   validate :recipe_exists
 
@@ -32,6 +34,10 @@ class JournalDay::RecipeMealForm < ApplicationForm
 
   def day_partition_options
     @day_partition_options ||= DayPartitionDecorator.day_partition_options_for_user(user)
+  end
+
+  def self.model_name
+    ActiveModel::Name.new(self, nil, 'JournalDay::Meal')
   end
 
   private

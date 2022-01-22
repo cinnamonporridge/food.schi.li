@@ -18,6 +18,14 @@ class ApplicationForm
     object.save || merge_errors_and_return_false!
   end
 
+  def component_klass
+    "#{self.class.name}Component".constantize
+  end
+
+  def form_component
+    @form_component ||= component_klass.new(form: self)
+  end
+
   private
 
   def merge_errors_and_return_false!
