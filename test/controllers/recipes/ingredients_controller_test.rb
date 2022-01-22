@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IngredientsControllerTest < ActionDispatch::IntegrationTest
+class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   def setup
     login_user :john
   end

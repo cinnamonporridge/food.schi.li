@@ -27,6 +27,22 @@ class ActiveSupport::TestCase
     assert_equal flash[:notice], message
   end
 
+  def assert_not_get(path, error_klass = ActiveRecord::RecordNotFound)
+    assert_raises(error_klass) { get path }
+  end
+
+  def assert_not_post(path, error_klass = ActiveRecord::RecordNotFound)
+    assert_raises(error_klass) { post path }
+  end
+
+  def assert_not_patch(path, error_klass = ActiveRecord::RecordNotFound)
+    assert_raises(error_klass) { patch path }
+  end
+
+  def assert_not_delete(path, error_klass = ActiveRecord::RecordNotFound)
+    assert_raises(error_klass) { delete path }
+  end
+
   def login_form_params(user_email, password)
     {
       login_form: { email: user_email, password: }

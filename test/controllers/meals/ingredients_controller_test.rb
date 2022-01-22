@@ -1,31 +1,31 @@
 require 'test_helper'
 
-class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
+class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @recipe_meal = meals(:daisys_apple_pie_meal_on_february_fifth)
-    @recipe_meal_ingredient = meal_ingredients(:daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth)
+    @meal = meals(:daisys_apple_pie_meal_on_february_fifth)
+    @meal_ingredient = meal_ingredients(:daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth)
   end
 
   # new
   test 'get #new' do
     login_user :daisy
-    get new_recipe_meal_ingredient_path(@recipe_meal)
+    get new_meal_ingredient_path(@meal)
     assert_response :success
   end
 
   test 'cannot get #new for other' do
     login_user :john
     assert_raises(ActiveRecord::RecordNotFound) {
-      get new_recipe_meal_ingredient_path(@recipe_meal)
+      get new_meal_ingredient_path(@meal)
     }
   end
 
   # create
   test 'post #create' do
     login_user :daisy
-    assert_difference -> { @recipe_meal.meal_ingredients.count }, +1 do
-      post recipe_meal_ingredients_path(@recipe_meal), params: {
-        recipe_meal_ingredient: {
+    assert_difference -> { @meal.meal_ingredients.count }, +1 do
+      post meal_ingredients_path(@meal), params: {
+        meal_ingredient: {
           portion_name: 'Sugar Cube (25g)',
           amount_in_measure: '2',
           measure: 'piece'
@@ -36,7 +36,7 @@ class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
       assert_notice 'Meal ingredient added'
     end
 
-    last_meal_ingredient = @recipe_meal.meal_ingredients.last
+    last_meal_ingredient = @meal.meal_ingredients.last
 
     assert_equal portions(:sugar_cube_portion), last_meal_ingredient.portion
     assert_equal 'piece', last_meal_ingredient.measure
@@ -46,21 +46,21 @@ class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'cannot post #create for other' do
     login_user :john
     assert_raises(ActiveRecord::RecordNotFound) {
-      post recipe_meal_ingredients_path(@recipe_meal), params: {}
+      post meal_ingredients_path(@meal), params: {}
     }
   end
 
   # edit
   test 'get #edit' do
     login_user :daisy
-    get edit_recipe_meal_ingredient_path(@recipe_meal, @recipe_meal_ingredient)
+    get edit_meal_ingredient_path(@meal, @meal_ingredient)
     assert_response :success
   end
 
   test 'cannot get #edit for other' do
     login_user :john
     assert_raises(ActiveRecord::RecordNotFound) {
-      get edit_recipe_meal_ingredient_path(@recipe_meal, @recipe_meal_ingredient)
+      get edit_meal_ingredient_path(@meal, @meal_ingredient)
     }
   end
 
@@ -68,9 +68,9 @@ class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'patch #update' do
     login_user :daisy
 
-    assert_changes -> { @recipe_meal_ingredient.amount }, to: 50.0 do
-      patch recipe_meal_ingredient_path(@recipe_meal, @recipe_meal_ingredient), params: {
-        recipe_meal_ingredient: {
+    assert_changes -> { @meal_ingredient.amount }, to: 50.0 do
+      patch meal_ingredient_path(@meal, @meal_ingredient), params: {
+        meal_ingredient: {
           portion_name: 'Milk (100ml)',
           amount_in_measure: '50',
           measure: 'unit'
@@ -78,7 +78,7 @@ class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
       }
       follow_redirect!
       assert_response :success
-      @recipe_meal_ingredient.reload
+      @meal_ingredient.reload
       assert_notice 'Meal ingredient updated'
     end
   end
@@ -86,7 +86,7 @@ class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'cannot patch #update for other' do
     login_user :john
     assert_raises(ActiveRecord::RecordNotFound) {
-      patch recipe_meal_ingredient_path(@recipe_meal, @recipe_meal_ingredient), params: {}
+      patch meal_ingredient_path(@meal, @meal_ingredient), params: {}
     }
   end
 
@@ -94,22 +94,22 @@ class RecipeMeals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'delete #destroy' do
     login_user :daisy
 
-    assert_difference -> { @recipe_meal.meal_ingredients.count }, -1 do
-      delete recipe_meal_ingredient_path(@recipe_meal, @recipe_meal_ingredient)
+    assert_difference -> { @meal.meal_ingredients.count }, -1 do
+      delete meal_ingredient_path(@meal, @meal_ingredient)
       follow_redirect!
       assert_response :success
       assert_notice 'Meal ingredient deleted'
     end
 
     assert_raises(ActiveRecord::RecordNotFound) {
-      @recipe_meal_ingredient.reload
+      @meal_ingredient.reload
     }
   end
 
   test 'cannot delete #destroy for other' do
     login_user :john
     assert_raises(ActiveRecord::RecordNotFound) {
-      delete recipe_meal_ingredient_path(@recipe_meal, @recipe_meal_ingredient)
+      delete meal_ingredient_path(@meal, @meal_ingredient)
     }
   end
 end
