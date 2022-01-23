@@ -12,6 +12,6 @@ class DayPartitionDecorator < SimpleDelegator
   end
 
   def display_name
-    name unless default_position?
+    name unless default?
   end
 end

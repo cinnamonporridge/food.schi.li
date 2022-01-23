@@ -9,8 +9,10 @@
             .grow.flex.items-center
               .grow.text-green-700
                 = recipe_meal.decorate.display_recipe_name
-              .shrink-0.border.border-gray-200.text-gray-400.px-2.text-xs.rounded
-                = recipe_meal.decorate.display_day_partition_name
+
+              - unless recipe_meal.day_partition.default?
+                .shrink-0.border.border-gray-200.text-gray-400.px-2.text-xs.rounded
+                  = recipe_meal.decorate.display_day_partition_name
             .shrink-0.text-xs.flex.gap-x-4.items-center
               %button{ 'data-action': 'toggleable#toggle' }
                 .h-4.w-4.text-green-700
@@ -28,18 +30,18 @@
 
         - if recipe_meal.meal_ingredients.any?
           .flex
-            %ul.w-full.divide-y.divide-gray-200
+            %ul.recipe-meal--ingredients.w-full.divide-y.divide-gray-200
               - recipe_meal.meal_ingredients.each do |recipe_meal_ingredient|
-                %li.flex.flex-col
+                %li.recipe-meal--ingredient.flex.flex-col
                   %div{ 'data-controller': 'toggleable' }
                     .flex.items-start.gap-x-2.px-4.py-3
                       .grow
                         .grid.grid-cols-12.gap-x-2.items-baseline.overflow-hidden.w-full.text-sm
                           .col-span-8
                             = recipe_meal_ingredient.decorate.display_portion_name
-                          .col-span-2.text-right.text-gray-500
+                          .recipe-meal--ingredient--quantity.col-span-2.text-right.text-gray-500
                             = recipe_meal_ingredient.decorate.quantity
-                          .col-span-2.text-right.text-gray-500
+                          .recipe-meal--ingredient--amount.col-span-2.text-right.text-gray-500
                             = recipe_meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
                       .shrink-0
                         %button{ 'data-action': 'toggleable#toggle' }
@@ -59,4 +61,4 @@
           = link_to new_meal_ingredient_path(recipe_meal), class: 'gray-dashed-button gap-x-1 text-xs' do
             .h-4.w-4
               = raw heroicon :'plus-sm'
-            Add portion to recipe
+            Add meal ingredient

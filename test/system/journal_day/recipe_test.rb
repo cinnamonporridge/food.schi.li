@@ -2,87 +2,115 @@ require 'application_system_test_case'
 
 class JournalDay::RecipeTest < ApplicationSystemTestCase
   test 'user adds a recipe to journal day' do
-    assert false, 'todo'
-    # sign_in_user :daisy
+    sign_in_user :daisy
+    click_on '01.02.2017'
 
-    # journal_day = journal_days(:daisy_february_first)
+    click_on 'Add recipe meal'
+    fill_in 'Recipe name', with: 'Vegan Peanut Butter Banana (1 servings)'
+    fill_in 'Servings', with: '2'
+    select 'Afternoon', from: 'Day partition'
+    click_on 'Add recipe to journal day'
 
-    # visit journal_day_path(journal_day)
-
-    # assert_no_text 'Banana'
-
-    # click_on 'Add recipe meal'
-
-    # select 'Vegan Peanut Butter Banana (1 servings)', from: 'Recipe'
-    # fill_in 'Servings', with: '1'
-    # click_on 'Add recipe to journal day'
-
-    # assert_selector 'h1', text: 'Wed, 01.02.2017'
-    # assert_text 'Banana'
+    within_recipe_meal 'Vegan Peanut Butter Banana' do
+      assert_text 'Afternoon'
+      assert_selector 'ul.recipe-meal--ingredients li', text: 'Banana Regular'
+      assert_selector 'ul.recipe-meal--ingredients li', text: 'Peanut Butter'
+    end
   end
 
   test 'user edits recipe on journal day' do
-    assert false, 'todo'
+    assert_not_equal day_partitions(:daisy_afternoon), meals(:daisys_apple_pie_meal_on_february_fifth).day_partition
+
+    sign_in_user :daisy
+    click_on '05.02.2017'
+
+    within_recipe_meal 'Apple Pie' do
+      click_on 'Edit meal'
+    end
+
+    select 'Lunch', from: 'Day partition'
+    click_on 'Edit recipe on journal day'
+
+    within_recipe_meal 'Apple Pie' do
+      assert_text 'Lunch'
+    end
   end
 
   test 'user deletes a recipe from journal day' do
-    assert false, 'todo'
-    # sign_in_user :daisy
+    sign_in_user :daisy
+    click_on '05.02.2017'
 
-    # journal_day = journal_days(:daisy_february_first)
+    within_recipe_meal 'Apple Pie' do
+      click_on 'Remove meal from journal day'
+    end
 
-    # visit journal_day_path(journal_day)
-
-    # click_on 'Add recipe meal'
-
-    # fill_in 'Recipe', with: 'Apple Pie (6 servings)'
-    # click_on 'Add recipe to journal day'
-
-    # assert_selector 'h1', text: 'Wed, 01.02.2017'
-
-    # list_item = find('ul#recipes li', text: 'Apple Pie')
-    # list_item.click
-    # list_item.click_on 'Remove recipe'
-
-    # assert_selector 'h1', text: 'Wed, 01.02.2017'
-    # assert_selector 'ul#recipes li', text: 'Apple Pie', count: 0
+    assert_selector '.flash', text: 'Meal deleted'
+    assert_selector 'li.recipe-meal', text: 'Apple Pie', count: 0
   end
 
   test 'user adds an ingredient to recipe on journal day' do
-    assert false, 'todo'
-    # sign_in_user :daisy
+    sign_in_user :daisy
+    click_on '05.02.2017'
 
-    # journal_day = journal_days(:daisy_february_first)
+    within_recipe_meal 'Apple Pie' do
+      click_on 'Add meal ingredient'
+    end
 
-    # visit journal_day_path(journal_day)
+    fill_in 'Portion', with: 'Sugar Cube (25g)'
+    fill_in 'Amount in measure', with: '3'
+    select 'Pieces', from: 'Measure'
+    click_on 'Add meal ingredient'
 
-    # click_on 'Add recipe meal'
-
-    # fill_in 'Recipe', with: 'Apple Pie (6 servings)'
-    # click_on 'Add recipe to journal day'
-
-    # list_item = find('ul#recipes li', text: 'Apple Pie')
-    # list_item.assert_no_text 'Peanut'
-    # list_item.click
-    # list_item.click_on 'Add portion'
-
-    # assert_selector 'h1', text: 'Add portion to recipe'
-    # assert_text 'Add a portion to Apple Pie recipe on 01.02.2017'
-
-    # fill_in 'Portion', with: 'Peanut Butter (100g)'
-    # fill_in 'Amount in measure', with: '133'
-
-    # click_on 'Create meal'
-
-    # list_item = find('ul#recipes li', text: 'Apple Pie')
-    # list_item.assert_text 'Peanut'
+    within_recipe_meal 'Apple Pie' do
+      assert_text 'Sugar Cube'
+    end
   end
 
   test 'user edits an ingredient for a recipe on journal day' do
-    assert false, 'todo'
+    sign_in_user :daisy
+    click_on '05.02.2017'
+
+    within_recipe_meal_ingredient 'Apple Pie', 'Apple Big Apple' do
+      assert_selector '.recipe-meal--ingredient--quantity', text: '0.03'
+      assert_selector '.recipe-meal--ingredient--amount', text: '6'
+      click_on 'Edit meal ingredient'
+    end
+
+    fill_in 'Amount in measure', with: '2'
+    click_on 'Update meal ingredient'
+
+    within_recipe_meal_ingredient 'Apple Pie', 'Apple Big Apple' do
+      assert_selector '.recipe-meal--ingredient--quantity', text: '2.0'
+      assert_selector '.recipe-meal--ingredient--amount', text: '400'
+    end
   end
 
   test 'user deletes an ingredient from a recipe on journal day' do
-    assert false, 'todo'
+    sign_in_user :daisy
+    click_on '05.02.2017'
+
+    within_recipe_meal_ingredient 'Apple Pie', 'Apple Big Apple' do
+      assert_selector '.recipe-meal--ingredient--quantity', text: '0.03'
+      assert_selector '.recipe-meal--ingredient--amount', text: '6'
+      click_on 'Remove meal ingredient'
+    end
+
+    assert_selector '.flash', text: 'Meal ingredient deleted'
+
+    within_recipe_meal 'Apple Pie' do
+      assert_no_text 'Apple Big Apple'
+    end
+  end
+
+  private
+
+  def within_recipe_meal(recipe_name, &)
+    within(find('li.recipe-meal', text: recipe_name), &)
+  end
+
+  def within_recipe_meal_ingredient(recipe_name, ingredient_name, &)
+    within_recipe_meal(recipe_name) do
+      within(find('li.recipe-meal--ingredient', text: ingredient_name), &)
+    end
   end
 end

@@ -17,7 +17,7 @@ class DayPartition < ApplicationRecord
   scope :not_defaults, -> { where.not(position: DEFAULT_POSITION) }
   scope :ordered_by_position, -> { order(position: :asc) }
 
-  def default_position?
+  def default?
     position == DEFAULT_POSITION
   end
 
@@ -48,7 +48,7 @@ class DayPartition < ApplicationRecord
   end
 
   def default_day_partition_does_not_exist_yet
-    if default_position? && user.default_day_partition.present?
+    if default? && user.default_day_partition.present?
       errors.add(:base, 'Default day partition already exists')
     end
   end

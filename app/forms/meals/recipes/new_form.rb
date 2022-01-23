@@ -20,7 +20,7 @@ class Meals::Recipes::NewForm < ApplicationForm
     return unless valid?
 
     object.consumable = recipe
-    object.day_partition = user.day_partitions.find_by(id: day_partition_id) || User.default_day_partition
+    object.day_partition = day_partition
     build_meal_ingredients.each do |meal_ingredient|
       object.meal_ingredients << meal_ingredient
     end
@@ -48,6 +48,10 @@ class Meals::Recipes::NewForm < ApplicationForm
 
   def recipe
     @recipe ||= user.recipes.find_by(id: recipe_id)
+  end
+
+  def day_partition
+    @day_partition ||= user.day_partitions.find_by(id: day_partition_id) || user.default_day_partition
   end
 
   def recipe_id
