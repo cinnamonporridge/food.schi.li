@@ -1,13 +1,12 @@
 class MigrateDayPartitions < ActiveRecord::Migration[7.0]
   def up
-    return
     execute create_default_day_partitions_sql
   end
 
   private
 
   def create_default_day_partitions_sql
-    <<~SQL
+    <<~SQL.squish
       INSERT INTO day_partitions (
           user_id
         , name

@@ -24,7 +24,6 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
   end
 
   test 'not #save default position and it already exists' do
-    user = users(:daisy)
     day_partition = day_partitions(:daisy_afternoon)
     day_partition.position = 0
 

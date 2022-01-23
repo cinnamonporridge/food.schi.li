@@ -5,6 +5,7 @@ class Forms::SubmitButtonComponent < ViewComponent::Base
     @object = object
     @text = text
     @heroicon = heroicon
+    super()
   end
 
   def heroicon_component

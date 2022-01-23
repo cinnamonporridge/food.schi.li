@@ -8,8 +8,6 @@ class PortionTest < ActiveSupport::TestCase
 
   test 'not #deletable, referenced in meal' do
     portion = portions(:big_apple_portion)
-    journal_day = journal_days(:john_january_first)
-
     assert_not portion.deleteable?, 'should not be deleteable because it is used in a meal'
   end
 

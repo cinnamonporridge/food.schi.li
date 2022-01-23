@@ -3,6 +3,7 @@ class HeroiconComponent < ViewComponent::Base
 
   def initialize(icon)
     @icon = icon
+    super()
   end
 
   def icon_svg

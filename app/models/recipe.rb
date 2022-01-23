@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
 
   has_many :ingredients, dependent: :destroy
   has_many :portions, through: :ingredients
-  has_many :meals, as: :consumable
+  has_many :meals, as: :consumable, dependent: :destroy
 
   validates :name, presence: true
   validates :servings, presence: true

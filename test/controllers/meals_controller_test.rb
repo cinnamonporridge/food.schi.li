@@ -36,7 +36,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # create
-  test 'post #create, meal_type: :portion' do
+  test 'post #create, meal_type: :portion' do # rubocop:disable Metrics/BlockLength
     login_user :daisy
 
     assert_difference -> { @journal_day.meals.count }, +1 do
@@ -136,7 +136,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # update
-  test 'patch #update, portion meal' do
+  test 'patch #update, portion meal' do # rubocop:disable Metrics/BlockLength
     login_user :daisy
 
     patch journal_day_meal_path(@journal_day, @portion_meal), params: {

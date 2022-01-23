@@ -38,7 +38,9 @@ class ActiveSupport::TestCase
   end
 
   def assert_not_patch(path, params: {}, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) { patch path }
+    assert_raises(error) do
+      patch(path, params:)
+    end
   end
 
   def assert_not_delete(path, error: ActiveRecord::RecordNotFound)
@@ -51,4 +53,3 @@ class ActiveSupport::TestCase
     }
   end
 end
-

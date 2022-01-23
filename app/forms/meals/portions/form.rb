@@ -25,7 +25,7 @@ class Meals::Portions::Form < ApplicationForm
     return unless valid?
 
     object.consumable = portion
-    object.day_partition = user.day_partitions.find_by(id: day_partition_id)
+    object.day_partition = day_partition
     meal_ingredient.assign_attributes(portion:, measure:, amount:)
     object.meal_ingredients << meal_ingredient
 
@@ -46,8 +46,8 @@ class Meals::Portions::Form < ApplicationForm
     @user ||= object.journal_day.user
   end
 
-  def day_partitions
-    @day_partitions ||= user.day_partitions
+  def day_partition
+    @day_partition ||= user.day_partitions.find_by(id: day_partition_id)
   end
 
   def amount

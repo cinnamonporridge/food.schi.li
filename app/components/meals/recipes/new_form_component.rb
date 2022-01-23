@@ -3,6 +3,7 @@ class Meals::Recipes::NewFormComponent < ViewComponent::Base
 
   def initialize(form:)
     @form = form
+    super()
   end
 
   def action_text
