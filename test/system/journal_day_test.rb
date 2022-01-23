@@ -24,7 +24,7 @@ class JournalDayTest < ApplicationSystemTestCase
     assert_selector 'h2', text: 'Nutritions'
     assert_selector '.nutritions-table'
     assert_selector 'h2', text: 'Meals'
-    assert_selector '.meal-ingredients'
+    assert_selector '.meals'
 
     assert_link 'Edit journal day'
     assert_button 'Delete journal day'
@@ -69,10 +69,12 @@ class JournalDayTest < ApplicationSystemTestCase
     using_browser do
       sign_in_user :daisy
       click_link '05.02.2017'
-      within find('ul#recipes li', text: 'APPLE PIE') do
-        find('svg.heroicons-chevron-down').ancestor('button').click
-        assert_link 'Add portion'
-        assert_button 'Remove recipe'
+      within find('li.recipe-meal', text: 'Apple Pie') do
+        within '.recipe-meal--header' do
+          find('svg.heroicons-dots-vertical').ancestor('button').click
+          assert_link 'Edit meal'
+          assert_button 'Remove meal from journal day'
+        end
       end
     end
   end
