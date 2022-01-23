@@ -1,7 +1,6 @@
 require 'application_system_test_case'
 
 class RecipeTest < ApplicationSystemTestCase
-
   # SEE RecipeFlowsTest
 
   test 'user adds a recipe' do

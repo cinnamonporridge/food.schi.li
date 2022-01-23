@@ -33,7 +33,7 @@ class ActiveSupport::TestCase
 
   def assert_not_post(path, params: {}, error: ActiveRecord::RecordNotFound)
     assert_raises(error) do
-      post(path, params: params)
+      post(path, params:)
     end
   end
 

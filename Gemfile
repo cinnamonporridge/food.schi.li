@@ -27,7 +27,6 @@ gem 'stimulus-rails', '>= 0.4.0'
 gem 'turbo-rails', '>= 0.7.11'
 gem 'view_component'
 
-
 group :development, :test do
   gem 'debug'
   gem 'rubocop', require: false

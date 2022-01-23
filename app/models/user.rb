@@ -29,6 +29,6 @@ class User < ApplicationRecord
   private
 
   def create_default_day_parition
-    self.day_partitions << DayPartition.intialize_default_day_partition_for_user(self)
+    day_partitions << DayPartition.intialize_default_day_partition_for_user(self)
   end
 end

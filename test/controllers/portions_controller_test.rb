@@ -39,14 +39,14 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
     @food.portions.last.tap do |portion|
       assert_equal 'Small', portion.name
-      assert_equal 56.0, portion.amount
+      assert_in_delta(56.0, portion.amount)
       assert_equal 50, portion.kcal
-      assert_equal 50.4, portion.carbs
-      assert_equal 5.04, portion.carbs_sugar_part
-      assert_equal 50.4, portion.protein
-      assert_equal 50.4, portion.fat
-      assert_equal 5.04, portion.fat_saturated
-      assert_equal 50.4, portion.fiber
+      assert_in_delta(50.4, portion.carbs)
+      assert_in_delta(5.04, portion.carbs_sugar_part)
+      assert_in_delta(50.4, portion.protein)
+      assert_in_delta(50.4, portion.fat)
+      assert_in_delta(5.04, portion.fat_saturated)
+      assert_in_delta(50.4, portion.fiber)
     end
   end
 
@@ -96,12 +96,12 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Really big', @portion.name
     assert_equal 200, @portion.amount
     assert_equal 180, @portion.kcal
-    assert_equal 180.0, @portion.carbs
-    assert_equal 18.0, @portion.carbs_sugar_part
-    assert_equal 180.0, @portion.protein
-    assert_equal 180.0, @portion.fat
-    assert_equal 18.0, @portion.fat_saturated
-    assert_equal 180.0, @portion.fiber
+    assert_in_delta(180.0, @portion.carbs)
+    assert_in_delta(18.0, @portion.carbs_sugar_part)
+    assert_in_delta(180.0, @portion.protein)
+    assert_in_delta(180.0, @portion.fat)
+    assert_in_delta(18.0, @portion.fat_saturated)
+    assert_in_delta(180.0, @portion.fiber)
   end
 
   test 'cannot patch #update of primary' do

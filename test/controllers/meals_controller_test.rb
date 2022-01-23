@@ -63,12 +63,12 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
         assert_equal 75, meal_ingredient.amount
         assert_equal 'piece', meal_ingredient.measure
         assert_equal 250, meal_ingredient.kcal
-        assert_equal 249.75, meal_ingredient.carbs
-        assert_equal 24.75, meal_ingredient.carbs_sugar_part
-        assert_equal 249.75, meal_ingredient.protein
-        assert_equal 249.75, meal_ingredient.fat
-        assert_equal 24.75, meal_ingredient.fat_saturated
-        assert_equal 249.75, meal_ingredient.fiber
+        assert_in_delta(249.75, meal_ingredient.carbs)
+        assert_in_delta(24.75, meal_ingredient.carbs_sugar_part)
+        assert_in_delta(249.75, meal_ingredient.protein)
+        assert_in_delta(249.75, meal_ingredient.fat)
+        assert_in_delta(24.75, meal_ingredient.fat_saturated)
+        assert_in_delta(249.75, meal_ingredient.fiber)
       end
     end
   end
@@ -159,12 +159,12 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       assert_equal 400, meal_ingredient.amount
       assert_equal 'piece', meal_ingredient.measure
       assert_equal 400, meal_ingredient.kcal
-      assert_equal 400.0, meal_ingredient.carbs
-      assert_equal 40.0, meal_ingredient.carbs_sugar_part
-      assert_equal 400.0, meal_ingredient.protein
-      assert_equal 400.0, meal_ingredient.fat
-      assert_equal 40.0, meal_ingredient.fat_saturated
-      assert_equal 400.0, meal_ingredient.fiber
+      assert_in_delta(400.0, meal_ingredient.carbs)
+      assert_in_delta(40.0, meal_ingredient.carbs_sugar_part)
+      assert_in_delta(400.0, meal_ingredient.protein)
+      assert_in_delta(400.0, meal_ingredient.fat)
+      assert_in_delta(40.0, meal_ingredient.fat_saturated)
+      assert_in_delta(400.0, meal_ingredient.fiber)
     end
   end
 

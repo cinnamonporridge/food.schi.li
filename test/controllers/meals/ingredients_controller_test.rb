@@ -15,9 +15,9 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get #new for other' do
     login_user :john
-    assert_raises(ActiveRecord::RecordNotFound) {
+    assert_raises(ActiveRecord::RecordNotFound) do
       get new_meal_ingredient_path(@meal)
-    }
+    end
   end
 
   # create
@@ -40,14 +40,14 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal portions(:sugar_cube_portion), last_meal_ingredient.portion
     assert_equal 'piece', last_meal_ingredient.measure
-    assert_equal 50.0, last_meal_ingredient.amount
+    assert_in_delta(50.0, last_meal_ingredient.amount)
   end
 
   test 'cannot post #create for other' do
     login_user :john
-    assert_raises(ActiveRecord::RecordNotFound) {
+    assert_raises(ActiveRecord::RecordNotFound) do
       post meal_ingredients_path(@meal), params: {}
-    }
+    end
   end
 
   # edit
@@ -59,9 +59,9 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get #edit for other' do
     login_user :john
-    assert_raises(ActiveRecord::RecordNotFound) {
+    assert_raises(ActiveRecord::RecordNotFound) do
       get edit_meal_ingredient_path(@meal, @meal_ingredient)
-    }
+    end
   end
 
   # update
@@ -85,9 +85,9 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot patch #update for other' do
     login_user :john
-    assert_raises(ActiveRecord::RecordNotFound) {
+    assert_raises(ActiveRecord::RecordNotFound) do
       patch meal_ingredient_path(@meal, @meal_ingredient), params: {}
-    }
+    end
   end
 
   # destry
@@ -101,15 +101,15 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
       assert_notice 'Meal ingredient deleted'
     end
 
-    assert_raises(ActiveRecord::RecordNotFound) {
+    assert_raises(ActiveRecord::RecordNotFound) do
       @meal_ingredient.reload
-    }
+    end
   end
 
   test 'cannot delete #destroy for other' do
     login_user :john
-    assert_raises(ActiveRecord::RecordNotFound) {
+    assert_raises(ActiveRecord::RecordNotFound) do
       delete meal_ingredient_path(@meal, @meal_ingredient)
-    }
+    end
   end
 end

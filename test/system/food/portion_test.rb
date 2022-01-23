@@ -1,7 +1,6 @@
 require 'application_system_test_case'
 
 class Food::PortionTest < ApplicationSystemTestCase
-
   # SEE FoodPortionFlowsTest
 
   test 'user adds a portion to food' do

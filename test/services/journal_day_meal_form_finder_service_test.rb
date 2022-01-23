@@ -34,6 +34,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
   end
 
   private
+
   def new_service(meal:, params:, action:)
     JournalDayMealFormFinderService.new(meal, params, action)
   end

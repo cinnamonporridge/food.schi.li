@@ -14,7 +14,8 @@ class CreateMeals < ActiveRecord::Migration[7.0]
       t.decimal 'fiber', precision: 10, scale: 3, default: '0.0', null: false
 
       t.index %i[journal_day_id consumable_id consumable_type], unique: true, name: :indx_journal_day_consumable
-      t.index %i[journal_day_id day_partition_id consumable_id consumable_type], unique: true, name: :indx_journal_day_day_partition_consumable
+      t.index %i[journal_day_id day_partition_id consumable_id consumable_type], unique: true,
+                                                                                 name: :indx_journal_day_day_partition_consumable
 
       t.timestamps
     end

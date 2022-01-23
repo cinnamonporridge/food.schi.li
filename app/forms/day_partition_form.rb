@@ -12,9 +12,7 @@ class DayPartitionForm < ApplicationForm
     save_service.save || merge_errors_and_return_false!(save_service.day_partition)
   end
 
-  def destroy
-    save_service.destroy
-  end
+  delegate :destroy, to: :save_service
 
   def name
     params[:name] || object.name

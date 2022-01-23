@@ -11,8 +11,10 @@ class Meal < ApplicationRecord
   before_validation :sanitize_day_partition
 
   scope :of_user, ->(user) { joins(journal_day: :user).where(journal_day: { user: }) }
-  scope :ordered_by_consumable_type, -> { order(Arel.sql("CASE WHEN consumable_type = 'Recipe' THEN 0 ELSE 1 END ASC")) }
-  scope :ordered_by_day_partition, -> { left_outer_joins(:day_partition).order("day_partitions.position ASC") }
+  scope :ordered_by_consumable_type, -> {
+                                       order(Arel.sql("CASE WHEN consumable_type = 'Recipe' THEN 0 ELSE 1 END ASC"))
+                                     }
+  scope :ordered_by_day_partition, -> { left_outer_joins(:day_partition).order('day_partitions.position ASC') }
 
   scope :ordered_by_consumable_type_and_day_partition, -> { ordered_by_consumable_type.ordered_by_day_partition }
 
