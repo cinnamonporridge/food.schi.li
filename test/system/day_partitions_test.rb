@@ -25,7 +25,7 @@ class DayPartitionsTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'New day partition'
 
     within 'form.day-partition' do
-      fill_in 'Name', with: 'Afternoon'
+      fill_in 'Name', with: 'Dinner'
       select 'At the end', from: 'Move to position'
       click_on 'Add day partition'
     end

@@ -15,7 +15,7 @@ class ApplicationForm
   end
 
   def save
-    object.save || merge_errors_and_return_false!
+    object.save || merge_errors_and_return_false!(object)
   end
 
   def component_klass
@@ -28,7 +28,7 @@ class ApplicationForm
 
   private
 
-  def merge_errors_and_return_false!
-    errors.merge!(object.errors) && false
+  def merge_errors_and_return_false!(other_object)
+    errors.merge!(other_object.errors) && false
   end
 end

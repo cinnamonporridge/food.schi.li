@@ -9,11 +9,11 @@ class DayPartitionForm < ApplicationForm
     object.name = name
     object.position = position
 
-    DayPartition::SaveService.new(object).save
+    save_service.save || merge_errors_and_return_false!(save_service.day_partition)
   end
 
   def destroy
-    DayPartition::SaveService.new(object).destroy
+    save_service.destroy
   end
 
   def name
@@ -29,6 +29,10 @@ class DayPartitionForm < ApplicationForm
   end
 
   private
+
+  def save_service
+    @save_service ||= DayPartition::SaveService.new(object)
+  end
 
   def build_insert_at_position_options
     user_day_partitions_options.push(['At the end', -1])
