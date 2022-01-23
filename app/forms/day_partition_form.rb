@@ -1,5 +1,6 @@
 class DayPartitionForm < ApplicationForm
   delegate :user, to: :object
+  delegate :destroy, to: :save_service
 
   validates :name, presence: true
 
@@ -11,8 +12,6 @@ class DayPartitionForm < ApplicationForm
 
     save_service.save || merge_errors_and_return_false!(save_service.day_partition)
   end
-
-  delegate :destroy, to: :save_service
 
   def name
     params[:name] || object.name
@@ -33,15 +32,6 @@ class DayPartitionForm < ApplicationForm
   end
 
   def build_insert_at_position_options
-    user_day_partitions_options.push(['At the end', -1])
-  end
-
-  def user_day_partitions_options
-    user.day_partitions.ordered_by_position.map do |day_partition|
-      [
-        "#{day_partition.position} - #{day_partition.name}",
-        day_partition.position
-      ]
-    end
+    DayPartitionDecorator.day_partition_options_for_user(user).push(['At the end', -1])
   end
 end
