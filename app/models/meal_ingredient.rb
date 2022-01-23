@@ -12,6 +12,9 @@ class MealIngredient < ApplicationRecord
   scope :of_portions, -> { joins(:meal).where(meal: { consumable_type: 'Portion' }) }
   scope :using_food, ->(food) { includes(:portion).where(portions: { food: }) }
   scope :ordered_by_recipe, -> { order(:recipe_id) }
+  scope :ordered_by_food_name_and_amount, -> {
+    includes(portion: :food).order('foods.name ASC, portions.amount ASC')
+  }
   scope :of_recipe, ->(recipe) { where(recipe:) }
 
   NutritionFacts::COLUMNS.each do |name|

@@ -17,10 +17,21 @@ class MigrateMealIngredientsToMeals < ActiveRecord::Migration[7.0]
              , CASE WHEN mi.recipe_id IS NOT NULL THEN mi.recipe_id ELSE mi.portion_id END AS consumable_id
              , CASE WHEN mi.recipe_id IS NOT NULL THEN 'Recipe'     ELSE 'Portion' END     AS consumable_type
           FROM meal_ingredients mi
-        )
+      )
+
+      , consumable_meal_ingredients_with_default_day_partition AS (
+        SELECT cmi.*
+             , dp.id AS default_day_partition_id
+          FROM consumable_meal_ingredients cmi
+          INNER JOIN journal_days jd    ON jd.id = cmi.journal_day_id
+          INNER JOIN users u            ON u.id = jd.user_id
+          INNER JOIN day_partitions dp  ON dp.user_id = u.id
+                                       AND dp.position = 0 /* default */
+      )
 
       INSERT INTO meals (
           journal_day_id
+        , day_partition_id
         , consumable_id
         , consumable_type
         , kcal
@@ -36,6 +47,7 @@ class MigrateMealIngredientsToMeals < ActiveRecord::Migration[7.0]
 
       SELECT DISTINCT
              journal_day_id
+           , default_day_partition_id
            , consumable_id
            , consumable_type
            , 0                AS kcal
@@ -47,7 +59,7 @@ class MigrateMealIngredientsToMeals < ActiveRecord::Migration[7.0]
            , 0.0              AS fiber
            , NOW()            AS created_at
            , NOW()            AS updated_at
-        FROM consumable_meal_ingredients
+        FROM consumable_meal_ingredients_with_default_day_partition
           ON CONFLICT (journal_day_id, consumable_id, consumable_type)
           DO
       UPDATE SET updated_at = EXCLUDED.updated_at

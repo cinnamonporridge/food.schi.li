@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_120008) do
+ActiveRecord::Schema.define(version: 2022_01_19_120007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 2022_01_19_120008) do
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.string "measure", default: "unit", null: false
     t.bigint "meal_id", null: false
-    t.index ["meal_id", "portion_id"], name: "index_meal_ingredients_on_meal_id_and_portion_id", unique: true
     t.index ["meal_id"], name: "index_meal_ingredients_on_meal_id"
     t.index ["portion_id"], name: "index_meal_ingredients_on_portion_id"
   end

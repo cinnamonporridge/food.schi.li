@@ -31,7 +31,7 @@
         - if recipe_meal.meal_ingredients.any?
           .flex
             %ul.recipe-meal--ingredients.w-full.divide-y.divide-gray-200
-              - recipe_meal.meal_ingredients.each do |recipe_meal_ingredient|
+              - recipe_meal.meal_ingredients.ordered_by_food_name_and_amount.each do |recipe_meal_ingredient|
                 %li.recipe-meal--ingredient.flex.flex-col
                   %div{ 'data-controller': 'toggleable' }
                     .flex.items-start.gap-x-2.px-4.py-3
