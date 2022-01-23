@@ -1,5 +1,5 @@
 class NutritionFactsService
-  VALID_TABLE_NAMES = %i[portions ingredients recipes meal_ingredients journal_days].freeze
+  VALID_TABLE_NAMES = %i[portions ingredients recipes meal_ingredients meals journal_days].freeze
 
   def self.update_all
     VALID_TABLE_NAMES.map do |table_name|
