@@ -7,31 +7,37 @@
       - portions.ordered_by_amount.each do |portion|
         %li.p-2.sm:p-3
           %div{ 'data-controller': 'toggleable' }
-            .flex
-              .grow
+            .flex.items-center.gap-x-2
+              .grow.text-sm
+                .grid.grid-cols-12{ class: (portion.primary? ? 'text-gray-400' : nil) }
+                  .col-span-9
+                    = portion.decorate.display_name
+                  .col-span-3.text-right
+                    = portion.decorate.display_amount_with_unit_abbreviation_after
+              .shrink-0.flex.items-center
                 - if portion.primary?
-                  Base
+                  .w-4
                 - else
-                  = button_tag portion.name, class: 'text-green-600 hover:text-green-700', 'data-action': 'toggleable#toggle'
-              .shrink-0
-                %span{ class: "unit unit-#{portion.food.decorate.unit_abbrevation}" }
-                  = portion.amount
+                  = button_tag 'data-action': 'toggleable#toggle' do
+                    .h-4.w-4.text-green-700
+                      = render HeroiconComponent.new(:'dots-vertical')
+
             - unless portion.primary?
               .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
                 .flex.gap-x-2
-                  = link_to edit_food_portion_path(portion.food, portion), class: 'button gap-x-2' do
+                  = link_to edit_food_portion_path(portion.food, portion), class: 'button gap-x-1 text-xs' do
                     .h-4.w-4
                       = raw heroicon :pencil
-                    Edit
+                    Edit portion
 
                   - if portion.deleteable?
-                    = button_to food_portion_path(portion.food, portion), class: 'dangerous-button gap-x-2', method: :delete, form_class: 'w-full' do
+                    = button_to food_portion_path(portion.food, portion), class: 'dangerous-button gap-x-1 text-xs', method: :delete, form_class: 'w-full' do
                       .h-4.w-4
                         = raw heroicon :trash
                       Remove portion
 
     .w-full
-      = link_to new_food_portion_path(portions.first.food), class: 'gray-dashed-button gap-x-2' do
+      = link_to new_food_portion_path(portions.first.food), class: 'gray-dashed-button gap-x-1 text-sm' do
         .h-4.w-4
           = raw heroicon :'plus-sm'
         Add portion
