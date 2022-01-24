@@ -36,6 +36,7 @@ class Meals::IngredientsController < ApplicationController
 
   def destroy
     @meal_ingredient.destroy
+    NutritionFactsService.update_all
     redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient deleted'
   end
 
