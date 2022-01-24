@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["toggleable", "openButton", "closeButton"]
+  static targets = ["toggleable", "buttons", "openButton", "closeButton"]
   static values = { opened: Boolean }
 
   connect() {
+    this.showButtons();
     this.render();
   }
 
@@ -28,6 +29,12 @@ export default class extends Controller {
     if (this.hasOpenButtonTarget && this.hasCloseButtonTarget) {
       this.openButtonTarget.classList.toggle('hidden', this.openedValue);
       this.closeButtonTarget.classList.toggle('hidden', !this.openedValue);
+    }
+  }
+
+  showButtons() {
+    if (this.hasButtonsTarget) {
+      this.buttonsTarget.classList.remove('hidden');
     }
   }
 }

@@ -1,5 +1,69 @@
 .flex.flex-col.gap-y-2
   %h2 Nutritions
 
-  .nutritions-table
-    [TODO]
+  - if journal_day.meals.any?
+    .nutritions-table.bg-white.border.border-gray-200.rounded.divide-y.divide-gray-200
+      - if journal_day.meals.of_recipes.any?
+        .grid.grid-cols-6.text-xs.text-gray-500.text-right.pt-2.px-4
+          .col-span-2.uppercase.text-left
+          .col-span-1 kcal
+          .col-span-1 Carbs
+          .col-span-1 Protein
+          .col-span-1 Fat
+        - journal_day.meals.of_recipes.ordered_by_day_partition.each do |meal|
+          .w-full.py-1{ 'data-controller': 'toggleable' }
+            .grid.grid-cols-6.text-xs.text-right.px-4
+              .col-span-2.text-left.flex.items-center.gap-x-1
+                .hidden.shrink-0.flex.items-center{ 'data-toggleable-target': 'buttons' }
+                  = button_tag 'data-action': 'toggleable#toggle', 'data-toggleable-target': 'openButton' do
+                    .h-3.w-3
+                      = render HeroiconComponent.new(:'plus-sm')
+                  = button_tag 'data-action': 'toggleable#toggle', 'data-toggleable-target': 'closeButton' do
+                    .h-3.w-3
+                      = render HeroiconComponent.new(:'minus-sm')
+                .grow
+                  = meal.decorate.display_name
+              .col-span-1= meal.kcal
+              .col-span-1= meal.carbs
+              .col-span-1= meal.protein
+              .col-span-1= meal.fat
+            .w-full{ 'data-toggleable-target': 'toggleable' }
+              - meal.meal_ingredients.ordered_by_food_name_and_amount.each do |meal_ingredient|
+                .grid.grid-cols-6.text-xs.text-right.px-4.text-gray-400
+                  .col-span-2.text-left.pl-4= meal_ingredient.decorate.display_portion_name
+                  .col-span-1= meal_ingredient.kcal
+                  .col-span-1= meal_ingredient.carbs
+                  .col-span-1= meal_ingredient.protein
+                  .col-span-1= meal_ingredient.fat
+
+      - if journal_day.meals.of_portions.any?
+        .w-full.divide-y.divide-gray-200
+          .grid.grid-cols-6.text-xs.text-gray-500.text-right.pt-2.px-4
+            .col-span-2.uppercase.text-left
+            .col-span-1 kcal
+            .col-span-1 Carbs
+            .col-span-1 Protein
+            .col-span-1 Fat
+
+          - journal_day.meals.of_portions.ordered_by_day_partition.each do |meal|
+            .w-full.py-1
+              .grid.grid-cols-6.text-xs.text-right.px-4
+                .col-span-2.text-left= meal.decorate.display_name
+                .col-span-1= meal.kcal
+                .col-span-1= meal.carbs
+                .col-span-1= meal.protein
+                .col-span-1= meal.fat
+
+      .w-full.divide-y.divide-gray-200.pt-4.pb-2
+        .grid.grid-cols-6.text-xs.text-right.px-4.font-bold
+          .col-span-2.text-left Total
+          .col-span-1= journal_day.kcal
+          .col-span-1= journal_day.carbs
+          .col-span-1= journal_day.protein
+          .col-span-1= journal_day.fat
+
+
+
+  - else
+    .text-gray-500.text-sm
+      No meals, no nutritions. 🤷
