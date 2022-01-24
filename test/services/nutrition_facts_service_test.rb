@@ -55,6 +55,24 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_equal 54, recipe.fiber
   end
 
+  test '.update(:meals)' do
+    meal = meals(:daisys_apple_pie_meal_on_february_fifth)
+
+    truncate_nutrition_facts!(meal)
+
+    NutritionFactsService.update(:meals)
+
+    meal.reload
+
+    assert_equal 54, meal.kcal
+    assert_in_delta(54.0, meal.carbs)
+    assert_in_delta(5.4, meal.carbs_sugar_part)
+    assert_in_delta(54.0, meal.protein)
+    assert_in_delta(54.0, meal.fat)
+    assert_in_delta(5.4, meal.fat_saturated)
+    assert_in_delta(54.0, meal.fiber)
+  end
+
   test '.update(:meal_ingredients)' do
     meal_ingredient = meal_ingredients(:johns_apple_on_january_first)
 
@@ -93,7 +111,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
   test '.update(:journal_days), no meal_ingredients' do
     journal_day = journal_days(:john_january_first)
-    journal_day.meal_ingredients.delete_all
+    journal_day.meals.destroy_all
 
     fake_nutrition_facts!(journal_day)
 

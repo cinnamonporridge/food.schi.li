@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ConfirmableController from "./confirmable_controller.js"
+application.register("confirmable", ConfirmableController)
+
 import DismissableController from "./dismissable_controller.js"
 application.register("dismissable", DismissableController)
 

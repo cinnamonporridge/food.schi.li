@@ -6,13 +6,16 @@ class Portion < ApplicationRecord
   belongs_to :food
   has_many :ingredients, dependent: :restrict_with_exception
   has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
+  has_many :meals, as: :consumable, dependent: :restrict_with_exception
   has_many :meal_ingredients, dependent: :restrict_with_exception
 
+  scope :of_user, ->(user) { joins(:food).where(food: { user: }) }
   scope :ordered_by_amount, -> { order(amount: :asc) }
   scope :ordered_by_food_name_and_amount, -> {
     includes(:food).order('foods.name ASC, portions.amount ASC')
   }
   scope :primary, -> { where(amount: PRIMARY_AMOUNT) }
+  scope :not_primary, -> { where.not(amount: PRIMARY_AMOUNT) }
   scope :ordered_by_primary_then_name, -> {
     order(Arel.sql("CASE WHEN portions.amount = #{PRIMARY_AMOUNT} THEN 1 ELSE 2 END ASC, portions.name ASC"))
   }

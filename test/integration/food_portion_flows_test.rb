@@ -34,38 +34,6 @@ class FoodPortionFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Portion added', flash[:notice]
   end
 
-  test 'user cannot edit the default food portion' do
-    # edit
-    default_portion = portions(:apple_default_portion)
-    get edit_food_portion_path(default_portion.food, default_portion)
-    follow_redirect!
-    assert_response :success
-    assert_select 'h1', 'Apple'
-    assert_equal 'Default portion cannot be edited or deleted', flash[:alert]
-
-    # update
-    put "/foods/#{default_portion.food.id}/portions/#{default_portion.id}",
-        params: {
-          portion: {
-            name: 'Some invalid value',
-            amount: '999'
-          }
-        }
-    follow_redirect!
-    assert_response :success
-    assert_select 'h1', 'Apple'
-    assert_equal 'Default portion cannot be edited or deleted', flash[:alert]
-  end
-
-  test 'user cannot delete the default food portion' do
-    default_portion = portions(:apple_default_portion)
-    delete food_portion_path(default_portion.food, default_portion)
-    follow_redirect!
-    assert_response :success
-    assert_select 'h1', 'Apple'
-    assert_equal 'Default portion cannot be edited or deleted', flash[:alert]
-  end
-
   test 'user edits a food portion' do
     big_apple = portions(:big_apple_portion)
     get edit_food_portion_path(big_apple.food, big_apple)

@@ -1,0 +1,22 @@
+.flex.flex-col.gap-y-4
+  %h1 Edit day partition
+
+  = render 'form', form: @form
+
+  %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': 'Confirm deletion' }
+    .hidden{ 'data-confirmable-target': 'confirmable' }
+      = button_tag class: 'dangerous-button gap-x-2', 'data-action': 'confirmable#toggle' do
+        Delete day partition
+
+    .flex.flex-col.gap-y-4{ 'data-confirmable-target': 'confirmable' }
+      = button_to day_partition_path(@form), method: :delete, class: 'dangerous-button gap-x-2', 'data-confirmable-target': 'submit', form_class: 'day-partition--delete' do
+        .h-4.w-4
+          = raw heroicon :trash
+        %span
+          Delete day partition
+      .w-full.text-red-500.text-center.text-center.text-xs
+        This cannot be undone.
+      .w-full.hidden{ 'data-confirmable-target': 'confirmable', 'data-confirmable-target': 'cancel' }
+        .flex.justify-center
+          = button_tag class: 'shy-link text-sm', 'data-action': 'confirmable#toggle' do
+            Cancel

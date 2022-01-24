@@ -1,0 +1,16 @@
+.flex.flex-col.gap-y-4
+  %h1= action_text
+
+  = form_with(model: form, data: { turbo: false }) do |f|
+    .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
+      .p-4.flex.flex-col.gap-y-2
+        .flex.flex-col
+          = f.label :day_partition_id, class: 'label'
+          = f.select :day_partition_id, form.day_partition_options, { include_blank: true }, class: 'input'
+
+      .p-4.flex.flex-col.gap-y-2
+        = f.button type: :submit, class: 'button gap-x-2' do
+          = render Forms::SubmitButtonComponent.new(object: form.object, text: action_text)
+
+        .text-center
+          = link_to 'Cancel', form.object.journal_day, class: 'shy-link text-xs'

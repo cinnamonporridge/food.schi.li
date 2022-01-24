@@ -1,0 +1,59 @@
+daisys_big_apple_meal_on_february_first:
+  journal_day: daisy_february_first
+  day_partition: daisy_default
+  consumable: big_apple_portion (Portion)
+  kcal: 1
+  carbs: 1.0
+  carbs_sugar_part: 0.1
+  protein: 1.0
+  fat: 1.0
+  fat_saturated: 0.1
+  fiber: 1.0
+
+daisys_glass_of_milk_meal_on_february_first:
+  journal_day: daisy_february_first
+  day_partition: daisy_default
+  consumable: milk_default_portion (Portion)
+  kcal: 300
+  carbs: 300.0
+  carbs_sugar_part: 30.0
+  protein: 300.0
+  fat: 300.0
+  fat_saturated: 30.0
+  fiber: 300.0
+
+daisys_apple_pie_meal_on_february_fifth:
+  journal_day: daisy_february_fifth
+  day_partition: daisy_default
+  consumable: apple_pie (Recipe)
+  kcal: 54
+  carbs: 54.0
+  carbs_sugar_part: 5.4
+  protein: 54.0
+  fat: 54.0
+  fat_saturated: 5.4
+  fiber: 54.0
+
+johns_apple_meal_on_january_first:
+  journal_day: john_january_first
+  day_partition: john_default
+  consumable: apple_default_portion (Portion)
+  kcal: 180
+  carbs: 180.0
+  carbs_sugar_part: 18.0
+  protein: 180.0
+  fat: 180.0
+  fat_saturated: 18.0
+  fiber: 180.0
+
+johns_celery_meal_on_january_first:
+  journal_day: john_january_first
+  day_partition: john_default
+  consumable: celery_old_default_portion (Portion)
+  kcal: 16
+  carbs: 16.0
+  carbs_sugar_part: 1.6
+  protein: 16.0
+  fat: 16.0
+  fat_saturated: 1.6
+  fiber: 16.0

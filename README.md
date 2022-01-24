@@ -43,5 +43,7 @@ Available at https://food-schi-li.herokuapp.com (or via https://food.schi.li)
 ## Import dump
 
 ```sh
-pg_restore --verbose --clean --no-acl --no-owner -C -h localhost -d [db_name] latest.dump
+heroku pg:backups:capture --app=
+heroku pg:backups:download --app=
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U [user] -d [db_name] latest.dump
 ```

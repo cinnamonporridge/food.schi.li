@@ -1,0 +1,32 @@
+- if meals.of_portions.any?
+  %h3.text-xs.uppercase.tracking-wide Other
+
+  .flex.flex-col.gap-y-2
+    %ul.portion-meals.flex.flex-col.bg-white.border.border-gray-200.rounded.divide-y.divide-gray-200
+      - meals.of_portions.ordered_by_day_partition.each do |portion_meal|
+        - portion_meal.meal_ingredients.ordered_by_food_name_and_amount.each do |portion_meal_ingredient|
+          %li.portion-meal.flex.flex-col
+            %div{ 'data-controller': 'toggleable' }
+              .flex.items-start.gap-x-2.px-4.py-3
+                .grow
+                  .grid.grid-cols-12.gap-x-2.items-baseline.overflow-hidden.w-full.text-sm
+                    .col-span-8
+                      = portion_meal_ingredient.decorate.display_portion_name
+                    .portion-meal--quantity.col-span-2.text-right.text-gray-500
+                      = portion_meal_ingredient.decorate.quantity
+                    .portion-meal--amount.col-span-2.text-right.text-gray-500
+                      = portion_meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
+                .shrink-0
+                  %button{ 'data-action': 'toggleable#toggle' }
+                    .h-4.w-4.text-green-700
+                      = raw heroicon :'dots-vertical'
+
+              .flex.flex-col.px-4.py-2.gap-y-2{ 'data-toggleable-target': 'toggleable' }
+                = link_to edit_journal_day_meal_path(portion_meal.journal_day, portion_meal), class: 'secondary-button gap-x-1 text-xs' do
+                  .h-4.w-4
+                    = raw heroicon :pencil
+                  Edit meal
+                = button_to journal_day_meal_path(portion_meal.journal_day, portion_meal), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
+                  .h-4.w-4
+                    = raw heroicon :trash
+                  Remove meal

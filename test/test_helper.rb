@@ -23,6 +23,30 @@ class ActiveSupport::TestCase
 
   private
 
+  def assert_notice(message)
+    assert_equal flash[:notice], message
+  end
+
+  def assert_not_get(path, error: ActiveRecord::RecordNotFound)
+    assert_raises(error) { get path }
+  end
+
+  def assert_not_post(path, params: {}, error: ActiveRecord::RecordNotFound)
+    assert_raises(error) do
+      post(path, params:)
+    end
+  end
+
+  def assert_not_patch(path, params: {}, error: ActiveRecord::RecordNotFound)
+    assert_raises(error) do
+      patch(path, params:)
+    end
+  end
+
+  def assert_not_delete(path, error: ActiveRecord::RecordNotFound)
+    assert_raises(error) { delete path }
+  end
+
   def login_form_params(user_email, password)
     {
       login_form: { email: user_email, password: }

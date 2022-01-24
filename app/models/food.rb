@@ -8,6 +8,7 @@ class Food < ApplicationRecord
   has_one :primary_portion, -> { primary }, class_name: 'Portion', inverse_of: false, dependent: :destroy
 
   scope :ordered_by_name, -> { order(name: :asc) }
+  scope :of_user, ->(user) { where(user:) }
 
   enum unit: { gram: 'gram', mililiter: 'mililiter' }
 
@@ -26,10 +27,6 @@ class Food < ApplicationRecord
 
   def in_meal_ingredients
     @in_meal_ingredients ||= MealIngredient.using_food(self)
-  end
-
-  def on_journal_days
-    @on_journal_days ||= JournalDay.using_meal_ingredients(in_meal_ingredients)
   end
 
   def macronutrient_data

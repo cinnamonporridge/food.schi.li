@@ -21,6 +21,10 @@ class MealIngredientDecorator < SimpleDelegator
     tag.data amount.round.to_s, class: "unit unit-#{unit_abbrevation}"
   end
 
+  def display_portion_name
+    portion.decorate.name_with_food
+  end
+
   def display_total_kcal
     total_kcal.round
   end

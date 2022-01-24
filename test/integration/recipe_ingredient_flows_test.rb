@@ -82,12 +82,4 @@ class RecipeIngredientFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal 'Ingredient updated', flash[:notice]
   end
-
-  test 'user deletes a recipe ingredient' do
-    ingredient = ingredients(:milk_in_apple_pie)
-    delete recipe_ingredient_path(ingredient.recipe, ingredient)
-    follow_redirect!
-    assert_response :success
-    assert_equal 'Ingredient deleted', flash[:notice]
-  end
 end

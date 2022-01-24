@@ -248,6 +248,9 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    view_component (2.48.0)
+      activesupport (>= 5.0.0, < 8.0)
+      method_source (~> 1.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -293,6 +296,7 @@ DEPENDENCIES
   sprockets-rails (>= 2.0.0)
   stimulus-rails (>= 0.4.0)
   turbo-rails (>= 0.7.11)
+  view_component
   web-console (>= 3.3.0)
   webdrivers
 
