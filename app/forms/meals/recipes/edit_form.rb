@@ -10,7 +10,7 @@ class Meals::Recipes::EditForm < ApplicationForm
   end
 
   def save
-    object.day_partition = user.day_partitions.find_by(id: day_partition_id) || User.default_day_partition
+    object.day_partition = day_partition
 
     super
   end
@@ -20,6 +20,10 @@ class Meals::Recipes::EditForm < ApplicationForm
   end
 
   private
+
+  def day_partition
+    @day_partition ||= user.day_partitions.find_by(id: day_partition_id&.to_i) || user.default_day_partition
+  end
 
   def meal_day_partition_id
     object.day_partition_id

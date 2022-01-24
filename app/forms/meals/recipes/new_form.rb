@@ -51,7 +51,7 @@ class Meals::Recipes::NewForm < ApplicationForm
   end
 
   def day_partition
-    @day_partition ||= user.day_partitions.find_by(id: day_partition_id) || user.default_day_partition
+    @day_partition ||= user.day_partitions.find_by(id: day_partition_id&.to_i) || user.default_day_partition
   end
 
   def recipe_id

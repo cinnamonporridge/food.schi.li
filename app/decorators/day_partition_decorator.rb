@@ -1,14 +1,30 @@
 class DayPartitionDecorator < SimpleDelegator
   def self.day_partition_options_for_user(user)
-    user.day_partitions.not_defaults.ordered_by_position.map(&method(:to_option))
+    user.day_partitions.not_defaults.ordered_by_position.map(&method(:to_option_with_id))
   end
 
-  def self.to_option(day_partition)
-    day_partition.decorate.to_option
+  def self.move_to_position_options_for_user(user)
+    user.day_partitions.not_defaults.ordered_by_position.map(&method(:to_option_with_position))
   end
 
-  def to_option
-    ["#{position} - #{name}", id]
+  def self.to_option_with_id(day_partition)
+    day_partition.decorate.to_option_with_id
+  end
+
+  def self.to_option_with_position(day_partition)
+    day_partition.decorate.to_option_with_position
+  end
+
+  def to_option_with_id
+    [option_label, id]
+  end
+
+  def to_option_with_position
+    [option_label, position]
+  end
+
+  def option_label
+    "#{position} - #{name}"
   end
 
   def display_name
