@@ -1,4 +1,6 @@
 class PortionDecorator < SimpleDelegator
+  include ActionView::Helpers::TagHelper
+
   def name_for_dropdown
     [
       name_with_food,
@@ -14,11 +16,19 @@ class PortionDecorator < SimpleDelegator
     "#{amount}#{food.decorate.unit_abbrevation}"
   end
 
+  def display_amount_with_unit_abbreviation_after
+    tag.span(amount, class: "unit unit-#{food.decorate.unit_abbrevation}")
+  end
+
   def name_with_food
     [
       food.name,
       name_if_not_default
     ].compact.join(' ')
+  end
+
+  def display_name
+    primary? ? 'Base' : name
   end
 
   def self.portions_collection
