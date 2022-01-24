@@ -28,6 +28,6 @@ class DayPartitionDecorator < SimpleDelegator
   end
 
   def display_name
-    name unless default?
+    default? ? 'Unpartitioned' : name
   end
 end

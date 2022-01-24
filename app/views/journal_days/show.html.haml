@@ -32,5 +32,5 @@
           = raw heroicon :'book-open'
         Add recipe meal
 
-  = render 'nutritions_table', journal_day: @journal_day
+  = render JournalDay::NutritionsTableComponent.new(journal_day: @journal_day)
   = render 'meals', meals: @journal_day.meals
