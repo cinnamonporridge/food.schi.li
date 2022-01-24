@@ -1,19 +1,54 @@
 john_january_first:
   user: john
   date: 2017-01-01
+  kcal: 196
+  carbs: 196.0
+  carbs_sugar_part: 19.6
+  protein: 196.0
+  fat: 196.0
+  fat_saturated: 19.6
+  fiber: 196.0
 
 daisy_february_first:
   user: daisy
   date: 2017-02-01
+  kcal: 301
+  carbs: 301.0
+  carbs_sugar_part: 30.1
+  protein: 301.0
+  fat: 301.0
+  fat_saturated: 30.1
+  fiber: 301.0
 
 daisy_february_second:
   user: daisy
   date: 2017-02-02
+  kcal: 0
+  carbs: 0.0
+  carbs_sugar_part: 0.0
+  protein: 0.0
+  fat: 0.0
+  fat_saturated: 0.0
+  fiber: 0.0
 
 daisy_february_fourth:
   user: daisy
   date: 2017-02-04
+  kcal: 0
+  carbs: 0.0
+  carbs_sugar_part: 0.0
+  protein: 0.0
+  fat: 0.0
+  fat_saturated: 0.0
+  fiber: 0.0
 
 daisy_february_fifth:
   user: daisy
   date: 2017-02-05
+  kcal: 54
+  carbs: 54.0
+  carbs_sugar_part: 5.4
+  protein: 54.0
+  fat: 54.0
+  fat_saturated: 5.4
+  fiber: 54.0
