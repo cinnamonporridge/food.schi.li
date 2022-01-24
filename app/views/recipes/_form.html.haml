@@ -8,7 +8,7 @@
 
       .flex.flex-col
         = f.label :servings, class: 'label'
-        = f.number_field :servings, class: 'input', min: 1
+        = f.number_field :servings, class: 'input', min: 1, step: 1
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :servings
 
     .p-4.flex.flex-col.gap-y-2

@@ -9,7 +9,7 @@
     .pt-2.pb-4.px-4
       .flex.flex-col
         = f.label :amount, 'Amount in g/ml', class: 'label'
-        = f.number_field :amount, class: 'input', min: 1
+        = f.number_field :amount, class: 'input', min: 1, step: 0.01
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :amount
 
     .p-4.flex.flex-col.gap-y-2
