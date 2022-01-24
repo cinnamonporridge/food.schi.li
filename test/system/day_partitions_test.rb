@@ -50,6 +50,26 @@ class DayPartitionsTest < ApplicationSystemTestCase
     assert_selector 'ul.day-partitions li', text: 'Morning'
   end
 
+  test 'moves day partition to new position' do
+    sign_in_and_navigate_to_day_partitions
+
+    click_on 'Breakfast'
+
+    assert_selector 'h1', text: 'Edit day partition'
+
+    within 'form.day-partition' do
+      fill_in 'Name', with: 'Snack between Lunch and Afternoon'
+      select 'Afternoon', from: 'Move to position'
+      click_on 'Update day partition'
+    end
+
+    assert_selector '.flash', text: 'Day partition updated'
+    day_partition_list_elements = find_all('ul.day-partitions li')
+    assert_match /Lunch/, day_partition_list_elements[0].text
+    assert_match /Snack between Lunch and Afternoon/, day_partition_list_elements[1].text
+    assert_match /Afternoon/, day_partition_list_elements[2].text
+  end
+
   test 'deletes day partition' do
     sign_in_and_navigate_to_day_partitions
 

@@ -11,8 +11,8 @@ class DayPartition::SaveService
     return unless @day_partition.valid?
 
     DayPartition.transaction do
-      execute move_away_conflicting_positions_sql
-      @day_partition.save
+      execute explode_positions_sql
+      upsert_day_partition
       execute normalize_positions_sql
     end
   end
@@ -30,6 +30,19 @@ class DayPartition::SaveService
     ActiveRecord::Base.connection.execute(sql)
   end
 
+  def upsert_day_partition
+    @day_partition.position = (@day_partition.position * explode_factor) - 1
+    @day_partition.save
+  end
+
+  def max_position
+    @max_position ||= user.day_partitions.maximum(:position) + 1
+  end
+
+  def explode_factor
+    @explode_factor ||= max_position * 10
+  end
+
   def normalize_positions_sql
     <<~SQL.squish
       UPDATE day_partitions dp
@@ -43,16 +56,11 @@ class DayPartition::SaveService
     SQL
   end
 
-  def move_away_conflicting_positions_sql
+  def explode_positions_sql
     <<~SQL.squish
       UPDATE day_partitions dp
-         SET position = position * t.multiplier + 1
-        FROM ( SELECT id
-                    , max(position) OVER (PARTITION BY user_id) AS multiplier
-                 FROM day_partitions
-                WHERE user_id = #{user.id}
-                  AND position >= #{day_partition.position} ) t
-       WHERE dp.id = t.id
+         SET position = position * #{explode_factor}
+       WHERE position != #{DayPartition::DEFAULT_POSITION}
     SQL
   end
 end

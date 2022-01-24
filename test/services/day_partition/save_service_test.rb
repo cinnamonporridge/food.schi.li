@@ -11,7 +11,17 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
     assert_ordered_day_partition_names(user, %w[Breakfast Morning Lunch Afternoon])
   end
 
-  test '#save moves day partitions when updateing to existing position' do
+  test '#save insert to first position' do
+    user = users(:daisy)
+    day_partition = DayPartition.new(user:, name: 'BeforeBreakfast', position: 1)
+    service = DayPartition::SaveService.new(day_partition)
+
+    assert_ordered_day_partition_names(user, %w[Breakfast Lunch Afternoon])
+    assert service.save
+    assert_ordered_day_partition_names(user, %w[BeforeBreakfast Breakfast Lunch Afternoon])
+  end
+
+  test '#save moves day partitions when updating to existing position' do
     user = users(:daisy)
     day_partition = day_partitions(:daisy_afternoon)
     day_partition.position = 1
