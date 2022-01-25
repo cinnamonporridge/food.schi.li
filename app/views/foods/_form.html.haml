@@ -22,41 +22,41 @@
       .grid.grid-cols-2.gap-2
         .flex.flex-col
           = f.label :kcal, class: 'label'
-          = f.number_field :kcal, class: 'input', min: 0, step: 1
+          = f.number_field :kcal, class: 'input', min: 0, step: 1, inputmode: 'numeric'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :kcal
 
         .empty-cell
 
         .flex.flex-col
           = f.label :carbs, class: 'label'
-          = f.number_field :carbs, class: 'input', min: 0, step: 0.001
+          = f.number_field :carbs, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :carbs
 
         .flex.flex-col
           = f.label :carbs_sugar_part, class: 'label'
-          = f.number_field :carbs_sugar_part, class: 'input', min: 0, step: 0.001
+          = f.number_field :carbs_sugar_part, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :carbs_sugar_part
 
         .flex.flex-col
           = f.label :protein, class: 'label'
-          = f.number_field :protein, class: 'input', min: 0, step: 0.001
+          = f.number_field :protein, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :protein
 
         .empty-cell
 
         .flex.flex-col
           = f.label :fat, class: 'label'
-          = f.number_field :fat, class: 'input', min: 0, step: 0.001
+          = f.number_field :fat, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :fat
 
         .flex.flex-col
           = f.label :fat_saturated, class: 'label'
-          = f.number_field :fat_saturated, class: 'input', min: 0, step: 0.001
+          = f.number_field :fat_saturated, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :fat_saturated
 
         .flex.flex-col
           = f.label :fiber, class: 'label'
-          = f.number_field :fiber, class: 'input', min: 0, step: 0.001
+          = f.number_field :fiber, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :fiber
 
     .p-4.flex.flex-col.gap-y-2
