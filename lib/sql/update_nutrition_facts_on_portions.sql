@@ -1,11 +1,11 @@
 UPDATE portions p
-   SET kcal = t.kcal
-     , carbs = t.carbs
-     , carbs_sugar_part = t.carbs_sugar_part
-     , protein = t.protein
-     , fat = t.fat
-     , fat_saturated = t.fat_saturated
-     , fiber = t.fiber
+   SET kcal             = target.kcal
+     , carbs            = target.carbs
+     , carbs_sugar_part = target.carbs_sugar_part
+     , protein          = target.protein
+     , fat              = target.fat
+     , fat_saturated    = target.fat_saturated
+     , fiber            = target.fiber
   FROM (  SELECT p.id
                , ROUND(((f.kcal::NUMERIC             / d.default_amount) * p.amount), 0) AS kcal
                , ROUND(((f.carbs::NUMERIC            / d.default_amount) * p.amount), 3) AS carbs
@@ -16,6 +16,7 @@ UPDATE portions p
                , ROUND(((f.fiber::NUMERIC            / d.default_amount) * p.amount), 3) AS fiber
             FROM portions p
            CROSS JOIN (SELECT 100 AS default_amount) AS d
-           INNER JOIN foods f ON f.id = p.food_id ) t
- WHERE p.id = t.id
+           INNER JOIN foods f ON f.id = p.food_id
+        ) target
+ WHERE p.id = target.id
 ;
