@@ -1,6 +1,8 @@
 class MealIngredient < ApplicationRecord
   include NutritionFacts
 
+  delegate :user, to: :meal
+
   belongs_to :meal
   belongs_to :portion
   has_one :food, through: :portion
