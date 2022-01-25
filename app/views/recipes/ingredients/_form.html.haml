@@ -12,7 +12,7 @@
       .grid.grid-cols-5.gap-4
         .col-span-3.flex.flex-col
           = f.label :amount_in_measure, class: 'label'
-          = f.number_field :amount_in_measure, class: 'input', min: 0, step: 0.001
+          = f.number_field :amount_in_measure, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :amount_in_measure
 
         .col-span-2.flex.flex-col

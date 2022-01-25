@@ -23,7 +23,7 @@
 
         .flex.flex-col
           = f.label :amount_in_measure, class: 'label'
-          = f.number_field :amount_in_measure, step: 0.001, class: 'input'
+          = f.number_field :amount_in_measure, step: 0.001, class: 'input', inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :amount_in_measure
 
         .flex.flex-col
