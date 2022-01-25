@@ -1,4 +1,6 @@
 class MealIngredientForm < ApplicationForm
+  delegate :user, to: :object
+
   validates :portion_name, :amount_in_measure, :measure, presence: true
   validates_numericality_of :amount_in_measure, greater_than: 0
   validate :portion_exists
@@ -38,7 +40,7 @@ class MealIngredientForm < ApplicationForm
   end
 
   def meal_ingredient_portion_name
-    PortionDecorator.portions_collection_with_id
+    PortionDecorator.portions_collection_with_id(user)
                     .find { |element| element.last == object.portion_id }
                     &.first
   end
@@ -62,7 +64,7 @@ class MealIngredientForm < ApplicationForm
   end
 
   def find_portion_id_by_name(portion_name)
-    PortionDecorator.portions_collection_with_id
+    PortionDecorator.portions_collection_with_id(user)
                     .find { |element| element.first == portion_name }
                     &.last
   end

@@ -3,6 +3,7 @@ class RecipeIngredientForm
   include Rails.application.routes.url_helpers
 
   delegate :persisted?, :id, to: :ingredient
+  delegate :user, to: :recipe
 
   attr_reader :ingredient, :portion_name, :portion_id, :measure, :amount_in_measure
 
@@ -74,13 +75,13 @@ class RecipeIngredientForm
   end
 
   def find_portion_name_by_id(id)
-    PortionDecorator.portions_collection_with_id
+    PortionDecorator.portions_collection_with_id(user)
                     .find { |element| element.last == id }
                     &.first
   end
 
   def find_portion_id_by_name(portion_name)
-    PortionDecorator.portions_collection_with_id
+    PortionDecorator.portions_collection_with_id(user)
                     .find { |element| element.first == portion_name }
                     &.last
   end

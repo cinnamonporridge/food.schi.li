@@ -40,11 +40,11 @@ class Meals::Portions::Form < ApplicationForm
     ActiveModel::Name.new(self, nil, 'JournalDay::Meal')
   end
 
-  private
-
   def user
     @user ||= object.journal_day.user
   end
+
+  private
 
   def day_partition
     @day_partition ||= user.day_partitions.find_by(id: day_partition_id&.to_i) || user.default_day_partition
@@ -61,7 +61,7 @@ class Meals::Portions::Form < ApplicationForm
   end
 
   def meal_ingredient_portion_name
-    PortionDecorator.portions_collection_with_id
+    PortionDecorator.portions_collection_with_id(user)
                     .find { |element| element.last == meal_ingredient.portion_id }
                     &.first
   end
@@ -85,7 +85,7 @@ class Meals::Portions::Form < ApplicationForm
   end
 
   def find_portion_id_by_name(portion_name)
-    PortionDecorator.portions_collection_with_id
+    PortionDecorator.portions_collection_with_id(user)
                     .find { |element| element.first == portion_name }
                     &.last
   end

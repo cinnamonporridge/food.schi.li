@@ -1,4 +1,6 @@
 class Meal < ApplicationRecord
+  delegate :user, to: :journal_day
+
   belongs_to :journal_day
   belongs_to :day_partition
   belongs_to :consumable, polymorphic: true

@@ -6,7 +6,7 @@
         = f.text_field :portion_name, class: 'input', list: :portion_id_list
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :portion_name
         %datalist#portion_id_list
-          = options_for_select PortionDecorator.portions_collection
+          = options_for_select PortionDecorator.portions_collection(form.user)
         = f.hidden_field :portion_id
 
       .grid.grid-cols-5.gap-4

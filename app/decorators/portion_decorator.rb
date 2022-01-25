@@ -31,11 +31,13 @@ class PortionDecorator < SimpleDelegator
     primary? ? 'Base' : name
   end
 
-  def self.portions_collection
-    portions_collection_with_id.map(&:first)
+  def self.portions_collection(user)
+    portions_collection_with_id(user).map(&:first)
   end
 
-  def self.portions_collection_with_id
-    Portion.ordered_by_food_name_and_amount.map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
+  def self.portions_collection_with_id(user)
+    Portion.of_user(user)
+           .ordered_by_food_name_and_amount
+           .map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
   end
 end
