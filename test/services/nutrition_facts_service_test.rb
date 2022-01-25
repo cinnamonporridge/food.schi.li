@@ -6,7 +6,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     truncate_nutrition_facts!(portion)
 
-    NutritionFactsService.update(:portions)
+    NutritionFactsService.new(user: users(:daisy)).update!(:portions)
 
     portion.reload
 
@@ -24,7 +24,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     truncate_nutrition_facts!(ingredient)
 
-    NutritionFactsService.update(:ingredients)
+    NutritionFactsService.new(user: users(:daisy)).update!(:ingredients)
 
     ingredient.reload
 
@@ -42,7 +42,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     truncate_nutrition_facts!(recipe)
 
-    NutritionFactsService.update(:recipes)
+    NutritionFactsService.new(user: users(:daisy)).update!(:recipes)
 
     recipe.reload
 
@@ -60,7 +60,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     truncate_nutrition_facts!(meal)
 
-    NutritionFactsService.update(:meals)
+    NutritionFactsService.new(user: users(:daisy)).update!(:meals)
 
     meal.reload
 
@@ -78,7 +78,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     truncate_nutrition_facts!(meal_ingredient)
 
-    NutritionFactsService.update(:meal_ingredients)
+    NutritionFactsService.new(user: users(:daisy)).update!(:meal_ingredients)
 
     meal_ingredient.reload
 
@@ -96,7 +96,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     truncate_nutrition_facts!(journal_day)
 
-    NutritionFactsService.update(:journal_days)
+    NutritionFactsService.new(user: users(:daisy)).update!(:journal_days)
 
     journal_day.reload
 
@@ -115,7 +115,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
     fake_nutrition_facts!(journal_day)
 
-    NutritionFactsService.update(:journal_days)
+    NutritionFactsService.new(user: users(:daisy)).update!(:journal_days)
 
     journal_day.reload
 

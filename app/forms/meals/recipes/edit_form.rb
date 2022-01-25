@@ -28,8 +28,4 @@ class Meals::Recipes::EditForm < ApplicationForm
   def meal_day_partition_id
     object.day_partition_id
   end
-
-  def user
-    object.journal_day.user
-  end
 end

@@ -42,10 +42,6 @@ class Meals::Recipes::NewForm < ApplicationForm
 
   private
 
-  def user
-    @user ||= object.journal_day.user
-  end
-
   def recipe
     @recipe ||= user.recipes.find_by(id: recipe_id)
   end
