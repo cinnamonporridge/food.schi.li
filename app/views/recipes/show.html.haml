@@ -17,12 +17,12 @@
         = link_to edit_recipe_path(@recipe), class: 'button flex items-center gap-x-2' do
           .h-4.w-4
             = raw heroicon :pencil
-          Edit
+          Edit recipe
 
         = link_to new_recipe_copy_path(@recipe), class: 'secondary-button flex items-center gap-x-2' do
           .h-4.w-4
             = raw heroicon :duplicate
-          Copy
+          Copy recipe
 
         = button_to @recipe, method: :delete, class: 'dangerous-button gap-x-2' do
           .h-4.w-4

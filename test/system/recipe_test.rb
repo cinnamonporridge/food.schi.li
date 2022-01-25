@@ -1,41 +1,55 @@
 require 'application_system_test_case'
 
 class RecipeTest < ApplicationSystemTestCase
-  # SEE RecipeFlowsTest
-
   test 'user adds a recipe' do
-    skip
+    sign_in_user :daisy
+    navigate_to 'Recipes'
+    click_on 'Add recipe'
+    assert_selector 'h1', text: 'New recipe'
+    assert_link 'Cancel', href: '/recipes'
+    fill_in 'Name', with: 'Tomato soup'
+    fill_in 'Servings', with: '3'
+    click_on 'Add recipe'
+    assert_selector '.flash', text: 'Recipe added'
+    assert_selector 'h1', text: 'Tomato soup'
   end
 
   test 'user edits a recipe' do
-    skip
+    sign_in_user :daisy
+    navigate_to 'Recipes'
+    click_on 'Apple Pie'
+    click_on 'Edit recipe'
+    assert_selector 'h1', text: 'Edit Apple Pie'
+    assert_link 'Cancel', href: %r{/recipes/[0-9]+}
+    fill_in 'Name', with: 'Apple Cake'
+    fill_in 'Servings', with: '2'
+    click_on 'Update recipe'
+    assert_selector '.flash', text: 'Recipe updated'
+    assert_selector 'h1', text: 'Apple Cake'
   end
 
   test 'user deletes a recipe' do
-    skip
+    sign_in_user :daisy
+    navigate_to 'Recipes'
+    click_on 'Anchovy Soup'
+    click_on 'Delete recipe'
+    assert_selector '.flash', text: 'Recipe deleted'
+    assert_selector 'h1', text: 'Recipes'
+    assert_no_link 'Anchovy Soup'
   end
 
   test 'user copies a recipe' do
-    recipe = recipes(:peanut_butter_bread)
     sign_in_user :daisy
-
-    visit recipe_path(recipe)
-
+    navigate_to 'Recipes'
+    click_on 'PB Bread'
     assert_selector 'h1', text: 'PB Bread'
-
-    click_on 'Copy'
-
+    click_on 'Copy recipe'
     assert_selector 'h1', text: 'Copy PB Bread'
-    assert_selector 'a', text: 'Cancel'
-
+    assert_link 'Cancel', href: %r{/recipes/[0-9]+}
     click_on 'Copy recipe'
-
     assert_text "can't be blank"
-
     fill_in 'New recipe name', with: 'PB&J Version 1'
-
     click_on 'Copy recipe'
-
     assert_selector 'h1', text: 'PB&J Version 1'
   end
 end

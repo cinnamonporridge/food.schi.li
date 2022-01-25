@@ -1,31 +1,54 @@
 require 'application_system_test_case'
 
 class Recipe::IngredientTest < ApplicationSystemTestCase
-  # SEE RecipeIngredientFlowsTest
-
   test 'user adds an ingredient to recipe' do
-    skip
+    sign_in_user :daisy
+    navigate_to 'Recipes'
+    click_on 'Apple Pie'
+    click_on 'Add another ingredient'
+    assert_selector 'h1', text: 'Add ingredient to Apple Pie'
+    assert_link 'Cancel', href: %r{/recipes/[0-9]+}
+    fill_in 'Portion name', with: 'Sugar Cube (25g)'
+    fill_in 'Amount in measure', with: '3'
+    select 'Pieces', from: 'Measure'
+    click_on 'Add ingredient'
+    assert_selector '.flash', text: 'Ingredient added'
   end
 
-  test 'user edits an ingredient to recipe' do
-    skip
+  test 'user edits an ingredient in recipe' do
+    sign_in_user :daisy
+    navigate_to 'Recipes'
+    click_on 'Apple Pie'
+
+    within_recipe_ingredient('Apple Big Apple') do
+      click_on 'Edit ingredient'
+    end
+
+    assert_selector 'h1', text: 'Edit ingredient for Apple Pie'
+    assert_link 'Cancel', href: %r{/recipes/[0-9]+}
+    fill_in 'Amount in measure', with: '2'
+    click_on 'Update ingredient'
+
+    assert_selector '.flash', text: 'Ingredient updated'
+
+    within_recipe_ingredient('Apple Big Apple') do
+      assert_text '400' # grams
+    end
   end
 
   test 'user deletes ingredient from recipe' do
-    recipe = recipes(:peanut_butter_bread)
     sign_in_user :daisy
 
-    visit recipe_path(recipe)
+    navigate_to 'Recipes'
+    click_on 'PB Bread'
 
     assert_selector '.nutritions-table', text: "Per serving\n96\n"
 
-    within('ul#ingredients-list') do
-      list_item = find('li', text: 'Whole Grain Bread Whole Grain Bread Portion')
-      list_item.click
-      list_item.click_on 'Remove'
+    within_recipe_ingredient 'Whole Grain Bread Whole Grain Bread Portion' do
+      click_on 'Remove'
     end
 
-    assert_selector 'ul#ingredients_list', text: 'Whole Grain', count: 0
+    assert_selector 'ul.recipe--ingredients', text: 'Whole Grain', count: 0
     assert_selector '.nutritions-table', text: "Per serving\n89\n"
   end
 
@@ -41,12 +64,18 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       click_on 'Apple Pie'
       assert_selector '.nutritions-table'
 
-      within find('ul#ingredients-list li', text: 'Apple') do
+      within_recipe_ingredient 'Apple' do
         click_on 'Apple'
         click_on 'Remove ingredient'
       end
 
       assert_text 'No ingredients = no nutritions.'
     end
+  end
+
+  private
+
+  def within_recipe_ingredient(ingredient_name, &)
+    within(find('ul.recipe--ingredients li', text: ingredient_name), &)
   end
 end
