@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_120007) do
+ActiveRecord::Schema.define(version: 2022_01_25_134258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,8 +111,6 @@ ActiveRecord::Schema.define(version: 2022_01_19_120007) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["day_partition_id"], name: "index_meals_on_day_partition_id"
-    t.index ["journal_day_id", "consumable_id", "consumable_type"], name: "indx_journal_day_consumable", unique: true
-    t.index ["journal_day_id", "day_partition_id", "consumable_id", "consumable_type"], name: "indx_journal_day_day_partition_consumable", unique: true
     t.index ["journal_day_id"], name: "index_meals_on_journal_day_id"
   end
 
