@@ -40,7 +40,7 @@ class NutritionFacts::Meals < NutritionFacts::Base
            , fat               = target.fat
            , fat_saturated     = target.fat_saturated
            , fiber             = target.fiber
-        FROM with_nutrition_facts target
+        FROM with_summed_nutrition_facts target
        WHERE meals.id = target.meal_id
     SQL
   end
