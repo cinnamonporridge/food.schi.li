@@ -3,7 +3,7 @@ class ApplicationForm
 
   attr_reader :object, :params
 
-  delegate :id, :persisted?, :new_record?, to: :object
+  delegate :id, :persisted?, :new_record?, :user, to: :object
 
   def initialize(object, params = ActionController::Parameters.new)
     @object = object

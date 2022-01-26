@@ -14,7 +14,7 @@ class Recipes::IngredientsController < ApplicationController
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
     if @form.valid? && @ingredient.update(@form.values)
-      NutritionFactsService.update_all
+      NutritionFactsService.new(user: @form.user).update_track!(:recipes)
       return handle_success('Ingredient added')
     end
 
@@ -26,7 +26,7 @@ class Recipes::IngredientsController < ApplicationController
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
     if @form.valid? && @ingredient.update(@form.values)
-      NutritionFactsService.update(:ingredients, :recipes)
+      NutritionFactsService.new(user: @form.user).update_track!(:recipes)
       return handle_success('Ingredient updated')
     end
 
@@ -36,7 +36,7 @@ class Recipes::IngredientsController < ApplicationController
 
   def destroy
     @ingredient.destroy
-    NutritionFactsService.update(:ingredients, :recipes)
+    NutritionFactsService.new(user: @ingredient.user).update_track!(:recipes)
     update_recipe_vegan
     redirect_to @ingredient.recipe, notice: 'Ingredient deleted'
   end
@@ -58,10 +58,6 @@ class Recipes::IngredientsController < ApplicationController
   def recipe
     @recipe ||= Recipe.find(params[:recipe_id])
   end
-
-  # def find_portion
-  #   @find_portion ||= Portion.find_by(id: ingredient_params[:portion_id])
-  # end
 
   def update_recipe_vegan
     recipe.reload

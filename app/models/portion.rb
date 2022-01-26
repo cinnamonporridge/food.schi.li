@@ -1,6 +1,8 @@
 class Portion < ApplicationRecord
   include NutritionFacts
 
+  delegate :user, to: :food
+
   PRIMARY_AMOUNT = 100
 
   belongs_to :food

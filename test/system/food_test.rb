@@ -130,10 +130,6 @@ class FoodTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Foods'
   end
 
-  test 'portions' do
-    skip
-  end
-
   private
 
   def sign_in_and_navigate_to_foods(fixture_key = :daisy)

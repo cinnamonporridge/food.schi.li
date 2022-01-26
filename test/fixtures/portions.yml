@@ -2,31 +2,73 @@ apple_default_portion:
   name: '100g'
   food: apple
   amount: 100
+  kcal: 100
+  carbs: 100.0
+  carbs_sugar_part: 10.0
+  protein: 100.0
+  fat: 100.0
+  fat_saturated: 10.0
+  fiber: 100.0
 
 big_apple_portion:
   name: Big Apple
   food: apple
   amount: 200
+  kcal: 200
+  carbs: 200.0
+  carbs_sugar_part: 20.0
+  protein: 200.0
+  fat: 200.0
+  fat_saturated: 20.0
+  fiber: 200.0
 
 banana_default_portion:
   name: '100g'
   food: banana
   amount: 100
+  kcal: 90
+  carbs: 90.0
+  carbs_sugar_part: 9.0
+  protein: 90.0
+  fat: 90.0
+  fat_saturated: 9.0
+  fiber: 90.0
 
 regular_banana_portion:
   name: 'Regular'
   food: banana
   amount: 116
+  kcal: 104
+  carbs: 104.4
+  carbs_sugar_part: 10.44
+  protein: 104.4
+  fat: 104.4
+  fat_saturated: 10.44
+  fiber: 104.4
 
 celery_old_default_portion:
   name: '100g'
   food: celery_old
   amount: 100
+  kcal: 80
+  carbs: 80.0
+  carbs_sugar_part: 8.0
+  protein: 80.0
+  fat: 80.0
+  fat_saturated: 8.0
+  fiber: 80.0
 
 milk_default_portion:
   name: '100ml'
   food: milk
   amount: 100
+  kcal: 120
+  carbs: 120.0
+  carbs_sugar_part: 12.0
+  protein: 120.0
+  fat: 120.0
+  fat_saturated: 12.0
+  fiber: 120.0
 
 peanut_butter_default_portion:
   name: '100g'
@@ -44,16 +86,37 @@ sugar_default_portion:
   name: '100g'
   food: sugar
   amount: 100
+  kcal: 333
+  carbs: 333.0
+  carbs_sugar_part: 33.0
+  protein: 333.0
+  fat: 333.0
+  fat_saturated: 33.0
+  fiber: 333.0
 
 sugar_cube_portion:
   name: 'Cube'
   food: sugar
   amount: 25
+  kcal: 83
+  carbs: 83.25
+  carbs_sugar_part: 8.25
+  protein: 83.25
+  fat: 83.25
+  fat_saturated: 8.25
+  fiber: 83.25
 
 whole_grain_bread_default_portion:
   name: '100g'
   food: whole_grain_bread
   amount: 100
+  kcal: 670
+  carbs: 670.0
+  carbs_sugar_part: 67.0
+  protein: 670.0
+  fat: 670.0
+  fat_saturated: 67.0
+  fiber: 670.0
 
 whole_grain_bread_portion:
   name: 'Whole Grain Bread Portion'

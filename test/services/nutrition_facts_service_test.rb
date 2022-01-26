@@ -1,137 +1,55 @@
 require 'test_helper'
 
 class NutritionFactsServiceTest < ActiveSupport::TestCase
-  test '.update(:portions)' do
-    portion = portions(:regular_banana_portion)
-
-    truncate_nutrition_facts!(portion)
-
-    NutritionFactsService.update(:portions)
-
-    portion.reload
-
-    assert_equal 104, portion.kcal
-    assert_in_delta(104.4, portion.carbs)
-    assert_in_delta(10.44, portion.carbs_sugar_part)
-    assert_in_delta(104.4, portion.protein)
-    assert_in_delta(104.4, portion.fat)
-    assert_in_delta(10.44, portion.fat_saturated)
-    assert_in_delta(104.4, portion.fiber)
+  setup do
+    @portion = portions(:big_apple_portion)
+    @ingredient = ingredients(:apples_in_apple_pie)
+    @recipe = recipes(:apple_pie)
+    @meal_ingredient = meal_ingredients(:daisys_big_apple_meal_ingredient_on_february_first)
+    @meal = meals(:daisys_big_apple_meal_on_february_first)
+    @journal_day = journal_days(:daisy_february_first)
   end
 
-  test '.update(:ingredients)' do
-    ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
+  test '.update_track!(:portions)' do
+    fake_all_nutrition_facts!
 
-    truncate_nutrition_facts!(ingredient)
+    NutritionFactsService.new(user: users(:daisy)).update_track!(:portions)
 
-    NutritionFactsService.update(:ingredients)
-
-    ingredient.reload
-
-    assert_equal 400, ingredient.kcal
-    assert_in_delta(399.6, ingredient.carbs)
-    assert_in_delta(39.6, ingredient.carbs_sugar_part)
-    assert_in_delta(399.6, ingredient.protein)
-    assert_in_delta(399.6, ingredient.fat)
-    assert_in_delta(39.6, ingredient.fat_saturated)
-    assert_in_delta(399.6, ingredient.fiber)
+    assert_portion_nutrition_facts
+    assert_ingredient_nutrition_facts
+    assert_recipe_nutrition_facts
+    assert_meal_ingredient_nutrition_facts
+    assert_meal_nutrition_facts
+    assert_journal_day_nutrition_facts
   end
 
-  test '.update(:recipes)' do
-    recipe = recipes(:apple_pie)
+  test '.update_track!(:recipes)' do
+    fake_nutrition_facts!(@ingredient)
+    fake_nutrition_facts!(@recipe)
 
-    truncate_nutrition_facts!(recipe)
-
-    NutritionFactsService.update(:recipes)
-
-    recipe.reload
-
-    assert_equal 54, recipe.kcal
-    assert_equal 54, recipe.carbs
-    assert_in_delta(5.4, recipe.carbs_sugar_part)
-    assert_equal 54, recipe.protein
-    assert_equal 54, recipe.fat
-    assert_in_delta(5.4, recipe.fat_saturated)
-    assert_equal 54, recipe.fiber
+    NutritionFactsService.new(user: users(:daisy)).update_track!(:portions)
+    assert_ingredient_nutrition_facts
+    assert_recipe_nutrition_facts
   end
 
-  test '.update(:meals)' do
-    meal = meals(:daisys_apple_pie_meal_on_february_fifth)
+  test '.update_track!(:meals)' do
+    fake_nutrition_facts!(@meal_ingredient)
+    fake_nutrition_facts!(@meal)
+    fake_nutrition_facts!(@journal_day)
 
-    truncate_nutrition_facts!(meal)
-
-    NutritionFactsService.update(:meals)
-
-    meal.reload
-
-    assert_equal 54, meal.kcal
-    assert_in_delta(54.0, meal.carbs)
-    assert_in_delta(5.4, meal.carbs_sugar_part)
-    assert_in_delta(54.0, meal.protein)
-    assert_in_delta(54.0, meal.fat)
-    assert_in_delta(5.4, meal.fat_saturated)
-    assert_in_delta(54.0, meal.fiber)
+    NutritionFactsService.new(user: users(:daisy)).update_track!(:meals)
+    assert_meal_ingredient_nutrition_facts
+    assert_meal_nutrition_facts
+    assert_journal_day_nutrition_facts
   end
 
-  test '.update(:meal_ingredients)' do
-    meal_ingredient = meal_ingredients(:johns_apple_on_january_first)
+  test '.update_track!(:meals), no meals' do
+    @journal_day.meals.destroy_all
+    fake_nutrition_facts!(@journal_day)
 
-    truncate_nutrition_facts!(meal_ingredient)
-
-    NutritionFactsService.update(:meal_ingredients)
-
-    meal_ingredient.reload
-
-    assert_equal 180, meal_ingredient.kcal
-    assert_equal 180, meal_ingredient.carbs
-    assert_in_delta(18.0, meal_ingredient.carbs_sugar_part)
-    assert_equal 180, meal_ingredient.protein
-    assert_equal 180, meal_ingredient.fat
-    assert_in_delta(18.0, meal_ingredient.fat_saturated)
-    assert_equal 180, meal_ingredient.fiber
-  end
-
-  test '.update(:journal_days)' do
-    journal_day = journal_days(:john_january_first)
-
-    truncate_nutrition_facts!(journal_day)
-
-    NutritionFactsService.update(:journal_days)
-
-    journal_day.reload
-
-    assert_equal 196, journal_day.kcal
-    assert_equal 196, journal_day.carbs
-    assert_in_delta(19.6, journal_day.carbs_sugar_part)
-    assert_equal 196, journal_day.protein
-    assert_equal 196, journal_day.fat
-    assert_in_delta(19.6, journal_day.fat_saturated)
-    assert_equal 196, journal_day.fiber
-  end
-
-  test '.update(:journal_days), no meal_ingredients' do
-    journal_day = journal_days(:john_january_first)
-    journal_day.meals.destroy_all
-
-    fake_nutrition_facts!(journal_day)
-
-    NutritionFactsService.update(:journal_days)
-
-    journal_day.reload
-
-    assert_equal 0, journal_day.kcal
-    assert_equal 0, journal_day.carbs
-    assert_in_delta(0, journal_day.carbs_sugar_part)
-    assert_equal 0, journal_day.protein
-    assert_equal 0, journal_day.fat
-    assert_in_delta(0, journal_day.fat_saturated)
-    assert_equal 0, journal_day.fiber
-  end
-
-  private
-
-  def truncate_nutrition_facts!(record)
-    record.update!(
+    NutritionFactsService.new(user: users(:daisy)).update_track!(:meals)
+    assert_nutrition_facts(
+      @journal_day,
       kcal: 0,
       carbs: 0.0,
       carbs_sugar_part: 0.0,
@@ -140,6 +58,123 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
       fat_saturated: 0.0,
       fiber: 0.0
     )
+  end
+
+  private
+
+  def assert_portion_nutrition_facts
+    assert_nutrition_facts(
+      @portion,
+      kcal: 200,
+      carbs: 200.0,
+      carbs_sugar_part: 20.00,
+      protein: 200.0,
+      fat: 200.0,
+      fat_saturated: 20.00,
+      fiber: 200.0
+    )
+  end
+
+  def assert_ingredient_nutrition_facts
+    assert_nutrition_facts(
+      @ingredient,
+      kcal: 6,
+      carbs: 6.0,
+      carbs_sugar_part: 0.6,
+      protein: 6.0,
+      fat: 6.0,
+      fat_saturated: 0.6,
+      fiber: 6.0
+    )
+  end
+
+  def assert_recipe_nutrition_facts
+    assert_nutrition_facts(
+      @recipe,
+      kcal: 54,
+      carbs: 54,
+      carbs_sugar_part: 5.4,
+      protein: 54,
+      fat: 54,
+      fat_saturated: 5.4,
+      fiber: 54
+    )
+  end
+
+  def assert_meal_ingredient_nutrition_facts
+    assert_nutrition_facts(
+      @meal_ingredient,
+      kcal: 1,
+      carbs: 1.0,
+      carbs_sugar_part: 0.1,
+      protein: 1.0,
+      fat: 1.0,
+      fat_saturated: 0.1,
+      fiber: 1.0
+    )
+  end
+
+  def assert_meal_nutrition_facts
+    assert_nutrition_facts(
+      @meal,
+      kcal: 1,
+      carbs: 1.0,
+      carbs_sugar_part: 0.1,
+      protein: 1.0,
+      fat: 1.0,
+      fat_saturated: 0.1,
+      fiber: 1.0
+    )
+  end
+
+  def assert_journal_day_nutrition_facts
+    assert_nutrition_facts(
+      @journal_day,
+      kcal: 301,
+      carbs: 301.0,
+      carbs_sugar_part: 30.1,
+      protein: 301.0,
+      fat: 301.0,
+      fat_saturated: 30.1,
+      fiber: 301.0
+    )
+  end
+
+  def assert_nutrition_facts(record, expected_values = {})
+    record.reload
+    assert_nutrition_facts_equal(expected_values, record, :kcal)
+    assert_nutrition_facts_in_delta(expected_values, record, :carbs)
+    assert_nutrition_facts_in_delta(expected_values, record, :carbs_sugar_part)
+    assert_nutrition_facts_in_delta(expected_values, record, :protein)
+    assert_nutrition_facts_in_delta(expected_values, record, :fat)
+    assert_nutrition_facts_in_delta(expected_values, record, :fat_saturated)
+    assert_nutrition_facts_in_delta(expected_values, record, :fiber)
+  end
+
+  def assert_nutrition_facts_equal(expected_values, record, attribute)
+    assert_equal(
+      expected_values[attribute],
+      record.read_attribute(attribute),
+      ":#{attribute} of #{record.inspect}"
+    )
+  end
+
+  def assert_nutrition_facts_in_delta(expected_values, record, attribute, delta = 0.001)
+    assert_in_delta(
+      expected_values[attribute],
+      record.read_attribute(attribute),
+      delta,
+      ":#{attribute} of #{record.inspect}"
+    )
+  end
+
+  def fake_all_nutrition_facts!
+    fake_nutrition_facts!(@portion)
+    fake_nutrition_facts!(@ingredient)
+    fake_nutrition_facts!(@recipe)
+    fake_nutrition_facts!(@meal_ingredient)
+    fake_nutrition_facts!(@meal)
+    fake_nutrition_facts!(@journal_day)
   end
 
   def fake_nutrition_facts!(record)

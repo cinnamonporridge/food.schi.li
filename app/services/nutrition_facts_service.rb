@@ -1,30 +1,38 @@
 class NutritionFactsService
-  VALID_TABLE_NAMES = %i[portions ingredients recipes meal_ingredients meals journal_days].freeze
+  attr_reader :user
 
-  def self.update_all
-    VALID_TABLE_NAMES.map do |table_name|
-      update(table_name)
-    end
+  TABLE_NAME_TO_KLASS_MAPPING = {
+    portions: NutritionFacts::Portions,
+    ingredients: NutritionFacts::Ingredients,
+    recipes: NutritionFacts::Recipes,
+    meal_ingredients: NutritionFacts::MealIngredients,
+    meals: NutritionFacts::Meals,
+    journal_days: NutritionFacts::JournalDays
+  }.freeze
+
+  TRACKS = {
+    portions: TABLE_NAME_TO_KLASS_MAPPING.keys,
+    recipes: %i[ingredients recipes],
+    meals: %i[meal_ingredients meals journal_days]
+  }.freeze
+
+  def initialize(user:)
+    @user = user
   end
 
-  def self.update(*table_names)
-    VALID_TABLE_NAMES & Array(table_names).each do |table_name|
-      new.update(table_name)
-    end
+  def update_all!
+    update_track!(:portions)
   end
 
-  def update(table_name)
-    raise InvalidArgument unless VALID_TABLE_NAMES.include?(table_name.to_sym)
-
-    run_sql_for_table(table_name)
+  def update_track!(track_name)
+    ActiveRecord::Base.transaction do
+      TRACKS[track_name].map(&method(:update!))
+    end
   end
 
   private
 
-  def run_sql_for_table(table_name)
-    filepath = Rails.root.join("lib/sql/update_nutrition_facts_on_#{table_name}.sql")
-    ActiveRecord::Base.connection.execute(filepath.read)
-  rescue StandardError => e
-    raise "Error execting '#{filepath}':\n\n#{e.full_message}"
+  def update!(table_name)
+    TABLE_NAME_TO_KLASS_MAPPING[table_name].new(user:).call!
   end
 end
