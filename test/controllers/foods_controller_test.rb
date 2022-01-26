@@ -81,10 +81,10 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   test 'declare a food to be vegan' do
     food = foods(:apple)
 
-    assert_changes 'food.vegan?', from: false, to: true do
+    assert_changes 'food.vegan?', from: true, to: false do
       patch food_path(food), params: {
         food: {
-          vegan: '1'
+          vegan: '0'
         }
       }
       food.reload
