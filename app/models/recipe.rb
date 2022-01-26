@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   has_many :portions, through: :ingredients
   has_many :meals, as: :consumable, dependent: :restrict_with_exception
 
+  before_validation :initialize_vegan, if: :new_record?
+
   validates :name, presence: true
   validates :servings, presence: true
 
@@ -27,10 +29,6 @@ class Recipe < ApplicationRecord
       protein: decorate.serving(:protein),
       fat: decorate.serving(:fat)
     )
-  end
-
-  def detect_vegan
-    self.vegan = VeganRecipeDetectionService.new(self).vegan?
   end
 
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
@@ -54,4 +52,10 @@ class Recipe < ApplicationRecord
     }
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+  private
+
+  def initialize_vegan
+    self.vegan = true
+  end
 end

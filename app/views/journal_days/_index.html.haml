@@ -3,10 +3,14 @@
     - journal_days.each do |journal_day|
       %li
         = link_to journal_day_path(journal_day), class: 'flex flex-col gap-y-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do
-          .w-full.flex.items-center.gap-x-2
-            .grow.text-gray-600
-              = journal_day.decorate.display_date
-            .shrink-0.bg-green-700.text-gray-100.text-xs.font-mono.px-1.rounded
-              = journal_day.decorate.display_weekday
+          .w-full.flex.items-center
+            .grow.flex.gap-x-1.items-center.gap-x-2
+              .bg-green-700.text-gray-100.text-xs.font-mono.px-1.rounded
+                = journal_day.decorate.display_weekday
+              .text-gray-600
+                = journal_day.decorate.display_date
+            .shrink-0
+              = render VeganBadgeIconComponent.new(journal_day.vegan)
+
           .w-full
             = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data

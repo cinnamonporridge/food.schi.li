@@ -8,7 +8,7 @@ apple:
   fat: 100
   fat_saturated: 10
   fiber: 100
-  vegan: false
+  vegan: true
   user: daisy
 
 banana:

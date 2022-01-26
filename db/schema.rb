@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_134258) do
+ActiveRecord::Schema.define(version: 2022_01_26_105332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2022_01_25_134258) do
     t.decimal "fat", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
+    t.boolean "vegan", default: false, null: false
     t.index ["date", "user_id"], name: "index_journal_days_on_date_and_user_id", unique: true
     t.index ["user_id"], name: "index_journal_days_on_user_id"
   end

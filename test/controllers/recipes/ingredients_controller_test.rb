@@ -31,7 +31,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_not portion.food.vegan?, 'Portion nutrution should be non-vegan'
 
-    assert_changes 'recipe.vegan?', from: true, to: false do
+    assert_changes -> { recipe.vegan? }, to: false do
       post recipe_ingredients_path(recipe),
            params: {
              recipe_ingredient: {

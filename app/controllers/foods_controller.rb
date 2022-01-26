@@ -17,13 +17,12 @@ class FoodsController < ApplicationController
 
   def edit; end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @food = current_user.foods.new(food_params)
     default_portion_name = "100#{@food.decorate.unit_abbrevation}"
     @food.portions.new(name: default_portion_name, amount: 100)
 
     if @food.save
-      NutritionFactsService.new(user: @food.user).update_all!
       redirect_to @food, notice: 'Food added'
     else
       flash.now[:error] = 'Invalid input'
@@ -33,9 +32,7 @@ class FoodsController < ApplicationController
 
   def update
     if @food.update(food_params)
-      update_affected_recipes if @food.vegan_previously_changed?
-      NutritionFactsService.new(user: @food.user).update_all!
-
+      propagate_facts_and_vegan!
       redirect_to @food, notice: 'Food updated'
     else
       flash.now[:error] = 'Invalid input'
@@ -64,10 +61,8 @@ class FoodsController < ApplicationController
                                  :fiber, :vegan)
   end
 
-  def update_affected_recipes
-    current_user.recipes.using_food(@food).find_each do |recipe|
-      recipe.detect_vegan
-      recipe.save
-    end
+  def propagate_facts_and_vegan!
+    NutritionFactsService.new(user: @food.user).update_all!
+    VeganDetectionService.new(@food).update_all!
   end
 end

@@ -14,30 +14,29 @@ class Recipes::IngredientsController < ApplicationController
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
     if @form.valid? && @ingredient.update(@form.values)
-      NutritionFactsService.new(user: @form.user).update_track!(:recipes)
-      return handle_success('Ingredient added')
+      propagate_facts_and_vegan!
+      redirect_to @ingredient.recipe, notice: 'Ingredient added'
+    else
+      flash.now[:error] = 'Invalid input'
+      render :new
     end
-
-    flash.now[:error] = 'Invalid input'
-    render :new
   end
 
   def update
     @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
 
     if @form.valid? && @ingredient.update(@form.values)
-      NutritionFactsService.new(user: @form.user).update_track!(:recipes)
-      return handle_success('Ingredient updated')
+      propagate_facts_and_vegan!
+      redirect_to @ingredient.recipe, notice: 'Ingredient updated'
+    else
+      flash.now[:error] = 'Invalid input'
+      render :edit
     end
-
-    flash.now[:error] = 'Invalid input'
-    render :edit
   end
 
   def destroy
     @ingredient.destroy
-    NutritionFactsService.new(user: @ingredient.user).update_track!(:recipes)
-    update_recipe_vegan
+    propagate_facts_and_vegan!
     redirect_to @ingredient.recipe, notice: 'Ingredient deleted'
   end
 
@@ -59,14 +58,8 @@ class Recipes::IngredientsController < ApplicationController
     @recipe ||= Recipe.find(params[:recipe_id])
   end
 
-  def update_recipe_vegan
-    recipe.reload
-    recipe.detect_vegan
-    recipe.save
-  end
-
-  def handle_success(message)
-    update_recipe_vegan
-    redirect_to @ingredient.recipe, notice: message
+  def propagate_facts_and_vegan!
+    NutritionFactsService.new(user: recipe.user).update_track!(:recipes)
+    VeganDetectionService.new(recipe).update_all!
   end
 end
