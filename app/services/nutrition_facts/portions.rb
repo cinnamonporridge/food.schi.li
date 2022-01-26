@@ -22,6 +22,8 @@ class NutritionFacts::Portions < NutritionFacts::Base
                   FROM portions p
                  CROSS JOIN (SELECT 100 AS default_amount) AS d
                  INNER JOIN foods f ON f.id = p.food_id
+                 WHERE 0 = 0
+                   AND f.user_id = #{@user.id}
               ) target
        WHERE p.id = target.id
     SQL

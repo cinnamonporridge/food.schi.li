@@ -17,6 +17,8 @@ class NutritionFacts::Recipes < NutritionFacts::Base
          INNER JOIN ingredients i ON i.recipe_id = r.id
          INNER JOIN portions p    ON p.id = i.portion_id
          INNER JOIN foods f       ON f.id = p.food_id
+         WHERE 0 = 0
+           AND f.user_id = #{@user.id}
       )
       , with_summed_nutrition_facts AS (
         SELECT recipe_id                         AS recipe_id

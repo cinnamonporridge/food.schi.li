@@ -18,6 +18,8 @@ class NutritionFacts::JournalDays < NutritionFacts::Base
           LEFT OUTER JOIN meal_ingredients mi      ON mi.meal_id = m.id
           LEFT OUTER JOIN portions p               ON p.id = mi.portion_id
           LEFT OUTER JOIN foods f                  ON f.id = p.food_id
+         WHERE 0 = 0
+           AND jd.user_id = #{@user.id}
       )
       , with_summed_nutrition_facts AS (
          SELECT journal_day_id
