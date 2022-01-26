@@ -7,7 +7,7 @@
             = @recipe.name
           - if @recipe.vegan?
             .flex.items-end.gap-x-1.text-2xs.text-gray-400
-              = render 'icons/vegan', vegan: @recipe.vegan?
+              = render VeganBadgeIconComponent.new(@recipe.vegan?)
               Vegan
         .shrink-0
           %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }

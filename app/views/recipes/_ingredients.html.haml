@@ -14,7 +14,7 @@
               .w-full.grid.grid-cols-5.items-baseline
                 .col-span-3.flex.gap-x-2.items-start
                   .h-4.w-4.mt-1
-                    = render 'icons/vegan', vegan: ingredient.decorate.vegan?
+                    = render VeganBadgeIconComponent.new(ingredient.vegan?)
                   = button_tag class: 'text-green-500 text-left hover:text-green-600 flex items-start gap-x-1', 'data-action': 'toggleable#toggle' do
                     = ingredient.portion.decorate.name_with_food
 

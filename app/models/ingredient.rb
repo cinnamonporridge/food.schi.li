@@ -2,6 +2,7 @@ class Ingredient < ApplicationRecord
   include NutritionFacts
 
   delegate :user, to: :recipe
+  delegate :vegan?, to: :portion
 
   belongs_to :portion
   belongs_to :recipe
@@ -11,8 +12,6 @@ class Ingredient < ApplicationRecord
   validates :amount, presence: true
 
   enum measure: { unit: 'unit', piece: 'piece' }, _prefix: :measure
-
-  delegate :vegan?, to: :portion
 
   def to_nutritions_table_row
     [

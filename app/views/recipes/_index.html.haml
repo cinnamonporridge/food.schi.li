@@ -7,6 +7,6 @@
             .grow
               = recipe.name
             .shrink-0
-              = render 'icons/vegan', vegan: recipe.vegan?
+              = render VeganBadgeIconComponent.new(recipe.vegan?)
           .w-full
             = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving
