@@ -9,13 +9,13 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   # new
   test 'get #new' do
-    login_user :daisy
+    sign_in_user :daisy
     get new_food_portion_path(@food)
     assert_response :success
   end
 
   test 'cannot get #new for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises ActiveRecord::RecordNotFound do
       get new_food_portion_path(@food)
     end
@@ -23,7 +23,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   # create
   test 'post #create' do
-    login_user :daisy
+    sign_in_user :daisy
 
     assert_difference -> { @food.portions.count }, +1 do
       post food_portions_path(@food), params: {
@@ -51,7 +51,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot post #create for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises ActiveRecord::RecordNotFound do
       post food_portions_path(@food), params: {}
     end
@@ -59,20 +59,20 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   # edit
   test 'get #edit' do
-    login_user :daisy
+    sign_in_user :daisy
     get edit_food_portion_path(@food, @portion)
     assert_response :success
   end
 
   test 'cannot get #edit of primary' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_raises ActiveRecord::RecordNotFound do
       get edit_food_portion_path(@food, @primary_portion)
     end
   end
 
   test 'cannot get #edit of other' do
-    login_user :john
+    sign_in_user :john
     assert_raises ActiveRecord::RecordNotFound do
       get edit_food_portion_path(@food, @portion)
     end
@@ -80,7 +80,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   # update
   test 'patch #update' do
-    login_user :daisy
+    sign_in_user :daisy
 
     patch food_portion_path(@food, @portion), params: {
       portion: {
@@ -105,14 +105,14 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot patch #update of primary' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_raises ActiveRecord::RecordNotFound do
       patch food_portion_path(@food, @primary_portion)
     end
   end
 
   test 'cannot patch #update of other' do
-    login_user :john
+    sign_in_user :john
     assert_raises ActiveRecord::RecordNotFound do
       patch food_portion_path(@food, @portion), params: {}
     end
@@ -120,7 +120,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   # destroy
   test 'delete #destroy' do
-    login_user :daisy
+    sign_in_user :daisy
 
     portion = @food.portions.create!(name: 'Small', amount: 20)
 
@@ -137,14 +137,14 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot delete #destroy of primary' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_raises ActiveRecord::RecordNotFound do
       delete food_portion_path(@food, @primary_portion)
     end
   end
 
   test 'cannot delete #destroy of other' do
-    login_user :john
+    sign_in_user :john
     assert_raises ActiveRecord::RecordNotFound do
       delete food_portion_path(@food, @portion)
     end
