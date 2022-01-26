@@ -5,9 +5,9 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     @portion = portions(:big_apple_portion)
     @ingredient = ingredients(:apples_in_apple_pie)
     @recipe = recipes(:apple_pie)
-    @meal_ingredient = meal_ingredients(:daisys_big_apple_meal_ingredient_on_february_first)
-    @meal = meals(:daisys_big_apple_meal_on_february_first)
-    @journal_day = journal_days(:daisy_february_first)
+    @meal_ingredient = meal_ingredients(:daisys_apples_from_apple_pie_on_february_fifth)
+    @meal = meals(:daisys_apple_pie_meal_on_february_fifth)
+    @journal_day = journal_days(:daisy_february_fifth)
   end
 
   test '.update_track!(:portions)' do
@@ -104,39 +104,39 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
   def assert_meal_ingredient_nutrition_facts
     assert_nutrition_facts(
       @meal_ingredient,
-      kcal: 1,
-      carbs: 1.0,
-      carbs_sugar_part: 0.1,
-      protein: 1.0,
-      fat: 1.0,
-      fat_saturated: 0.1,
-      fiber: 1.0
+      kcal: 6,
+      carbs: 6.0,
+      carbs_sugar_part: 0.6,
+      protein: 6.0,
+      fat: 6.0,
+      fat_saturated: 0.6,
+      fiber: 6.0
     )
   end
 
   def assert_meal_nutrition_facts
     assert_nutrition_facts(
       @meal,
-      kcal: 1,
-      carbs: 1.0,
-      carbs_sugar_part: 0.1,
-      protein: 1.0,
-      fat: 1.0,
-      fat_saturated: 0.1,
-      fiber: 1.0
+      kcal: 54,
+      carbs: 54.0,
+      carbs_sugar_part: 5.4,
+      protein: 54.0,
+      fat: 54.0,
+      fat_saturated: 5.4,
+      fiber: 54.0
     )
   end
 
   def assert_journal_day_nutrition_facts
     assert_nutrition_facts(
       @journal_day,
-      kcal: 301,
-      carbs: 301.0,
-      carbs_sugar_part: 30.1,
-      protein: 301.0,
-      fat: 301.0,
-      fat_saturated: 30.1,
-      fiber: 301.0
+      kcal: 54,
+      carbs: 54.0,
+      carbs_sugar_part: 5.4,
+      protein: 54.0,
+      fat: 54.0,
+      fat_saturated: 5.4,
+      fiber: 54.0
     )
   end
 
