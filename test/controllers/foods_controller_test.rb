@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FoodsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    login_user :daisy
+    sign_in_user :daisy
   end
 
   # index

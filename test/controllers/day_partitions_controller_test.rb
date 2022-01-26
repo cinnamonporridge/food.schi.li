@@ -2,14 +2,14 @@ require 'test_helper'
 
 class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   test 'get index' do
-    login_user :daisy
+    sign_in_user :daisy
     get day_partitions_path
     assert_response :success
   end
 
   # new
   test 'get new' do
-    login_user :daisy
+    sign_in_user :daisy
     get new_day_partition_path
     assert_response :success
   end
@@ -17,7 +17,7 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   # create
   test 'post create' do
     user = users(:daisy)
-    login_user :daisy
+    sign_in_user :daisy
 
     assert_difference -> { user.day_partitions.count }, +1 do
       post day_partitions_path, params: {
@@ -37,20 +37,20 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
 
   # edit
   test 'get edit' do
-    login_user :daisy
+    sign_in_user :daisy
     get edit_day_partition_path(day_partitions(:daisy_breakfast))
     assert_response :success
   end
 
   test 'cannot get edit default' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_raises ActiveRecord::RecordNotFound do
       get edit_day_partition_path(day_partitions(:daisy_default))
     end
   end
 
   test 'cannot get edit of other' do
-    login_user :daisy
+    sign_in_user :daisy
 
     assert_raises ActiveRecord::RecordNotFound do
       get edit_day_partition_path(day_partitions(:john_brunch))
@@ -59,7 +59,7 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
 
   # update
   test 'put update' do
-    login_user :daisy
+    sign_in_user :daisy
 
     day_partition = day_partitions(:daisy_breakfast)
 
@@ -76,14 +76,14 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot put update default' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_raises ActiveRecord::RecordNotFound do
       patch day_partition_path(day_partitions(:daisy_default)), params: {}
     end
   end
 
   test 'cannot put update of other' do
-    login_user :daisy
+    sign_in_user :daisy
 
     day_partition = day_partitions(:john_brunch)
 
@@ -95,7 +95,7 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   # destroy
   test 'delete destroy' do
     user = users(:daisy)
-    login_user :daisy
+    sign_in_user :daisy
 
     day_partition = day_partitions(:daisy_breakfast)
 
@@ -105,14 +105,14 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot delete destroy default' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_raises ActiveRecord::RecordNotFound do
       delete day_partition_path(day_partitions(:daisy_default))
     end
   end
 
   test 'cannot delete destroy of other' do
-    login_user :daisy
+    sign_in_user :daisy
 
     day_partition = day_partitions(:john_brunch)
 

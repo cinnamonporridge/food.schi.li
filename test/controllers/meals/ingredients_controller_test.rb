@@ -8,13 +8,13 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   # new
   test 'get #new' do
-    login_user :daisy
+    sign_in_user :daisy
     get new_meal_ingredient_path(@meal)
     assert_response :success
   end
 
   test 'cannot get #new for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises(ActiveRecord::RecordNotFound) do
       get new_meal_ingredient_path(@meal)
     end
@@ -22,7 +22,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   # create
   test 'post #create' do
-    login_user :daisy
+    sign_in_user :daisy
     assert_difference -> { @meal.meal_ingredients.count }, +1 do
       post meal_ingredients_path(@meal), params: {
         meal_ingredient: {
@@ -44,7 +44,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot post #create for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises(ActiveRecord::RecordNotFound) do
       post meal_ingredients_path(@meal), params: {}
     end
@@ -52,13 +52,13 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   # edit
   test 'get #edit' do
-    login_user :daisy
+    sign_in_user :daisy
     get edit_meal_ingredient_path(@meal, @meal_ingredient)
     assert_response :success
   end
 
   test 'cannot get #edit for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises(ActiveRecord::RecordNotFound) do
       get edit_meal_ingredient_path(@meal, @meal_ingredient)
     end
@@ -66,7 +66,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   # update
   test 'patch #update' do
-    login_user :daisy
+    sign_in_user :daisy
 
     assert_changes -> { @meal_ingredient.amount }, to: 50.0 do
       patch meal_ingredient_path(@meal, @meal_ingredient), params: {
@@ -84,7 +84,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot patch #update for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises(ActiveRecord::RecordNotFound) do
       patch meal_ingredient_path(@meal, @meal_ingredient), params: {}
     end
@@ -92,7 +92,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   # destry
   test 'delete #destroy' do
-    login_user :daisy
+    sign_in_user :daisy
 
     assert_difference -> { @meal.meal_ingredients.count }, -1 do
       delete meal_ingredient_path(@meal, @meal_ingredient)
@@ -107,7 +107,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot delete #destroy for other' do
-    login_user :john
+    sign_in_user :john
     assert_raises(ActiveRecord::RecordNotFound) do
       delete meal_ingredient_path(@meal, @meal_ingredient)
     end

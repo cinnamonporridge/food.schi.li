@@ -2,7 +2,7 @@ require 'test_helper'
 
 class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   setup do
-    login_user :daisy
+    sign_in_user :daisy
   end
 
   # index

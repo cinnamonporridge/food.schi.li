@@ -7,33 +7,33 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   # index
   test 'get #index' do
-    login_user :daisy
+    sign_in_user :daisy
     get recipes_path
     assert_response :success
   end
 
   # show
   test 'get #show' do
-    login_user :daisy
+    sign_in_user :daisy
     get recipes_path(@recipe)
     assert_response :success
   end
 
   test 'cannot get #show of other' do
-    login_user :john
+    sign_in_user :john
     assert_not_get recipe_path(@recipe)
   end
 
   # new
   test 'get #new' do
-    login_user :daisy
+    sign_in_user :daisy
     get new_recipe_path
     assert_response :success
   end
 
   # create
   test 'post #create' do
-    login_user :daisy
+    sign_in_user :daisy
     user = users(:daisy)
 
     assert_difference -> { user.recipes.count }, +1 do
@@ -56,19 +56,19 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   # edit
   test 'get #edit' do
-    login_user :daisy
+    sign_in_user :daisy
     get edit_recipe_path(@recipe)
     assert_response :success
   end
 
   test 'cannot get #edit of other' do
-    login_user :john
+    sign_in_user :john
     assert_not_get edit_recipe_path(@recipe)
   end
 
   # update
   test 'patch #update' do
-    login_user :daisy
+    sign_in_user :daisy
 
     patch recipe_path(@recipe), params: {
       recipe: {
@@ -87,13 +87,13 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot patch #update of other' do
-    login_user :john
+    sign_in_user :john
     assert_not_patch recipe_path(@recipe)
   end
 
   # destroy
   test 'delete #destroy' do
-    login_user :daisy
+    sign_in_user :daisy
     user = users(:daisy)
 
     recipe = user.recipes.create!(name: 'To be deleted', servings: 33)
@@ -111,7 +111,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot delete #destroy of other' do
-    login_user :john
+    sign_in_user :john
     assert_not_delete recipe_path(@recipe)
   end
 end
