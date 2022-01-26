@@ -10,7 +10,7 @@ class Meals::IngredientsController < ApplicationController
     @form = MealIngredientForm.new(@meal.meal_ingredients.new, meal_ingredient_params)
 
     if @form.save
-      NutritionFactsService.new(user: @form.user).update_all!
+      NutritionFactsService.new(user: @form.user).update_track!(:meals)
       redirect_to @meal.journal_day, notice: 'Meal ingredient added'
     else
       flash[:notice] = 'Invalid input'
@@ -26,7 +26,7 @@ class Meals::IngredientsController < ApplicationController
     @form = MealIngredientForm.new(@meal_ingredient, meal_ingredient_params)
 
     if @form.save
-      NutritionFactsService.new(user: @form.user).update_all!
+      NutritionFactsService.new(user: @form.user).update_track!(:meals)
       redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient updated'
     else
       flash[:notice] = 'Invalid input'
@@ -36,7 +36,7 @@ class Meals::IngredientsController < ApplicationController
 
   def destroy
     @meal_ingredient.destroy
-    NutritionFactsService.new(user: @meal_ingredient.user).update_all!
+    NutritionFactsService.new(user: @meal_ingredient.user).update_track!(:meals)
     redirect_to @meal_ingredient.meal.journal_day, notice: 'Meal ingredient deleted'
   end
 

@@ -1,31 +1,60 @@
-apple_pie:
-  name: Apple Pie
-  servings: 6
-  vegan: false
-  user: daisy
-
 anchovy_soup:
   name: Anchovy Soup
   servings: 7
   vegan: false
   user: daisy
+  kcal: 0
+  carbs: 0.0
+  carbs_sugar_part: 0.0
+  protein: 0.0
+  fat: 0.0
+  fat_saturated: 0.0
+  fiber: 0.0
+
+apple_pie:
+  name: Apple Pie
+  servings: 6
+  vegan: false
+  user: daisy
+  kcal: 54
+  carbs: 54.0
+  carbs_sugar_part: 5.4
+  protein: 54.0
+  fat: 54.0
+  fat_saturated: 5.4
+  fiber: 54.0
 
 vegan_peanut_butter_banana:
   name: Vegan Peanut Butter Banana
   servings: 1
   vegan: true
   user: daisy
+  kcal: 401
+  carbs: 400.50
+  carbs_sugar_part: 39.69
+  protein: 400.50
+  fat: 400.50
+  fat_saturated: 39.69
+  fiber: 400.50
 
 non_vegan_milk_banana:
   name: Non-vegan milk Banana
   servings: 1
   vegan: false
   user: daisy
+  kcal: 109
+  carbs: 108.9
+  carbs_sugar_part: 10.89
+  protein: 108.9
+  fat: 108.9
+  fat_saturated: 10.89
+  fiber: 108.9
 
 peanut_butter_bread:
   name: 'PB Bread'
   servings: 1
   vegan: true
+  user: daisy
   kcal: 96
   carbs: 95.5
   carbs_sugar_part: 9.47
@@ -33,4 +62,3 @@ peanut_butter_bread:
   fat: 95.5
   fat_saturated: 15.5
   fiber: 95.5
-  user: daisy

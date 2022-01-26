@@ -11,7 +11,7 @@ class MealsController < ApplicationController
     @form = JournalDayMealFormFinderService.new(@journal_day.meals.new, params, :new).form
 
     if @form.save
-      NutritionFactsService.new(user: @form.user).update_all!
+      NutritionFactsService.new(user: @form.user).update_track!(:meals)
       redirect_to @journal_day, notice: 'Meal added'
     else
       flash.now[:notice] = 'Invalid input'
@@ -27,7 +27,7 @@ class MealsController < ApplicationController
     @form = JournalDayMealFormFinderService.new(@meal, params, :edit).form
 
     if @form.save
-      NutritionFactsService.new(user: @form.user).update_all!
+      NutritionFactsService.new(user: @form.user).update_track!(:meals)
       redirect_to @meal.journal_day, notice: 'Meal updated'
     else
       flash.now[:notice] = 'Invalid input'
@@ -37,7 +37,7 @@ class MealsController < ApplicationController
 
   def destroy
     @meal.destroy
-    NutritionFactsService.new(user: @meal.user).update_all!
+    NutritionFactsService.new(user: @meal.user).update_track!(:meals)
     redirect_to @meal.journal_day, notice: 'Meal deleted'
   end
 

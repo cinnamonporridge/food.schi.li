@@ -3,36 +3,78 @@ milk_in_apple_pie:
   portion: milk_default_portion
   amount: 40
   measure: 'unit'
+  kcal: 48
+  carbs: 48.0
+  carbs_sugar_part: 4.8
+  protein: 48.0
+  fat: 48.0
+  fat_saturated: 4.8
+  fiber: 48.0
 
 apples_in_apple_pie:
   recipe: apple_pie
   portion: big_apple_portion
   amount: 6
   measure: 'piece'
+  kcal: 6
+  carbs: 6.0
+  carbs_sugar_part: 0.6
+  protein: 6.0
+  fat: 6.0
+  fat_saturated: 0.6
+  fiber: 6.0
 
 peanut_butter_in_vegan_peanut_butter_banana:
   recipe: vegan_peanut_butter_banana
   portion: peanut_butter_default_portion
   amount: 90
   measure: 'unit'
+  kcal: 400
+  carbs: 399.6
+  carbs_sugar_part: 39.6
+  protein: 399.6
+  fat: 399.6
+  fat_saturated: 39.6
+  fiber: 399.6
 
 banana_in_vegan_peanut_butter_banana:
   recipe: vegan_peanut_butter_banana
   portion: regular_banana_portion
   amount: 1
   measure: 'piece'
+  kcal: 1
+  carbs: 0.9
+  carbs_sugar_part: 0.09
+  protein: 0.9
+  fat: 0.9
+  fat_saturated: 0.09
+  fiber: 0.9
 
 milk_in_non_vegan_milk_banana:
   recipe: non_vegan_milk_banana
   portion: milk_default_portion
   amount: 90
   measure: 'unit'
+  kcal: 108
+  carbs: 108.0
+  carbs_sugar_part: 10.8
+  protein: 108.0
+  fat: 108.0
+  fat_saturated: 10.8
+  fiber: 108.0
 
 banana_in_non_vegan_milk_banana:
   recipe: non_vegan_milk_banana
   portion: regular_banana_portion
   amount: 1
   measure: 'piece'
+  kcal: 1
+  carbs: 0.9
+  carbs_sugar_part: 0.09
+  protein: 0.9
+  fat: 0.9
+  fat_saturated: 0.09
+  fiber: 0.9
 
 bread_in_peanut_butter_bread:
   recipe: peanut_butter_bread
