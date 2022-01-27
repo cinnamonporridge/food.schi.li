@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_active_recipe, only: %i[edit update]
+  before_action :set_recipe_include_archived, only: %i[show destroy]
 
   def index
-    @pagy, @recipes = pagy(current_user.recipes.active.search(params[:search_query]).ordered_by_name)
+    @pagy, @recipes = pagy(user_recipes.active.search(params[:search_query]).ordered_by_name)
   end
 
   def show; end
@@ -16,7 +17,7 @@ class RecipesController < ApplicationController
   def edit; end
 
   def create
-    @recipe = current_user.recipes.new(recipe_params)
+    @recipe = user_recipes.active.new(recipe_params)
 
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe added'
@@ -36,14 +37,27 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.archive
-    redirect_to recipes_url, notice: 'Recipe archived'
+    if @recipe.active?
+      @recipe.archive
+      redirect_to recipes_url, notice: 'Recipe archived'
+    else
+      @recipe.unarchive
+      redirect_to @recipe, notice: 'Recipe unarchived'
+    end
   end
 
   private
 
-  def set_recipe
-    @recipe = current_user.recipes.find(params[:id])
+  def set_active_recipe
+    @recipe = user_recipes.active.find(params[:id])
+  end
+
+  def set_recipe_include_archived
+    @recipe = user_recipes.find(params[:id])
+  end
+
+  def user_recipes
+    current_user.recipes
   end
 
   def recipe_params

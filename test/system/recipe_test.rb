@@ -38,6 +38,23 @@ class RecipeTest < ApplicationSystemTestCase
     assert_no_link 'Anchovy Soup'
   end
 
+  test 'user unarchives a recipe' do
+    recipe = recipes(:anchovy_soup)
+    recipe.archive
+
+    sign_in_user :daisy
+    visit recipe_path(recipe) # archived are NOT reachable without knowing the path
+    assert_text 'Archived'
+    assert_no_link 'Edit'
+    assert_no_link 'Copy'
+    assert_no_link 'Remove'
+    assert_no_link 'Add'
+    click_on 'Unarchive recipe'
+    assert_selector '.flash', text: 'Recipe unarchived'
+    assert_selector 'h1', text: 'Anchovy Soup'
+    assert_no_text 'Archived'
+  end
+
   test 'user copies a recipe' do
     sign_in_user :daisy
     navigate_to 'Recipes'

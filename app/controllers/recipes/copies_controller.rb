@@ -18,7 +18,7 @@ class Recipes::CopiesController < ApplicationController
   private
 
   def set_recipe
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.active.find(params[:recipe_id])
   end
 
   def recipe_copy_params

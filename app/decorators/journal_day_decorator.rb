@@ -24,7 +24,7 @@ class JournalDayDecorator < SimpleDelegator
   end
 
   def recipes_collection
-    user.recipes.ordered_by_name.map do |recipe|
+    user.recipes.active.ordered_by_name.map do |recipe|
       [
         recipe.name,
         recipe.id

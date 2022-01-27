@@ -19,6 +19,13 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'get #show of archived' do
+    @recipe.archive
+    sign_in_user :daisy
+    get recipes_path(@recipe)
+    assert_response :success
+  end
+
   test 'cannot get #show of other' do
     sign_in_user :john
     assert_not_get recipe_path(@recipe)
@@ -61,6 +68,12 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'cannot get #edit of archived' do
+    @recipe.archive
+    sign_in_user :daisy
+    assert_not_get edit_recipe_path(@recipe)
+  end
+
   test 'cannot get #edit of other' do
     sign_in_user :john
     assert_not_get edit_recipe_path(@recipe)
@@ -86,6 +99,12 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 7, @recipe.servings
   end
 
+  test 'cannot patch #update of archived' do
+    @recipe.archive
+    sign_in_user :daisy
+    assert_not_patch recipe_path(@recipe)
+  end
+
   test 'cannot patch #update of other' do
     sign_in_user :john
     assert_not_patch recipe_path(@recipe)
@@ -94,16 +113,26 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   # destroy
   test 'delete #destroy' do
     sign_in_user :daisy
-    user = users(:daisy)
 
-    assert_changes -> { user.recipes.archived.count }, 1 do
-      assert_changes -> { @recipe.archived? }, to: true do
-        delete recipe_path(@recipe)
-        follow_redirect!
-        assert_response :success
-        assert_notice 'Recipe archived'
-        @recipe.reload
-      end
+    assert_changes -> { @recipe.archived? }, to: true do
+      delete recipe_path(@recipe)
+      follow_redirect!
+      assert_response :success
+      assert_notice 'Recipe archived'
+      @recipe.reload
+    end
+  end
+
+  test 'delete #destroy, archived' do
+    @recipe.archive
+    sign_in_user :daisy
+
+    assert_changes -> { @recipe.archived? }, to: false do
+      delete recipe_path(@recipe)
+      follow_redirect!
+      assert_response :success
+      assert_notice 'Recipe unarchived'
+      @recipe.reload
     end
   end
 
