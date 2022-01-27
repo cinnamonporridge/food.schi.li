@@ -28,12 +28,12 @@ class RecipeTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Apple Cake'
   end
 
-  test 'user deletes a recipe' do
+  test 'user archives a recipe' do
     sign_in_user :daisy
     navigate_to 'Recipes'
     click_on 'Anchovy Soup'
-    click_on 'Delete recipe'
-    assert_selector '.flash', text: 'Recipe deleted'
+    click_on 'Archive recipe'
+    assert_selector '.flash', text: 'Recipe archive'
     assert_selector 'h1', text: 'Recipes'
     assert_no_link 'Anchovy Soup'
   end

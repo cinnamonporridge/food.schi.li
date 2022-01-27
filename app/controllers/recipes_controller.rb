@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @recipes = pagy(current_user.recipes.search(params[:search_query]).ordered_by_name)
+    @pagy, @recipes = pagy(current_user.recipes.active.search(params[:search_query]).ordered_by_name)
   end
 
   def show; end
@@ -36,8 +36,8 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.destroy
-    redirect_to recipes_url, notice: 'Recipe deleted'
+    @recipe.archive
+    redirect_to recipes_url, notice: 'Recipe archived'
   end
 
   private

@@ -24,10 +24,7 @@
             = raw heroicon :duplicate
           Copy recipe
 
-        = button_to @recipe, method: :delete, class: 'dangerous-button gap-x-2' do
-          .h-4.w-4
-            = raw heroicon :trash
-          Delete recipe
+        = render Buttons::ArchiveComponent.new('Archive recipe', @recipe)
 
   = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
 

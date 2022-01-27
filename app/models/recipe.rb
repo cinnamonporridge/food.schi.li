@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  include Archiveable
   include Searchable
 
   belongs_to :user
@@ -12,11 +13,10 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :servings, presence: true
 
+  scope :ordered_by_name, -> { order(name: :asc) }
   scope :using_food, ->(food) {
     includes(:portions).where(portions: { food: })
   }
-
-  scope :ordered_by_name, -> { order(name: :asc) }
 
   def macronutrient_data
     @macronutrient_data ||= MacronutrientDataService.new(kcal:, carbs:, protein:, fat:)

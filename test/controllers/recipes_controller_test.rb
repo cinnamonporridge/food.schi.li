@@ -96,17 +96,14 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     sign_in_user :daisy
     user = users(:daisy)
 
-    recipe = user.recipes.create!(name: 'To be deleted', servings: 33)
-
-    assert_difference -> { user.recipes.count }, -1 do
-      delete recipe_path(recipe)
-      follow_redirect!
-      assert_response :success
-      assert_notice 'Recipe deleted'
-    end
-
-    assert_raises(ActiveRecord::RecordNotFound) do
-      recipe.reload
+    assert_changes -> { user.recipes.archived.count }, 1 do
+      assert_changes -> { @recipe.archived? }, to: true do
+        delete recipe_path(@recipe)
+        follow_redirect!
+        assert_response :success
+        assert_notice 'Recipe archived'
+        @recipe.reload
+      end
     end
   end
 

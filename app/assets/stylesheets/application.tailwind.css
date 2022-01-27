@@ -44,6 +44,10 @@ li {
   @apply w-full flex py-2 items-center justify-center text-gray-400 border rounded hover:text-red-500 hover:border-red-300 hover:bg-white cursor-pointer transition;
 }
 
+.archive-button {
+  @apply w-full flex py-2 items-center justify-center text-gray-400 border rounded hover:text-yellow-600 hover:border-yellow-600 hover:bg-white cursor-pointer transition;
+}
+
 .confirmable-button {
   @apply w-full flex py-2 items-center justify-center bg-red-400 text-gray-900 border rounded hover:border-red-300 hover:bg-red-600 hover:text-white cursor-pointer transition;
 }
