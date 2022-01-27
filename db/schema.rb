@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_26_105332) do
+ActiveRecord::Schema.define(version: 2022_01_27_090037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
     t.decimal "fat", precision: 10, scale: 3, null: false
     t.decimal "fat_saturated", precision: 10, scale: 3, null: false
     t.decimal "fiber", precision: 10, scale: 3, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
     t.string "unit", default: "gram", null: false
     t.bigint "user_id", null: false
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
     t.bigint "recipe_id", null: false
     t.bigint "portion_id"
     t.decimal "amount", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
   create_table "journal_days", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "date", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
   create_table "meal_ingredients", force: :cascade do |t|
     t.bigint "portion_id", null: false
     t.decimal "amount", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
     t.string "name", null: false
     t.bigint "food_id", null: false
     t.integer "amount", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "carbs_sugar_part", precision: 10, scale: 3, default: "0.0", null: false
@@ -136,8 +136,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
     t.integer "servings", default: 1, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "vegan", default: false, null: false
     t.integer "kcal", default: 0, null: false
     t.decimal "carbs", precision: 10, scale: 3, default: "0.0", null: false
@@ -147,17 +147,18 @@ ActiveRecord::Schema.define(version: 2022_01_26_105332) do
     t.decimal "fat_saturated", precision: 10, scale: 3, default: "0.0", null: false
     t.decimal "fiber", precision: 10, scale: 3, default: "0.0", null: false
     t.bigint "user_id", null: false
+    t.datetime "archived_at", precision: 6
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "reset_password_link_sent_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "reset_password_link_sent_at"
     t.string "reset_password_challenge"
-    t.datetime "magic_link_sent_at", precision: 6
+    t.datetime "magic_link_sent_at"
     t.string "magic_link_challenge"
     t.boolean "is_admin", default: false, null: false
   end

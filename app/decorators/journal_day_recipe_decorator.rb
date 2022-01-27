@@ -4,7 +4,7 @@ class JournalDayRecipeDecorator < SimpleDelegator
   end
 
   def self.recipes_collection_with_id(user)
-    user.recipes.ordered_by_name.map do |recipe|
+    user.recipes.active.ordered_by_name.map do |recipe|
       [recipe.decorate.name_with_servings, recipe.id]
     end
   end

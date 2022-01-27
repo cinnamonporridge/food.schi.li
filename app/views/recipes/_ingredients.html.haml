@@ -23,15 +23,17 @@
                 .col-span-1.text-right.text-right.text-xs
                   = ingredient.decorate.rounded_amount_with_unit_abbrevation
             .hidden.py-4{ 'data-toggleable-target': 'toggleable' }
-              .flex.flex-col.sm:flex-row.gap-2
-                = link_to edit_recipe_ingredient_path(ingredient.recipe, ingredient), class: 'button gap-x-2' do
-                  .h-4.w-4
-                    = raw heroicon :pencil
-                  Edit ingredient
+              - if @recipe.active?
+                .flex.flex-col.sm:flex-row.gap-2
+                  = link_to edit_recipe_ingredient_path(ingredient.recipe, ingredient), class: 'button gap-x-2' do
+                    .h-4.w-4
+                      = raw heroicon :pencil
+                    Edit ingredient
 
-                = button_to recipe_ingredient_path(ingredient.recipe, ingredient), method: :delete, class: 'dangerous-button gap-x-2', form_class: 'w-full' do
-                  .h-4.w-4
-                    = raw heroicon :trash
-                  Remove ingredient
+                  = button_to recipe_ingredient_path(ingredient.recipe, ingredient), method: :delete, class: 'dangerous-button gap-x-2', form_class: 'w-full' do
+                    .h-4.w-4
+                      = raw heroicon :trash
+                    Remove ingredient
 
-  = render 'add_ingredient_button', recipe: @recipe
+  - if @recipe.active?
+    = render 'add_ingredient_button', recipe: @recipe

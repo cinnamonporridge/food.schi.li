@@ -55,7 +55,7 @@ class Recipes::IngredientsController < ApplicationController
   end
 
   def recipe
-    @recipe ||= Recipe.find(params[:recipe_id])
+    @recipe ||= Recipe.active.find(params[:recipe_id])
   end
 
   def propagate_facts_and_vegan!

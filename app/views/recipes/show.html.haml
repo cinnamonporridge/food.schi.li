@@ -3,8 +3,11 @@
     .w-full{ 'data-controller': 'toggleable' }
       .flex
         .grow.flex.flex-col.gap-y-1
-          %h1.text-sm.uppercase
-            = @recipe.name
+          .flex.gap-x-2.items-baseline.uppercase
+            - if @recipe.archived?
+              .bg-white.text-xs.uppercase.border.border-yellow-600.rounded.px-1.text-yellow-600 Archived
+            %h1.text-sm.uppercase
+              = @recipe.name
           - if @recipe.vegan?
             .flex.items-end.gap-x-1.text-2xs.text-gray-400
               = render VeganBadgeIconComponent.new(@recipe.vegan?)
@@ -14,20 +17,19 @@
             .h-4.w-4
               = raw heroicon :'dots-vertical'
       .recipe-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
-        = link_to edit_recipe_path(@recipe), class: 'button flex items-center gap-x-2' do
-          .h-4.w-4
-            = raw heroicon :pencil
-          Edit recipe
+        - if @recipe.active?
+          = link_to edit_recipe_path(@recipe), class: 'button flex items-center gap-x-2' do
+            .h-4.w-4
+              = raw heroicon :pencil
+            Edit recipe
 
-        = link_to new_recipe_copy_path(@recipe), class: 'secondary-button flex items-center gap-x-2' do
-          .h-4.w-4
-            = raw heroicon :duplicate
-          Copy recipe
-
-        = button_to @recipe, method: :delete, class: 'dangerous-button gap-x-2' do
-          .h-4.w-4
-            = raw heroicon :trash
-          Delete recipe
+          = link_to new_recipe_copy_path(@recipe), class: 'secondary-button flex items-center gap-x-2' do
+            .h-4.w-4
+              = raw heroicon :duplicate
+            Copy recipe
+          = render Buttons::ArchiveComponent.new('Archive recipe', @recipe)
+        - else
+          = render Buttons::ArchiveComponent.new('Unarchive recipe', @recipe)
 
   = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
 
