@@ -4,7 +4,7 @@
       .flex.items-center.justify-between.space-x-8.h-16
         .shrink-0
           .h-8.w-8.text-white
-            = raw fontawesome :'carrot-duotone'
+            = render FontAwesomeIconComponent.new(:'carrot-duotone')
         - if @current_user
           .hidden.sm:flex.sm:w-full.sm:items-center
             .grow
