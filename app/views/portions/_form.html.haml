@@ -16,11 +16,11 @@
       = f.button type: :submit, class: 'input button flex items-center gap-x-1' do
         - if f.object.persisted?
           .h-4.w-4
-            = raw heroicon :pencil
+            = render HeroiconComponent.new(:pencil)
           Update portion
         - else
           .h-4.w-4
-            = raw heroicon :'plus-sm'
+            = render HeroiconComponent.new(:'plus-sm')
           Add portion
       .text-center
         = link_to 'Cancel', food_path(portion.food), class: 'shy-link text-xs'

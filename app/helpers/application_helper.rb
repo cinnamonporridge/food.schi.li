@@ -5,10 +5,6 @@ module ApplicationHelper
     return 'nav-link--current' if path.include?(params[:controller])
   end
 
-  def heroicon(name)
-    Rails.root.join('app/assets/images/heroicons/', name.to_s).sub_ext('.svg').read
-  end
-
   def fontawesome(name)
     Rails.root.join('app/assets/images/fontawesome/', name.to_s).sub_ext('.svg').read
   end

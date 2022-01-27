@@ -5,5 +5,5 @@
     %li
       = link_to day_partitions_path, class: 'rounded border border-gray-200 p-4 bg-white flex items-center gap-x-2' do
         .h-4.w-4
-          = raw heroicon :clock
+          = render HeroiconComponent.new(:clock)
         Day partitions

@@ -12,7 +12,7 @@
         = f.hidden_field :challenge
         = f.button type: :submit, class: 'button gap-x-2' do
           .h-4.w-4
-            = raw heroicon :'lock-open'
+            = render HeroiconComponent.new(:'lock-open')
           Set password
 
         .text-center
