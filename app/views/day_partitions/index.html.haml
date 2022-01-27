@@ -1,17 +1,18 @@
 .flex.flex-col.gap-y-4
   %h1 Day partitions
 
+  .flex
+    = render LinkToActionComponent.new('Add day partition', new_day_partition_path, icon: :'plus-sm')
+
   .flex.flex-col.gap-y-4
     %ul.day-partitions.flex.flex-col.gap-y-2.w-full
       - @day_partitions.each do |day_partition|
         %li
-          = link_to edit_day_partition_path(day_partition), class: 'p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition flex items-center gap-x-2' do
+          = link_to edit_day_partition_path(day_partition), class: 'p-4 bg-white rounded border border-gray-200 hover:border-gray-400 flex items-center gap-x-2' do
             .shrink-0.text-gray-400
               = day_partition.position
             .grow
               = day_partition.name
-
-    = link_to new_day_partition_path, class: 'gray-dashed-button gap-x-1' do
-      .h-4.w-4
-        = raw heroicon :'plus-sm'
-      Add day partition
+            .shrink-0
+              .h-4.w-4
+                = render HeroiconComponent.new(:'chevron-right')

@@ -16,17 +16,10 @@
             .shrink-0.text-xs.flex.gap-x-4.items-center
               %button{ 'data-action': 'toggleable#toggle' }
                 .h-4.w-4.text-green-700
-                  = raw heroicon :'dots-vertical'
+                  = render HeroiconComponent.new(:'dots-vertical')
           .flex.flex-col.gap-y-2.px-4.py-2{ 'data-toggleable-target': 'toggleable' }
-            = link_to edit_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), class: 'secondary-button gap-x-1 text-xs' do
-              .h-4.w-4
-                = raw heroicon :pencil
-              Edit meal
-
-            = button_to journal_day_meal_path(recipe_meal.journal_day, recipe_meal), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
-              .h-4.w-4
-                = raw heroicon :trash
-              Remove meal from journal day
+            = render LinkToActionComponent.new('Edit meal', edit_journal_day_meal_path(recipe_meal.journal_day, recipe_meal), icon: :pencil, button: :secondary)
+            = render DeleteButtonComponent.new('Remove meal', journal_day_meal_path(recipe_meal.journal_day, recipe_meal))
 
         - if recipe_meal.meal_ingredients.any?
           .flex
@@ -46,19 +39,11 @@
                       .shrink-0
                         %button{ 'data-action': 'toggleable#toggle' }
                           .h-4.w-4.text-green-700
-                            = raw heroicon :'dots-vertical'
+                            = render HeroiconComponent.new(:'dots-vertical')
 
                     .flex.flex-col.p-4.gap-y-2{ 'data-toggleable-target': 'toggleable' }
-                      = link_to edit_meal_ingredient_path(recipe_meal, recipe_meal_ingredient), class: 'secondary-button gap-x-1 text-xs' do
-                        .h-4.w-4
-                          = raw heroicon :pencil
-                        Edit meal ingredient
-                      = button_to meal_ingredient_path(recipe_meal, recipe_meal_ingredient), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
-                        .h-4.w-4
-                          = raw heroicon :trash
-                        Remove meal ingredient
+                      = render LinkToActionComponent.new('Edit meal ingredient', edit_meal_ingredient_path(recipe_meal, recipe_meal_ingredient), icon: :pencil, button: :secondary)
+                      = render DeleteButtonComponent.new('Remove meal ingredient', meal_ingredient_path(recipe_meal, recipe_meal_ingredient))
+
         .flex.p-4
-          = link_to new_meal_ingredient_path(recipe_meal), class: 'gray-dashed-button gap-x-1 text-xs' do
-            .h-4.w-4
-              = raw heroicon :'plus-sm'
-            Add meal ingredient
+          = render LinkToActionComponent.new('Add meal ingredient', new_meal_ingredient_path(recipe_meal), icon: :'plus-sm', button: :gray_dashed)

@@ -19,14 +19,8 @@
                 .shrink-0
                   %button{ 'data-action': 'toggleable#toggle' }
                     .h-4.w-4.text-green-700
-                      = raw heroicon :'dots-vertical'
+                      = render HeroiconComponent.new(:'dots-vertical')
 
               .flex.flex-col.px-4.py-2.gap-y-2{ 'data-toggleable-target': 'toggleable' }
-                = link_to edit_journal_day_meal_path(portion_meal.journal_day, portion_meal), class: 'secondary-button gap-x-1 text-xs' do
-                  .h-4.w-4
-                    = raw heroicon :pencil
-                  Edit meal
-                = button_to journal_day_meal_path(portion_meal.journal_day, portion_meal), method: :delete, class: 'dangerous-button gap-x-1 text-xs' do
-                  .h-4.w-4
-                    = raw heroicon :trash
-                  Remove meal
+                = render LinkToActionComponent.new('Edit meal', edit_journal_day_meal_path(portion_meal.journal_day, portion_meal), icon: :pencil, button: :secondary)
+                = render DeleteButtonComponent.new('Remove meal', journal_day_meal_path(portion_meal.journal_day, portion_meal))

@@ -25,19 +25,9 @@
             - unless portion.primary?
               .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
                 .flex.gap-x-2
-                  = link_to edit_food_portion_path(portion.food, portion), class: 'button gap-x-1 text-xs' do
-                    .h-4.w-4
-                      = raw heroicon :pencil
-                    Edit portion
-
+                  = render LinkToActionComponent.new('Edit portion', edit_food_portion_path(portion.food, portion), icon: :pencil)
                   - if portion.deleteable?
-                    = button_to food_portion_path(portion.food, portion), class: 'dangerous-button gap-x-1 text-xs', method: :delete, form_class: 'w-full' do
-                      .h-4.w-4
-                        = raw heroicon :trash
-                      Remove portion
+                    = render DeleteButtonComponent.new('Remove portion', food_portion_path(portion.food, portion))
 
     .w-full
-      = link_to new_food_portion_path(portions.first.food), class: 'gray-dashed-button gap-x-1 text-sm' do
-        .h-4.w-4
-          = raw heroicon :'plus-sm'
-        Add portion
+      = render LinkToActionComponent.new('Add portion', new_food_portion_path(portions.first.food), icon: :'plus-sm', button: :gray_dashed)

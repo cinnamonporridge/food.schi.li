@@ -10,12 +10,12 @@
       = f.button type: :submit, class: 'button gap-x-1' do
         - if journal_day.persisted?
           .h-4.w-4
-            = raw heroicon :pencil
+            = render HeroiconComponent.new(:pencil)
           Edit journal day
 
         - else
           .h-4.w-4
-            = raw heroicon :'plus-sm'
+            = render HeroiconComponent.new(:'plus-sm')
           Add journal day
 
       .text-center

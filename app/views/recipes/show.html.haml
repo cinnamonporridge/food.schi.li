@@ -15,22 +15,14 @@
         .shrink-0
           %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
             .h-4.w-4
-              = raw heroicon :'dots-vertical'
+              = render HeroiconComponent.new(:'dots-vertical')
       .recipe-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
         - if @recipe.active?
-          = link_to edit_recipe_path(@recipe), class: 'button flex items-center gap-x-2' do
-            .h-4.w-4
-              = raw heroicon :pencil
-            Edit recipe
-
-          = link_to new_recipe_copy_path(@recipe), class: 'secondary-button flex items-center gap-x-2' do
-            .h-4.w-4
-              = raw heroicon :duplicate
-            Copy recipe
-          = render Buttons::ArchiveComponent.new('Archive recipe', @recipe)
+          = render LinkToActionComponent.new('Edit recipe', edit_recipe_path(@recipe), icon: :pencil)
+          = render LinkToActionComponent.new('Copy recipe', new_recipe_copy_path(@recipe), icon: :duplicate, button: :secondary)
+          = render DeleteButtonComponent.new('Archive recipe', @recipe, icon: :archive, button: :archive)
         - else
-          = render Buttons::ArchiveComponent.new('Unarchive recipe', @recipe)
+          = render DeleteButtonComponent.new('Unarchive recipe', @recipe, icon: :archive, button: :archive)
 
   = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
-
   = render 'ingredients', ingredients: @recipe.ingredients

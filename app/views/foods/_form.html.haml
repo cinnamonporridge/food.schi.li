@@ -63,11 +63,11 @@
       = f.button type: :submit, class: 'button gap-x-1' do
         - if f.object.persisted?
           .h-4.w-4
-            = raw heroicon :pencil
+            = render HeroiconComponent.new(:pencil)
           Update food
         - else
           .h-4.w-4
-            = raw heroicon :'plus-sm'
+            = render HeroiconComponent.new(:'plus-sm')
           Add food
 
       .text-center

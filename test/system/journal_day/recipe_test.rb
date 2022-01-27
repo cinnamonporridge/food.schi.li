@@ -18,7 +18,7 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
     end
   end
 
-  test 'user edits recipe on journal day' do
+  test 'user edits recipe meal on journal day' do
     assert_not_equal day_partitions(:daisy_afternoon), meals(:daisys_apple_pie_meal_on_february_fifth).day_partition
 
     sign_in_user :daisy
@@ -36,12 +36,12 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
     end
   end
 
-  test 'user deletes a recipe from journal day' do
+  test 'user deletes a meal' do
     sign_in_user :daisy
     click_on '05.02.2017'
 
     within_recipe_meal 'Apple Pie' do
-      click_on 'Remove meal from journal day'
+      click_on 'Remove meal'
     end
 
     assert_selector '.flash', text: 'Meal deleted'

@@ -15,11 +15,11 @@
       = f.button type: :submit, class: 'input button flex items-center gap-x-1' do
         - if f.object.persisted?
           .h-4.w-4
-            = raw heroicon :pencil
+            = render HeroiconComponent.new(:pencil)
           Update recipe
         - else
           .h-4.w-4
-            = raw heroicon :'plus-sm'
+            = render HeroiconComponent.new(:'plus-sm')
           Add recipe
 
       .text-center

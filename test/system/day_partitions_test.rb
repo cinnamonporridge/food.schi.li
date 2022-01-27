@@ -75,7 +75,7 @@ class DayPartitionsTest < ApplicationSystemTestCase
 
     click_on 'Breakfast'
 
-    within 'form.day-partition--delete' do
+    within '.day-partition--delete' do
       click_on 'Delete day partition'
     end
 

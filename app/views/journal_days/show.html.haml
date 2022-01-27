@@ -7,30 +7,16 @@
         .shrink-0
           %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
             .h-4.w-4
-              = raw heroicon :'dots-vertical'
+              = render HeroiconComponent.new(:'dots-vertical')
 
       .grid.grid-cols-1.sm:grid-cols-2.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
-        = link_to edit_journal_day_path(@journal_day), class: 'button gap-x-2' do
-          .h-4.w-4
-            = raw heroicon :pencil
-          Edit journal day
-
-        = button_to journal_day_path(@journal_day), class: 'dangerous-button gap-x-2', method: :delete do
-          .h-4.w-4
-            = raw heroicon :trash
-          Delete journal day
+        = render LinkToActionComponent.new('Edit journal day', edit_journal_day_path(@journal_day), icon: :pencil)
+        = render DeleteButtonComponent.new('Delete journal day', @journal_day)
 
   .flex
     .grid.grid-cols-2.gap-2.w-full
-      = link_to new_journal_day_meal_path(@journal_day, meal_type: :portion), class: 'button gap-x-1 text-xs sm:text-sm' do
-        .h-4.w-4
-          = raw heroicon :'document'
-        Add portion meal
-
-      = link_to new_journal_day_meal_path(@journal_day, meal_type: :recipe), class: 'button gap-x-1 text-xs sm:text-sm' do
-        .h-4.w-4
-          = raw heroicon :'book-open'
-        Add recipe meal
+      = render LinkToActionComponent.new('Add portion meal', new_journal_day_meal_path(@journal_day, meal_type: :portion), icon: :document)
+      = render LinkToActionComponent.new('Add recipe meal', new_journal_day_meal_path(@journal_day, meal_type: :recipe), icon: :'book-open')
 
   = render JournalDay::NutritionsTableComponent.new(journal_day: @journal_day)
   = render 'meals', meals: @journal_day.meals

@@ -5,7 +5,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     sign_in_user :daisy
     navigate_to 'Recipes'
     click_on 'Apple Pie'
-    click_on 'Add another ingredient'
+    click_on 'Add ingredient'
     assert_selector 'h1', text: 'Add ingredient to Apple Pie'
     assert_link 'Cancel', href: %r{/recipes/[0-9]+}
     fill_in 'Portion name', with: 'Sugar Cube (25g)'

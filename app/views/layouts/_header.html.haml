@@ -4,33 +4,33 @@
       .flex.items-center.justify-between.space-x-8.h-16
         .shrink-0
           .h-8.w-8.text-white
-            = raw fontawesome :'carrot-duotone'
+            = render FontAwesomeIconComponent.new(:'carrot-duotone')
         - if @current_user
           .hidden.sm:flex.sm:w-full.sm:items-center
             .grow
               .flex.gap-x-2
                 = link_to journal_days_path, class: "nav-link #{nav_link_current_classes(journal_days_path)} flex items-center gap-x-2" do
                   .h-4.w-4
-                    = raw heroicon :calendar
+                    = render HeroiconComponent.new(:calendar)
                   Journal
 
                 = link_to recipes_path, class: "nav-link #{nav_link_current_classes(recipes_path)} flex items-center gap-x-2" do
                   .h-4.w-4
-                    = raw heroicon :'book-open'
+                    = render HeroiconComponent.new(:'book-open')
                   Recipes
 
                 = link_to foods_path, class: "nav-link #{nav_link_current_classes(foods_path)} flex items-center gap-x-2" do
                   .h-4.w-4
-                    = raw heroicon :'chart-pie'
+                    = render HeroiconComponent.new(:'chart-pie')
                   Foods
           .shrink-0.flex.gap-x-4
             = link_to settings_path, class: 'text-green-500 hover:text-green-200 transition text-sm flex items-center gap-x-2' do
               .h-4.w-4
-                = raw heroicon :cog
+                = render HeroiconComponent.new(:cog)
               Settings
             = button_to logout_path, method: :delete, class: 'text-green-500 hover:text-green-200 transition text-sm flex items-center gap-x-2' do
               .h-4.w-4
-                = raw heroicon :logout
+                = render HeroiconComponent.new(:logout)
               Sign out
 
     #mobile-menu.sm:hidden
@@ -38,17 +38,17 @@
         .grid.grid-cols-3
           = link_to journal_days_path, class: "nav-link #{nav_link_current_classes(journal_days_path)} flex items-center gap-x-4" do
             .h-4.w-4
-              = raw heroicon :calendar
+              = render HeroiconComponent.new(:calendar)
             Journal
 
           = link_to recipes_path, class: "nav-link #{nav_link_current_classes(recipes_path)} flex items-center gap-x-4" do
             .h-4.w-4
-              = raw heroicon :'book-open'
+              = render HeroiconComponent.new(:'book-open')
             Recipes
 
           = link_to foods_path, class: "nav-link #{nav_link_current_classes(foods_path)} flex items-center gap-x-4" do
             .h-4.w-4
-              = raw heroicon :'chart-pie'
+              = render HeroiconComponent.new(:'chart-pie')
             Foods
 
   = render 'layouts/flash'
