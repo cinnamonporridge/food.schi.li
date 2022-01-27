@@ -3,10 +3,7 @@
     %h1 Recipes
 
   .flex
-    = link_to new_recipe_path, class: 'button flex items-center gap-x-1' do
-      .h-4.w-4
-        = raw heroicon :'plus-sm'
-      Add recipe
+    = render LinkToActionComponent.new('Add recipe', new_recipe_path, icon: :'plus-sm')
 
   .flex
     .w-full

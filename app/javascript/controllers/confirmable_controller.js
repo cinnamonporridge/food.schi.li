@@ -5,9 +5,10 @@ export default class extends Controller {
   static values = { confirmationText: String }
 
   connect() {
-    this.submitTarget.classList.remove('dangerous-button');
-    this.submitTarget.classList.add('confirmable-button')
-    this.submitTarget.querySelector('span').innerHTML = this.confirmationTextValue;
+    const submitButton = this.submitTarget.querySelector('button');
+    submitButton.classList.remove('dangerous-button');
+    submitButton.classList.add('confirmable-button')
+    submitButton.querySelector('span').innerHTML = this.confirmationTextValue;
     this.cancelTarget.classList.remove('hidden');
     this.toggle();
   }

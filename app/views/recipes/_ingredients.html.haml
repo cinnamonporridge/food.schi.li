@@ -25,15 +25,8 @@
             .hidden.py-4{ 'data-toggleable-target': 'toggleable' }
               - if @recipe.active?
                 .flex.flex-col.sm:flex-row.gap-2
-                  = link_to edit_recipe_ingredient_path(ingredient.recipe, ingredient), class: 'button gap-x-2' do
-                    .h-4.w-4
-                      = raw heroicon :pencil
-                    Edit ingredient
-
-                  = button_to recipe_ingredient_path(ingredient.recipe, ingredient), method: :delete, class: 'dangerous-button gap-x-2', form_class: 'w-full' do
-                    .h-4.w-4
-                      = raw heroicon :trash
-                    Remove ingredient
+                  = render LinkToActionComponent.new('Edit ingredient', edit_recipe_ingredient_path(ingredient.recipe, ingredient), icon: :pencil)
+                  = render DeleteButtonComponent.new('Remove ingredient', recipe_ingredient_path(ingredient.recipe, ingredient))
 
   - if @recipe.active?
-    = render 'add_ingredient_button', recipe: @recipe
+    = render LinkToActionComponent.new('Add ingredient', new_recipe_ingredient_path(@recipe), icon: :'plus-sm', button: :gray_dashed)

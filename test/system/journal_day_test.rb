@@ -73,7 +73,7 @@ class JournalDayTest < ApplicationSystemTestCase
         within '.recipe-meal--header' do
           find('svg.heroicons-dots-vertical').ancestor('button').click
           assert_link 'Edit meal'
-          assert_button 'Remove meal from journal day'
+          assert_button 'Remove meal'
         end
       end
     end
