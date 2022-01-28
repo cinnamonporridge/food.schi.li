@@ -3,7 +3,7 @@ class NutritionFactsService
 
   TABLE_NAME_TO_KLASS_MAPPING = {
     portions: NutritionFacts::Portions,
-    ingredients: NutritionFacts::Ingredients,
+    recipe_ingredients: NutritionFacts::RecipeIngredients,
     recipes: NutritionFacts::Recipes,
     meal_ingredients: NutritionFacts::MealIngredients,
     meals: NutritionFacts::Meals,
@@ -12,7 +12,7 @@ class NutritionFactsService
 
   TRACKS = {
     portions: TABLE_NAME_TO_KLASS_MAPPING.keys,
-    recipes: %i[ingredients recipes],
+    recipes: %i[recipe_ingredients recipes],
     meals: %i[meal_ingredients meals journal_days]
   }.freeze
 

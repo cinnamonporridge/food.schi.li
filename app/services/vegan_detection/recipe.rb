@@ -15,15 +15,15 @@ class VeganDetection::Recipe
         SELECT r.id                       AS recipe_id
              , f.vegan                    AS vegan
           FROM recipes r
-          LEFT OUTER JOIN ingredients i   ON i.recipe_id = r.id
-          LEFT OUTER JOIN portions p      ON p.id = i.portion_id
-          LEFT OUTER JOIN foods f         ON f.id = p.food_id
+          LEFT OUTER JOIN recipe_ingredients ri   ON ri.recipe_id = r.id
+          LEFT OUTER JOIN portions p              ON p.id = ri.portion_id
+          LEFT OUTER JOIN foods f                 ON f.id = p.food_id
          WHERE 0 = 0
                #{filter_condition}
       )
       , non_vegan_recipes AS (
         SELECT recipe_id
-             , count(*)                   AS non_vegan_ingredients_count
+             , count(*)                   AS non_vegan_recipe_ingredients_count
           FROM recipes_scope
          WHERE vegan = FALSE
          GROUP BY recipe_id
@@ -31,7 +31,7 @@ class VeganDetection::Recipe
       , with_vegan_flag AS (
         SELECT rs.recipe_id
              , CASE
-                 WHEN nvr.non_vegan_ingredients_count > 0 THEN FALSE
+                 WHEN nvr.non_vegan_recipe_ingredients_count > 0 THEN FALSE
                  ELSE TRUE
                END AS vegan
           FROM recipes_scope rs

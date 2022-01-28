@@ -9,7 +9,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     recipe = recipes(:apple_pie)
     portion = portions(:sugar_cube_portion)
 
-    assert_difference('Ingredient.count') do
+    assert_difference -> { RecipeIngredient.count } do
       post recipe_ingredients_path(recipe),
            params: {
              recipe_ingredient: {
@@ -22,7 +22,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     # 1.77 pieces of 25g sugar cube = 44.25g
     recipe.reload
-    assert_in_delta(44.25, recipe.ingredients.find_by(portion:).amount)
+    assert_in_delta(44.25, recipe.recipe_ingredients.find_by(portion:).amount)
   end
 
   test 'adding a non vegan ingredient changes recipe to non-vegan' do
@@ -46,7 +46,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'changing an ingredient from vegan to non-vegan changes recipe to non-vegan' do
     recipe = recipes(:vegan_peanut_butter_banana)
-    old_ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
+    old_ingredient = recipe_ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     new_ingredient_portion = portions(:milk_default_portion)
 
     assert_not new_ingredient_portion.food.vegan?, 'New ingredient portion nutrution should be non-vegan'
@@ -85,7 +85,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'changing a vegan ingredient to another vegan ingredient should not change recipe to non-vegan' do
     recipe = recipes(:vegan_peanut_butter_banana)
-    old_ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
+    old_ingredient = recipe_ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     new_ingredient_portion = portions(:sugar_cube_portion)
 
     assert new_ingredient_portion.food.vegan?, 'New ingredient portion should be vegan'
@@ -124,7 +124,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'changing all non-vegan to vegan ingredients should change recipe to vegan' do
     recipe = recipes(:non_vegan_milk_banana)
-    non_vegan_ingredient = ingredients(:milk_in_non_vegan_milk_banana)
+    non_vegan_ingredient = recipe_ingredients(:milk_in_non_vegan_milk_banana)
     new_ingredient_portion = portions(:peanut_butter_default_portion)
 
     assert new_ingredient_portion.food.vegan?, 'New ingredient portion should be vegan'
@@ -144,7 +144,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'removing the only non-vegan ingredient changes the recipe to vegan' do
     recipe = recipes(:non_vegan_milk_banana)
-    non_vegan_ingredient = ingredients(:milk_in_non_vegan_milk_banana)
+    non_vegan_ingredient = recipe_ingredients(:milk_in_non_vegan_milk_banana)
 
     assert_changes 'recipe.vegan?', from: false, to: true do
       delete recipe_ingredient_path(recipe, non_vegan_ingredient)

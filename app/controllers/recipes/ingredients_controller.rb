@@ -47,11 +47,11 @@ class Recipes::IngredientsController < ApplicationController
   end
 
   def initialize_ingredient
-    @ingredient = recipe.ingredients.new
+    @ingredient = recipe.recipe_ingredients.new
   end
 
   def set_ingredient
-    @ingredient = Ingredient.find(params[:id])
+    @ingredient = RecipeIngredient.find(params[:id])
   end
 
   def recipe

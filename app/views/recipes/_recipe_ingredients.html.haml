@@ -5,9 +5,9 @@
     .shrink-0.text-gray-400.text-xs
       = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
 
-  - if ingredients.present?
+  - if recipe_ingredients.present?
     %ul.recipe--ingredients.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
-      - ingredients.each do |ingredient|
+      - recipe_ingredients.each do |ingredient|
         %li.p-2.sm:p-3
           %div{ 'data-controller': 'toggleable' }
             .flex.w-full

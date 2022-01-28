@@ -4,8 +4,8 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
 
-  has_many :ingredients, dependent: :destroy
-  has_many :portions, through: :ingredients
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :portions, through: :recipe_ingredients
   has_many :meals, as: :consumable, dependent: :restrict_with_exception
 
   before_validation :initialize_vegan, if: :new_record?
@@ -34,7 +34,7 @@ class Recipe < ApplicationRecord
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def to_nutritions_table
     {
-      ingredients: ingredients.map(&:to_nutritions_table_row),
+      recipe_ingredients: recipe_ingredients.map(&:to_nutritions_table_row),
       total: [[
         'Total',
         decorate.display_kcal,
