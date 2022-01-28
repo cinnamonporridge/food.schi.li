@@ -31,26 +31,4 @@ class JournalDayDecorator < SimpleDelegator
       ]
     end
   end
-
-  def display_link_to_previous_journal_day?
-    previous_journal_day.present?
-  end
-
-  def display_link_to_next_journal_day?
-    next_journal_day.present?
-  end
-
-  def previous_journal_day
-    journal_day_calendar_service.previous_journal_day&.decorate
-  end
-
-  def next_journal_day
-    journal_day_calendar_service.next_journal_day&.decorate
-  end
-
-  private
-
-  def journal_day_calendar_service
-    @journal_day_calendar_service ||= JournalDayCalendarService.new(__getobj__)
-  end
 end
