@@ -2,12 +2,12 @@ require 'test_helper'
 
 class VeganBadgeIconComponentTest < ViewComponent::TestCase
   test '#render' do
-    render_inline VeganBadgeIconComponent.new(true)
+    render_inline new_component(true)
     assert_selector '.vegan-badge'
   end
 
   test 'not #render' do
-    component = VeganBadgeIconComponent.new(false)
+    component = new_component(false)
     assert_not component.render?
   end
 end

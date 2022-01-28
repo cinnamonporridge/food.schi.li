@@ -2,7 +2,7 @@ require 'test_helper'
 
 class JournalDay::NutritionsTableComponentTest < ViewComponent::TestCase
   test '#render' do
-    render_inline JournalDay::NutritionsTableComponent.new(journal_day: journal_days(:daisy_february_fifth))
+    render_inline new_component(journal_day: journal_days(:daisy_february_fifth))
     total, kcal, carbs, protein, fat = page.find_all('.journal-day--nutritions-table--total div').to_a
 
     assert_equal 'Total', total.text
