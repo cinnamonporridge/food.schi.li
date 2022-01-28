@@ -1,0 +1,7 @@
+.meal
+  .grid.grid-cols-6.text-xs.text-right.px-2
+    .col-span-2.text-left= meal.decorate.display_name
+    .col-span-1= format_nutrition_number(meal.kcal)
+    .col-span-1= format_nutrition_number(meal.carbs)
+    .col-span-1= format_nutrition_number(meal.protein)
+    .col-span-1= format_nutrition_number(meal.fat)
