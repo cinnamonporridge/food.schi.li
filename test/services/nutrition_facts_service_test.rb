@@ -3,7 +3,7 @@ require 'test_helper'
 class NutritionFactsServiceTest < ActiveSupport::TestCase
   setup do
     @portion = portions(:big_apple_portion)
-    @ingredient = ingredients(:apples_in_apple_pie)
+    @recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
     @recipe = recipes(:apple_pie)
     @meal_ingredient = meal_ingredients(:daisys_apples_from_apple_pie_on_february_fifth)
     @meal = meals(:daisys_apple_pie_meal_on_february_fifth)
@@ -24,7 +24,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
   end
 
   test '.update_track!(:recipes)' do
-    fake_nutrition_facts!(@ingredient)
+    fake_nutrition_facts!(@recipe_ingredient)
     fake_nutrition_facts!(@recipe)
 
     NutritionFactsService.new(user: users(:daisy)).update_track!(:portions)
@@ -77,7 +77,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
   def assert_ingredient_nutrition_facts
     assert_nutrition_facts(
-      @ingredient,
+      @recipe_ingredient,
       kcal: 6,
       carbs: 6.0,
       carbs_sugar_part: 0.6,
@@ -170,7 +170,7 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
 
   def fake_all_nutrition_facts!
     fake_nutrition_facts!(@portion)
-    fake_nutrition_facts!(@ingredient)
+    fake_nutrition_facts!(@recipe_ingredient)
     fake_nutrition_facts!(@recipe)
     fake_nutrition_facts!(@meal_ingredient)
     fake_nutrition_facts!(@meal)

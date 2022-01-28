@@ -10,10 +10,10 @@ class RecipeCopyServiceTest < ActiveSupport::TestCase
       new_recipe = service.copy
       new_recipe.save!
 
-      assert new_recipe.ingredients.count.positive?
+      assert new_recipe.recipe_ingredients.count.positive?
 
-      assert_equal base_recipe.ingredients.count,
-                   new_recipe.ingredients.count,
+      assert_equal base_recipe.recipe_ingredients.count,
+                   new_recipe.recipe_ingredients.count,
                    'Base recipe and new recipe should have same ingredients count'
     end
   end

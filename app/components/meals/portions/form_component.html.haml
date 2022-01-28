@@ -20,7 +20,7 @@
 
           .flex.flex-col
             = f.label :measure, class: 'label'
-            = f.select :measure, IngredientDecorator.measures_collection, {}, { class: 'input' }
+            = f.select :measure, RecipeIngredientDecorator.measures_collection, {}, { class: 'input' }
 
         .flex.flex-col.gap-y-2
           .flex.flex-col

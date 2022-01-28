@@ -93,7 +93,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
 
   test 'recipe turns vegan after changing only non-vegan ingredient / food to vegan' do
     recipe = recipes(:non_vegan_milk_banana)
-    non_vegan_ingredient = ingredients(:milk_in_non_vegan_milk_banana)
+    non_vegan_ingredient = recipe_ingredients(:milk_in_non_vegan_milk_banana)
     food = non_vegan_ingredient.food
 
     assert_changes 'recipe.vegan?', from: false, to: true do
@@ -112,7 +112,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
 
   test 'recipe turns non-vegan after changing one ingredient / food to non-vegan' do
     recipe = recipes(:vegan_peanut_butter_banana)
-    vegan_ingredient = ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
+    vegan_ingredient = recipe_ingredients(:peanut_butter_in_vegan_peanut_butter_banana)
     food = vegan_ingredient.food
 
     assert_changes 'recipe.vegan?', to: false do

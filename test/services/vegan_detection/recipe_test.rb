@@ -23,7 +23,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
 
   test 'updates vegan recipe, no ingredients' do
     vegan_recipe = recipes(:vegan_peanut_butter_banana)
-    vegan_recipe.ingredients.destroy_all
+    vegan_recipe.recipe_ingredients.destroy_all
     vegan_recipe.update(vegan: false)
 
     assert_changes -> { vegan_recipe.vegan }, to: true do

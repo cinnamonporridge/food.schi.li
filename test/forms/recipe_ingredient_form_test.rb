@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RecipeIngredientFormTest < ActiveSupport::TestCase
   def setup
-    @new_ingredient = recipes(:apple_pie).ingredients.new
+    @new_ingredient = recipes(:apple_pie).recipe_ingredients.new
   end
 
   test 'correct values with unit option' do

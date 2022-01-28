@@ -6,7 +6,7 @@ class Recipe::RecipeIngredientsToMealIngredientsService
   end
 
   def to_meal_ingredients
-    @recipe.ingredients.map(&method(:to_meal_ingredient))
+    @recipe.recipe_ingredients.map(&method(:to_meal_ingredient))
   end
 
   private

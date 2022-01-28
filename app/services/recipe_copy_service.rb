@@ -10,7 +10,7 @@ class RecipeCopyService
     Recipe.transaction do
       @recipe.dup.tap do |new_recipe|
         new_recipe.name = name
-        new_recipe.ingredients = @recipe.ingredients.map(&:dup)
+        new_recipe.recipe_ingredients = @recipe.recipe_ingredients.map(&:dup)
       end
     end
   end

@@ -54,8 +54,8 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
   test 'user deletes last ingredient from recipe' do
     recipe = recipes(:apple_pie)
-    ingredients(:milk_in_apple_pie).destroy! # we only want one recipe
-    assert_equal 1, recipe.ingredients.count
+    recipe_ingredients(:milk_in_apple_pie).destroy! # we only want one recipe ingredient
+    assert_equal 1, recipe.recipe_ingredients.count
 
     using_browser do
       sign_in_user :daisy

@@ -15,7 +15,7 @@ class PortionTest < ActiveSupport::TestCase
     portion = portions(:sugar_cube_portion)
     recipe = recipes(:apple_pie)
 
-    Ingredient.create!(recipe:, portion:, amount: 4)
+    RecipeIngredient.create!(recipe:, portion:, amount: 4)
     assert_not portion.deleteable?, 'should not be deleteable because it is used in a recipe'
   end
 end

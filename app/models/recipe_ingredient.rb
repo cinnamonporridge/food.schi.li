@@ -1,4 +1,4 @@
-class Ingredient < ApplicationRecord
+class RecipeIngredient < ApplicationRecord
   include NutritionFacts
 
   delegate :user, to: :recipe

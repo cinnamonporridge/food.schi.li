@@ -6,8 +6,8 @@ class Portion < ApplicationRecord
   PRIMARY_AMOUNT = 100
 
   belongs_to :food
-  has_many :ingredients, dependent: :restrict_with_exception
-  has_many :recipes, through: :ingredients, dependent: :restrict_with_exception
+  has_many :recipe_ingredients, dependent: :restrict_with_exception
+  has_many :recipes, through: :recipe_ingredients, dependent: :restrict_with_exception
   has_many :meals, as: :consumable, dependent: :restrict_with_exception
   has_many :meal_ingredients, dependent: :restrict_with_exception
 
@@ -35,6 +35,6 @@ class Portion < ApplicationRecord
   end
 
   def deleteable?
-    ingredients.none? && meal_ingredients.none?
+    recipe_ingredients.none? && meal_ingredients.none?
   end
 end

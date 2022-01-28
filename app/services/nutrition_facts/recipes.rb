@@ -4,19 +4,19 @@ class NutritionFacts::Recipes < NutritionFacts::Base
   def update_sql
     <<~SQL.squish
       WITH with_nutrition_facts AS (
-        SELECT r.id                                               AS recipe_id
-             , (i.amount / d.default_amount) * f.kcal             AS kcal
-             , (i.amount / d.default_amount) * f.carbs            AS carbs
-             , (i.amount / d.default_amount) * f.carbs_sugar_part AS carbs_sugar_part
-             , (i.amount / d.default_amount) * f.protein          AS protein
-             , (i.amount / d.default_amount) * f.fat              AS fat
-             , (i.amount / d.default_amount) * f.fat_saturated    AS fat_saturated
-             , (i.amount / d.default_amount) * f.fiber            AS fiber
+        SELECT r.id                                                AS recipe_id
+             , (ri.amount / d.default_amount) * f.kcal             AS kcal
+             , (ri.amount / d.default_amount) * f.carbs            AS carbs
+             , (ri.amount / d.default_amount) * f.carbs_sugar_part AS carbs_sugar_part
+             , (ri.amount / d.default_amount) * f.protein          AS protein
+             , (ri.amount / d.default_amount) * f.fat              AS fat
+             , (ri.amount / d.default_amount) * f.fat_saturated    AS fat_saturated
+             , (ri.amount / d.default_amount) * f.fiber            AS fiber
           FROM recipes r
          CROSS JOIN (SELECT 100 AS default_amount) AS d
-         INNER JOIN ingredients i ON i.recipe_id = r.id
-         INNER JOIN portions p    ON p.id = i.portion_id
-         INNER JOIN foods f       ON f.id = p.food_id
+         INNER JOIN recipe_ingredients ri ON ri.recipe_id = r.id
+         INNER JOIN portions p            ON p.id = ri.portion_id
+         INNER JOIN foods f               ON f.id = p.food_id
          WHERE 0 = 0
            AND f.user_id = #{@user.id}
       )
