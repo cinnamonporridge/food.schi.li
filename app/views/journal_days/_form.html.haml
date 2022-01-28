@@ -7,16 +7,8 @@
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :date
 
     .p-4.flex.flex-col.gap-y-2
-      = f.button type: :submit, class: 'button gap-x-1' do
-        - if journal_day.persisted?
-          .h-4.w-4
-            = render HeroiconComponent.new(:pencil)
-          Edit journal day
-
-        - else
-          .h-4.w-4
-            = render HeroiconComponent.new(:'plus-sm')
-          Add journal day
+      - text = f.object.new_record? ? 'Add journal day' : 'Edit journal day'
+      = render SubmitButtonComponent.new(text, f.object)
 
       .text-center
         = link_to 'Cancel', journal_day, class: 'shy-link text-xs'

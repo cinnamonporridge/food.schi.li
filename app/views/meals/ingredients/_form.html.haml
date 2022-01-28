@@ -32,8 +32,7 @@
 
       .actions.flex.flex-col.gap-y-2.mt-2
         .w-full
-          = f.button type: :submit, class: 'button gap-x-1' do
-            - action_text = form.new_record? ? 'Add meal ingredient' : 'Update meal ingredient'
-            = render Forms::SubmitButtonComponent.new(object: form.object, text: action_text)
+          - text = f.object.new_record? ? 'Add meal ingredient' : 'Update meal ingredient'
+          = render SubmitButtonComponent.new(text, form.object)
         .w-full.text-center
           = link_to 'Cancel', form.object.meal.journal_day, class: 'text-xs text-gray-400 hover:text-gray-500 transition'

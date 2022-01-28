@@ -5,8 +5,4 @@ class Meals::Recipes::EditFormComponent < ViewComponent::Base
     @form = form
     super()
   end
-
-  def action_text
-    'Edit recipe on journal day'
-  end
 end

@@ -13,14 +13,8 @@
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :amount
 
     .p-4.flex.flex-col.gap-y-2
-      = f.button type: :submit, class: 'input button flex items-center gap-x-1' do
-        - if f.object.persisted?
-          .h-4.w-4
-            = render HeroiconComponent.new(:pencil)
-          Update portion
-        - else
-          .h-4.w-4
-            = render HeroiconComponent.new(:'plus-sm')
-          Add portion
+      - text = f.object.new_record? ? 'Add portion' : 'Update portion'
+      = render SubmitButtonComponent.new(text, f.object)
+
       .text-center
         = link_to 'Cancel', food_path(portion.food), class: 'shy-link text-xs'
