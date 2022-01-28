@@ -16,10 +16,7 @@
     .flex
       = form_with(model: @todays_journal_day, class: 'w-full') do |f|
         = f.hidden_field :date
-        = f.button type: :submit, class: 'button gap-x-1' do
-          .h-4.w-4
-            = render HeroiconComponent.new(:'plus-sm')
-          Add journal day for today
+        = render SubmitButtonComponent.new('Add journal day for today', f.object)
 
   = render 'layouts/pagy', pagy: @pagy
 

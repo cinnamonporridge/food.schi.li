@@ -1,5 +1,5 @@
 .flex.flex-col.gap-y-4
-  %h1= action_text
+  %h1 Add recipe to journal day
 
   = form_with(model: form, data: { turbo: false }) do |f|
     .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
@@ -22,8 +22,7 @@
 
       .p-4.flex.flex-col.gap-y-2
         = hidden_field_tag :meal_type, :recipe
-        = f.button type: :submit, class: 'button gap-x-2' do
-          = render Forms::SubmitButtonComponent.new(object: form.object, text: action_text)
+        = render SubmitButtonComponent.new('Add recipe to journal day', form.object)
 
         .text-center
           = link_to 'Cancel', form.object.journal_day, class: 'shy-link text-xs'

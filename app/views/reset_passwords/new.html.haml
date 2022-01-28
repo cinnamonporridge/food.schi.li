@@ -10,10 +10,7 @@
 
       .px-4.flex.flex-col.gap-y-2
         = f.hidden_field :challenge
-        = f.button type: :submit, class: 'button gap-x-2' do
-          .h-4.w-4
-            = render HeroiconComponent.new(:'lock-open')
-          Set password
+        = render SubmitButtonComponent.new('Set password', :'lock-open')
 
         .text-center
           = link_to 'Cancel', root_path, class: 'shy-link text-xs'

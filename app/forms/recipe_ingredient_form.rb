@@ -2,7 +2,7 @@ class RecipeIngredientForm
   include ActiveModel::Model
   include Rails.application.routes.url_helpers
 
-  delegate :persisted?, :id, to: :ingredient
+  delegate :new_record?, :persisted?, :id, to: :ingredient
   delegate :user, to: :recipe
 
   attr_reader :ingredient, :portion_name, :portion_id, :measure, :amount_in_measure

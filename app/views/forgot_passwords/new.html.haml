@@ -10,10 +10,7 @@
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :email
 
         .flex.flex-col.gap-y-2
-          = f.button type: :submit, class: 'button gap-x-1' do
-            .h-4.w-4
-              = render HeroiconComponent.new(:mail)
-            Reset password
+          = render SubmitButtonComponent.new('Reset password', :mail)
 
           .text-center
             = link_to 'Cancel', root_path, class: 'shy-link text-xs'
