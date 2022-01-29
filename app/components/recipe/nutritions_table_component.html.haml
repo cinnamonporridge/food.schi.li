@@ -1,0 +1,40 @@
+.flex.flex-col.gap-y-2
+  .w-full
+    %h2 Nutritions
+  .w-full
+    - if @recipe.recipe_ingredients.any?
+      .nutritions-table.bg-white.border.border-gray-200.rounded.divide-y.divide-gray-200
+        .nutritions-table--header.px-2.py-1.grid.grid-cols-6.text-xs.text-gray-500
+          .col-span-2
+          .col-span-1.text-right kcal
+          .col-span-1.text-right Carbs
+          .col-span-1.text-right Protein
+          .col-span-1.text-right Fat
+
+        .nutritions-table--recipe-ingredients.py-1
+          - @recipe.recipe_ingredients.ordered_by_food_name.each do |recipe_ingredient|
+            .px-2.grid.grid-cols-6.text-xs
+              .col-span-2= recipe_ingredient.portion.decorate.name_with_food
+              .col-span-1.text-right= recipe_ingredient.decorate.display_kcal
+              .col-span-1.text-right= recipe_ingredient.decorate.display_carbs
+              .col-span-1.text-right= recipe_ingredient.decorate.display_protein
+              .col-span-1.text-right= recipe_ingredient.decorate.display_fat
+
+        .nutritions-table--totals.px-2.py-1.grid.grid-cols-6.text-xs.font-bold
+          .col-span-2 Total
+          .col-span-1.text-right= recipe.decorate.display_kcal
+          .col-span-1.text-right= recipe.decorate.display_carbs
+          .col-span-1.text-right= recipe.decorate.display_protein
+          .col-span-1.text-right= recipe.decorate.display_fat
+
+        .nutritions-table--totals-per-servings.px-2.py-1.grid.grid-cols-6.text-xs.text-gray-600
+          .col-span-2.flex.gap-x-1
+            %span Per serving
+            %span.text-gray-400= "(1/#{recipe.servings})"
+          .col-span-1.text-right= recipe.decorate.display_kcal_per_serving
+          .col-span-1.text-right= recipe.decorate.display_carbs_per_serving
+          .col-span-1.text-right= recipe.decorate.display_protein_per_serving
+          .col-span-1.text-right= recipe.decorate.display_fat_per_serving
+
+    - else
+      .text-gray-400.text-sm.tracking-wide No ingredients = no nutritions. 🤷

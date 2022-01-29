@@ -1,5 +1,6 @@
 class RecipeIngredientDecorator < SimpleDelegator
   include ActionView::Helpers::TagHelper
+  include NumberHelper
 
   def quantity
     return if measure_unit?
@@ -26,19 +27,19 @@ class RecipeIngredientDecorator < SimpleDelegator
   end
 
   def display_kcal
-    kcal
+    format_nutrition_number(kcal)
   end
 
   def display_carbs
-    carbs.round
+    format_nutrition_number(carbs)
   end
 
   def display_protein
-    protein.round
+    format_nutrition_number(protein.round)
   end
 
   def display_fat
-    fat.round
+    format_nutrition_number(fat)
   end
 
   def self.measures_collection

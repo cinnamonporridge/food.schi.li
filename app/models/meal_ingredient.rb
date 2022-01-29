@@ -25,16 +25,6 @@ class MealIngredient < ApplicationRecord
     end
   end
 
-  def to_nutritions_table_row
-    [
-      portion.decorate.name_with_food,
-      decorate.display_total_kcal,
-      decorate.display_total_carbs,
-      decorate.display_total_protein,
-      decorate.display_total_fat
-    ]
-  end
-
   private
 
   def total_of_sustenance(name)

@@ -42,14 +42,14 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     navigate_to 'Recipes'
     click_on 'PB Bread'
 
-    assert_selector '.nutritions-table', text: "Per serving\n96\n"
+    assert_selector '.nutritions-table', text: "Per serving (1/1)\n96\n"
 
     within_recipe_ingredient 'Whole Grain Bread Whole Grain Bread Portion' do
       click_on 'Remove'
     end
 
     assert_selector 'ul.recipe--ingredients', text: 'Whole Grain', count: 0
-    assert_selector '.nutritions-table', text: "Per serving\n89\n"
+    assert_selector '.nutritions-table', text: "Per serving (1/1)\n89\n"
   end
 
   test 'user deletes last ingredient from recipe' do
@@ -65,7 +65,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       assert_selector '.nutritions-table'
 
       within_recipe_ingredient 'Apple' do
-        click_on 'Apple'
+        find('svg.heroicons-dots-vertical').ancestor('button').click
         click_on 'Remove ingredient'
       end
 

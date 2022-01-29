@@ -10,18 +10,21 @@
       - recipe_ingredients.each do |ingredient|
         %li.p-2.sm:p-3
           %div{ 'data-controller': 'toggleable' }
-            .flex.w-full
-              .w-full.grid.grid-cols-5.items-baseline
-                .col-span-3.flex.gap-x-2.items-start
-                  .h-4.w-4.mt-1
-                    = render VeganBadgeIconComponent.new(ingredient.vegan?)
-                  = button_tag class: 'text-green-500 text-left hover:text-green-600 flex items-start gap-x-1', 'data-action': 'toggleable#toggle' do
+            .flex.items-start.gap-x-2
+              .grow
+                .grid.grid-cols-5.items-start
+                  .col-span-3.flex.gap-x-2.items-start
+                    .h-4.w-4.mt-1
+                      = render VeganBadgeIconComponent.new(ingredient.vegan?)
                     = ingredient.portion.decorate.name_with_food
+                  .col-span-1.text-gray-500.text-right.text-xs.pt-1
+                    = ingredient.decorate.quantity
+                  .col-span-1.text-right.text-right.text-xs.pt-1
+                    = ingredient.decorate.rounded_amount_with_unit_abbrevation
+              .shrink-0.flex.items-start.pt-1
+                %button.text-green-700{ 'data-action': 'toggleable#toggle' }
+                  = render HeroiconComponent.new(:'dots-vertical')
 
-                .col-span-1.text-gray-500.text-right.text-xs
-                  = ingredient.decorate.quantity
-                .col-span-1.text-right.text-right.text-xs
-                  = ingredient.decorate.rounded_amount_with_unit_abbrevation
             .hidden.py-4{ 'data-toggleable-target': 'toggleable' }
               - if @recipe.active?
                 .flex.flex-col.sm:flex-row.gap-2
