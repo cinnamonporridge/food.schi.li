@@ -25,34 +25,12 @@ class Recipe < ApplicationRecord
 
   def macronutrient_data_serving
     @macronutrient_data_serving ||= MacronutrientDataService.new(
-      kcal: decorate.serving(:kcal),
-      carbs: decorate.serving(:carbs),
-      protein: decorate.serving(:protein),
-      fat: decorate.serving(:fat)
+      kcal: decorate.display_kcal_per_serving,
+      carbs: decorate.display_carbs_per_serving,
+      protein: decorate.display_protein_per_serving,
+      fat: decorate.display_fat_per_serving
     )
   end
-
-  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-  def to_nutritions_table
-    {
-      recipe_ingredients: recipe_ingredients.map(&:to_nutritions_table_row),
-      total: [[
-        'Total',
-        decorate.display_kcal,
-        decorate.display_carbs,
-        decorate.display_protein,
-        decorate.display_fat
-      ]],
-      per_serving: [[
-        'Per serving',
-        decorate.serving(:kcal),
-        decorate.serving(:carbs),
-        decorate.serving(:protein),
-        decorate.serving(:fat)
-      ]]
-    }
-  end
-  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   private
 

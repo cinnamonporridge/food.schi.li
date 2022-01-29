@@ -12,19 +12,19 @@ class MacronutrientDataService
 
   # value rounded
   def display_rounded_kcal
-    kcal.round
+    kcal.to_f.round
   end
 
   def display_rounded_carbs
-    carbs.round
+    carbs.to_f.round
   end
 
   def display_rounded_protein
-    protein.round
+    protein.to_f.round
   end
 
   def display_rounded_fat
-    fat.round
+    fat.to_f.round
   end
 
   # percentage exact

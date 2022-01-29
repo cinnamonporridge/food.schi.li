@@ -23,5 +23,5 @@
         - else
           = render DeleteButtonComponent.new('Unarchive recipe', @recipe, icon: :archive, button: :archive)
 
-  = render 'nutritions/table', nutritions_table: @recipe.to_nutritions_table
+  = render Recipe::NutritionsTableComponent.new(recipe: @recipe)
   = render 'recipe_ingredients', recipe_ingredients: @recipe.recipe_ingredients
