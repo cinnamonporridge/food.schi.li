@@ -7,6 +7,9 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :portion
   belongs_to :recipe
 
+  scope :of_user, ->(user) { joins(:recipe).where(recipe: { user: }) }
+  scope :of_active_recipes, -> { joins(:recipe).where(recipe: { archived_at: nil }) }
+
   has_one :food, through: :portion
 
   validates :amount, presence: true

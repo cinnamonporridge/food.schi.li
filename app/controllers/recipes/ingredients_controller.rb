@@ -1,33 +1,33 @@
 class Recipes::IngredientsController < ApplicationController
-  before_action :initialize_ingredient, only: %w[new create]
-  before_action :set_ingredient, only: %w[edit update destroy]
+  before_action :set_recipe, only: %i[new create]
+  before_action :set_recipe_ingredient, only: %i[edit update destroy]
 
   def new
-    @form = RecipeIngredientForm.new(ingredient: @ingredient)
-  end
-
-  def edit
-    @form = RecipeIngredientForm.new(ingredient: @ingredient)
+    @form = RecipeIngredientForm.new(@recipe.recipe_ingredients.new)
   end
 
   def create
-    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
+    @form = RecipeIngredientForm.new(@recipe.recipe_ingredients.new, recipe_ingredient_params)
 
-    if @form.valid? && @ingredient.update(@form.values)
-      propagate_facts_and_vegan!
-      redirect_to @ingredient.recipe, notice: 'Ingredient added'
+    if @form.save
+      propagate_facts_and_vegan!(@form.object)
+      redirect_to @recipe, notice: 'Ingredient added'
     else
       flash.now[:error] = 'Invalid input'
       render :new
     end
   end
 
-  def update
-    @form = RecipeIngredientForm.new(recipe_ingredient_params.merge(ingredient: @ingredient))
+  def edit
+    @form = RecipeIngredientForm.new(@recipe_ingredient)
+  end
 
-    if @form.valid? && @ingredient.update(@form.values)
-      propagate_facts_and_vegan!
-      redirect_to @ingredient.recipe, notice: 'Ingredient updated'
+  def update
+    @form = RecipeIngredientForm.new(@recipe_ingredient, recipe_ingredient_params)
+
+    if @form.save
+      propagate_facts_and_vegan!(@form.object)
+      redirect_to @form.object.recipe, notice: 'Ingredient updated'
     else
       flash.now[:error] = 'Invalid input'
       render :edit
@@ -35,9 +35,9 @@ class Recipes::IngredientsController < ApplicationController
   end
 
   def destroy
-    @ingredient.destroy
-    propagate_facts_and_vegan!
-    redirect_to @ingredient.recipe, notice: 'Ingredient deleted'
+    @recipe_ingredient.destroy
+    propagate_facts_and_vegan!(@recipe_ingredient)
+    redirect_to @recipe_ingredient.recipe, notice: 'Ingredient deleted'
   end
 
   private
@@ -46,20 +46,16 @@ class Recipes::IngredientsController < ApplicationController
     params.require(:recipe_ingredient).permit(:portion_name, :amount_in_measure, :measure)
   end
 
-  def initialize_ingredient
-    @ingredient = recipe.recipe_ingredients.new
+  def set_recipe
+    @recipe = Recipe.of_user(current_user).active.find(params[:recipe_id])
   end
 
-  def set_ingredient
-    @ingredient = RecipeIngredient.find(params[:id])
+  def set_recipe_ingredient
+    @recipe_ingredient = RecipeIngredient.of_user(current_user).of_active_recipes.find(params[:id])
   end
 
-  def recipe
-    @recipe ||= Recipe.active.find(params[:recipe_id])
-  end
-
-  def propagate_facts_and_vegan!
-    NutritionFactsService.new(user: recipe.user).update_track!(:recipes)
-    VeganDetectionService.new(recipe).update_all!
+  def propagate_facts_and_vegan!(recipe_ingredient)
+    NutritionFactsService.new(user: recipe_ingredient.user).update_track!(:recipes)
+    VeganDetectionService.new(recipe_ingredient.recipe).update_all!
   end
 end

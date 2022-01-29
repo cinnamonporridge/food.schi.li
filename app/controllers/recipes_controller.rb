@@ -57,7 +57,7 @@ class RecipesController < ApplicationController
   end
 
   def user_recipes
-    current_user.recipes
+    Recipe.of_user(current_user)
   end
 
   def recipe_params
