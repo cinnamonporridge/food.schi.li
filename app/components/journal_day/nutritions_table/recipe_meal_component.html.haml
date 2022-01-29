@@ -5,11 +5,9 @@
         .col-span-2.text-left.flex.gap-x-1
           .hidden.shrink-0.flex.items-start{ class: 'pt-0.5', 'data-toggleable-target': 'buttons' }
             = button_tag 'data-action': 'toggleable#toggle', 'data-toggleable-target': 'openButton', class: 'text-gray-800 bg-gray-200 rounded-full hover:bg-gray-300 transition' do
-              .h-3.w-3
-                = render HeroiconComponent.new(:'plus-sm')
+              = render HeroiconComponent.new(:'plus-sm', square: 3)
             = button_tag 'data-action': 'toggleable#toggle', 'data-toggleable-target': 'closeButton', class: 'text-gray-800 bg-gray-200 rounded-full hover:bg-gray-300 transition' do
-              .h-3.w-3
-                = render HeroiconComponent.new(:'minus-sm')
+              = render HeroiconComponent.new(:'minus-sm', square: 3)
           .grow
             = meal.decorate.display_name
         .col-span-1= format_nutrition_number(meal.kcal)

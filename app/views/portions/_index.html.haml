@@ -18,9 +18,8 @@
                 - if portion.primary?
                   .w-4
                 - else
-                  = button_tag 'data-action': 'toggleable#toggle' do
-                    .h-4.w-4.text-green-700
-                      = render HeroiconComponent.new(:'dots-vertical')
+                  = button_tag 'data-action': 'toggleable#toggle', class: 'text-green-700' do
+                    = render HeroiconComponent.new(:'dots-vertical')
 
             - unless portion.primary?
               .hidden.py-2{ 'data-toggleable-target': 'toggleable' }

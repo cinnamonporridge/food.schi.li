@@ -14,8 +14,7 @@
               Vegan
         .shrink-0
           %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
-            .h-4.w-4
-              = render HeroiconComponent.new(:'dots-vertical')
+            = render HeroiconComponent.new(:'dots-vertical')
       .recipe-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
         - if @recipe.active?
           = render LinkToActionComponent.new('Edit recipe', edit_recipe_path(@recipe), icon: :pencil)
