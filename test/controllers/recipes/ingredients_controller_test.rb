@@ -32,15 +32,15 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference -> { @recipe.recipe_ingredients.count } do
       post recipe_ingredients_path(@recipe), params: {
-         recipe_ingredient: {
-           portion_name: 'Sugar Cube (25g)',
-           amount_in_measure: '1',
-           measure: 'piece'
-         }
-       }
-       follow_redirect!
-       assert_response :success
-       assert_equal 'Ingredient added', flash[:notice]
+        recipe_ingredient: {
+          portion_name: 'Sugar Cube (25g)',
+          amount_in_measure: '1',
+          measure: 'piece'
+        }
+      }
+      follow_redirect!
+      assert_response :success
+      assert_equal 'Ingredient added', flash[:notice]
     end
 
     assert_equal portions(:sugar_cube_portion), @recipe.recipe_ingredients.last.portion
@@ -63,12 +63,12 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference -> { RecipeIngredient.count } do
       post recipe_ingredients_path(@recipe), params: {
-         recipe_ingredient: {
-           portion_name: 'Sugar Cube (25g)',
-           amount_in_measure: '1.77',
-           measure: 'piece'
-         }
-       }
+        recipe_ingredient: {
+          portion_name: 'Sugar Cube (25g)',
+          amount_in_measure: '1.77',
+          measure: 'piece'
+        }
+      }
       follow_redirect!
       assert_response :success
     end
@@ -100,12 +100,12 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_changes -> { @vegan_recipe.vegan? } do
       post recipe_ingredients_path(@vegan_recipe), params: {
-         recipe_ingredient: {
-           portion_name: 'Sugar Cube (25g)',
-           amount_in_measure: '1',
-           measure: 'piece'
-         }
-       }
+        recipe_ingredient: {
+          portion_name: 'Sugar Cube (25g)',
+          amount_in_measure: '1',
+          measure: 'piece'
+        }
+      }
       follow_redirect!
       assert_response :success
       @vegan_recipe.reload
