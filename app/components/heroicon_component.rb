@@ -1,6 +1,11 @@
 class HeroiconComponent < ViewComponent::Base
   attr_reader :icon
 
+  VALID_TAILWIND_CLASSES = %w[
+    w-3 w-4
+    h-3 h-4
+  ].freeze
+
   def initialize(icon, square: 4)
     @icon = icon
     @width = square
@@ -19,10 +24,20 @@ class HeroiconComponent < ViewComponent::Base
   private
 
   def width_css_class
-    "w-#{@width}"
+    @width_css_class ||= validate_tailwind_css_class("w-#{@width}")
   end
 
   def heigth_css_class
-    "h-#{@height}"
+    @heigth_css_class ||= validate_tailwind_css_class("h-#{@height}")
+  end
+
+  def validate_tailwind_css_class(css_class)
+    VALID_TAILWIND_CLASSES.include?(css_class) ? css_class : (raise UnknownTailwindClass, css_class)
+  end
+
+  class UnknownTailwindClass < StandardError
+    def initialize(css_class)
+      super("Unknown Tailwind class: '#{css_class}'")
+    end
   end
 end
