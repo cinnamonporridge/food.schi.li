@@ -17,9 +17,8 @@
                     .portion-meal--amount.col-span-2.text-right.text-gray-500
                       = portion_meal_ingredient.decorate.rounded_amount_with_unit_abbrevation
                 .shrink-0
-                  %button{ 'data-action': 'toggleable#toggle' }
-                    .h-4.w-4.text-green-700
-                      = render HeroiconComponent.new(:'dots-vertical')
+                  %button.text-green-700{ 'data-action': 'toggleable#toggle' }
+                    = render HeroiconComponent.new(:'dots-vertical')
 
               .flex.flex-col.px-4.py-2.gap-y-2{ 'data-toggleable-target': 'toggleable' }
                 = render LinkToActionComponent.new('Edit meal', edit_journal_day_meal_path(portion_meal.journal_day, portion_meal), icon: :pencil, button: :secondary)

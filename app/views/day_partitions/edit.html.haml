@@ -6,8 +6,7 @@
   %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': 'Confirm deletion' }
     .hidden{ 'data-confirmable-target': 'confirmable' }
       = button_tag class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
-        .h-4.w-4
-          = render HeroiconComponent.new(:trash)
+        = render HeroiconComponent.new(:trash)
         Delete day partition
 
     .flex.flex-col.gap-y-4{ 'data-confirmable-target': 'confirmable' }
