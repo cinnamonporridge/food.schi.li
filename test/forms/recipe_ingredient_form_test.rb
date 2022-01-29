@@ -2,21 +2,24 @@ require 'test_helper'
 
 class RecipeIngredientFormTest < ActiveSupport::TestCase
   def setup
-    @new_ingredient = recipes(:apple_pie).recipe_ingredients.new
+    @recipe = recipes(:apple_pie)
+    @new_ingredient = @recipe.recipe_ingredients.new
   end
 
   test 'correct values with unit option' do
-    form = RecipeIngredientForm.new(sugar_with_unit_params.merge(ingredient: @new_ingredient))
+    form = RecipeIngredientForm.new(@new_ingredient, sugar_with_unit_params)
 
-    assert_equal portions(:sugar_default_portion), form.values[:portion]
-    assert_equal '300', form.values[:amount]
+    assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
+      assert form.save
+    end
   end
 
   test 'correct values with pieces option' do
-    form = RecipeIngredientForm.new(sugar_cubes_pieces_params.merge(ingredient: @new_ingredient))
+    form = RecipeIngredientForm.new(@new_ingredient, sugar_cubes_pieces_params)
 
-    assert_equal portions(:sugar_cube_portion), form.values[:portion]
-    assert_equal 125, form.values[:amount]
+    assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
+      assert form.save
+    end
   end
 
   private
