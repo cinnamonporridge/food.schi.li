@@ -19,19 +19,6 @@ class Recipe < ApplicationRecord
     includes(:portions).where(portions: { food: })
   }
 
-  def macronutrient_data
-    @macronutrient_data ||= MacronutrientDataService.new(kcal:, carbs:, protein:, fat:)
-  end
-
-  def macronutrient_data_serving
-    @macronutrient_data_serving ||= MacronutrientDataService.new(
-      kcal: decorate.display_kcal_per_serving,
-      carbs: decorate.display_carbs_per_serving,
-      protein: decorate.display_protein_per_serving,
-      fat: decorate.display_fat_per_serving
-    )
-  end
-
   private
 
   def initialize_vegan

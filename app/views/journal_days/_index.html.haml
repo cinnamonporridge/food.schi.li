@@ -13,4 +13,4 @@
               = render VeganBadgeIconComponent.new(journal_day.vegan)
 
           .w-full
-            = render 'macronutrients/fact_labels', fact_data: journal_day.macronutrient_data
+            = render NutrientLabelsComponent.new(object: journal_day)

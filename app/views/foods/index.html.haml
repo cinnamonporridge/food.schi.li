@@ -22,6 +22,6 @@
               .shrink-0
                 = render VeganBadgeIconComponent.new(food.vegan?)
             .w-full
-              = render 'macronutrients/fact_labels', fact_data: food.macronutrient_data
+              = render NutrientLabelsComponent.new(object: food)
 
   = render 'layouts/pagy', pagy: @pagy

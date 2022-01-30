@@ -9,4 +9,4 @@
             .shrink-0
               = render VeganBadgeIconComponent.new(recipe.vegan?)
           .w-full
-            = render 'macronutrients/fact_labels', fact_data: recipe.macronutrient_data_serving
+            = render NutrientLabelsComponent.new(object: recipe, per_serving: true)
