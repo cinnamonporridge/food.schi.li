@@ -1,4 +1,6 @@
 class JournalDayDecorator < SimpleDelegator
+  include NumberHelper
+
   def display_date_with_weekday
     I18n.l(date, format: :with_weekday)
   end
@@ -30,5 +32,21 @@ class JournalDayDecorator < SimpleDelegator
         recipe.id
       ]
     end
+  end
+
+  def display_kcal
+    format_nutrition_number(kcal)
+  end
+
+  def display_carbs
+    format_nutrition_number(carbs)
+  end
+
+  def display_protein
+    format_nutrition_number(protein)
+  end
+
+  def display_fat
+    format_nutrition_number(fat)
   end
 end

@@ -12,13 +12,4 @@ class JournalDay < ApplicationRecord
 
   scope :after_date, ->(date) { where('date > ?', date) }
   scope :before_date, ->(date) { where('date < ?', date) }
-
-  def macronutrient_data
-    @macronutrient_data ||= MacronutrientDataService.new(
-      kcal:,
-      carbs:,
-      protein:,
-      fat:
-    )
-  end
 end

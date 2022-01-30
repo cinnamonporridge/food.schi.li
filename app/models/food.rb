@@ -29,15 +29,6 @@ class Food < ApplicationRecord
     @in_meal_ingredients ||= MealIngredient.using_food(self)
   end
 
-  def macronutrient_data
-    @macronutrient_data ||= MacronutrientDataService.new(
-      kcal:,
-      carbs:,
-      protein:,
-      fat:
-    )
-  end
-
   private
 
   def can_be_destroyed
