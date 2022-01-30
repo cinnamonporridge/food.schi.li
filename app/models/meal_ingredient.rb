@@ -18,18 +18,4 @@ class MealIngredient < ApplicationRecord
     includes(portion: :food).order('foods.name ASC, portions.amount ASC')
   }
   scope :of_recipe, ->(recipe) { where(recipe:) }
-
-  NutritionFacts::COLUMNS.each do |name|
-    define_method :"total_#{name}" do
-      send(:total_of_sustenance, name)
-    end
-  end
-
-  private
-
-  def total_of_sustenance(name)
-    return 0.0 if portion.blank?
-
-    (amount / 100) * food.send(name.to_s.to_sym)
-  end
 end
