@@ -20,7 +20,7 @@
           = f.select :measure, RecipeIngredientDecorator.measures_collection, {}, { class: 'input' }
 
     .p-4.flex.flex-col.gap-y-2
-      = text = f.object.new_record? ? 'Add ingredient' : 'Update ingredient'
+      - text = f.object.new_record? ? 'Add ingredient' : 'Update ingredient'
       = render SubmitButtonComponent.new(text, f.object)
 
       .text-center
