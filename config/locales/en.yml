@@ -1,4 +1,10 @@
 en:
+  activerecord:
+    attributes:
+      recipe_ingredient:
+        measures:
+          unit: "ml/g"
+          piece: "Pieces"
   date:
     formats:
       default: "%d.%m.%Y"

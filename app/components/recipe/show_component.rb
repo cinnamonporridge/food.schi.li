@@ -1,4 +1,4 @@
-class Recipe::NutritionsTableComponent < ApplicationComponent
+class Recipe::ShowComponent < ApplicationComponent
   attr_reader :recipe
 
   def initialize(recipe:)
@@ -7,6 +7,6 @@ class Recipe::NutritionsTableComponent < ApplicationComponent
   end
 
   def to_dom_id
-    "#{dom_id(recipe)}_nutritions_table"
+    dom_id(recipe)
   end
 end

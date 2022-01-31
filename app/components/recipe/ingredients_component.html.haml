@@ -1,0 +1,8 @@
+.flex.flex-col.gap-y-4
+  .flex.flex.gap-y-2.items-baseline
+    .grow
+      %h2 Ingredients
+    .shrink-0.text-gray-400.text-xs
+      = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
+
+  = render Recipe::IngredientsListComponent.new(recipe: @recipe)

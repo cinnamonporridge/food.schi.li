@@ -1,0 +1,4 @@
+.flex.flex-col.gap-y-8{ id: to_dom_id }
+  = render Recipe::HeaderComponent.new(recipe: @recipe)
+  = render Recipe::NutritionsTableComponent.new(recipe: @recipe)
+  = render Recipe::IngredientsComponent.new(recipe: @recipe)

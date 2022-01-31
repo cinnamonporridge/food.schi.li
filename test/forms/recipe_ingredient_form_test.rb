@@ -1,42 +1,60 @@
 require 'test_helper'
 
 class RecipeIngredientFormTest < ActiveSupport::TestCase
-  def setup
-    @recipe = recipes(:apple_pie)
-    @new_ingredient = @recipe.recipe_ingredients.new
+  # def setup
+  #   @recipe = recipes(:apple_pie)
+  #   @new_ingredient = @recipe.recipe_ingredients.new
+  # end
+
+  test '#portion_id, #amount_in_measure, #food_id' do
+    assert false, 'todo'
   end
 
-  test 'correct values with unit option' do
-    form = RecipeIngredientForm.new(@new_ingredient, sugar_with_unit_params)
-
-    assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
-      assert form.save
-    end
+  test '#checked_portion?' do
+    assert false, 'todo'
   end
 
-  test 'correct values with pieces option' do
-    form = RecipeIngredientForm.new(@new_ingredient, sugar_cubes_pieces_params)
 
-    assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
-      assert form.save
-    end
+  test '#action_url' do
+    assert false, 'todo'
   end
+
+  test '#form_with_arguments' do
+    assert false, 'todo'
+  end
+
+
+  # test 'correct values with unit option' do
+  #   form = RecipeIngredientForm.new(@new_ingredient, sugar_with_unit_params)
+
+  #   assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
+  #     assert form.save
+  #   end
+  # end
+
+  # test 'correct values with pieces option' do
+  #   form = RecipeIngredientForm.new(@new_ingredient, sugar_cubes_pieces_params)
+
+  #   assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
+  #     assert form.save
+  #   end
+  # end
 
   private
 
-  def sugar_with_unit_params
-    {
-      portion_name: 'Sugar (100g)',
-      amount_in_measure: '300',
-      measure: 'unit'
-    }
-  end
+  # def sugar_with_unit_params
+  #   {
+  #     portion_name: 'Sugar (100g)',
+  #     amount_in_measure: '300',
+  #     measure: 'unit'
+  #   }
+  # end
 
-  def sugar_cubes_pieces_params
-    {
-      portion_name: 'Sugar Cube (25g)',
-      amount_in_measure: '5',
-      measure: 'piece'
-    }
-  end
+  # def sugar_cubes_pieces_params
+  #   {
+  #     portion_name: 'Sugar Cube (25g)',
+  #     amount_in_measure: '5',
+  #     measure: 'piece'
+  #   }
+  # end
 end

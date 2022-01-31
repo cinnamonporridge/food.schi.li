@@ -1,24 +1,21 @@
 class RecipeIngredientForm < ApplicationForm
-  validates :portion_name, presence: true
-  validates :amount_in_measure, presence: true, numericality: { greater_than: 0 }
-  validates :measure, presence: true
-  validate :portion_name_exists
-  validate :portion_exists?
+  include Rails.application.routes.url_helpers
 
-  def portion_name
-    params[:portion_name] || find_portion_name_by_id(object.portion_id)
-  end
+  validates :portion, presence: true
+  validates :amount_in_measure, presence: true, numericality: { greater_than: 0 }
 
   def portion_id
-    find_portion_id_by_name(portion_name) || object.portion_id
-  end
-
-  def measure
-    params[:measure] || object.measure
+    recipe_ingredient_params[:portion_id].presence ||
+      object.portion_id ||
+      portions.primary.first.id
   end
 
   def amount_in_measure
-    params[:amount_in_measure] || to_amount_in_measure(object.amount)
+    recipe_ingredient_params[:amount_in_measure] || to_amount_in_measure(object.amount)
+  end
+
+  def food_id
+    portion.food_id
   end
 
   def save
@@ -26,54 +23,63 @@ class RecipeIngredientForm < ApplicationForm
 
     object.portion = portion
     object.amount = amount
-    object.measure = measure
+    object.measure = portion.measure
 
     super()
   end
 
+  # can this be private?
+  def portions
+    @portions ||= user_portions.where(food: object.food)
+  end
+
+  # can this be private?
+  def portion
+    @portion ||= user_portions.find_by(id: portion_id)
+  end
+
+  def checked_portion?(radio_portion)
+    radio_portion.id == portion_id.to_i
+  end
+
+  def action_url
+    if object.new_record?
+      recipe_ingredients_path(object.recipe)
+    else
+      recipe_ingredient_path(object.recipe, object)
+    end
+  end
+
+  def form_with_arguments
+    {
+      model: self,
+      url: action_url
+    }.merge(disable_turbo_if_new)
+  end
+
   private
 
-  def recipe
-    @recipe ||= ingredient.recipe
+  def disable_turbo_if_new
+    object.new_record? ? { data: { turbo: false } } : {}
   end
 
-  def portion_exists?
-    portion.present?
+  def user_portions
+    Portion.of_user(object.user)
   end
 
-  def portion
-    @portion ||= Portion.of_user(user).find_by(id: portion_id)
+  def recipe_ingredient_params
+    params[:recipe_ingredient]&.permit(:portion_id, :amount_in_measure, :measure) || {}
   end
 
   def amount
-    return (amount_in_measure.to_f * portion.amount) if measure_in_pieces?
+    return amount_in_measure if portion.primary?
 
-    amount_in_measure
+    amount_in_measure.to_f * portion.amount
   end
 
   def to_amount_in_measure(amount)
-    return (amount.to_f / portion.amount).round(3) if measure_in_pieces?
+    return amount if portion.primary?
 
-    amount
-  end
-
-  def measure_in_pieces?
-    measure == 'piece'
-  end
-
-  def find_portion_name_by_id(id)
-    PortionDecorator.portions_collection_with_id(user)
-                    .find { |element| element.last == id }
-                    &.first
-  end
-
-  def find_portion_id_by_name(portion_name)
-    PortionDecorator.portions_collection_with_id(user)
-                    .find { |element| element.first == portion_name }
-                    &.last
-  end
-
-  def portion_name_exists
-    errors.add(:portion_name, 'does not exist') if find_portion_id_by_name(portion_name).nil?
+    (object.amount.to_f / portion.amount).round(3)
   end
 end

@@ -18,4 +18,8 @@ class PortionTest < ActiveSupport::TestCase
     RecipeIngredient.create!(recipe:, portion:, amount: 4)
     assert_not portion.deleteable?, 'should not be deleteable because it is used in a recipe'
   end
+
+  test '#measure' do
+    assert false, 'todo'
+  end
 end

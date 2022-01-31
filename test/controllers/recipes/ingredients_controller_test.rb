@@ -29,13 +29,14 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   # create
   test 'post #create' do
     sign_in_user :daisy
+    portion = portions(:sugar_cube_portion)
 
     assert_difference -> { @recipe.recipe_ingredients.count } do
       post recipe_ingredients_path(@recipe), params: {
         recipe_ingredient: {
-          portion_name: 'Sugar Cube (25g)',
-          amount_in_measure: '1',
-          measure: 'piece'
+          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          portion_id: portion.id,
+          amount_in_measure: '3'
         }
       }
       follow_redirect!
@@ -43,7 +44,10 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
       assert_equal 'Ingredient added', flash[:notice]
     end
 
-    assert_equal portions(:sugar_cube_portion), @recipe.recipe_ingredients.last.portion
+    @recipe.recipe_ingredients.last.tap do |recipe_ingredient|
+      assert_equal portion, recipe_ingredient.portion
+      assert_in_delta 75.0, recipe_ingredient.amount
+    end
   end
 
   test 'not post #create for other' do
@@ -60,13 +64,14 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'decimal amount is allowed' do
     sign_in_user :daisy
+    portion = portions(:sugar_cube_portion)
 
     assert_difference -> { RecipeIngredient.count } do
       post recipe_ingredients_path(@recipe), params: {
         recipe_ingredient: {
-          portion_name: 'Sugar Cube (25g)',
-          amount_in_measure: '1.77',
-          measure: 'piece'
+          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          portion_id: portion.id,
+          amount_in_measure: '1.77'
         }
       }
       follow_redirect!
@@ -80,30 +85,34 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'adding a non vegan ingredient changes recipe to non-vegan' do
     sign_in_user :daisy
+    portion = portions(:milk_default_portion)
 
     assert_changes -> { @vegan_recipe.vegan? }, to: false do
       post recipe_ingredients_path(@vegan_recipe), params: {
         recipe_ingredient: {
-          portion_name: 'Milk (100ml)',
-          amount_in_measure: '100',
-          measure: 'unit'
+          food_name: portion.food.name,
+          portion_id: portion.id,
+          amount_in_measure: '102',
         }
       }
       follow_redirect!
       assert_response :success
       @vegan_recipe.reload
     end
+
+    assert_in_delta(102.0, @vegan_recipe.recipe_ingredients.last.amount)
   end
 
   test 'adding a vegan ingredient to a vegan recipe should not change recipe to non-vegan' do
     sign_in_user :daisy
+    portion = portions(:sugar_cube_portion)
 
     assert_no_changes -> { @vegan_recipe.vegan? } do
       post recipe_ingredients_path(@vegan_recipe), params: {
         recipe_ingredient: {
-          portion_name: 'Sugar Cube (25g)',
+          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          portion_id: portion.id,
           amount_in_measure: '1',
-          measure: 'piece'
         }
       }
       follow_redirect!
@@ -114,13 +123,14 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'adding a vegan ingredient to a non-vegan recipe should not change recipe to vegan' do
     sign_in_user :daisy
+    portion = portions(:sugar_cube_portion)
 
     assert_no_changes -> { @recipe.vegan? } do
       post recipe_ingredients_path(@recipe), params: {
         recipe_ingredient: {
-          portion_name: 'Sugar Cube (25g)',
-          amount_in_measure: '1',
-          measure: 'piece'
+          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          portion_id: portion.id,
+          amount_in_measure: '1'
         }
       }
       follow_redirect!
