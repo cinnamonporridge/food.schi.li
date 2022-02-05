@@ -8,11 +8,6 @@ class PortionDecorator < SimpleDelegator
     ].compact.join(' ')
   end
 
-  # TODO: is this still used?
-  def name_with_amount_and_unit_abbreviation_and_measure
-    "#{name_with_food} (#{amount_with_unit_abbrevation}, #{display_measure})"
-  end
-
   def display_measure
     RecipeIngredient.human_enum_name(:measures, measure)
   end
