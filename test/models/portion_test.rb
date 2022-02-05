@@ -20,6 +20,9 @@ class PortionTest < ActiveSupport::TestCase
   end
 
   test '#measure' do
-    assert false, 'todo'
+    portion = portions(:apple_default_portion)
+    assert_changes -> { portion.measure }, from: 'unit', to: 'piece' do
+      portion.amount = 0
+    end
   end
 end
