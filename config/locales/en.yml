@@ -10,3 +10,9 @@ en:
       default: "%d.%m.%Y"
       weekday_only: "%a"
       with_weekday: "%a, %d.%m.%Y"
+
+  recipe:
+    ingredients_component:
+      servings_with_count:
+        one: "1 serving"
+        other: "%{count} servings"

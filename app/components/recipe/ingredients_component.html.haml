@@ -3,6 +3,6 @@
     .grow
       %h2 Ingredients
     .shrink-0.text-gray-400.text-xs
-      = "#{@recipe.servings} #{'serving'.pluralize(@recipe.servings)}"
+      = t('.servings_with_count', count: @recipe.servings)
 
   = render Recipe::IngredientsListComponent.new(recipe: @recipe)
