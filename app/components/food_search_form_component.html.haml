@@ -5,7 +5,7 @@
         = label_tag :food_name, 'Search food', class: 'label'
         .flex.rounded
           %div{ class: 'relative flex items-stretch flex-grow focus-within:z-10' }
-            = f.text_field :food_name, class: 'focus:ring-green-700 focus:border-green-700 block w-full rounded-none rounded-l-md text-sm border-gray-300 pr-10', list: :'food-list', 'data-action': 'change->portions--food-search#search', 'data-portions--food-search-target': 'input'
+            = text_field_tag :food_name, f.object.food_name, class: 'focus:ring-green-700 focus:border-green-700 block w-full rounded-none rounded-l-md text-sm border-gray-300 pr-10', list: :'food-list', 'data-action': 'change->portions--food-search#search', 'data-portions--food-search-target': 'input'
             .absolute.inset-y-0.right-0.pr-3.flex.items-center
               %button.text-gray-400.hover:text-gray-700.transition{ type: :button, 'data-action': 'portions--food-search#clear', 'data-portions--food-search-target': 'clear' }
                 = render HeroiconComponent.new(:x)
