@@ -1,5 +1,5 @@
 class FoodSearchForm < ApplicationForm
-  def name
+  def food_name
     params[:food_name] || object&.name
   end
 
@@ -8,7 +8,7 @@ class FoodSearchForm < ApplicationForm
   end
 
   def search_performed?
-    name.present? || params[:food_id].present?
+    food_name.present?
   end
 
   def food_not_found?
