@@ -1,60 +1,65 @@
 require 'test_helper'
 
 class RecipeIngredientFormTest < ActiveSupport::TestCase
-  # def setup
-  #   @recipe = recipes(:apple_pie)
-  #   @new_ingredient = @recipe.recipe_ingredients.new
-  # end
+  test '#portion_id, in params' do
+    portion = portions(:apple_default_portion)
+    recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params(portion_id: portion.id))
+    assert_equal portion.id, form.portion_id
+  end
 
-  test '#portion_id, #amount_in_measure, #food_id' do
-    assert false, 'todo'
+  test '#portion_id, in object' do
+    recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    assert_equal recipe_ingredient.portion.id, form.portion_id
+  end
+
+  test '#portion_id, default' do
+    default_portion = portions(:apple_default_portion)
+    recipe_ingredient = RecipeIngredient.new(recipe: recipes(:apple_pie), food: foods(:apple))
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    assert_equal default_portion.id, form.portion_id
+  end
+
+  test '#amount_in_measure, in params' do
+    recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params(amount_in_measure: 3))
+    assert_equal 3, form.amount_in_measure
+  end
+
+  test '#amount_in_measure, from object' do
+    recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    assert_in_delta(0.03, form.amount_in_measure)
   end
 
   test '#checked_portion?' do
-    assert false, 'todo'
+    not_checked_radio_portion = portions(:apple_default_portion)
+    checked_radio_portion = portions(:big_apple_portion)
+    recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+
+    assert_not form.checked_portion?(not_checked_radio_portion)
+    assert form.checked_portion?(checked_radio_portion)
   end
 
-
-  test '#action_url' do
-    assert false, 'todo'
+  test '#form_with_arguments and #action_url, new record' do
+    form = RecipeIngredientForm.new(RecipeIngredient.new(recipe: recipes(:apple_pie)))
+    assert_equal form, form.form_with_arguments[:model]
+    assert_match %r{^/recipes/[0-9]+/ingredients$}, form.form_with_arguments[:url]
+    assert_equal({ turbo: false }, form.form_with_arguments[:data])
   end
 
-  test '#form_with_arguments' do
-    assert false, 'todo'
+  test '#form_with_arguments and #action_url, existing record' do
+    form = RecipeIngredientForm.new(recipe_ingredients(:apples_in_apple_pie))
+    assert_equal form, form.form_with_arguments[:model]
+    assert_match %r{^/recipes/[0-9]+/ingredients/[0-9]+$}, form.form_with_arguments[:url]
+    assert_not form.form_with_arguments.key?(:data)
   end
-
-
-  # test 'correct values with unit option' do
-  #   form = RecipeIngredientForm.new(@new_ingredient, sugar_with_unit_params)
-
-  #   assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
-  #     assert form.save
-  #   end
-  # end
-
-  # test 'correct values with pieces option' do
-  #   form = RecipeIngredientForm.new(@new_ingredient, sugar_cubes_pieces_params)
-
-  #   assert_difference -> { @recipe.recipe_ingredients.count }, +1 do
-  #     assert form.save
-  #   end
-  # end
 
   private
 
-  # def sugar_with_unit_params
-  #   {
-  #     portion_name: 'Sugar (100g)',
-  #     amount_in_measure: '300',
-  #     measure: 'unit'
-  #   }
-  # end
-
-  # def sugar_cubes_pieces_params
-  #   {
-  #     portion_name: 'Sugar Cube (25g)',
-  #     amount_in_measure: '5',
-  #     measure: 'piece'
-  #   }
-  # end
+  def new_params(params = {})
+    ActionController::Parameters.new(recipe_ingredient: params)
+  end
 end
