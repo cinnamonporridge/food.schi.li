@@ -41,7 +41,6 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
       }
       follow_redirect!
       assert_response :success
-      assert_equal 'Ingredient added', flash[:notice]
     end
 
     @recipe.recipe_ingredients.last.tap do |recipe_ingredient|
@@ -161,17 +160,17 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'patch #update' do
     sign_in_user :daisy
 
-    assert_changes -> { @recipe_ingredient.amount }, to: 2800.0 do
+    portion = portions(:apple_default_portion)
+
+    assert_changes -> { @recipe_ingredient.amount }, to: 321.0 do
       patch recipe_ingredient_path(@recipe, @recipe_ingredient), params: {
         recipe_ingredient: {
-          portion_name: 'Apple Big Apple (200g)',
-          amount_in_measure: '14',
-          measure: 'piece'
+          portion_id: portion.id,
+          amount_in_measure: '321',
         }
       }
       follow_redirect!
       assert_response :success
-      assert_equal 'Ingredient updated', flash[:notice]
       @recipe_ingredient.reload
     end
   end
@@ -187,40 +186,6 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_not_patch recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
-  test 'changing an ingredient from vegan to non-vegan changes recipe to non-vegan' do
-    sign_in_user :daisy
-
-    assert_changes -> { @vegan_recipe.vegan? }, from: true, to: false do
-      patch recipe_ingredient_path(@vegan_recipe, @vegan_recipe_ingredient), params: {
-        recipe_ingredient: {
-          portion_name: 'Milk (100ml)',
-          amount_in_measure: '100',
-          measure: 'unit'
-        }
-      }
-      follow_redirect!
-      assert_response :success
-      @vegan_recipe.reload
-    end
-  end
-
-  test 'changing a vegan ingredient to another vegan ingredient should not change recipe to non-vegan' do
-    sign_in_user :daisy
-
-    assert_no_changes -> { @recipe.vegan? } do
-      patch recipe_ingredient_path(@vegan_recipe, @vegan_recipe_ingredient), params: {
-        recipe_ingredient: {
-          portion_name: 'Sugar Cube (25g)',
-          amount_in_measure: '100',
-          measure: 'unit'
-        }
-      }
-      follow_redirect!
-      assert_response :success
-      @recipe.reload
-    end
-  end
-
   # destroy
   test 'delete #destroy' do
     sign_in_user :daisy
@@ -229,7 +194,6 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
       delete recipe_ingredient_path(@recipe, @recipe_ingredient)
       follow_redirect!
       assert_response :success
-      assert_equal 'Ingredient deleted', flash[:notice]
     end
 
     assert_raises(ActiveRecord::RecordNotFound) do
