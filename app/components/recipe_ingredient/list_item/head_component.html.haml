@@ -1,10 +1,10 @@
 %div{ id: to_dom_id }
   .grid.grid-cols-5.items-start
-    .col-span-3.flex.gap-x-2.items-start
+    .recipe-ingredient--name.col-span-3.flex.gap-x-2.items-start
       .h-4.w-4.mt-1
         = render VeganBadgeIconComponent.new(recipe_ingredient.vegan?)
       = recipe_ingredient.portion.decorate.name_with_food
-    .col-span-1.text-gray-500.text-right.text-xs.pt-1
+    .recipe-ingredient--quantity.col-span-1.text-gray-500.text-right.text-xs.pt-1
       = recipe_ingredient.decorate.quantity
-    .col-span-1.text-right.text-right.text-xs.pt-1
+    .recipe-ingredient--amount.col-span-1.text-right.text-right.text-xs.pt-1
       = recipe_ingredient.decorate.rounded_amount_with_unit_abbrevation
