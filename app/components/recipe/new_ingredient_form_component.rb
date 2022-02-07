@@ -8,6 +8,7 @@ class Recipe::NewIngredientFormComponent < ViewComponent::Base
     @params = params
     @food = find_or_initialize_food
     @recipe_ingredient = prepare_recipe_ingredient(recipe_ingredient, @food)
+    super()
   end
 
   def food_search_form

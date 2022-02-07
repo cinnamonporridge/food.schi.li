@@ -3,6 +3,7 @@ class FoodSearchFormComponent < ViewComponent::Base
 
   def initialize(form:)
     @form = form
+    super()
   end
 
   def food_datalist_options

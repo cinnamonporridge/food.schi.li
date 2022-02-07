@@ -11,11 +11,9 @@ class Recipes::IngredientsController < ApplicationController
   end
 
   def create
-    @component = Recipe::NewIngredientFormComponent.new(
-      user: current_user,
-      recipe_ingredient: @recipe.recipe_ingredients.new,
-      params:
-    )
+    @component = Recipe::NewIngredientFormComponent.new(user: current_user,
+                                                        recipe_ingredient: @recipe.recipe_ingredients.new,
+                                                        params:)
 
     if @component.recipe_ingredient_form.save
       propagate_facts_and_vegan!(@component.recipe_ingredient_form.object)

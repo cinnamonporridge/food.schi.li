@@ -4,6 +4,7 @@ class RecipeIngredientFormComponent < ViewComponent::Base
   def initialize(form:, display_as_card: false)
     @form = form
     @display_as_card = display_as_card
+    super()
   end
 
   def render?

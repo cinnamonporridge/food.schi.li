@@ -3,5 +3,6 @@ class Recipe::IngredientsComponent < ViewComponent::Base
 
   def initialize(recipe:)
     @recipe = recipe
+    super()
   end
 end
