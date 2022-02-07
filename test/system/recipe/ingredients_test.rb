@@ -19,7 +19,6 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
     fill_in 'Amount in measure', with: '3'
     click_on 'Add ingredient'
-    assert_selector '.flash', text: 'Ingredient added'
   end
 
   test 'portion measure-add-on changes depending on the selected radio button' do
@@ -50,54 +49,101 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
   end
 
   test 'user edits an ingredient in recipe' do
-    sign_in_and_navigate_to_apple_pie_recipe
+    using_browser do
+      sign_in_and_navigate_to_apple_pie_recipe
 
-    within_recipe_ingredient('Apple Big Apple') do
-      click_on 'Edit ingredient'
-    end
+      within_recipe_ingredient('Apple Big Apple') do
+        assert_selector '.recipe-ingredient--name', text: 'Apple Big Apple'
+        assert_selector '.recipe-ingredient--quantity', text: '0.03'
+        assert_selector '.recipe-ingredient--amount', text: '6'
 
-    assert_selector 'h1', text: 'Edit ingredient for Apple Pie'
-    assert_link 'Cancel', href: %r{/recipes/[0-9]+}
-    fill_in 'Amount in measure', with: '2'
-    click_on 'Update ingredient'
+        toggle_actions
+        choose 'Apple 100'
+        fill_in 'Amount in measure', with: '121'
+        click_on 'Update ingredient'
 
-    assert_selector '.flash', text: 'Ingredient updated'
+        assert_selector '.recipe-ingredient--name', text: 'Apple', exact_text: true
+        assert_selector '.recipe-ingredient--quantity', text: ''
+        assert_selector '.recipe-ingredient--amount', text: '121'
+      end
 
-    within_recipe_ingredient('Apple Big Apple') do
-      assert_text '400' # grams
+      totals_row_from_nutrition_table.tap do |row|
+        assert_equal '169', row[:kcal]
+        assert_equal '169', row[:carbs]
+        assert_equal '169', row[:protein]
+        assert_equal '169', row[:fat]
+      end
     end
   end
 
   test 'user deletes ingredient from recipe' do
-    sign_in_user :daisy
-    navigate_to 'Recipes'
-    click_on 'PB Bread'
+    using_browser do
+      sign_in_user :daisy
+      navigate_to 'Recipes'
+      click_on 'PB Bread'
 
-    assert_selector '.nutritions-table', text: "Per serving (1/1)\n96\n"
+      totals_row_from_nutrition_table.tap do |row|
+        assert_equal '96', row[:kcal]
+        assert_equal '96', row[:carbs]
+        assert_equal '96', row[:protein]
+        assert_equal '96', row[:fat]
+      end
 
-    within_recipe_ingredient 'Whole Grain Bread Whole Grain Bread Portion' do
-      click_on 'Remove'
+      within_recipe_ingredient 'Whole Grain Bread Whole Grain Bread Portion' do
+        toggle_actions
+        click_on 'Delete recipe ingredient'
+        click_on 'Confirm deletion'
+      end
+
+      totals_row_from_nutrition_table.tap do |row|
+        assert_equal '89', row[:kcal]
+        assert_equal '89', row[:carbs]
+        assert_equal '89', row[:protein]
+        assert_equal '89', row[:fat]
+      end
     end
-
-    assert_selector 'ul.recipe--ingredients', text: 'Whole Grain', count: 0
-    assert_selector '.nutritions-table', text: "Per serving (1/1)\n89\n"
   end
 
   test 'user deletes last ingredient from recipe' do
-    recipe = recipes(:apple_pie)
-    recipe_ingredients(:milk_in_apple_pie).destroy! # we only want one recipe ingredient
-    assert_equal 1, recipe.recipe_ingredients.count
+    recipe_ingredients(:apples_in_apple_pie).destroy! # only "Milk" left in this recipe
 
     using_browser do
       sign_in_and_navigate_to_apple_pie_recipe
-      assert_selector '.nutritions-table'
-
-      within_recipe_ingredient 'Apple' do
-        find('svg.heroicons-dots-vertical').ancestor('button').click
-        click_on 'Remove ingredient'
+      within_recipe_ingredient 'Milk' do
+        toggle_actions
+        click_on 'Delete recipe ingredient'
+        click_on 'Confirm deletion'
       end
 
-      assert_text 'No ingredients = no nutritions.'
+      assert_selector 'h1', text: 'APPLE PIE'
+      within '.recipe--header' do
+        assert_selector '.vegan-badge'
+      end
+      assert_text 'No ingredients = no nutritions'
+    end
+  end
+
+  test 'user deletes only non-vegan ingredient makes recipe vegan' do
+    using_browser do
+      sign_in_and_navigate_to_apple_pie_recipe
+
+      within_recipe_ingredient 'Milk' do
+        toggle_actions
+        click_on 'Delete recipe ingredient'
+        click_on 'Confirm deletion'
+      end
+
+      assert_selector 'h1', text: 'APPLE PIE'
+      within '.recipe--header' do
+        assert_selector '.vegan-badge'
+      end
+
+      totals_row_from_nutrition_table.tap do |row|
+        assert_equal '6', row[:kcal]
+        assert_equal '6', row[:carbs]
+        assert_equal '6', row[:protein]
+        assert_equal '6', row[:fat]
+      end
     end
   end
 
@@ -118,5 +164,15 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       fill_in 'Search food', with: name
       click_on 'Search'
     end
+  end
+
+  def toggle_actions
+    find('svg.heroicons-dots-vertical').ancestor('button').click
+  end
+
+  def totals_row_from_nutrition_table
+    title, kcal, carbs, protein, fat = find_all('.nutritions-table--totals > div').to_a.map(&:text)
+
+    { title:, kcal:, carbs:, protein:, fat: }
   end
 end
