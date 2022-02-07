@@ -32,6 +32,24 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_recipe_nutrition_facts
   end
 
+  test '.update_track!(:recipes), no recipe_ingredients' do
+    fake_nutrition_facts!(@recipe)
+    @recipe.recipe_ingredients.delete_all
+
+    NutritionFactsService.new(user: users(:daisy)).update_track!(:recipes)
+
+    assert_nutrition_facts(
+      @recipe,
+      kcal: 0,
+      carbs: 0.0,
+      carbs_sugar_part: 0.0,
+      protein: 0.0,
+      fat: 0.0,
+      fat_saturated: 0.0,
+      fiber: 0.0
+    )
+  end
+
   test '.update_track!(:meals)' do
     fake_nutrition_facts!(@meal_ingredient)
     fake_nutrition_facts!(@meal)
@@ -41,6 +59,24 @@ class NutritionFactsServiceTest < ActiveSupport::TestCase
     assert_meal_ingredient_nutrition_facts
     assert_meal_nutrition_facts
     assert_journal_day_nutrition_facts
+  end
+
+  test '.update_track!(:meals), no meal_ingredients' do
+    fake_nutrition_facts!(@meal)
+    @meal.meal_ingredients.delete_all
+
+    NutritionFactsService.new(user: users(:daisy)).update_track!(:meals)
+
+    assert_nutrition_facts(
+      @meal,
+      kcal: 0,
+      carbs: 0.0,
+      carbs_sugar_part: 0.0,
+      protein: 0.0,
+      fat: 0.0,
+      fat_saturated: 0.0,
+      fiber: 0.0
+    )
   end
 
   test '.update_track!(:meals), no meals' do

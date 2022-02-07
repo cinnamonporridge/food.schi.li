@@ -34,6 +34,10 @@ class Portion < ApplicationRecord
     amount == PRIMARY_AMOUNT
   end
 
+  def measure
+    primary? ? 'unit' : 'piece'
+  end
+
   def deleteable?
     recipe_ingredients.none? && meal_ingredients.none?
   end

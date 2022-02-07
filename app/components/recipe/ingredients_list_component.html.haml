@@ -1,0 +1,26 @@
+%div{ id: to_dom_id }
+  .flex.flex-col.gap-y-4
+    - if recipe_ingredients.any?
+      %ul.recipe--ingredients.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
+        - recipe_ingredients.each do |recipe_ingredient|
+          %li
+            .p-2.sm:p-3
+              %div{ 'data-controller': 'toggleable' }
+                .flex.items-start.gap-x-2
+                  .grow
+                    = render RecipeIngredient::ListItem::HeadComponent.new(recipe_ingredient: recipe_ingredient)
+                  .shrink-0.flex.items-start.pt-1
+                    %button.text-green-700{ 'data-action': 'toggleable#toggle' }
+                      = render HeroiconComponent.new(:'dots-vertical')
+
+                %div{ 'data-toggleable-target': 'toggleable' }
+                  .py-4
+                    - if recipe_ingredient.recipe.active?
+                      = turbo_frame_tag dom_id(recipe_ingredient) do
+                        = render RecipeIngredientFormComponent.new(form: RecipeIngredientForm.new(recipe_ingredient))
+                    - else
+                      .text-xs.text-gray-500
+                        Ingredient cannot be updated as long as recipe is archived.
+
+    - if @recipe.active?
+      = render LinkToActionComponent.new('Add ingredient', new_recipe_ingredient_path(@recipe), icon: :'plus-sm', button: :gray_dashed)

@@ -13,5 +13,11 @@ application.register("dismissable", DismissableController)
 import DropdownController from "./dropdown_controller.js"
 application.register("dropdown", DropdownController)
 
+import Portions__FoodSearchController from "./portions/food_search_controller.js"
+application.register("portions--food-search", Portions__FoodSearchController)
+
+import Portions__PortionSelectController from "./portions/portion_select_controller.js"
+application.register("portions--portion-select", Portions__PortionSelectController)
+
 import ToggleableController from "./toggleable_controller.js"
 application.register("toggleable", ToggleableController)

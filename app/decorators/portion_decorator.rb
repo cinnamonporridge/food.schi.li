@@ -8,8 +8,8 @@ class PortionDecorator < SimpleDelegator
     ].compact.join(' ')
   end
 
-  def name_if_not_default
-    name unless primary?
+  def display_measure
+    RecipeIngredient.human_enum_name(:measures, measure)
   end
 
   def amount_with_unit_abbrevation
@@ -39,5 +39,11 @@ class PortionDecorator < SimpleDelegator
     Portion.of_user(user)
            .ordered_by_food_name_and_amount
            .map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
+  end
+
+  private
+
+  def name_if_not_default
+    name unless primary?
   end
 end

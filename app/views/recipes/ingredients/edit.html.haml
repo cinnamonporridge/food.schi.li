@@ -1,4 +1,8 @@
 .flex.flex-col.gap-y-4
-  %h1= "Edit ingredient for #{@form.object.recipe.name}"
+  %h1.text-sm= "Edit ingredient"
+  = link_to @component.form.object.recipe, class: 'shy-link text-xs inline-flex gap-x-1 items-center' do
+    = render HeroiconComponent.new(:'chevron-left')
+    Back
 
-  = render 'form', form: @form
+  = turbo_frame_tag dom_id(@component.form.object) do
+    = render @component

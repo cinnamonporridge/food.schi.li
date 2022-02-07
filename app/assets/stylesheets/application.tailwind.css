@@ -49,11 +49,15 @@ li {
 }
 
 .confirmable-button {
-  @apply text-sm w-full flex py-2 items-center justify-center bg-red-600 text-white border rounded cursor-pointer transition;
+  @apply text-sm w-full flex py-2 items-center justify-center border-red-600 bg-red-600 text-white border rounded cursor-pointer transition;
 }
 
 .gray-dashed-button {
   @apply text-sm w-full flex py-2 items-center justify-center border-2 border-dashed border-gray-300 rounded text-gray-400 hover:border-green-700 hover:bg-green-700 hover:text-white cursor-pointer transition
+}
+
+.hollow-button {
+  @apply text-sm w-full flex py-2 items-center justify-center border border-gray-300 rounded text-gray-400 hover:border-gray-400 hover:text-gray-600 cursor-pointer transition;
 }
 
 .f-button {
@@ -216,5 +220,17 @@ ul.pagination li {
 .pagy-nav .page.active,
 .pagy-nav-js .page.active {
   @apply text-white cursor-default bg-green-700 hover:bg-green-700 hover:text-white border border-white;
+}
+
+input[type=radio] {
+  @apply bg-gray-200 border-transparent;
+}
+
+input[type=radio]:focus {
+  @apply outline-0 ring-green-700 border-0;
+}
+
+input[type=radio]:checked, input[type=radio]:checked:hover, input[type=radio]:checked:focus {
+  @apply bg-green-700;
 }
 

@@ -1,0 +1,20 @@
+.food-search.flex.flex-col.gap-y-4
+  %div{ 'data-controller': 'portions--food-search' }
+    = form_with(model: form, url: form.action_url, method: :get) do |f|
+      .flex.flex-col
+        = label_tag :food_name, 'Search food', class: 'label'
+        .flex.rounded
+          %div{ class: 'relative flex items-stretch flex-grow focus-within:z-10' }
+            = text_field_tag :food_name, f.object.food_name, class: 'focus:ring-green-700 focus:border-green-700 block w-full rounded-none rounded-l-md text-sm border-gray-300 pr-10', list: :'food-list', 'data-action': 'change->portions--food-search#search', 'data-portions--food-search-target': 'input'
+            .absolute.inset-y-0.right-0.pr-3.flex.items-center
+              %button.text-gray-400.hover:text-gray-700.transition{ type: :button, 'data-action': 'portions--food-search#clear', 'data-portions--food-search-target': 'clear' }
+                = render HeroiconComponent.new(:x)
+            %datalist#food-list
+              - food_datalist_options.each do |option|
+                %option{ value: option }
+          = f.button type: :submit, class: '-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-600 bg-gray-50 hover:bg-gray-100 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 flex items-center gap-x-1' do
+            = render HeroiconComponent.new(:search)
+            Search
+  - if form.food_not_found?
+    .text-gray-500.text-center.w-full.text-sm
+      No food found
