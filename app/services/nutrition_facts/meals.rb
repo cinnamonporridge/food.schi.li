@@ -14,21 +14,22 @@ class NutritionFacts::Meals < NutritionFacts::Base
                    , (mi.amount / d.default_amount) * f.fiber            AS fiber
                 FROM meals m
                CROSS JOIN (SELECT 100 AS default_amount) AS d
-               INNER JOIN meal_ingredients mi ON mi.meal_id = m.id
-               INNER JOIN portions p          ON p.id = mi.portion_id
-               INNER JOIN foods f             ON f.id = p.food_id
+               INNER JOIN journal_days jd           ON jd.id = m.journal_day_id
+                LEFT OUTER JOIN meal_ingredients mi ON mi.meal_id = m.id
+                LEFT OUTER JOIN portions p          ON p.id = mi.portion_id
+                LEFT OUTER JOIN foods f             ON f.id = p.food_id
                WHERE 0 = 0
-                 AND f.user_id = #{@user.id}
+                 AND jd.user_id = #{@user.id}
       )
       , with_summed_nutrition_facts AS (
         SELECT meal_id                           AS meal_id
-             , ROUND(sum(kcal)              , 0) AS kcal
-             , ROUND(sum(carbs)             , 3) AS carbs
-             , ROUND(sum(carbs_sugar_part)  , 3) AS carbs_sugar_part
-             , ROUND(sum(protein)           , 3) AS protein
-             , ROUND(sum(fat)               , 3) AS fat
-             , ROUND(sum(fat_saturated)     , 3) AS fat_saturated
-             , ROUND(sum(fiber)             , 3) AS fiber
+             , COALESCE(ROUND(sum(kcal)              , 0), 0) AS kcal
+             , COALESCE(ROUND(sum(carbs)             , 3), 0) AS carbs
+             , COALESCE(ROUND(sum(carbs_sugar_part)  , 3), 0) AS carbs_sugar_part
+             , COALESCE(ROUND(sum(protein)           , 3), 0) AS protein
+             , COALESCE(ROUND(sum(fat)               , 3), 0) AS fat
+             , COALESCE(ROUND(sum(fat_saturated)     , 3), 0) AS fat_saturated
+             , COALESCE(ROUND(sum(fiber)             , 3), 0) AS fiber
           FROM with_nutrition_facts
          GROUP BY meal_id
       )

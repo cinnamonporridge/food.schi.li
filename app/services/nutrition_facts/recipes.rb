@@ -14,21 +14,21 @@ class NutritionFacts::Recipes < NutritionFacts::Base
              , (ri.amount / d.default_amount) * f.fiber            AS fiber
           FROM recipes r
          CROSS JOIN (SELECT 100 AS default_amount) AS d
-         INNER JOIN recipe_ingredients ri ON ri.recipe_id = r.id
-         INNER JOIN portions p            ON p.id = ri.portion_id
-         INNER JOIN foods f               ON f.id = p.food_id
+          LEFT OUTER JOIN recipe_ingredients ri ON ri.recipe_id = r.id
+          LEFT OUTER JOIN portions p            ON p.id = ri.portion_id
+          LEFT OUTER JOIN foods f               ON f.id = p.food_id
          WHERE 0 = 0
-           AND f.user_id = #{@user.id}
+           AND r.user_id = #{@user.id}
       )
       , with_summed_nutrition_facts AS (
         SELECT recipe_id                         AS recipe_id
-             , ROUND(sum(kcal)              , 0) AS kcal
-             , ROUND(sum(carbs)             , 3) AS carbs
-             , ROUND(sum(carbs_sugar_part)  , 3) AS carbs_sugar_part
-             , ROUND(sum(protein)           , 3) AS protein
-             , ROUND(sum(fat)               , 3) AS fat
-             , ROUND(sum(fat_saturated)     , 3) AS fat_saturated
-             , ROUND(sum(fiber)             , 3) AS fiber
+             , COALESCE(ROUND(sum(kcal)              , 0), 0) AS kcal
+             , COALESCE(ROUND(sum(carbs)             , 3), 0) AS carbs
+             , COALESCE(ROUND(sum(carbs_sugar_part)  , 3), 0) AS carbs_sugar_part
+             , COALESCE(ROUND(sum(protein)           , 3), 0) AS protein
+             , COALESCE(ROUND(sum(fat)               , 3), 0) AS fat
+             , COALESCE(ROUND(sum(fat_saturated)     , 3), 0) AS fat_saturated
+             , COALESCE(ROUND(sum(fiber)             , 3), 0) AS fiber
           FROM with_nutrition_facts
          GROUP BY recipe_id
       )

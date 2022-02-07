@@ -224,4 +224,24 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
       @recipe.reload
     end
   end
+
+  test 'removing ingredient changes the recipes nutrition facts' do
+    sign_in_user :daisy
+    recipe_ingredients(:apples_in_apple_pie).destroy!
+    recipe_ingredient = recipe_ingredients(:milk_in_apple_pie)
+
+    delete recipe_ingredient_path(@recipe, recipe_ingredient)
+    follow_redirect!
+    assert_response :success
+    @recipe.reload
+
+    assert_equal 0, @recipe.recipe_ingredients.count
+    assert_equal 0, @recipe.kcal
+    assert_equal 0, @recipe.carbs
+    assert_equal 0, @recipe.carbs_sugar_part
+    assert_equal 0, @recipe.protein
+    assert_equal 0, @recipe.fat
+    assert_equal 0, @recipe.fat_saturated
+    assert_equal 0, @recipe.fiber
+  end
 end
