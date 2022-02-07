@@ -14,9 +14,7 @@ class RecipeIngredientForm < ApplicationForm
     recipe_ingredient_params[:amount_in_measure] || to_amount_in_measure(object.amount)
   end
 
-  def food_id
-    portion.food_id
-  end
+  delegate :food_id, to: :portion
 
   def save
     return unless valid?

@@ -29,7 +29,7 @@ class Recipe::NewIngredientFormComponent < ViewComponent::Base
   end
 
   def find_or_initialize_food
-     find_food_by_food_name_params || user.foods.new
+    find_food_by_food_name_params || user.foods.new
   end
 
   def find_food_by_food_name_params

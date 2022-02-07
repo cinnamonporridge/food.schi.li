@@ -10,14 +10,14 @@ class RecipeIngredientFormTest < ActiveSupport::TestCase
 
   test '#portion_id, in object' do
     recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
-    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params)
     assert_equal recipe_ingredient.portion.id, form.portion_id
   end
 
   test '#portion_id, default' do
     default_portion = portions(:apple_default_portion)
     recipe_ingredient = RecipeIngredient.new(recipe: recipes(:apple_pie), food: foods(:apple))
-    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params)
     assert_equal default_portion.id, form.portion_id
   end
 
@@ -29,7 +29,7 @@ class RecipeIngredientFormTest < ActiveSupport::TestCase
 
   test '#amount_in_measure, from object' do
     recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
-    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params)
     assert_in_delta(0.03, form.amount_in_measure)
   end
 
@@ -37,7 +37,7 @@ class RecipeIngredientFormTest < ActiveSupport::TestCase
     not_checked_radio_portion = portions(:apple_default_portion)
     checked_radio_portion = portions(:big_apple_portion)
     recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
-    form = RecipeIngredientForm.new(recipe_ingredient, new_params())
+    form = RecipeIngredientForm.new(recipe_ingredient, new_params)
 
     assert_not form.checked_portion?(not_checked_radio_portion)
     assert form.checked_portion?(checked_radio_portion)

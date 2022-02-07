@@ -24,7 +24,7 @@ class RecipeIngredientFormComponentTest < ViewComponent::TestCase
     recipe_ingredient = recipes(:apple_pie).recipe_ingredients.new
     recipe_ingredient.food = users(:daisy).foods.new
     form = RecipeIngredientForm.new(recipe_ingredient)
-    component = new_component(form: form)
+    component = new_component(form:)
     assert_not component.render?
   end
 end

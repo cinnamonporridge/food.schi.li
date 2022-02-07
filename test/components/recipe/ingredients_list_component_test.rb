@@ -8,6 +8,6 @@ class Recipe::IngredientsListComponentTest < ViewComponent::TestCase
 
   test '#to_dom_id' do
     component = new_component(recipe: recipes(:apple_pie))
-    assert_match %r{_ingredients_list$}, component.to_dom_id
+    assert_match(/_ingredients_list$/, component.to_dom_id)
   end
 end

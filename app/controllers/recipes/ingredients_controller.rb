@@ -6,7 +6,7 @@ class Recipes::IngredientsController < ApplicationController
     @component = Recipe::NewIngredientFormComponent.new(
       user: current_user,
       recipe_ingredient: @recipe.recipe_ingredients.new,
-      params: params
+      params:
     )
   end
 
@@ -14,7 +14,7 @@ class Recipes::IngredientsController < ApplicationController
     @component = Recipe::NewIngredientFormComponent.new(
       user: current_user,
       recipe_ingredient: @recipe.recipe_ingredients.new,
-      params: params
+      params:
     )
 
     if @component.recipe_ingredient_form.save
@@ -27,7 +27,7 @@ class Recipes::IngredientsController < ApplicationController
 
   def edit
     form = RecipeIngredientForm.new(@recipe_ingredient)
-    @component = RecipeIngredientFormComponent.new(form: form)
+    @component = RecipeIngredientFormComponent.new(form:)
   end
 
   def update
@@ -38,7 +38,7 @@ class Recipes::IngredientsController < ApplicationController
       broadcast(:updated)
       redirect_to form.object.recipe
     else
-      @component = RecipeIngredientFormComponent.new(form: form)
+      @component = RecipeIngredientFormComponent.new(form:)
       render :edit
     end
   end

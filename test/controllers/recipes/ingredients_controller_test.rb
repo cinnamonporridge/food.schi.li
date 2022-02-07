@@ -91,7 +91,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name,
           portion_id: portion.id,
-          amount_in_measure: '102',
+          amount_in_measure: '102'
         }
       }
       follow_redirect!
@@ -111,7 +111,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name, # not directly needed, only for FoodSearchForm
           portion_id: portion.id,
-          amount_in_measure: '1',
+          amount_in_measure: '1'
         }
       }
       follow_redirect!
@@ -166,7 +166,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
       patch recipe_ingredient_path(@recipe, @recipe_ingredient), params: {
         recipe_ingredient: {
           portion_id: portion.id,
-          amount_in_measure: '321',
+          amount_in_measure: '321'
         }
       }
       follow_redirect!

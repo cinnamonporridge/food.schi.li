@@ -1,5 +1,5 @@
 class Broadcasters::RecipeIngredient < Broadcasters::Base
-  alias_method :recipe_ingredient, :object
+  alias recipe_ingredient object
   delegate :recipe, to: :recipe_ingredient
 
   def broadcast_updated
@@ -16,7 +16,7 @@ class Broadcasters::RecipeIngredient < Broadcasters::Base
   private
 
   def update_recipe_ingredient_list_item_head
-    component = RecipeIngredient::ListItem::HeadComponent.new(recipe_ingredient: recipe_ingredient)
+    component = RecipeIngredient::ListItem::HeadComponent.new(recipe_ingredient:)
     broadcast_replace_to_component(channel_name, component)
   end
 
@@ -26,7 +26,7 @@ class Broadcasters::RecipeIngredient < Broadcasters::Base
   end
 
   def update_recipe
-    component = Recipe::ShowComponent.new(recipe: recipe)
+    component = Recipe::ShowComponent.new(recipe:)
     broadcast_replace_to_component(channel_name, component)
   end
 
