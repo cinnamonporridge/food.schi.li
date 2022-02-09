@@ -20,12 +20,6 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Oops, something went wrong', flash[:notice]
   end
 
-  test 'missing email for magic link' do
-    post forgot_passwords_path, params: magic_link_form_params_missing_email
-    assert_response :success
-    assert_equal 'Oops, something went wrong', flash[:notice]
-  end
-
   private
 
   def reset_password_form_params
@@ -43,24 +37,6 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
         email: ''
       },
       reset: 'Reset my password'
-    }
-  end
-
-  def magic_link_form_params
-    {
-      forgot_password_form: {
-        email: 'john@foo.bar'
-      },
-      magic_link: 'Send me a magic link'
-    }
-  end
-
-  def magic_link_form_params_missing_email
-    {
-      forgot_password_form: {
-        email: ''
-      },
-      magic_link: 'Send me a magic link'
     }
   end
 end

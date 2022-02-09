@@ -5,10 +5,4 @@ class PasswordMailerPreview < ActionMailer::Preview
     PasswordService.reset_link!(user)
     PasswordMailer.reset_link_mail(user)
   end
-
-  def magic_link_mail
-    user = User.first
-    PasswordService.magic_link!(user)
-    PasswordMailer.magic_link_mail(user)
-  end
 end

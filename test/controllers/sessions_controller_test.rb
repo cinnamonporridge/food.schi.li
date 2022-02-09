@@ -31,6 +31,12 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Invalid email or password', flash[:notice]
   end
 
+  test 'cannot login as global user' do
+    post login_url, params: { login_form: { email: GlobalUser::GLOBAL_USER_EMAIL, password: 'abc' } }
+    assert_response :success
+    assert_equal 'Invalid email or password', flash[:notice]
+  end
+
   private
 
   def login_form_wrong_params
