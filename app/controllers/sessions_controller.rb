@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     return handle_success if @user&.authenticate(login_params[:password])
 
-    flash.now[:warning] = 'Invalid email or password'
+    flash.now[:notice] = 'Invalid email or password'
     render :new
   end
 
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
   end
 
   def form_errors
-    flash.now[:warning] = 'Oops, something went wrong'
+    flash.now[:notice] = 'Oops, something went wrong'
     render :new
   end
 

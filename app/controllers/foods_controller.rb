@@ -25,7 +25,7 @@ class FoodsController < ApplicationController
     if @food.save
       redirect_to @food, notice: 'Food added'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :new
     end
   end
@@ -35,7 +35,7 @@ class FoodsController < ApplicationController
       propagate_facts_and_vegan!
       redirect_to @food, notice: 'Food updated'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :edit
     end
   end

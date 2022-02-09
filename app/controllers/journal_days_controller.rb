@@ -21,7 +21,7 @@ class JournalDaysController < ApplicationController
       flash[:notice] = 'Journal day added'
       redirect_to journal_day_path(@journal_day)
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :new
     end
   end
@@ -32,7 +32,7 @@ class JournalDaysController < ApplicationController
     if @journal_day.update(journal_day_params)
       redirect_to journal_day_path(@journal_day), notice: 'Journal day updated'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :new
     end
   end

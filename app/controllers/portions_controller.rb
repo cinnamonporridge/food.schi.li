@@ -12,7 +12,7 @@ class PortionsController < ApplicationController
       NutritionFactsService.new(user: @portion.user).update_track!(:portions)
       redirect_to @portion.food, notice: 'Portion added'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :new
     end
   end
@@ -24,7 +24,7 @@ class PortionsController < ApplicationController
       NutritionFactsService.new(user: @portion.user).update_track!(:portions)
       redirect_to @portion.food, notice: 'Portion updated'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :edit
     end
   end

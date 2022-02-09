@@ -9,13 +9,13 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'login fails with missing email' do
     post login_url, params: login_form_params_missing_email
     assert_response :success
-    assert_equal 'Oops, something went wrong', flash[:warning]
+    assert_equal 'Oops, something went wrong', flash[:notice]
   end
 
   test 'login fails with missing password' do
     post login_url, params: login_form_params_missing_password
     assert_response :success
-    assert_equal 'Oops, something went wrong', flash[:warning]
+    assert_equal 'Oops, something went wrong', flash[:notice]
   end
 
   test 'successful login and logout' do
@@ -28,7 +28,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'invalid login credentials' do
     post login_url, params: login_form_wrong_params
     assert_response :success
-    assert_equal 'Invalid email or password', flash[:warning]
+    assert_equal 'Invalid email or password', flash[:notice]
   end
 
   private

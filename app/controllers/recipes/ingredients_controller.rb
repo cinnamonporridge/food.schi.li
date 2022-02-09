@@ -28,6 +28,7 @@ class Recipes::IngredientsController < ApplicationController
     if form.save
       propagate_facts_and_vegan!(form.object)
       broadcast(:updated)
+      flash[:turbo_notice] = 'Recipe ingredient updated'
       redirect_to form.object.recipe
     else
       @component = RecipeIngredientFormComponent.new(form:)
