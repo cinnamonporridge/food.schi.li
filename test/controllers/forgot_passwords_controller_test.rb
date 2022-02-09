@@ -10,20 +10,20 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
     post forgot_passwords_path, params: reset_password_form_params
     follow_redirect!
     assert_response :success
-    assert_equal 'A reset link has been sent to your email address', flash[:success]
+    assert_equal 'A reset link has been sent to your email address', flash[:notice]
     assert_equal 'Your password reset link', last_email.subject
   end
 
   test 'missing email for reset' do
     post forgot_passwords_path, params: reset_password_form_params_missing_email
     assert_response :success
-    assert_equal 'Oops, something went wrong', flash[:warning]
+    assert_equal 'Oops, something went wrong', flash[:notice]
   end
 
   test 'missing email for magic link' do
     post forgot_passwords_path, params: magic_link_form_params_missing_email
     assert_response :success
-    assert_equal 'Oops, something went wrong', flash[:warning]
+    assert_equal 'Oops, something went wrong', flash[:notice]
   end
 
   private

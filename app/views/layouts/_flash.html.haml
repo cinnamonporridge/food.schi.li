@@ -1,4 +1,4 @@
-- if flash.present?
+- if flash.key?(:notice)
   %div{ 'data-controller': 'dismissable' }
     .flash.bg-cyan-200
       .w-screen.max-w-screen-md.mx-auto

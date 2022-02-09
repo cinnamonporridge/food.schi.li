@@ -13,6 +13,9 @@ application.register("dismissable", DismissableController)
 import DropdownController from "./dropdown_controller.js"
 application.register("dropdown", DropdownController)
 
+import FadeOutFlashController from "./fade_out_flash_controller.js"
+application.register("fade-out-flash", FadeOutFlashController)
+
 import Portions__FoodSearchController from "./portions/food_search_controller.js"
 application.register("portions--food-search", Portions__FoodSearchController)
 

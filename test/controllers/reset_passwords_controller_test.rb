@@ -11,7 +11,7 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
     post reset_passwords_path, params: reset_password_form_params('new', john.reset_password_challenge)
     follow_redirect!
     assert_response :success
-    assert_equal 'Password successfully reset and logged in', flash[:success]
+    assert_equal 'Password successfully reset and logged in', flash[:notice]
 
     john.reload
     assert_nil john.reset_password_challenge
@@ -22,7 +22,7 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
     john = reset_password(users(:john))
     post reset_passwords_path, params: reset_password_form_params('', john.reset_password_challenge)
     assert_response :success
-    assert_equal 'Oops, something went wrong', flash[:warning]
+    assert_equal 'Oops, something went wrong', flash[:notice]
   end
 
   private

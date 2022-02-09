@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe added'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :new
     end
   end
@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'Recipe updated'
     else
-      flash.now[:error] = 'Invalid input'
+      flash.now[:notice] = 'Invalid input'
       render :edit
     end
   end

@@ -234,3 +234,12 @@ input[type=radio]:checked, input[type=radio]:checked:hover, input[type=radio]:ch
   @apply bg-green-700;
 }
 
+@keyframes fade-out-animation {
+  to { opacity: 0; }
+}
+
+.fade-out {
+  animation-name: fade-out-animation;
+  animation-duration: 0.7s;
+  animation-delay: 1.3s;
+}
