@@ -10,12 +10,15 @@ class SessionsController < ApplicationController
     @form = LoginForm.new(login_params)
     return form_errors unless @form.valid?
 
-    @user = User.find_by(email: @form.email)
+    user = User.find_by(email: @form.email)
 
-    return handle_success if @user&.authenticate(login_params[:password])
-
-    flash.now[:notice] = 'Invalid email or password'
-    render :new
+    if user_not_global_and_authenticated?(user)
+      log_in(user)
+      redirect_to journal_days_path, success: 'Login successful'
+    else
+      flash.now[:notice] = 'Invalid email or password'
+      render :new
+    end
   end
 
   def destroy
@@ -34,8 +37,7 @@ class SessionsController < ApplicationController
     render :new
   end
 
-  def handle_success
-    log_in(@user)
-    redirect_to journal_days_path, success: 'Login successful'
+  def user_not_global_and_authenticated?(user)
+    !user&.global_user? && user&.authenticate(login_params[:password])
   end
 end

@@ -3,6 +3,10 @@ DEFAULTS: &DEFAULTS
   password_digest: "$2a$10$0v5NjtYR7VfY2fdf5zG08.BVGFfBTnIx0f.yPi2chBb/dBkdQ6uYu" # abc
   is_admin: false
 
+global:
+  <<: *DEFAULTS
+  email: 'global@global.localhost'
+
 john:
   <<: *DEFAULTS
   email: "john@foo.bar"

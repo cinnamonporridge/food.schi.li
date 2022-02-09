@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include GlobalUser
+
   has_secure_password
 
   validates :email, presence: true
@@ -16,10 +18,6 @@ class User < ApplicationRecord
   def clear_reset_password
     self.reset_password_challenge = nil
     self.reset_password_link_sent_at = nil
-  end
-
-  def clear_magic_link!
-    update!(magic_link_challenge: nil, magic_link_sent_at: nil)
   end
 
   def today
