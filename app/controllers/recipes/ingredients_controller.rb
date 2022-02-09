@@ -3,17 +3,11 @@ class Recipes::IngredientsController < ApplicationController
   before_action :set_recipe_ingredient, only: %i[edit update destroy]
 
   def new
-    @component = Recipe::NewIngredientFormComponent.new(
-      user: current_user,
-      recipe_ingredient: @recipe.recipe_ingredients.new,
-      params:
-    )
+    @component = Recipe::NewIngredientFormComponent.new(recipe: @recipe, params:)
   end
 
   def create
-    @component = Recipe::NewIngredientFormComponent.new(user: current_user,
-                                                        recipe_ingredient: @recipe.recipe_ingredients.new,
-                                                        params:)
+    @component = Recipe::NewIngredientFormComponent.new(recipe: @recipe, params:)
 
     if @component.recipe_ingredient_form.save
       propagate_facts_and_vegan!(@component.recipe_ingredient_form.object)

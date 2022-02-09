@@ -10,11 +10,19 @@
               %button.text-gray-400.hover:text-gray-700.transition{ type: :button, 'data-action': 'portions--food-search#clear', 'data-portions--food-search-target': 'clear' }
                 = render HeroiconComponent.new(:x)
             %datalist#food-list
-              - food_datalist_options.each do |option|
+              - form.food_datalist_options.each do |option|
                 %option{ value: option }
           = f.button type: :submit, class: '-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-600 bg-gray-50 hover:bg-gray-100 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 flex items-center gap-x-1' do
             = render HeroiconComponent.new(:search)
             Search
-  - if form.food_not_found?
-    .text-gray-500.text-center.w-full.text-sm
-      No food found
+  - if form.no_foods_found?
+    .text-gray-500.w-full.text-sm
+      No foods found
+  - elsif form.search_results.count > 1
+    %ul.food-search-result.bg-white.rounded.divide-y.divide-gray-200.border.border-gray-200
+      - form.search_results.each do |food|
+        %li.p-2.flex.items-center
+          .grow
+            = food.name
+          .shrink-0
+            = link_to 'Select', url_for(food_name: food.name), class: 'border text-gray-500 rounded py-1 px-4 text-xs hover:border-gray-700 hover:text-gray-700 transition'
