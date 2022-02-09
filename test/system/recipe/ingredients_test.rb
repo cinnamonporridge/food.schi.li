@@ -19,6 +19,39 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
     fill_in 'Amount in measure', with: '3'
     click_on 'Add ingredient'
+
+    within_recipe_ingredient('Banana Regular') do
+      assert_selector '.recipe-ingredient--quantity', text: '3'
+      assert_selector '.recipe-ingredient--amount', text: '348'
+    end
+  end
+
+  test 'user adds an ingredient by searching first' do
+    sign_in_and_navigate_to_apple_pie_recipe
+    click_on 'Add ingredient'
+
+    search_food 'na'
+
+    within 'ul.food-search-result' do
+      assert_selector 'li', count: 2
+
+      assert_selector 'li', text: 'Banana' do |element|
+        element.click_on 'Select'
+      end
+    end
+
+    within '.portions-select' do
+      assert_checked_field 'Banana 100'
+      choose 'Banana Regular'
+    end
+
+    fill_in 'Amount in measure', with: '5'
+    click_on 'Add ingredient'
+
+    within_recipe_ingredient('Banana Regular') do
+      assert_selector '.recipe-ingredient--quantity', text: '5'
+      assert_selector '.recipe-ingredient--amount', text: '580'
+    end
   end
 
   test 'portion measure-add-on changes depending on the selected radio button' do
