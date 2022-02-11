@@ -4,7 +4,7 @@ class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @foods = pagy(current_user.foods.search(params[:search_query]).ordered_by_name)
+    @pagy, @foods = pagy(foods_scope.search(params[:search_query]).ordered_by_name)
   end
 
   def show
@@ -19,8 +19,6 @@ class FoodsController < ApplicationController
 
   def create
     @food = current_user.foods.new(food_params)
-    default_portion_name = "100#{@food.decorate.unit_abbrevation}"
-    @food.portions.new(name: default_portion_name, amount: 100)
 
     if @food.save
       redirect_to @food, notice: 'Food added'
@@ -53,12 +51,17 @@ class FoodsController < ApplicationController
   private
 
   def set_food
-    @food = current_user.foods.find(params[:id])
+    @food = foods_scope.find(params[:id])
   end
 
   def food_params
     params.require(:food).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated,
                                  :fiber, :vegan)
+  end
+
+  def foods_scope
+    scope_name = %w[index show].include?(action_name) ? :read : :write
+    authorized_scope(Food.all, as: scope_name)
   end
 
   def propagate_facts_and_vegan!

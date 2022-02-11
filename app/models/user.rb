@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, length: { minimum: 7 }
 
-  before_save :create_default_day_parition, if: :new_record?
+  before_save :create_default_day_partition, if: :new_record?
 
   has_many :journal_days, dependent: :destroy
   has_many :foods, dependent: :destroy
@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   private
 
-  def create_default_day_parition
+  def create_default_day_partition
     day_partitions << DayPartition.intialize_default_day_partition_for_user(self)
   end
 end

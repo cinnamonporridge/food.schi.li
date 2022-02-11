@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'action_policy'
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'bugsnag', '~> 6.24'

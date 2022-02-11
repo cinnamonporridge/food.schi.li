@@ -12,9 +12,25 @@ class FoodSearchFormTest < ActiveSupport::TestCase
     assert form.no_foods_found?
   end
 
-  test '#food, distinct food' do
+  test '#food, global food, as admin' do
     form = FoodSearchForm.new({ food_name: 'Apple', action_url: '/foo' }, users(:daisy))
     assert_equal foods(:apple), form.food
+  end
+
+  test '#food, global food, as user' do
+    form = FoodSearchForm.new({ food_name: 'Apple', action_url: '/foo' }, users(:john))
+    assert_equal foods(:apple), form.food
+  end
+
+  test '#food, own food' do
+    form = FoodSearchForm.new({ food_name: 'Milk', action_url: '/foo' }, users(:daisy))
+    assert_equal foods(:milk), form.food
+  end
+
+  test '#food, other food not found' do
+    food = foods(:maple_syrup) # belongs to john
+    form = FoodSearchForm.new({ food_name: food.name, action_url: '/foo' }, users(:daisy))
+    assert form.food.new_record?
   end
 
   test '#food, new food' do
@@ -27,13 +43,17 @@ class FoodSearchFormTest < ActiveSupport::TestCase
     assert_equal 2, form.search_results.count
   end
 
-  test '#food_datalist_options' do
+  test '#food_datalist_options, as admin' do
     form = FoodSearchForm.new({ action_url: '/foo' }, users(:daisy))
     assert_includes form.food_datalist_options, 'Apple'
-    assert_not_includes form.food_datalist_options, 'Apricot'
+    assert_not_includes form.food_datalist_options, 'Maple Syrup'
+    assert_includes form.food_datalist_options, 'Milk'
+  end
 
+  test '#food_datalist_options, as user' do
     form = FoodSearchForm.new({ action_url: '/foo' }, users(:john))
-    assert_includes form.food_datalist_options, 'Apricot'
-    assert_not_includes form.food_datalist_options, 'Apple'
+    assert_includes form.food_datalist_options, 'Maple Syrup'
+    assert_includes form.food_datalist_options, 'Apple'
+    assert_not_includes form.food_datalist_options, 'Milk'
   end
 end

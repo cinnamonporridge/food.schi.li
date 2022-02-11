@@ -5,6 +5,7 @@
   .flex.flex-col.gap-y-4
     %ul.food--portions.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
       - portions.ordered_by_amount.each do |portion|
+        - portion_policy = PortionPolicy.new(portion, user: @current_user)
         %li.p-2.sm:p-3
           %div{ 'data-controller': 'toggleable' }
             .flex.items-center.gap-x-2
@@ -15,18 +16,19 @@
                   .col-span-3.text-right
                     = portion.decorate.display_amount_with_unit_abbreviation_after
               .shrink-0.flex.items-center
-                - if portion.primary?
-                  .w-4
-                - else
+                - if !portion.primary? && portion_policy.write?
                   = button_tag 'data-action': 'toggleable#toggle', class: 'text-green-700' do
                     = render HeroiconComponent.new(:'dots-vertical')
+                - else
+                  .w-4
 
-            - unless portion.primary?
+            - if !portion.primary? && portion_policy.write?
               .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
                 .flex.gap-x-2
                   = render LinkToActionComponent.new('Edit portion', edit_food_portion_path(portion.food, portion), icon: :pencil)
                   - if portion.deleteable?
                     = render DeleteButtonComponent.new('Remove portion', food_portion_path(portion.food, portion))
 
-    .w-full
-      = render LinkToActionComponent.new('Add portion', new_food_portion_path(portions.first.food), icon: :'plus-sm', button: :gray_dashed)
+    - if FoodPolicy.new(portions.first.food, user: @current_user).write?
+      .w-full
+        = render LinkToActionComponent.new('Add portion', new_food_portion_path(portions.first.food), icon: :'plus-sm', button: :gray_dashed)

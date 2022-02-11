@@ -42,10 +42,10 @@ class PortionsController < ApplicationController
   end
 
   def set_portion
-    @portion = Portion.not_primary.of_user(current_user).find(params[:id])
+    @portion = PortionPolicy.scope_for_user(current_user, :write).not_primary.find(params[:id])
   end
 
   def find_food
-    @find_food ||= Food.of_user(current_user).find(params[:food_id])
+    @find_food ||= FoodPolicy.scope_for_user(current_user, :write).find(params[:food_id])
   end
 end

@@ -13,14 +13,17 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
 
   # show
   test 'get show of own food' do
+    get food_path(foods(:milk))
+    assert_response :success
+  end
+
+  test 'get show of global food' do
     get food_path(foods(:apple))
     assert_response :success
   end
 
   test 'cannot get show other users food' do
-    assert_raises ActiveRecord::RecordNotFound do
-      get food_path(foods(:apricot))
-    end
+    assert_not_get food_path(foods(:maple_syrup))
   end
 
   # new
@@ -55,14 +58,76 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
 
   # edit
   test 'get edit of own food' do
+    get edit_food_path(foods(:milk))
+    assert_response :success
+  end
+
+  test 'admin gets edit of global food' do
     get edit_food_path(foods(:apple))
     assert_response :success
   end
 
+  test 'non-admin cannot get edit of global food' do
+    sign_out
+    sign_in_user :john
+    assert_not_get edit_food_path(foods(:apple))
+  end
+
   test 'cannot get edit of other users food' do
-    assert_raises ActiveRecord::RecordNotFound do
-      get edit_food_path(foods(:apricot))
+    assert_not_get edit_food_path(foods(:maple_syrup))
+  end
+
+  # update
+  test 'patch update of own food' do
+    food = foods(:milk)
+
+    assert_changes -> { food.kcal }, to: 136 do
+      patch food_path(food), params: {
+        food: {
+          kcal: '136',
+          carbs: '136',
+          carbs_sugar_part: '13.6',
+          protein: '136',
+          fat: '136',
+          fat_saturated: '13.6',
+          fiber: '136'
+        }
+      }
+      follow_redirect!
+      assert_response :success
+      food.reload
     end
+  end
+
+  test 'admin patch update of global food' do
+    food = foods(:apple)
+
+    assert_changes -> { food.kcal }, to: 103 do
+      patch food_path(food), params: {
+        food: {
+          kcal: '103',
+          carbs: '103',
+          carbs_sugar_part: '10.3',
+          protein: '103',
+          fat: '103',
+          fat_saturated: '10.3',
+          fiber: '103'
+        }
+      }
+      follow_redirect!
+      assert_response :success
+      food.reload
+    end
+  end
+
+  test 'non-admin cannot patch update of global food' do
+    sign_out
+    sign_in_user :john
+    assert_not_patch food_path(foods(:apple))
+  end
+
+  test 'cannot patch update of other food' do
+    assert_not_patch food_path(foods(:maple_syrup))
   end
 
   # destroy
@@ -72,12 +137,52 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'cannot delete destroy of other users food' do
+  test 'admin delete destroy of (unused) global food' do
+    food = create_global_mango
+
+    assert_difference -> { users(:global).foods.count }, -1 do
+      delete food_path(food)
+      follow_redirect!
+      assert_response :success
+    end
+
     assert_raises ActiveRecord::RecordNotFound do
-      delete food_path(foods(:apricot))
+      food.reload
     end
   end
 
+  test 'non-admin cannot delete destroy of (unused) global food' do
+    food = create_global_mango
+
+    sign_out
+    sign_in_user :john
+    assert_not_delete food_path(food)
+  end
+
+  test 'cannot delete destroy of other food' do
+    food = users(:john).foods.create!(name: 'Blue cheese', unit: 'gram',
+                                      kcal: 1, carbs: 1, carbs_sugar_part: 1, protein: 1,
+                                      fat: 1, fat_saturated: 1, fiber: 1)
+    assert_not_delete food_path(food)
+  end
+
+  test 'cannot delete food that is used in a recipe' do
+    food = foods(:milk)
+    delete food_path(food)
+    assert_response :success
+    assert_equal 'Deletion not allowed', flash[:notice]
+    assert food.reload.persisted?
+  end
+
+  test 'cannot delete food that is used in a meal / journal day' do
+    food = foods(:celery_old)
+    delete food_path(food)
+    assert_response :success
+    assert_equal 'Deletion not allowed', flash[:notice]
+    assert food.reload.persisted?
+  end
+
+  # vegan
   test 'declare a food to be vegan' do
     food = foods(:apple)
 
@@ -129,19 +234,12 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'cannot delete food that is used in a recipe' do
-    food = foods(:milk)
-    delete food_path(food)
-    assert_response :success
-    assert_equal 'Deletion not allowed', flash[:notice]
-    assert food.reload.persisted?
-  end
+  private
 
-  test 'cannot delete food that is used in a meal / journal day' do
-    food = foods(:celery_old)
-    delete food_path(food)
-    assert_response :success
-    assert_equal 'Deletion not allowed', flash[:notice]
-    assert food.reload.persisted?
+  def create_global_mango
+    users(:global).foods.create!(name: 'Mango',
+                                 kcal: '997', carbs: '997', carbs_sugar_part: '99.7', protein: '997',
+                                 fat: '997', fat_saturated: '99.7', fiber: '997',
+                                 vegan: true)
   end
 end

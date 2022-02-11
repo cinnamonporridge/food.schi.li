@@ -9,7 +9,7 @@ apple:
   fat_saturated: 10
   fiber: 100
   vegan: true
-  user: daisy
+  user: global
 
 banana:
   name: 'Banana'
@@ -22,7 +22,7 @@ banana:
   fat_saturated: 9
   fiber: 90
   vegan: true
-  user: daisy
+  user: global
 
 celery_old:
   name: 'Celery OLD - only used on a journal day'
@@ -100,7 +100,7 @@ apricot:
   fat_saturated: 0
   fiber: 12
   vegan: true
-  user: john
+  user: global
 
 maple_syrup:
   name: 'Maple Syrup'

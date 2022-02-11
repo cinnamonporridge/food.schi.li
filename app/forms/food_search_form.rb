@@ -35,7 +35,7 @@ class FoodSearchForm < ApplicationForm
   end
 
   def foods_scope
-    Food.of_user(@user).ordered_by_name
+    FoodPolicy.scope_for_user(@user, :read).ordered_by_name
   end
 
   def distinct_food_or_new
