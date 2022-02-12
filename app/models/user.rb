@@ -15,6 +15,11 @@ class User < ApplicationRecord
   has_many :day_partitions, dependent: :destroy
   has_one :default_day_partition, -> { defaults }, class_name: 'DayPartition', inverse_of: :user, dependent: :destroy
 
+  enum role: {
+    user: 'user',
+    admin: 'admin'
+  }, _prefix: true
+
   def clear_reset_password
     self.reset_password_challenge = nil
     self.reset_password_link_sent_at = nil
