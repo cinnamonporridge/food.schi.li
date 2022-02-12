@@ -21,4 +21,8 @@ class UserTest < ActiveSupport::TestCase
     assert users(:global).global_user?
     assert_not users(:daisy).global_user?
   end
+
+  test 'default role' do
+    assert_equal 'user', User.new.role
+  end
 end
