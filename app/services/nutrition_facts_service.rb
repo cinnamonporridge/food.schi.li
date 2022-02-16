@@ -1,5 +1,5 @@
 class NutritionFactsService
-  attr_reader :user
+  attr_reader :record
 
   TABLE_NAME_TO_KLASS_MAPPING = {
     portions: NutritionFacts::Portions,
@@ -11,28 +11,38 @@ class NutritionFactsService
   }.freeze
 
   TRACKS = {
-    portions: TABLE_NAME_TO_KLASS_MAPPING.keys,
-    recipes: %i[recipe_ingredients recipes],
-    meals: %i[meal_ingredients meals journal_days]
+    food: TABLE_NAME_TO_KLASS_MAPPING.keys,
+    portion: TABLE_NAME_TO_KLASS_MAPPING.keys,
+    recipe_ingredient: %i[recipe_ingredients recipes],
+    recipe: %i[recipes],
+    meal_ingredient: %i[meal_ingredients journal_days]
   }.freeze
 
-  def initialize(user:)
-    @user = user
+  def initialize(record:)
+    @record = record
   end
 
-  def update_all!
-    update_track!(:portions)
-  end
+  # def update_all!
+  #   update_track!(:portions)
+  # end
 
-  def update_track!(track_name)
+  def call!
     ActiveRecord::Base.transaction do
-      TRACKS[track_name].map(&method(:update!))
+      find_track.map(&method(:update!))
     end
   end
 
   private
 
+  def track_name
+    @record.model_name.singular.to_sym
+  end
+
+  def find_track
+    TRACKS.fetch(track_name)
+  end
+
   def update!(table_name)
-    TABLE_NAME_TO_KLASS_MAPPING[table_name].new(user:).call!
+    TABLE_NAME_TO_KLASS_MAPPING[table_name].new(record:, calling_user:).call!
   end
 end

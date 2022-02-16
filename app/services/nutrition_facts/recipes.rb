@@ -1,6 +1,16 @@
 class NutritionFacts::Recipes < NutritionFacts::Base
   private
 
+  def model_to_column_filter_mapping
+    {
+      'RecipeIngredient': 'ri.id',
+      'Recipe': 'r.id',
+      'User': 'r.user_id',
+      'Portion': 'p.id',
+      'Food': 'f.id'
+    }
+  end
+
   def update_sql
     <<~SQL.squish
       WITH with_nutrition_facts AS (
@@ -18,9 +28,9 @@ class NutritionFacts::Recipes < NutritionFacts::Base
           LEFT OUTER JOIN portions p            ON p.id = ri.portion_id
           LEFT OUTER JOIN foods f               ON f.id = p.food_id
          WHERE 0 = 0
-           AND r.user_id = #{@user.id}
+           AND #{filter}
       )
-      , with_summed_nutrition_facts AS (
+      , target AS (
         SELECT recipe_id                         AS recipe_id
              , COALESCE(ROUND(sum(kcal)              , 0), 0) AS kcal
              , COALESCE(ROUND(sum(carbs)             , 3), 0) AS carbs
@@ -40,7 +50,7 @@ class NutritionFacts::Recipes < NutritionFacts::Base
            , fat              = target.fat
            , fat_saturated    = target.fat_saturated
            , fiber            = target.fiber
-        FROM with_summed_nutrition_facts target
+        FROM target
        WHERE r.id = target.recipe_id
     SQL
   end

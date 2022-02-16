@@ -129,3 +129,16 @@ whole_grain_bread_portion:
   fat: 268.0
   fat_saturated: 268.0
   fiber: 268.0
+
+apricot_default_portion:
+  name: '100g'
+  food: apricot
+  amount: 100
+  kcal: 222
+  carbs: 222
+  carbs_sugar_part: 22
+  protein: 122
+  fat: 3
+  fat_saturated: 0
+  fiber: 12
+

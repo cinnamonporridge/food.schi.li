@@ -1,6 +1,16 @@
 class NutritionFacts::JournalDays < NutritionFacts::Base
   private
 
+  def model_to_column_filter_mapping
+    {
+      'MealIngredient': 'mi.id',
+      'Meal': 'm.id',
+      'User': 'jd.user_id',
+      'Portion': 'p.id',
+      'Food': 'f.id'
+    }
+  end
+
   def update_sql
     <<~SQL.squish
       WITH with_journal_day_meal_nutrition_facts AS (
@@ -19,7 +29,7 @@ class NutritionFacts::JournalDays < NutritionFacts::Base
           LEFT OUTER JOIN portions p               ON p.id = mi.portion_id
           LEFT OUTER JOIN foods f                  ON f.id = p.food_id
          WHERE 0 = 0
-           AND jd.user_id = #{@user.id}
+           AND #{filter}
       )
       , with_summed_nutrition_facts AS (
          SELECT journal_day_id
