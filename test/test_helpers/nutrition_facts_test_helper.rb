@@ -26,22 +26,19 @@ module NutritionFactsTestHelper
     model.update!(FALSE_NUTRITION_FACTS)
   end
 
-  def assert_nutrition_facts_equal(expected, actual)
+  def assert_nutrition_facts_equal(expected, actual) # rubocop:disable Metrics/AbcSize
     actual.reload
-    assert_equal(expected[:kcal], actual[:kcal], info_about_object(actual))
-    assert_equal(expected[:carbs], actual[:carbs], info_about_object(actual))
-    assert_equal(expected[:carbs_sugar_part], actual[:carbs_sugar_part], info_about_object(actual))
-    assert_equal(expected[:protein], actual[:protein], info_about_object(actual))
-    assert_equal(expected[:fat], actual[:fat], info_about_object(actual))
-    assert_equal(expected[:fat_saturated], actual[:fat_saturated], info_about_object(actual))
-    assert_equal(expected[:fiber], actual[:fiber], info_about_object(actual))
+    assert_equal(expected[:kcal], actual[:kcal], object_info(actual))
+    assert_in_delta(expected[:carbs], actual[:carbs], 0.1, object_info(actual))
+    assert_in_delta(expected[:carbs_sugar_part], actual[:carbs_sugar_part], 0.1, object_info(actual))
+    assert_in_delta(expected[:protein], actual[:protein], 0.1, object_info(actual))
+    assert_in_delta(expected[:fat], actual[:fat], 0.1, object_info(actual))
+    assert_in_delta(expected[:fat_saturated], actual[:fat_saturated], 0.1, object_info(actual))
+    assert_in_delta(expected[:fiber], actual[:fiber], 0.1, object_info(actual))
   end
 
   def with_snapshots(fixtures = {}, &)
-    targets = fixtures.each_with_object({}) do |(key, fixture), hash|
-      hash[key] = { snapshot: fixture.dup, original: fixture }
-    end
-
+    targets = fixtures.transform_values(&method(:to_snapshot_hash))
     yield targets
   end
 
@@ -55,7 +52,11 @@ module NutritionFactsTestHelper
 
   private
 
-  def info_about_object(object)
+  def object_info(object)
     "*** Object ***\n#{object.inspect}"
+  end
+
+  def to_snapshot_hash(value)
+    { snapshot: value.dup, original: value }
   end
 end

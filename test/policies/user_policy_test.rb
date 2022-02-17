@@ -16,7 +16,6 @@ class UserPolicyTest < ActiveSupport::TestCase
 
   private
 
-
   def new_policy(...)
     self.class.to_s.sub(/Test$/, '').constantize.new(...)
   end

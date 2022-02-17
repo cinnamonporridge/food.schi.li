@@ -10,7 +10,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
       johns_apple_meal_on_january_first: meals(:johns_apple_meal_on_january_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: foods(:apple)).call!
+      new_object(foods(:apple)).call!
 
       assert_original_equals_snapshot targets[:daisys_big_apple_meal_on_february_first]
       assert_original_equals_snapshot targets[:daisys_apple_pie_meal_on_february_fifth]
@@ -25,7 +25,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
       johns_apple_meal_on_january_first: meals(:johns_apple_meal_on_january_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: portions(:big_apple_portion)).call!
+      new_object(portions(:big_apple_portion)).call!
 
       assert_original_equals_snapshot targets[:daisys_big_apple_meal_on_february_first]
       assert_original_equals_snapshot targets[:daisys_apple_pie_meal_on_february_fifth]
@@ -38,7 +38,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
       daisys_big_apple_meal_on_february_first: meals(:daisys_big_apple_meal_on_february_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: meal_ingredients(:daisys_big_apple_meal_ingredient_on_february_first)).call!
+      new_object(meal_ingredients(:daisys_big_apple_meal_ingredient_on_february_first)).call!
 
       assert_original_equals_snapshot targets[:daisys_big_apple_meal_on_february_first]
     end
@@ -50,7 +50,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
       daisys_glass_of_milk_meal_on_february_first: meals(:daisys_glass_of_milk_meal_on_february_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: users(:daisy)).call!
+      new_object(users(:daisy)).call!
 
       assert_original_equals_snapshot targets[:daisys_big_apple_meal_on_february_first]
       assert_original_equals_snapshot targets[:daisys_glass_of_milk_meal_on_february_first]

@@ -62,7 +62,7 @@ class FoodsController < ApplicationController
   end
 
   def propagate_facts_and_vegan!
-    NutritionFactsService.new(user: @food.user).update_all!
+    NutritionFactsService.new(@food).call!
     VeganDetectionService.new(@food).update_all!
   end
 end

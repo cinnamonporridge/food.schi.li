@@ -9,7 +9,7 @@ class NutritionFacts::MealIngredientsTest < ActiveSupport::TestCase
       johns_apple_on_january_first: meal_ingredients(:johns_apple_on_january_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: foods(:apple)).call!
+      new_object(foods(:apple)).call!
 
       assert_original_equals_snapshot targets[:daisys_apple_on_february_first]
       assert_original_equals_snapshot targets[:johns_apple_on_january_first]
@@ -22,7 +22,7 @@ class NutritionFacts::MealIngredientsTest < ActiveSupport::TestCase
       milk_on_february_fifth: meal_ingredients(:daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: portions(:milk_default_portion)).call!
+      new_object(portions(:milk_default_portion)).call!
 
       assert_original_equals_snapshot targets[:milk_on_february_first]
       assert_original_equals_snapshot targets[:milk_on_february_fifth]
@@ -35,7 +35,7 @@ class NutritionFacts::MealIngredientsTest < ActiveSupport::TestCase
       milk_on_february_fifth: meal_ingredients(:daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: meal_ingredients(:daisys_glass_of_milk_meal_ingredient_on_february_first)).call!
+      new_object(meal_ingredients(:daisys_glass_of_milk_meal_ingredient_on_february_first)).call!
 
       assert_original_equals_snapshot targets[:milk_on_february_first]
       assert_original_equals_false targets[:milk_on_february_fifth]
@@ -48,7 +48,7 @@ class NutritionFacts::MealIngredientsTest < ActiveSupport::TestCase
       johns_apple_on_january_first: meal_ingredients(:johns_apple_on_january_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: users(:daisy)).call!
+      new_object(users(:daisy)).call!
 
       assert_original_equals_snapshot targets[:daisys_apples_on_february_first]
       assert_original_equals_false targets[:johns_apple_on_january_first]

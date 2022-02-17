@@ -3,11 +3,11 @@ class NutritionFacts::MealIngredients < NutritionFacts::Base
 
   def model_to_column_filter_mapping
     {
-      'MealIngredient': 'mi.id',
-      'Meal': 'm.id',
-      'User': 'jd.user_id',
-      'Portion': 'p.id',
-      'Food': 'f.id'
+      Food: 'f.id',
+      Portion: 'p.id',
+      MealIngredient: 'mi.id',
+      Meal: 'm.id',
+      User: 'jd.user_id'
     }
   end
 

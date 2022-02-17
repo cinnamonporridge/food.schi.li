@@ -3,9 +3,9 @@ class NutritionFacts::Portions < NutritionFacts::Base
 
   def model_to_column_filter_mapping
     {
-      'User': 'f.user_id',
-      'Food': 'f.id',
-      'Portion': 'p.id'
+      Food: 'f.id',
+      Portion: 'p.id',
+      User: 'f.user_id'
     }
   end
 

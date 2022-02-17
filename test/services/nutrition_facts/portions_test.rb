@@ -10,7 +10,7 @@ class NutritionFacts::PortionsTest < ActiveSupport::TestCase
       apricot_default_portion: portions(:apricot_default_portion)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: foods(:apple)).call!
+      new_object(foods(:apple)).call!
 
       assert_original_equals_snapshot targets[:apple_default_portion]
       assert_original_equals_snapshot targets[:big_apple_portion]
@@ -24,7 +24,7 @@ class NutritionFacts::PortionsTest < ActiveSupport::TestCase
       big_apple_portion: portions(:big_apple_portion)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: portions(:apple_default_portion)).call!
+      new_object(portions(:apple_default_portion)).call!
 
       assert_original_equals_snapshot targets[:apple_default_portion]
       assert_original_equals_false targets[:big_apple_portion]
@@ -38,7 +38,7 @@ class NutritionFacts::PortionsTest < ActiveSupport::TestCase
       apricot_default_portion: portions(:apricot_default_portion)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: users(:john)).call!
+      new_object(users(:john)).call!
 
       assert_original_equals_false targets[:apple_default_portion]
       assert_original_equals_false targets[:milk_default_portion]

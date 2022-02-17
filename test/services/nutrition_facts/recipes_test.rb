@@ -6,7 +6,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
   test '.call! record is a Food' do
     with_snapshots(apple_pie: recipes(:apple_pie)) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: foods(:apple)).call!
+      new_object(foods(:apple)).call!
 
       assert_original_equals_snapshot targets[:apple_pie]
       # TODO: add a second recipe that uses same food, assert it gets calculated correctly
@@ -16,7 +16,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
   test '.call! record is a Portion' do
     with_snapshots(apple_pie: recipes(:apple_pie)) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: portions(:big_apple_portion)).call!
+      new_object(portions(:big_apple_portion)).call!
 
       assert_original_equals_snapshot targets[:apple_pie]
       # TODO: add a second recipe that uses same portion, assert it gets calculated correctly
@@ -26,7 +26,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
   test '.call! record is a RecipeIngredient' do
     with_snapshots(apple_pie: recipes(:apple_pie)) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: recipe_ingredients(:apples_in_apple_pie)).call!
+      new_object(recipe_ingredients(:apples_in_apple_pie)).call!
 
       assert_original_equals_snapshot targets[:apple_pie]
     end
@@ -39,7 +39,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
       apricot_mush: recipes(:apricot_mush)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: users(:daisy)).call!
+      new_object(users(:daisy)).call!
 
       assert_original_equals_snapshot targets[:apple_pie]
       assert_original_equals_snapshot targets[:anchovy_soup]

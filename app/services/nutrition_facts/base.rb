@@ -1,12 +1,12 @@
 class NutritionFacts::Base
-  def initialize(record:)
+  def initialize(record)
     @record = record
   end
 
   def call!
     ActiveRecord::Base.connection.execute(update_sql)
   rescue StandardError => e
-    raise e.class.new("\n\n*** Error appeared in #{self.class.name} ***\n\n#{e.message}")
+    raise e.class, "\n\n*** Error appeared in #{self.class.name} ***\n\n#{e.message}"
   end
 
   private
@@ -20,7 +20,7 @@ class NutritionFacts::Base
   end
 
   def comma_separated_record_ids
-    Array(@record).pluck(:id).join(', ')
+    Array(@record).pluck(:id).join(', ') # rubocop:disable Rails/PluckId
   end
 
   def find_model_to_filter_column_mapping

@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_one :default_day_partition, -> { defaults }, class_name: 'DayPartition', inverse_of: :user, dependent: :destroy
 
   scope :of_user, ->(user) { where(id: user.id) }
-  scope :of_user_or_global, ->(user) { where(id: [user.id, User.find_global_user.id])}
+  scope :of_user_or_global, ->(user) { where(id: [user.id, User.find_global_user.id]) }
 
   enum role: {
     user: 'user',
