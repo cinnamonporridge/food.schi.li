@@ -55,8 +55,8 @@ class ActiveSupport::TestCase
     }
   end
 
-  def klass
-    self.class.name.sub(/Test$/, '').constantize
+  def new_object(...)
+    self.class.name.sub(/Test$/, '').constantize.new(...)
   end
 end
 

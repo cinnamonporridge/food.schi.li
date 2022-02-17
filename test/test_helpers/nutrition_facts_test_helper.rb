@@ -26,30 +26,36 @@ module NutritionFactsTestHelper
     model.update!(FALSE_NUTRITION_FACTS)
   end
 
-  def assert_correct_nutrition_facts(expected, actual)
+  def assert_nutrition_facts_equal(expected, actual)
     actual.reload
-    assert_correct_nutrition_fact(expected, actual, :kcal)
-    assert_correct_nutrition_fact(expected, actual, :carbs)
-    assert_correct_nutrition_fact(expected, actual, :carbs_sugar_part)
-    assert_correct_nutrition_fact(expected, actual, :protein)
-    assert_correct_nutrition_fact(expected, actual, :fat)
-    assert_correct_nutrition_fact(expected, actual, :fat_saturated)
-    assert_correct_nutrition_fact(expected, actual, :fiber)
+    assert_equal(expected[:kcal], actual[:kcal], info_about_object(actual))
+    assert_equal(expected[:carbs], actual[:carbs], info_about_object(actual))
+    assert_equal(expected[:carbs_sugar_part], actual[:carbs_sugar_part], info_about_object(actual))
+    assert_equal(expected[:protein], actual[:protein], info_about_object(actual))
+    assert_equal(expected[:fat], actual[:fat], info_about_object(actual))
+    assert_equal(expected[:fat_saturated], actual[:fat_saturated], info_about_object(actual))
+    assert_equal(expected[:fiber], actual[:fiber], info_about_object(actual))
   end
 
-  def assert_correct_nutrition_fact(expected, actual, fact_name)
-    assert_not_equal FALSE_NUTRITION_FACTS[fact_name], actual[fact_name]
-    assert_equal expected[fact_name], actual[fact_name]
+  def with_snapshots(fixtures = {}, &)
+    targets = fixtures.each_with_object({}) do |(key, fixture), hash|
+      hash[key] = { snapshot: fixture.dup, original: fixture }
+    end
+
+    yield targets
   end
 
-  def assert_false_nutrition_facts(actual)
-    actual.reload
-    assert_equal FALSE_NUTRITION_FACTS[:kcal], actual[:kcal]
-    assert_equal FALSE_NUTRITION_FACTS[:carbs], actual[:carbs]
-    assert_equal FALSE_NUTRITION_FACTS[:carbs_sugar_part], actual[:carbs_sugar_part]
-    assert_equal FALSE_NUTRITION_FACTS[:protein], actual[:protein]
-    assert_equal FALSE_NUTRITION_FACTS[:fat], actual[:fat]
-    assert_equal FALSE_NUTRITION_FACTS[:fat_saturated], actual[:fat_saturated]
-    assert_equal FALSE_NUTRITION_FACTS[:fiber], actual[:fiber]
+  def assert_original_equals_snapshot(target)
+    assert_nutrition_facts_equal(target[:snapshot], target[:original])
+  end
+
+  def assert_original_equals_false(target)
+    assert_nutrition_facts_equal(FALSE_NUTRITION_FACTS, target[:original])
+  end
+
+  private
+
+  def info_about_object(object)
+    "*** Object ***\n#{object.inspect}"
   end
 end
