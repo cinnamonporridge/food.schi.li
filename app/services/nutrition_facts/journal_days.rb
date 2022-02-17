@@ -13,7 +13,16 @@ class NutritionFacts::JournalDays < NutritionFacts::Base
 
   def update_sql
     <<~SQL.squish
-      WITH with_journal_day_meal_nutrition_facts AS (
+      WITH journal_days_scope AS (
+        SELECT jd.id      AS journal_day_id
+          FROM journal_days jd
+          LEFT OUTER JOIN meals m                  ON m.journal_day_id = jd.id
+          LEFT OUTER JOIN meal_ingredients mi      ON mi.meal_id = m.id
+          LEFT OUTER JOIN portions p               ON p.id = mi.portion_id
+          LEFT OUTER JOIN foods f                  ON f.id = p.food_id
+        WHERE #{filter}
+      )
+      , with_journal_day_meal_nutrition_facts AS (
         SELECT jd.id                                               AS journal_day_id
              , (mi.amount / d.default_amount) * f.kcal             AS kcal
              , (mi.amount / d.default_amount) * f.carbs            AS carbs
@@ -28,8 +37,7 @@ class NutritionFacts::JournalDays < NutritionFacts::Base
           LEFT OUTER JOIN meal_ingredients mi      ON mi.meal_id = m.id
           LEFT OUTER JOIN portions p               ON p.id = mi.portion_id
           LEFT OUTER JOIN foods f                  ON f.id = p.food_id
-         WHERE 0 = 0
-           AND #{filter}
+         WHERE jd.id IN (SELECT journal_day_id FROM journal_days_scope)
       )
       , with_summed_nutrition_facts AS (
          SELECT journal_day_id
