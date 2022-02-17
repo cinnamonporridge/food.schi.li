@@ -13,7 +13,16 @@ class NutritionFacts::Recipes < NutritionFacts::Base
 
   def update_sql
     <<~SQL.squish
-      WITH with_nutrition_facts AS (
+      WITH recipes_scope AS (
+        SELECT r.id               AS recipe_id
+          FROM recipes r
+         INNER JOIN users u                     ON u.id = r.user_id
+          LEFT OUTER JOIN recipe_ingredients ri ON ri.recipe_id = r.id
+          LEFT OUTER JOIN portions p            ON p.id = ri.portion_id
+          LEFT OUTER JOIN foods f               ON f.id = p.food_id
+         WHERE #{filter}
+      ),
+      with_nutrition_facts AS (
         SELECT r.id                                                AS recipe_id
              , (ri.amount / d.default_amount) * f.kcal             AS kcal
              , (ri.amount / d.default_amount) * f.carbs            AS carbs
@@ -27,8 +36,7 @@ class NutritionFacts::Recipes < NutritionFacts::Base
           LEFT OUTER JOIN recipe_ingredients ri ON ri.recipe_id = r.id
           LEFT OUTER JOIN portions p            ON p.id = ri.portion_id
           LEFT OUTER JOIN foods f               ON f.id = p.food_id
-         WHERE 0 = 0
-           AND #{filter}
+         WHERE r.id IN (SELECT recipe_id FROM recipes_scope)
       )
       , target AS (
         SELECT recipe_id                         AS recipe_id
