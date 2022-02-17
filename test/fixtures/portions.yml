@@ -129,3 +129,39 @@ whole_grain_bread_portion:
   fat: 268.0
   fat_saturated: 268.0
   fiber: 268.0
+
+apricot_default_portion:
+  name: '100g'
+  food: apricot
+  amount: 100
+  kcal: 222
+  carbs: 222
+  carbs_sugar_part: 22
+  protein: 122
+  fat: 3
+  fat_saturated: 0
+  fiber: 12
+
+maple_syrup_default_portion:
+  name: '100ml'
+  food: maple_syrup
+  amount: 100
+  kcal: 260
+  carbs: 67
+  carbs_sugar_part: 60.5
+  protein: 0.04
+  fat: 0.06
+  fat_saturated: 0.007
+  fiber: 0
+
+maple_syrup_tablespoon:
+  name: 'Tablespoon'
+  food: maple_syrup
+  amount: 20
+  kcal: 52
+  carbs: 13.4
+  carbs_sugar_part: 12.1
+  protein: 0.008
+  fat: 0.012
+  fat_saturated: 0.001
+  fiber: 0

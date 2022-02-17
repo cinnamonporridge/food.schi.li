@@ -1,15 +1,19 @@
-class NutritionFacts::Base
+class VeganDetection::Base
   def initialize(record)
     @record = record
   end
 
   def call!
-    ActiveRecord::Base.connection.execute(update_sql)
+    ActiveRecord::Base.connection.execute(update_sql) if can_run?
   rescue StandardError => e
     raise e.class, "\n\n*** Error appeared in #{self.class.name} ***\n\n#{e.message}"
   end
 
   private
+
+  def can_run?
+    model_to_column_filter_mapping.keys.include?(model.to_s.to_sym)
+  end
 
   def model_to_column_filter_mapping
     raise 'implement in subclass'

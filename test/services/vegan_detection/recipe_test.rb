@@ -6,7 +6,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     non_vegan_recipe.update(vegan: true)
 
     assert_changes -> { non_vegan_recipe.vegan }, to: false do
-      VeganDetection::Recipe.new(non_vegan_recipe).update!
+      VeganDetection::Recipe.new(non_vegan_recipe).call!
       non_vegan_recipe.reload
     end
   end
@@ -16,7 +16,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     vegan_recipe.update(vegan: false)
 
     assert_changes -> { vegan_recipe.vegan }, to: true do
-      VeganDetection::Recipe.new(vegan_recipe).update!
+      VeganDetection::Recipe.new(vegan_recipe).call!
       vegan_recipe.reload
     end
   end
@@ -27,7 +27,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     vegan_recipe.update(vegan: false)
 
     assert_changes -> { vegan_recipe.vegan }, to: true do
-      VeganDetection::Recipe.new(vegan_recipe).update!
+      VeganDetection::Recipe.new(vegan_recipe).call!
       vegan_recipe.reload
     end
   end
@@ -38,7 +38,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     food.update!(vegan: false)
 
     assert_changes -> { vegan_recipe.vegan }, to: false do
-      VeganDetection::Recipe.new(food).update!
+      VeganDetection::Recipe.new(food).call!
       vegan_recipe.reload
     end
   end

@@ -1,13 +1,12 @@
-class VeganDetection::JournalDay
-  def initialize(object)
-    @object = object
-  end
-
-  def update!
-    ActiveRecord::Base.connection.execute(update_sql)
-  end
-
+class VeganDetection::JournalDay < VeganDetection::Base
   private
+
+  def model_to_column_filter_mapping
+    {
+      Food: 'f.id',
+      JournalDay: 'jd.id'
+    }
+  end
 
   def update_sql
     <<~SQL.squish
@@ -19,8 +18,7 @@ class VeganDetection::JournalDay
           LEFT OUTER JOIN meal_ingredients mi ON mi.meal_id = m.id
           LEFT OUTER JOIN portions p          ON p.id = mi.portion_id
           LEFT OUTER JOIN foods f             ON f.id = p.food_id
-         WHERE 0 = 0
-               #{filter_condition}
+         WHERE #{filter}
       )
       , non_vegan_journal_days AS (
         SELECT journal_day_id
@@ -43,18 +41,5 @@ class VeganDetection::JournalDay
         FROM with_vegan_flag target
        WHERE jd.id = target.journal_day_id
     SQL
-  end
-
-  def filter_condition
-    return journal_day_filter if @object.is_a?(JournalDay)
-    return food_filter if @object.is_a?(Food)
-  end
-
-  def journal_day_filter
-    "AND jd.id = #{@object.id}"
-  end
-
-  def food_filter
-    "AND f.id = #{@object.id}"
   end
 end

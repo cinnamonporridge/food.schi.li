@@ -62,3 +62,9 @@ peanut_butter_bread:
   fat: 95.5
   fat_saturated: 15.5
   fiber: 95.5
+
+apricot_mush:
+  name: 'Apricot mush'
+  servings: 3
+  vegan: true
+  user: john

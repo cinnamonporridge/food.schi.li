@@ -1,13 +1,13 @@
-class VeganDetection::Recipe
-  def initialize(object)
-    @object = object
-  end
-
-  def update!
-    ActiveRecord::Base.connection.execute(update_sql)
-  end
-
+class VeganDetection::Recipe < VeganDetection::Base
   private
+
+  def model_to_column_filter_mapping
+    {
+      Food: 'f.id',
+      RecipeIngredient: 'ri.id',
+      Recipe: 'r.id'
+    }
+  end
 
   def update_sql
     <<~SQL.squish
@@ -18,8 +18,7 @@ class VeganDetection::Recipe
           LEFT OUTER JOIN recipe_ingredients ri   ON ri.recipe_id = r.id
           LEFT OUTER JOIN portions p              ON p.id = ri.portion_id
           LEFT OUTER JOIN foods f                 ON f.id = p.food_id
-         WHERE 0 = 0
-               #{filter_condition}
+         WHERE #{filter}
       )
       , non_vegan_recipes AS (
         SELECT recipe_id
@@ -42,18 +41,5 @@ class VeganDetection::Recipe
         FROM with_vegan_flag target
        WHERE r.id = target.recipe_id
     SQL
-  end
-
-  def filter_condition
-    return recipe_filter if @object.is_a?(Recipe)
-    return food_filter if @object.is_a?(Food)
-  end
-
-  def recipe_filter
-    "AND r.id = #{@object.id}"
-  end
-
-  def food_filter
-    "AND f.id = #{@object.id}"
   end
 end

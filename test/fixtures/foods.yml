@@ -101,3 +101,16 @@ apricot:
   fiber: 12
   vegan: true
   user: john
+
+maple_syrup:
+  name: 'Maple Syrup'
+  unit: 'mililiter'
+  kcal: 260
+  carbs: 67
+  carbs_sugar_part: 60.5
+  protein: 0.04
+  fat: 0.06
+  fat_saturated: 0.007
+  fiber: 0
+  vegan: true
+  user: john

@@ -1,16 +1,3 @@
-milk_in_apple_pie:
-  recipe: apple_pie
-  portion: milk_default_portion
-  amount: 40
-  measure: 'unit'
-  kcal: 48
-  carbs: 48.0
-  carbs_sugar_part: 4.8
-  protein: 48.0
-  fat: 48.0
-  fat_saturated: 4.8
-  fiber: 48.0
-
 apples_in_apple_pie:
   recipe: apple_pie
   portion: big_apple_portion
@@ -23,6 +10,19 @@ apples_in_apple_pie:
   fat: 6.0
   fat_saturated: 0.6
   fiber: 6.0
+
+milk_in_apple_pie:
+  recipe: apple_pie
+  portion: milk_default_portion
+  amount: 40
+  measure: 'unit'
+  kcal: 48
+  carbs: 48.0
+  carbs_sugar_part: 4.8
+  protein: 48.0
+  fat: 48.0
+  fat_saturated: 4.8
+  fiber: 48.0
 
 peanut_butter_in_vegan_peanut_butter_banana:
   recipe: vegan_peanut_butter_banana
@@ -101,3 +101,29 @@ peanut_butter_in_peanut_butter_bread:
   fat: 88.8
   fat_saturated: 8.8
   fiber: 88.8
+
+apricots_in_apricot_mush:
+  recipe: apricot_mush
+  portion: apricot_default_portion
+  amount: 250
+  measure: 'unit'
+  kcal: 555
+  carbs: 555
+  carbs_sugar_part: 55
+  protein: 305
+  fat: 7.5
+  fat_saturated: 0
+  fiber: 30
+
+maple_syrup_in_apricot_mush:
+  recipe: apricot_mush
+  portion: maple_syrup_tablespoon
+  amount: 40
+  measure: 'piece'
+  kcal: 104
+  carbs: 26.8
+  carbs_sugar_part: 24.2
+  protein: 0.016
+  fat: 0.024
+  fat_saturated: 0.003
+  fiber: 0

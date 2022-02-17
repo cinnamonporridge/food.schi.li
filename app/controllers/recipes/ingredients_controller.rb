@@ -38,7 +38,7 @@ class Recipes::IngredientsController < ApplicationController
 
   def destroy
     @recipe_ingredient.destroy
-    propagate_facts_and_vegan!(@recipe_ingredient)
+    propagate_facts_and_vegan!(@recipe_ingredient.recipe)
     broadcast(:deleted)
     redirect_to @recipe_ingredient.recipe
   end
@@ -53,9 +53,9 @@ class Recipes::IngredientsController < ApplicationController
     @recipe_ingredient = RecipeIngredient.of_user(current_user).of_active_recipes.find(params[:id])
   end
 
-  def propagate_facts_and_vegan!(recipe_ingredient)
-    NutritionFactsService.new(user: recipe_ingredient.user).update_track!(:recipes)
-    VeganDetectionService.new(recipe_ingredient.recipe).update_all!
+  def propagate_facts_and_vegan!(object)
+    NutritionFactsService.new(object).call!
+    VeganDetectionService.new(object).call!
   end
 
   def broadcast(event)
