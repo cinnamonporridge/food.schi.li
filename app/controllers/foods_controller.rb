@@ -63,6 +63,6 @@ class FoodsController < ApplicationController
 
   def propagate_facts_and_vegan!
     NutritionFactsService.new(@food).call!
-    VeganDetectionService.new(@food).update_all!
+    VeganDetectionService.new(@food).call!
   end
 end

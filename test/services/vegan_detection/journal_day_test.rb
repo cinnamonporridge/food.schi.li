@@ -9,7 +9,7 @@ class VeganDetection::JournalDayTest < ActiveSupport::TestCase
     @journal_day.update(vegan: true)
 
     assert_changes -> { @journal_day.vegan }, to: false do
-      VeganDetection::JournalDay.new(@journal_day).update!
+      VeganDetection::JournalDay.new(@journal_day).call!
       @journal_day.reload
     end
   end
@@ -19,7 +19,7 @@ class VeganDetection::JournalDayTest < ActiveSupport::TestCase
     meal_ingredients(:daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth).destroy!
 
     assert_changes -> { @journal_day.vegan }, to: true do
-      VeganDetection::JournalDay.new(@journal_day).update!
+      VeganDetection::JournalDay.new(@journal_day).call!
       @journal_day.reload
     end
   end
@@ -29,7 +29,7 @@ class VeganDetection::JournalDayTest < ActiveSupport::TestCase
     @journal_day.meals.destroy_all
 
     assert_changes -> { @journal_day.vegan }, to: true do
-      VeganDetection::JournalDay.new(@journal_day).update!
+      VeganDetection::JournalDay.new(@journal_day).call!
       @journal_day.reload
     end
   end
@@ -40,7 +40,7 @@ class VeganDetection::JournalDayTest < ActiveSupport::TestCase
     food.update(vegan: true)
 
     assert_changes -> { @journal_day.vegan }, to: true do
-      VeganDetection::JournalDay.new(food).update!
+      VeganDetection::JournalDay.new(food).call!
       @journal_day.reload
     end
   end

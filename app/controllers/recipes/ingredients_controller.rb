@@ -55,7 +55,7 @@ class Recipes::IngredientsController < ApplicationController
 
   def propagate_facts_and_vegan!(object)
     NutritionFactsService.new(object).call!
-    VeganDetectionService.new(object).update_all!
+    VeganDetectionService.new(object).call!
   end
 
   def broadcast(event)

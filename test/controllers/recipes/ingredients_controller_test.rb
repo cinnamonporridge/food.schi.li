@@ -83,7 +83,6 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'adding a non vegan ingredient changes recipe to non-vegan' do
-    skip
     sign_in_user :daisy
     portion = portions(:milk_default_portion)
 
