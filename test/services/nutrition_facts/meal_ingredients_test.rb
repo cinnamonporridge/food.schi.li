@@ -5,14 +5,14 @@ class NutritionFacts::MealIngredientsTest < ActiveSupport::TestCase
 
   test '.call! record is a Food' do
     with_snapshots(
-      milk_on_february_first: meal_ingredients(:daisys_glass_of_milk_meal_ingredient_on_february_first),
-      milk_on_february_fifth: meal_ingredients(:daisys_milk_from_apple_pie_meal_ingredient_on_february_fifth)
+      daisys_apple_on_february_first: meal_ingredients(:daisys_big_apple_meal_ingredient_on_february_first),
+      johns_apple_on_january_first: meal_ingredients(:johns_apple_on_january_first)
     ) do |targets|
       falsify_all_nutrition_facts!
-      new_object(record: foods(:milk)).call!
+      new_object(record: foods(:apple)).call!
 
-      assert_original_equals_snapshot targets[:milk_on_february_first]
-      assert_original_equals_snapshot targets[:milk_on_february_fifth]
+      assert_original_equals_snapshot targets[:daisys_apple_on_february_first]
+      assert_original_equals_snapshot targets[:johns_apple_on_january_first]
     end
   end
 

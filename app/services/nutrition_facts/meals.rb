@@ -4,7 +4,6 @@ class NutritionFacts::Meals < NutritionFacts::Base
   def model_to_column_filter_mapping
     {
       'MealIngredient': 'mi.id',
-      'Meal': 'm.id',
       'User': 'jd.user_id',
       'Portion': 'p.id',
       'Food': 'f.id'
@@ -13,7 +12,16 @@ class NutritionFacts::Meals < NutritionFacts::Base
 
   def update_sql
     <<~SQL.squish
-      WITH with_nutrition_facts AS (
+      WITH meals_scope AS (
+        SELECT m.id       AS meal_id
+          FROM meals m
+         INNER JOIN journal_days jd       ON jd.id = m.journal_day_id
+          LEFT OUTER JOIN meal_ingredients mi ON mi.meal_id = m.id
+          LEFT OUTER JOIN portions p          ON p.id = mi.portion_id
+          LEFT OUTER JOIN foods f             ON f.id = p.food_id
+        WHERE #{filter}
+      )
+      , with_nutrition_facts AS (
         SELECT m.id                                                AS meal_id
              , (mi.amount / d.default_amount) * f.kcal             AS kcal
              , (mi.amount / d.default_amount) * f.carbs            AS carbs
@@ -24,12 +32,10 @@ class NutritionFacts::Meals < NutritionFacts::Base
              , (mi.amount / d.default_amount) * f.fiber            AS fiber
           FROM meals m
          CROSS JOIN (SELECT 100 AS default_amount) AS d
-         INNER JOIN journal_days jd           ON jd.id = m.journal_day_id
           LEFT OUTER JOIN meal_ingredients mi ON mi.meal_id = m.id
           LEFT OUTER JOIN portions p          ON p.id = mi.portion_id
           LEFT OUTER JOIN foods f             ON f.id = p.food_id
-         WHERE 0 = 0
-           AND #{filter}
+         WHERE m.id IN (SELECT meal_id FROM meals_scope)
       )
       , target AS (
         SELECT meal_id                           AS meal_id
