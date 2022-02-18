@@ -234,6 +234,27 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'admin can globalize non-global food' do
+    food = foods(:milk)
+
+    assert_changes -> { food.user }, to: User.find_global_user do
+      post globalize_food_path(food)
+      follow_redirect!
+      assert_response :success
+      assert_equal 'Food has been made global', flash[:notice]
+      food.reload
+    end
+  end
+
+  test 'non-admin cannot globalize local food' do
+    sign_out
+    sign_in_user :john
+    assert_not_post(
+      globalize_food_path(foods(:maple_syrup)),
+      error: ActionPolicy::Unauthorized
+    )
+  end
+
   private
 
   def create_global_mango

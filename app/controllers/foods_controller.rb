@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
   include Pagy::Backend
 
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_food, only: [:show, :edit, :update, :destroy, :globalize]
 
   def index
     @pagy, @foods = pagy(foods_scope.search(params[:search_query]).ordered_by_name)
@@ -46,6 +46,14 @@ class FoodsController < ApplicationController
       @food = @food.decorate
       render :show
     end
+  end
+
+  def globalize
+    authorize! @food, to: :make_global?
+
+    @food.update(user: User.find_global_user)
+    flash[:notice] = 'Food has been made global'
+    redirect_to @food
   end
 
   private

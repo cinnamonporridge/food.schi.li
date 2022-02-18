@@ -116,6 +116,29 @@ class FoodTest < ApplicationSystemTestCase
     assert_nutrition_fact 'Kcal', '72'
   end
 
+  test 'admin makes own food global' do
+    using_browser do
+      sign_in_and_navigate_to_foods
+      click_on 'Milk'
+
+      assert_selector '.global-badge', count: 0
+
+      within '.food-header' do
+        find('svg.heroicons-dots-vertical').click
+        click_on 'Make food global'
+        click_on 'Confirm'
+      end
+
+      assert_selector '.global-badge'
+    end
+  end
+
+  test 'non-admin cannot make food global' do
+    sign_in_and_navigate_to_foods(:john)
+    click_on 'Maple Syrup'
+    assert_no_button 'Make food global'
+  end
+
   test 'admin edits global food' do
     sign_in_and_navigate_to_foods
 

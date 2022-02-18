@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :foods do
     resources :portions, except: %i[index show]
+    post :globalize, on: :member
   end
 
   resources :journal_days do

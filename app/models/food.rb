@@ -31,6 +31,10 @@ class Food < ApplicationRecord
     @in_meal_ingredients ||= MealIngredient.using_food(self)
   end
 
+  def global?
+    user == User.find_global_user
+  end
+
   private
 
   def can_be_destroyed
