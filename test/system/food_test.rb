@@ -1,7 +1,7 @@
 require 'application_system_test_case'
 
 class FoodTest < ApplicationSystemTestCase
-  test 'search for nutrition' do
+  test 'search for food' do
     sign_in_and_navigate_to_foods
 
     assert_selector 'h1', text: 'Foods'
@@ -16,13 +16,18 @@ class FoodTest < ApplicationSystemTestCase
 
   test 'user does not see other users food' do
     sign_in_and_navigate_to_foods(:john)
-    assert_text 'Apricot'
+    assert_text 'Maple Syrup'
     sign_out
 
     sign_in_and_navigate_to_foods(:daisy)
-    fill_in 'Search', with: 'Apricot'
+    fill_in 'Search', with: 'Maple Syrup'
     click_on 'Search'
-    assert_no_text 'Apricot'
+    assert_no_text 'Maple Syrup'
+  end
+
+  test 'user sees global food' do
+    sign_in_and_navigate_to_foods(:john)
+    assert_text 'Apple'
   end
 
   test 'user visits foods index page' do
@@ -33,16 +38,22 @@ class FoodTest < ApplicationSystemTestCase
     assert_button 'Search'
   end
 
-  test 'user visits apple food page' do
+  test 'user visits own food page' do
     sign_in_and_navigate_to_foods
+
+    click_on 'Milk'
+
+    assert_selector 'h2', text: 'Nutrition facts'
+    assert_selector 'h2', text: 'Portions'
+  end
+
+  test 'user visits global food page' do
+    sign_in_and_navigate_to_foods(:john)
 
     click_on 'Apple'
 
     assert_selector 'h2', text: 'Nutrition facts'
     assert_selector 'h2', text: 'Portions'
-
-    assert_link 'Edit food'
-    assert_link 'Add portion'
   end
 
   test 'user adds a new food' do # rubocop:disable Metrics/BlockLength
@@ -50,6 +61,14 @@ class FoodTest < ApplicationSystemTestCase
 
     click_on 'Add food'
     assert_selector 'h1', text: 'New food'
+
+    within 'form.food' do
+      click_on 'Add food'
+    end
+
+    assert_selector '.flash', text: 'Invalid input'
+    assert_selector '.error-messages', text: "can't be blank", count: 1
+    assert_selector '.error-messages', text: 'is not a number', count: 7
 
     within 'form.food' do
       fill_in 'Name', with: 'White Rice'
@@ -77,20 +96,27 @@ class FoodTest < ApplicationSystemTestCase
     assert_selector 'ul.food--portions', text: 'Base'
   end
 
-  test 'user adds new food, empty form' do
+  test 'user edits own food' do
     sign_in_and_navigate_to_foods
-    click_on 'Add food'
+
+    click_on 'Milk'
+    assert_nutrition_fact 'Kcal', '120'
+
+    click_on 'Edit food'
 
     within 'form.food' do
-      click_on 'Add food'
+      fill_in 'Name', with: 'Soymilk'
+      fill_in 'Kcal', with: '72'
+      check 'Vegan'
+      click_on 'Update food'
     end
 
-    assert_selector '.flash', text: 'Invalid input'
-    assert_selector '.error-messages', text: "can't be blank", count: 1
-    assert_selector '.error-messages', text: 'is not a number', count: 7
+    assert_selector 'h1', text: 'Soymilk'
+    assert_selector '.vegan-badge'
+    assert_nutrition_fact 'Kcal', '72'
   end
 
-  test 'user edits a food' do
+  test 'admin edits global food' do
     sign_in_and_navigate_to_foods
 
     click_on 'Apple'
@@ -110,6 +136,12 @@ class FoodTest < ApplicationSystemTestCase
     assert_nutrition_fact 'Kcal', '72'
   end
 
+  test 'non-admin cannot edit global food' do
+    sign_in_and_navigate_to_foods(:john)
+    click_on 'Apple'
+    assert_no_link 'Edit food'
+  end
+
   test 'user does not see button to delete a food which is used in recipe' do
     sign_in_and_navigate_to_foods
     click_on 'Milk'
@@ -122,12 +154,28 @@ class FoodTest < ApplicationSystemTestCase
     assert_no_button 'Delete food'
   end
 
-  test 'user can delete food that is not used in a recipe' do
+  test 'user can delete own food that is not used' do
     sign_in_and_navigate_to_foods
     click_on 'Sugar'
     click_on 'Delete food'
     assert_selector '.flash', text: 'Food deleted'
     assert_selector 'h1', text: 'Foods'
+  end
+
+  test 'admin can delete global food that is not used' do
+    create_global_peach!
+    sign_in_and_navigate_to_foods
+    click_on 'Peach'
+    click_on 'Delete food'
+    assert_selector '.flash', text: 'Food deleted'
+    assert_selector 'h1', text: 'Foods'
+  end
+
+  test 'non-admin cannot delete global food that is not used' do
+    create_global_peach!
+    sign_in_and_navigate_to_foods(:john)
+    click_on 'Peach'
+    assert_no_button 'Delete food'
   end
 
   private
@@ -145,5 +193,11 @@ class FoodTest < ApplicationSystemTestCase
     within find_nutrition_fact_row(name) do
       assert_selector '.food--nutrition-fact--value', text: value
     end
+  end
+
+  def create_global_peach!
+    users(:global).foods.create!(name: 'Peach', unit: 'gram',
+                                 kcal: 1, carbs: 1, carbs_sugar_part: 1, protein: 1,
+                                 fat: 1, fat_saturated: 1, fiber: 1)
   end
 end

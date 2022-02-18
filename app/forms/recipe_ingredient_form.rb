@@ -62,7 +62,7 @@ class RecipeIngredientForm < ApplicationForm
   end
 
   def user_portions
-    Portion.of_user(object.user)
+    @user_portions ||= PortionPolicy.scope_for_user(user, :read)
   end
 
   def recipe_ingredient_params

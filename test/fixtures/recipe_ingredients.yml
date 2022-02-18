@@ -102,6 +102,19 @@ peanut_butter_in_peanut_butter_bread:
   fat_saturated: 8.8
   fiber: 88.8
 
+milk_in_tea_with_milk:
+  recipe: tea_with_milk
+  portion: milk_tablespoon_portion
+  amount: 10
+  measure: 'piece'
+  kcal: 12
+  carbs: 12.0
+  carbs_sugar_part: 1.20
+  protein: 12.0
+  fat: 12.0
+  fat_saturated: 1.20
+  fiber: 12.0
+
 apricots_in_apricot_mush:
   recipe: apricot_mush
   portion: apricot_default_portion
@@ -117,7 +130,7 @@ apricots_in_apricot_mush:
 
 maple_syrup_in_apricot_mush:
   recipe: apricot_mush
-  portion: maple_syrup_tablespoon
+  portion: maple_syrup_tablespoon_portion
   amount: 40
   measure: 'piece'
   kcal: 104

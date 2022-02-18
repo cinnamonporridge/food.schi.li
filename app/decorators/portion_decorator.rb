@@ -36,9 +36,9 @@ class PortionDecorator < SimpleDelegator
   end
 
   def self.portions_collection_with_id(user)
-    Portion.of_user(user)
-           .ordered_by_food_name_and_amount
-           .map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
+    PortionPolicy.scope_for_user(user, :read)
+                 .ordered_by_food_name_and_amount
+                 .map { |portion| [portion.decorate.name_for_dropdown, portion.id] }
   end
 
   private

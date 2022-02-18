@@ -9,9 +9,11 @@ class Food < ApplicationRecord
 
   scope :ordered_by_name, -> { order(name: :asc) }
   scope :of_user, ->(user) { where(user:) }
+  scope :of_user_or_global, ->(user) { where(user: [user, User.find_global_user]) }
 
   enum unit: { gram: 'gram', mililiter: 'mililiter' }
 
+  before_create :create_default_portion
   before_destroy :can_be_destroyed, prepend: true
 
   validates :name, presence: true, uniqueness: true
@@ -44,5 +46,9 @@ class Food < ApplicationRecord
 
   def check_if_in_meal_ingredient
     errors.add(:base, "Can't delete food that is still used in a meal") if in_meal_ingredients.any?
+  end
+
+  def create_default_portion
+    portions.new(name: "100#{decorate.unit_abbrevation}", amount: 100)
   end
 end

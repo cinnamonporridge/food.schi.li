@@ -95,7 +95,7 @@ class Meals::Portions::Form < ApplicationForm
   end
 
   def portion
-    @portion ||= Portion.find_by(id: portion_id)
+    @portion ||= PortionPolicy.scope_for_user(user, :read).find_by(id: portion_id)
   end
 
   def portion_exists

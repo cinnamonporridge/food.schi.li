@@ -70,6 +70,18 @@ milk_default_portion:
   fat_saturated: 12.0
   fiber: 120.0
 
+milk_tablespoon_portion:
+  name: 'Tablespoon'
+  food: milk
+  amount: 10
+  kcal: 12
+  carbs: 12.0
+  carbs_sugar_part: 1.20
+  protein: 12.0
+  fat: 12.0
+  fat_saturated: 1.20
+  fiber: 12.0
+
 peanut_butter_default_portion:
   name: '100g'
   food: peanut_butter
@@ -154,7 +166,7 @@ maple_syrup_default_portion:
   fat_saturated: 0.007
   fiber: 0
 
-maple_syrup_tablespoon:
+maple_syrup_tablespoon_portion:
   name: 'Tablespoon'
   food: maple_syrup
   amount: 20

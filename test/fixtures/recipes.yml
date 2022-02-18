@@ -63,6 +63,18 @@ peanut_butter_bread:
   fat_saturated: 15.5
   fiber: 95.5
 
+tea_with_milk:
+  user: daisy
+  name: 'Tea with milk'
+  servings: 1
+  kcal: 12
+  carbs: 12.0
+  carbs_sugar_part: 1.20
+  protein: 12.0
+  fat: 12.0
+  fat_saturated: 1.20
+  fiber: 12.0
+
 apricot_mush:
   name: 'Apricot mush'
   servings: 3
