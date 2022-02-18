@@ -19,7 +19,8 @@
             .w-full.flex.items-center
               .grow
                 = food.name
-              .shrink-0
+              .shrink-0.flex.items-center.gap-x-1
+                = render GlobalFoodBadgeIconComponent.new(food.global?)
                 = render VeganBadgeIconComponent.new(food.vegan?)
             .w-full
               = render NutrientLabelsComponent.new(object: food)

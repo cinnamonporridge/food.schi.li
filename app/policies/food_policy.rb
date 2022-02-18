@@ -11,6 +11,10 @@ class FoodPolicy < ApplicationPolicy
     admin?
   end
 
+  def make_global?
+    admin? && !record.global?
+  end
+
   relation_scope :read do |relation|
     relation.of_user_or_global(user)
   end

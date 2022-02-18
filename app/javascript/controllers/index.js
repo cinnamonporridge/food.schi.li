@@ -16,6 +16,9 @@ application.register("dropdown", DropdownController)
 import FadeOutFlashController from "./fade_out_flash_controller.js"
 application.register("fade-out-flash", FadeOutFlashController)
 
+import NeutralConfirmableController from "./neutral_confirmable_controller.js"
+application.register("neutral-confirmable", NeutralConfirmableController)
+
 import Portions__FoodSearchController from "./portions/food_search_controller.js"
 application.register("portions--food-search", Portions__FoodSearchController)
 
