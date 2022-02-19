@@ -27,4 +27,10 @@ class FoodDecorator < SimpleDelegator
   def display_fat
     format_nutrition_number(fat)
   end
+
+  def data_source_url_authority
+    URI.parse(data_source_url).authority
+  ensure
+    data_source_url
+  end
 end

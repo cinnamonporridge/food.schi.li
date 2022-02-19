@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_12_134246) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_19_111938) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_12_134246) do
     t.boolean "vegan", default: false, null: false
     t.string "unit", default: "gram", null: false
     t.bigint "user_id", null: false
+    t.string "data_source_url"
+    t.datetime "data_source_updated_at", precision: nil
     t.index ["name"], name: "index_foods_on_name", unique: true
     t.index ["user_id"], name: "index_foods_on_user_id"
   end

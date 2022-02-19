@@ -59,6 +59,11 @@
           = f.number_field :fiber, class: 'input', min: 0, step: 0.001, inputmode: 'decimal'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :fiber
 
+    .p-4
+      .flex.flex-col
+        = f.label :data_source_url, class: 'label'
+        = f.url_field :data_source_url, class: 'input'
+
     .p-4.flex.flex-col.gap-y-2
       - text = f.object.new_record? ? 'Add food' : 'Update food'
       = render SubmitButtonComponent.new(text, f.object)

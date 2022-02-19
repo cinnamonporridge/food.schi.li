@@ -45,7 +45,8 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
           protein: '0.85',
           fat: '0.19',
           fat_saturated: '0.014',
-          fiber: '2.2'
+          fiber: '2.2',
+          data_source_url: 'https://fdc.nal.usda.gov/fdc-app.html#/food-details/169124/nutrients'
         }
       }
     end
@@ -54,6 +55,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
 
     food = users(:daisy).foods.last
     assert_equal 'Pineapple', food.name
+    assert_match(/169124/, food.data_source_url)
   end
 
   # edit

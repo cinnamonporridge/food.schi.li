@@ -63,8 +63,10 @@ class FoodsController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:name, :unit, :kcal, :carbs, :carbs_sugar_part, :protein, :fat, :fat_saturated,
-                                 :fiber, :vegan)
+    params.require(:food).permit(:name, :unit,
+                                 :kcal, :carbs, :carbs_sugar_part, :protein,
+                                 :fat, :fat_saturated, :fiber,
+                                 :vegan, :data_source_url)
   end
 
   def foods_scope
