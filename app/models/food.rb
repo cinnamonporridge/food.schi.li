@@ -13,6 +13,7 @@ class Food < ApplicationRecord
 
   enum unit: { gram: 'gram', mililiter: 'mililiter' }
 
+  before_save :update_data_source_update_at
   before_create :create_default_portion
   before_destroy :can_be_destroyed, prepend: true
 
@@ -54,5 +55,10 @@ class Food < ApplicationRecord
 
   def create_default_portion
     portions.new(name: "100#{decorate.unit_abbrevation}", amount: 100)
+  end
+
+  def update_data_source_update_at
+    new_value = (data_source_url_changed? && data_source_url.present?) ? Time.zone.now : nil
+    self.data_source_updated_at = new_value
   end
 end

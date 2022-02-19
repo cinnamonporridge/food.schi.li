@@ -484,3 +484,6 @@ Style/SwapValues:
 
 Style/SymbolArray:
   Enabled: false
+
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex

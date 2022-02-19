@@ -6,7 +6,7 @@
         .grow.flex.flex-col.gap-x-1
           %h1.text-sm.uppercase
             = @food.name
-          .badges.flex.gap-x-2.mt-1
+          .badges.flex.gap-x-3.mt-1
             - if @food.global?
               .flex.items-end.gap-x-1.text-2xs.text-gray-400
                 = render GlobalFoodBadgeIconComponent.new(@food.global?)
@@ -15,6 +15,11 @@
               .flex.items-end.gap-x-1.text-2xs.text-gray-400
                 = render VeganBadgeIconComponent.new(@food.vegan?)
                 Vegan
+            - if @food.data_source_url.present?
+              .flex.items-end.gap-x-1.text-2xs.text-gray-400
+                .text-gray-500
+                  = render HeroiconComponent.new(:link)
+                = link_to @food.decorate.data_source_url_authority, @food.data_source_url, class: 'hover:text-green-700 transition'
         - if food_policy.write?
           .shrink-0
             %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }

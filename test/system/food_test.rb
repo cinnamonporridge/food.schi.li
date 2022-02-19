@@ -81,6 +81,7 @@ class FoodTest < ApplicationSystemTestCase
       fill_in 'Fat', with: '0.28'
       fill_in 'Fat saturated', with: '0.076'
       fill_in 'Fiber', with: '0.4'
+      fill_in 'Data source', with: 'https://source-to-nutrition-facts.url/'
       click_on 'Add food'
     end
 
@@ -93,6 +94,7 @@ class FoodTest < ApplicationSystemTestCase
     assert_nutrition_fact 'Fat', '0.28'
     assert_nutrition_fact 'Fat saturated', '0.076'
     assert_nutrition_fact 'Fiber', '0.4'
+    assert_link 'source-to-nutrition-facts.url', href: 'https://source-to-nutrition-facts.url/'
     assert_selector 'ul.food--portions', text: 'Base'
   end
 

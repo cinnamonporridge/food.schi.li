@@ -5,6 +5,8 @@ en:
         measures:
           unit: "ml/g"
           piece: "Pieces"
+      food:
+        data_source_url: "Data source URL"
   date:
     formats:
       default: "%d.%m.%Y"
