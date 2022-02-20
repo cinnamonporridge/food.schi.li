@@ -1,20 +1,20 @@
+---
 en:
   activerecord:
     attributes:
+      food:
+        data_source_url: Data source URL
       recipe_ingredient:
         measures:
-          unit: "ml/g"
-          piece: "Pieces"
-      food:
-        data_source_url: "Data source URL"
+          piece: Pieces
+          unit: ml/g
   date:
     formats:
       default: "%d.%m.%Y"
       weekday_only: "%a"
       with_weekday: "%a, %d.%m.%Y"
-
   recipe:
     ingredients_component:
       servings_with_count:
-        one: "1 serving"
+        one: 1 serving
         other: "%{count} servings"
