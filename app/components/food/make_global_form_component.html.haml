@@ -1,17 +1,17 @@
-%div{ 'data-controller': 'neutral-confirmable', 'data-neutral-confirmable-confirmation-text-value': 'Confirm' }
+%div{ 'data-controller': 'neutral-confirmable', 'data-neutral-confirmable-confirmation-text-value': t('shared.buttons.confirm') }
   = form_with(url: globalize_food_path(food), method: :post) do |f|
     .hidden{ 'data-neutral-confirmable-target': 'confirmable' }
       = button_tag type: :button, class: 'hollow-button flex items-center gap-x-1', 'data-action': 'neutral-confirmable#open' do
         = render HeroiconComponent.new(:globe)
-        Make food global
+        = t('.make_food_global')
     .flex.flex-col.gap-y-2{ 'data-neutral-confirmable-target': 'submit' }
       .flex.items-center.gap-x-4
         .w-full
           = f.button type: :submit, class: 'secondary-button flex items-center gap-x-1' do
             = render HeroiconComponent.new(:globe)
-            %span Make food global
+            %span= t('.make_food_global')
         .hidden.w-full{ 'data-neutral-confirmable-target': 'cancelButton' }
           = button_tag 'data-action': 'neutral-confirmable#close', class: 'hollow-button w-full flex items-center gap-x-1' do
-            Cancel
+            = t('shared.buttons.cancel')
       .hidden.text-center.text-red-400.text-sm{ 'data-neutral-confirmable-target': 'information' }
-        Do you really want to make this food global? This cannot be undone.
+        = t('.do_you_really_want_to_make_this_food_global_questionmark')

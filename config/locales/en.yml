@@ -2,19 +2,143 @@
 en:
   activerecord:
     attributes:
+      day_partitions:
+        name: Name
+        position: Position
       food:
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        data_source_updated_at: Data source updated at
         data_source_url: Data source URL
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        name: Name
+        protein: Protein
+        unit: Unit
+        units:
+          gram: Gram
+          mililiter: Mililiter
+        units_abbreviation:
+          gram: g
+          mililiter: ml
+        vegan: Vegan
+      journal_days:
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        date: Date
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        protein: Protein
+        vegan: Vegan
+      meal_ingredients:
+        amount: Amount
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        measure: Measure
+        protein: Protein
+      meals:
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        protein: Protein
+      portions:
+        amount: Amount
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        name: Name
+        protein: Protein
+      recipe:
+        archived_at: Archived at
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        name: Name
+        protein: Protein
+        servings: Servings
+        vegan: Vegan
       recipe_ingredient:
+        amount: Amount
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        measure: Measure
         measures:
           piece: Pieces
           unit: ml/g
+        protein: Protein
+      user:
+        email: Email
+        role: Role
+        roles:
+          admin: Admin
+          user: User
+    models:
+      day_partitions:
+        one: Day partition
+        other: Day partitions
+      foods:
+        one: Food
+        other: Foods
+      journal_days:
+        one: Journal
+        other: Journals
+      meal_ingredients:
+        one: Meal ingredient
+        other: Meal ingredients
+      meals:
+        one: Meal
+        other: Meals
+      portions:
+        one: Portion
+        other: Portions
+      recipe_ingredients:
+        one: Recipe ingredient
+        other: Recipe ingredients
+      recipes:
+        one: Recipe
+        other: Recipes
+      users:
+        one: User
+        other: Users
   date:
     formats:
       default: "%d.%m.%Y"
       weekday_only: "%a"
       with_weekday: "%a, %d.%m.%Y"
+  food:
+    make_global_form_component:
+      do_you_really_want_to_make_this_food_global_questionmark: Do you really want to make this food global? This cannot be undone.
+      make_food_global: Make food global
   recipe:
     ingredients_component:
       servings_with_count:
         one: 1 serving
         other: "%{count} servings"
+  shared:
+    buttons:
+      cancel: Cancel
+      confirm: Confirm
+    nutritions:
+      one: Nutrition
+      other: Nutritions
