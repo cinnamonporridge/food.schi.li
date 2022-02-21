@@ -7,7 +7,7 @@
       .flex.flex-col.gap-y-6
         .flex.flex-col.gap-y-2
           .flex.flex-col
-            = f.label :portion_name, 'Portion', class: 'label'
+            = f.label :portion_name, class: 'label'
             = f.text_field :portion_name, list: :portion_id_list, class: 'input'
             = render 'layouts/forms/field_errors', errors: f.object.errors, key: :portion_name
             %datalist#portion_id_list
@@ -33,4 +33,4 @@
             = render SubmitButtonComponent.new(action_text, form.object)
 
           .w-full.text-center
-            = link_to 'Cancel', form.object.journal_day, class: 'text-xs text-gray-400 hover:text-gray-500 transition'
+            = link_to t('shared.button.cancel'), form.object.journal_day, class: 'text-xs text-gray-400 hover:text-gray-500 transition'

@@ -21,7 +21,7 @@
 
       .w-full.divide-y.divide-gray-200.pt-4.pb-2
         .journal-day--nutritions-table--total.grid.grid-cols-6.text-xs.text-right.px-2.font-bold
-          .col-span-2.text-left Total
+          .col-span-2.text-left= t('shared.total')
           .col-span-1= format_nutrition_number(journal_day.kcal)
           .col-span-1= format_nutrition_number(journal_day.carbs)
           .col-span-1= format_nutrition_number(journal_day.protein)
@@ -29,4 +29,4 @@
 
   - else
     .text-gray-500.text-sm
-      No meals, no nutritions. 🤷
+      = t('.no_meals_no_nutritions_shrug')

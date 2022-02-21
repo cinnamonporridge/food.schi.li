@@ -4,20 +4,21 @@
       .grow.flex.flex-col.gap-y-1
         .flex.gap-x-2.items-baseline.uppercase
           - if @recipe.archived?
-            .bg-white.text-xs.uppercase.border.border-yellow-600.rounded.px-1.text-yellow-600 Archived
+            .bg-white.text-xs.uppercase.border.border-yellow-600.rounded.px-1.text-yellow-600
+              = t('shared.archived')
           %h1.text-sm.uppercase
             = @recipe.name
         - if @recipe.vegan?
           .flex.items-end.gap-x-1.text-2xs.text-gray-400
             = render VeganBadgeIconComponent.new(@recipe.vegan?)
-            Vegan
+            = t('shared.vegan')
       .shrink-0
         %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
           = render HeroiconComponent.new(:'dots-vertical')
     .recipe-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
       - if @recipe.active?
-        = render LinkToActionComponent.new('Edit recipe', edit_recipe_path(@recipe), icon: :pencil)
-        = render LinkToActionComponent.new('Copy recipe', new_recipe_copy_path(@recipe), icon: :duplicate, button: :secondary)
-        = render DeleteButtonComponent.new('Archive recipe', @recipe, icon: :archive, button: :archive)
+        = render LinkToActionComponent.new(t('.edit_recipe'), edit_recipe_path(@recipe), icon: :pencil)
+        = render LinkToActionComponent.new(t('.copy_recipe'), new_recipe_copy_path(@recipe), icon: :duplicate, button: :secondary)
+        = render DeleteButtonComponent.new(t('.archive_recipe'), @recipe, icon: :archive, button: :archive)
       - else
-        = render DeleteButtonComponent.new('Unarchive recipe', @recipe, icon: :archive, button: :archive)
+        = render DeleteButtonComponent.new(t('.unarchive_recipe'), @recipe, icon: :archive, button: :archive)

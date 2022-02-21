@@ -1,7 +1,7 @@
 .flex.flex-col.gap-y-4
   .flex.flex.gap-y-2.items-baseline
     .grow
-      %h2 Ingredients
+      %h2= RecipeIngredient.model_name.human(count: 0)
     .shrink-0.text-gray-400.text-xs
       = t('.servings_with_count', count: @recipe.servings)
 
