@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+require 'test_helper'
 require 'i18n/tasks'
 
 class I18nTest < ActiveSupport::TestCase

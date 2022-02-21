@@ -4,12 +4,11 @@ en:
     attributes:
       journal_day/meal:
         amount_in_measure: Amount in measure
-        day_partition_id: 'Day partition'
+        day_partition_id: Day partition
         measure: Measure
         portion_name: Portion
         recipe_name: Recipe name
         servings: Servings
-
   activerecord:
     attributes:
       day_partitions:
@@ -115,21 +114,21 @@ en:
       journal_day:
         one: Journal
         other: Journals
-      meal_ingredient:
-        one: Meal ingredient
-        other: Meal ingredients
       meal:
         one: Meal
         other: Meals
+      meal_ingredient:
+        one: Meal ingredient
+        other: Meal ingredients
       portion:
         one: Portion
         other: Portions
-      recipe_ingredient:
-        one: Ingredient
-        other: Ingredients
       recipe:
         one: Recipe
         other: Recipes
+      recipe_ingredient:
+        one: Ingredient
+        other: Ingredients
       user:
         one: User
         other: Users
@@ -169,7 +168,7 @@ en:
       add_ingredient: Add ingredient
       ingredient_cannot_be_updated_when_archived: Ingredient cannot be updated as long as recipe is archived.
     nutritions_table_component:
-      no_ingredients_no_nutritions_shrug: "No ingredients = no nutritions. 🤷"
+      no_ingredients_no_nutritions_shrug: No ingredients = no nutritions.
   shared:
     archived: Archived
     buttons:
