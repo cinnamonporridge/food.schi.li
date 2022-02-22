@@ -5,7 +5,7 @@ class FoodSearchForm < ApplicationForm
   end
 
   def food_name
-    params[:food_name]
+    params[:food_name] || @food&.name # use instance variable to avoid infinite loop
   end
 
   def action_url
@@ -13,7 +13,7 @@ class FoodSearchForm < ApplicationForm
   end
 
   def food
-    @food ||= distinct_food_or_new
+    @food ||= find_food_or_new
   end
 
   def search_results
@@ -31,14 +31,26 @@ class FoodSearchForm < ApplicationForm
   private
 
   def perform_search
-    food_name.blank? ? Food.none : foods_scope.search(food_name)
+    params[:food_name].blank? ? Food.none : foods_scope.search(params[:food_name])
   end
 
   def foods_scope
     FoodPolicy.scope_for_user(@user, :read).ordered_by_name
   end
 
-  def distinct_food_or_new
-    search_results.one? ? search_results.first : foods_scope.new
+  def find_food_or_new
+    definite_food || distinct_food || foods_scope.new
+  end
+
+  def definite_food
+    return foods_scope.find_by(id: food_id) if food_id.present?
+  end
+
+  def distinct_food
+    return search_results.first if search_results.one?
+  end
+
+  def food_id
+    params[:food_id]
   end
 end

@@ -37,16 +37,16 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { users(:daisy).foods.count }, +1 do
       post foods_path, params: {
         food: {
-          name: 'Pineapple',
+          name: 'Cherries, sweet, raw',
           vegan: '1',
-          kcal: '74',
-          carbs: '19.58',
-          carbs_sugar_part: '14.35',
-          protein: '0.85',
-          fat: '0.19',
-          fat_saturated: '0.014',
-          fiber: '2.2',
-          data_source_url: 'https://fdc.nal.usda.gov/fdc-app.html#/food-details/169124/nutrients'
+          kcal: '63',
+          carbs: '16',
+          carbs_sugar_part: '12.8',
+          fiber: '2.1',
+          protein: '1.06',
+          fat: '0.2',
+          fat_saturated: '0.038',
+          data_source_url: 'https://fdc.nal.usda.gov/fdc-app.html#/food-details/171719/nutrients'
         }
       }
     end
@@ -54,8 +54,8 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     food = users(:daisy).foods.last
-    assert_equal 'Pineapple', food.name
-    assert_match(/169124/, food.data_source_url)
+    assert_equal 'Cherries, sweet, raw', food.name
+    assert_match(/171719/, food.data_source_url)
   end
 
   # edit

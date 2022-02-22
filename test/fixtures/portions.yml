@@ -177,3 +177,27 @@ maple_syrup_tablespoon_portion:
   fat: 0.012
   fat_saturated: 0.001
   fiber: 0
+
+pineapple_default_portion:
+  name: '100g'
+  food: pineapple
+  amount: 100
+  kcal: 50
+  carbs: 13.1
+  carbs_sugar_part: 9.65
+  protein: 0.54
+  fat: 0.12
+  fat_saturated: 0.009
+  fiber: 1.4
+
+pineapple_fruit_portion:
+  name: 'Fruit'
+  food: pineapple
+  amount: 905
+  kcal: 453
+  carbs: 119
+  carbs_sugar_part: 89.1
+  protein: 4.89
+  fat: 1.09
+  fat_saturated: 0.081
+  fiber: 12.7

@@ -13,13 +13,13 @@ class FoodSearchFormTest < ActiveSupport::TestCase
   end
 
   test '#food, global food, as admin' do
-    form = FoodSearchForm.new({ food_name: 'Apple', action_url: '/foo' }, users(:daisy))
-    assert_equal foods(:apple), form.food
+    form = FoodSearchForm.new({ food_name: 'Banana', action_url: '/foo' }, users(:daisy))
+    assert_equal foods(:banana), form.food
   end
 
   test '#food, global food, as user' do
-    form = FoodSearchForm.new({ food_name: 'Apple', action_url: '/foo' }, users(:john))
-    assert_equal foods(:apple), form.food
+    form = FoodSearchForm.new({ food_name: 'Banana', action_url: '/foo' }, users(:john))
+    assert_equal foods(:banana), form.food
   end
 
   test '#food, own food' do
