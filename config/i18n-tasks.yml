@@ -108,6 +108,7 @@ search:
 
 ## Consider these keys used:
 ignore_unused:
+  - 'activemodel.attributes.*'
   - 'activerecord.attributes.*'
   - 'activerecord.models.*'
   - 'date.formats.*'
