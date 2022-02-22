@@ -114,3 +114,17 @@ maple_syrup:
   fiber: 0
   vegan: true
   user: john
+
+pineapple:
+  name: 'Pineapple'
+  unit: 'gram'
+  kcal: 50
+  carbs: 13.1
+  carbs_sugar_part: 9.65
+  protein: 0.54
+  fat: 0.12
+  fat_saturated: 0.009
+  fiber: 1.4
+  vegan: true
+  user: global
+  data_source_url: 'https://fdc.nal.usda.gov/fdc-app.html#/food-details/169124/nutrients'

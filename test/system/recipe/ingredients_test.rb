@@ -30,27 +30,21 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_apple_pie_recipe
     click_on 'Add ingredient'
 
-    search_food 'na'
+    search_food 'apple'
 
-    within 'ul.food-search-result' do
-      assert_selector 'li', count: 2
-
-      assert_selector 'li', text: 'Banana' do |element|
-        element.click_on 'Select'
-      end
-    end
+    select_search_result 'Pineapple'
 
     within '.portions-select' do
-      assert_checked_field 'Banana 100'
-      choose 'Banana Regular'
+      assert_checked_field 'Pineapple 100'
+      choose 'Pineapple Fruit'
     end
 
-    fill_in 'Amount in measure', with: '5'
+    fill_in 'Amount in measure', with: '1'
     click_on 'Add ingredient'
 
-    within_recipe_ingredient('Banana Regular') do
-      assert_selector '.recipe-ingredient--quantity', text: '5'
-      assert_selector '.recipe-ingredient--amount', text: '580'
+    within_recipe_ingredient('Pineapple Fruit') do
+      assert_selector '.recipe-ingredient--quantity', text: '1'
+      assert_selector '.recipe-ingredient--amount', text: '905'
     end
   end
 
@@ -78,6 +72,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     search_food 'Banana'
     click_on 'Add ingredient'
     search_food 'Apple'
+    select_search_result 'Apple'
     assert_checked_field 'Apple 100' # checks if action_url works properly
   end
 
@@ -207,5 +202,15 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     title, kcal, carbs, protein, fat = find_all('.nutritions-table--totals > div').to_a.map(&:text)
 
     { title:, kcal:, carbs:, protein:, fat: }
+  end
+
+  def select_search_result(food_name)
+    within 'ul.food-search-result' do
+      assert_selector 'li', count: 2
+
+      within(find('li .food-name', text: food_name, exact_text: true).ancestor('li')) do
+        click_on 'Select'
+      end
+    end
   end
 end

@@ -18,11 +18,11 @@
   - if form.no_foods_found?
     .text-gray-500.w-full.text-sm
       No foods found
-  - elsif form.search_results.count > 1
+  - elsif form.food.new_record? && form.search_results.count > 1
     %ul.food-search-result.bg-white.rounded.divide-y.divide-gray-200.border.border-gray-200
       - form.search_results.each do |food|
         %li.p-2.flex.items-center
-          .grow
+          .food-name.grow
             = food.name
           .shrink-0
-            = link_to 'Select', url_for(food_name: food.name), class: 'border text-gray-500 rounded py-1 px-4 text-xs hover:border-gray-700 hover:text-gray-700 transition'
+            = link_to 'Select', url_for(food_id: food.id), class: 'border text-gray-500 rounded py-1 px-4 text-xs hover:border-gray-700 hover:text-gray-700 transition'
