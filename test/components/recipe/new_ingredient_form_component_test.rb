@@ -16,6 +16,6 @@ class Recipe::NewIngredientFormComponentTest < ViewComponent::TestCase
     render_inline new_component(recipe:, params:)
 
     assert_field 'Search food'
-    assert_button 'Add ingredient'
+    assert_button 'Add recipe ingredient'
   end
 end

@@ -9,6 +9,9 @@ en:
         portion_name: Portion
         recipe_name: Recipe name
         servings: Servings
+      recipe_ingredient:
+        portion_id: Portion
+        amount_in_measure: Amount in measure
   activerecord:
     attributes:
       day_partitions:
@@ -160,23 +163,38 @@ en:
       copy_recipe: Copy recipe
       edit_recipe: Edit recipe
       unarchive_recipe: Unarchive recipe
+    ingredients_list_component:
+      add_ingredient: Add ingredient
+      ingredient_cannot_be_updated_when_archived: Ingredient cannot be updated as long as recipe is archived.
     ingredients_component:
       servings_with_count:
         one: 1 serving
         other: "%{count} servings"
-    ingredients_list_component:
-      add_ingredient: Add ingredient
-      ingredient_cannot_be_updated_when_archived: Ingredient cannot be updated as long as recipe is archived.
     nutritions_table_component:
       no_ingredients_no_nutritions_shrug: No ingredients = no nutritions.
+  food_search_form_component:
+    no_foods_found: No foods found
+  nutrient_labels_component:
+    kcal: kcal
+    carbs: Carbohydrate
+    protein: Protein
+    fat: Fat
   shared:
     archived: Archived
     buttons:
       cancel: Cancel
       confirm: Confirm
+      search: Search
+      select: Select
     nutritions:
       one: Nutrition
       other: Nutritions
     per_serving: Per serving
     total: Total
     vegan: Vegan
+    search_food: Search food
+    recipe_ingredients:
+      add_ingredient: Add recipe ingredient
+      confirm_deletion: Confirm deletion
+      delete_ingredient: Delete recipe ingredient
+      update_ingredient: Update recipe ingredient
