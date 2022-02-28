@@ -21,9 +21,9 @@ class FoodsController < ApplicationController
     @food = current_user.foods.new(food_params)
 
     if @food.save
-      redirect_to @food, notice: 'Food added'
+      redirect_to @food, notice: t('.success')
     else
-      flash.now[:notice] = 'Invalid input'
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
   end
@@ -31,16 +31,16 @@ class FoodsController < ApplicationController
   def update
     if @food.update(food_params)
       propagate_facts_and_vegan!
-      redirect_to @food, notice: 'Food updated'
+      redirect_to @food, notice: t('.success')
     else
-      flash.now[:notice] = 'Invalid input'
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :edit
     end
   end
 
   def destroy
     if @food.destroy
-      redirect_to foods_url, notice: 'Food deleted'
+      redirect_to foods_url, notice: t('.success')
     else
       flash.now[:notice] = 'Deletion not allowed'
       @food = @food.decorate
@@ -52,7 +52,7 @@ class FoodsController < ApplicationController
     authorize! @food, to: :make_global?
 
     @food.update(user: User.find_global_user)
-    flash[:notice] = 'Food has been made global'
+    flash[:notice] = t('.success')
     redirect_to @food
   end
 

@@ -13,9 +13,9 @@ class DayPartitionsController < ApplicationController
     @form = DayPartitionForm.new(current_user.day_partitions.new, day_partition_params)
 
     if @form.save
-      redirect_to day_partitions_path, notice: 'Day partition added'
+      redirect_to day_partitions_path, notice: t('.success')
     else
-      flash[:notice] = 'Invalid input'
+      flash[:notice] = t('shared.errors.invalid_input')
       render :new
     end
   end
@@ -28,16 +28,16 @@ class DayPartitionsController < ApplicationController
     @form = DayPartitionForm.new(@day_partition, day_partition_params)
 
     if @form.save
-      redirect_to day_partitions_path, notice: 'Day partition updated'
+      redirect_to day_partitions_path, notice: t('.success')
     else
-      flash[:notice] = 'Invalid input'
+      flash[:notice] = t('shared.errors.invalid_input')
       render :edit
     end
   end
 
   def destroy
     DayPartitionForm.new(@day_partition).destroy
-    redirect_to day_partitions_path, notice: 'Day partition deleted'
+    redirect_to day_partitions_path, notice: t('.success')
   end
 
   private

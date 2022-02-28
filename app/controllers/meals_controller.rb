@@ -12,9 +12,9 @@ class MealsController < ApplicationController
 
     if @form.save
       NutritionFactsService.new(@form.object).call!
-      redirect_to @journal_day, notice: 'Meal added'
+      redirect_to @journal_day, notice: t('.success')
     else
-      flash.now[:notice] = 'Invalid input'
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
   end
@@ -28,9 +28,9 @@ class MealsController < ApplicationController
 
     if @form.save
       NutritionFactsService.new(@form.object).call!
-      redirect_to @meal.journal_day, notice: 'Meal updated'
+      redirect_to @meal.journal_day, notice: t('.success')
     else
-      flash.now[:notice] = 'Invalid input'
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :edit
     end
   end
@@ -38,7 +38,7 @@ class MealsController < ApplicationController
   def destroy
     @meal.destroy
     NutritionFactsService.new(@meal.journal_day).call!
-    redirect_to @meal.journal_day, notice: 'Meal deleted'
+    redirect_to @meal.journal_day, notice: t('.success')
   end
 
   private
