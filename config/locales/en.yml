@@ -5,6 +5,8 @@ en:
       day_partition:
         name: Name
         position: Position
+      forgot_password:
+        email: Email
       journal_day/meal:
         amount_in_measure: Amount in measure
         day_partition_id: Day partition
@@ -220,6 +222,9 @@ en:
   forgot_passwords:
     create:
       success: A reset link has been sent to your email address
+    new:
+      reset_password: Reset password
+      title: Forgot password?
   journal_day:
     nutritions_table_component:
       no_meals_no_nutritions_shrug: "No meals, no nutritions. \U0001F937"
