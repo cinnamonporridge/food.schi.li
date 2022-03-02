@@ -46,11 +46,11 @@ class Food < ApplicationRecord
   end
 
   def check_if_in_recipe
-    errors.add(:base, "Can't delete food that is still used in a recipe") if in_recipes.any?
+    errors.add(:base, :cannot_delete_food_still_used_in_recipe) if in_recipes.any?
   end
 
   def check_if_in_meal_ingredient
-    errors.add(:base, "Can't delete food that is still used in a meal") if in_meal_ingredients.any?
+    errors.add(:base, :cannot_delete_food_still_used_in_meal) if in_meal_ingredients.any?
   end
 
   def create_default_portion

@@ -112,6 +112,7 @@ ignore_unused:
   - 'activemodel.errors.*'
   - 'activerecord.attributes.*'
   - 'activerecord.models.*'
+  - 'activerecord.errors.*'
   - 'date.formats.*'
   - 'shared.nutritions.*'
   - 'shared.vegan'

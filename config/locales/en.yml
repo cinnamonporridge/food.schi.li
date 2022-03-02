@@ -119,6 +119,17 @@ en:
         roles:
           admin: Admin
           user: User
+    errors:
+      models:
+        day_partition:
+          attributes:
+            base:
+              default_already_exists: Default day partition already exists
+        food:
+          attributes:
+            base:
+              cannot_delete_food_still_used_in_meal: Can't delete food that is still used in a meal
+              cannot_delete_food_still_used_in_recipe: Can't delete food that is still used in a recipe
     models:
       day_partition:
         one: Day partition

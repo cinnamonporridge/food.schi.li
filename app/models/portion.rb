@@ -35,7 +35,7 @@ class Portion < ApplicationRecord
   end
 
   def measure
-    primary? ? 'unit' : 'piece'
+    primary? ? :unit : :piece
   end
 
   def deleteable?

@@ -48,6 +48,6 @@ class DayPartition < ApplicationRecord
   end
 
   def default_day_partition_does_not_exist_yet
-    errors.add(:base, 'Default day partition already exists') if default? && user.default_day_partition.present?
+    errors.add(:base, :default_already_exists) if default? && user.default_day_partition.present?
   end
 end
