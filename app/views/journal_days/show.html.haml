@@ -9,13 +9,13 @@
             = render HeroiconComponent.new(:'dots-vertical')
 
       .grid.grid-cols-1.sm:grid-cols-2.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
-        = render LinkToActionComponent.new('Edit journal day', edit_journal_day_path(@journal_day), icon: :pencil)
-        = render DeleteButtonComponent.new('Delete journal day', @journal_day)
+        = render LinkToActionComponent.new(t('.edit_journal_day'), edit_journal_day_path(@journal_day), icon: :pencil)
+        = render DeleteButtonComponent.new(t('.delete_journal_day'), @journal_day)
 
   .flex
     .grid.grid-cols-2.gap-2.w-full
-      = render LinkToActionComponent.new('Add portion meal', new_journal_day_meal_path(@journal_day, meal_type: :portion), icon: :document)
-      = render LinkToActionComponent.new('Add recipe meal', new_journal_day_meal_path(@journal_day, meal_type: :recipe), icon: :'book-open')
+      = render LinkToActionComponent.new(t('.add_portion_meal'), new_journal_day_meal_path(@journal_day, meal_type: :portion), icon: :document)
+      = render LinkToActionComponent.new(t('.add_recipe_meal'), new_journal_day_meal_path(@journal_day, meal_type: :recipe), icon: :'book-open')
 
   = render JournalDay::NutritionsTableComponent.new(journal_day: @journal_day)
   = render 'meals', meals: @journal_day.meals

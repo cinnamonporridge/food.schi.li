@@ -1,5 +1,5 @@
 - if meals.of_portions.any?
-  %h3.text-xs.uppercase.tracking-wide Other
+  %h3.text-xs.uppercase.tracking-wide= t('.other')
 
   .flex.flex-col.gap-y-2
     %ul.portion-meals.flex.flex-col.bg-white.border.border-gray-200.rounded.divide-y.divide-gray-200
@@ -21,5 +21,5 @@
                     = render HeroiconComponent.new(:'dots-vertical')
 
               .flex.flex-col.px-4.py-2.gap-y-2{ 'data-toggleable-target': 'toggleable' }
-                = render LinkToActionComponent.new('Edit meal', edit_journal_day_meal_path(portion_meal.journal_day, portion_meal), icon: :pencil, button: :secondary)
-                = render DeleteButtonComponent.new('Remove meal', journal_day_meal_path(portion_meal.journal_day, portion_meal))
+                = render LinkToActionComponent.new(t('.edit_meal'), edit_journal_day_meal_path(portion_meal.journal_day, portion_meal), icon: :pencil, button: :secondary)
+                = render DeleteButtonComponent.new(t('.remove_meal'), journal_day_meal_path(portion_meal.journal_day, portion_meal))

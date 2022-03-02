@@ -50,7 +50,7 @@ en:
           gram: g
           mililiter: ml
         vegan: Vegan
-      journal_days:
+      journal_day:
         carbs: Carbohydrate
         carbs_sugar_part: Carbohydrate, sugar part
         date: Date
@@ -60,7 +60,15 @@ en:
         kcal: Kcal
         protein: Protein
         vegan: Vegan
-      meal_ingredients:
+      meal:
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        protein: Protein
+      meal_ingredient:
         amount: Amount
         carbs: Carbohydrate
         carbs_sugar_part: Carbohydrate, sugar part
@@ -70,15 +78,7 @@ en:
         kcal: Kcal
         measure: Measure
         protein: Protein
-      meals:
-        carbs: Carbohydrate
-        carbs_sugar_part: Carbohydrate, sugar part
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
-        kcal: Kcal
-        protein: Protein
-      portions:
+      portion:
         amount: Amount
         carbs: Carbohydrate
         carbs_sugar_part: Carbohydrate, sugar part
@@ -233,6 +233,32 @@ en:
       success: Journal day added
     destroy:
       success: Journal day deleted
+    edit:
+      title_with_date: Edit %{date}
+    form:
+      add_journal_day: Add journal day
+      edit_journal_day: Edit journal day
+    index:
+      add_journal_day: Add journal day
+      add_journal_day_for_today: Add journal day for today
+      title: My journal days
+    meals:
+      no_meals: No meals.
+      portions:
+        edit_meal: Edit meal
+        other: Other
+        remove_meal: Remove meal
+      recipes:
+        add_meal_ingredient: Add meal ingredient
+        edit_meal_ingredient: Edit meal ingredient
+        remove_meal_ingredient: Remove meal ingredient
+    new:
+      title: Add journal day
+    show:
+      add_portion_meal: Add portion meal
+      add_recipe_meal: Add recipe meal
+      delete_journal_day: Delete journal day
+      edit_journal_day: Edit journal day
     update:
       success: Journal day updated
   meals:

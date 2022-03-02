@@ -1,6 +1,6 @@
 .flex.mb-4
   .w-full
-    %h1= "Edit #{@journal_day.decorate.display_date_with_weekday}"
+    %h1= t('.title_with_date', date: @journal_day.decorate.display_date_with_weekday)
 
 .flex
   .w-full

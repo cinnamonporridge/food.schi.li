@@ -1,5 +1,5 @@
 - if meals.of_recipes.any?
-  %h3.text-xs.uppercase.tracking-wide Recipes
+  %h3.text-xs.uppercase.tracking-wide= Recipe.model_name.human(count: 0)
 
   %ul.recipe-meals.flex.flex-col.gap-y-6
     - meals.of_recipes.ordered_by_day_partition.each do |recipe_meal|
@@ -40,8 +40,8 @@
                           = render HeroiconComponent.new(:'dots-vertical')
 
                     .flex.flex-col.p-4.gap-y-2{ 'data-toggleable-target': 'toggleable' }
-                      = render LinkToActionComponent.new('Edit meal ingredient', edit_meal_ingredient_path(recipe_meal, recipe_meal_ingredient), icon: :pencil, button: :secondary)
-                      = render DeleteButtonComponent.new('Remove meal ingredient', meal_ingredient_path(recipe_meal, recipe_meal_ingredient))
+                      = render LinkToActionComponent.new(t('.edit_meal_ingredient'), edit_meal_ingredient_path(recipe_meal, recipe_meal_ingredient), icon: :pencil, button: :secondary)
+                      = render DeleteButtonComponent.new(t('.remove_meal_ingredient'), meal_ingredient_path(recipe_meal, recipe_meal_ingredient))
 
         .flex.p-4
-          = render LinkToActionComponent.new('Add meal ingredient', new_meal_ingredient_path(recipe_meal), icon: :'plus-sm', button: :gray_dashed)
+          = render LinkToActionComponent.new(t('.add_meal_ingredient'), new_meal_ingredient_path(recipe_meal), icon: :'plus-sm', button: :gray_dashed)
