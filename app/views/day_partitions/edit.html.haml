@@ -1,21 +1,21 @@
 .flex.flex-col.gap-y-4
-  %h1 Edit day partition
+  %h1= t('.title')
 
   = render 'form', form: @form
 
-  %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': 'Confirm deletion' }
+  %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': t('.confirm_deletion') }
     .hidden{ 'data-confirmable-target': 'confirmable' }
       = button_tag class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
         = render HeroiconComponent.new(:trash)
-        Delete day partition
+        = t('.delete_day_partition')
 
     .flex.flex-col.gap-y-4{ 'data-confirmable-target': 'confirmable' }
       .day-partition--delete{ 'data-confirmable-target': 'submit' }
-        = render DeleteButtonComponent.new('Delete day partition', day_partition_path(@form))
+        = render DeleteButtonComponent.new(t('.delete_day_partition'), day_partition_path(@form))
 
       .w-full.text-red-500.text-center.text-center.text-xs
-        This cannot be undone.
+        = t('.this_cannot_be_undone')
       .w-full.hidden{ 'data-confirmable-target': 'confirmable', 'data-confirmable-target': 'cancel' }
         .flex.justify-center
           = button_tag class: 'shy-link text-sm', 'data-action': 'confirmable#toggle' do
-            Cancel
+            = t('shared.buttons.cancel')

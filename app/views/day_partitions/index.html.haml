@@ -1,8 +1,8 @@
 .flex.flex-col.gap-y-4
-  %h1 Day partitions
+  %h1= DayPartition.model_name.human(count: 0)
 
   .flex
-    = render LinkToActionComponent.new('Add day partition', new_day_partition_path, icon: :'plus-sm')
+    = render LinkToActionComponent.new(t('.add_day_partition'), new_day_partition_path, icon: :'plus-sm')
 
   .flex.flex-col.gap-y-4
     %ul.day-partitions.flex.flex-col.gap-y-2.w-full

@@ -2,6 +2,9 @@
 en:
   activemodel:
     attributes:
+      day_partition:
+        name: Name
+        position: Position
       journal_day/meal:
         amount_in_measure: Amount in measure
         day_partition_id: Day partition
@@ -26,9 +29,6 @@ en:
               did_not_request_reset_link: No reset link was requested.
   activerecord:
     attributes:
-      day_partitions:
-        name: Name
-        position: Position
       food:
         carbs: Carbohydrates
         carbs_sugar_part: Carbohydrates, sugar part
@@ -171,6 +171,20 @@ en:
       success: Day partition added
     destroy:
       success: Day partition deleted
+    edit:
+      confirm_deletion: Confirm deletion
+      delete_day_partition: Delete day partition
+      this_cannot_be_undone: This cannot be undone.
+      title: Edit day partition
+    form:
+      add_day_partition: Add day partition
+      move_to_position: Move to position
+      names_placeholder: Breakfast, Lunch, Dinner...
+      update_day_partition: Update day partition
+    index:
+      add_day_partition: Add day partition
+    new:
+      title: New day partition
     update:
       success: Day partition updated
   food:
