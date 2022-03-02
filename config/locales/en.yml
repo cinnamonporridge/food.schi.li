@@ -99,7 +99,7 @@ en:
         measure: Measure
         measures:
           piece: Pieces
-          unit: ml/g
+          unit: g/ml
         protein: Protein
       user:
         email: Email
@@ -205,6 +205,8 @@ en:
     fat: Fat
     kcal: kcal
     protein: Protein
+  portion:
+    base: Base
   portions:
     create:
       success: Portion added
@@ -218,15 +220,14 @@ en:
       copy_recipe: Copy recipe
       edit_recipe: Edit recipe
       unarchive_recipe: Unarchive recipe
-    ingredients_component:
-      servings_with_count:
-        one: 1 serving
-        other: "%{count} servings"
     ingredients_list_component:
       add_ingredient: Add ingredient
       ingredient_cannot_be_updated_when_archived: Ingredient cannot be updated as long as recipe is archived.
     nutritions_table_component:
       no_ingredients_no_nutritions_shrug: No ingredients = no nutritions.
+    servings_with_count:
+      one: 1 serving
+      other: "%{count} servings"
   recipes:
     create:
       success: Recipe added
@@ -259,6 +260,9 @@ en:
       one: Nutrition
       other: Nutritions
     per_serving: Per serving
+    quantity_pieces_abbreviation:
+      one: pc
+      other: pcs
     recipe_ingredients:
       add_ingredient: Add recipe ingredient
       confirm_deletion: Confirm deletion

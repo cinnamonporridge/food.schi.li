@@ -11,7 +11,7 @@ class RecipeIngredientDecorator < SimpleDelegator
   def quantity_with_pieces
     return if measure_unit?
 
-    "(#{quantity} #{'pc'.pluralize(quantity)})"
+    "(#{quantity} #{I18n.t('shared.quantity_pieces_abbreviation', count: quantity)})"
   end
 
   def rounded_amount
@@ -43,6 +43,6 @@ class RecipeIngredientDecorator < SimpleDelegator
   end
 
   def self.measures_collection
-    [['g/ml', 'unit'], %w[Pieces piece]]
+    RecipeIngredient.enum_translations(:measures).stringify_keys.map(&:reverse).reverse
   end
 end

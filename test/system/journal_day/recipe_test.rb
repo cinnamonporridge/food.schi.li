@@ -6,7 +6,7 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
     click_on '01.02.2017'
 
     click_on 'Add recipe meal'
-    fill_in 'Recipe name', with: 'Vegan Peanut Butter Banana (1 servings)'
+    fill_in 'Recipe name', with: 'Vegan Peanut Butter Banana (1 serving)'
     fill_in 'Servings', with: '2'
     select 'Afternoon', from: 'Day partition'
     click_on 'Add recipe to journal day'

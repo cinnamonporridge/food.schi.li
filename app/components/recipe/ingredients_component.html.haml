@@ -3,6 +3,6 @@
     .grow
       %h2= RecipeIngredient.model_name.human(count: 0)
     .shrink-0.text-gray-400.text-xs
-      = t('.servings_with_count', count: @recipe.servings)
+      = t('recipe.servings_with_count', count: @recipe.servings)
 
   = render Recipe::IngredientsListComponent.new(recipe: @recipe)

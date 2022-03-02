@@ -56,13 +56,13 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       search_food 'Banana'
 
       assert_checked_field 'Banana 100'
-      assert_selector '.portion-measure-add-on', text: 'ml/g'
+      assert_selector '.portion-measure-add-on', text: 'g/ml'
 
       choose('Banana Regular')
       assert_selector '.portion-measure-add-on', text: 'Pieces'
 
       choose('Banana 100')
-      assert_selector '.portion-measure-add-on', text: 'ml/g'
+      assert_selector '.portion-measure-add-on', text: 'g/ml'
     end
   end
 

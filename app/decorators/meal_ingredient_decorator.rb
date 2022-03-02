@@ -10,7 +10,7 @@ class MealIngredientDecorator < SimpleDelegator
   def quantity_with_pieces
     return if measure_unit?
 
-    "(#{quantity} #{'pc'.pluralize(quantity)})"
+    "(#{quantity} #{I18n.t('shared.quantity_pieces_abbreviation', count: quantity)})"
   end
 
   def unit_abbrevation

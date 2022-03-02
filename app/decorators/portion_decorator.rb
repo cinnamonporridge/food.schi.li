@@ -28,7 +28,7 @@ class PortionDecorator < SimpleDelegator
   end
 
   def display_name
-    primary? ? 'Base' : name
+    primary? ? I18n.t('portion.base') : name
   end
 
   def self.portions_collection(user)
