@@ -198,8 +198,23 @@ en:
       success: Food added
     destroy:
       success: Food deleted
+    edit:
+      title: Edit food
+    facts:
+      default_amount_unit_contains: 100%{unit} contains
+    form:
+      add_food: Add food
+      names_placeholder: Wheat, Tomato, Beans...
+      update_food: Update food
     globalize:
       success: Food has been made global
+    index:
+      add_food: Add food
+    new:
+      title: New food
+    show:
+      delete_food: Delete food
+      edit_food: Edit food
     update:
       success: Food updated
   forgot_passwords:
@@ -297,6 +312,8 @@ en:
     errors:
       invalid_input: Invalid input
       oops: Oops, something went wrong
+    global: Global
+    nutrition_facts: Nutrition facts
     nutritions:
       one: Nutrition
       other: Nutritions

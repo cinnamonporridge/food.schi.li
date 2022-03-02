@@ -1,9 +1,9 @@
 .flex.flex-col.gap-y-4
   .flex
-    %h1 Foods
+    %h1= Food.model_name.human(count: 0)
 
   .flex
-    = render LinkToActionComponent.new('Add food', new_food_path, icon: :'plus-sm')
+    = render LinkToActionComponent.new(t('.add_food'), new_food_path, icon: :'plus-sm')
 
   .flex
     .w-full

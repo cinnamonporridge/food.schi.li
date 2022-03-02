@@ -10,11 +10,11 @@
             - if @food.global?
               .flex.items-end.gap-x-1.text-2xs.text-gray-400
                 = render GlobalFoodBadgeIconComponent.new(@food.global?)
-                Global
+                = t('shared.global')
             - if @food.vegan?
               .flex.items-end.gap-x-1.text-2xs.text-gray-400
                 = render VeganBadgeIconComponent.new(@food.vegan?)
-                Vegan
+                = t('shared.vegan')
             - if @food.data_source_url.present?
               .flex.items-end.gap-x-1.text-2xs.text-gray-400
                 .text-gray-500
@@ -27,10 +27,10 @@
 
       - if food_policy.write?
         .food-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
-          = render LinkToActionComponent.new('Edit food', edit_food_path(@food), icon: :pencil)
+          = render LinkToActionComponent.new(t('.edit_food'), edit_food_path(@food), icon: :pencil)
 
           - if @food.deleteable?
-            = render DeleteButtonComponent.new('Delete food', food_path(@food))
+            = render DeleteButtonComponent.new(t('.delete_food'), food_path(@food))
 
           = render Food::MakeGlobalFormComponent.new(food: @food, user: @current_user)
 

@@ -3,7 +3,7 @@
     .pt-2.pb-4.px-4
       .flex.flex-col
         = f.label :name, class: 'label'
-        = f.text_field :name, class: 'input', placeholder: 'Wheat, Tomato, Beans...'
+        = f.text_field :name, class: 'input', placeholder: t('.names_placeholder')
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :name
 
     .pt-2.pb-4.px-4
@@ -65,8 +65,8 @@
         = f.url_field :data_source_url, class: 'input'
 
     .p-4.flex.flex-col.gap-y-2
-      - text = f.object.new_record? ? 'Add food' : 'Update food'
+      - text = f.object.new_record? ? t('.add_food') : t('.update_food')
       = render SubmitButtonComponent.new(text, f.object)
 
       .text-center
-        = link_to 'Cancel', foods_path, class: 'shy-link text-xs'
+        = link_to t('shared.buttons.cancel'), foods_path, class: 'shy-link text-xs'
