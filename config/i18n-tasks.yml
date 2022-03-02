@@ -61,7 +61,7 @@ search:
     - app/components
     - app/controllers
   #   - app/helpers
-  #   - app/mailers
+    - app/mailers
   #   - app/presenters
   #   - app/views
 
@@ -109,6 +109,7 @@ search:
 ## Consider these keys used:
 ignore_unused:
   - 'activemodel.attributes.*'
+  - 'activemodel.errors.*'
   - 'activerecord.attributes.*'
   - 'activerecord.models.*'
   - 'date.formats.*'
