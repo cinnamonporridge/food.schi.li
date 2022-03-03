@@ -1,8 +1,8 @@
 .flex.flex-col.gap-y-8
-  %h1 Settings
+  %h1= t('.title')
 
   %ul
     %li
       = link_to day_partitions_path, class: 'rounded border border-gray-200 p-4 bg-white flex items-center gap-x-2' do
         = render HeroiconComponent.new(:clock)
-        Day partitions
+        = DayPartition.model_name.human(count: 0)

@@ -395,6 +395,9 @@ en:
       sign_in: Sign in
     new:
       title: Sign in
+  settings:
+    index:
+      title: Settings
   shared:
     archived: Archived
     buttons:
