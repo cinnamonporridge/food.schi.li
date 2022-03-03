@@ -30,23 +30,23 @@
 
           .pt-2.flex.flex-col
             = hidden_field_tag :food_name, f.object.portion.food.name
-            - text = f.object.new_record? ? 'Add ingredient' : 'Update ingredient'
+            - text = f.object.new_record? ? t('shared.recipe_ingredients.add_ingredient') : t('shared.recipe_ingredients.update_ingredient')
             = render SubmitButtonComponent.new(text, f.object)
             = render FadeOutFlashComponent.new(text: flash[:turbo_notice])
 
 
     - if @form.object.persisted?
-      %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': 'Confirm deletion' }
+      %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': t('shared.recipe_ingredients.confirm_deletion') }
         .hidden{ 'data-confirmable-target': 'confirmable' }
           = button_tag class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
             = render HeroiconComponent.new(:trash)
-            Delete recipe ingredient
+            = t('shared.recipe_ingredients.delete_ingredient')
 
         .flex.flex-col.gap-y-1{ 'data-confirmable-target': 'confirmable' }
           .recipe-ingredient--delete{ 'data-confirmable-target': 'submit' }
             .flex.gap-x-4
               .w-full
-                = render DeleteButtonComponent.new('Delete day partition', recipe_ingredient_path(@form.object.recipe, @form.object))
+                = render DeleteButtonComponent.new(t('shared.recipe_ingredients.delete_ingredient'), recipe_ingredient_path(@form.object.recipe, @form.object))
               .w-full.hidden{ 'data-confirmable-target': 'confirmable', 'data-confirmable-target': 'cancel' }
                 = button_tag class: 'hollow-button', 'data-action': 'confirmable#toggle' do
-                  Cancel
+                  = t('shared.buttons.cancel')

@@ -8,7 +8,7 @@ class RecipeIngredientFormComponentTest < ViewComponent::TestCase
     render_inline new_component(form:)
     assert_checked_field 'Sugar Cube'
     assert_field 'Amount in measure', with: '0.0'
-    assert_button 'Add ingredient'
+    assert_button 'Add recipe ingredient'
   end
 
   test '#render, existing recipe ingredient' do
@@ -17,7 +17,7 @@ class RecipeIngredientFormComponentTest < ViewComponent::TestCase
     render_inline new_component(form:)
     assert_checked_field 'Apple Big Apple'
     assert_field 'Amount in measure', with: '0.03'
-    assert_button 'Update ingredient'
+    assert_button 'Update recipe ingredient'
   end
 
   test 'not #render, food not persisted' do

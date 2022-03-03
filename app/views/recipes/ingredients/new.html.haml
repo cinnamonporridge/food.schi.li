@@ -1,8 +1,8 @@
 .flex.flex-col.gap-y-4
-  %h1.text-sm= "Add ingredient to #{@component.recipe.decorate.name}"
+  %h1.text-sm= t('.add_ingredient_to', recipe_name: @component.recipe.decorate.name)
   = link_to @component.recipe, class: 'shy-link text-xs inline-flex gap-x-1 items-center' do
     = render HeroiconComponent.new(:'chevron-left')
-    Back
+    = t('shared.buttons.back')
 
   = turbo_frame_tag dom_id(@component.recipe_ingredient_form.object) do
     = render @component

@@ -7,8 +7,8 @@
         = render 'layouts/forms/field_errors', errors: f.object.errors, key: :date
 
     .p-4.flex.flex-col.gap-y-2
-      - text = f.object.new_record? ? 'Add journal day' : 'Edit journal day'
+      - text = f.object.new_record? ? t('.add_journal_day') : t('.edit_journal_day')
       = render SubmitButtonComponent.new(text, f.object)
 
       .text-center
-        = link_to 'Cancel', journal_day, class: 'shy-link text-xs'
+        = link_to t('shared.buttons.cancel'), journal_day, class: 'shy-link text-xs'

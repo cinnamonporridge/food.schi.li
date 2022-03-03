@@ -2,10 +2,7 @@ class FoodDecorator < SimpleDelegator
   include NumberHelper
 
   def unit_abbrevation
-    {
-      gram: 'g',
-      mililiter: 'ml'
-    }[unit.to_sym]
+    Food.enum_translations(:units_abbreviations)[unit.to_sym]
   end
 
   def units_collection

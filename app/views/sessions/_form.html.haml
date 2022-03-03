@@ -1,11 +1,11 @@
 = form_with(model: @form, url: login_path, data: { turbo: false }) do |f|
   .bg-white.px-4.py-6.rounded.shadow.flex.flex-col.gap-y-4
     .w-full
-      = f.email_field :email, placeholder: 'Email address', class: 'input'
+      = f.email_field :email, placeholder: t('.email_placeholder'), class: 'input'
     .w-full
-      = f.password_field :password, placeholder: 'Password', class: 'input'
+      = f.password_field :password, placeholder: t('.password_placeholder'), class: 'input'
     .actions.flex.flex-col.gap-y-2
       .w-full
-        = f.submit 'Sign in', class: 'button'
+        = f.submit t('.sign_in'), class: 'button'
       .w-full.text-center
-        = link_to 'Forgot password', new_forgot_passwords_url, class: 'shy-link text-xs'
+        = link_to t('.forgot_password'), new_forgot_passwords_url, class: 'shy-link text-xs'

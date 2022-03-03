@@ -19,8 +19,8 @@
                       = turbo_frame_tag dom_id(recipe_ingredient) do
                         = render RecipeIngredientFormComponent.new(form: RecipeIngredientForm.new(recipe_ingredient))
                     - else
-                      .text-xs.text-gray-500
-                        Ingredient cannot be updated as long as recipe is archived.
+                      .text-xs.text-gray-500.ml-6
+                        = t('.ingredient_cannot_be_updated_when_archived')
 
     - if @recipe.active?
-      = render LinkToActionComponent.new('Add ingredient', new_recipe_ingredient_path(@recipe), icon: :'plus-sm', button: :gray_dashed)
+      = render LinkToActionComponent.new(t('.add_ingredient'), new_recipe_ingredient_path(@recipe), icon: :'plus-sm', button: :gray_dashed)

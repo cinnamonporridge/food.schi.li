@@ -72,6 +72,6 @@ class MealIngredientForm < ApplicationForm
   def portion_exists
     return if portion.present?
 
-    errors.add(:portion_name, 'does not exist')
+    errors.add(:portion_name, :does_not_exist)
   end
 end

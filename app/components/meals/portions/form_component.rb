@@ -7,6 +7,16 @@ class Meals::Portions::FormComponent < ViewComponent::Base
   end
 
   def action_text
-    @form.object.new_record? ? 'Add portion meal' : 'Edit portion meal'
+    @form.object.new_record? ? add_text : edit_text
+  end
+
+  private
+
+  def add_text
+    t('meals.portions.form_component.add_portion_meal')
+  end
+
+  def edit_text
+    t('meals.portions.form_component.edit_portion_meal')
   end
 end

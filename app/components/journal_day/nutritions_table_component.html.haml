@@ -1,15 +1,15 @@
 .flex.flex-col.gap-y-2
-  %h2 Nutritions
+  %h2= t('shared.nutritions', count: 0)
 
   - if journal_day.meals.any?
     .nutritions-table.bg-white.border.border-gray-200.rounded
       .w-full
-        .grid.grid-cols-6.text-xs.text-gray-500.text-right.pt-2.px-4
+        .grid.grid-cols-6.text-xs.text-gray-500.text-right.pt-2.px-2
           .col-span-2.uppercase.text-left
-          .col-span-1 kcal
-          .col-span-1 Carbs
-          .col-span-1 Protein
-          .col-span-1 Fat
+          .col-span-1= Meal.human_attribute_name(:kcal)
+          .col-span-1= Meal.human_attribute_name(:carbs)
+          .col-span-1= Meal.human_attribute_name(:protein)
+          .col-span-1= Meal.human_attribute_name(:fat)
       .w-full
         - ordered_meals.group_by(&:day_partition).each do |day_partition, meals|
           .w-full.pt-4
@@ -21,7 +21,7 @@
 
       .w-full.divide-y.divide-gray-200.pt-4.pb-2
         .journal-day--nutritions-table--total.grid.grid-cols-6.text-xs.text-right.px-2.font-bold
-          .col-span-2.text-left Total
+          .col-span-2.text-left= t('shared.total')
           .col-span-1= format_nutrition_number(journal_day.kcal)
           .col-span-1= format_nutrition_number(journal_day.carbs)
           .col-span-1= format_nutrition_number(journal_day.protein)
@@ -29,4 +29,4 @@
 
   - else
     .text-gray-500.text-sm
-      No meals, no nutritions. 🤷
+      = t('.no_meals_no_nutritions_shrug')

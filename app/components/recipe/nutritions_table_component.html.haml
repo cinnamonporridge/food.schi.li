@@ -1,16 +1,16 @@
 %div{ id: to_dom_id }
   .flex.flex-col.gap-y-2
     .w-full
-      %h2 Nutritions
+      %h2= t('shared.nutritions', count: 0)
     .w-full
       - if @recipe.recipe_ingredients.any?
         .nutritions-table.bg-white.border.border-gray-200.rounded.divide-y.divide-gray-200
           .nutritions-table--header.px-2.py-1.grid.grid-cols-6.text-xs.text-gray-500
             .col-span-2
-            .col-span-1.text-right kcal
-            .col-span-1.text-right Carbs
-            .col-span-1.text-right Protein
-            .col-span-1.text-right Fat
+            .col-span-1.text-right= Recipe.human_attribute_name(:kcal)
+            .col-span-1.text-right= Recipe.human_attribute_name(:carbs_short)
+            .col-span-1.text-right= Recipe.human_attribute_name(:protein)
+            .col-span-1.text-right= Recipe.human_attribute_name(:fat)
 
           .nutritions-table--recipe-ingredients.py-1
             - @recipe.recipe_ingredients.ordered_by_food_name.each do |recipe_ingredient|
@@ -22,7 +22,7 @@
                 .col-span-1.text-right= recipe_ingredient.decorate.display_fat
 
           .nutritions-table--totals.px-2.py-1.grid.grid-cols-6.text-xs.font-bold
-            .col-span-2 Total
+            .col-span-2= t('shared.total')
             .col-span-1.text-right= recipe.decorate.display_kcal
             .col-span-1.text-right= recipe.decorate.display_carbs
             .col-span-1.text-right= recipe.decorate.display_protein
@@ -30,7 +30,7 @@
 
           .nutritions-table--totals-per-servings.px-2.py-1.grid.grid-cols-6.text-xs.text-gray-600
             .col-span-2.flex.gap-x-1
-              %span Per serving
+              %span= t('shared.per_serving')
               %span.text-gray-400= "(1/#{recipe.servings})"
             .col-span-1.text-right= recipe.decorate.display_kcal_per_serving
             .col-span-1.text-right= recipe.decorate.display_carbs_per_serving
@@ -38,4 +38,5 @@
             .col-span-1.text-right= recipe.decorate.display_fat_per_serving
 
       - else
-        .text-gray-400.text-sm.tracking-wide No ingredients = no nutritions. 🤷
+        .text-gray-400.text-sm.tracking-wide
+          = t('.no_ingredients_no_nutritions_shrug')

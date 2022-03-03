@@ -6,7 +6,7 @@ class PortionDecoratorTest < ActiveSupport::TestCase
   end
 
   test '#display_measure' do
-    assert_equal 'ml/g', decorate(:apple_default_portion).display_measure
+    assert_equal 'g/ml', decorate(:apple_default_portion).display_measure
   end
 
   test '#amount_with_unit_abbrevation' do

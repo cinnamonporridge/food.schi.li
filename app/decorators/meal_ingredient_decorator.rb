@@ -10,7 +10,7 @@ class MealIngredientDecorator < SimpleDelegator
   def quantity_with_pieces
     return if measure_unit?
 
-    "(#{quantity} #{'pc'.pluralize(quantity)})"
+    "(#{quantity} #{I18n.t('shared.quantity_pieces_abbreviation', count: quantity)})"
   end
 
   def unit_abbrevation
@@ -23,33 +23,5 @@ class MealIngredientDecorator < SimpleDelegator
 
   def display_portion_name
     portion.decorate.name_with_food
-  end
-
-  def display_total_kcal
-    total_kcal.round
-  end
-
-  def display_total_carbs
-    total_carbs.round
-  end
-
-  def display_total_carbs_sugar_part
-    total_carbs_sugar_part.round
-  end
-
-  def display_total_protein
-    total_protein.round
-  end
-
-  def display_total_fat
-    total_fat.round
-  end
-
-  def display_total_fat_saturated
-    total_fat_saturated.round
-  end
-
-  def display_total_fiber
-    total_fiber.round
   end
 end

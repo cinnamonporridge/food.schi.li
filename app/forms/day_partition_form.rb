@@ -32,6 +32,8 @@ class DayPartitionForm < ApplicationForm
   end
 
   def build_insert_at_position_options
-    DayPartitionDecorator.move_to_position_options_for_user(user).push(['At the end', -1])
+    DayPartitionDecorator.move_to_position_options_for_user(user).push(
+      [I18n.t('day_partition.at_the_end'), -1]
+    )
   end
 end

@@ -11,36 +11,36 @@
               .flex.gap-x-2
                 = link_to journal_days_path, class: "nav-link #{nav_link_current_classes(journal_days_path)} flex items-center gap-x-2" do
                   = render HeroiconComponent.new(:calendar)
-                  Journal
+                  = JournalDay.model_name.human(count: 0)
 
                 = link_to recipes_path, class: "nav-link #{nav_link_current_classes(recipes_path)} flex items-center gap-x-2" do
                   = render HeroiconComponent.new(:'book-open')
-                  Recipes
+                  = Recipe.model_name.human(count: 0)
 
                 = link_to foods_path, class: "nav-link #{nav_link_current_classes(foods_path)} flex items-center gap-x-2" do
                   = render HeroiconComponent.new(:'chart-pie')
-                  Foods
+                  = Food.model_name.human(count: 0)
           .shrink-0.flex.gap-x-4
             = link_to settings_path, class: 'text-green-500 hover:text-green-200 transition text-sm flex items-center gap-x-2' do
               = render HeroiconComponent.new(:cog)
-              Settings
+              = t('.settings')
             = button_to logout_path, method: :delete, class: 'text-green-500 hover:text-green-200 transition text-sm flex items-center gap-x-2' do
               = render HeroiconComponent.new(:logout)
-              Sign out
+              = t('.sign_out')
 
     #mobile-menu.sm:hidden
       .bg-green-400.flex.flex-col.divide-y.divide-green-300
         .grid.grid-cols-3
           = link_to journal_days_path, class: "nav-link #{nav_link_current_classes(journal_days_path)} flex items-center gap-x-4" do
             = render HeroiconComponent.new(:calendar)
-            Journal
+            = JournalDay.model_name.human(count: 0)
 
           = link_to recipes_path, class: "nav-link #{nav_link_current_classes(recipes_path)} flex items-center gap-x-4" do
             = render HeroiconComponent.new(:'book-open')
-            Recipes
+            = Recipe.model_name.human(count: 0)
 
           = link_to foods_path, class: "nav-link #{nav_link_current_classes(foods_path)} flex items-center gap-x-4" do
             = render HeroiconComponent.new(:'chart-pie')
-            Foods
+            = Food.model_name.human(count: 0)
 
   = render 'layouts/flash'

@@ -10,7 +10,7 @@ end
 
 chdir APP_ROOT do
   puts "\n== Run tests =="
-  system! 'bin/rails test'
+  system! 'bin/rails test -p'
 
   puts "\n== Run system tests"
   system! 'bin/rails test:system'

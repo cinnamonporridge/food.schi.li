@@ -20,18 +20,18 @@ class RecipesController < ApplicationController
     @recipe = user_recipes.active.new(recipe_params)
 
     if @recipe.save
-      redirect_to @recipe, notice: 'Recipe added'
+      redirect_to @recipe, notice: t('.success')
     else
-      flash.now[:notice] = 'Invalid input'
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
   end
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: 'Recipe updated'
+      redirect_to @recipe, notice: t('.success')
     else
-      flash.now[:notice] = 'Invalid input'
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :edit
     end
   end
@@ -39,10 +39,10 @@ class RecipesController < ApplicationController
   def destroy
     if @recipe.active?
       @recipe.archive
-      redirect_to recipes_url, notice: 'Recipe archived'
+      redirect_to recipes_url, notice: t('.archive_success')
     else
       @recipe.unarchive
-      redirect_to @recipe, notice: 'Recipe unarchived'
+      redirect_to @recipe, notice: t('.unarchive_success')
     end
   end
 

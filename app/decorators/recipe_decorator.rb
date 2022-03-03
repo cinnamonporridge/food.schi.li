@@ -2,7 +2,7 @@ class RecipeDecorator < SimpleDelegator
   include NumberHelper
 
   def name_with_servings
-    "#{name} (#{servings} servings)"
+    "#{name} (#{I18n.t('recipe.servings_with_count', count: servings)})"
   end
 
   def display_kcal

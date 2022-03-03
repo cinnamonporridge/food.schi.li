@@ -1,6 +1,6 @@
 .flex.flex-col.gap-y-2
   .w-full
-    %h2 Meals
+    %h2= Meal.model_name.human(count: 0)
 
   - if meals.any?
     .meals.flex.flex-col.gap-y-4
@@ -8,4 +8,4 @@
       = render 'journal_days/meals/portions', meals: meals
 
   - else
-    .text-gray-500.text-sm No meals.
+    .text-gray-500.text-sm= t('.no_meals')

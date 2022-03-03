@@ -14,11 +14,11 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       choose 'Banana Regular'
     end
 
-    click_on 'Add ingredient'
+    click_on 'Add recipe ingredient'
     assert_checked_field 'Banana Regular' # selected value should remain
 
     fill_in 'Amount in measure', with: '3'
-    click_on 'Add ingredient'
+    click_on 'Add recipe ingredient'
 
     within_recipe_ingredient('Banana Regular') do
       assert_selector '.recipe-ingredient--quantity', text: '3'
@@ -40,7 +40,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     end
 
     fill_in 'Amount in measure', with: '1'
-    click_on 'Add ingredient'
+    click_on 'Add recipe ingredient'
 
     within_recipe_ingredient('Pineapple Fruit') do
       assert_selector '.recipe-ingredient--quantity', text: '1'
@@ -56,13 +56,13 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       search_food 'Banana'
 
       assert_checked_field 'Banana 100'
-      assert_selector '.portion-measure-add-on', text: 'ml/g'
+      assert_selector '.portion-measure-add-on', text: 'g/ml'
 
       choose('Banana Regular')
       assert_selector '.portion-measure-add-on', text: 'Pieces'
 
       choose('Banana 100')
-      assert_selector '.portion-measure-add-on', text: 'ml/g'
+      assert_selector '.portion-measure-add-on', text: 'g/ml'
     end
   end
 
@@ -70,7 +70,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_apple_pie_recipe
     click_on 'Add ingredient'
     search_food 'Banana'
-    click_on 'Add ingredient'
+    click_on 'Add recipe ingredient'
     search_food 'Apple'
     select_search_result 'Apple'
     assert_checked_field 'Apple 100' # checks if action_url works properly
@@ -88,7 +88,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
         toggle_actions
         choose 'Apple 100'
         fill_in 'Amount in measure', with: '121'
-        click_on 'Update ingredient'
+        click_on 'Update recipe ingredient'
 
         assert_selector '.recipe-ingredient--name', text: 'Apple', exact_text: true
         assert_selector '.recipe-ingredient--quantity', text: ''

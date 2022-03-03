@@ -13,7 +13,7 @@ class ForgotPasswordsController < ApplicationController
 
     @user = User.find_by(email: @form.email)
     PasswordService.reset_link!(@user)
-    flash[:notice] = 'A reset link has been sent to your email address'
+    flash[:notice] = t('.success')
 
     redirect_to login_url
   end
@@ -21,11 +21,11 @@ class ForgotPasswordsController < ApplicationController
   private
 
   def forgot_password_params
-    params.require(:forgot_password_form).permit(:email)
+    params.require(:forgot_password).permit(:email)
   end
 
   def invalid_input_error
-    flash.now[:notice] = 'Oops, something went wrong'
+    flash.now[:notice] = t('shared.errors.oops')
     render :new
   end
 end

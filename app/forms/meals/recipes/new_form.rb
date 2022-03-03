@@ -57,7 +57,7 @@ class Meals::Recipes::NewForm < ApplicationForm
   end
 
   def recipe_exists
-    errors.add(:recipe_name, 'Selected recipe does not exist') if recipe.nil?
+    errors.add(:recipe_name, :does_not_exist) if recipe.nil?
   end
 
   def build_meal_ingredients
