@@ -18,6 +18,8 @@ en:
         amount_in_measure: Amount in measure
         measure: Measure
         portion_name: Portion
+      recipe_copy_form:
+        name: New recipe name
       recipe_ingredient:
         amount_in_measure: Amount in measure
         portion_id: Portion
@@ -343,14 +345,31 @@ en:
       one: 1 serving
       other: "%{count} servings"
   recipes:
+    copies:
+      new:
+        copy_recipe: Copy recipe
+        copy_recipe_name: Copy %{recipe_name}
     create:
       success: Recipe added
     destroy:
       archive_success: Recipe archived
       unarchive_success: Recipe unarchived
+    edit:
+      edit_recipe_name: Edit %{recipe_name}
+    form:
+      add_recipe: Add recipe
+      update_recipe: Update recipe
+    index:
+      add_recipe: Add recipe
     ingredients:
+      edit:
+        title: Edit ingredient
+      new:
+        add_ingredient_to: Add ingredient to %{recipe_name}
       update:
         success: Recipe ingredient updated
+    new:
+      title: New recipe
     update:
       success: Recipe updated
   reset_passwords:
@@ -363,6 +382,7 @@ en:
   shared:
     archived: Archived
     buttons:
+      back: Back
       cancel: Cancel
       confirm: Confirm
       dismiss: Dismiss

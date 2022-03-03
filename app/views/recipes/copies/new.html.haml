@@ -1,16 +1,16 @@
 .flex.flex-col.gap-y-4
-  %h1= "Copy #{@form.recipe.name}"
+  %h1= t('.copy_recipe_name', recipe_name: @form.recipe.name)
 
   = form_with(model: @form, url: recipe_copy_path(@recipe), data: { turbo: false }) do |f|
     .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
       .pt-2.pb-4.px-4.flex.flex-col.gap-y-2
         .flex.flex-col
-          = f.label :name, 'New recipe name', class: 'label'
+          = f.label :name, class: 'label'
           = f.text_field :name, class: 'input'
           = render 'layouts/forms/field_errors', errors: f.object.errors, key: :name
 
       .p-4.flex.flex-col.gap-y-2
-        = render SubmitButtonComponent.new('Copy recipe', :duplicate)
+        = render SubmitButtonComponent.new(t('.copy_recipe'), :duplicate)
 
         .text-center
-          = link_to 'Cancel', @form.recipe, class: 'shy-link text-xs'
+          = link_to t('shared.buttons.cancel'), @form.recipe, class: 'shy-link text-xs'
