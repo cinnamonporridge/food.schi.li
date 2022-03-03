@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:glebm/i18n-tasks.git
+  remote: https://github.com/glebm/i18n-tasks.git
   revision: d7ae6e6e9158ae7581c1e36079eb32117d4aa77f
   branch: main
   specs:
