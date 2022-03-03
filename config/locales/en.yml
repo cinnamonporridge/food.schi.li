@@ -261,6 +261,11 @@ en:
       edit_journal_day: Edit journal day
     update:
       success: Journal day updated
+  layouts:
+    header:
+      journal: Journal
+      settings: Settings
+      sign_out: Sign out
   meals:
     create:
       success: Meal added
@@ -338,6 +343,7 @@ en:
     buttons:
       cancel: Cancel
       confirm: Confirm
+      dismiss: Dismiss
       search: Search
       select: Select
     errors:
