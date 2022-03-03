@@ -1,4 +1,4 @@
 .flex.flex-col.gap-y-4
-  %h1= "Edit portion for #{@portion.food.name}"
+  %h1= t('.edit_portion_for', food_name: @portion.food.name)
 
   = render 'form', portion: @portion

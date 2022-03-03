@@ -83,7 +83,7 @@ en:
         measure: Measure
         protein: Protein
       portion:
-        amount: Amount
+        amount: Amount in g/ml
         carbs: Carbohydrate
         carbs_sugar_part: Carbohydrate, sugar part
         fat: Fat
@@ -315,6 +315,17 @@ en:
       success: Portion added
     destroy:
       success: Portion deleted
+    edit:
+      edit_portion_for: Edit portion for %{food_name}
+    form:
+      add_portion: Add portion
+      update_portion: Update portion
+    index:
+      add_portion: Add portion
+      edit_portion: Edit portion
+      remove_portion: Remove portion
+    new:
+      new_portion_for: New portion for %{food_name}
     update:
       success: Portion updated
   recipe:

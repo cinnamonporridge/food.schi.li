@@ -1,6 +1,6 @@
 .flex.flex-col.gap-y-2
   .w-full
-    %h2 Portions
+    %h2= Portion.model_name.human(count: 0)
 
   .flex.flex-col.gap-y-4
     %ul.food--portions.bg-white.rounded.overflow-hidden.divide-y.divide-gray-200.border.border-gray-200
@@ -25,10 +25,10 @@
             - if !portion.primary? && portion_policy.write?
               .hidden.py-2{ 'data-toggleable-target': 'toggleable' }
                 .flex.gap-x-2
-                  = render LinkToActionComponent.new('Edit portion', edit_food_portion_path(portion.food, portion), icon: :pencil)
+                  = render LinkToActionComponent.new(t('.edit_portion'), edit_food_portion_path(portion.food, portion), icon: :pencil)
                   - if portion.deleteable?
-                    = render DeleteButtonComponent.new('Remove portion', food_portion_path(portion.food, portion))
+                    = render DeleteButtonComponent.new(t('.remove_portion'), food_portion_path(portion.food, portion))
 
     - if FoodPolicy.new(portions.first.food, user: @current_user).write?
       .w-full
-        = render LinkToActionComponent.new('Add portion', new_food_portion_path(portions.first.food), icon: :'plus-sm', button: :gray_dashed)
+        = render LinkToActionComponent.new(t('.add_portion'), new_food_portion_path(portions.first.food), icon: :'plus-sm', button: :gray_dashed)
