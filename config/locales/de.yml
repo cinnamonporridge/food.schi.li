@@ -1,0 +1,429 @@
+---
+de:
+  activemodel:
+    attributes:
+      day_partition:
+        name: Name
+        position: Position
+      forgot_password:
+        email: Email
+      journal_day/meal:
+        amount_in_measure: Amount in measure
+        day_partition_id: Day partition
+        measure: Measure
+        portion_name: Portion
+        recipe_name: Recipe name
+        servings: Servings
+      login_form:
+        email: Email
+        password: Password
+      meal_ingredient:
+        amount_in_measure: Amount in measure
+        measure: Measure
+        portion_name: Portion
+      recipe_copy_form:
+        name: New recipe name
+      recipe_ingredient:
+        amount_in_measure: Amount in measure
+        portion_id: Portion
+      reset_password_form:
+        password: New password
+    errors:
+      models:
+        journal_day/meal:
+          does_not_exist: does not exist
+        meal_ingredient:
+          attributes:
+            portion_name:
+              does_not_exist: does not exist
+        reset_password_form:
+          attributes:
+            base:
+              did_not_request_reset_link: No reset link was requested.
+  activerecord:
+    attributes:
+      food:
+        carbs: Carbohydrates
+        carbs_sugar_part: Carbohydrates, sugar part
+        data_source_updated_at: Data source updated at
+        data_source_url: Data source URL
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        name: Name
+        protein: Protein
+        unit: Unit
+        units:
+          gram: Gram
+          mililiter: Mililiter
+        units_abbreviations:
+          gram: g
+          mililiter: ml
+        vegan: Vegan
+      journal_day:
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        date: Date
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        protein: Protein
+        vegan: Vegan
+      meal:
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        protein: Protein
+      meal_ingredient:
+        amount: Amount
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        measure: Measure
+        protein: Protein
+      portion:
+        amount: Amount in g/ml
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        name: Name
+        protein: Protein
+      recipe:
+        archived_at: Archived at
+        carbs: Carbohydrate
+        carbs_short: Carbs
+        carbs_sugar_part: Carbohydrate, sugar part
+        carbs_sugar_part_short: Carbs, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: kcal
+        name: Name
+        protein: Protein
+        servings: Servings
+        vegan: Vegan
+      recipe_ingredient:
+        amount: Amount
+        carbs: Carbohydrate
+        carbs_sugar_part: Carbohydrate, sugar part
+        fat: Fat
+        fat_saturated: Fat saturated
+        fiber: Fiber
+        kcal: Kcal
+        measure: Measure
+        measures:
+          piece: Pieces
+          unit: g/ml
+        protein: Protein
+      user:
+        email: Email
+        role: Role
+        roles:
+          admin: Admin
+          user: User
+    errors:
+      models:
+        day_partition:
+          attributes:
+            base:
+              default_already_exists: Default day partition already exists
+        food:
+          attributes:
+            base:
+              cannot_delete_food_still_used_in_meal: Can't delete food that is still used in a meal
+              cannot_delete_food_still_used_in_recipe: Can't delete food that is still used in a recipe
+    models:
+      day_partition:
+        one: Day partition
+        other: Day partitions
+      food:
+        one: Food
+        other: Foods
+      journal_day:
+        one: Journal
+        other: Journals
+      meal:
+        one: Meal
+        other: Meals
+      meal_ingredient:
+        one: Meal ingredient
+        other: Meal ingredients
+      portion:
+        one: Portion
+        other: Portions
+      recipe:
+        one: Recipe
+        other: Recipes
+      recipe_ingredient:
+        one: Ingredient
+        other: Ingredients
+      user:
+        one: User
+        other: Users
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      weekday_only: "%a"
+      with_weekday: "%a, %d.%m.%Y"
+  day_partition:
+    at_the_end: At the end
+    unpartitioned: Unpartitioned
+  day_partitions:
+    create:
+      success: Day partition added
+    destroy:
+      success: Day partition deleted
+    edit:
+      confirm_deletion: Confirm deletion
+      delete_day_partition: Delete day partition
+      this_cannot_be_undone: This cannot be undone.
+      title: Edit day partition
+    form:
+      add_day_partition: Add day partition
+      move_to_position: Move to position
+      names_placeholder: Breakfast, Lunch, Dinner...
+      update_day_partition: Update day partition
+    index:
+      add_day_partition: Add day partition
+    new:
+      title: New day partition
+    update:
+      success: Day partition updated
+  food:
+    make_global_form_component:
+      do_you_really_want_to_make_this_food_global_questionmark: Do you really want to make this food global? This cannot be undone.
+      make_food_global: Make food global
+  food_search_form_component:
+    no_foods_found: No foods found
+  foods:
+    create:
+      success: Food added
+    destroy:
+      success: Food deleted
+    edit:
+      title: Edit food
+    facts:
+      default_amount_unit_contains: 100%{unit} contains
+    form:
+      add_food: Add food
+      names_placeholder: Wheat, Tomato, Beans...
+      update_food: Update food
+    globalize:
+      success: Food has been made global
+    index:
+      add_food: Add food
+    new:
+      title: New food
+    show:
+      delete_food: Delete food
+      edit_food: Edit food
+    update:
+      success: Food updated
+  forgot_passwords:
+    create:
+      success: A reset link has been sent to your email address
+    new:
+      reset_password: Reset password
+      title: Forgot password?
+  journal_day:
+    nutritions_table_component:
+      no_meals_no_nutritions_shrug: "No meals, no nutritions. \U0001F937"
+  journal_days:
+    create:
+      success: Journal day added
+    destroy:
+      success: Journal day deleted
+    edit:
+      title_with_date: Edit %{date}
+    form:
+      add_journal_day: Add journal day
+      edit_journal_day: Edit journal day
+    index:
+      add_journal_day: Add journal day
+      add_journal_day_for_today: Add journal day for today
+      title: My journal days
+    meals:
+      no_meals: No meals.
+      portions:
+        edit_meal: Edit meal
+        other: Other
+        remove_meal: Remove meal
+      recipes:
+        add_meal_ingredient: Add meal ingredient
+        edit_meal_ingredient: Edit meal ingredient
+        remove_meal_ingredient: Remove meal ingredient
+    new:
+      title: Add journal day
+    show:
+      add_portion_meal: Add portion meal
+      add_recipe_meal: Add recipe meal
+      delete_journal_day: Delete journal day
+      edit_journal_day: Edit journal day
+    update:
+      success: Journal day updated
+  layouts:
+    header:
+      settings: Settings
+      sign_out: Sign out
+  meals:
+    create:
+      success: Meal added
+    destroy:
+      success: Meal deleted
+    ingredients:
+      create:
+        success: Meal ingredient added
+      destroy:
+        success: Meal ingredient deleted
+      edit:
+        title: Edit meal ingredient
+      form:
+        add_meal_ingredient: Add meal ingredient
+        update_meal_ingredient: Update meal ingredient
+      new:
+        title: Add meal ingredient
+      update:
+        success: Meal ingredient updated
+    portions:
+      form_component:
+        add_portion_meal: Add portion meal
+        edit_portion_meal: Edit portion meal
+    recipes:
+      edit_form_component:
+        edit_recipe_on_journal_day: Edit recipe on journal day
+      new_form_component:
+        add_recipe_to_journal_day: Add recipe to journal day
+    update:
+      success: Meal updated
+  nutrient_labels_component:
+    carbs: Carbohydrate
+    fat: Fat
+    kcal: kcal
+    protein: Protein
+  password_mailer:
+    reset_link_mail:
+      reset_password: Reset password
+      your_password_reset_link: Your password reset link
+  portion:
+    base: Base
+  portions:
+    create:
+      success: Portion added
+    destroy:
+      success: Portion deleted
+    edit:
+      edit_portion_for: Edit portion for %{food_name}
+    form:
+      add_portion: Add portion
+      update_portion: Update portion
+    index:
+      add_portion: Add portion
+      edit_portion: Edit portion
+      remove_portion: Remove portion
+    new:
+      new_portion_for: New portion for %{food_name}
+    update:
+      success: Portion updated
+  recipe:
+    header_component:
+      archive_recipe: Archive recipe
+      copy_recipe: Copy recipe
+      edit_recipe: Edit recipe
+      unarchive_recipe: Unarchive recipe
+    ingredients_list_component:
+      add_ingredient: Add ingredient
+      ingredient_cannot_be_updated_when_archived: Ingredient cannot be updated as long as recipe is archived.
+    nutritions_table_component:
+      no_ingredients_no_nutritions_shrug: No ingredients = no nutritions.
+    servings_with_count:
+      one: 1 serving
+      other: "%{count} servings"
+  recipes:
+    copies:
+      new:
+        copy_recipe: Copy recipe
+        copy_recipe_name: Copy %{recipe_name}
+    create:
+      success: Recipe added
+    destroy:
+      archive_success: Recipe archived
+      unarchive_success: Recipe unarchived
+    edit:
+      edit_recipe_name: Edit %{recipe_name}
+    form:
+      add_recipe: Add recipe
+      update_recipe: Update recipe
+    index:
+      add_recipe: Add recipe
+    ingredients:
+      edit:
+        title: Edit ingredient
+      new:
+        add_ingredient_to: Add ingredient to %{recipe_name}
+      update:
+        success: Recipe ingredient updated
+    new:
+      title: New recipe
+    update:
+      success: Recipe updated
+  reset_passwords:
+    create:
+      success: Password successfully reset and logged in
+    new:
+      choose_wisely: Choose wisely
+      set_password: Set password
+      title: Set new password
+  sessions:
+    create:
+      invalid_email_or_password: Invalid email or password
+      success: Login successful
+    form:
+      email_placeholder: Email address
+      forgot_password: Forgot password
+      password_placeholder: Password
+      sign_in: Sign in
+    new:
+      title: Sign in
+  settings:
+    index:
+      title: Settings
+  shared:
+    archived: Archived
+    buttons:
+      back: Back
+      cancel: Cancel
+      confirm: Confirm
+      dismiss: Dismiss
+      search: Search
+      select: Select
+    errors:
+      invalid_input: Invalid input
+      oops: Oops, something went wrong
+    global: Global
+    nutrition_facts: Nutrition facts
+    nutritions:
+      one: Nutrition
+      other: Nutritions
+    per_serving: Per serving
+    quantity_pieces_abbreviation:
+      one: pc
+      other: pcs
+    recipe_ingredients:
+      add_ingredient: Add recipe ingredient
+      confirm_deletion: Confirm deletion
+      delete_ingredient: Delete recipe ingredient
+      update_ingredient: Update recipe ingredient
+    search_food: Search food
+    total: Total
+    vegan: Vegan
