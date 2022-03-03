@@ -18,9 +18,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot get show of other' do
-    assert_raises ActiveRecord::RecordNotFound do
-      get journal_day_path(journal_days(:john_january_first))
-    end
+    assert_not_get journal_day_path(journal_days(:john_january_first))
   end
 
   # new
@@ -56,9 +54,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot get edit of other' do
-    assert_raises ActiveRecord::RecordNotFound do
-      get edit_journal_day_path(journal_days(:john_january_first))
-    end
+    assert_not_get edit_journal_day_path(journal_days(:john_january_first))
   end
 
   # update
@@ -81,9 +77,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot patch update of other' do
-    assert_raises ActiveRecord::RecordNotFound do
-      patch journal_day_path(journal_days(:john_january_first)), params: {}
-    end
+    assert_not_patch journal_day_path(journal_days(:john_january_first))
   end
 
   # destroy
@@ -100,8 +94,6 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cannot delete destroy of other' do
-    assert_raises ActiveRecord::RecordNotFound do
-      delete journal_day_path(journal_days(:john_january_first))
-    end
+    assert_not_delete journal_day_path(journal_days(:john_january_first))
   end
 end

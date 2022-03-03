@@ -204,7 +204,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot patch #update of other' do
     sign_in_user :john
-    assert_not_patch food_portion_path(@global_food, @global_food_portion), params: {}
+    assert_not_patch food_portion_path(@global_food, @global_food_portion)
   end
 
   # destroy
@@ -264,8 +264,6 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'admin cannot delete #destroy of used global portion' do
     sign_in_user :daisy
-    assert_raises ActiveRecord::DeleteRestrictionError do
-      delete food_portion_path(@global_food, @global_food_portion)
-    end
+    assert_not_delete food_portion_path(@global_food, @global_food_portion), error: ActiveRecord::DeleteRestrictionError
   end
 end

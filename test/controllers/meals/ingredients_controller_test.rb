@@ -15,9 +15,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get #new for other' do
     sign_in_user :john
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get new_meal_ingredient_path(@meal)
-    end
+    assert_not_get new_meal_ingredient_path(@meal)
   end
 
   # create
@@ -45,9 +43,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot post #create for other' do
     sign_in_user :john
-    assert_raises(ActiveRecord::RecordNotFound) do
-      post meal_ingredients_path(@meal), params: {}
-    end
+    assert_not_post meal_ingredients_path(@meal)
   end
 
   # edit
@@ -59,9 +55,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get #edit for other' do
     sign_in_user :john
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get edit_meal_ingredient_path(@meal, @meal_ingredient)
-    end
+    assert_not_get edit_meal_ingredient_path(@meal, @meal_ingredient)
   end
 
   # update
@@ -85,9 +79,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot patch #update for other' do
     sign_in_user :john
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch meal_ingredient_path(@meal, @meal_ingredient), params: {}
-    end
+    assert_not_patch meal_ingredient_path(@meal, @meal_ingredient)
   end
 
   # destry
@@ -108,8 +100,6 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot delete #destroy for other' do
     sign_in_user :john
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete meal_ingredient_path(@meal, @meal_ingredient)
-    end
+    assert_not_delete meal_ingredient_path(@meal, @meal_ingredient)
   end
 end

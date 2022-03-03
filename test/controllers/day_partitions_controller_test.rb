@@ -44,17 +44,13 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get edit default' do
     sign_in_user :daisy
-    assert_raises ActiveRecord::RecordNotFound do
-      get edit_day_partition_path(day_partitions(:daisy_default))
-    end
+    assert_not_get edit_day_partition_path(day_partitions(:daisy_default))
   end
 
   test 'cannot get edit of other' do
     sign_in_user :daisy
 
-    assert_raises ActiveRecord::RecordNotFound do
-      get edit_day_partition_path(day_partitions(:john_brunch))
-    end
+    assert_not_get edit_day_partition_path(day_partitions(:john_brunch))
   end
 
   # update
@@ -77,19 +73,13 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot put update default' do
     sign_in_user :daisy
-    assert_raises ActiveRecord::RecordNotFound do
-      patch day_partition_path(day_partitions(:daisy_default)), params: {}
-    end
+    assert_not_patch day_partition_path(day_partitions(:daisy_default))
   end
 
   test 'cannot put update of other' do
     sign_in_user :daisy
-
     day_partition = day_partitions(:john_brunch)
-
-    assert_raises ActiveRecord::RecordNotFound do
-      patch day_partition_path(day_partition), params: {}
-    end
+    assert_not_patch day_partition_path(day_partition)
   end
 
   # destroy
@@ -106,18 +96,12 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot delete destroy default' do
     sign_in_user :daisy
-    assert_raises ActiveRecord::RecordNotFound do
-      delete day_partition_path(day_partitions(:daisy_default))
-    end
+    assert_not_delete day_partition_path(day_partitions(:daisy_default))
   end
 
   test 'cannot delete destroy of other' do
     sign_in_user :daisy
-
     day_partition = day_partitions(:john_brunch)
-
-    assert_raises ActiveRecord::RecordNotFound do
-      delete day_partition_path(day_partition), params: {}
-    end
+    assert_not_delete day_partition_path(day_partition)
   end
 end
