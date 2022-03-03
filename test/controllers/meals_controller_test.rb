@@ -100,16 +100,14 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   test 'cannot post #create, meal_type: :unknown' do
     sign_in_user :daisy
 
-    assert_not_post(
-      journal_day_meals_path(@journal_day),
-      params: { meal_type: :unknown },
-      error: JournalDayMealFormFinderService::FormClassNotFound
-    )
+    assert_raises JournalDayMealFormFinderService::FormClassNotFound do
+      post journal_day_meals_path(@journal_day), params: { meal_type: :unknown }
+    end
   end
 
   test 'cannot get #post of other' do
     sign_in_user :john
-    assert_not_post(journal_day_meals_path(@journal_day), params: {})
+    assert_not_post(journal_day_meals_path(@journal_day))
   end
 
   # edit
@@ -187,12 +185,12 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot patch #update of other, portion meal' do
     sign_in_user :john
-    assert_not_patch(journal_day_meal_path(@journal_day, @portion_meal), params: {})
+    assert_not_patch(journal_day_meal_path(@journal_day, @portion_meal))
   end
 
   test 'cannot patch #update of other, recipe meal' do
     sign_in_user :john
-    assert_not_patch(journal_day_meal_path(@journal_day, @recipe_meal), params: {})
+    assert_not_patch(journal_day_meal_path(@journal_day, @recipe_meal))
   end
 
   # destroy
@@ -206,7 +204,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       assert_notice 'Meal deleted'
     end
 
-    assert_raises(ActiveRecord::RecordNotFound) do
+    assert_raises ActiveRecord::RecordNotFound do
       @portion_meal.reload
     end
   end

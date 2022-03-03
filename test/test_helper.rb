@@ -35,16 +35,12 @@ class ActiveSupport::TestCase
     assert_raises(error) { get path }
   end
 
-  def assert_not_post(path, params: {}, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) do
-      post(path, params:)
-    end
+  def assert_not_post(path, error: ActiveRecord::RecordNotFound)
+    assert_raises(error) { post path }
   end
 
-  def assert_not_patch(path, params: {}, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) do
-      patch(path, params:)
-    end
+  def assert_not_patch(path, error: ActiveRecord::RecordNotFound)
+    assert_raises(error) { patch path }
   end
 
   def assert_not_delete(path, error: ActiveRecord::RecordNotFound)
