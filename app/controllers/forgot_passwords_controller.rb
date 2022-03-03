@@ -21,7 +21,7 @@ class ForgotPasswordsController < ApplicationController
   private
 
   def forgot_password_params
-    params.require(:forgot_password_form).permit(:email)
+    params.require(:forgot_password).permit(:email)
   end
 
   def invalid_input_error

@@ -1,7 +1,7 @@
 .flex.flex-col.gap-y-8
   %h1= t('.title')
 
-  = form_with(model: @form, url: forgot_passwords_url) do |f|
+  = form_with(model: @form, url: forgot_passwords_url, data: { turbo: false }) do |f|
     .bg-white.rounded.overflow-hidden.shadow
       .pt-2.pb-4.px-4.flex.flex-col.gap-y-4
         .flex.flex-col.gap-y-1

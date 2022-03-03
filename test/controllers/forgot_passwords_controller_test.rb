@@ -24,7 +24,7 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
 
   def reset_password_form_params
     {
-      forgot_password_form: {
+      forgot_password: {
         email: 'john@foo.bar'
       },
       reset: 'Reset my password'
@@ -33,7 +33,7 @@ class ForgotPasswordsControllerTest < ActionDispatch::IntegrationTest
 
   def reset_password_form_params_missing_email
     {
-      forgot_password_form: {
+      forgot_password: {
         email: ''
       },
       reset: 'Reset my password'
