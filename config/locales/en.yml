@@ -23,6 +23,8 @@ en:
       recipe_ingredient:
         amount_in_measure: Amount in measure
         portion_id: Portion
+      reset_password_form:
+        password: New password
     errors:
       models:
         journal_day/meal:
@@ -375,6 +377,10 @@ en:
   reset_passwords:
     create:
       success: Password successfully reset and logged in
+    new:
+      choose_wisely: Choose wisely
+      set_password: Set password
+      title: Set new password
   sessions:
     create:
       invalid_email_or_password: Invalid email or password
