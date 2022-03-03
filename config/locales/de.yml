@@ -8,422 +8,566 @@ de:
       forgot_password:
         email: Email
       journal_day/meal:
-        amount_in_measure: Amount in measure
-        day_partition_id: Day partition
-        measure: Measure
+        amount_in_measure: Menge in Masseinheit
+        day_partition_id: Tagesabschnitt
+        measure: Masseinheit
         portion_name: Portion
-        recipe_name: Recipe name
-        servings: Servings
+        recipe_name: Rezeptname
+        servings: Portionen
       login_form:
         email: Email
-        password: Password
+        password: Passwort
       meal_ingredient:
-        amount_in_measure: Amount in measure
-        measure: Measure
+        amount_in_measure: Menge in Masseinheit
+        measure: Masseinheit
         portion_name: Portion
       recipe_copy_form:
-        name: New recipe name
+        name: Neuer Rezeptname
       recipe_ingredient:
-        amount_in_measure: Amount in measure
+        amount_in_measure: Menge in Masseinheit
         portion_id: Portion
       reset_password_form:
-        password: New password
+        password: Neues Passwort
     errors:
       models:
         journal_day/meal:
-          does_not_exist: does not exist
+          does_not_exist: existiert nicht
         meal_ingredient:
           attributes:
             portion_name:
-              does_not_exist: does not exist
+              does_not_exist: existiert nicht
         reset_password_form:
           attributes:
             base:
-              did_not_request_reset_link: No reset link was requested.
+              did_not_request_reset_link: Es wurde kein Reset Link angefordert.
   activerecord:
     attributes:
       food:
-        carbs: Carbohydrates
-        carbs_sugar_part: Carbohydrates, sugar part
-        data_source_updated_at: Data source updated at
-        data_source_url: Data source URL
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        carbs: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        data_source_updated_at: Datenquelle aktualisiert um
+        data_source_url: Datenquelle URL
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: Kcal
         name: Name
-        protein: Protein
-        unit: Unit
+        protein: Eiweiss
+        unit: Masseinheit
         units:
-          gram: Gram
-          mililiter: Mililiter
+          gram: Gramm
+          mililiter: Milliliter
         units_abbreviations:
           gram: g
           mililiter: ml
         vegan: Vegan
       journal_day:
-        carbs: Carbohydrate
-        carbs_sugar_part: Carbohydrate, sugar part
-        date: Date
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        carbs: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        date: Datum
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: Kcal
-        protein: Protein
+        protein: Eiweiss
         vegan: Vegan
       meal:
-        carbs: Carbohydrate
-        carbs_sugar_part: Carbohydrate, sugar part
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        carbs: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: Kcal
-        protein: Protein
+        protein: Eiweiss
       meal_ingredient:
-        amount: Amount
-        carbs: Carbohydrate
-        carbs_sugar_part: Carbohydrate, sugar part
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        amount: Menge
+        carbs: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: Kcal
-        measure: Measure
-        protein: Protein
+        measure: Einheit
+        protein: Eiweiss
       portion:
-        amount: Amount in g/ml
-        carbs: Carbohydrate
-        carbs_sugar_part: Carbohydrate, sugar part
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        amount: Menge in g/ml
+        carbs: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: Kcal
         name: Name
-        protein: Protein
+        protein: Eiweiss
       recipe:
-        archived_at: Archived at
-        carbs: Carbohydrate
-        carbs_short: Carbs
-        carbs_sugar_part: Carbohydrate, sugar part
-        carbs_sugar_part_short: Carbs, sugar part
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        archived_at: Archiviert um
+        carbs: Kohlenhydrate
+        carbs_short: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        carbs_sugar_part_short: Kohlenhydrate, davon Zucker
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: kcal
         name: Name
-        protein: Protein
-        servings: Servings
+        protein: Eiweiss
+        servings: Portionen
         vegan: Vegan
       recipe_ingredient:
-        amount: Amount
-        carbs: Carbohydrate
-        carbs_sugar_part: Carbohydrate, sugar part
-        fat: Fat
-        fat_saturated: Fat saturated
-        fiber: Fiber
+        amount: Menge
+        carbs: Kohlenhydrate
+        carbs_sugar_part: Kohlenhydrate, davon Zucker
+        fat: Fett
+        fat_saturated: Fett, davon gesättigte Fettsäuren
+        fiber: Ballaststoffe
         kcal: Kcal
-        measure: Measure
+        measure: Einheit
         measures:
-          piece: Pieces
+          piece: Stück
           unit: g/ml
-        protein: Protein
+        protein: Eiweiss
       user:
         email: Email
-        role: Role
+        role: Rolle
         roles:
-          admin: Admin
-          user: User
+          admin: Administrator
+          user: Benutzer
     errors:
+      messages:
+        record_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
+        restrict_dependent_destroy:
+          has_many: Datensatz kann nicht gelöscht werden, da abhängige %{record} existieren.
+          has_one: Datensatz kann nicht gelöscht werden, da ein abhängiger %{record}-Datensatz existiert.
       models:
         day_partition:
           attributes:
             base:
-              default_already_exists: Default day partition already exists
+              default_already_exists: Standard Tagesabschnitt existiert bereits
         food:
           attributes:
             base:
-              cannot_delete_food_still_used_in_meal: Can't delete food that is still used in a meal
-              cannot_delete_food_still_used_in_recipe: Can't delete food that is still used in a recipe
+              cannot_delete_food_still_used_in_meal: Nahrungsmittel, das in einer Mahlzeit verwendet wird, kann nicht gelöscht werden
+              cannot_delete_food_still_used_in_recipe: Nahrungsmittel, das in einem Rezept verwendet wird, kann nicht gelöscht werden
     models:
       day_partition:
-        one: Day partition
-        other: Day partitions
+        one: Tagesabschnitt
+        other: Tagesabschnitte
       food:
-        one: Food
-        other: Foods
+        one: Nahrungsmittel
+        other: Nahrungsmittel
       journal_day:
         one: Journal
-        other: Journals
+        other: Journale
       meal:
-        one: Meal
-        other: Meals
+        one: Mahlzeit
+        other: Mahlzeiten
       meal_ingredient:
-        one: Meal ingredient
-        other: Meal ingredients
+        one: Zutat Mahlzeit
+        other: Zutaten Mahlzeit
       portion:
         one: Portion
-        other: Portions
+        other: Portionen
       recipe:
-        one: Recipe
-        other: Recipes
+        one: Rezept
+        other: Rezepte
       recipe_ingredient:
-        one: Ingredient
-        other: Ingredients
+        one: Zutat
+        other: Zutaten
       user:
-        one: User
-        other: Users
+        one: Benutzer
+        other: Benutzer
   date:
+    abbr_day_names:
+    - So
+    - Mo
+    - Di
+    - Mi
+    - Do
+    - Fr
+    - Sa
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mär
+    - Apr
+    - Mai
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Okt
+    - Nov
+    - Dez
+    day_names:
+    - Sonntag
+    - Montag
+    - Dienstag
+    - Mittwoch
+    - Donnerstag
+    - Freitag
+    - Samstag
     formats:
       default: "%d.%m.%Y"
       weekday_only: "%a"
       with_weekday: "%a, %d.%m.%Y"
+    month_names:
+    -
+    - Januar
+    - Februar
+    - März
+    - April
+    - Mai
+    - Juni
+    - Juli
+    - August
+    - September
+    - Oktober
+    - November
+    - Dezember
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: etwa eine Stunde
+        other: etwa %{count} Stunden
+      about_x_months:
+        one: etwa ein Monat
+        other: etwa %{count} Monate
+      about_x_years:
+        one: etwa ein Jahr
+        other: etwa %{count} Jahre
+      almost_x_years:
+        one: fast ein Jahr
+        other: fast %{count} Jahre
+      half_a_minute: eine halbe Minute
+      less_than_x_minutes:
+        one: weniger als eine Minute
+        other: weniger als %{count} Minuten
+      less_than_x_seconds:
+        one: weniger als eine Sekunde
+        other: weniger als %{count} Sekunden
+      over_x_years:
+        one: mehr als ein Jahr
+        other: mehr als %{count} Jahre
+      x_days:
+        one: ein Tag
+        other: "%{count} Tage"
+      x_minutes:
+        one: eine Minute
+        other: "%{count} Minuten"
+      x_months:
+        one: ein Monat
+        other: "%{count} Monate"
+      x_seconds:
+        one: eine Sekunde
+        other: "%{count} Sekunden"
+      x_years:
+        one: ein Jahr
+        other: "%{count} Jahre"
+    prompts:
+      day: Tag
+      hour: Stunde
+      minute: Minute
+      month: Monat
+      second: Sekunde
+      year: Jahr
   day_partition:
-    at_the_end: At the end
-    unpartitioned: Unpartitioned
+    at_the_end: Am Schluss
+    unpartitioned: Nicht zugeteilt
   day_partitions:
     create:
-      success: Day partition added
+      success: Tagesabschnitt hinzugefügt
     destroy:
-      success: Day partition deleted
+      success: Tagesabschnitt wurde gelöscht
     edit:
-      confirm_deletion: Confirm deletion
-      delete_day_partition: Delete day partition
-      this_cannot_be_undone: This cannot be undone.
-      title: Edit day partition
+      confirm_deletion: Löschen bestätigen
+      delete_day_partition: Tagesabschnitt löschen
+      this_cannot_be_undone: Dies kann nicht rückgängig gemacht werden.
+      title: Tagesabschnitt bearbeiten
     form:
-      add_day_partition: Add day partition
-      move_to_position: Move to position
-      names_placeholder: Breakfast, Lunch, Dinner...
-      update_day_partition: Update day partition
+      add_day_partition: Tagesabschnitt hinzufügen
+      move_to_position: Nach Position verschieben
+      names_placeholder: Frühstück, Mittagessen, Abendessen...
+      update_day_partition: Tagesabschnitt aktualisieren
     index:
-      add_day_partition: Add day partition
+      add_day_partition: Tagesabschnitt hinzufügen
     new:
-      title: New day partition
+      title: Neuer Tagesabschnitt
     update:
-      success: Day partition updated
+      success: Tagesabschnitt wurde aktualisiert
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: muss akzeptiert werden
+      blank: muss ausgefüllt werden
+      confirmation: stimmt nicht mit %{attribute} überein
+      empty: muss ausgefüllt werden
+      equal_to: muss genau %{count} sein
+      even: muss gerade sein
+      exclusion: ist nicht verfügbar
+      greater_than: muss grösser als %{count} sein
+      greater_than_or_equal_to: muss grösser oder gleich %{count} sein
+      inclusion: ist kein gültiger Wert
+      invalid: ist nicht gültig
+      less_than: muss kleiner als %{count} sein
+      less_than_or_equal_to: muss kleiner oder gleich %{count} sein
+      model_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
+      not_a_number: ist keine Zahl
+      not_an_integer: muss ganzzahlig sein
+      odd: muss ungerade sein
+      other_than: darf nicht gleich %{count} sein
+      present: darf nicht ausgefüllt werden
+      required: muss ausgefüllt werden
+      taken: ist bereits vergeben
+      too_long:
+        one: ist zu lang (mehr als 1 Zeichen)
+        other: ist zu lang (mehr als %{count} Zeichen)
+      too_short:
+        one: ist zu kurz (weniger als 1 Zeichen)
+        other: ist zu kurz (weniger als %{count} Zeichen)
+      wrong_length:
+        one: hat die falsche Länge (muss genau 1 Zeichen haben)
+        other: hat die falsche Länge (muss genau %{count} Zeichen haben)
+    template:
+      body: 'Bitte überprüfen Sie die folgenden Felder:'
+      header:
+        one: 'Konnte %{model} nicht speichern: ein Fehler.'
+        other: 'Konnte %{model} nicht speichern: %{count} Fehler.'
   food:
     make_global_form_component:
-      do_you_really_want_to_make_this_food_global_questionmark: Do you really want to make this food global? This cannot be undone.
-      make_food_global: Make food global
+      do_you_really_want_to_make_this_food_global_questionmark: Nahrungsmittel wirklich global machen? Dies kann nicht rückgängig gemacht werden.
+      make_food_global: Nahrungsmittel global machen
   food_search_form_component:
-    no_foods_found: No foods found
+    no_foods_found: Kein Nahrungsmittel gefunden
   foods:
     create:
-      success: Food added
+      success: Nahrungsmittel wurde hinzugefügt
     destroy:
-      success: Food deleted
+      success: Nahrungsmittel wurde gelöscht
     edit:
-      title: Edit food
+      title: Nahrungsmittel bearbeiten
     facts:
-      default_amount_unit_contains: 100%{unit} contains
+      default_amount_unit_contains: 100%{unit} enthält
     form:
-      add_food: Add food
-      names_placeholder: Wheat, Tomato, Beans...
-      update_food: Update food
+      add_food: Nahrungsmittel hinzufügen
+      names_placeholder: Weizen, Tomate, Bohnen...
+      update_food: Nahrungsmittel aktualisieren
     globalize:
-      success: Food has been made global
+      success: Nahrungsmittel wurde global gemacht
     index:
-      add_food: Add food
+      add_food: Nahrungsmittel hinzufügen
     new:
-      title: New food
+      title: Neues Nahrungsmittel
     show:
-      delete_food: Delete food
-      edit_food: Edit food
+      delete_food: Nahrungsmittel löschen
+      edit_food: Nahrungsmittel bearbeiten
     update:
-      success: Food updated
+      success: Nahrungsmittel wurde aktualisiert
   forgot_passwords:
     create:
-      success: A reset link has been sent to your email address
+      success: Ein Reset Link wurde an deine Email Adresse geschickt.
     new:
-      reset_password: Reset password
-      title: Forgot password?
+      reset_password: Password zurücksetzen
+      title: Passwort vergessen?
   journal_day:
     nutritions_table_component:
-      no_meals_no_nutritions_shrug: "No meals, no nutritions. \U0001F937"
+      no_meals_no_nutritions_shrug: "Keine Mahlzeiten, keine Nährwerte. \U0001F937"
   journal_days:
     create:
-      success: Journal day added
+      success: Journaltag wurde hinzugefügt
     destroy:
-      success: Journal day deleted
+      success: Journaltag wurde gelöscht
     edit:
-      title_with_date: Edit %{date}
+      title_with_date: "%{date} bearbeiten"
     form:
-      add_journal_day: Add journal day
-      edit_journal_day: Edit journal day
+      add_journal_day: Journaltag hinzufügen
+      edit_journal_day: Journaltag bearbeiten
     index:
-      add_journal_day: Add journal day
-      add_journal_day_for_today: Add journal day for today
-      title: My journal days
+      add_journal_day: Journaltag hinzufügen
+      add_journal_day_for_today: Journaltag für heute hinzufügen
+      title: Meine Journaltage
     meals:
-      no_meals: No meals.
+      no_meals: Keine Mahlzeiten.
       portions:
-        edit_meal: Edit meal
-        other: Other
-        remove_meal: Remove meal
+        edit_meal: Mahlzeit bearbeiten
+        other: Andere
+        remove_meal: Mahlzeit entfernen
       recipes:
-        add_meal_ingredient: Add meal ingredient
-        edit_meal_ingredient: Edit meal ingredient
-        remove_meal_ingredient: Remove meal ingredient
+        add_meal_ingredient: Zutat für Mahlzeit hinzufügen
+        edit_meal_ingredient: Zutat für Mahlzeit bearbeiten
+        remove_meal_ingredient: Zutat für Mahlzeit entfernen
     new:
-      title: Add journal day
+      title: Journaltag hinzufügen
     show:
-      add_portion_meal: Add portion meal
-      add_recipe_meal: Add recipe meal
-      delete_journal_day: Delete journal day
-      edit_journal_day: Edit journal day
+      add_portion_meal: Portion hinzufügen
+      add_recipe_meal: Rezept hinzufügen
+      delete_journal_day: Journaltag löschen
+      edit_journal_day: Journaltag bearbeiten
     update:
-      success: Journal day updated
+      success: Journaltag wurde aktualisiert
   layouts:
     header:
-      settings: Settings
-      sign_out: Sign out
+      settings: Einstellungen
+      sign_out: Ausloggen
   meals:
     create:
-      success: Meal added
+      success: Mahlzeit wurde hinzugefügt
     destroy:
-      success: Meal deleted
+      success: Mahlzeit wurde gelöscht
     ingredients:
       create:
-        success: Meal ingredient added
+        success: Zutat für Mahlzeit wurde hinzugefügt
       destroy:
-        success: Meal ingredient deleted
+        success: Zutat für Mahlzeit wurde gelöscht
       edit:
-        title: Edit meal ingredient
+        title: Zutat für Mahlzeit bearbeiten
       form:
-        add_meal_ingredient: Add meal ingredient
-        update_meal_ingredient: Update meal ingredient
+        add_meal_ingredient: Zutat für Mahlzeit hinzufügen
+        update_meal_ingredient: Zutat für Mahlzeit aktualisieren
       new:
-        title: Add meal ingredient
+        title: Zutat für Mahlzeit hinzufügen
       update:
-        success: Meal ingredient updated
+        success: Zutat für Mahlzeit wurde aktualisiert
     portions:
       form_component:
-        add_portion_meal: Add portion meal
-        edit_portion_meal: Edit portion meal
+        add_portion_meal: Portion hinzufügen
+        edit_portion_meal: Portion bearbeiten
     recipes:
       edit_form_component:
-        edit_recipe_on_journal_day: Edit recipe on journal day
+        edit_recipe_on_journal_day: Rezept für Journaltag bearbeiten
       new_form_component:
-        add_recipe_to_journal_day: Add recipe to journal day
+        add_recipe_to_journal_day: Rezept zu Journaltag hinzufügen
     update:
-      success: Meal updated
+      success: Mahlzeit wurde aktualisiert
   nutrient_labels_component:
-    carbs: Carbohydrate
-    fat: Fat
+    carbs: Kohlenhydrate
+    fat: Fett
     kcal: kcal
-    protein: Protein
+    protein: Eiweiss
   password_mailer:
     reset_link_mail:
-      reset_password: Reset password
-      your_password_reset_link: Your password reset link
+      reset_password: Passwort zurücksetzen
+      your_password_reset_link: Dein Passwort Reset Link
   portion:
-    base: Base
+    base: Basis
   portions:
     create:
-      success: Portion added
+      success: Portion wurde hinzugefügt
     destroy:
-      success: Portion deleted
+      success: Portion wurde gelöscht
     edit:
-      edit_portion_for: Edit portion for %{food_name}
+      edit_portion_for: Portion für %{food_name} bearbeiten
     form:
-      add_portion: Add portion
-      update_portion: Update portion
+      add_portion: Portion hinzufügen
+      update_portion: Portion aktualisieren
     index:
-      add_portion: Add portion
-      edit_portion: Edit portion
-      remove_portion: Remove portion
+      add_portion: Portion hinzufügen
+      edit_portion: Portion bearbeiten
+      remove_portion: Portion entfernen
     new:
-      new_portion_for: New portion for %{food_name}
+      new_portion_for: Neue Portion für %{food_name}
     update:
-      success: Portion updated
+      success: Portion wurde aktualisiert
   recipe:
     header_component:
-      archive_recipe: Archive recipe
-      copy_recipe: Copy recipe
-      edit_recipe: Edit recipe
-      unarchive_recipe: Unarchive recipe
+      archive_recipe: Rezept archivieren
+      copy_recipe: Rezept kopieren
+      edit_recipe: Rezept bearbeiten
+      unarchive_recipe: Rezept unarchivieren
     ingredients_list_component:
-      add_ingredient: Add ingredient
-      ingredient_cannot_be_updated_when_archived: Ingredient cannot be updated as long as recipe is archived.
+      add_ingredient: Zutat hinzufügen
+      ingredient_cannot_be_updated_when_archived: Zutaten können nicht aktualisiert werden, solange das Rezept archiviert ist.
     nutritions_table_component:
-      no_ingredients_no_nutritions_shrug: No ingredients = no nutritions.
+      no_ingredients_no_nutritions_shrug: Keine Zutaten = keine Nährwerte.
     servings_with_count:
-      one: 1 serving
-      other: "%{count} servings"
+      one: 1 Portion
+      other: "%{count} Portionen"
   recipes:
     copies:
       new:
-        copy_recipe: Copy recipe
-        copy_recipe_name: Copy %{recipe_name}
+        copy_recipe: Rezept kopieren
+        copy_recipe_name: "%{recipe_name} kopieren"
     create:
-      success: Recipe added
+      success: Rezept hinzugefügt
     destroy:
-      archive_success: Recipe archived
-      unarchive_success: Recipe unarchived
+      archive_success: Rezept archiviert
+      unarchive_success: RReept unarchiviert
     edit:
-      edit_recipe_name: Edit %{recipe_name}
+      edit_recipe_name: "%{recipe_name} bearbeiten"
     form:
-      add_recipe: Add recipe
-      update_recipe: Update recipe
+      add_recipe: Rezept hinzufügen
+      update_recipe: Rezept archivieren
     index:
-      add_recipe: Add recipe
+      add_recipe: Rezept hinzufügen
     ingredients:
       edit:
-        title: Edit ingredient
+        title: Zutat bearbeiten
       new:
-        add_ingredient_to: Add ingredient to %{recipe_name}
+        add_ingredient_to: Zutat zu %{recipe_name} hinzufügen
       update:
-        success: Recipe ingredient updated
+        success: Zutat für Rezept wurde aktualisiert
     new:
-      title: New recipe
+      title: Neues Rezept
     update:
-      success: Recipe updated
+      success: Rezept wurde aktualisiert
   reset_passwords:
     create:
-      success: Password successfully reset and logged in
+      success: Passwort wurde erfolgreich zurückgesetzt und eingeloggt
     new:
-      choose_wisely: Choose wisely
-      set_password: Set password
-      title: Set new password
+      choose_wisely: Wähle vernünftig
+      set_password: Passwort setzen
+      title: Neues Passwort setzen
   sessions:
     create:
-      invalid_email_or_password: Invalid email or password
-      success: Login successful
+      invalid_email_or_password: Email oder Passwort ungültig
+      success: Login erfolgreich
     form:
-      email_placeholder: Email address
-      forgot_password: Forgot password
-      password_placeholder: Password
-      sign_in: Sign in
+      email_placeholder: Email Adresse
+      forgot_password: Passwort vergessen
+      password_placeholder: Passwort
+      sign_in: Einloggen
     new:
-      title: Sign in
+      title: Einloggen
   settings:
     index:
-      title: Settings
+      title: Einstellungen
   shared:
-    archived: Archived
+    archived: Archiviert
     buttons:
-      back: Back
-      cancel: Cancel
-      confirm: Confirm
-      dismiss: Dismiss
-      search: Search
-      select: Select
+      back: Zurück
+      cancel: Abbrechen
+      confirm: Bestätigen
+      dismiss: Ausblenden
+      search: Suchen
+      select: Auswählen
     errors:
-      invalid_input: Invalid input
-      oops: Oops, something went wrong
+      invalid_input: Ungültige Eingabe
+      oops: Ups, irgendetwas stimmt hier nicht
     global: Global
-    nutrition_facts: Nutrition facts
+    nutrition_facts: Nährwerte
     nutritions:
-      one: Nutrition
-      other: Nutritions
-    per_serving: Per serving
+      one: Nährwert
+      other: Nährwerte
+    per_serving: Pro Portion
     quantity_pieces_abbreviation:
-      one: pc
-      other: pcs
+      one: Stk.
+      other: Stk.
     recipe_ingredients:
-      add_ingredient: Add recipe ingredient
-      confirm_deletion: Confirm deletion
-      delete_ingredient: Delete recipe ingredient
-      update_ingredient: Update recipe ingredient
-    search_food: Search food
+      add_ingredient: Zutat für Rezept hinzufügen
+      confirm_deletion: Löschen bestätigen
+      delete_ingredient: Zutat für Rezept löschen
+      update_ingredient: Zutat für Rezept aktualisieren
+    search_food: Nahrungsmittel suchen
     total: Total
     vegan: Vegan
+  time:
+    am: vormittags
+    formats:
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+    pm: nachmittags
