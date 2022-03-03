@@ -14,6 +14,9 @@ en:
         portion_name: Portion
         recipe_name: Recipe name
         servings: Servings
+      login_form:
+        email: Email
+        password: Password
       meal_ingredient:
         amount_in_measure: Amount in measure
         measure: Measure
@@ -385,6 +388,13 @@ en:
     create:
       invalid_email_or_password: Invalid email or password
       success: Login successful
+    form:
+      email_placeholder: Email address
+      forgot_password: Forgot password
+      password_placeholder: Password
+      sign_in: Sign in
+    new:
+      title: Sign in
   shared:
     archived: Archived
     buttons:
