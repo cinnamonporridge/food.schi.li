@@ -14,6 +14,10 @@ en:
         portion_name: Portion
         recipe_name: Recipe name
         servings: Servings
+      meal_ingredient:
+        amount_in_measure: Amount in measure
+        measure: Measure
+        portion_name: Portion
       recipe_ingredient:
         amount_in_measure: Amount in measure
         portion_id: Portion
@@ -263,7 +267,6 @@ en:
       success: Journal day updated
   layouts:
     header:
-      journal: Journal
       settings: Settings
       sign_out: Sign out
   meals:
@@ -276,6 +279,13 @@ en:
         success: Meal ingredient added
       destroy:
         success: Meal ingredient deleted
+      edit:
+        title: Edit meal ingredient
+      form:
+        add_meal_ingredient: Add meal ingredient
+        update_meal_ingredient: Update meal ingredient
+      new:
+        title: Add meal ingredient
       update:
         success: Meal ingredient updated
     portions:
