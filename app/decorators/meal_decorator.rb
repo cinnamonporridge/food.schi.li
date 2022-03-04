@@ -3,16 +3,16 @@ class MealDecorator < SimpleDelegator
     day_partition.decorate.display_name
   end
 
+  def display_name
+    return display_recipe_name if recipe?
+    return display_portion_name if portion?
+  end
+
   def display_recipe_name
     consumable&.name if recipe?
   end
 
   def display_portion_name
     consumable&.decorate&.name_with_food if portion?
-  end
-
-  def display_name
-    return display_recipe_name if recipe?
-    return display_portion_name if portion?
   end
 end
