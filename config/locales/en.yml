@@ -28,6 +28,8 @@ en:
         portion_id: Portion
       reset_password_form:
         password: New password
+      user_profile:
+        locale: Language
     errors:
       models:
         journal_day/meal:
@@ -128,6 +130,7 @@ en:
         protein: Protein
       user:
         email: Email
+        locale: Language
         role: Role
         roles:
           admin: Admin
@@ -534,9 +537,13 @@ en:
       title: Sign in
   settings:
     index:
+      profile: Profile
       title: Settings
   shared:
     archived: Archived
+    available_locales:
+      de: German
+      en: English
     buttons:
       back: Back
       cancel: Cancel
@@ -571,3 +578,10 @@ en:
       long: "%d %B, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  user:
+    profiles:
+      show:
+        title: Profile
+        update_profile: Update profile
+      update:
+        success: Profile updated

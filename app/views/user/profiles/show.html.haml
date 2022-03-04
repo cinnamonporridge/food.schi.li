@@ -1,0 +1,15 @@
+.flex.flex-col.gap-y-8
+  %h1= t('.title')
+
+  = form_with(model: @form, data: { turbo: false }) do |f|
+    .bg-white.rounded.overflow-hidden.shadow.divide-y.divide-gray-200
+      .pt-2.pb-4.px-4.flex.flex-col.gap-y-4
+        .flex.flex-col.gap-y-1
+          = f.label :locale, class: 'label'
+          = f.select :locale, I18n.available_locales_options, {}, class: 'input'
+
+      .p-4.flex.flex-col.gap-y-2
+        = render SubmitButtonComponent.new(t('.update_profile'), :pencil)
+
+        .text-center
+          = render CancelLinkComponent.new(href: settings_path)

@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   validates :email, length: { minimum: 7 }
+  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
 
   before_save :create_default_day_partition, if: :new_record?
 

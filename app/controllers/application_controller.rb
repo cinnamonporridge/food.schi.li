@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  around_action :switch_locale
   before_action :authenticate_user!
 
   def log_in(user)
@@ -10,6 +11,11 @@ class ApplicationController < ActionController::Base
   def log_out
     session.clear
     @current_user = nil
+  end
+
+  def switch_locale(&)
+    locale = current_user&.locale || I18n.default_locale
+    I18n.with_locale(locale, &)
   end
 
   private
