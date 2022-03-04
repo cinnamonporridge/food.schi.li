@@ -6,7 +6,7 @@ class FoodDecorator < SimpleDelegator
   end
 
   def units_collection
-    Food.units.map { |name, _v| [name.capitalize, name] }
+    Food.enum_translations(:units).map(&:reverse)
   end
 
   def display_kcal

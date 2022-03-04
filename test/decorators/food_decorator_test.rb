@@ -9,8 +9,8 @@ class FoodDecoratorTest < ActiveSupport::TestCase
   test '#units_collection' do
     units_collection = Food.new.decorate.units_collection
     assert_equal 2, units_collection.count
-    assert_equal %w[Gram gram], units_collection.first
-    assert_equal %w[Mililiter mililiter], units_collection.second
+    assert_equal ['Gram', :gram], units_collection.first
+    assert_equal ['Mililiter', :mililiter], units_collection.second
   end
 
   test '#display_kcal' do
