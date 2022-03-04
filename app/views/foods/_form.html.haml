@@ -69,4 +69,4 @@
       = render SubmitButtonComponent.new(text, f.object)
 
       .text-center
-        = link_to t('shared.buttons.cancel'), foods_path, class: 'shy-link text-xs'
+        = render CancelLinkComponent.new(href: foods_path)

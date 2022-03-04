@@ -12,4 +12,4 @@
         = render SubmitButtonComponent.new(t('.edit_recipe_on_journal_day'), form.object)
 
         .text-center
-          = link_to t('shared.buttons.cancel'), form.object.journal_day, class: 'shy-link text-xs'
+          = render CancelLinkComponent.new(href: form.object.journal_day)

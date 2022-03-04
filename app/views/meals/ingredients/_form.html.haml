@@ -35,4 +35,4 @@
           - text = f.object.new_record? ? t('.add_meal_ingredient') : t('.update_meal_ingredient')
           = render SubmitButtonComponent.new(text, form.object)
         .w-full.text-center
-          = link_to t('shared.buttons.cancel'), form.object.meal.journal_day, class: 'text-xs shy-link'
+          = render CancelLinkComponent.new(href: form.object.meal.journal_day)
