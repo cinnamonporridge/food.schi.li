@@ -13,4 +13,4 @@
         = render SubmitButtonComponent.new(t('.set_password'), :'lock-open')
 
         .text-center
-          = link_to t('shared.buttons.cancel'), root_path, class: 'shy-link text-xs'
+          = render CancelLinkComponent.new(href: root_path)

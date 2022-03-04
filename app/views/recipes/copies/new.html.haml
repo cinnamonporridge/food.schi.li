@@ -13,4 +13,4 @@
         = render SubmitButtonComponent.new(t('.copy_recipe'), :duplicate)
 
         .text-center
-          = link_to t('shared.buttons.cancel'), @form.recipe, class: 'shy-link text-xs'
+          = render CancelLinkComponent.new(href: @form.recipe)
