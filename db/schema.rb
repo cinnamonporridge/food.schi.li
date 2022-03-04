@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_19_111938) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_04_135950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -160,6 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_19_111938) do
     t.datetime "reset_password_link_sent_at"
     t.string "reset_password_challenge"
     t.string "role", default: "user", null: false
+    t.string "locale", default: "en", null: false
   end
 
   add_foreign_key "day_partitions", "users"

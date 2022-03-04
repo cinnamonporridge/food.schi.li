@@ -28,6 +28,8 @@ de:
         portion_id: Portion
       reset_password_form:
         password: Neues Passwort
+      user_profile:
+        locale: Sprache
     errors:
       models:
         journal_day/meal:
@@ -128,6 +130,7 @@ de:
         protein: Eiweiss
       user:
         email: Email
+        locale: Sprache
         role: Rolle
         roles:
           admin: Administrator
@@ -495,7 +498,7 @@ de:
       success: Rezept hinzugefügt
     destroy:
       archive_success: Rezept archiviert
-      unarchive_success: RReept unarchiviert
+      unarchive_success: Rezept unarchiviert
     edit:
       edit_recipe_name: "%{recipe_name} bearbeiten"
     form:
@@ -534,9 +537,13 @@ de:
       title: Einloggen
   settings:
     index:
+      profile: Profil
       title: Einstellungen
   shared:
     archived: Archiviert
+    available_locales:
+      de: Deutsch
+      en: Englisch
     buttons:
       back: Zurück
       cancel: Abbrechen
@@ -571,3 +578,10 @@ de:
       long: "%A, %d. %B %Y, %H:%M Uhr"
       short: "%d. %B, %H:%M Uhr"
     pm: nachmittags
+  user:
+    profiles:
+      show:
+        title: Profil
+        update_profile: Profil aktualisieren
+      update:
+        success: Profil wurde aktualisiert

@@ -175,6 +175,7 @@ Metrics/BlockLength:
   Exclude:
   - config/environments/*.rb
   - config/initializers/simple_form_foundation.rb
+  - config/routes.rb
 
 Metrics/ClassLength:
   Exclude:

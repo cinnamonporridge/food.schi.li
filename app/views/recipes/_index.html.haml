@@ -2,7 +2,7 @@
   %ul.recipes.flex.flex-col.gap-y-4
     - recipes.each do |recipe|
       %li
-        = link_to recipe_path(recipe), class: 'flex flex-col p-4 bg-white rounded border border-gray-200 hover:border-gray-100 hover:border-green-700 transition' do
+        = link_to recipe_path(recipe), class: 'flex flex-col p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition' do
           .w-full.flex.items-center
             .grow
               = recipe.name

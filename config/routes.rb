@@ -29,4 +29,8 @@ Rails.application.routes.draw do
   end
 
   resources :day_partitions, except: :show
+
+  namespace :user do
+    resource :profile, only: %i[show update]
+  end
 end

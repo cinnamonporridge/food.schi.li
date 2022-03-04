@@ -25,4 +25,12 @@ class UserTest < ActiveSupport::TestCase
   test 'default role' do
     assert_equal 'user', User.new.role
   end
+
+  test 'validates locale' do
+    user = users(:daisy)
+    user.locale = :invalid
+
+    assert_not user.valid?
+    assert_includes user.errors.to_a, 'Language is not included in the list'
+  end
 end

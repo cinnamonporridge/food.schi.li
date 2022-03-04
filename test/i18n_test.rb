@@ -34,4 +34,12 @@ class I18nTest < ActiveSupport::TestCase
                     "Please run `i18n-tasks check-consistent-interpolations' to show them"
     assert_empty inconsistent_interpolations, error_message
   end
+
+  test '.available_locales_options' do
+    I18n.available_locales_options.tap do |options|
+      assert_equal 2, options.count
+      assert_equal %w[Deutsch de], options[0]
+      assert_equal %w[English en], options[1]
+    end
+  end
 end

@@ -2,7 +2,11 @@
   %h1= t('.title')
 
   %ul
-    %li
-      = link_to day_partitions_path, class: 'rounded border border-gray-200 p-4 bg-white flex items-center gap-x-2' do
+    %li.flex.flex-col.gap-y-4
+      = link_to user_profile_path, class: 'flex gap-x-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition items-center' do
+        = render HeroiconComponent.new(:identification)
+        = t('.profile')
+
+      = link_to day_partitions_path, class: 'flex gap-x-2 p-4 bg-white rounded border border-gray-200 hover:border-green-700 transition items-center' do
         = render HeroiconComponent.new(:clock)
         = DayPartition.model_name.human(count: 0)
