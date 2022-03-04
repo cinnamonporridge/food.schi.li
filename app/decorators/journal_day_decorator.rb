@@ -17,23 +17,6 @@ class JournalDayDecorator < SimpleDelegator
     I18n.l(date)
   end
 
-  def date_input_html
-    {
-      value: display_date,
-      class: 'input-group-field',
-      'data-date-format': 'dd.mm.yyyy'
-    }
-  end
-
-  def recipes_collection
-    user.recipes.active.ordered_by_name.map do |recipe|
-      [
-        recipe.name,
-        recipe.id
-      ]
-    end
-  end
-
   def display_kcal
     format_nutrition_number(kcal)
   end
