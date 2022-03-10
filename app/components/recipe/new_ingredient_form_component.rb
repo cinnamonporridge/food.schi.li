@@ -10,7 +10,7 @@ class Recipe::NewIngredientFormComponent < ViewComponent::Base
   end
 
   def food_search_form
-    @food_search_form ||= FoodSearchForm.new(params_with_action_url, user)
+    @food_search_form ||= PortionSelection::FoodSearchForm.new(params_with_action_url, user)
   end
 
   def recipe_ingredient_form

@@ -344,8 +344,6 @@ de:
     make_global_form_component:
       do_you_really_want_to_make_this_food_global_questionmark: Nahrungsmittel wirklich global machen? Dies kann nicht rückgängig gemacht werden.
       make_food_global: Nahrungsmittel global machen
-  food_search_form_component:
-    no_foods_found: Kein Nahrungsmittel gefunden
   foods:
     create:
       success: Nahrungsmittel wurde hinzugefügt
@@ -457,6 +455,9 @@ de:
       your_password_reset_link: Dein Passwort Reset Link
   portion:
     base: Basis
+  portion_selection:
+    food_search_form_component:
+      no_foods_found: Kein Nahrungsmittel gefunden
   portions:
     create:
       success: Portion wurde hinzugefügt

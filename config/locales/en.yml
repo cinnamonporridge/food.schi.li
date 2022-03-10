@@ -344,8 +344,6 @@ en:
     make_global_form_component:
       do_you_really_want_to_make_this_food_global_questionmark: Do you really want to make this food global? This cannot be undone.
       make_food_global: Make food global
-  food_search_form_component:
-    no_foods_found: No foods found
   foods:
     create:
       success: Food added
@@ -457,6 +455,9 @@ en:
       your_password_reset_link: Your password reset link
   portion:
     base: Base
+  portion_selection:
+    food_search_form_component:
+      no_foods_found: No foods found
   portions:
     create:
       success: Portion added

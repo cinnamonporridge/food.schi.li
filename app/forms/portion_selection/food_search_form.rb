@@ -1,4 +1,4 @@
-class FoodSearchForm < ApplicationForm
+class PortionSelection::FoodSearchForm < ApplicationForm
   def initialize(params, user)
     @user = user
     super(Food.new, params)

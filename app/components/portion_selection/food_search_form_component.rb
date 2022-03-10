@@ -1,4 +1,4 @@
-class FoodSearchFormComponent < ViewComponent::Base
+class PortionSelection::FoodSearchFormComponent < ViewComponent::Base
   attr_reader :form
 
   def initialize(form:)

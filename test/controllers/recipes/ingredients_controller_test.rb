@@ -34,7 +34,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @recipe.recipe_ingredients.count } do
       post recipe_ingredients_path(@recipe), params: {
         recipe_ingredient: {
-          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          food_name: portion.food.name, # not directly needed, only for PortionSelection::FoodSearchForm
           portion_id: portion.id,
           amount_in_measure: '3'
         }
@@ -68,7 +68,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { RecipeIngredient.count } do
       post recipe_ingredients_path(@recipe), params: {
         recipe_ingredient: {
-          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          food_name: portion.food.name, # not directly needed, only for PortionSelection::FoodSearchForm
           portion_id: portion.id,
           amount_in_measure: '1.77'
         }
@@ -109,7 +109,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_no_changes -> { @vegan_recipe.vegan? } do
       post recipe_ingredients_path(@vegan_recipe), params: {
         recipe_ingredient: {
-          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          food_name: portion.food.name, # not directly needed, only for PortionSelection::FoodSearchForm
           portion_id: portion.id,
           amount_in_measure: '1'
         }
@@ -127,7 +127,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_no_changes -> { @recipe.vegan? } do
       post recipe_ingredients_path(@recipe), params: {
         recipe_ingredient: {
-          food_name: portion.food.name, # not directly needed, only for FoodSearchForm
+          food_name: portion.food.name, # not directly needed, only for PortionSelection::FoodSearchForm
           portion_id: portion.id,
           amount_in_measure: '1'
         }
