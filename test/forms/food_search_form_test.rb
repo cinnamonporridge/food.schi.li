@@ -9,7 +9,7 @@ class FoodSearchFormTest < ActiveSupport::TestCase
 
   test '#no_foods_found?' do
     form = FoodSearchForm.new({ food_name: 'Magno', action_url: '/foo' }, users(:daisy))
-    assert form.no_foods_found?
+    assert_predicate form, :no_foods_found?
   end
 
   test '#food, global food, as admin' do
@@ -30,12 +30,12 @@ class FoodSearchFormTest < ActiveSupport::TestCase
   test '#food, other food not found' do
     food = foods(:maple_syrup) # belongs to john
     form = FoodSearchForm.new({ food_name: food.name, action_url: '/foo' }, users(:daisy))
-    assert form.food.new_record?
+    assert_predicate form.food, :new_record?
   end
 
   test '#food, new food' do
     form = FoodSearchForm.new({ food_name: 'Does not exist', action_url: '/foo' }, users(:daisy))
-    assert form.food.new_record?
+    assert_predicate form.food, :new_record?
   end
 
   test '#search_results' do

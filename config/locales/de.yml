@@ -378,7 +378,7 @@ de:
       title: Passwort vergessen?
   journal_day:
     nutritions_table_component:
-      no_meals_no_nutritions_shrug: "Keine Mahlzeiten, keine Nährwerte. \U0001F937"
+      no_meals_no_nutritions_shrug: "Keine Mahlzeiten, keine Nährwerte. 🤷"
   journal_days:
     create:
       success: Journaltag wurde hinzugefügt

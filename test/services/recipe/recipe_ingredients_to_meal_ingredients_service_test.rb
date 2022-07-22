@@ -16,8 +16,8 @@ class Recipe::RecipeIngredientsToMealIngredientsServiceTest < ActiveSupport::Tes
       milk_portion_in_meal = meal_ingredients.find { _1.portion == milk_portion }
       apple_portion_in_meal = meal_ingredients.find { _1.portion == apple_portion }
 
-      assert milk_portion_in_meal.present?
-      assert apple_portion_in_meal.present?
+      assert_predicate milk_portion_in_meal, :present?
+      assert_predicate apple_portion_in_meal, :present?
 
       assert_equal 'unit', milk_portion_in_meal.measure
       assert_equal 'piece', apple_portion_in_meal.measure

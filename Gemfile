@@ -1,4 +1,4 @@
-ruby '3.1.1'
+ruby '3.1.2'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -14,10 +14,6 @@ gem 'cssbundling-rails'
 gem 'haml-rails'
 gem 'hotwire-rails'
 gem 'jsbundling-rails'
-# Ruby 3.1 removed net/* from default gems, mail gem depends on it
-gem 'net-imap'
-gem 'net-pop'
-gem 'net-smtp'
 gem 'pagy'
 gem 'pg'
 gem 'puma'

@@ -18,7 +18,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '#global_user?' do
-    assert users(:global).global_user?
+    assert_predicate users(:global), :global_user?
     assert_not users(:daisy).global_user?
   end
 

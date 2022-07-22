@@ -38,7 +38,7 @@ class FoodPolicyTest < ActiveSupport::TestCase
   test '#make_global?' do
     assert_not new_object(foods(:apple), user: users(:daisy)).make_global?
     assert_not new_object(foods(:apple), user: users(:john)).make_global?
-    assert new_object(foods(:milk), user: users(:daisy)).make_global?
+    assert_predicate new_object(foods(:milk), user: users(:daisy)), :make_global?
     assert_not new_object(foods(:maple_syrup), user: users(:john)).make_global?
   end
 end

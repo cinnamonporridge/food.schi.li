@@ -173,7 +173,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     delete food_path(food)
     assert_response :success
     assert_equal 'Deletion not allowed', flash[:notice]
-    assert food.reload.persisted?
+    assert_predicate food.reload, :persisted?
   end
 
   test 'cannot delete food that is used in a meal / journal day' do
@@ -181,7 +181,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     delete food_path(food)
     assert_response :success
     assert_equal 'Deletion not allowed', flash[:notice]
-    assert food.reload.persisted?
+    assert_predicate food.reload, :persisted?
   end
 
   # vegan
