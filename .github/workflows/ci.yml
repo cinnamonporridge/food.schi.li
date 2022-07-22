@@ -1,5 +1,5 @@
 env:
-  NODE_VERSION: 14
+  NODE_VERSION: 16
   RAILS_ENV: test
   POSTGRES_PASSWORD: "postgres"
 
