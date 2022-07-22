@@ -378,7 +378,7 @@ en:
       title: Forgot password?
   journal_day:
     nutritions_table_component:
-      no_meals_no_nutritions_shrug: "No meals, no nutritions. \U0001F937"
+      no_meals_no_nutritions_shrug: "No meals, no nutritions. 🤷"
   journal_days:
     create:
       success: Journal day added

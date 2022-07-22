@@ -17,7 +17,7 @@ class RecipeCopyFormTest < ActiveSupport::TestCase
   test 'valid form' do
     form = RecipeCopyForm.new(recipe, name: 'Recipe Copy')
 
-    assert form.valid?
+    assert_predicate form, :valid?
     assert form.save!
   end
 end
