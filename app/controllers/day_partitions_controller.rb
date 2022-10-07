@@ -15,7 +15,7 @@ class DayPartitionsController < ApplicationController
     if @form.save
       redirect_to day_partitions_path, notice: t('.success')
     else
-      flash[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
   end
@@ -30,7 +30,7 @@ class DayPartitionsController < ApplicationController
     if @form.save
       redirect_to day_partitions_path, notice: t('.success')
     else
-      flash[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :edit
     end
   end

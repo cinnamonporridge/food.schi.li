@@ -219,6 +219,12 @@ Minitest/AssertPathExists:
 Minitest/AssertPredicate:
   Enabled: true
 
+Minitest/AssertRaisesCompoundBody:
+  Enabled: true
+
+Minitest/AssertRaisesWithRegexpArgument:
+  Enabled: true
+
 Minitest/AssertSilent:
   Enabled: true
 
@@ -264,10 +270,16 @@ Minitest/UnspecifiedException:
 Naming/BlockForwarding:
   Enabled: true
 
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: true
+
 Rails/ActionControllerTestCase:
   Enabled: true
 
 Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/ActiveSupportOnLoad:
   Enabled: true
 
 Rails/AddColumnIndex:
@@ -307,6 +319,9 @@ Rails/ExpandedDateRange:
   Enabled: true
 
 Rails/FindById:
+  Enabled: true
+
+Rails/FreezeTime:
   Enabled: true
 
 Rails/I18nLazyLookup:
@@ -357,6 +372,9 @@ Rails/RenderPlainText:
 Rails/RootJoinChain:
   Enabled: true
 
+Rails/RootPathnameMethods:
+  Enabled: true
+
 Rails/RootPublicPath:
   Enabled: true
 
@@ -375,6 +393,12 @@ Rails/TimeZoneAssignment:
 Rails/ToFormattedS:
   Enabled: true
 
+Rails/ToSWithArgument:
+  Enabled: true
+
+Rails/TopLevelHashWithIndifferentAccess:
+  Enabled: true
+
 Rails/TransactionExitStatement:
   Enabled: true
 
@@ -385,6 +409,9 @@ Rails/WhereEquals:
   Enabled: true
 
 Rails/WhereExists:
+  Enabled: true
+
+Rails/WhereMissing:
   Enabled: true
 
 Rails/WhereNot:
@@ -488,6 +515,9 @@ Style/KeywordParametersOrder:
 
 Style/Lambda:
   Enabled: false
+
+Style/MagicCommentFormat:
+  Enabled: true
 
 Style/MapCompactWithConditionalBlock:
   Enabled: true
