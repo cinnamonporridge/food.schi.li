@@ -13,7 +13,7 @@ class Meals::IngredientsController < ApplicationController
       NutritionFactsService.new(@form.object).call!
       redirect_to @meal.journal_day, notice: t('.success')
     else
-      flash[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
   end
@@ -29,7 +29,7 @@ class Meals::IngredientsController < ApplicationController
       NutritionFactsService.new(@form.object).call!
       redirect_to @meal_ingredient.meal.journal_day, notice: t('.success')
     else
-      flash[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t('shared.errors.invalid_input')
       render :edit
     end
   end
