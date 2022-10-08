@@ -7,31 +7,8 @@ name: Continuous Integration
 on: [pull_request]
 
 jobs:
-  bundle_install:
-    name: Setup Ruby and bundle install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - uses: ruby/setup-ruby@v1
-        with:
-           bundler-cache: true
-
-  yarn_install:
-    name: Setup node and yarn install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
-      - run: yarn install
-
   test:
-    name: Rails tests
-    needs: [bundle_install, yarn_install]
+    name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -53,11 +30,6 @@ jobs:
         with:
            bundler-cache: true
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
-
       - name: Setup database
         run: |
           cp ./.github/workflows/templates/database.yml.github-actions config/database.yml
@@ -68,4 +40,3 @@ jobs:
 
       - name: bin/test
         run: bin/test
-
