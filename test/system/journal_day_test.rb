@@ -69,6 +69,7 @@ class JournalDayTest < ApplicationSystemTestCase
     using_browser do
       sign_in_user :daisy
       click_link '05.02.2017'
+      assert_selector 'h2', text: 'Meals'
       within find('li.recipe-meal', text: 'Apple Pie') do
         within '.recipe-meal--header' do
           find('svg.heroicons-dots-vertical').ancestor('button').click
