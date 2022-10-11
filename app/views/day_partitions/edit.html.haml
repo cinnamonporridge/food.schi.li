@@ -5,7 +5,7 @@
 
   %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': t('.confirm_deletion') }
     .hidden{ 'data-confirmable-target': 'confirmable' }
-      = button_tag class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
+      = button_tag type: :button, class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
         = render HeroiconComponent.new(:trash)
         = t('.delete_day_partition')
 
@@ -17,5 +17,5 @@
         = t('.this_cannot_be_undone')
       .w-full.hidden{ 'data-confirmable-target': 'confirmable', 'data-confirmable-target': 'cancel' }
         .flex.justify-center
-          = button_tag class: 'shy-link text-sm', 'data-action': 'confirmable#toggle' do
+          = button_tag type: :button, class: 'shy-link text-sm', 'data-action': 'confirmable#toggle' do
             = t('shared.buttons.cancel')

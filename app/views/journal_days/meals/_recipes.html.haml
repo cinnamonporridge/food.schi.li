@@ -13,7 +13,7 @@
               - unless recipe_meal.day_partition.default?
                 .shrink-0.border.border-gray-200.text-gray-400.px-2.text-xs.rounded
                   = recipe_meal.decorate.display_day_partition_name
-            .shrink-0.text-xs.flex.gap-x-4.items-center
+            .shrink-0.text-xs.flex.gap-x-4.items-center.hidden{ "data-toggleable-target": "buttons" }
               = button_tag type: :button, class: 'text-green-700', 'data-action': 'toggleable#toggle' do
                 = render HeroiconComponent.new(:'dots-vertical')
           .flex.flex-col.gap-y-2.px-4.py-2{ 'data-toggleable-target': 'toggleable' }

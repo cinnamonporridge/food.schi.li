@@ -89,6 +89,7 @@ class DayPartitionsTest < ApplicationSystemTestCase
 
       click_on 'Breakfast'
 
+      assert_selector 'button[type="button"]', text: 'Delete day partition'
       click_on 'Delete day partition'
       click_on 'Confirm deletion'
 

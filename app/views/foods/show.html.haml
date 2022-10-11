@@ -21,7 +21,7 @@
                   = render HeroiconComponent.new(:link)
                 = link_to @food.decorate.data_source_url_authority, @food.data_source_url, class: 'hover:text-green-700 transition'
         - if food_policy.write?
-          .shrink-0
+          .shrink-0.hidden{ 'data-toggleable-target': 'buttons' }
             %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true' }
               = render HeroiconComponent.new(:'dots-vertical')
 
