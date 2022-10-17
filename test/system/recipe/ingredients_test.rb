@@ -166,6 +166,8 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
         assert_selector '.vegan-badge'
       end
 
+      assert_selector '.nutritions-table'
+
       totals_row_from_nutrition_table.tap do |row|
         assert_equal '6', row[:kcal]
         assert_equal '6', row[:carbs]

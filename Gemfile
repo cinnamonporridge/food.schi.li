@@ -1,27 +1,23 @@
-ruby '3.1.2'
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-  "https://github.com/#{repo_name}.git"
-end
+ruby '3.1.2'
 
 gem 'action_policy'
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'bugsnag', '~> 6.24'
-gem 'cssbundling-rails'
 gem 'haml-rails'
-gem 'hotwire-rails'
-gem 'jsbundling-rails'
+gem 'importmap-rails'
 gem 'pagy'
 gem 'pg'
 gem 'puma'
 gem 'rails'
-gem 'redis', '~> 4.0'
-gem 'sprockets-rails', '>= 2.0.0'
-gem 'stimulus-rails', '>= 0.4.0'
-gem 'turbo-rails', '>= 0.7.11'
+gem 'redis'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'tailwindcss-rails'
+gem 'turbo-rails'
 gem 'view_component'
 
 group :development, :test do
