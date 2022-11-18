@@ -511,8 +511,6 @@ de:
         title: Zutat bearbeiten
       new:
         add_ingredient_to: Zutat zu %{recipe_name} hinzufügen
-      update:
-        success: Zutat für Rezept wurde aktualisiert
     new:
       title: Neues Rezept
     update:

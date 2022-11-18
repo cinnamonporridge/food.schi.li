@@ -33,7 +33,6 @@
               = hidden_field_tag :food_name, f.object.portion.food.name
               - text = f.object.new_record? ? t('shared.recipe_ingredients.add_ingredient') : t('shared.recipe_ingredients.update_ingredient')
               = render SubmitButtonComponent.new(text, f.object)
-              = render FadeOutFlashComponent.new(text: flash[:turbo_notice])
 
 
       - if @form.object.persisted?

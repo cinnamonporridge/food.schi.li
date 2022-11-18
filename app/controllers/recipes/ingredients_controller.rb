@@ -22,7 +22,7 @@ class Recipes::IngredientsController < ApplicationController
     @component = RecipeIngredientFormComponent.new(form:)
   end
 
-  def update
+  def update # rubocop:disable Metrics/MethodLength
     form = RecipeIngredientForm.new(@recipe_ingredient, params)
 
     if form.save

@@ -4,7 +4,7 @@ class RecipeIngredientForm < ApplicationForm
   validates :portion, presence: true
   validates :amount_in_measure, presence: true, numericality: { greater_than: 0 }
 
-  alias_method :recipe_ingredient, :object
+  alias recipe_ingredient object
 
   def portion_id
     recipe_ingredient_params[:portion_id].presence ||
