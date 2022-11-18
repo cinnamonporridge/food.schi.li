@@ -7,6 +7,6 @@ class Recipe::NutritionsTableComponent < ApplicationComponent
   end
 
   def to_dom_id
-    "#{dom_id(recipe)}_nutritions_table"
+    dom_id(recipe, :nutritions_table)
   end
 end

@@ -1,52 +1,53 @@
-%div{ 'data-controller': 'portions--portion-select' }
-  .flex.flex-col.gap-y-2
-    = form_with(**form.form_with_arguments) do |f|
-      %div{ class: css_classes }
-        .flex.flex-col.gap-y-4
-          .flex.flex-col
-            = f.label :portion_id, class: 'label'
-            .portions-select.border.rounded.overflow-hidden.divide-y.divide-gray-200.flex.flex-col{ 'data-portions--portion-select-target': 'radioButtons' }
-              = f.collection_radio_buttons(:portion_id, form.portions.ordered_by_amount, :id, :name, include_hidden: false) do |b|
-                = b.label(class: 'py-2 px-4 cursor-pointer hover:bg-gray-100', 'data-action': 'click->portions--portion-select#render') do
-                  .flex.gap-x-4.items-center
-                    .shrink-0.flex.items-center
-                      = b.radio_button('data-portion-display-measure': b.object.decorate.display_measure, checked: form.checked_portion?(b.object))
-                    .grow.flex.gap-x-2.items-baseline
-                      %span
-                        = b.object.decorate.name_with_food
-                      %span.text-xs
-                        = b.object.decorate.display_amount_with_unit_abbreviation_after
-                      %span.text-xs
-                        = "(#{b.object.decorate.display_measure})"
+= turbo_frame_tag dom_id(recipe_ingredient) do
+  %div{ 'data-controller': 'portions--portion-select' }
+    .flex.flex-col.gap-y-2
+      = form_with(**form.form_with_arguments) do |f|
+        %div{ class: css_classes }
+          .flex.flex-col.gap-y-4
+            .flex.flex-col
+              = f.label :portion_id, class: 'label'
+              .portions-select.border.rounded.overflow-hidden.divide-y.divide-gray-200.flex.flex-col{ 'data-portions--portion-select-target': 'radioButtons' }
+                = f.collection_radio_buttons(:portion_id, form.portions.ordered_by_amount, :id, :name, include_hidden: false) do |b|
+                  = b.label(class: 'py-2 px-4 cursor-pointer hover:bg-gray-100', 'data-action': 'click->portions--portion-select#render') do
+                    .flex.gap-x-4.items-center
+                      .shrink-0.flex.items-center
+                        = b.radio_button('data-portion-display-measure': b.object.decorate.display_measure, checked: form.checked_portion?(b.object))
+                      .grow.flex.gap-x-2.items-baseline
+                        %span
+                          = b.object.decorate.name_with_food
+                        %span.text-xs
+                          = b.object.decorate.display_amount_with_unit_abbreviation_after
+                        %span.text-xs
+                          = "(#{b.object.decorate.display_measure})"
 
-          .grow.flex.flex-col
-            = f.label :amount_in_measure, class: 'label'
-            .flex.items-baseline.rounded.overflow-hidden.border.ring-2.ring-transparent.border-gray-300.focus-within:ring-green-700
-              .grow
-                = f.number_field :amount_in_measure, class: 'focus:ring-0 focus:border-0 w-full border-0', min: 0, step: 0.001, inputmode: 'decimal'
-              .portion-measure-add-on.hidden.shrink-0.text-gray-400.text-sm.pl-1.pr-4{ 'data-portions--portion-select-target': 'measureAddOn' }
+            .grow.flex.flex-col
+              = f.label :amount_in_measure, class: 'label'
+              .flex.items-baseline.rounded.overflow-hidden.border.ring-2.ring-transparent.border-gray-300.focus-within:ring-green-700
+                .grow
+                  = f.number_field :amount_in_measure, class: 'focus:ring-0 focus:border-0 w-full border-0', min: 0, step: 0.001, inputmode: 'decimal'
+                .portion-measure-add-on.hidden.shrink-0.text-gray-400.text-sm.pl-1.pr-4{ 'data-portions--portion-select-target': 'measureAddOn' }
 
-            = render 'layouts/forms/field_errors', errors: f.object.errors, key: :amount_in_measure
+              = render 'layouts/forms/field_errors', errors: f.object.errors, key: :amount_in_measure
 
-          .pt-2.flex.flex-col
-            = hidden_field_tag :food_name, f.object.portion.food.name
-            - text = f.object.new_record? ? t('shared.recipe_ingredients.add_ingredient') : t('shared.recipe_ingredients.update_ingredient')
-            = render SubmitButtonComponent.new(text, f.object)
-            = render FadeOutFlashComponent.new(text: flash[:turbo_notice])
+            .pt-2.flex.flex-col
+              = hidden_field_tag :food_name, f.object.portion.food.name
+              - text = f.object.new_record? ? t('shared.recipe_ingredients.add_ingredient') : t('shared.recipe_ingredients.update_ingredient')
+              = render SubmitButtonComponent.new(text, f.object)
+              = render FadeOutFlashComponent.new(text: flash[:turbo_notice])
 
 
-    - if @form.object.persisted?
-      %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': t('shared.recipe_ingredients.confirm_deletion') }
-        .hidden{ 'data-confirmable-target': 'confirmable' }
-          = button_tag class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
-            = render HeroiconComponent.new(:trash)
-            = t('shared.recipe_ingredients.delete_ingredient')
+      - if @form.object.persisted?
+        %div{ 'data-controller': 'confirmable', 'data-confirmable-confirmation-text-value': t('shared.recipe_ingredients.confirm_deletion') }
+          .hidden{ 'data-confirmable-target': 'confirmable' }
+            = button_tag class: 'dangerous-button gap-x-1', 'data-action': 'confirmable#toggle' do
+              = render HeroiconComponent.new(:trash)
+              = t('shared.recipe_ingredients.delete_ingredient')
 
-        .flex.flex-col.gap-y-1{ 'data-confirmable-target': 'confirmable' }
-          .recipe-ingredient--delete{ 'data-confirmable-target': 'submit' }
-            .flex.gap-x-4
-              .w-full
-                = render DeleteButtonComponent.new(t('shared.recipe_ingredients.delete_ingredient'), recipe_ingredient_path(@form.object.recipe, @form.object))
-              .w-full.hidden{ 'data-confirmable-target': 'confirmable', 'data-confirmable-target': 'cancel' }
-                = button_tag class: 'hollow-button', 'data-action': 'confirmable#toggle' do
-                  = t('shared.buttons.cancel')
+          .flex.flex-col.gap-y-1{ 'data-confirmable-target': 'confirmable' }
+            .recipe-ingredient--delete{ 'data-confirmable-target': 'submit' }
+              .flex.gap-x-4
+                .w-full
+                  = render DeleteButtonComponent.new(t('shared.recipe_ingredients.delete_ingredient'), recipe_ingredient_path(@form.object.recipe, @form.object), form: { "data-turbo-frame": "_top" })
+                .w-full.hidden{ 'data-confirmable-target': 'confirmable', 'data-confirmable-target': 'cancel' }
+                  = button_tag class: 'hollow-button', 'data-action': 'confirmable#toggle' do
+                    = t('shared.buttons.cancel')

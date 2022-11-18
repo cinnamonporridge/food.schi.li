@@ -1,0 +1,11 @@
+- component = Recipe::HeaderComponent.new(recipe: @recipe_ingredient.recipe)
+= turbo_stream.replace(component.to_dom_id) do
+  = render component
+
+- component = Recipe::NutritionsTableComponent.new(recipe: @recipe_ingredient.recipe)
+= turbo_stream.replace(component.to_dom_id) do
+  = render component
+
+- component = RecipeIngredient::ListItem::HeadComponent.new(recipe_ingredient: @recipe_ingredient)
+= turbo_stream.replace(component.to_dom_id) do
+  = render component

@@ -7,6 +7,6 @@ class RecipeIngredient::ListItem::HeadComponent < ApplicationComponent
   end
 
   def to_dom_id
-    "#{dom_id(recipe_ingredient)}_list_item_head"
+    dom_id(recipe_ingredient, :list_item_head)
   end
 end

@@ -27,9 +27,13 @@ class Recipes::IngredientsController < ApplicationController
 
     if form.save
       propagate_facts_and_vegan!(form.object)
-      broadcast(:updated)
-      flash[:turbo_notice] = t('.success')
-      redirect_to form.object.recipe
+      respond_to do |format|
+        format.turbo_stream do
+          @recipe_ingredient.reload
+          render :update
+        end
+        format.html { redirect_to form.object.recipe }
+      end
     else
       @component = RecipeIngredientFormComponent.new(form:)
       render :edit
@@ -39,7 +43,6 @@ class Recipes::IngredientsController < ApplicationController
   def destroy
     @recipe_ingredient.destroy
     propagate_facts_and_vegan!(@recipe_ingredient.recipe)
-    broadcast(:deleted)
     redirect_to @recipe_ingredient.recipe
   end
 
@@ -56,9 +59,5 @@ class Recipes::IngredientsController < ApplicationController
   def propagate_facts_and_vegan!(object)
     NutritionFactsService.new(object).call!
     VeganDetectionService.new(object).call!
-  end
-
-  def broadcast(event)
-    Broadcasters::RecipeIngredient.new(@recipe_ingredient, event).broadcast
   end
 end
