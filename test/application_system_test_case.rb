@@ -23,8 +23,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def using_browser(&)
-    driver = ENV['DEBUG'].present? ? :selenium : :selenium_headless
-    Capybara.using_driver(driver, &)
+    Capybara.using_driver(find_driver, &)
   end
 
   def click_with_delete(element)
@@ -34,5 +33,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
       element.click
       accept_alert
     end
+  end
+
+  def find_driver
+    return :selenium_chrome_headless if ENV['CI'].present?
+    return :selenium if ENV['DEBUG'].present?
+
+    :selenium_headless
   end
 end
