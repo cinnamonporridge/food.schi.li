@@ -1,4 +1,4 @@
-= button_to path, method: :delete, class: css_classes, form_class: 'w-full' do
+= button_to path, {method: :delete, class: css_classes, form: { "data-turbo-frame": "_top" }} do
   = render HeroiconComponent.new(icon)
   %span
     = body

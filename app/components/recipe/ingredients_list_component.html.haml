@@ -16,8 +16,7 @@
                 %div{ 'data-toggleable-target': 'toggleable' }
                   .py-4
                     - if recipe_ingredient.recipe.active?
-                      = turbo_frame_tag dom_id(recipe_ingredient) do
-                        = render RecipeIngredientFormComponent.new(form: RecipeIngredientForm.new(recipe_ingredient))
+                      = render RecipeIngredientFormComponent.new(form: RecipeIngredientForm.new(recipe_ingredient))
                     - else
                       .text-xs.text-gray-500.ml-6
                         = t('.ingredient_cannot_be_updated_when_archived')

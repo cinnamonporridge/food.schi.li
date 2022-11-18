@@ -1,5 +1,7 @@
-class RecipeIngredientFormComponent < ViewComponent::Base
+class RecipeIngredientFormComponent < ApplicationComponent
   attr_reader :form, :display_as_card
+
+  delegate :recipe_ingredient, to: :form
 
   def initialize(form:, display_as_card: false)
     @form = form
