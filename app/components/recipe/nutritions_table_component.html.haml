@@ -21,7 +21,7 @@
                 .col-span-1.text-right= recipe_ingredient.decorate.display_protein
                 .col-span-1.text-right= recipe_ingredient.decorate.display_fat
 
-          .nutritions-table--totals.px-2.py-1.grid.grid-cols-6.text-xs.font-bold
+          .nutritions-table--totals.px-2.py-1.grid.grid-cols-6.text-xs.font-bold{ id: dom_id(@recipe, :nutritions_total) }
             .col-span-2= t('shared.total')
             .col-span-1.text-right= recipe.decorate.display_kcal
             .col-span-1.text-right= recipe.decorate.display_carbs

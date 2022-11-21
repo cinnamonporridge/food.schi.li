@@ -95,12 +95,12 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
         assert_selector '.recipe-ingredient--amount', text: '121'
       end
 
-      totals_row_from_nutrition_table.tap do |row|
-        assert_equal '169', row[:kcal]
-        assert_equal '169', row[:carbs]
-        assert_equal '169', row[:protein]
-        assert_equal '169', row[:fat]
-      end
+      assert_totals_row_from_nutrition_table(
+        kcal: '169',
+        carbs: '169',
+        protein: '169',
+        fat: '169'
+      )
     end
   end
 
@@ -110,12 +110,13 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       navigate_to 'Recipes'
       click_on 'PB Bread'
 
-      totals_row_from_nutrition_table.tap do |row|
-        assert_equal '96', row[:kcal]
-        assert_equal '96', row[:carbs]
-        assert_equal '96', row[:protein]
-        assert_equal '96', row[:fat]
-      end
+      assert_totals_row_from_nutrition_table(
+        recipe: recipes(:peanut_butter_bread),
+        kcal: '96',
+        carbs: '96',
+        protein: '96',
+        fat: '96'
+      )
 
       within_recipe_ingredient 'Whole Grain Bread Whole Grain Bread Portion' do
         toggle_actions
@@ -123,12 +124,13 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
         click_on 'Confirm deletion'
       end
 
-      totals_row_from_nutrition_table.tap do |row|
-        assert_equal '89', row[:kcal]
-        assert_equal '89', row[:carbs]
-        assert_equal '89', row[:protein]
-        assert_equal '89', row[:fat]
-      end
+      assert_totals_row_from_nutrition_table(
+        recipe: recipes(:peanut_butter_bread),
+        kcal: '89',
+        carbs: '89',
+        protein: '89',
+        fat: '89'
+      )
     end
   end
 
@@ -168,12 +170,12 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
       assert_selector '.nutritions-table'
 
-      totals_row_from_nutrition_table.tap do |row|
-        assert_equal '6', row[:kcal]
-        assert_equal '6', row[:carbs]
-        assert_equal '6', row[:protein]
-        assert_equal '6', row[:fat]
-      end
+      assert_totals_row_from_nutrition_table(
+        kcal: '6',
+        carbs: '6',
+        protein: '6',
+        fat: '6'
+      )
     end
   end
 
@@ -200,10 +202,14 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     find('svg.heroicons-dots-vertical').ancestor('button').click
   end
 
-  def totals_row_from_nutrition_table
-    title, kcal, carbs, protein, fat = find_all('.nutritions-table--totals > div').to_a.map(&:text)
-
-    { title:, kcal:, carbs:, protein:, fat: }
+  def assert_totals_row_from_nutrition_table(kcal:, carbs:, protein:, fat:, recipe: recipes(:apple_pie))
+    assert_selector "##{dom_id(recipe, :nutritions_total)}" do |element|
+      *_rest, actual_kcal, actual_carbs, actual_protein, actual_fat = element.find_all('div').map(&:text)
+      assert_equal kcal, actual_kcal
+      assert_equal carbs, actual_carbs
+      assert_equal protein, actual_protein
+      assert_equal fat, actual_fat
+    end
   end
 
   def select_search_result(food_name)
