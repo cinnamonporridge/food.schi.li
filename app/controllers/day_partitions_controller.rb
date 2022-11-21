@@ -9,6 +9,10 @@ class DayPartitionsController < ApplicationController
     @form = DayPartitionForm.new(current_user.day_partitions.new)
   end
 
+  def edit
+    @form = DayPartitionForm.new(@day_partition)
+  end
+
   def create
     @form = DayPartitionForm.new(current_user.day_partitions.new, day_partition_params)
 
@@ -18,10 +22,6 @@ class DayPartitionsController < ApplicationController
       flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
-  end
-
-  def edit
-    @form = DayPartitionForm.new(@day_partition)
   end
 
   def update

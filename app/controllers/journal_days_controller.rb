@@ -14,6 +14,8 @@ class JournalDaysController < ApplicationController
     @journal_day = current_user.journal_days.new(date: Time.zone.today)
   end
 
+  def edit; end
+
   def create
     @journal_day = current_user.journal_days.new(journal_day_params)
 
@@ -25,8 +27,6 @@ class JournalDaysController < ApplicationController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @journal_day.update(journal_day_params)
