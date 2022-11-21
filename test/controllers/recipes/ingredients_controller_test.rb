@@ -12,17 +12,20 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'get #new' do
     sign_in_user :daisy
     get new_recipe_ingredient_path(@recipe)
+
     assert_response :success
   end
 
   test 'not get #new for other' do
     sign_in_user :john
+
     assert_not_get new_recipe_ingredient_path(@recipe)
   end
 
   test 'not get #new for archived recipe' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_get new_recipe_ingredient_path(@recipe)
   end
 
@@ -40,6 +43,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
     end
 
@@ -52,12 +56,14 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'not post #create for other' do
     @recipe.archive
     sign_in_user :john
+
     assert_not_post recipe_ingredients_path(@recipe)
   end
 
   test 'not post #create for archived' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_post recipe_ingredients_path(@recipe)
   end
 
@@ -74,11 +80,13 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
     end
 
     # 1.77 pieces of 25g sugar cube = 44.25g
     @recipe.reload
+
     assert_in_delta(44.25, @recipe.recipe_ingredients.last.amount)
   end
 
@@ -95,6 +103,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       @vegan_recipe.reload
     end
@@ -115,6 +124,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       @vegan_recipe.reload
     end
@@ -133,6 +143,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       @vegan_recipe.reload
     end
@@ -142,17 +153,20 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'get #edit' do
     sign_in_user :daisy
     get edit_recipe_ingredient_path(@recipe, @recipe_ingredient)
+
     assert_response :success
   end
 
   test 'not get #edit for other' do
     sign_in_user :john
+
     assert_not_get edit_recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
   test 'not get #edit for archived' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_get edit_recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
@@ -170,6 +184,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       @recipe_ingredient.reload
     end
@@ -177,12 +192,14 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'not patch #update for other' do
     sign_in_user :john
+
     assert_not_patch recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
   test 'not patch #update for archived' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_patch recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
@@ -193,6 +210,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @recipe.recipe_ingredients.count }, -1 do
       delete recipe_ingredient_path(@recipe, @recipe_ingredient)
       follow_redirect!
+
       assert_response :success
     end
 
@@ -203,12 +221,14 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'not delete #destroy for other' do
     sign_in_user :john
+
     assert_not_delete recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
   test 'not delete #destroy for archived' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_delete recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
@@ -220,6 +240,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_changes -> { @recipe.vegan? }, to: true do
       delete recipe_ingredient_path(@recipe, non_vegan_recipe_ingredient)
       follow_redirect!
+
       assert_response :success
       @recipe.reload
     end
@@ -232,6 +253,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
     delete recipe_ingredient_path(@recipe, recipe_ingredient)
     follow_redirect!
+
     assert_response :success
     @recipe.reload
 

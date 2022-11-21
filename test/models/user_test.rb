@@ -9,11 +9,13 @@ class UserTest < ActiveSupport::TestCase
     end
 
     user = User.last
+
     assert_equal 0, user.default_day_partition.position
   end
 
   test '.find_global_user' do
     user = User.find_global_user
+
     assert_equal users(:global), user
   end
 

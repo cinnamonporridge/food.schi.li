@@ -10,12 +10,15 @@ class MealIngredientDecoratorTest < ActiveSupport::TestCase
     assert_nil decorated(:johns_apple_on_january_first).quantity_with_pieces
 
     meal_ingredient = meal_ingredients(:daisys_big_apple_meal_ingredient_on_february_first)
+
     assert_equal '(0.01 pcs)', meal_ingredient.decorate.quantity_with_pieces
 
     meal_ingredient.amount = 200
+
     assert_equal '(1.0 pc)', meal_ingredient.decorate.quantity_with_pieces
 
     meal_ingredient.amount = 400
+
     assert_equal '(2.0 pcs)', meal_ingredient.decorate.quantity_with_pieces
   end
 

@@ -51,6 +51,7 @@ class FoodTest < ActiveSupport::TestCase
 
   test 'resets data_source_updated_at when data_source_url changes to blank' do
     food = foods(:apple)
+
     assert food.update!(data_source_url: 'https://nutrition-facts-source/')
 
     assert_changes -> { food.data_source_updated_at }, to: nil do

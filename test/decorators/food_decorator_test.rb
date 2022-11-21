@@ -8,6 +8,7 @@ class FoodDecoratorTest < ActiveSupport::TestCase
 
   test '#units_collection' do
     units_collection = Food.new.decorate.units_collection
+
     assert_equal 2, units_collection.count
     assert_equal ['Gram', :gram], units_collection.first
     assert_equal ['Mililiter', :mililiter], units_collection.second
@@ -31,6 +32,7 @@ class FoodDecoratorTest < ActiveSupport::TestCase
 
   test '#data_source_url_authority' do
     food = Food.new(data_source_url: 'https://example.com/path/to/fact')
+
     assert_equal 'example.com', food.decorate.data_source_url_authority
   end
 end

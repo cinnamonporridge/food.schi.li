@@ -10,10 +10,12 @@ class DayPartitionsTest < ApplicationSystemTestCase
 
   test 'sees only own day partitions' do
     sign_in_and_navigate_to_day_partitions(:john)
+
     assert_selector 'ul.day-partitions li', text: 'Brunch'
     sign_out
 
     sign_in_and_navigate_to_day_partitions(:daisy)
+
     assert_selector 'ul.day-partitions li', text: 'Brunch', count: 0
   end
 
@@ -65,6 +67,7 @@ class DayPartitionsTest < ApplicationSystemTestCase
 
     assert_selector '.flash', text: 'Day partition updated'
     day_partition_list_elements = find_all('ul.day-partitions li')
+
     assert_match(/Lunch/, day_partition_list_elements[0].text)
     assert_match(/Snack between Lunch and Afternoon/, day_partition_list_elements[1].text)
     assert_match(/Afternoon/, day_partition_list_elements[2].text)

@@ -6,11 +6,13 @@ class Food::PortionTest < ApplicationSystemTestCase
     navigate_to 'Foods'
     click_on 'Milk'
     click_on 'Add portion'
+
     assert_selector 'h1', text: 'New portion for Milk'
     assert_link 'Cancel', href: %r{/foods/[0-9]+}
     fill_in 'Name', with: 'Glass'
     fill_in 'Amount in g/ml', with: '200'
     click_on 'Add portion'
+
     assert_selector '.flash', text: 'Portion added'
     assert_selector 'ul.food--portions li', text: 'Glass'
   end
@@ -20,11 +22,13 @@ class Food::PortionTest < ApplicationSystemTestCase
     navigate_to 'Foods'
     click_on 'Apple'
     click_on 'Add portion'
+
     assert_selector 'h1', text: 'New portion for Apple'
     assert_link 'Cancel', href: %r{/foods/[0-9]+}
     fill_in 'Name', with: 'Tablespoon'
     fill_in 'Amount in g/ml', with: '25'
     click_on 'Add portion'
+
     assert_selector '.flash', text: 'Portion added'
     assert_selector 'ul.food--portions li', text: 'Tablespoon'
   end
@@ -33,6 +37,7 @@ class Food::PortionTest < ApplicationSystemTestCase
     sign_in_user :john
     navigate_to 'Foods'
     click_on 'Apple'
+
     assert_no_link 'Add portion'
   end
 
@@ -44,11 +49,13 @@ class Food::PortionTest < ApplicationSystemTestCase
       assert_no_button 'Remove portion'
       click_on 'Edit portion'
     end
+
     assert_selector 'h1', text: 'Edit portion for Milk'
     assert_link 'Cancel', href: %r{/foods/[0-9]+}
     fill_in 'Name', with: 'Coffee spoon'
     fill_in 'Amount in g/ml', with: '5'
     click_on 'Update portion'
+
     assert_selector '.flash', text: 'Portion updated'
     within_portion 'Coffee spoon' do
       assert_text '5'
@@ -73,11 +80,13 @@ class Food::PortionTest < ApplicationSystemTestCase
       assert_no_button 'Remove portion'
       click_on 'Edit portion'
     end
+
     assert_selector 'h1', text: 'Edit portion for Apple'
     assert_link 'Cancel', href: %r{/foods/[0-9]+}
     fill_in 'Name', with: 'Large'
     fill_in 'Amount in g/ml', with: '175'
     click_on 'Update portion'
+
     assert_selector '.flash', text: 'Portion updated'
     within_portion 'Large' do
       assert_text '175'
@@ -93,6 +102,7 @@ class Food::PortionTest < ApplicationSystemTestCase
     within_portion 'Coffee spoon' do
       click_on 'Remove portion'
     end
+
     assert_selector '.flash', text: 'Portion deleted'
     assert_selector 'ul.food--portions li', text: 'Small', count: 0
   end
@@ -106,6 +116,7 @@ class Food::PortionTest < ApplicationSystemTestCase
     within_portion 'Small' do
       click_on 'Remove portion'
     end
+
     assert_selector '.flash', text: 'Portion deleted'
     assert_selector 'ul.food--portions li', text: 'Small', count: 0
   end

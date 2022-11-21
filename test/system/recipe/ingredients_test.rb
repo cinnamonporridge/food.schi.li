@@ -4,6 +4,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
   test 'user adds an ingredient to recipe' do
     sign_in_and_navigate_to_apple_pie_recipe
     click_on 'Add ingredient'
+
     assert_selector 'h1', text: 'Add ingredient to Apple Pie'
     assert_link 'Back', href: %r{/recipes/[0-9]+}
 
@@ -15,6 +16,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     end
 
     click_on 'Add recipe ingredient'
+
     assert_checked_field 'Banana Regular' # selected value should remain
 
     fill_in 'Amount in measure', with: '3'
@@ -59,9 +61,11 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       assert_selector '.portion-measure-add-on', text: 'g/ml'
 
       choose('Banana Regular')
+
       assert_selector '.portion-measure-add-on', text: 'Pieces'
 
       choose('Banana 100')
+
       assert_selector '.portion-measure-add-on', text: 'g/ml'
     end
   end
@@ -73,6 +77,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     click_on 'Add recipe ingredient'
     search_food 'Apple'
     select_search_result 'Apple'
+
     assert_checked_field 'Apple 100' # checks if action_url works properly
   end
 
@@ -205,6 +210,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
   def assert_totals_row_from_nutrition_table(kcal:, carbs:, protein:, fat:, recipe: recipes(:apple_pie))
     assert_selector "##{dom_id(recipe, :nutritions_total)}" do |element|
       *_rest, actual_kcal, actual_carbs, actual_protein, actual_fat = element.find_all('div').map(&:text)
+
       assert_equal kcal, actual_kcal
       assert_equal carbs, actual_carbs
       assert_equal protein, actual_protein

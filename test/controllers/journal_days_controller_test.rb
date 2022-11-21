@@ -8,12 +8,14 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   # index
   test 'get index' do
     get journal_days_path
+
     assert_response :success
   end
 
   # show
   test 'get show' do
     get journal_day_path(journal_days(:daisy_february_first))
+
     assert_response :success
   end
 
@@ -24,6 +26,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   # new
   test 'get new' do
     get new_journal_day_path
+
     assert_response :success
   end
 
@@ -39,9 +42,11 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
       }
     end
     follow_redirect!
+
     assert_response :success
 
     journal_day = user.journal_days.last
+
     assert_equal Date.new(2017, 2, 6), journal_day.date
 
     assert_equal 'Journal day added', flash[:notice]
@@ -50,6 +55,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
   # edit
   test 'get edit' do
     get edit_journal_day_path(journal_days(:daisy_february_first))
+
     assert_response :success
   end
 
@@ -70,6 +76,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
       journal_day.reload
     end
     follow_redirect!
+
     assert_response :success
 
     assert_equal Date.new(2017, 1, 31), journal_day.date
@@ -88,6 +95,7 @@ class JournalDaysControllerTest < ActionDispatch::IntegrationTest
       delete journal_day_path(journal_days(:daisy_february_first))
     end
     follow_redirect!
+
     assert_response :success
 
     assert_equal 'Journal day deleted', flash[:notice]

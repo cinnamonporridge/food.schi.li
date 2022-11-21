@@ -5,6 +5,7 @@ class UserProfilesTest < ApplicationSystemTestCase
     sign_in_user :daisy
     navigate_to 'Settings'
     click_on 'Profile'
+
     assert_selector 'h1', text: 'Profile'
     assert_select 'Language', options: %w[Deutsch English]
     assert_select 'Language', selected: 'English'
@@ -12,12 +13,14 @@ class UserProfilesTest < ApplicationSystemTestCase
 
     select 'Deutsch', from: 'Language'
     click_on 'Update profile'
+
     assert_selector '.flash', text: 'Profil wurde aktualisiert'
     assert_select 'Sprache', selected: 'Deutsch'
     assert_selector 'h1', text: 'Profil'
 
     select 'English', from: 'Sprache'
     click_on 'Profil aktualisieren'
+
     assert_selector '.flash', text: 'Profile updated'
     assert_select 'Language', selected: 'English'
     assert_selector 'h1', text: 'Profile'

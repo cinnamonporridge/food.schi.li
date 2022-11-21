@@ -28,6 +28,7 @@ module NutritionFactsTestHelper
 
   def assert_nutrition_facts_equal(expected, actual) # rubocop:disable Metrics/AbcSize
     actual.reload
+
     assert_equal(expected[:kcal], actual[:kcal], object_info(actual))
     assert_in_delta(expected[:carbs], actual[:carbs], 0.1, object_info(actual))
     assert_in_delta(expected[:carbs_sugar_part], actual[:carbs_sugar_part], 0.1, object_info(actual))
