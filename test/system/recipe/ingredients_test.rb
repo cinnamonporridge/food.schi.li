@@ -208,13 +208,11 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
   end
 
   def assert_totals_row_from_nutrition_table(kcal:, carbs:, protein:, fat:, recipe: recipes(:apple_pie))
-    assert_selector "##{dom_id(recipe, :nutritions_total)}" do |element|
-      *_rest, actual_kcal, actual_carbs, actual_protein, actual_fat = element.find_all('div').map(&:text)
-
-      assert_equal kcal, actual_kcal
-      assert_equal carbs, actual_carbs
-      assert_equal protein, actual_protein
-      assert_equal fat, actual_fat
+    within "##{dom_id(recipe, :nutritions_total)}" do
+      assert_selector '.nutritions-table--totals--kcal', text: kcal
+      assert_selector '.nutritions-table--totals--carbs', text: carbs
+      assert_selector '.nutritions-table--totals--protein', text: protein
+      assert_selector '.nutritions-table--totals--fat', text: fat
     end
   end
 
