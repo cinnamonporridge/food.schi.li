@@ -78,6 +78,9 @@ Lint/DuplicateBranch:
 Lint/DuplicateElsifCondition:
   Enabled: true
 
+Lint/DuplicateMagicComment:
+  Enabled: true
+
 Lint/DuplicateRegexpCharacterClassElement:
   Enabled: true
 
@@ -237,6 +240,9 @@ Minitest/AssertionInLifecycleHook:
 Minitest/DuplicateTestRun:
   Enabled: true
 
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: true
+
 Minitest/LiteralAsActualArgument:
   Enabled: true
 
@@ -274,6 +280,9 @@ Rails/ActionControllerFlashBeforeRender:
   Enabled: true
 
 Rails/ActionControllerTestCase:
+  Enabled: true
+
+Rails/ActionOrder:
   Enabled: true
 
 Rails/ActiveRecordCallbacksOrder:
@@ -331,6 +340,9 @@ Rails/I18nLocaleAssignment:
   Enabled: true
 
 Rails/I18nLocaleTexts:
+  Enabled: true
+
+Rails/IgnoredColumnsAssignment:
   Enabled: true
 
 Rails/Inquiry:
@@ -415,6 +427,9 @@ Rails/WhereMissing:
   Enabled: true
 
 Rails/WhereNot:
+  Enabled: true
+
+Rails/WhereNotWithMultipleConditions:
   Enabled: true
 
 Security/CompoundHash:
@@ -549,6 +564,9 @@ Style/ObjectThen:
 Style/OpenStructUse:
   Enabled: true
 
+Style/OperatorMethodCall:
+  Enabled: true
+
 Style/OptionalBooleanParameter:
   Enabled: true
 
@@ -559,6 +577,9 @@ Style/RedundantArgument:
   Enabled: true
 
 Style/RedundantAssignment:
+  Enabled: true
+
+Style/RedundantEach:
   Enabled: true
 
 Style/RedundantFetchBlock:
@@ -580,6 +601,9 @@ Style/RedundantSelfAssignment:
   Enabled: true
 
 Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/RedundantStringEscape:
   Enabled: true
 
 Style/SelectByRegexp:
