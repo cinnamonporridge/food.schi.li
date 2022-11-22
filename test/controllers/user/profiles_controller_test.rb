@@ -4,6 +4,7 @@ class User::ProfilesControllerTest < ActionDispatch::IntegrationTest
   test 'get show' do
     sign_in_user :daisy
     get user_profile_path
+
     assert_response :success
   end
 
@@ -18,6 +19,7 @@ class User::ProfilesControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       user.reload
     end

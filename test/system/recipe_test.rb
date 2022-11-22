@@ -5,11 +5,13 @@ class RecipeTest < ApplicationSystemTestCase
     sign_in_user :daisy
     navigate_to 'Recipes'
     click_on 'Add recipe'
+
     assert_selector 'h1', text: 'New recipe'
     assert_link 'Cancel', href: '/recipes'
     fill_in 'Name', with: 'Tomato soup'
     fill_in 'Servings', with: '3'
     click_on 'Add recipe'
+
     assert_selector '.flash', text: 'Recipe added'
     assert_selector 'h1', text: 'Tomato soup'
   end
@@ -19,11 +21,13 @@ class RecipeTest < ApplicationSystemTestCase
     navigate_to 'Recipes'
     click_on 'Apple Pie'
     click_on 'Edit recipe'
+
     assert_selector 'h1', text: 'Edit Apple Pie'
     assert_link 'Cancel', href: %r{/recipes/[0-9]+}
     fill_in 'Name', with: 'Apple Cake'
     fill_in 'Servings', with: '2'
     click_on 'Update recipe'
+
     assert_selector '.flash', text: 'Recipe updated'
     assert_selector 'h1', text: 'Apple Cake'
   end
@@ -33,6 +37,7 @@ class RecipeTest < ApplicationSystemTestCase
     navigate_to 'Recipes'
     click_on 'Anchovy Soup'
     click_on 'Archive recipe'
+
     assert_selector '.flash', text: 'Recipe archive'
     assert_selector 'h1', text: 'Recipes'
     assert_no_link 'Anchovy Soup'
@@ -44,12 +49,14 @@ class RecipeTest < ApplicationSystemTestCase
 
     sign_in_user :daisy
     visit recipe_path(recipe) # archived are NOT reachable without knowing the path
+
     assert_text 'Archived'
     assert_no_link 'Edit'
     assert_no_link 'Copy'
     assert_no_link 'Remove'
     assert_no_link 'Add'
     click_on 'Unarchive recipe'
+
     assert_selector '.flash', text: 'Recipe unarchived'
     assert_selector 'h1', text: 'Anchovy Soup'
     assert_no_text 'Archived'
@@ -59,14 +66,18 @@ class RecipeTest < ApplicationSystemTestCase
     sign_in_user :daisy
     navigate_to 'Recipes'
     click_on 'PB Bread'
+
     assert_selector 'h1', text: 'PB Bread'
     click_on 'Copy recipe'
+
     assert_selector 'h1', text: 'Copy PB Bread'
     assert_link 'Cancel', href: %r{/recipes/[0-9]+}
     click_on 'Copy recipe'
+
     assert_text "can't be blank"
     fill_in 'New recipe name', with: 'PB&J Version 1'
     click_on 'Copy recipe'
+
     assert_selector 'h1', text: 'PB&J Version 1'
   end
 end

@@ -13,17 +13,20 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   test 'get #new, meal_type: :portion' do
     sign_in_user :daisy
     get new_journal_day_meal_path(@journal_day, meal_type: :portion)
+
     assert_response :success
   end
 
   test 'get #new, meal_type: :recipe' do
     sign_in_user :daisy
     get new_journal_day_meal_path(@journal_day, meal_type: :recipe)
+
     assert_response :success
   end
 
   test 'cannot get #new, meal_type: :unknown' do
     sign_in_user :daisy
+
     assert_not_get(
       new_journal_day_meal_path(@journal_day, meal_type: :unknown),
       error: JournalDayMealFormFinderService::FormClassNotFound
@@ -32,6 +35,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get #new of other' do
     sign_in_user :john
+
     assert_not_get new_journal_day_meal_path(@journal_day, meal_type: :portion)
   end
 
@@ -50,6 +54,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       assert_notice 'Meal added'
     end
@@ -86,6 +91,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       assert_notice 'Meal added'
     end
@@ -107,6 +113,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot get #post of other' do
     sign_in_user :john
+
     assert_not_post(journal_day_meals_path(@journal_day))
   end
 
@@ -114,22 +121,26 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   test 'get #edit, portion meal' do
     sign_in_user :daisy
     get edit_journal_day_meal_path(@journal_day, @portion_meal)
+
     assert_response :success
   end
 
   test 'get #edit, recipe meal' do
     sign_in_user :daisy
     get edit_journal_day_meal_path(@journal_day, @recipe_meal)
+
     assert_response :success
   end
 
   test 'cannot get #edit of other, portion meal' do
     sign_in_user :john
+
     assert_not_get edit_journal_day_meal_path(@journal_day, @portion_meal)
   end
 
   test 'cannot get #edit of other, recipe meal' do
     sign_in_user :john
+
     assert_not_get edit_journal_day_meal_path(@journal_day, @recipe_meal)
   end
 
@@ -146,10 +157,12 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     follow_redirect!
+
     assert_response :success
     assert_notice 'Meal updated'
 
     @portion_meal.reload
+
     assert_equal @day_partition, @portion_meal.day_partition
 
     @portion_meal.meal_ingredients.first.tap do |meal_ingredient|
@@ -175,6 +188,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     follow_redirect!
+
     assert_response :success
     assert_notice 'Meal updated'
 
@@ -185,11 +199,13 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot patch #update of other, portion meal' do
     sign_in_user :john
+
     assert_not_patch(journal_day_meal_path(@journal_day, @portion_meal))
   end
 
   test 'cannot patch #update of other, recipe meal' do
     sign_in_user :john
+
     assert_not_patch(journal_day_meal_path(@journal_day, @recipe_meal))
   end
 
@@ -200,6 +216,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @journal_day.meals.count }, -1 do
       delete journal_day_meal_path(@journal_day, @portion_meal)
       follow_redirect!
+
       assert_response :success
       assert_notice 'Meal deleted'
     end
@@ -211,6 +228,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot delete #destroy of other' do
     sign_in_user :john
+
     assert_not_delete journal_day_meal_path(@journal_day, @portion_meal)
   end
 end

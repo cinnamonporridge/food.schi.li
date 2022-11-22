@@ -10,6 +10,7 @@ class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
 
   test 'get new' do
     get new_recipe_copy_path(recipe)
+
     assert_response :success
   end
 
@@ -22,6 +23,7 @@ class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
       }
     end
     follow_redirect!
+
     assert_response :success
   end
 
@@ -31,6 +33,7 @@ class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
         name: ''
       }
     }
+
     assert_response :success
   end
 end

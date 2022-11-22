@@ -10,12 +10,15 @@ class RecipeIngredientDecoratorTest < ActiveSupport::TestCase
     assert_nil decorated(:milk_in_apple_pie).quantity_with_pieces
 
     recipe_ingredient = recipe_ingredients(:apples_in_apple_pie)
+
     assert_equal '(0.03 pcs)', recipe_ingredient.decorate.quantity_with_pieces
 
     recipe_ingredient.amount = 200
+
     assert_equal '(1.0 pc)', recipe_ingredient.decorate.quantity_with_pieces
 
     recipe_ingredient.amount = 400
+
     assert_equal '(2.0 pcs)', recipe_ingredient.decorate.quantity_with_pieces
   end
 

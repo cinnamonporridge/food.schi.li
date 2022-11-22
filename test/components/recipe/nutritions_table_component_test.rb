@@ -3,6 +3,7 @@ require 'test_helper'
 class Recipe::NutritionsTableComponentTest < ViewComponent::TestCase
   test '#render' do
     render_inline new_component(recipe: recipes(:apple_pie))
+
     assert_selector '.nutritions-table--header', count: 1
     assert_selector '.nutritions-table--recipe-ingredients', count: 1
 

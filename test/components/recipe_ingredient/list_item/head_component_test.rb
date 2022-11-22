@@ -12,6 +12,7 @@ class RecipeIngredient::ListItem::HeadComponentTest < ViewComponent::TestCase
 
   test '#to_dom_id' do
     component = new_component(recipe_ingredient: recipe_ingredients(:apples_in_apple_pie))
+
     assert_match(/^list_item_head_/, component.to_dom_id)
   end
 end

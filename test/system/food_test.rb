@@ -16,17 +16,20 @@ class FoodTest < ApplicationSystemTestCase
 
   test 'user does not see other users food' do
     sign_in_and_navigate_to_foods(:john)
+
     assert_text 'Maple Syrup'
     sign_out
 
     sign_in_and_navigate_to_foods(:daisy)
     fill_in 'Search', with: 'Maple Syrup'
     click_on 'Search'
+
     assert_no_text 'Maple Syrup'
   end
 
   test 'user sees global food' do
     sign_in_and_navigate_to_foods(:john)
+
     assert_text 'Apple'
   end
 
@@ -60,6 +63,7 @@ class FoodTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_foods
 
     click_on 'Add food'
+
     assert_selector 'h1', text: 'New food'
 
     within 'form.food' do
@@ -102,6 +106,7 @@ class FoodTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_foods
 
     click_on 'Milk'
+
     assert_nutrition_fact 'Kcal', '120'
 
     click_on 'Edit food'
@@ -138,6 +143,7 @@ class FoodTest < ApplicationSystemTestCase
   test 'non-admin cannot make food global' do
     sign_in_and_navigate_to_foods(:john)
     click_on 'Maple Syrup'
+
     assert_no_button 'Make food global'
   end
 
@@ -145,6 +151,7 @@ class FoodTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_foods
 
     click_on 'Apple'
+
     assert_nutrition_fact 'Kcal', '100'
 
     click_on 'Edit food'
@@ -164,18 +171,21 @@ class FoodTest < ApplicationSystemTestCase
   test 'non-admin cannot edit global food' do
     sign_in_and_navigate_to_foods(:john)
     click_on 'Apple'
+
     assert_no_link 'Edit food'
   end
 
   test 'user does not see button to delete a food which is used in recipe' do
     sign_in_and_navigate_to_foods
     click_on 'Milk'
+
     assert_no_button 'Delete food'
   end
 
   test 'user does not see button to delete a food which is in a meal / journal day' do
     sign_in_and_navigate_to_foods
     click_on 'Celery'
+
     assert_no_button 'Delete food'
   end
 
@@ -183,6 +193,7 @@ class FoodTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_foods
     click_on 'Sugar'
     click_on 'Delete food'
+
     assert_selector '.flash', text: 'Food deleted'
     assert_selector 'h1', text: 'Foods'
   end
@@ -192,6 +203,7 @@ class FoodTest < ApplicationSystemTestCase
     sign_in_and_navigate_to_foods
     click_on 'Peach'
     click_on 'Delete food'
+
     assert_selector '.flash', text: 'Food deleted'
     assert_selector 'h1', text: 'Foods'
   end
@@ -200,6 +212,7 @@ class FoodTest < ApplicationSystemTestCase
     create_global_peach!
     sign_in_and_navigate_to_foods(:john)
     click_on 'Peach'
+
     assert_no_button 'Delete food'
   end
 

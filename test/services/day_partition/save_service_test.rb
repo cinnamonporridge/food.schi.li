@@ -38,6 +38,7 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
     day_partition.position = 0
 
     service = DayPartition::SaveService.new(day_partition)
+
     assert_not service.save
 
     assert_includes day_partition.errors.to_a, 'Default day partition already exists'
@@ -57,6 +58,7 @@ class DayPartition::SaveServiceTest < ActiveSupport::TestCase
 
   def assert_ordered_day_partition_names(user, names)
     ordered_day_partition_names = user.day_partitions.not_defaults.ordered_by_position.pluck(:name)
+
     assert_equal names, ordered_day_partition_names
   end
 end

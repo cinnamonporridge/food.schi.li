@@ -36,6 +36,7 @@ class JournalDayTest < ApplicationSystemTestCase
     travel_to '2022-01-03 12:00:00 UTC' do
       sign_in_user :daisy
       click_on 'Add journal day for today'
+
       assert_selector 'h1', text: 'Mon, 03.01.2022'
     end
   end
@@ -49,9 +50,11 @@ class JournalDayTest < ApplicationSystemTestCase
   test 'user adds journal day without shortcut' do
     sign_in_user :daisy
     click_on 'Add journal day', exact_text: true
+
     assert_link 'Cancel', href: '/journal_days'
     fill_in 'Date', with: '2017-02-06'
     click_on 'Add journal day'
+
     assert_selector 'h1', text: 'Mon, 06.02.2017'
   end
 
@@ -59,9 +62,11 @@ class JournalDayTest < ApplicationSystemTestCase
     sign_in_user :daisy
     click_on '01.02.2017'
     click_on 'Edit journal day'
+
     assert_link 'Cancel', href: %r{/journal_days/[0-9]+}
     fill_in 'Date', with: '2017-01-31'
     click_on 'Edit journal day'
+
     assert_selector 'h1', text: 'Tue, 31.01.2017'
   end
 
@@ -69,10 +74,12 @@ class JournalDayTest < ApplicationSystemTestCase
     using_browser do
       sign_in_user :daisy
       click_link '05.02.2017'
+
       assert_selector 'h2', text: 'Meals'
       within find('li.recipe-meal', text: 'Apple Pie') do
         within '.recipe-meal--header' do
           find('svg.heroicons-dots-vertical').ancestor('button').click
+
           assert_link 'Edit meal'
           assert_button 'Remove meal'
         end
@@ -84,6 +91,7 @@ class JournalDayTest < ApplicationSystemTestCase
     sign_in_user :daisy
     click_link '01.02.2017'
     click_on 'Delete journal day'
+
     assert_selector '.flash', text: 'Journal day deleted'
     assert_no_link '01.02.2017'
   end

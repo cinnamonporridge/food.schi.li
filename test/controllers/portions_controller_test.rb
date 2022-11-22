@@ -15,22 +15,26 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
   test 'get #new for own food' do
     sign_in_user :daisy
     get new_food_portion_path(@daisy_food)
+
     assert_response :success
   end
 
   test 'admin get #new for global food' do
     sign_in_user :daisy
     get new_food_portion_path(@global_food)
+
     assert_response :success
   end
 
   test 'non-admin cannot get #new for global food' do
     sign_in_user :john
+
     assert_not_get new_food_portion_path(@global_food)
   end
 
   test 'cannot get #new for other food' do
     sign_in_user :john
+
     assert_not_get new_food_portion_path(@daisy_food)
   end
 
@@ -46,6 +50,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       assert_notice 'Portion added'
     end
@@ -74,6 +79,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       assert_notice 'Portion added'
     end
@@ -93,11 +99,13 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'non-admin cannot post #create for global food' do
     sign_in_user :john
+
     assert_not_post food_portions_path(@global_food)
   end
 
   test 'cannot post #create for other' do
     sign_in_user :john
+
     assert_not_post food_portions_path(@daisy_food)
   end
 
@@ -105,32 +113,38 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
   test 'get #edit for own portion' do
     sign_in_user :daisy
     get edit_food_portion_path(@daisy_food, @daisy_food_portion)
+
     assert_response :success
   end
 
   test 'admin get #edit for global portion' do
     sign_in_user :daisy
     get edit_food_portion_path(@global_food, @global_food_portion)
+
     assert_response :success
   end
 
   test 'non-admin cannot get #edit for global portion' do
     sign_in_user :john
+
     assert_not_get edit_food_portion_path(@global_food, @global_food_portion)
   end
 
   test 'cannot get #edit of own primary' do
     sign_in_user :daisy
+
     assert_not_get edit_food_portion_path(@daisy_food, @daisy_food_primary_portion)
   end
 
   test 'admin cannot get #edit of global primary' do
     sign_in_user :daisy
+
     assert_not_get edit_food_portion_path(@global_food, @global_food_primary_portion)
   end
 
   test 'cannot get #edit of other' do
     sign_in_user :john
+
     assert_not_get edit_food_portion_path(@daisy_food, @daisy_food_portion)
   end
 
@@ -145,6 +159,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     follow_redirect!
+
     assert_response :success
     assert_notice 'Portion updated'
 
@@ -171,6 +186,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     follow_redirect!
+
     assert_response :success
     assert_notice 'Portion updated'
 
@@ -189,21 +205,25 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'non-admin cannot patch #update for global portion' do
     sign_in_user :john
+
     assert_not_patch food_portion_path(@global_food, @global_food_portion)
   end
 
   test 'cannot patch #update of own primary portion' do
     sign_in_user :daisy
+
     assert_not_patch food_portion_path(@daisy_food, @daisy_food_primary_portion)
   end
 
   test 'admin cannot patch #update for global primary portion' do
     sign_in_user :daisy
+
     assert_not_patch food_portion_path(@global_food, @global_food_primary_portion)
   end
 
   test 'cannot patch #update of other' do
     sign_in_user :john
+
     assert_not_patch food_portion_path(@global_food, @global_food_portion)
   end
 
@@ -216,6 +236,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @daisy_food.portions.count }, -1 do
       delete food_portion_path(@daisy_food, portion)
       follow_redirect!
+
       assert_response :success
       assert_notice 'Portion deleted'
     end
@@ -233,6 +254,7 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @global_food.portions.count }, -1 do
       delete food_portion_path(@global_food, portion)
       follow_redirect!
+
       assert_response :success
       assert_notice 'Portion deleted'
     end
@@ -244,26 +266,31 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'non-admin cannot delete #destroy for global portion' do
     sign_in_user :john
+
     assert_not_delete food_portion_path(@global_food, @global_food_portion)
   end
 
   test 'cannot delete #destroy of own primary' do
     sign_in_user :daisy
+
     assert_not_delete food_portion_path(@daisy_food, @daisy_food_primary_portion)
   end
 
   test 'admin cannot delete #destroy for global primary' do
     sign_in_user :daisy
+
     assert_not_delete food_portion_path(@global_food, @global_food_primary_portion)
   end
 
   test 'cannot delete #destroy of other' do
     sign_in_user :john
+
     assert_not_delete food_portion_path(@daisy_food, @daisy_food_portion)
   end
 
   test 'admin cannot delete #destroy of used global portion' do
     sign_in_user :daisy
+
     assert_not_delete food_portion_path(@global_food, @global_food_portion), error: ActiveRecord::DeleteRestrictionError
   end
 end

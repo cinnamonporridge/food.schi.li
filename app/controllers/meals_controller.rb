@@ -7,6 +7,10 @@ class MealsController < ApplicationController
     @form = service.form
   end
 
+  def edit
+    @form = JournalDayMealFormFinderService.new(@meal, params, :edit).form
+  end
+
   def create
     @form = JournalDayMealFormFinderService.new(@journal_day.meals.new, params, :new).form
 
@@ -17,10 +21,6 @@ class MealsController < ApplicationController
       flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
-  end
-
-  def edit
-    @form = JournalDayMealFormFinderService.new(@meal, params, :edit).form
   end
 
   def update

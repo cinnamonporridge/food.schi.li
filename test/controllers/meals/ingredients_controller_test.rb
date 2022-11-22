@@ -10,11 +10,13 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'get #new' do
     sign_in_user :daisy
     get new_meal_ingredient_path(@meal)
+
     assert_response :success
   end
 
   test 'cannot get #new for other' do
     sign_in_user :john
+
     assert_not_get new_meal_ingredient_path(@meal)
   end
 
@@ -30,6 +32,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       assert_notice 'Meal ingredient added'
     end
@@ -43,6 +46,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot post #create for other' do
     sign_in_user :john
+
     assert_not_post meal_ingredients_path(@meal)
   end
 
@@ -50,11 +54,13 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'get #edit' do
     sign_in_user :daisy
     get edit_meal_ingredient_path(@meal, @meal_ingredient)
+
     assert_response :success
   end
 
   test 'cannot get #edit for other' do
     sign_in_user :john
+
     assert_not_get edit_meal_ingredient_path(@meal, @meal_ingredient)
   end
 
@@ -71,14 +77,17 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       @meal_ingredient.reload
+
       assert_notice 'Meal ingredient updated'
     end
   end
 
   test 'cannot patch #update for other' do
     sign_in_user :john
+
     assert_not_patch meal_ingredient_path(@meal, @meal_ingredient)
   end
 
@@ -89,6 +98,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @meal.meal_ingredients.count }, -1 do
       delete meal_ingredient_path(@meal, @meal_ingredient)
       follow_redirect!
+
       assert_response :success
       assert_notice 'Meal ingredient deleted'
     end
@@ -100,6 +110,7 @@ class Meals::IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot delete #destroy for other' do
     sign_in_user :john
+
     assert_not_delete meal_ingredient_path(@meal, @meal_ingredient)
   end
 end

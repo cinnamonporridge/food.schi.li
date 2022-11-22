@@ -6,6 +6,10 @@ class Meals::IngredientsController < ApplicationController
     @form = MealIngredientForm.new(@meal.meal_ingredients.new)
   end
 
+  def edit
+    @form = MealIngredientForm.new(@meal_ingredient)
+  end
+
   def create
     @form = MealIngredientForm.new(@meal.meal_ingredients.new, meal_ingredient_params)
 
@@ -16,10 +20,6 @@ class Meals::IngredientsController < ApplicationController
       flash.now[:notice] = t('shared.errors.invalid_input')
       render :new
     end
-  end
-
-  def edit
-    @form = MealIngredientForm.new(@meal_ingredient)
   end
 
   def update

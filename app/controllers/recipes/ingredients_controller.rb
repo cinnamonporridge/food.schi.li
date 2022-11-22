@@ -6,6 +6,11 @@ class Recipes::IngredientsController < ApplicationController
     @component = Recipe::NewIngredientFormComponent.new(recipe: @recipe, params:)
   end
 
+  def edit
+    form = RecipeIngredientForm.new(@recipe_ingredient)
+    @component = RecipeIngredientFormComponent.new(form:)
+  end
+
   def create
     @component = Recipe::NewIngredientFormComponent.new(recipe: @recipe, params:)
 
@@ -15,11 +20,6 @@ class Recipes::IngredientsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    form = RecipeIngredientForm.new(@recipe_ingredient)
-    @component = RecipeIngredientFormComponent.new(form:)
   end
 
   def update # rubocop:disable Metrics/MethodLength

@@ -9,6 +9,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test 'get #index' do
     sign_in_user :daisy
     get recipes_path
+
     assert_response :success
   end
 
@@ -16,6 +17,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test 'get #show' do
     sign_in_user :daisy
     get recipes_path(@recipe)
+
     assert_response :success
   end
 
@@ -23,11 +25,13 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     @recipe.archive
     sign_in_user :daisy
     get recipes_path(@recipe)
+
     assert_response :success
   end
 
   test 'cannot get #show of other' do
     sign_in_user :john
+
     assert_not_get recipe_path(@recipe)
   end
 
@@ -35,6 +39,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test 'get #new' do
     sign_in_user :daisy
     get new_recipe_path
+
     assert_response :success
   end
 
@@ -51,6 +56,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       assert_notice 'Recipe added'
     end
@@ -65,17 +71,20 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test 'get #edit' do
     sign_in_user :daisy
     get edit_recipe_path(@recipe)
+
     assert_response :success
   end
 
   test 'cannot get #edit of archived' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_get edit_recipe_path(@recipe)
   end
 
   test 'cannot get #edit of other' do
     sign_in_user :john
+
     assert_not_get edit_recipe_path(@recipe)
   end
 
@@ -90,6 +99,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
       }
     }
     follow_redirect!
+
     assert_response :success
     assert_notice 'Recipe updated'
 
@@ -102,11 +112,13 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test 'cannot patch #update of archived' do
     @recipe.archive
     sign_in_user :daisy
+
     assert_not_patch recipe_path(@recipe)
   end
 
   test 'cannot patch #update of other' do
     sign_in_user :john
+
     assert_not_patch recipe_path(@recipe)
   end
 
@@ -117,6 +129,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_changes -> { @recipe.archived? }, to: true do
       delete recipe_path(@recipe)
       follow_redirect!
+
       assert_response :success
       assert_notice 'Recipe archived'
       @recipe.reload
@@ -130,6 +143,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_changes -> { @recipe.archived? }, to: false do
       delete recipe_path(@recipe)
       follow_redirect!
+
       assert_response :success
       assert_notice 'Recipe unarchived'
       @recipe.reload
@@ -138,6 +152,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test 'cannot delete #destroy of other' do
     sign_in_user :john
+
     assert_not_delete recipe_path(@recipe)
   end
 end

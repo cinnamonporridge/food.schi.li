@@ -8,17 +8,20 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   # index
   test 'get index' do
     get foods_path
+
     assert_response :success
   end
 
   # show
   test 'get show of own food' do
     get food_path(foods(:milk))
+
     assert_response :success
   end
 
   test 'get show of global food' do
     get food_path(foods(:apple))
+
     assert_response :success
   end
 
@@ -29,6 +32,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   # new
   test 'get new' do
     get new_food_path
+
     assert_response :success
   end
 
@@ -51,9 +55,11 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     follow_redirect!
+
     assert_response :success
 
     food = users(:daisy).foods.last
+
     assert_equal 'Cherries, sweet, raw', food.name
     assert_match(/171719/, food.data_source_url)
   end
@@ -61,17 +67,20 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   # edit
   test 'get edit of own food' do
     get edit_food_path(foods(:milk))
+
     assert_response :success
   end
 
   test 'admin gets edit of global food' do
     get edit_food_path(foods(:apple))
+
     assert_response :success
   end
 
   test 'non-admin cannot get edit of global food' do
     sign_out
     sign_in_user :john
+
     assert_not_get edit_food_path(foods(:apple))
   end
 
@@ -96,6 +105,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       food.reload
     end
@@ -117,6 +127,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
         }
       }
       follow_redirect!
+
       assert_response :success
       food.reload
     end
@@ -125,6 +136,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   test 'non-admin cannot patch update of global food' do
     sign_out
     sign_in_user :john
+
     assert_not_patch food_path(foods(:apple))
   end
 
@@ -145,6 +157,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { users(:global).foods.count }, -1 do
       delete food_path(food)
       follow_redirect!
+
       assert_response :success
     end
 
@@ -158,6 +171,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
 
     sign_out
     sign_in_user :john
+
     assert_not_delete food_path(food)
   end
 
@@ -165,12 +179,14 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     food = users(:john).foods.create!(name: 'Blue cheese', unit: 'gram',
                                       kcal: 1, carbs: 1, carbs_sugar_part: 1, protein: 1,
                                       fat: 1, fat_saturated: 1, fiber: 1)
+
     assert_not_delete food_path(food)
   end
 
   test 'cannot delete food that is used in a recipe' do
     food = foods(:milk)
     delete food_path(food)
+
     assert_response :success
     assert_equal 'Deletion not allowed', flash[:notice]
     assert_predicate food.reload, :persisted?
@@ -179,6 +195,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   test 'cannot delete food that is used in a meal / journal day' do
     food = foods(:celery_old)
     delete food_path(food)
+
     assert_response :success
     assert_equal 'Deletion not allowed', flash[:notice]
     assert_predicate food.reload, :persisted?
@@ -242,6 +259,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     assert_changes -> { food.user }, to: User.find_global_user do
       post globalize_food_path(food)
       follow_redirect!
+
       assert_response :success
       assert_equal 'Food has been made global', flash[:notice]
       food.reload
@@ -251,6 +269,7 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
   test 'non-admin cannot globalize local food' do
     sign_out
     sign_in_user :john
+
     assert_not_post(
       globalize_food_path(foods(:maple_syrup)),
       error: ActionPolicy::Unauthorized
