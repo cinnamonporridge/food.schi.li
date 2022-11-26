@@ -36,7 +36,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def find_driver
-    return :selenium_chrome_headless if ENV['CI'].present?
     return :selenium if ENV['DEBUG'].present?
 
     :selenium_headless
