@@ -1,7 +1,5 @@
 env:
-  NODE_VERSION: 16
   RAILS_ENV: test
-  POSTGRES_PASSWORD: "postgres"
 
 name: Continuous Integration
 on: [pull_request]
@@ -10,20 +8,14 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
 
     steps:
+      - name: Start PostgreSQL
+        run: |
+          sudo systemctl start postgresql.service
+          pg_isready
+          sudo -u postgres createuser -s -d -r -w runner
+
       - uses: actions/checkout@v1
 
       - uses: ruby/setup-ruby@v1
