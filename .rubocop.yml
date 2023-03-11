@@ -4,6 +4,7 @@ require:
 - rubocop-minitest
 - rubocop-rails
 - rubocop-rake
+- rubocop-capybara
 
 AllCops:
   Exclude:
@@ -16,7 +17,25 @@ AllCops:
 Rails:
   Enabled: true
 
+Capybara/MatchStyle:
+  Enabled: true
+
+Capybara/NegationMatcher:
+  Enabled: true
+
+Capybara/SpecificActions:
+  Enabled: true
+
+Capybara/SpecificFinders:
+  Enabled: true
+
+Capybara/SpecificMatcher:
+  Enabled: true
+
 Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
+
+Gemspec/DevelopmentDependencies:
   Enabled: true
 
 Gemspec/RequireMFA:
@@ -186,6 +205,9 @@ Lint/UnreachableLoop:
 Lint/UselessMethodDefinition:
   Enabled: true
 
+Lint/UselessRescue:
+  Enabled: true
+
 Lint/UselessRuby2Keywords:
   Enabled: true
 
@@ -201,6 +223,9 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Exclude:
   - test/**/*_test.rb
+
+Metrics/CollectionLiteralLength:
+  Enabled: true
 
 Metrics/MethodLength:
   Exclude:
@@ -228,6 +253,9 @@ Minitest/AssertRaisesCompoundBody:
 Minitest/AssertRaisesWithRegexpArgument:
   Enabled: true
 
+Minitest/AssertSame:
+  Enabled: true
+
 Minitest/AssertSilent:
   Enabled: true
 
@@ -243,11 +271,17 @@ Minitest/DuplicateTestRun:
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: true
 
+Minitest/LifecycleHooksOrder:
+  Enabled: true
+
 Minitest/LiteralAsActualArgument:
   Enabled: true
 
 Minitest/MultipleAssertions:
   Enabled: false
+
+Minitest/NonPublicTestMethod:
+  Enabled: true
 
 Minitest/RefuteInDelta:
   Enabled: true
@@ -261,7 +295,16 @@ Minitest/RefutePathExists:
 Minitest/RefutePredicate:
   Enabled: true
 
+Minitest/RefuteSame:
+  Enabled: true
+
 Minitest/SkipEnsure:
+  Enabled: true
+
+Minitest/SkipWithoutReason:
+  Enabled: true
+
+Minitest/TestFileName:
   Enabled: true
 
 Minitest/TestMethodName:
@@ -271,6 +314,9 @@ Minitest/UnreachableAssertion:
   Enabled: true
 
 Minitest/UnspecifiedException:
+  Enabled: true
+
+Minitest/UselessAssertion:
   Enabled: true
 
 Naming/BlockForwarding:
@@ -381,6 +427,9 @@ Rails/RenderInline:
 Rails/RenderPlainText:
   Enabled: true
 
+Rails/ResponseParsedBody:
+  Enabled: true
+
 Rails/RootJoinChain:
   Enabled: true
 
@@ -447,6 +496,9 @@ Style/ArgumentsForwarding:
 Style/ArrayCoercion:
   Enabled: true
 
+Style/ArrayIntersect:
+  Enabled: true
+
 Style/BisectedAttrAccessor:
   Enabled: true
 
@@ -460,6 +512,15 @@ Style/CollectionCompact:
   Enabled: true
 
 Style/CombinableLoops:
+  Enabled: true
+
+Style/ComparableClamp:
+  Enabled: true
+
+Style/ConcatArrayLiterals:
+  Enabled: true
+
+Style/DirEmpty:
   Enabled: true
 
 Style/DocumentDynamicEvalDefinition:
@@ -484,6 +545,9 @@ Style/ExponentialNotation:
   Enabled: true
 
 Style/FetchEnvVar:
+  Enabled: true
+
+Style/FileEmpty:
   Enabled: true
 
 Style/FileRead:
@@ -540,6 +604,12 @@ Style/MapCompactWithConditionalBlock:
 Style/MapToHash:
   Enabled: true
 
+Style/MapToSet:
+  Enabled: true
+
+Style/MinMaxComparison:
+  Enabled: true
+
 Style/MultilineInPatternThen:
   Enabled: true
 
@@ -579,6 +649,12 @@ Style/RedundantArgument:
 Style/RedundantAssignment:
   Enabled: true
 
+Style/RedundantConstantBase:
+  Enabled: true
+
+Style/RedundantDoubleSplatHashBraces:
+  Enabled: true
+
 Style/RedundantEach:
   Enabled: true
 
@@ -586,6 +662,9 @@ Style/RedundantFetchBlock:
   Enabled: true
 
 Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantHeredocDelimiterQuotes:
   Enabled: true
 
 Style/RedundantInitialize:
