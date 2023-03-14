@@ -17,19 +17,24 @@ class RecipeTest < ApplicationSystemTestCase
   end
 
   test 'user edits a recipe' do
-    sign_in_user :daisy
-    navigate_to 'Recipes'
-    click_on 'Apple Pie'
-    click_on 'Edit recipe'
+    using_browser do
+      sign_in_user :daisy
+      navigate_to 'Recipes'
+      click_on 'Apple Pie'
 
-    assert_selector 'h1', text: 'Edit Apple Pie'
-    assert_link 'Cancel', href: %r{/recipes/[0-9]+}
-    fill_in 'Name', with: 'Apple Cake'
-    fill_in 'Servings', with: '2'
-    click_on 'Update recipe'
+      within_recipe_menu do
+        click_on 'Edit recipe'
+      end
 
-    assert_selector '.flash', text: 'Recipe updated'
-    assert_selector 'h1', text: 'Apple Cake'
+      assert_selector 'h1', text: 'Edit Apple Pie'
+      assert_link 'Cancel', href: %r{/recipes/[0-9]+}
+      fill_in 'Name', with: 'Apple Cake'
+      fill_in 'Servings', with: '2'
+      click_on 'Update recipe'
+
+      assert_selector '.flash', text: 'Recipe updated'
+      assert_selector 'h1', text: 'APPLE CAKE'
+    end
   end
 
   test 'user archives a recipe' do
@@ -79,5 +84,14 @@ class RecipeTest < ApplicationSystemTestCase
     click_on 'Copy recipe'
 
     assert_selector 'h1', text: 'PB&J Version 1'
+  end
+
+  private
+
+  def within_recipe_menu(&)
+    within '.recipe--header' do
+      click_on 'Toggle menu'
+      yield
+    end
   end
 end

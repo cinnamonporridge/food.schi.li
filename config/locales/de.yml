@@ -549,6 +549,7 @@ de:
       dismiss: Ausblenden
       search: Suchen
       select: Auswählen
+      toggle_menu: Menu toggeln
     errors:
       invalid_input: Ungültige Eingabe
       oops: Ups, irgendetwas stimmt hier nicht

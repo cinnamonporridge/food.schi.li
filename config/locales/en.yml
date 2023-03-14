@@ -549,6 +549,7 @@ en:
       dismiss: Dismiss
       search: Search
       select: Select
+      toggle_menu: Toggle menu
     errors:
       invalid_input: Invalid input
       oops: Oops, something went wrong
