@@ -1,5 +1,5 @@
 class LinkToActionComponent < ViewComponent::Base
-  attr_reader :body, :path, :icon, :button
+  attr_reader :body, :path, :icon, :button, :args
 
   BUTTONS_CSS_CLASSES = {
     primary: 'button',
@@ -7,11 +7,12 @@ class LinkToActionComponent < ViewComponent::Base
     gray_dashed: 'gray-dashed-button'
   }.freeze
 
-  def initialize(body, path, icon:, button: :primary)
+  def initialize(body, path, **args)
     @body = body
     @path = path
-    @icon = icon
-    @button = button
+    @icon = args.delete(:icon)
+    @button = args.delete(:button) || :primary
+    @args = args
     super()
   end
 
