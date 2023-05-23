@@ -6,7 +6,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     params = { meal_type: :portion }
     action = :new
 
-    assert_equal Meals::Portions::Form, new_service(meal:, params:, action:).form.class
+    assert_instance_of Meals::Portions::Form, new_service(meal:, params:, action:).form
   end
 
   test '#form, edit portion form' do
@@ -14,7 +14,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     params = { meal_type: :does_not_matter }
     action = :edit
 
-    assert_equal Meals::Portions::Form, new_service(meal:, params:, action:).form.class
+    assert_instance_of Meals::Portions::Form, new_service(meal:, params:, action:).form
   end
 
   test '#form, new recipe form' do
@@ -22,7 +22,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     params = { meal_type: :recipe }
     action = :new
 
-    assert_equal Meals::Recipes::NewForm, new_service(meal:, params:, action:).form.class
+    assert_instance_of Meals::Recipes::NewForm, new_service(meal:, params:, action:).form
   end
 
   test '#form, edit recipe form' do
@@ -30,7 +30,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     params = { meal_type: :does_not_matter }
     action = :edit
 
-    assert_equal Meals::Recipes::EditForm, new_service(meal:, params:, action:).form.class
+    assert_instance_of Meals::Recipes::EditForm, new_service(meal:, params:, action:).form
   end
 
   private
