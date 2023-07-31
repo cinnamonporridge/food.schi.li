@@ -350,6 +350,7 @@ de:
     create:
       success: Nahrungsmittel wurde hinzugefügt
     destroy:
+      deletion_not_allowed: Löschen ist nicht möglich
       success: Nahrungsmittel wurde gelöscht
     edit:
       title: Nahrungsmittel bearbeiten

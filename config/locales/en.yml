@@ -350,6 +350,7 @@ en:
     create:
       success: Food added
     destroy:
+      deletion_not_allowed: Deletion not allowed
       success: Food deleted
     edit:
       title: Edit food
