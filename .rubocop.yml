@@ -142,6 +142,9 @@ Lint/LambdaWithoutLiteralBlock:
 Lint/MissingSuper:
   Enabled: true
 
+Lint/MixedCaseRange:
+  Enabled: true
+
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
@@ -164,6 +167,9 @@ Lint/RaiseException:
   Enabled: true
 
 Lint/RedundantDirGlobSort:
+  Enabled: true
+
+Lint/RedundantRegexpQuantifiers:
   Enabled: true
 
 Lint/RefinementImportMethods:
@@ -232,8 +238,16 @@ Metrics/CollectionLiteralLength:
 
 Metrics/MethodLength:
   Exclude:
-  - db/migrate/*
+  - app/services/nutrition_facts/journal_days.rb
+  - app/services/nutrition_facts/meal_ingredients.rb
+  - app/services/nutrition_facts/meals.rb
+  - app/services/nutrition_facts/portions.rb
+  - app/services/nutrition_facts/recipe_ingredients.rb
+  - app/services/nutrition_facts/recipes.rb
+  - app/services/vegan_detection/journal_day.rb
+  - app/services/vegan_detection/recipe.rb
   - db/archive/migrate/*
+  - db/migrate/*
 
 Minitest/AssertInDelta:
   Enabled: true
@@ -661,10 +675,16 @@ Style/QuotedSymbols:
 Style/RedundantArgument:
   Enabled: true
 
+Style/RedundantArrayConstructor:
+  Enabled: true
+
 Style/RedundantAssignment:
   Enabled: true
 
 Style/RedundantConstantBase:
+  Enabled: true
+
+Style/RedundantCurrentDirectoryInPath:
   Enabled: true
 
 Style/RedundantDoubleSplatHashBraces:
@@ -679,6 +699,9 @@ Style/RedundantFetchBlock:
 Style/RedundantFileExtensionInRequire:
   Enabled: true
 
+Style/RedundantFilterChain:
+  Enabled: true
+
 Style/RedundantHeredocDelimiterQuotes:
   Enabled: true
 
@@ -688,7 +711,13 @@ Style/RedundantInitialize:
 Style/RedundantLineContinuation:
   Enabled: true
 
+Style/RedundantRegexpArgument:
+  Enabled: true
+
 Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpConstructor:
   Enabled: true
 
 Style/RedundantRegexpEscape:
@@ -701,6 +730,9 @@ Style/RedundantSelfAssignmentBranch:
   Enabled: true
 
 Style/RedundantStringEscape:
+  Enabled: true
+
+Style/ReturnNilInPredicateMethodDefinition:
   Enabled: true
 
 Style/SelectByRegexp:
@@ -729,3 +761,6 @@ Style/SymbolArray:
 
 Style/TernaryParentheses:
   EnforcedStyle: require_parentheses_when_complex
+
+Style/YAMLFileRead:
+  Enabled: true
