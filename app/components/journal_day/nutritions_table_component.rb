@@ -14,6 +14,7 @@ class JournalDay::NutritionsTableComponent < ViewComponent::Base
 
   def meal_component(meal)
     return JournalDay::NutritionsTable::RecipeMealComponent.new(meal:) if meal.recipe?
-    return JournalDay::NutritionsTable::PortionMealComponent.new(meal:) if meal.portion?
+
+    JournalDay::NutritionsTable::PortionMealComponent.new(meal:) if meal.portion?
   end
 end

@@ -43,11 +43,11 @@ class FoodSearchForm < ApplicationForm
   end
 
   def definite_food
-    return foods_scope.find_by(id: food_id) if food_id.present?
+    foods_scope.find_by(id: food_id) if food_id.present?
   end
 
   def distinct_food
-    return search_results.first if search_results.one?
+    search_results.first if search_results.one?
   end
 
   def food_id
