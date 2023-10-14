@@ -1,9 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class NutritionFacts::RecipesTest < ActiveSupport::TestCase
   include NutritionFactsTestHelper
 
-  test '.call! record is a Food' do
+  test ".call! record is a Food" do
     with_snapshots(apple_pie: recipes(:apple_pie)) do |targets|
       falsify_all_nutrition_facts!
       new_object(foods(:apple)).call!
@@ -13,7 +13,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a Portion' do
+  test ".call! record is a Portion" do
     with_snapshots(apple_pie: recipes(:apple_pie)) do |targets|
       falsify_all_nutrition_facts!
       new_object(portions(:big_apple_portion)).call!
@@ -23,7 +23,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a RecipeIngredient' do
+  test ".call! record is a RecipeIngredient" do
     with_snapshots(apple_pie: recipes(:apple_pie)) do |targets|
       falsify_all_nutrition_facts!
       new_object(recipe_ingredients(:apples_in_apple_pie)).call!
@@ -32,7 +32,7 @@ class NutritionFacts::RecipesTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a User' do
+  test ".call! record is a User" do
     with_snapshots(
       apple_pie: recipes(:apple_pie),
       anchovy_soup: recipes(:anchovy_soup),

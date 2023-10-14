@@ -20,26 +20,26 @@ class JournalDaysController < ApplicationController
     @journal_day = current_user.journal_days.new(journal_day_params)
 
     if @journal_day.save
-      flash[:notice] = t('.success')
+      flash[:notice] = t(".success")
       redirect_to journal_day_path(@journal_day)
     else
-      flash.now[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t("shared.errors.invalid_input")
       render :new
     end
   end
 
   def update
     if @journal_day.update(journal_day_params)
-      redirect_to journal_day_path(@journal_day), notice: t('.success')
+      redirect_to journal_day_path(@journal_day), notice: t(".success")
     else
-      flash.now[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t("shared.errors.invalid_input")
       render :new
     end
   end
 
   def destroy
     @journal_day.destroy
-    redirect_to journal_days_path, notice: t('.success')
+    redirect_to journal_days_path, notice: t(".success")
   end
 
   private

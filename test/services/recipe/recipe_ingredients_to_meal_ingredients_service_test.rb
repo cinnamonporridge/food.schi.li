@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class Recipe::RecipeIngredientsToMealIngredientsServiceTest < ActiveSupport::TestCase
-  test 'copies all ingredients from a recipe to journal day' do
+  test "copies all ingredients from a recipe to journal day" do
     recipe = recipes(:apple_pie)
     meal = journal_days(:daisy_february_first).meals.new
     servings = 5
@@ -19,8 +19,8 @@ class Recipe::RecipeIngredientsToMealIngredientsServiceTest < ActiveSupport::Tes
       assert_predicate milk_portion_in_meal, :present?
       assert_predicate apple_portion_in_meal, :present?
 
-      assert_equal 'unit', milk_portion_in_meal.measure
-      assert_equal 'piece', apple_portion_in_meal.measure
+      assert_equal "unit", milk_portion_in_meal.measure
+      assert_equal "piece", apple_portion_in_meal.measure
 
       assert_in_delta(33.33, milk_portion_in_meal.amount.round(2).to_f)
       assert_in_delta(5.0, apple_portion_in_meal.amount.round(2).to_f)

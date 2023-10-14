@@ -10,6 +10,6 @@ class ForgotPasswordForm
   end
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, 'ForgotPassword')
+    ActiveModel::Name.new(self, nil, "ForgotPassword")
   end
 end

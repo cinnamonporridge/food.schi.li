@@ -1,13 +1,13 @@
-require 'test_helper'
+require "test_helper"
 
 class Recipe::IngredientsListComponentTest < ViewComponent::TestCase
-  test '#render' do
+  test "#render" do
     render_inline new_component(recipe: recipes(:apple_pie))
 
-    assert_selector 'ul.recipe--ingredients'
+    assert_selector "ul.recipe--ingredients"
   end
 
-  test '#to_dom_id' do
+  test "#to_dom_id" do
     component = new_component(recipe: recipes(:apple_pie))
 
     assert_match(/_ingredients_list$/, component.to_dom_id)

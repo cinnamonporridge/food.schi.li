@@ -12,9 +12,9 @@ class PortionsController < ApplicationController
 
     if @portion.save
       NutritionFactsService.new(@portion).call!
-      redirect_to @portion.food, notice: t('.success')
+      redirect_to @portion.food, notice: t(".success")
     else
-      flash.now[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t("shared.errors.invalid_input")
       render :new
     end
   end
@@ -22,9 +22,9 @@ class PortionsController < ApplicationController
   def update
     if @portion.update(portion_params)
       NutritionFactsService.new(@portion).call!
-      redirect_to @portion.food, notice: t('.success')
+      redirect_to @portion.food, notice: t(".success")
     else
-      flash.now[:notice] = t('shared.errors.invalid_input')
+      flash.now[:notice] = t("shared.errors.invalid_input")
       render :edit
     end
   end
@@ -32,7 +32,7 @@ class PortionsController < ApplicationController
   def destroy
     @portion = Portion.find(params[:id])
     @portion.destroy
-    redirect_to @portion.food, notice: t('.success')
+    redirect_to @portion.food, notice: t(".success")
   end
 
   private

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'kitchen@food.schi.li'
-  layout 'mailer'
+  default from: "kitchen@food.schi.li"
+  layout "mailer"
 end

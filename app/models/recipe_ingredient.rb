@@ -9,11 +9,11 @@ class RecipeIngredient < ApplicationRecord
 
   scope :of_user, ->(user) { joins(:recipe).where(recipe: { user: }) }
   scope :of_active_recipes, -> { joins(:recipe).where(recipe: { archived_at: nil }) }
-  scope :ordered_by_food_name, -> { joins(portion: :food).order('foods.name ASC') }
+  scope :ordered_by_food_name, -> { joins(portion: :food).order("foods.name ASC") }
 
   has_one :food, through: :portion
 
   validates :amount, presence: true
 
-  enum measure: { unit: 'unit', piece: 'piece' }, _prefix: :measure
+  enum measure: { unit: "unit", piece: "piece" }, _prefix: :measure
 end

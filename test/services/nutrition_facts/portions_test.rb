@@ -1,9 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class NutritionFacts::PortionsTest < ActiveSupport::TestCase
   include NutritionFactsTestHelper
 
-  test '.call! record is a Food' do
+  test ".call! record is a Food" do
     with_snapshots(
       apple_default_portion: portions(:apple_default_portion),
       big_apple_portion: portions(:big_apple_portion),
@@ -18,7 +18,7 @@ class NutritionFacts::PortionsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a Portion' do
+  test ".call! record is a Portion" do
     with_snapshots(
       apple_default_portion: portions(:apple_default_portion),
       big_apple_portion: portions(:big_apple_portion)
@@ -31,7 +31,7 @@ class NutritionFacts::PortionsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a User' do
+  test ".call! record is a User" do
     with_snapshots(
       apple_default_portion: portions(:apple_default_portion),
       milk_default_portion: portions(:milk_default_portion),

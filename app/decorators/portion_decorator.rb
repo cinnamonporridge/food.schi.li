@@ -5,7 +5,7 @@ class PortionDecorator < SimpleDelegator
     [
       name_with_food,
       "(#{amount_with_unit_abbrevation})"
-    ].compact.join(' ')
+    ].compact.join(" ")
   end
 
   def display_measure
@@ -24,11 +24,11 @@ class PortionDecorator < SimpleDelegator
     [
       food.name,
       name_if_not_default
-    ].compact.join(' ')
+    ].compact.join(" ")
   end
 
   def display_name
-    primary? ? I18n.t('portion.base') : name
+    primary? ? I18n.t("portion.base") : name
   end
 
   def self.portions_collection(user)

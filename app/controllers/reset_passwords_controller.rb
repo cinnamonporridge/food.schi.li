@@ -10,10 +10,10 @@ class ResetPasswordsController < ApplicationController
 
     if @form.save
       log_in(@form.user)
-      flash[:notice] = t('.success')
+      flash[:notice] = t(".success")
       redirect_to journal_days_path
     else
-      flash.now[:notice] = t('shared.errors.oops')
+      flash.now[:notice] = t("shared.errors.oops")
       render :new
     end
   end

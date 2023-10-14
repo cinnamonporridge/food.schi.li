@@ -14,7 +14,7 @@ class HeroiconComponent < ViewComponent::Base
   end
 
   def icon_svg
-    Rails.root.join('app/assets/images/heroicons/', icon.to_s).sub_ext('.svg').read
+    Rails.root.join("app/assets/images/heroicons/", icon.to_s).sub_ext(".svg").read
   end
 
   def dimension_css_classes

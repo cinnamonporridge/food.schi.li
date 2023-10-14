@@ -1,13 +1,13 @@
-require 'test_helper'
+require "test_helper"
 
 class GlobalFoodBadgeIconComponentTest < ViewComponent::TestCase
-  test '#render' do
+  test "#render" do
     render_inline new_component(true)
 
-    assert_selector 'svg.heroicons-globe'
+    assert_selector "svg.heroicons-globe"
   end
 
-  test 'not #render' do
+  test "not #render" do
     component = new_component(false)
 
     assert_not component.render?

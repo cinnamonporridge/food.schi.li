@@ -1,11 +1,11 @@
 # rubocop:disable Metrics/BlockLength
-require 'csv'
+require "csv"
 
 namespace :import do
-  desc 'Import FDC'
+  desc "Import FDC"
   task fdc: :environment do
     global_user = User.find_global_user
-    foods_file_path = Rails.root.join('db/data/fdc/foods.csv')
+    foods_file_path = Rails.root.join("db/data/fdc/foods.csv")
 
     CSV.table(foods_file_path).each do |row|
       food = global_user.foods.find_or_initialize_by(data_source_url: row[:data_source_url])
@@ -22,7 +22,7 @@ namespace :import do
       food.save!
     end
 
-    portions_file_path = Rails.root.join('db/data/fdc/portions.csv')
+    portions_file_path = Rails.root.join("db/data/fdc/portions.csv")
 
     CSV.table(portions_file_path).each do |row|
       food = global_user.foods.find_by!(data_source_url: row[:data_source_url])

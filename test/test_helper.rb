@@ -1,8 +1,8 @@
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
-require 'rails/test_help'
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../config/environment", __dir__)
+require "rails/test_help"
 
-Dir['./test/test_helpers/*.rb'].each { require _1 }
+Dir["./test/test_helpers/*.rb"].each { require _1 }
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -10,7 +10,7 @@ class ActiveSupport::TestCase
 
   parallelize(workers: :number_of_processors)
 
-  def sign_in_user(fixture_key, password = 'abc')
+  def sign_in_user(fixture_key, password = "abc")
     user = users(fixture_key)
     post login_url, params: login_form_params(user.email, password)
     follow_redirect!
@@ -54,12 +54,12 @@ class ActiveSupport::TestCase
   end
 
   def new_object(...)
-    self.class.name.sub(/Test$/, '').constantize.new(...)
+    self.class.name.sub(/Test$/, "").constantize.new(...)
   end
 end
 
 class ViewComponent::TestCase
   def new_component(...)
-    self.class.name.sub(/Test$/, '').constantize.new(...)
+    self.class.name.sub(/Test$/, "").constantize.new(...)
   end
 end

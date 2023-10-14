@@ -14,14 +14,14 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :meal_ingredients, through: :journal_days
   has_many :day_partitions, dependent: :destroy
-  has_one :default_day_partition, -> { defaults }, class_name: 'DayPartition', inverse_of: :user, dependent: :destroy
+  has_one :default_day_partition, -> { defaults }, class_name: "DayPartition", inverse_of: :user, dependent: :destroy
 
   scope :of_user, ->(user) { where(id: user.id) }
   scope :of_user_or_global, ->(user) { where(id: [user.id, User.find_global_user.id]) }
 
   enum role: {
-    user: 'user',
-    admin: 'admin'
+    user: "user",
+    admin: "admin"
   }, _prefix: true
 
   def clear_reset_password
@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def today
-    Time.now.in_time_zone('Europe/Zurich').to_date
+    Time.now.in_time_zone("Europe/Zurich").to_date
   end
 
   private

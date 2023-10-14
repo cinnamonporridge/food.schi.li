@@ -1,20 +1,20 @@
-require 'test_helper'
+require "test_helper"
 
 class DeleteButtonComponentTest < ViewComponent::TestCase
-  test '#render' do
-    render_inline new_component('Delete text', '/foo')
+  test "#render" do
+    render_inline new_component("Delete text", "/foo")
 
-    assert_selector 'form'
-    assert_button 'Delete text'
-    assert_selector 'svg.heroicons-trash'
+    assert_selector "form"
+    assert_button "Delete text"
+    assert_selector "svg.heroicons-trash"
   end
 
-  test '#render, custom icon and different button' do
-    render_inline new_component('Delete text', '/foo', icon: :archive, button: :archive)
+  test "#render, custom icon and different button" do
+    render_inline new_component("Delete text", "/foo", icon: :archive, button: :archive)
 
-    assert_selector 'form'
-    assert_button 'Delete text'
-    assert_selector 'svg.heroicons-archive'
-    assert_selector '.archive-button'
+    assert_selector "form"
+    assert_button "Delete text"
+    assert_selector "svg.heroicons-archive"
+    assert_selector ".archive-button"
   end
 end

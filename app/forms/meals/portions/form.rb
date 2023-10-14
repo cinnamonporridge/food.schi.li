@@ -37,7 +37,7 @@ class Meals::Portions::Form < ApplicationForm
   end
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, 'JournalDay::Meal')
+    ActiveModel::Name.new(self, nil, "JournalDay::Meal")
   end
 
   def user
@@ -81,7 +81,7 @@ class Meals::Portions::Form < ApplicationForm
   end
 
   def measure_in_pieces?
-    measure == 'piece'
+    measure == "piece"
   end
 
   def find_portion_id_by_name(portion_name)

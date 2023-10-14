@@ -3,12 +3,12 @@ class NutritionFacts::JournalDays < NutritionFacts::Base
 
   def model_to_column_filter_mapping
     {
-      Food: 'f.id',
-      Portion: 'p.id',
-      MealIngredient: 'mi.id',
-      Meal: 'm.id',
-      JournalDay: 'jd.id',
-      User: 'jd.user_id'
+      Food: "f.id",
+      Portion: "p.id",
+      MealIngredient: "mi.id",
+      Meal: "m.id",
+      JournalDay: "jd.id",
+      User: "jd.user_id"
     }
   end
 

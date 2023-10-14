@@ -1,9 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class NutritionFacts::MealsTest < ActiveSupport::TestCase
   include NutritionFactsTestHelper
 
-  test '.call! record is a Food' do
+  test ".call! record is a Food" do
     with_snapshots(
       daisys_big_apple_meal_on_february_first: meals(:daisys_big_apple_meal_on_february_first),
       daisys_apple_pie_meal_on_february_fifth: meals(:daisys_apple_pie_meal_on_february_fifth),
@@ -18,7 +18,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a Portion' do
+  test ".call! record is a Portion" do
     with_snapshots(
       daisys_big_apple_meal_on_february_first: meals(:daisys_big_apple_meal_on_february_first),
       daisys_apple_pie_meal_on_february_fifth: meals(:daisys_apple_pie_meal_on_february_fifth),
@@ -33,7 +33,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a MealIngredient' do
+  test ".call! record is a MealIngredient" do
     with_snapshots(
       daisys_big_apple_meal_on_february_first: meals(:daisys_big_apple_meal_on_february_first)
     ) do |targets|
@@ -44,7 +44,7 @@ class NutritionFacts::MealsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a User' do
+  test ".call! record is a User" do
     with_snapshots(
       daisys_big_apple_meal_on_february_first: meals(:daisys_big_apple_meal_on_february_first),
       daisys_glass_of_milk_meal_on_february_first: meals(:daisys_glass_of_milk_meal_on_february_first)

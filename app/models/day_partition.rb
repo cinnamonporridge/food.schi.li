@@ -1,7 +1,7 @@
 class DayPartition < ApplicationRecord
   INITIAL_POSITION = -1
   DEFAULT_POSITION = 0
-  DEFAULT_NAME = 'DEFAULT'.freeze
+  DEFAULT_NAME = "DEFAULT".freeze
 
   belongs_to :user
 

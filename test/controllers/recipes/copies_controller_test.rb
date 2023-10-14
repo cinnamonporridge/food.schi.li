@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
   attr_reader :recipe
@@ -8,17 +8,17 @@ class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
     @recipe = recipes(:peanut_butter_bread)
   end
 
-  test 'get new' do
+  test "get new" do
     get new_recipe_copy_path(recipe)
 
     assert_response :success
   end
 
-  test 'post create' do
+  test "post create" do
     assert_difference -> { Recipe.count }, 1 do
       post recipe_copy_path(recipe), params: {
         recipe_copy: {
-          name: 'Recipe Copy'
+          name: "Recipe Copy"
         }
       }
     end
@@ -27,10 +27,10 @@ class Recipes::CopiesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'post create invalid' do
+  test "post create invalid" do
     post recipe_copy_path(recipe), params: {
       recipe_copy: {
-        name: ''
+        name: ""
       }
     }
 
