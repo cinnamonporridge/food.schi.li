@@ -3,9 +3,9 @@ class VeganDetection::Recipe < VeganDetection::Base
 
   def model_to_column_filter_mapping
     {
-      Food: 'f.id',
-      RecipeIngredient: 'ri.id',
-      Recipe: 'r.id'
+      Food: "f.id",
+      RecipeIngredient: "ri.id",
+      Recipe: "r.id"
     }
   end
 

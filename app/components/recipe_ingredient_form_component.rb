@@ -20,6 +20,6 @@ class RecipeIngredientFormComponent < ApplicationComponent
   private
 
   def card_classes
-    'bg-white rounded overflow-hidden shadow divide-y divide-gray-200 py-2 px-4'
+    "bg-white rounded overflow-hidden shadow divide-y divide-gray-200 py-2 px-4"
   end
 end

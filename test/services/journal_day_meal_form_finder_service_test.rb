@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
-  test '#form, new portion form' do
+  test "#form, new portion form" do
     meal = Meal.new
     params = { meal_type: :portion }
     action = :new
@@ -9,7 +9,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     assert_instance_of Meals::Portions::Form, new_service(meal:, params:, action:).form
   end
 
-  test '#form, edit portion form' do
+  test "#form, edit portion form" do
     meal = meals(:daisys_big_apple_meal_on_february_first)
     params = { meal_type: :does_not_matter }
     action = :edit
@@ -17,7 +17,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     assert_instance_of Meals::Portions::Form, new_service(meal:, params:, action:).form
   end
 
-  test '#form, new recipe form' do
+  test "#form, new recipe form" do
     meal = Meal.new
     params = { meal_type: :recipe }
     action = :new
@@ -25,7 +25,7 @@ class JournalDayMealFormFinderServiceTest < ActiveSupport::TestCase
     assert_instance_of Meals::Recipes::NewForm, new_service(meal:, params:, action:).form
   end
 
-  test '#form, edit recipe form' do
+  test "#form, edit recipe form" do
     meal = meals(:daisys_apple_pie_meal_on_february_fifth)
     params = { meal_type: :does_not_matter }
     action = :edit

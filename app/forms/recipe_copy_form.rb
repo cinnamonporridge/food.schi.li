@@ -11,7 +11,7 @@ class RecipeCopyForm
   end
 
   def model_name
-    ActiveModel::Name.new(nil, self, 'Recipe::Copy')
+    ActiveModel::Name.new(nil, self, "Recipe::Copy")
   end
 
   def new_recipe

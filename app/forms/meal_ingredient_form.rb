@@ -30,7 +30,7 @@ class MealIngredientForm < ApplicationForm
   private
 
   def measure_in_pieces?
-    measure == 'piece'
+    measure == "piece"
   end
 
   def amount

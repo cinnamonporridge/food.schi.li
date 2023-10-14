@@ -1,9 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class NutritionFacts::RecipeIngredientsTest < ActiveSupport::TestCase
   include NutritionFactsTestHelper
 
-  test '.call! record is a Food' do
+  test ".call! record is a Food" do
     with_snapshots(
       apples_in_apple_pie: recipe_ingredients(:apples_in_apple_pie),
       milk_in_apple_pie: recipe_ingredients(:milk_in_apple_pie)
@@ -17,7 +17,7 @@ class NutritionFacts::RecipeIngredientsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a Portion' do
+  test ".call! record is a Portion" do
     with_snapshots(
       apples_in_apple_pie: recipe_ingredients(:apples_in_apple_pie),
       milk_in_apple_pie: recipe_ingredients(:milk_in_apple_pie)
@@ -31,7 +31,7 @@ class NutritionFacts::RecipeIngredientsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a RecipeIngredient' do
+  test ".call! record is a RecipeIngredient" do
     with_snapshots(
       apples_in_apple_pie: recipe_ingredients(:apples_in_apple_pie),
       milk_in_apple_pie: recipe_ingredients(:milk_in_apple_pie)
@@ -44,7 +44,7 @@ class NutritionFacts::RecipeIngredientsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a Recipe' do
+  test ".call! record is a Recipe" do
     with_snapshots(
       apples_in_apple_pie: recipe_ingredients(:apples_in_apple_pie),
       milk_in_apple_pie: recipe_ingredients(:milk_in_apple_pie)
@@ -57,7 +57,7 @@ class NutritionFacts::RecipeIngredientsTest < ActiveSupport::TestCase
     end
   end
 
-  test '.call! record is a User' do
+  test ".call! record is a User" do
     with_snapshots(
       apples_in_apple_pie: recipe_ingredients(:apples_in_apple_pie),
       milk_in_apple_pie: recipe_ingredients(:milk_in_apple_pie),

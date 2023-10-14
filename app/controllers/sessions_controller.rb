@@ -14,9 +14,9 @@ class SessionsController < ApplicationController
 
     if user_not_global_and_authenticated?(user)
       log_in(user)
-      redirect_to journal_days_path, notice: t('.success')
+      redirect_to journal_days_path, notice: t(".success")
     else
-      flash.now[:notice] = t('.invalid_email_or_password')
+      flash.now[:notice] = t(".invalid_email_or_password")
       render :new
     end
   end
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
   end
 
   def form_errors
-    flash.now[:notice] = t('shared.errors.oops')
+    flash.now[:notice] = t("shared.errors.oops")
     render :new
   end
 

@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
-  test 'get index' do
+  test "get index" do
     sign_in_user :daisy
     get day_partitions_path
 
@@ -9,7 +9,7 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # new
-  test 'get new' do
+  test "get new" do
     sign_in_user :daisy
     get new_day_partition_path
 
@@ -17,15 +17,15 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # create
-  test 'post create' do
+  test "post create" do
     user = users(:daisy)
     sign_in_user :daisy
 
     assert_difference -> { user.day_partitions.count }, +1 do
       post day_partitions_path, params: {
         day_partition: {
-          name: 'Night',
-          position: '-1'
+          name: "Night",
+          position: "-1"
         }
       }
     end
@@ -35,40 +35,40 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
 
     day_partition = user.day_partitions.last
 
-    assert_equal 'Night', day_partition.name
+    assert_equal "Night", day_partition.name
     assert_equal 4, day_partition.position
   end
 
   # edit
-  test 'get edit' do
+  test "get edit" do
     sign_in_user :daisy
     get edit_day_partition_path(day_partitions(:daisy_breakfast))
 
     assert_response :success
   end
 
-  test 'cannot get edit default' do
+  test "cannot get edit default" do
     sign_in_user :daisy
 
     assert_not_get edit_day_partition_path(day_partitions(:daisy_default))
   end
 
-  test 'cannot get edit of other' do
+  test "cannot get edit of other" do
     sign_in_user :daisy
 
     assert_not_get edit_day_partition_path(day_partitions(:john_brunch))
   end
 
   # update
-  test 'put update' do
+  test "put update" do
     sign_in_user :daisy
 
     day_partition = day_partitions(:daisy_breakfast)
 
-    assert_changes -> { day_partition.name }, to: 'Morning' do
+    assert_changes -> { day_partition.name }, to: "Morning" do
       patch day_partition_path(day_partition), params: {
         day_partition: {
-          name: 'Morning'
+          name: "Morning"
         }
       }
       day_partition.reload
@@ -78,13 +78,13 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'cannot put update default' do
+  test "cannot put update default" do
     sign_in_user :daisy
 
     assert_not_patch day_partition_path(day_partitions(:daisy_default))
   end
 
-  test 'cannot put update of other' do
+  test "cannot put update of other" do
     sign_in_user :daisy
     day_partition = day_partitions(:john_brunch)
 
@@ -92,7 +92,7 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # destroy
-  test 'delete destroy' do
+  test "delete destroy" do
     user = users(:daisy)
     sign_in_user :daisy
 
@@ -103,13 +103,13 @@ class DayPartitionsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'cannot delete destroy default' do
+  test "cannot delete destroy default" do
     sign_in_user :daisy
 
     assert_not_delete day_partition_path(day_partitions(:daisy_default))
   end
 
-  test 'cannot delete destroy of other' do
+  test "cannot delete destroy of other" do
     sign_in_user :daisy
     day_partition = day_partitions(:john_brunch)
 

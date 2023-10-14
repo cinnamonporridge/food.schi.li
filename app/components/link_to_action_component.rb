@@ -2,9 +2,9 @@ class LinkToActionComponent < ViewComponent::Base
   attr_reader :body, :path, :icon, :button, :args
 
   BUTTONS_CSS_CLASSES = {
-    primary: 'button',
-    secondary: 'secondary-button',
-    gray_dashed: 'gray-dashed-button'
+    primary: "button",
+    secondary: "secondary-button",
+    gray_dashed: "gray-dashed-button"
   }.freeze
 
   def initialize(body, path, **args)

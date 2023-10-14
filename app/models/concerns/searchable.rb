@@ -5,7 +5,7 @@ module Searchable
     scope :search, ->(query) {
       return if query.blank?
 
-      where('UPPER(name) LIKE UPPER(:query)', query: "%#{query}%")
+      where("UPPER(name) LIKE UPPER(:query)", query: "%#{query}%")
     }
   end
 end

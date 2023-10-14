@@ -18,6 +18,6 @@ class SubmitButtonComponent < ViewComponent::Base
   end
 
   def add_or_edit_icon
-    @object_or_icon_key.new_record? ? :'plus-sm' : :pencil
+    @object_or_icon_key.new_record? ? :"plus-sm" : :pencil
   end
 end

@@ -2,8 +2,8 @@ class DeleteButtonComponent < ViewComponent::Base
   attr_reader :body, :path, :icon, :button, :options
 
   BUTTONS_CSS_CLASSES = {
-    dangerous: 'dangerous-button',
-    archive: 'archive-button'
+    dangerous: "dangerous-button",
+    archive: "archive-button"
   }.freeze
 
   def initialize(body, path, icon: :trash, button: :dangerous, **options)

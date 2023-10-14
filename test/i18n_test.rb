@@ -1,5 +1,5 @@
-require 'test_helper'
-require 'i18n/tasks'
+require "test_helper"
+require "i18n/tasks"
 
 class I18nTest < ActiveSupport::TestCase
   def setup
@@ -19,7 +19,7 @@ class I18nTest < ActiveSupport::TestCase
   end
 
   def test_files_are_normalized
-    skip if ENV['CI'].present?
+    skip if ENV["CI"].present?
 
     non_normalized = @i18n.non_normalized_paths
     error_message = "The following files need to be normalized:\n" \
@@ -37,7 +37,7 @@ class I18nTest < ActiveSupport::TestCase
     assert_empty inconsistent_interpolations, error_message
   end
 
-  test '.available_locales_options' do
+  test ".available_locales_options" do
     I18n.available_locales_options.tap do |options|
       assert_equal 2, options.count
       assert_equal %w[Deutsch de], options[0]

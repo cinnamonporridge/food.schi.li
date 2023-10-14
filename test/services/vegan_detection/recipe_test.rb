@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class VeganDetection::RecipeTest < ActiveSupport::TestCase
-  test 'updates non-vegan recipe' do
+  test "updates non-vegan recipe" do
     non_vegan_recipe = recipes(:non_vegan_milk_banana)
     non_vegan_recipe.update(vegan: true)
 
@@ -11,7 +11,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     end
   end
 
-  test 'updates vegan recipe, all ingredients are vegan' do
+  test "updates vegan recipe, all ingredients are vegan" do
     vegan_recipe = recipes(:vegan_peanut_butter_banana)
     vegan_recipe.update(vegan: false)
 
@@ -21,7 +21,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     end
   end
 
-  test 'updates vegan recipe, no ingredients' do
+  test "updates vegan recipe, no ingredients" do
     vegan_recipe = recipes(:vegan_peanut_butter_banana)
     vegan_recipe.recipe_ingredients.destroy_all
     vegan_recipe.update(vegan: false)
@@ -32,7 +32,7 @@ class VeganDetection::RecipeTest < ActiveSupport::TestCase
     end
   end
 
-  test 'updates non-vegan recipe, food changes to non-vegan' do
+  test "updates non-vegan recipe, food changes to non-vegan" do
     vegan_recipe = recipes(:vegan_peanut_butter_banana)
     food = foods(:peanut_butter)
     food.update!(vegan: false)

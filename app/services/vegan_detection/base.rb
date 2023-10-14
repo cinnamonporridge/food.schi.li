@@ -16,7 +16,7 @@ class VeganDetection::Base
   end
 
   def model_to_column_filter_mapping
-    raise 'implement in subclass'
+    raise "implement in subclass"
   end
 
   def filter
@@ -24,7 +24,7 @@ class VeganDetection::Base
   end
 
   def comma_separated_record_ids
-    Array(@record).pluck(:id).join(', ') # rubocop:disable Rails/PluckId
+    Array(@record).pluck(:id).join(", ") # rubocop:disable Rails/PluckId
   end
 
   def find_model_to_filter_column_mapping

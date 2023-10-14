@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root "sessions#new"
 
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  get    "/login",   to: "sessions#new"
+  post   "/login",   to: "sessions#create"
+  delete "/logout",  to: "sessions#destroy"
   resource :forgot_passwords, only: %i[new create]
-  get '/reset_password/:challenge', to: 'reset_passwords#new', as: 'reset_password'
+  get "/reset_password/:challenge", to: "reset_passwords#new", as: "reset_password"
   resource :reset_passwords, only: [:create]
 
   resources :settings, only: :index

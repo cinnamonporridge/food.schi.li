@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class RecipeTest < ActiveSupport::TestCase
-  test '.active, .archived, .archive' do
+  test ".active, .archived, .archive" do
     assert_difference -> { Recipe.active.count }, -1 do
       assert_difference -> { Recipe.archived.count }, +1 do
         recipes(:apple_pie).archive
@@ -9,7 +9,7 @@ class RecipeTest < ActiveSupport::TestCase
     end
   end
 
-  test '.active, .archived, .unarchive' do
+  test ".active, .archived, .unarchive" do
     recipes(:apple_pie).archive
 
     assert_difference -> { Recipe.active.count }, +1 do
@@ -19,8 +19,8 @@ class RecipeTest < ActiveSupport::TestCase
     end
   end
 
-  test '.search' do
-    Recipe.search('An').tap do |result|
+  test ".search" do
+    Recipe.search("An").tap do |result|
       assert_includes result, recipes(:anchovy_soup)
       assert_includes result, recipes(:vegan_peanut_butter_banana)
       assert_includes result, recipes(:non_vegan_milk_banana)

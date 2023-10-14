@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -9,20 +9,20 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # new
-  test 'get #new' do
+  test "get #new" do
     sign_in_user :daisy
     get new_recipe_ingredient_path(@recipe)
 
     assert_response :success
   end
 
-  test 'not get #new for other' do
+  test "not get #new for other" do
     sign_in_user :john
 
     assert_not_get new_recipe_ingredient_path(@recipe)
   end
 
-  test 'not get #new for archived recipe' do
+  test "not get #new for archived recipe" do
     @recipe.archive
     sign_in_user :daisy
 
@@ -30,7 +30,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # create
-  test 'post #create' do
+  test "post #create" do
     sign_in_user :daisy
     portion = portions(:sugar_cube_portion)
 
@@ -39,7 +39,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name, # not directly needed, only for FoodSearchForm
           portion_id: portion.id,
-          amount_in_measure: '3'
+          amount_in_measure: "3"
         }
       }
       follow_redirect!
@@ -53,21 +53,21 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'not post #create for other' do
+  test "not post #create for other" do
     @recipe.archive
     sign_in_user :john
 
     assert_not_post recipe_ingredients_path(@recipe)
   end
 
-  test 'not post #create for archived' do
+  test "not post #create for archived" do
     @recipe.archive
     sign_in_user :daisy
 
     assert_not_post recipe_ingredients_path(@recipe)
   end
 
-  test 'decimal amount is allowed' do
+  test "decimal amount is allowed" do
     sign_in_user :daisy
     portion = portions(:sugar_cube_portion)
 
@@ -76,7 +76,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name, # not directly needed, only for FoodSearchForm
           portion_id: portion.id,
-          amount_in_measure: '1.77'
+          amount_in_measure: "1.77"
         }
       }
       follow_redirect!
@@ -90,7 +90,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_in_delta(44.25, @recipe.recipe_ingredients.last.amount)
   end
 
-  test 'adding a non vegan ingredient changes recipe to non-vegan' do
+  test "adding a non vegan ingredient changes recipe to non-vegan" do
     sign_in_user :daisy
     portion = portions(:milk_default_portion)
 
@@ -99,7 +99,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name,
           portion_id: portion.id,
-          amount_in_measure: '102'
+          amount_in_measure: "102"
         }
       }
       follow_redirect!
@@ -111,7 +111,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_in_delta(102.0, @vegan_recipe.recipe_ingredients.last.amount)
   end
 
-  test 'adding a vegan ingredient to a vegan recipe should not change recipe to non-vegan' do
+  test "adding a vegan ingredient to a vegan recipe should not change recipe to non-vegan" do
     sign_in_user :daisy
     portion = portions(:sugar_cube_portion)
 
@@ -120,7 +120,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name, # not directly needed, only for FoodSearchForm
           portion_id: portion.id,
-          amount_in_measure: '1'
+          amount_in_measure: "1"
         }
       }
       follow_redirect!
@@ -130,7 +130,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'adding a vegan ingredient to a non-vegan recipe should not change recipe to vegan' do
+  test "adding a vegan ingredient to a non-vegan recipe should not change recipe to vegan" do
     sign_in_user :daisy
     portion = portions(:sugar_cube_portion)
 
@@ -139,7 +139,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
         recipe_ingredient: {
           food_name: portion.food.name, # not directly needed, only for FoodSearchForm
           portion_id: portion.id,
-          amount_in_measure: '1'
+          amount_in_measure: "1"
         }
       }
       follow_redirect!
@@ -150,20 +150,20 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # edit
-  test 'get #edit' do
+  test "get #edit" do
     sign_in_user :daisy
     get edit_recipe_ingredient_path(@recipe, @recipe_ingredient)
 
     assert_response :success
   end
 
-  test 'not get #edit for other' do
+  test "not get #edit for other" do
     sign_in_user :john
 
     assert_not_get edit_recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
-  test 'not get #edit for archived' do
+  test "not get #edit for archived" do
     @recipe.archive
     sign_in_user :daisy
 
@@ -171,7 +171,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # update
-  test 'patch #update' do
+  test "patch #update" do
     sign_in_user :daisy
 
     portion = portions(:apple_default_portion)
@@ -180,7 +180,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
       patch recipe_ingredient_path(@recipe, @recipe_ingredient), params: {
         recipe_ingredient: {
           portion_id: portion.id,
-          amount_in_measure: '321'
+          amount_in_measure: "321"
         }
       }
       follow_redirect!
@@ -190,13 +190,13 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'not patch #update for other' do
+  test "not patch #update for other" do
     sign_in_user :john
 
     assert_not_patch recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
-  test 'not patch #update for archived' do
+  test "not patch #update for archived" do
     @recipe.archive
     sign_in_user :daisy
 
@@ -204,7 +204,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # destroy
-  test 'delete #destroy' do
+  test "delete #destroy" do
     sign_in_user :daisy
 
     assert_difference -> { @recipe.recipe_ingredients.count }, -1 do
@@ -219,20 +219,20 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'not delete #destroy for other' do
+  test "not delete #destroy for other" do
     sign_in_user :john
 
     assert_not_delete recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
-  test 'not delete #destroy for archived' do
+  test "not delete #destroy for archived" do
     @recipe.archive
     sign_in_user :daisy
 
     assert_not_delete recipe_ingredient_path(@recipe, @recipe_ingredient)
   end
 
-  test 'removing the only non-vegan ingredient changes the recipe to vegan' do
+  test "removing the only non-vegan ingredient changes the recipe to vegan" do
     sign_in_user :daisy
 
     non_vegan_recipe_ingredient = recipe_ingredients(:milk_in_apple_pie)
@@ -246,7 +246,7 @@ class Recipes::IngredientsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'removing ingredient changes the recipes nutrition facts' do
+  test "removing ingredient changes the recipes nutrition facts" do
     sign_in_user :daisy
     recipe_ingredients(:apples_in_apple_pie).destroy!
     recipe_ingredient = recipe_ingredients(:milk_in_apple_pie)

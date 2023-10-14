@@ -28,6 +28,6 @@ class DayPartitionDecorator < SimpleDelegator
   end
 
   def display_name
-    default? ? I18n.t('day_partition.unpartitioned') : name
+    default? ? I18n.t("day_partition.unpartitioned") : name
   end
 end

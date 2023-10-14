@@ -783,6 +783,10 @@ Style/StringChars:
 Style/StringConcatenation:
   Enabled: true
 
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
 Style/SwapValues:
   Enabled: true
 

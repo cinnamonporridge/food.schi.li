@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class RecipeCopyFormTest < ActiveSupport::TestCase
   attr_reader :recipe
@@ -7,15 +7,15 @@ class RecipeCopyFormTest < ActiveSupport::TestCase
     @recipe = recipes(:peanut_butter_bread)
   end
 
-  test 'invalid form' do
-    form = RecipeCopyForm.new(recipe, name: '')
+  test "invalid form" do
+    form = RecipeCopyForm.new(recipe, name: "")
 
     assert_not form.valid?
     assert_not form.save!
   end
 
-  test 'valid form' do
-    form = RecipeCopyForm.new(recipe, name: 'Recipe Copy')
+  test "valid form" do
+    form = RecipeCopyForm.new(recipe, name: "Recipe Copy")
 
     assert_predicate form, :valid?
     assert form.save!

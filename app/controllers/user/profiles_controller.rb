@@ -7,6 +7,6 @@ class User::ProfilesController < ApplicationController
     @form = UserProfileForm.new(current_user, params)
 
     @form.save
-    redirect_to user_profile_path, notice: t('.success', locale: current_user.locale)
+    redirect_to user_profile_path, notice: t(".success", locale: current_user.locale)
   end
 end

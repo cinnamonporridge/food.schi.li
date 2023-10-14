@@ -13,10 +13,10 @@ class Meals::Portions::FormComponent < ViewComponent::Base
   private
 
   def add_text
-    t('meals.portions.form_component.add_portion_meal')
+    t("meals.portions.form_component.add_portion_meal")
   end
 
   def edit_text
-    t('meals.portions.form_component.edit_portion_meal')
+    t("meals.portions.form_component.edit_portion_meal")
   end
 end

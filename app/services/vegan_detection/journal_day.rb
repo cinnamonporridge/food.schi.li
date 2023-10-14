@@ -3,8 +3,8 @@ class VeganDetection::JournalDay < VeganDetection::Base
 
   def model_to_column_filter_mapping
     {
-      Food: 'f.id',
-      JournalDay: 'jd.id'
+      Food: "f.id",
+      JournalDay: "jd.id"
     }
   end
 

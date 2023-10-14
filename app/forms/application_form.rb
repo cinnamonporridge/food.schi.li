@@ -11,7 +11,7 @@ class ApplicationForm
   end
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, name.sub(/Form$/, ''))
+    ActiveModel::Name.new(self, nil, name.sub(/Form$/, ""))
   end
 
   def save

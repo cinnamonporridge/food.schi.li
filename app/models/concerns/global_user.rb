@@ -1,7 +1,7 @@
 module GlobalUser
   extend ActiveSupport::Concern
 
-  GLOBAL_USER_EMAIL = 'global@global.localhost'.freeze
+  GLOBAL_USER_EMAIL = "global@global.localhost".freeze
 
   included do
     def self.find_global_user

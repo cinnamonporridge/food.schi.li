@@ -5,13 +5,13 @@ class Food < ApplicationRecord
   belongs_to :user
 
   has_many :portions, dependent: :destroy
-  has_one :primary_portion, -> { primary }, class_name: 'Portion', inverse_of: false, dependent: :destroy
+  has_one :primary_portion, -> { primary }, class_name: "Portion", inverse_of: false, dependent: :destroy
 
   scope :ordered_by_name, -> { order(name: :asc) }
   scope :of_user, ->(user) { where(user:) }
   scope :of_user_or_global, ->(user) { where(user: [user, User.find_global_user]) }
 
-  enum unit: { gram: 'gram', mililiter: 'mililiter' }
+  enum unit: { gram: "gram", mililiter: "mililiter" }
 
   before_save :update_data_source_update_at
   before_create :create_default_portion
