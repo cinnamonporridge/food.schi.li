@@ -5,7 +5,8 @@ class MealDecorator < SimpleDelegator
 
   def display_name
     return display_recipe_name if recipe?
-    return display_portion_name if portion?
+
+    display_portion_name if portion?
   end
 
   def display_recipe_name
