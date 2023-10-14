@@ -22,14 +22,14 @@ class DayPartitionsTest < ApplicationSystemTestCase
   test 'adds day partition' do
     sign_in_and_navigate_to_day_partitions
 
-    click_on 'Add day partition'
+    click_link 'Add day partition'
 
     assert_selector 'h1', text: 'New day partition'
 
     within 'form.day-partition' do
       fill_in 'Name', with: 'Dinner'
       select 'At the end', from: 'Move to position'
-      click_on 'Add day partition'
+      click_button 'Add day partition'
     end
 
     assert_selector '.flash', text: 'Day partition added'
@@ -39,13 +39,13 @@ class DayPartitionsTest < ApplicationSystemTestCase
   test 'edits day partition' do
     sign_in_and_navigate_to_day_partitions
 
-    click_on 'Breakfast'
+    click_link 'Breakfast'
 
     assert_selector 'h1', text: 'Edit day partition'
 
     within 'form.day-partition' do
       fill_in 'Name', with: 'Morning'
-      click_on 'Update day partition'
+      click_button 'Update day partition'
     end
 
     assert_selector '.flash', text: 'Day partition updated'
@@ -55,14 +55,14 @@ class DayPartitionsTest < ApplicationSystemTestCase
   test 'moves day partition to new position' do
     sign_in_and_navigate_to_day_partitions
 
-    click_on 'Breakfast'
+    click_link 'Breakfast'
 
     assert_selector 'h1', text: 'Edit day partition'
 
     within 'form.day-partition' do
       fill_in 'Name', with: 'Snack between Lunch and Afternoon'
       select 'Afternoon', from: 'Move to position'
-      click_on 'Update day partition'
+      click_button 'Update day partition'
     end
 
     assert_selector '.flash', text: 'Day partition updated'
@@ -76,10 +76,10 @@ class DayPartitionsTest < ApplicationSystemTestCase
   test 'deletes day partition' do
     sign_in_and_navigate_to_day_partitions
 
-    click_on 'Breakfast'
+    click_link 'Breakfast'
 
     within '.day-partition--delete' do
-      click_on 'Delete day partition'
+      click_button 'Delete day partition'
     end
 
     assert_selector '.flash', text: 'Day partition deleted'
@@ -90,11 +90,11 @@ class DayPartitionsTest < ApplicationSystemTestCase
     using_browser do
       sign_in_and_navigate_to_day_partitions
 
-      click_on 'Breakfast'
+      click_link 'Breakfast'
 
       assert_selector 'button[type="button"]', text: 'Delete day partition'
-      click_on 'Delete day partition'
-      click_on 'Confirm deletion'
+      click_button 'Delete day partition'
+      click_button 'Confirm deletion'
 
       assert_selector '.flash', text: 'Day partition deleted'
       assert_selector 'h1', text: 'Day partitions'
@@ -106,6 +106,6 @@ class DayPartitionsTest < ApplicationSystemTestCase
   def sign_in_and_navigate_to_day_partitions(fixture_key = :daisy)
     sign_in_user fixture_key
     navigate_to 'Settings'
-    click_on 'Day partitions'
+    click_link 'Day partitions'
   end
 end

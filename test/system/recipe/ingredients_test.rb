@@ -3,7 +3,7 @@ require 'application_system_test_case'
 class Recipe::IngredientTest < ApplicationSystemTestCase
   test 'user adds an ingredient to recipe' do
     sign_in_and_navigate_to_apple_pie_recipe
-    click_on 'Add ingredient'
+    click_link 'Add ingredient'
 
     assert_selector 'h1', text: 'Add ingredient to Apple Pie'
     assert_link 'Back', href: %r{/recipes/[0-9]+}
@@ -15,12 +15,12 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       choose 'Banana Regular'
     end
 
-    click_on 'Add recipe ingredient'
+    click_button 'Add recipe ingredient'
 
     assert_checked_field 'Banana Regular' # selected value should remain
 
     fill_in 'Amount in measure', with: '3'
-    click_on 'Add recipe ingredient'
+    click_button 'Add recipe ingredient'
 
     within_recipe_ingredient('Banana Regular') do
       assert_selector '.recipe-ingredient--quantity', text: '3'
@@ -30,7 +30,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
   test 'user adds an ingredient by searching first' do
     sign_in_and_navigate_to_apple_pie_recipe
-    click_on 'Add ingredient'
+    click_link 'Add ingredient'
 
     search_food 'apple'
 
@@ -42,7 +42,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     end
 
     fill_in 'Amount in measure', with: '1'
-    click_on 'Add recipe ingredient'
+    click_button 'Add recipe ingredient'
 
     within_recipe_ingredient('Pineapple Fruit') do
       assert_selector '.recipe-ingredient--quantity', text: '1'
@@ -53,7 +53,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
   test 'portion measure-add-on changes depending on the selected radio button' do
     using_browser do
       sign_in_and_navigate_to_apple_pie_recipe
-      click_on 'Add ingredient'
+      click_link 'Add ingredient'
 
       search_food 'Banana'
 
@@ -72,9 +72,9 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
   test 'user changes food after submitting an invalid form' do
     sign_in_and_navigate_to_apple_pie_recipe
-    click_on 'Add ingredient'
+    click_link 'Add ingredient'
     search_food 'Banana'
-    click_on 'Add recipe ingredient'
+    click_button 'Add recipe ingredient'
     search_food 'Apple'
     select_search_result 'Apple'
 
@@ -93,7 +93,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
         toggle_actions
         choose 'Apple 100'
         fill_in 'Amount in measure', with: '121'
-        click_on 'Update recipe ingredient'
+        click_button 'Update recipe ingredient'
 
         assert_selector '.recipe-ingredient--name', text: 'Apple', exact_text: true
         assert_selector '.recipe-ingredient--quantity', text: ''
@@ -113,7 +113,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
     using_browser do
       sign_in_user :daisy
       navigate_to 'Recipes'
-      click_on 'PB Bread'
+      click_link 'PB Bread'
 
       assert_totals_row_from_nutrition_table(
         recipe: recipes(:peanut_butter_bread),
@@ -125,8 +125,8 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
       within_recipe_ingredient 'Whole Grain Bread Whole Grain Bread Portion' do
         toggle_actions
-        click_on 'Delete recipe ingredient'
-        click_on 'Confirm deletion'
+        click_button 'Delete recipe ingredient'
+        click_button 'Confirm deletion'
       end
 
       assert_totals_row_from_nutrition_table(
@@ -146,8 +146,8 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       sign_in_and_navigate_to_apple_pie_recipe
       within_recipe_ingredient 'Milk' do
         toggle_actions
-        click_on 'Delete recipe ingredient'
-        click_on 'Confirm deletion'
+        click_button 'Delete recipe ingredient'
+        click_button 'Confirm deletion'
       end
 
       assert_selector 'h1', text: 'APPLE PIE'
@@ -164,8 +164,8 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
 
       within_recipe_ingredient 'Milk' do
         toggle_actions
-        click_on 'Delete recipe ingredient'
-        click_on 'Confirm deletion'
+        click_button 'Delete recipe ingredient'
+        click_button 'Confirm deletion'
       end
 
       assert_selector 'h1', text: 'APPLE PIE'
@@ -193,13 +193,13 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
   def sign_in_and_navigate_to_apple_pie_recipe
     sign_in_user :daisy
     navigate_to 'Recipes'
-    click_on 'Apple Pie'
+    click_link 'Apple Pie'
   end
 
   def search_food(name)
     within '.food-search' do
       fill_in 'Search food', with: name
-      click_on 'Search'
+      click_button 'Search'
     end
   end
 
@@ -221,7 +221,7 @@ class Recipe::IngredientTest < ApplicationSystemTestCase
       assert_selector 'li', count: 2
 
       within(find('li .food-name', text: food_name, exact_text: true).ancestor('li')) do
-        click_on 'Select'
+        click_link 'Select'
       end
     end
   end

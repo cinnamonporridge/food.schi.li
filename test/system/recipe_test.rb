@@ -4,13 +4,13 @@ class RecipeTest < ApplicationSystemTestCase
   test 'user adds a recipe' do
     sign_in_user :daisy
     navigate_to 'Recipes'
-    click_on 'Add recipe'
+    click_link 'Add recipe'
 
     assert_selector 'h1', text: 'New recipe'
     assert_link 'Cancel', href: '/recipes'
     fill_in 'Name', with: 'Tomato soup'
     fill_in 'Servings', with: '3'
-    click_on 'Add recipe'
+    click_button 'Add recipe'
 
     assert_selector '.flash', text: 'Recipe added'
     assert_selector 'h1', text: 'Tomato soup'
@@ -20,17 +20,17 @@ class RecipeTest < ApplicationSystemTestCase
     using_browser do
       sign_in_user :daisy
       navigate_to 'Recipes'
-      click_on 'Apple Pie'
+      click_link 'Apple Pie'
 
       within_recipe_menu do
-        click_on 'Edit recipe'
+        click_link 'Edit recipe'
       end
 
       assert_selector 'h1', text: 'Edit Apple Pie'
       assert_link 'Cancel', href: %r{/recipes/[0-9]+}
       fill_in 'Name', with: 'Apple Cake'
       fill_in 'Servings', with: '2'
-      click_on 'Update recipe'
+      click_button 'Update recipe'
 
       assert_selector '.flash', text: 'Recipe updated'
       assert_selector 'h1', text: 'APPLE CAKE'
@@ -40,8 +40,8 @@ class RecipeTest < ApplicationSystemTestCase
   test 'user archives a recipe' do
     sign_in_user :daisy
     navigate_to 'Recipes'
-    click_on 'Anchovy Soup'
-    click_on 'Archive recipe'
+    click_link 'Anchovy Soup'
+    click_button 'Archive recipe'
 
     assert_selector '.flash', text: 'Recipe archive'
     assert_selector 'h1', text: 'Recipes'
@@ -60,7 +60,7 @@ class RecipeTest < ApplicationSystemTestCase
     assert_no_link 'Copy'
     assert_no_link 'Remove'
     assert_no_link 'Add'
-    click_on 'Unarchive recipe'
+    click_button 'Unarchive recipe'
 
     assert_selector '.flash', text: 'Recipe unarchived'
     assert_selector 'h1', text: 'Anchovy Soup'
@@ -70,18 +70,18 @@ class RecipeTest < ApplicationSystemTestCase
   test 'user copies a recipe' do
     sign_in_user :daisy
     navigate_to 'Recipes'
-    click_on 'PB Bread'
+    click_link 'PB Bread'
 
     assert_selector 'h1', text: 'PB Bread'
-    click_on 'Copy recipe'
+    click_link 'Copy recipe'
 
     assert_selector 'h1', text: 'Copy PB Bread'
     assert_link 'Cancel', href: %r{/recipes/[0-9]+}
-    click_on 'Copy recipe'
+    click_button 'Copy recipe'
 
     assert_text "can't be blank"
     fill_in 'New recipe name', with: 'PB&J Version 1'
-    click_on 'Copy recipe'
+    click_button 'Copy recipe'
 
     assert_selector 'h1', text: 'PB&J Version 1'
   end
@@ -90,7 +90,7 @@ class RecipeTest < ApplicationSystemTestCase
 
   def within_recipe_menu(&)
     within '.recipe--header' do
-      click_on 'Toggle menu'
+      click_button 'Toggle menu'
       yield
     end
   end
