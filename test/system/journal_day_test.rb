@@ -17,7 +17,7 @@ class JournalDayTest < ApplicationSystemTestCase
   test 'user visits a journal day' do
     sign_in_user :daisy
 
-    click_on '01.02.2017'
+    click_link '01.02.2017'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
 
@@ -35,7 +35,7 @@ class JournalDayTest < ApplicationSystemTestCase
   test 'user adds journal day by shortcut' do
     travel_to '2022-01-03 12:00:00 UTC' do
       sign_in_user :daisy
-      click_on 'Add journal day for today'
+      click_button 'Add journal day for today'
 
       assert_selector 'h1', text: 'Mon, 03.01.2022'
     end
@@ -49,23 +49,23 @@ class JournalDayTest < ApplicationSystemTestCase
 
   test 'user adds journal day without shortcut' do
     sign_in_user :daisy
-    click_on 'Add journal day', exact_text: true
+    click_link 'Add journal day', exact_text: true
 
     assert_link 'Cancel', href: '/journal_days'
     fill_in 'Date', with: '2017-02-06'
-    click_on 'Add journal day'
+    click_button 'Add journal day'
 
     assert_selector 'h1', text: 'Mon, 06.02.2017'
   end
 
   test 'user edits journal day' do
     sign_in_user :daisy
-    click_on '01.02.2017'
-    click_on 'Edit journal day'
+    click_link '01.02.2017'
+    click_link 'Edit journal day'
 
     assert_link 'Cancel', href: %r{/journal_days/[0-9]+}
     fill_in 'Date', with: '2017-01-31'
-    click_on 'Edit journal day'
+    click_button 'Edit journal day'
 
     assert_selector 'h1', text: 'Tue, 31.01.2017'
   end
@@ -90,7 +90,7 @@ class JournalDayTest < ApplicationSystemTestCase
   test 'user deletes a journal day' do
     sign_in_user :daisy
     click_link '01.02.2017'
-    click_on 'Delete journal day'
+    click_button 'Delete journal day'
 
     assert_selector '.flash', text: 'Journal day deleted'
     assert_no_link '01.02.2017'

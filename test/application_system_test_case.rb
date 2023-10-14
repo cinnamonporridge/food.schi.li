@@ -9,16 +9,16 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     visit login_path
     fill_in 'Email address', with: user.email
     fill_in 'Password', with: password
-    click_on 'Sign in'
+    click_button 'Sign in'
   end
 
   def sign_out
-    click_on 'Sign out'
+    click_button 'Sign out'
   end
 
   def navigate_to(menu_item)
     within('nav.main-nav') do
-      click_on menu_item, match: :first
+      click_link menu_item, match: :first
     end
   end
 

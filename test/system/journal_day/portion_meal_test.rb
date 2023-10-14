@@ -7,13 +7,13 @@ class JournalDay::PortionMealTest < ApplicationSystemTestCase
 
   test 'user adds a portion to journal day' do
     sign_in_user :daisy
-    click_on '01.02.2017'
+    click_link '01.02.2017'
 
-    click_on 'Add portion meal'
+    click_link 'Add portion meal'
     select 'Peanut Butter (100g)', from: 'Portion'
     fill_in 'Amount in measure', with: '50'
     select 'g/ml', from: 'Measure'
-    click_on 'Add portion meal'
+    click_button 'Add portion meal'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     assert_selector '.portion-meals li', text: 'Peanut Butter'
@@ -21,14 +21,14 @@ class JournalDay::PortionMealTest < ApplicationSystemTestCase
 
   test 'user edits a portion on journal day' do
     sign_in_user :daisy
-    click_on '01.02.2017'
+    click_link '01.02.2017'
 
     within find('li.portion-meal', text: 'Apple Big Apple') do
-      click_on 'Edit meal'
+      click_link 'Edit meal'
     end
 
     fill_in 'Amount in measure', with: '5'
-    click_on 'Edit portion meal'
+    click_button 'Edit portion meal'
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'
     within find('li.portion-meal', text: 'Apple Big Apple') do
@@ -39,10 +39,10 @@ class JournalDay::PortionMealTest < ApplicationSystemTestCase
 
   test 'user deletes a portion from journal day' do
     sign_in_user :daisy
-    click_on '01.02.2017'
+    click_link '01.02.2017'
 
     within find('li.portion-meal', text: 'Apple Big Apple') do
-      click_on 'Remove meal'
+      click_button 'Remove meal'
     end
 
     assert_selector 'h1', text: 'Wed, 01.02.2017'

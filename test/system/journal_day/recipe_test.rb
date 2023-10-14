@@ -3,13 +3,13 @@ require 'application_system_test_case'
 class JournalDay::RecipeTest < ApplicationSystemTestCase
   test 'user adds a recipe to journal day' do
     sign_in_user :daisy
-    click_on '01.02.2017'
+    click_link '01.02.2017'
 
-    click_on 'Add recipe meal'
+    click_link 'Add recipe meal'
     fill_in 'Recipe name', with: 'Vegan Peanut Butter Banana (1 serving)'
     fill_in 'Servings', with: '2'
     select 'Afternoon', from: 'Day partition'
-    click_on 'Add recipe to journal day'
+    click_button 'Add recipe to journal day'
 
     within_recipe_meal 'Vegan Peanut Butter Banana' do
       assert_text 'Afternoon'
@@ -22,14 +22,14 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
     assert_not_equal day_partitions(:daisy_afternoon), meals(:daisys_apple_pie_meal_on_february_fifth).day_partition
 
     sign_in_user :daisy
-    click_on '05.02.2017'
+    click_link '05.02.2017'
 
     within_recipe_meal 'Apple Pie' do
-      click_on 'Edit meal'
+      click_link 'Edit meal'
     end
 
     select 'Lunch', from: 'Day partition'
-    click_on 'Edit recipe on journal day'
+    click_button 'Edit recipe on journal day'
 
     within_recipe_meal 'Apple Pie' do
       assert_text 'Lunch'
@@ -38,10 +38,10 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
 
   test 'user deletes a meal' do
     sign_in_user :daisy
-    click_on '05.02.2017'
+    click_link '05.02.2017'
 
     within_recipe_meal 'Apple Pie' do
-      click_on 'Remove meal'
+      click_button 'Remove meal'
     end
 
     assert_selector '.flash', text: 'Meal deleted'
@@ -50,16 +50,16 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
 
   test 'user adds an ingredient to recipe on journal day' do
     sign_in_user :daisy
-    click_on '05.02.2017'
+    click_link '05.02.2017'
 
     within_recipe_meal 'Apple Pie' do
-      click_on 'Add meal ingredient'
+      click_link 'Add meal ingredient'
     end
 
     fill_in 'Portion', with: 'Sugar Cube (25g)'
     fill_in 'Amount in measure', with: '3'
     select 'Pieces', from: 'Measure'
-    click_on 'Add meal ingredient'
+    click_button 'Add meal ingredient'
 
     within_recipe_meal 'Apple Pie' do
       assert_text 'Sugar Cube'
@@ -68,16 +68,16 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
 
   test 'user edits an ingredient for a recipe on journal day' do
     sign_in_user :daisy
-    click_on '05.02.2017'
+    click_link '05.02.2017'
 
     within_recipe_meal_ingredient 'Apple Pie', 'Apple Big Apple' do
       assert_selector '.recipe-meal--ingredient--quantity', text: '0.03'
       assert_selector '.recipe-meal--ingredient--amount', text: '6'
-      click_on 'Edit meal ingredient'
+      click_link 'Edit meal ingredient'
     end
 
     fill_in 'Amount in measure', with: '2'
-    click_on 'Update meal ingredient'
+    click_button 'Update meal ingredient'
 
     within_recipe_meal_ingredient 'Apple Pie', 'Apple Big Apple' do
       assert_selector '.recipe-meal--ingredient--quantity', text: '2.0'
@@ -87,12 +87,12 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
 
   test 'user deletes an ingredient from a recipe on journal day' do
     sign_in_user :daisy
-    click_on '05.02.2017'
+    click_link '05.02.2017'
 
     within_recipe_meal_ingredient 'Apple Pie', 'Apple Big Apple' do
       assert_selector '.recipe-meal--ingredient--quantity', text: '0.03'
       assert_selector '.recipe-meal--ingredient--amount', text: '6'
-      click_on 'Remove meal ingredient'
+      click_button 'Remove meal ingredient'
     end
 
     assert_selector '.flash', text: 'Meal ingredient deleted'
