@@ -19,10 +19,10 @@ class User < ApplicationRecord
   scope :of_user, ->(user) { where(id: user.id) }
   scope :of_user_or_global, ->(user) { where(id: [user.id, User.find_global_user.id]) }
 
-  enum role: {
+  enum :role, {
     user: "user",
     admin: "admin"
-  }, _prefix: true
+  }, prefix: true
 
   def clear_reset_password
     self.reset_password_challenge = nil
