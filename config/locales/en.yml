@@ -75,6 +75,7 @@ en:
         vegan: Vegan
       meal:
         carbs: Carbohydrate
+        carbs_short: Carbs
         carbs_sugar_part: Carbohydrate, sugar part
         fat: Fat
         fat_saturated: Fat saturated

@@ -75,6 +75,7 @@ de:
         vegan: Vegan
       meal:
         carbs: Kohlenhydrate
+        carbs_short: Kohlenhydrate
         carbs_sugar_part: Kohlenhydrate, davon Zucker
         fat: Fett
         fat_saturated: Fett, davon gesättigte Fettsäuren
