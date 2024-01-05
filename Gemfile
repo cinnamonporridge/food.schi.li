@@ -1,8 +1,6 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
-
 gem "action_policy"
 gem "bcrypt"
 gem "bootsnap", require: false
@@ -36,5 +34,4 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end
