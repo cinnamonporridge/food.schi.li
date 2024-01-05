@@ -23,7 +23,7 @@ class JournalDay::PortionMealTest < ApplicationSystemTestCase
     sign_in_user :daisy
     click_link "01.02.2017"
 
-    within find("li.portion-meal", text: "Apple Big Apple") do
+    within "li.portion-meal", text: "Apple Big Apple" do
       click_link "Edit meal"
     end
 
@@ -31,7 +31,7 @@ class JournalDay::PortionMealTest < ApplicationSystemTestCase
     click_button "Edit portion meal"
 
     assert_selector "h1", text: "Wed, 01.02.2017"
-    within find("li.portion-meal", text: "Apple Big Apple") do
+    within "li.portion-meal", text: "Apple Big Apple" do
       assert_selector ".portion-meal--amount", text: "1000"
       assert_selector ".portion-meal--quantity", text: "5"
     end
@@ -41,7 +41,7 @@ class JournalDay::PortionMealTest < ApplicationSystemTestCase
     sign_in_user :daisy
     click_link "01.02.2017"
 
-    within find("li.portion-meal", text: "Apple Big Apple") do
+    within "li.portion-meal", text: "Apple Big Apple" do
       click_button "Remove meal"
     end
 
