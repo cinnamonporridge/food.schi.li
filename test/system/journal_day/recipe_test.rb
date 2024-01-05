@@ -108,9 +108,11 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
     within(find("li.recipe-meal", text: recipe_name), &)
   end
 
-  def within_recipe_meal_ingredient(recipe_name, ingredient_name, &)
+  # rubocop:disable Naming/BlockForwarding
+  def within_recipe_meal_ingredient(recipe_name, ingredient_name, &explicit_block)
     within_recipe_meal(recipe_name) do
-      within(find("li.recipe-meal--ingredient", text: ingredient_name), &)
+      within(find("li.recipe-meal--ingredient", text: ingredient_name), &explicit_block)
     end
   end
+  # rubocop:enable Naming/BlockForwarding
 end
