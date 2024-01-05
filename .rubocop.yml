@@ -19,6 +19,7 @@ Rails:
 
 Capybara/ClickLinkOrButtonStyle:
   Enabled: true
+  EnforcedStyle: strict
 
 Capybara/MatchStyle:
   Enabled: true
@@ -30,6 +31,9 @@ Capybara/RSpec/HaveSelector:
   Enabled: true
 
 Capybara/RSpec/PredicateMatcher:
+  Enabled: true
+
+Capybara/RedundantWithinFind:
   Enabled: true
 
 Capybara/SpecificActions:
@@ -145,7 +149,13 @@ Lint/IdentityComparison:
 Lint/IncompatibleIoSelectWithFiberScheduler:
   Enabled: true
 
+Lint/ItWithoutArgumentsInBlock:
+  Enabled: true
+
 Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+
+Lint/LiteralAssignmentInCondition:
   Enabled: true
 
 Lint/MissingSuper:
@@ -309,7 +319,13 @@ Minitest/LiteralAsActualArgument:
 Minitest/MultipleAssertions:
   Enabled: false
 
+Minitest/NonExecutableTestMethod:
+  Enabled: true
+
 Minitest/NonPublicTestMethod:
+  Enabled: true
+
+Minitest/RedundantMessageArgument:
   Enabled: true
 
 Minitest/RefuteInDelta:
@@ -403,6 +419,9 @@ Rails/DurationArithmetic:
   Enabled: true
 
 Rails/EagerEvaluationLogMessage:
+  Enabled: true
+
+Rails/EnvLocal:
   Enabled: true
 
 Rails/EnvironmentVariableAccess:
@@ -786,6 +805,9 @@ Style/StringConcatenation:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/SuperWithArgsParentheses:
+  Enabled: true
 
 Style/SwapValues:
   Enabled: true
