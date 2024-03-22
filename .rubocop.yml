@@ -10,9 +10,7 @@ AllCops:
   Exclude:
   - bin/**/*
   - db/schema.rb
-  - node_modules/**/*
   - tmp/**/*
-  - vendor/**/*
 
 Rails:
   Enabled: true
@@ -71,8 +69,6 @@ Layout/LineEndStringConcatenationIndentation:
 
 Layout/LineLength:
   Max: 120
-  Exclude:
-  - config/initializers/simple_form_foundation.rb
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
@@ -245,7 +241,6 @@ Lint/UselessTimes:
 Metrics/BlockLength:
   Exclude:
   - config/environments/*.rb
-  - config/initializers/simple_form_foundation.rb
   - config/routes.rb
 
 Metrics/ClassLength:
@@ -308,6 +303,9 @@ Minitest/DuplicateTestRun:
   Enabled: true
 
 Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: true
+
+Minitest/Focus:
   Enabled: true
 
 Minitest/LifecycleHooksOrder:
@@ -426,6 +424,7 @@ Rails/EnvLocal:
 
 Rails/EnvironmentVariableAccess:
   Enabled: true
+  AllowReads: true
 
 Rails/ExpandedDateRange:
   Enabled: true
