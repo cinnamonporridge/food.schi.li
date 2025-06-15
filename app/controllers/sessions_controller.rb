@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   private
 
   def login_params
-    params.require(:login_form).permit(:email, :password)
+    params.expect(login_form: [:email, :password])
   end
 
   def form_errors

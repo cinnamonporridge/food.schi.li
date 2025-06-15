@@ -22,6 +22,6 @@ class Recipes::CopiesController < ApplicationController
   end
 
   def recipe_copy_params
-    params.require(:recipe_copy).permit(:name)
+    params.expect(recipe_copy: [:name])
   end
 end
