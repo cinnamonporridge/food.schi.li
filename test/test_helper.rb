@@ -33,21 +33,25 @@ class ActiveSupport::TestCase
 
   def assert_not_get(path)
     get path
+
     assert_response :not_found
   end
 
   def assert_not_post(path)
     post path
+
     assert_response :not_found
   end
 
   def assert_not_patch(path)
     patch path
+
     assert_response :not_found
   end
 
   def assert_not_delete(path)
     delete path
+
     assert_response :not_found
   end
 
