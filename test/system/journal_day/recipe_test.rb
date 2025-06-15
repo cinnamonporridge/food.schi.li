@@ -108,9 +108,9 @@ class JournalDay::RecipeTest < ApplicationSystemTestCase
     within(find("li.recipe-meal", text: recipe_name), &)
   end
 
-  def within_recipe_meal_ingredient(recipe_name, ingredient_name, &explicit_block)
+  def within_recipe_meal_ingredient(recipe_name, ingredient_name, &)
     within_recipe_meal(recipe_name) do
-      within(find("li.recipe-meal--ingredient", text: ingredient_name), &explicit_block)
+      within(find("li.recipe-meal--ingredient", text: ingredient_name), &)
     end
   end
 end

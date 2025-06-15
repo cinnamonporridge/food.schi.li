@@ -5,6 +5,7 @@ gem "action_policy"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "bugsnag", "~> 6.24"
+gem "csv"
 gem "haml-rails"
 gem "importmap-rails"
 gem "pagy"
