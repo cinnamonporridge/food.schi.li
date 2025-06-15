@@ -1,13 +1,15 @@
 class ChangeMeasureEnumToStringOnIngredients < ActiveRecord::Migration[7.0]
-  # rubocop:disable Rails/BulkChangeTable
   def up
     add_column :ingredients, :measure_string, :string, null: true, default: "unit"
     execute migration_sql
-    change_column_null :ingredients, :measure_string, false
-    remove_column :ingredients, :measure
+
+    change_table :ingredients, bulk: true do |t|
+      t.change :measure_string, :string, null: false
+      t.remove :measure
+    end
+
     rename_column :ingredients, :measure_string, :measure
   end
-  # rubocop:enable Rails/BulkChangeTable
 
   def down
     # not intended

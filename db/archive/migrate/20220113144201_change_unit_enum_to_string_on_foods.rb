@@ -1,13 +1,15 @@
 class ChangeUnitEnumToStringOnFoods < ActiveRecord::Migration[7.0]
-  # rubocop:disable Rails/BulkChangeTable
   def up
     add_column :foods, :unit_string, :string, null: true, default: "gram"
     execute migration_sql
-    change_column_null :foods, :unit_string, false
-    remove_column :foods, :unit
+
+    change_table :foods, bulk: true do |t|
+      t.change :unit_string, :string, null: false
+      t.remove :unit
+    end
+
     rename_column :foods, :unit_string, :unit
   end
-  # rubocop:enable Rails/BulkChangeTable
 
   def down
     # not intended
