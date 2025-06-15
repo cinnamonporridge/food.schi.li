@@ -43,7 +43,7 @@ class Meals::IngredientsController < ApplicationController
   private
 
   def meal_ingredient_params
-    params.require(:meal_ingredient).permit(:portion_name, :amount_in_measure, :measure)
+    params.expect(meal_ingredient: [:portion_name, :amount_in_measure, :measure])
   end
 
   def set_meal

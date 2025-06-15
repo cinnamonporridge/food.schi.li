@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../config/environment", __dir__)
 require "rails/test_help"
 
-Dir["./test/test_helpers/*.rb"].each { require _1 }
+Dir["./test/test_helpers/*.rb"].each { require it }
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -31,20 +31,28 @@ class ActiveSupport::TestCase
     assert_equal flash[:notice], message
   end
 
-  def assert_not_get(path, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) { get path }
+  def assert_not_get(path)
+    get path
+
+    assert_response :not_found
   end
 
-  def assert_not_post(path, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) { post path }
+  def assert_not_post(path)
+    post path
+
+    assert_response :not_found
   end
 
-  def assert_not_patch(path, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) { patch path }
+  def assert_not_patch(path)
+    patch path
+
+    assert_response :not_found
   end
 
-  def assert_not_delete(path, error: ActiveRecord::RecordNotFound)
-    assert_raises(error) { delete path }
+  def assert_not_delete(path)
+    delete path
+
+    assert_response :not_found
   end
 
   def login_form_params(user_email, password)

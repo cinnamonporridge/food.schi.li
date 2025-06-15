@@ -25,7 +25,7 @@ class RecipeIngredientForm < ApplicationForm
     object.amount = amount
     object.measure = portion.measure
 
-    super()
+    super
   end
 
   # can this be private?

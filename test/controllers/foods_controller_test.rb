@@ -270,10 +270,9 @@ class FoodsControllerTest < ActionDispatch::IntegrationTest
     sign_out
     sign_in_user :john
 
-    assert_not_post(
-      globalize_food_path(foods(:maple_syrup)),
-      error: ActionPolicy::Unauthorized
-    )
+    assert_raises(ActionPolicy::Unauthorized) do
+      post globalize_food_path(foods(:maple_syrup))
+    end
   end
 
   private

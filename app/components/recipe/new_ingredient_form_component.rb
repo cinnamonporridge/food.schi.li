@@ -1,5 +1,5 @@
 class Recipe::NewIngredientFormComponent < ViewComponent::Base
-  attr_reader :user, :params, :recipe
+  attr_reader :params, :recipe
 
   delegate :user, to: :recipe
 

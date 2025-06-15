@@ -45,7 +45,7 @@ class JournalDaysController < ApplicationController
   private
 
   def journal_day_params
-    params.require(:journal_day).permit(:date)
+    params.expect(journal_day: [:date])
   end
 
   def set_journal_day

@@ -291,6 +291,8 @@ class PortionsControllerTest < ActionDispatch::IntegrationTest
   test "admin cannot delete #destroy of used global portion" do
     sign_in_user :daisy
 
-    assert_not_delete food_portion_path(@global_food, @global_food_portion), error: ActiveRecord::DeleteRestrictionError
+    assert_raises(ActiveRecord::DeleteRestrictionError) do
+      delete food_portion_path(@global_food, @global_food_portion)
+    end
   end
 end

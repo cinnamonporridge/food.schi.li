@@ -38,7 +38,7 @@ class PortionsController < ApplicationController
   private
 
   def portion_params
-    params.require(:portion).permit(:name, :amount)
+    params.expect(portion: [:name, :amount])
   end
 
   def set_portion

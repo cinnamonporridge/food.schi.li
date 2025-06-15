@@ -7,7 +7,7 @@ class MealIngredient < ApplicationRecord
   belongs_to :portion
   has_one :food, through: :portion
 
-  enum measure: { unit: "unit", piece: "piece" }, _prefix: :measure
+  enum :measure, { unit: "unit", piece: "piece" }, prefix: :measure
 
   scope :of_user, ->(user) { joins(meal: { journal_day: :user }).where(meal: { journal_days: { user: } }) }
   scope :of_recipes, -> { joins(:meal).where(meal: { consumable_type: "Recipe" }) }

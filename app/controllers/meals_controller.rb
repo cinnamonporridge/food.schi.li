@@ -44,7 +44,7 @@ class MealsController < ApplicationController
   private
 
   def find_params(form_klass)
-    params.require(:journal_day_meal).permit(form_klass::PERMITTED_PARAMS)
+    params.expect(journal_day_meal: [form_klass::PERMITTED_PARAMS])
   end
 
   def set_journal_day

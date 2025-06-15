@@ -1,4 +1,23 @@
 class NutrientLabelsComponent < ViewComponent::Base
+  DECORATOR_METHODS = {
+    kcal: {
+      default: :display_kcal,
+      per_serving: :display_kcal_per_serving
+    },
+    carbs: {
+      default: :display_carbs,
+      per_serving: :display_carbs_per_serving
+    },
+    protein: {
+      default: :display_protein,
+      per_serving: :display_protein_per_serving
+    },
+    fat: {
+      default: :display_fat,
+      per_serving: :display_fat_per_serving
+    }
+  }.freeze
+
   def initialize(object:, per_serving: false)
     @object = object
     @decorator_values = per_serving ? :per_serving : :default
@@ -22,25 +41,6 @@ class NutrientLabelsComponent < ViewComponent::Base
   end
 
   private
-
-  DECORATOR_METHODS = {
-    kcal: {
-      default: :display_kcal,
-      per_serving: :display_kcal_per_serving
-    },
-    carbs: {
-      default: :display_carbs,
-      per_serving: :display_carbs_per_serving
-    },
-    protein: {
-      default: :display_protein,
-      per_serving: :display_protein_per_serving
-    },
-    fat: {
-      default: :display_fat,
-      per_serving: :display_fat_per_serving
-    }
-  }.freeze
 
   def decorated_object
     @decorated_object ||= @object.decorate

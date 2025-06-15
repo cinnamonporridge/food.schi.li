@@ -21,6 +21,6 @@ class ResetPasswordsController < ApplicationController
   private
 
   def reset_password_params
-    params.require(:reset_password_form).permit(:password, :challenge)
+    params.expect(reset_password_form: [:password, :challenge])
   end
 end

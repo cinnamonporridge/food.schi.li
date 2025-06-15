@@ -43,7 +43,7 @@ class DayPartitionsController < ApplicationController
   private
 
   def day_partition_params
-    params.require(:day_partition).permit(:name, :position)
+    params.expect(day_partition: [:name, :position])
   end
 
   def set_day_partition

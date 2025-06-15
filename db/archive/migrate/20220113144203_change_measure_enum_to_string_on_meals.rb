@@ -2,8 +2,12 @@ class ChangeMeasureEnumToStringOnMeals < ActiveRecord::Migration[7.0]
   def up
     add_column :meals, :measure_string, :string, null: true, default: "unit"
     execute migration_sql
-    change_column_null :meals, :measure_string, false
-    remove_column :meals, :measure
+
+    change_table :meals, bulk: true do |t|
+      t.change :measure_string, :string, null: false
+      t.remove :measure
+    end
+
     rename_column :meals, :measure_string, :measure
   end
 

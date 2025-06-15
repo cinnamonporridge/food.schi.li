@@ -13,8 +13,8 @@ class Recipe::RecipeIngredientsToMealIngredientsServiceTest < ActiveSupport::Tes
     apple_portion = portions(:big_apple_portion)
 
     service.to_meal_ingredients.tap do |meal_ingredients|
-      milk_portion_in_meal = meal_ingredients.find { _1.portion == milk_portion }
-      apple_portion_in_meal = meal_ingredients.find { _1.portion == apple_portion }
+      milk_portion_in_meal = meal_ingredients.find { it.portion == milk_portion }
+      apple_portion_in_meal = meal_ingredients.find { it.portion == apple_portion }
 
       assert_predicate milk_portion_in_meal, :present?
       assert_predicate apple_portion_in_meal, :present?
