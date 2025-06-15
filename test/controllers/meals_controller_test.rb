@@ -27,10 +27,9 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   test "cannot get #new, meal_type: :unknown" do
     sign_in_user :daisy
 
-    assert_not_get(
-      new_journal_day_meal_path(@journal_day, meal_type: :unknown),
-      error: JournalDayMealFormFinderService::FormClassNotFound
-    )
+    assert_raises(JournalDayMealFormFinderService::FormClassNotFound) do
+      get new_journal_day_meal_path(@journal_day, meal_type: :unknown)
+    end
   end
 
   test "cannot get #new of other" do

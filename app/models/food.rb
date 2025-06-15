@@ -11,7 +11,7 @@ class Food < ApplicationRecord
   scope :of_user, ->(user) { where(user:) }
   scope :of_user_or_global, ->(user) { where(user: [user, User.find_global_user]) }
 
-  enum unit: { gram: "gram", mililiter: "mililiter" }
+  enum :unit, { gram: "gram", mililiter: "mililiter" }
 
   before_save :update_data_source_update_at
   before_create :create_default_portion

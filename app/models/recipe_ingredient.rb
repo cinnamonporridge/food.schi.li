@@ -15,5 +15,5 @@ class RecipeIngredient < ApplicationRecord
 
   validates :amount, presence: true
 
-  enum measure: { unit: "unit", piece: "piece" }, _prefix: :measure
+  enum :measure, { unit: "unit", piece: "piece" }, prefix: :measure
 end

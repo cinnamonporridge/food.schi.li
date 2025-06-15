@@ -13,7 +13,7 @@ gem "puma"
 gem "rails", "~> 7.2.0"
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 3.0"
 gem "turbo-rails"
 gem "view_component"
 
