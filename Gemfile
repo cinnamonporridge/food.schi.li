@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.4.4"
+ruby "3.4.5"
 
 gem "action_policy"
 gem "bcrypt"
 gem "bootsnap", require: false
-gem "bugsnag", "~> 6.24"
+gem "bugsnag"
 gem "csv"
 gem "haml-rails"
 gem "importmap-rails"
@@ -31,7 +31,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "web-console", ">= 3.3.0"
+  gem "web-console"
 end
 
 group :test do
