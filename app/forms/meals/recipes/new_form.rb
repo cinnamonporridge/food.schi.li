@@ -43,7 +43,9 @@ class Meals::Recipes::NewForm < ApplicationForm
   private
 
   def recipe
-    @recipe ||= user.recipes.active.find_by(id: recipe_id)
+    return @recipe if defined?(@recipe)
+
+    @recipe = user.recipes.active.find_by(id: recipe_id)
   end
 
   def day_partition

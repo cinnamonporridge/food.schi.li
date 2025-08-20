@@ -60,7 +60,9 @@ class MealIngredientForm < ApplicationForm
   end
 
   def portion
-    @portion ||= Portion.find_by(id: portion_id)
+    return @portion if defined?(@portion)
+
+    @portion = Portion.find_by(id: portion_id)
   end
 
   def find_portion_id_by_name(portion_name)

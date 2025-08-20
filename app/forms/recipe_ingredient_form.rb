@@ -35,7 +35,9 @@ class RecipeIngredientForm < ApplicationForm
 
   # can this be private?
   def portion
-    @portion ||= user_portions.find_by(id: portion_id)
+    return @portion if defined?(@portion)
+
+    @portion = user_portions.find_by(id: portion_id)
   end
 
   def checked_portion?(radio_portion)

@@ -18,6 +18,6 @@ class AddBelongsToUserAssociationToFoods < ActiveRecord::Migration[7.0]
   end
 
   def raise?
-    Rails.env.production? && User.count > 1
+    Rails.env.production? && User.many?
   end
 end
