@@ -14,7 +14,7 @@
               = render VeganBadgeIconComponent.new(@recipe.vegan?)
               = t('shared.vegan')
         .shrink-0
-          %button.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true', title: t('shared.buttons.toggle_menu') }
+          %button.cursor-pointer.text-gray-500.hover:text-gray-900{ 'data-action': 'toggleable#toggle', 'aria-expanded': 'true', 'aria-haspopup': 'true', title: t('shared.buttons.toggle_menu') }
             = render HeroiconComponent.new(:'dots-vertical')
       .recipe-actions.grid.grid-cols-1.gap-2.pt-6.pb-4{ 'data-toggleable-target': 'toggleable', role: "menu" , 'aria-orientation': "vertical", 'tabindex': "-1" }
         - if @recipe.active?
