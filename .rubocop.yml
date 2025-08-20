@@ -11,7 +11,7 @@ AllCops:
   - bin/**/*
   - db/schema.rb
   - tmp/**/*
-  - vendor/**/*
+  - vendor/bundle/**/* # ruboclean: keep because GitHub Action installs gems here
 
 Rails:
   Enabled: true
@@ -53,6 +53,9 @@ Capybara/SpecificMatcher:
 Gemspec/AddRuntimeDependency:
   Enabled: true
 
+Gemspec/AttributeAssignment:
+  Enabled: true
+
 Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 
@@ -63,6 +66,9 @@ Gemspec/RequireMFA:
   Enabled: true
 
 Layout/BeginEndAlignment:
+  Enabled: true
+
+Layout/EmptyLinesAfterModuleInclusion:
   Enabled: true
 
 Layout/EmptyLinesAroundAttributeAccessor:
@@ -493,6 +499,9 @@ Rails/ExpandedDateRange:
 Rails/FindById:
   Enabled: true
 
+Rails/FindByOrAssignmentMemoization:
+  Enabled: true
+
 Rails/FreezeTime:
   Enabled: true
 
@@ -524,6 +533,9 @@ Rails/MultipleRoutePaths:
   Enabled: true
 
 Rails/NegateInclude:
+  Enabled: true
+
+Rails/OrderArguments:
   Enabled: true
 
 Rails/Pluck:
@@ -653,6 +665,9 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/CollectionCompact:
+  Enabled: true
+
+Style/CollectionQuerying:
   Enabled: true
 
 Style/CombinableDefined:
