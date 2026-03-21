@@ -34,7 +34,7 @@ class MealIngredientForm < ApplicationForm
   end
 
   def amount
-    return amount_in_measure.to_f * object.portion.amount if measure_in_pieces?
+    return (amount_in_measure.to_f * object.portion.amount) if measure_in_pieces?
 
     amount_in_measure
   end

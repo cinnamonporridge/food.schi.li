@@ -1,7 +1,25 @@
+GIT
+  remote: https://github.com/glebm/i18n-tasks.git
+  revision: 172b50072b8bfd76dec2b585b263bddf963e66a3
+  branch: main
+  specs:
+    i18n-tasks (1.0.15)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 3.0.0)
+      i18n
+      parser (>= 3.2.2.1)
+      prism
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.8, >= 1.8.1)
+      terminal-table (>= 1.5.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    action_policy (0.7.6)
+    action_policy (0.7.5)
       ruby-next-core (>= 1.0)
     actioncable (8.0.2.1)
       actionpack (= 8.0.2.1)
@@ -78,7 +96,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     base64 (0.3.0)
-    bcrypt (3.1.22)
+    bcrypt (3.1.20)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
     bindex (0.8.1)
@@ -101,7 +119,7 @@ GEM
     crass (1.0.6)
     csv (3.3.5)
     date (3.4.1)
-    debug (1.11.1)
+    debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
     drb (2.2.3)
@@ -122,19 +140,7 @@ GEM
       reline
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.1.2)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      erubi
-      highline (>= 3.0.0)
-      i18n
-      parser (>= 3.2.2.1)
-      prism
-      rails-i18n
-      rainbow (>= 2.2.2, < 4.0)
-      ruby-progressbar (~> 1.8, >= 1.8.1)
-      terminal-table (>= 1.5.1)
-    importmap-rails (2.2.3)
+    importmap-rails (2.2.2)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
@@ -143,10 +149,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.19.2)
-    json-schema (6.2.0)
-      addressable (~> 2.8)
-      bigdecimal (>= 3.1, < 5)
+    json (2.13.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -160,11 +163,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.3)
-    mcp (0.9.0)
-      json-schema (>= 4.1)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
-    minitest (5.27.0)
+    minitest (5.25.5)
     msgpack (1.8.0)
     net-imap (0.5.9)
       date
@@ -176,9 +176,6 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.9)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.18.9-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.9-x86_64-linux-gnu)
@@ -188,12 +185,13 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.3-arm64-darwin)
-    pg (1.6.3-x86_64-linux)
+    pg (1.6.1)
+    pg (1.6.1-arm64-darwin)
+    pg (1.6.1-x86_64-linux)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.9.0)
+    prism (1.4.0)
     propshaft (1.2.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -254,29 +252,28 @@ GEM
     reline (0.6.2)
       io-console (~> 0.5)
     rexml (3.4.1)
-    rubocop (1.85.1)
+    rubocop (1.79.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
-      mcp (~> 0.6)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.49.0, < 2.0)
+      rubocop-ast (>= 1.46.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.49.1)
+    rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
-      prism (~> 1.7)
+      prism (~> 1.4)
     rubocop-capybara (2.22.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-minitest (0.39.1)
+    rubocop-minitest (0.38.1)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.34.3)
+    rubocop-rails (2.33.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -310,14 +307,14 @@ GEM
     thor (1.4.0)
     tilt (2.6.1)
     timeout (0.4.3)
-    turbo-rails (2.0.23)
+    turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.5)
       unicode-emoji (~> 4.0, >= 4.0.4)
-    unicode-emoji (4.2.0)
+    unicode-emoji (4.0.4)
     uri (1.0.3)
     useragent (0.16.11)
     view_component (4.0.2)
@@ -339,7 +336,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-24
-  arm64-darwin-25
   x86_64-linux
 
 DEPENDENCIES
@@ -351,7 +347,7 @@ DEPENDENCIES
   csv
   debug
   haml-rails
-  i18n-tasks
+  i18n-tasks!
   importmap-rails
   pagy
   pg
@@ -371,7 +367,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-  ruby 4.0.2p0
+   ruby 3.4.5p51
 
 BUNDLED WITH
-  4.0.8
+   2.6.9
