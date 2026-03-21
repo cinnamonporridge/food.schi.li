@@ -21,7 +21,7 @@ gem "view_component"
 
 group :development, :test do
   gem "debug"
-  gem "i18n-tasks", require: false, git: "https://github.com/glebm/i18n-tasks.git", branch: "main"
+  gem "i18n-tasks", require: false
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-minitest", require: false
