@@ -66,7 +66,7 @@ class ActiveSupport::TestCase
   end
 end
 
-class ViewComponent::TestCase
+class ViewComponent::TestCase # rubocop:disable Style/OneClassPerFile
   def new_component(...)
     self.class.name.sub(/Test$/, "").constantize.new(...)
   end
