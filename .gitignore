@@ -14,7 +14,6 @@ pickle-email-*.html
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
-config/database.yml
 # config/secrets.yml
 
 # dotenv
@@ -55,3 +54,10 @@ latest.dump*
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+
+# Ignore key files for decrypting credentials and more.
+/config/*.key
+

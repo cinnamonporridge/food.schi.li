@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "sessions#new"
 
+  get "up" => "rails/health#show", as: :rails_health_check
+
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
