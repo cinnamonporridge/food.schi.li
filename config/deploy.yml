@@ -37,7 +37,6 @@ registry:
 # Configure builder setup.
 builder:
   arch:
-    - arm64
     - amd64
   # Pass in additional build args needed for your Dockerfile.
   # args:
