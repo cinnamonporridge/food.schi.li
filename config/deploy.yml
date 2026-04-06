@@ -6,6 +6,10 @@ image: lxxxvi/food
 servers:
   web:
     - food.schuettel.dev
+  worker:
+    hosts:
+      - food.schuettel.dev
+    cmd: "bin/jobs"
   # job:
   #   hosts:
   #     - 192.168.0.1
