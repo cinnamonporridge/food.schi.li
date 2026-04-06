@@ -1,0 +1,11 @@
+default: &default
+  database_backup_base_directory: "/tmp/food"
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  database_backup_base_directory: <%= ENV["DATABASE_BACKUP_BASE_DIRECTORY"] %>
