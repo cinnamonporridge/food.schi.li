@@ -37,7 +37,6 @@ registry:
 # Configure builder setup.
 builder:
   arch:
-    - arm64
     - amd64
   # Pass in additional build args needed for your Dockerfile.
   # args:
@@ -47,6 +46,7 @@ builder:
 #
 env:
   clear:
+    DATABASE_BACKUP_BASE_DIRECTORY: "/mnt/backups/food"
     DB_HOST: food-db
     POSTGRES_DB: food_production
     POSTGRES_USER: food
