@@ -15,12 +15,12 @@ gem "pg"
 gem "propshaft"
 gem "puma"
 gem "rails", "~> 8.1.0"
+gem "solid_queue"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "thruster"
 gem "turbo-rails"
 gem "view_component"
-gem "solid_queue"
 
 group :development, :test do
   gem "debug"
