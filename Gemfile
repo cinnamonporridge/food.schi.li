@@ -20,6 +20,7 @@ gem "tailwindcss-rails"
 gem "thruster"
 gem "turbo-rails"
 gem "view_component"
+gem "solid_queue"
 
 group :development, :test do
   gem "debug"
