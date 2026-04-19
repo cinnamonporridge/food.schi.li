@@ -11,30 +11,40 @@ class BackupDatabase
 
   def pg_dump_command
     <<~SH.squish
-      pg_dump #{username_option} #{database_option} #{file_option}
+      pg_dump #{database_username_option} #{database_option} #{database_host_option} #{file_option}
     SH
   end
 
-  def username_option
-    "--username #{username}" if username.present?
+  def database_username_option
+    "--username #{database_username}" if database_username.present?
   end
 
   def database_option
     "--dbname #{database_name}"
   end
 
+  def database_host_option
+    "--host #{database_host}" if database_host.present?
+  end
+
   def file_option
     "--file #{backup_pathname}"
   end
 
-  def username
-    return @username if defined?(@username)
+  def database_username
+    return @database_username if defined?(@database_username)
 
-    @username = database_configuration[:username] # may be empty
+    @database_username = database_configuration[:username] # may be empty
   end
 
   def database_name
     database_configuration.fetch(:database)
+  end
+
+  def database_host
+    return @database_host if defined?(@database_host)
+
+    @database_host = database_configuration[:host] # may be empty
   end
 
   def backup_pathname
