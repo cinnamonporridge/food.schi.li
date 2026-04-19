@@ -1,15 +1,15 @@
 class BackupDatabase
   def call
-    execute(system_command)
+    execute(pgpassword, pg_dump_command)
   end
 
   private
 
-  def execute(_command)
-    system(system_command)
+  def execute(env_variables, command)
+    system(env_variables, command)
   end
 
-  def system_command
+  def pg_dump_command
     <<~SH.squish
       pg_dump #{username_option} #{database_option} #{file_option}
     SH
@@ -55,5 +55,13 @@ class BackupDatabase
 
   def database_configuration
     @database_configuration ||= ApplicationRecord.connection_db_config.configuration_hash
+  end
+
+  def pgpassword
+    return {} unless database_configuration.key?(:password)
+
+    {
+      "PGPASSWORD" => database_configuration[:password]
+    }
   end
 end
