@@ -1,17 +1,17 @@
 class BackupDatabase
   def call
-    execute(pgpassword, pg_dump_command)
+    execute!(pgpassword, pg_dump_command)
   end
 
   private
 
-  def execute(env_variables, command)
-    system(env_variables, command)
+  def execute!(env_variables, command)
+    system(env_variables, command, exception: true)
   end
 
   def pg_dump_command
     <<~SH.squish
-      pg_dump #{database_username_option} #{database_option} #{database_host_option} #{file_option}
+      pg_dump --no-password #{database_username_option} #{database_option} #{database_host_option} #{file_option}
     SH
   end
 
