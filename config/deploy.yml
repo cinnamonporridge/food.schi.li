@@ -1,6 +1,6 @@
 service: food
 
-image: lxxxvi/food
+image: schuettel-dev/food
 
 # Deploy to these servers.
 servers:
